@@ -14,7 +14,7 @@
 Один слой поверх другого, каждый — с собственными тестами:
 
 ```
-mcp_server.py / cli.py   тонкие обёртки одного интерфейса поверх tools.py
+mcp_server.py / cli.py / api.py   тонкие обёртки трёх интерфейсов поверх tools.py
 tools.py                 search_indicator, get_series, compare, list_sources, describe_source
 core/compose.py          сравнительные таблицы поверх нескольких get_series() + вычисляемые колонки
 core/engine.py           QueryEngine — единая точка входа: провайдеры + Catalog + Cache
@@ -26,9 +26,9 @@ providers/sdmx_provider.py + registry.py   генерик-провайдер п�
 `Provider` — единственный контракт (`get_series`, `describe`), который должен
 реализовать источник данных; поиск (`search`) сознательно вынесен из него в
 `Catalog`/`QueryEngine`, потому что он межисточниковый по своей природе.
-`tools.py` — общая логика для MCP-сервера и CLI: оба интерфейса — тонкие
-обёртки над одними и теми же функциями, а не два места с одной и той же
-логикой.
+`tools.py` — общая логика для всех трёх интерфейсов: MCP-сервера, CLI и
+REST API. Каждый — тонкая обёртка над одними и теми же функциями, а не три
+места с одной и той же логикой.
 
 ### Два вскрывшихся по ходу дела нюанса
 
@@ -48,7 +48,10 @@ Eurostat и IMF на каждый датафлоу свой DSD со своим 
 база. Исправлено `check_same_thread=False` + `threading.Lock` на оба класса,
 закреплено regression-тестами через `ThreadPoolExecutor`
 (`test_catalog.py`, `test_cache.py`) и через реальный `server.call_tool()`
-(`test_mcp_server.py`).
+(`test_mcp_server.py`). REST API (`api.py`) подвержен тому же классу риска —
+Starlette тоже выполняет синхронные хендлеры в worker-потоке — и прошёл
+через `TestClient` без дополнительных правок: фикс уже был общим для
+`Catalog`/`Cache`, а не специфичным для MCP.
 
 ## Покрытие источников
 
@@ -98,6 +101,21 @@ ustat compare WB_WDI --indicator-id SP_POP_TOTL --indicator-id NY.GDP.MKTP.CD --
 Некорректный запрос (неизвестный источник, неполный `compare`) печатает
 понятное сообщение в stderr и завершает процесс кодом 1, а не сырым traceback.
 
+**REST API** — та же логика по HTTP, с автогенерируемой OpenAPI-документацией:
+
+```bash
+uvicorn universal_statistician.api:app --reload
+# http://127.0.0.1:8000/docs — интерактивная документация
+```
+
+| Метод и путь | Соответствует |
+|---|---|
+| `GET /sources` | `tools.list_sources` |
+| `GET /sources/{source_id}` | `tools.describe_source` (404, если источник неизвестен) |
+| `GET /search?q=...&limit=` | `tools.search_indicator` |
+| `GET /series?source_id=&indicator_id=&ref_area=&start_period=&end_period=` | `tools.get_series` |
+| `POST /compare` (JSON-тело = параметры `tools.compare`) | `tools.compare` (400 при некорректной форме запроса) |
+
 **Python API** напрямую через ядро:
 
 ```python
@@ -133,12 +151,13 @@ pytest -m network      # + живые запросы к World Bank / IMF / Euros
 провайдеров, и такие тесты стоит прогнать перед реальным использованием
 на машине с доступом в интернет.
 
-MCP-сервер и CLI тестируются через их собственные протоколы вызова
-(`server.call_tool(...)`, `typer.testing.CliRunner`), а не только через
-`tools.py` напрямую — именно так нашёлся баг с потоками, описанный выше.
+Все три интерфейса тестируются через свои собственные протоколы вызова
+(`server.call_tool(...)`, `typer.testing.CliRunner`, `fastapi.testclient.TestClient`),
+а не только через `tools.py` напрямую — именно так нашёлся баг с потоками,
+описанный выше.
 
 ## Что дальше
 
 Границы MVP, обоснование решений и полная последовательность разработки — в
-[`plan.md`](./plan.md). Коротко: FastAPI REST-слой поверх того же ядра →
-веб-дашборд → национальные источники (Росстат/ЕМИСС) → отдельное чат-приложение.
+[`plan.md`](./plan.md). MVP и REST API готовы. Дальше: веб-дашборд поверх
+FastAPI → национальные источники (Росстат/ЕМИСС) → отдельное чат-приложение.
