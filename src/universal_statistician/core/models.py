@@ -20,6 +20,25 @@ class Attribution:
     retrieved_at: datetime
     source_url: str | None = None
 
+    def as_dict(self) -> dict:
+        return {
+            "source_id": self.source_id,
+            "source_name": self.source_name,
+            "dataset_id": self.dataset_id,
+            "retrieved_at": self.retrieved_at.isoformat(),
+            "source_url": self.source_url,
+        }
+
+    @staticmethod
+    def from_dict(payload: dict) -> "Attribution":
+        return Attribution(
+            source_id=payload["source_id"],
+            source_name=payload["source_name"],
+            dataset_id=payload["dataset_id"],
+            retrieved_at=datetime.fromisoformat(payload["retrieved_at"]),
+            source_url=payload["source_url"],
+        )
+
 
 @dataclass(frozen=True)
 class Observation:
@@ -43,20 +62,13 @@ class SeriesResult:
             "observations": [
                 {"period": o.period, "value": o.value} for o in self.observations
             ],
-            "attribution": {
-                "source_id": self.attribution.source_id,
-                "source_name": self.attribution.source_name,
-                "dataset_id": self.attribution.dataset_id,
-                "retrieved_at": self.attribution.retrieved_at.isoformat(),
-                "source_url": self.attribution.source_url,
-            },
+            "attribution": self.attribution.as_dict(),
         }
 
     @staticmethod
     def from_dict(payload: dict) -> "SeriesResult":
         """Inverse of as_dict() — round-trips a result through the cache
         without losing its type (callers should never see a bare dict)."""
-        attribution = payload["attribution"]
         return SeriesResult(
             indicator_id=payload["indicator_id"],
             ref_area=payload["ref_area"],
@@ -65,13 +77,7 @@ class SeriesResult:
                 Observation(period=o["period"], value=o["value"])
                 for o in payload["observations"]
             ),
-            attribution=Attribution(
-                source_id=attribution["source_id"],
-                source_name=attribution["source_name"],
-                dataset_id=attribution["dataset_id"],
-                retrieved_at=datetime.fromisoformat(attribution["retrieved_at"]),
-                source_url=attribution["source_url"],
-            ),
+            attribution=Attribution.from_dict(payload["attribution"]),
         )
 
 
