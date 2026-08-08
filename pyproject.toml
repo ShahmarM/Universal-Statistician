@@ -12,6 +12,7 @@ dependencies = [
     "sdmx1>=2.27.0",
     "pandas>=2.0",
     "mcp>=2.0.0",
+    "typer>=0.27",
 ]
 
 [project.optional-dependencies]
@@ -21,6 +22,7 @@ dev = [
 
 [project.scripts]
 universal-statistician-mcp = "universal_statistician.mcp_server:main"
+ustat = "universal_statistician.cli:app"
 
 [tool.setuptools.packages.find]
 where = ["src"]

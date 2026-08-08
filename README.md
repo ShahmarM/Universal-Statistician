@@ -150,3 +150,21 @@ universal-statistician-mcp   # stdio-транспорт, добавить в к�
 Инструменты: `search_indicator`, `get_series`, `compare`, `list_sources`,
 `describe_source` — сигнатуры и докстринги в `mcp_server.py` (докстринг
 становится описанием инструмента для LLM-хоста).
+
+## CLI
+
+Тонкая обёртка над тем же `tools.py` — для разработки и smoke-тестов без
+MCP-клиента, вывод — JSON.
+
+```bash
+ustat sources
+ustat source WB_WDI
+ustat search population
+ustat series WB_WDI SP_POP_TOTL AFG --start 2015 --end 2020
+ustat compare WB_WDI --indicator SP_POP_TOTL --ref-area AFG --ref-area USA --growth --rank
+ustat compare WB_WDI --indicator-id SP_POP_TOTL --indicator-id NY.GDP.MKTP.CD --for-area AFG
+```
+
+Некорректный запрос (неизвестный источник, неполный `compare`) печатает
+понятное сообщение в stderr и завершает процесс кодом 1, а не сырым
+traceback — покрыто `tests/test_cli.py` через `typer.testing.CliRunner`.
