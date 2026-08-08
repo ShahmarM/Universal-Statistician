@@ -20,6 +20,9 @@ from universal_statistician.core.models import SeriesResult
 class Provider(ABC):
     source_id: str
     source_name: str
+    #: Seconds a get_series() result for this provider may be cached by
+    #: QueryEngine before being re-fetched.
+    cache_ttl_seconds: int
 
     @abstractmethod
     def get_series(

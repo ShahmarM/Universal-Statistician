@@ -1,12 +1,13 @@
 """Core query engine: the single place every interface (MCP, CLI, ...) calls into.
 
-Interfaces never talk to a Provider or the Catalog directly — they go through
-the engine, so adding a new interface never means re-implementing source
-lookup or indicator search.
+Interfaces never talk to a Provider, Catalog, or Cache directly — they go
+through the engine, so adding a new interface never means re-implementing
+source lookup, indicator search, or caching.
 """
 
 from __future__ import annotations
 
+from universal_statistician.core.cache import Cache
 from universal_statistician.core.catalog import Catalog
 from universal_statistician.core.models import IndicatorMeta, SeriesResult
 from universal_statistician.providers.base import Provider
@@ -20,9 +21,15 @@ class UnknownSourceError(KeyError):
 
 
 class QueryEngine:
-    def __init__(self, providers: dict[str, Provider], catalog: Catalog | None = None) -> None:
+    def __init__(
+        self,
+        providers: dict[str, Provider],
+        catalog: Catalog | None = None,
+        cache: Cache | None = None,
+    ) -> None:
         self._providers = providers
         self._catalog = catalog or Catalog()
+        self._cache = cache or Cache()
 
     def list_sources(self) -> list[dict]:
         return [p.describe() for p in self._providers.values()]
@@ -48,9 +55,17 @@ class QueryEngine:
         end_period: str | None = None,
     ) -> SeriesResult:
         provider = self._get_provider(source_id)
-        return provider.get_series(
+        cache_key = Cache.make_key(source_id, indicator_id, ref_area, start_period, end_period)
+
+        cached = self._cache.get(cache_key)
+        if cached is not None:
+            return SeriesResult.from_dict(cached)
+
+        result = provider.get_series(
             indicator_id, ref_area, start_period=start_period, end_period=end_period
         )
+        self._cache.set(cache_key, result.as_dict(), ttl_seconds=provider.cache_ttl_seconds)
+        return result
 
 
 def default_engine() -> QueryEngine:

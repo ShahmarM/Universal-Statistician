@@ -52,6 +52,10 @@ class SDMXSourceConfig:
     #: placeholder: "{indicator}" / "{ref_area}".
     key_dimensions: tuple[str, ...]
     website: str
+    #: How long a fetched series stays cached before being re-fetched. Official
+    #: statistics are revised on the order of days/months, not minutes, so a
+    #: day is a safe default for every source registered so far.
+    cache_ttl_seconds: int = 86400
 
 
 SOURCES: dict[str, SDMXSourceConfig] = {

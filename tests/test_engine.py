@@ -13,9 +13,10 @@ from universal_statistician.providers.base import Provider
 class FakeProvider(Provider):
     """Stub Provider for exercising the engine without any real data source."""
 
-    def __init__(self, source_id: str) -> None:
+    def __init__(self, source_id: str, cache_ttl_seconds: int = 3600) -> None:
         self.source_id = source_id
         self.source_name = f"Fake {source_id}"
+        self.cache_ttl_seconds = cache_ttl_seconds
         self.calls: list[tuple[str, str]] = []
 
     def get_series(self, indicator_id, ref_area, *, start_period=None, end_period=None):
@@ -71,3 +72,25 @@ def test_list_sources_reports_every_configured_provider(engine):
 def test_search_indicator_delegates_to_catalog(engine):
     results = engine.search_indicator("fake")
     assert [r.indicator_id for r in results] == ["SOME_INDICATOR"]
+
+
+def test_get_series_is_cached_on_repeat_query():
+    provider = FakeProvider("FAKE")
+    engine = QueryEngine({"FAKE": provider})
+
+    first = engine.get_series("FAKE", "SOME_INDICATOR", "AFG")
+    second = engine.get_series("FAKE", "SOME_INDICATOR", "AFG")
+
+    assert len(provider.calls) == 1
+    assert first == second
+
+
+def test_get_series_cache_is_keyed_by_full_query():
+    provider = FakeProvider("FAKE")
+    engine = QueryEngine({"FAKE": provider})
+
+    engine.get_series("FAKE", "SOME_INDICATOR", "AFG")
+    engine.get_series("FAKE", "SOME_INDICATOR", "USA")
+    engine.get_series("FAKE", "SOME_INDICATOR", "AFG", start_period="2020")
+
+    assert len(provider.calls) == 3

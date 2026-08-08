@@ -52,6 +52,28 @@ class SeriesResult:
             },
         }
 
+    @staticmethod
+    def from_dict(payload: dict) -> "SeriesResult":
+        """Inverse of as_dict() — round-trips a result through the cache
+        without losing its type (callers should never see a bare dict)."""
+        attribution = payload["attribution"]
+        return SeriesResult(
+            indicator_id=payload["indicator_id"],
+            ref_area=payload["ref_area"],
+            frequency=payload["frequency"],
+            observations=tuple(
+                Observation(period=o["period"], value=o["value"])
+                for o in payload["observations"]
+            ),
+            attribution=Attribution(
+                source_id=attribution["source_id"],
+                source_name=attribution["source_name"],
+                dataset_id=attribution["dataset_id"],
+                retrieved_at=datetime.fromisoformat(attribution["retrieved_at"]),
+                source_url=attribution["source_url"],
+            ),
+        )
+
 
 @dataclass(frozen=True)
 class IndicatorMeta:

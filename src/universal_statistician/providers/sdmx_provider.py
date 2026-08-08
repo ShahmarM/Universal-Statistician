@@ -25,6 +25,7 @@ class SDMXProvider(Provider):
         self.config = config
         self.source_id = config.source_id
         self.source_name = config.source_name
+        self.cache_ttl_seconds = config.cache_ttl_seconds
         self._client = sdmx.Client(config.source_id)
 
     def _build_key(self, indicator_id: str, ref_area: str) -> str:
