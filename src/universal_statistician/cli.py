@@ -105,5 +105,16 @@ def describe_source_cmd(source_id: str) -> None:
     _run(tools.describe_source, _engine, source_id)
 
 
+@app.command()
+def chat(model: str = "claude-sonnet-5") -> None:
+    """Interactive chat backed by Claude, using the same tools as the MCP
+    server. Requires ANTHROPIC_API_KEY in the environment."""
+    # Imported lazily so commands other than `chat` don't pay for importing
+    # anthropic or building a second default_engine() inside mcp_server.py.
+    from universal_statistician.chat import run_chat
+
+    run_chat(model=model)
+
+
 if __name__ == "__main__":
     app()

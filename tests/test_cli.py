@@ -45,6 +45,13 @@ def test_compare_with_no_query_shape_exits_nonzero():
     assert "cross-country" in result.stderr
 
 
+def test_chat_without_api_key_exits_cleanly(monkeypatch):
+    monkeypatch.delenv("ANTHROPIC_API_KEY", raising=False)
+    result = runner.invoke(cli.app, ["chat"])
+    assert result.exit_code == 1
+    assert "ANTHROPIC_API_KEY" in result.stderr
+
+
 def test_series_and_compare_against_a_fake_engine(monkeypatch):
     provider = LookupProvider(
         "FAKE",
