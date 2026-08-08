@@ -15,6 +15,7 @@ dependencies = [
     "typer>=0.27",
     "fastapi>=0.115",
     "uvicorn[standard]>=0.30",
+    "pxwebpy>=0.6.0",
 ]
 
 [project.optional-dependencies]

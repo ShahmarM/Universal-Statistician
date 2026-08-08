@@ -41,4 +41,17 @@ CATALOG_SEED: list[IndicatorEntry] = [
         },
         description="GDP, current prices, million EUR (na_item=B1GQ, unit=CP_MEUR).",
     ),
+    IndicatorEntry(
+        indicator_id="000007SF",
+        source_id="SCB_TAB6471",
+        names={"en": "Statistics Sweden (SCB) table TAB6471, content code 000007SF"},
+        # Honest gap, not a guess: no public documentation of what this
+        # specific content code measures was found (see providers/pxweb_registry.py) —
+        # only that it's a verified, queryable code (from pxwebpy's own test suite),
+        # not that we know what it represents.
+        description=(
+            "Verified queryable via pxwebpy's own test suite; the statistical "
+            "concept this content code represents is not confirmed."
+        ),
+    ),
 ]

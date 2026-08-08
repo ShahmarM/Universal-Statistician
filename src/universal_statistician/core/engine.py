@@ -12,6 +12,8 @@ from universal_statistician.core.catalog import Catalog
 from universal_statistician.core.models import IndicatorMeta, SeriesResult
 from universal_statistician.providers.base import Provider
 from universal_statistician.providers.catalog_seed import CATALOG_SEED
+from universal_statistician.providers.pxweb_provider import PXWebProvider
+from universal_statistician.providers.pxweb_registry import PXWEB_SOURCES
 from universal_statistician.providers.registry import SOURCES
 from universal_statistician.providers.sdmx_provider import SDMXProvider
 
@@ -72,11 +74,23 @@ class QueryEngine:
 
 
 def default_engine() -> QueryEngine:
-    """QueryEngine wired up with every SDMX source in the registry, and a
-    catalog pre-populated from providers/catalog_seed.py."""
+    """QueryEngine wired up with every registered source (SDMX and PX-Web
+    alike), and a catalog pre-populated from providers/catalog_seed.py.
+
+    Provider construction must stay network-free here: this runs at startup
+    for every interface (MCP, CLI, API), before anyone has asked for
+    anything from a specific source, so a source that's unreachable at that
+    moment must not break every other source's availability. SDMXProvider
+    and PXWebProvider both connect lazily on first use for exactly this
+    reason (see PXWebProvider's docstring for the bug this would otherwise
+    cause).
+    """
     providers: dict[str, Provider] = {
         source_id: SDMXProvider(config) for source_id, config in SOURCES.items()
     }
+    providers.update(
+        {source_id: PXWebProvider(config) for source_id, config in PXWEB_SOURCES.items()}
+    )
     catalog = Catalog()
     catalog.add(CATALOG_SEED)
     return QueryEngine(providers, catalog)

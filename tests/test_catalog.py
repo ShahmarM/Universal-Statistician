@@ -108,15 +108,17 @@ def test_search_blank_query_returns_empty():
 
 
 def test_catalog_seed_is_searchable_and_matches_registry():
+    from universal_statistician.providers.pxweb_registry import PXWEB_SOURCES
     from universal_statistician.providers.registry import SOURCES
 
     catalog = Catalog()
     catalog.add(CATALOG_SEED)
 
+    known_source_ids = set(SOURCES) | set(PXWEB_SOURCES)
     for entry in CATALOG_SEED:
         # Every seeded indicator must belong to a real registry entry —
         # otherwise get_series() would reject it even though search() found it.
-        assert entry.source_id in SOURCES
+        assert entry.source_id in known_source_ids
 
     results = catalog.search("population")
     assert any(r.indicator_id == "SP_POP_TOTL" for r in results)
