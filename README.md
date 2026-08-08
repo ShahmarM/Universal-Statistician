@@ -1,82 +1,69 @@
 # Universal Statistician
 
-Универсальный статистический помощник: нормализованный, атрибутированный доступ
-к официальной статистике из международных источников. Полный план (анализ
-референсов, стек, границы MVP, порядок разработки) — в `plan.md` этой ветки/PR.
+Универсальный статистический помощник: нормализованный, атрибутированный
+доступ к официальной статистике из международных источников — за любой
+период, с автоматически считаемыми сравнительными таблицами. Каждое число
+несёт источник, код датасета, момент получения и ссылку на первоисточник.
 
-## Статус
+Анализ референсных проектов, обоснование стека и полная последовательность
+разработки MVP — в [`plan.md`](./plan.md). Ниже — что уже реализовано и как
+этим пользоваться.
 
-MVP в разработке. Реализовано:
+## Архитектура
 
-- `Provider`-интерфейс (`src/universal_statistician/providers/base.py`) — контракт,
-  который должен реализовать любой источник данных.
-- `SDMXProvider` (`src/universal_statistician/providers/sdmx_provider.py`) — один
-  провайдер для любого источника, говорящего на SDMX (обёртка над
-  [`sdmx1`](https://github.com/khaeru/sdmx)). Новый источник добавляется записью в
-  `providers/registry.py`, без изменения кода провайдера.
-- `QueryEngine` (`src/universal_statistician/core/engine.py`) — точка входа для всех
-  будущих интерфейсов (MCP-сервер, CLI, API).
-- `Catalog` (`src/universal_statistician/core/catalog.py`) — локальный
-  многоязычный полнотекстовый индекс индикаторов (SQLite FTS5). Поиск
-  межисточниковый и не бьёт в сеть на каждый запрос: индекс строится один раз
-  из seed-метаданных (`providers/catalog_seed.py`), а не заново на каждый вызов.
-  Поэтому `search()` убран из `Provider` — это межисточниковая задача движка,
-  а не отдельного провайдера.
-- `Cache` (`src/universal_statistician/core/cache.py`) — локальный TTL-кэш
-  (SQLite) поверх `QueryEngine.get_series()`, с ключом по полному запросу
-  (источник + индикатор + регион + период). TTL задаётся на уровне записи в
-  реестре (`SDMXSourceConfig.cache_ttl_seconds`, по умолчанию 24 часа — офиц.
-  статистика не меняется поминутно) и прокидывается в провайдер, а не
-  хардкодится в движке. Redis не используется — не нужен для личного
-  инструмента без реальной многопользовательской нагрузки (см. `plan.md`).
-- `compose` (`src/universal_statistician/core/compose.py`) — сравнительные
-  таблицы поверх нескольких вызовов `get_series()`: межстрановые
-  (`compare_across_countries`) и межиндикаторные (`compare_across_indicators`),
-  плюс вычисляемые колонки `with_growth` (темп роста год-к-году), `with_ratio`
-  (отношение к базовой колонке) и `with_rank` (ранг по периоду). Это то самое
-  требование "генерировать собственные производные ряды данных", добавленное
-  при подтверждении плана. Каждая базовая колонка несёт свою `Attribution`;
-  вычисляемые колонки помечены `derived=True` и атрибуции не имеют — они не
-  получены из источника, а посчитаны здесь, и это видно в структуре ответа,
-  а не только в комментарии.
-- `tools` (`src/universal_statistician/tools.py`) — межинтерфейсный слой:
-  `search_indicator`, `get_series`, `compare`, `list_sources`, `describe_source`
-  как обычные Python-функции, принимающие `QueryEngine` и возвращающие
-  JSON-совместимые словари. MCP-сервер и будущий CLI — тонкие обёртки над
-  этими же функциями, а не два отдельных места с одной и той же логикой.
-- `mcp_server` (`src/universal_statistician/mcp_server.py`) — MCP-сервер
-  (Python MCP SDK, `mcp.server.mcpserver.MCPServer`), публикует все пять
-  функций из `tools.py` как MCP-инструменты. Запуск: `universal-statistician-mcp`
-  (entry point, stdio-транспорт по умолчанию) — подключается как обычный MCP-сервер
-  к Claude Desktop/Code или другому MCP-хосту.
+Один слой поверх другого, каждый — с собственными тестами:
 
-  При первом сквозном тесте через `server.call_tool(...)` (а не напрямую через
-  `tools.py`) нашёлся реальный баг: MCP-сервер выполняет каждый синхронный
-  tool-вызов в отдельном worker-потоке, а не в том, где создавался движок —
-  `sqlite3`-соединения `Catalog`/`Cache` по умолчанию (`check_same_thread=True`)
-  такие вызовы отклоняют. Отдельное соединение на поток не подходит: для
-  `:memory:`-баз это была бы каждый раз новая пустая база. Исправлено:
-  `check_same_thread=False` + собственный `threading.Lock` на оба класса,
-  с regression-тестами через `ThreadPoolExecutor` в `test_catalog.py`/`test_cache.py`.
+```
+mcp_server.py / cli.py   тонкие обёртки одного интерфейса поверх tools.py
+tools.py                 search_indicator, get_series, compare, list_sources, describe_source
+core/compose.py          сравнительные таблицы поверх нескольких get_series() + вычисляемые колонки
+core/engine.py           QueryEngine — единая точка входа: провайдеры + Catalog + Cache
+core/catalog.py          локальный многоязычный полнотекстовый индекс индикаторов (SQLite FTS5)
+core/cache.py            локальный TTL-кэш поверх get_series() (SQLite)
+providers/sdmx_provider.py + registry.py   генерик-провайдер поверх sdmx1, источники — записи в реестре
+```
 
-Важный нюанс, вскрывшийся при добавлении второго и третьего источника: запись в
-реестре — это не "агентство целиком", а **конкретный запрашиваемый датасет**
-(источник + датафлоу + зафиксированные измерения). У World Bank один датафлоу
-(WDI) с одинаковым порядком измерений для всех ~1500 индикаторов — одной записи
-достаточно на весь источник. У Eurostat и IMF на каждый датафлоу — свой DSD со
-своим набором и порядком измерений, поэтому запись в реестре относится к одному
-датафлоу (например, `ESTAT_NAMA_10_GDP`), а не ко всему агентству. Подробности и
-источники правды по ключам — в `providers/registry.py`.
+`Provider` — единственный контракт (`get_series`, `describe`), который должен
+реализовать источник данных; поиск (`search`) сознательно вынесен из него в
+`Catalog`/`QueryEngine`, потому что он межисточниковый по своей природе.
+`tools.py` — общая логика для MCP-сервера и CLI: оба интерфейса — тонкие
+обёртки над одними и теми же функциями, а не два места с одной и той же
+логикой.
+
+### Два вскрывшихся по ходу дела нюанса
+
+**Запись в реестре — это не "агентство целиком", а конкретный запрашиваемый
+датасет.** У World Bank один датафлоу (WDI) с одинаковым порядком измерений
+для всех ~1500 индикаторов — одной записи достаточно на весь источник. У
+Eurostat и IMF на каждый датафлоу свой DSD со своим набором и порядком
+измерений, поэтому запись в реестре относится к одному датафлоу (например,
+`ESTAT_NAMA_10_GDP`), а не ко всему агентству. Подробности и источники правды
+по форматам ключей — в `providers/registry.py`.
+
+**MCP-сервер выполняет каждый tool-вызов в отдельном worker-потоке.** Это
+нашлось только при сквозном тесте через `server.call_tool(...)`, а не через
+`tools.py` напрямую: `sqlite3`-соединения `Catalog`/`Cache` по умолчанию
+(`check_same_thread=True`) такие вызовы отклоняют. Отдельное соединение на
+поток не подходит — для `:memory:`-баз это была бы каждый раз новая пустая
+база. Исправлено `check_same_thread=False` + `threading.Lock` на оба класса,
+закреплено regression-тестами через `ThreadPoolExecutor`
+(`test_catalog.py`, `test_cache.py`) и через реальный `server.call_tool()`
+(`test_mcp_server.py`).
 
 ## Покрытие источников
 
-| Источник | Датафлоу | Провайдер | Статус |
-|---|---|---|---|
-| World Bank | WDI (все индикаторы) | `SDMXProvider` | ✅ `WB_WDI` |
-| IMF | CPI (Consumer Price Index) | `SDMXProvider` | ✅ `IMF_DATA_CPI` |
-| Eurostat | NAMA_10_GDP (нацсчета/ВВП, текущие цены) | `SDMXProvider` | ✅ `ESTAT_NAMA_10_GDP` |
-| OECD | — | `SDMXProvider` | не добавлен: нет проверенного рабочего примера запроса (см. `registry.py`) |
-| Росстат / ЕМИСС | — | новый non-SDMX provider | вне MVP |
+| Источник | Датафлоу | Статус |
+|---|---|---|
+| World Bank | WDI (все индикаторы) | ✅ `WB_WDI` |
+| IMF | CPI (Consumer Price Index) | ✅ `IMF_DATA_CPI` |
+| Eurostat | NAMA_10_GDP (нацсчета/ВВП, текущие цены) | ✅ `ESTAT_NAMA_10_GDP` |
+| OECD | — | не добавлен: нет проверенного рабочего примера запроса (см. `registry.py`) |
+| Росстат / ЕМИСС | — | вне MVP (нужен non-SDMX provider) |
+
+Каталог индикаторов пока содержит только три уже проверенных в `get_series()`
+записи — по одной на источник (`providers/catalog_seed.py`). Полное покрытие
+каждого датафлоу требует живого запроса к codelist/conceptscheme источника,
+недоступного в песочнице разработки (см. «Тесты» ниже).
 
 ## Установка
 
@@ -85,76 +72,19 @@ python3 -m venv .venv && source .venv/bin/activate
 pip install -e ".[dev]"
 ```
 
-## Тесты
+## Запуск
+
+**MCP-сервер** (stdio-транспорт, добавить в конфиг MCP-хоста — Claude Desktop/Code и т.п.):
 
 ```bash
-pytest                 # офлайн-тесты (по умолчанию сеть не используется)
-pytest -m network      # + живые запросы к World Bank / IMF / Eurostat SDMX API (нужен доступ в интернет)
-```
-
-Провайдерная логика тестируется на реальных объектах `sdmx.model.DataSet`,
-собранных в памяти (см. `tests/conftest.py`), поэтому офлайн-тесты проверяют
-настоящий код разбора ответа `sdmx.to_pandas`, а не выдуманную структуру.
-Значения ключей (`_build_key`) сверяются с примерами из собственного
-интеграционного тест-сьюта `sdmx1` (`sdmx/tests/test_sources.py`) — то есть с
-запросами, которые мейнтейнеры библиотеки гоняют против живых API. Живые
-тесты (`-m network`) бьют в `api.worldbank.org`, `api.imf.org`/`data.imf.org`,
-`ec.europa.eu` напрямую и в этой песочнице заблокированы сетевой политикой
-(egress 403) — это ограничение окружения, а не самих провайдеров.
-
-## Пример использования ядра
-
-```python
-from universal_statistician.core.engine import default_engine
-
-engine = default_engine()
-result = engine.get_series("WB_WDI", "SP_POP_TOTL", "AFG", start_period="2011", end_period="2020")
-print(result.as_dict())
-
-# Eurostat: GDP (na_item="B1GQ") for Luxembourg ("geo"="LU")
-gdp = engine.get_series("ESTAT_NAMA_10_GDP", "B1GQ", "LU", start_period="2012", end_period="2015")
-
-# IMF: CPI food category (COICOP "CP01") for ref_area "111"
-cpi = engine.get_series("IMF_DATA_CPI", "CP01", "111", start_period="2018")
-
-# Найти индикатор по названию, на любом проиндексированном языке
-engine.search_indicator("population")   # -> WB_WDI / SP_POP_TOTL
-engine.search_indicator("produit")      # -> ESTAT_NAMA_10_GDP / B1GQ (по французской метке)
-
-# Повторный вызов с теми же параметрами не бьёт в API повторно — отдаётся из кэша
-cached_again = engine.get_series("WB_WDI", "SP_POP_TOTL", "AFG", start_period="2011", end_period="2020")
-
-# Межстрановое сравнение: население по трём странам, с темпом роста и рангом
-from universal_statistician.core.compose import compare_across_countries, with_growth, with_rank
-
-table = compare_across_countries(engine, "WB_WDI", "SP_POP_TOTL", ["AFG", "USA", "LUX"], start_period="2015")
-table = with_rank(with_growth(table))
-print(table.as_dict())  # {"columns": [...], "rows": [{"period": "2015", "AFG": ..., "AFG__yoy_growth_pct": ..., "AFG__rank": ...}, ...]}
-```
-
-Каждый результат несёт `attribution`: источник, код датасета, момент получения
-и ссылку на первоисточник — это требование "только официальные источники"
-реализовано на уровне типов, а не как соглашение.
-
-Каталог пока содержит только те индикаторы, что уже проверены в `get_series()`
-(3 записи — по одной на источник, см. `providers/catalog_seed.py`). Полное
-покрытие каждого датафлоу требует живого запроса к codelist/conceptscheme
-источника, что в этой песочнице недоступно (см. раздел про тесты).
-
-## Запуск MCP-сервера
-
-```bash
-universal-statistician-mcp   # stdio-транспорт, добавить в конфиг MCP-хоста
+universal-statistician-mcp
 ```
 
 Инструменты: `search_indicator`, `get_series`, `compare`, `list_sources`,
-`describe_source` — сигнатуры и докстринги в `mcp_server.py` (докстринг
+`describe_source` (сигнатуры и докстринги — в `mcp_server.py`, докстринг
 становится описанием инструмента для LLM-хоста).
 
-## CLI
-
-Тонкая обёртка над тем же `tools.py` — для разработки и smoke-тестов без
-MCP-клиента, вывод — JSON.
+**CLI** — та же логика, для разработки/smoke-тестов без MCP-клиента, вывод JSON:
 
 ```bash
 ustat sources
@@ -166,5 +96,49 @@ ustat compare WB_WDI --indicator-id SP_POP_TOTL --indicator-id NY.GDP.MKTP.CD --
 ```
 
 Некорректный запрос (неизвестный источник, неполный `compare`) печатает
-понятное сообщение в stderr и завершает процесс кодом 1, а не сырым
-traceback — покрыто `tests/test_cli.py` через `typer.testing.CliRunner`.
+понятное сообщение в stderr и завершает процесс кодом 1, а не сырым traceback.
+
+**Python API** напрямую через ядро:
+
+```python
+from universal_statistician.core.engine import default_engine
+from universal_statistician.core.compose import compare_across_countries, with_growth, with_rank
+
+engine = default_engine()
+
+result = engine.get_series("WB_WDI", "SP_POP_TOTL", "AFG", start_period="2011", end_period="2020")
+print(result.as_dict())
+
+engine.search_indicator("produit")  # -> ESTAT_NAMA_10_GDP / B1GQ, по французской метке
+
+table = compare_across_countries(engine, "WB_WDI", "SP_POP_TOTL", ["AFG", "USA", "LUX"], start_period="2015")
+print(with_rank(with_growth(table)).as_dict())
+```
+
+## Тесты
+
+```bash
+pytest                 # офлайн-тесты (по умолчанию сеть не используется)
+pytest -m network      # + живые запросы к World Bank / IMF / Eurostat SDMX API (нужен доступ в интернет)
+```
+
+Провайдерная логика тестируется на реальных объектах `sdmx.model.DataSet`,
+собранных в памяти (`tests/conftest.py`), а не на выдуманной структуре.
+Значения ключей (`_build_key`) сверяются с примерами из собственного
+интеграционного тест-сьюта `sdmx1` (`sdmx/tests/test_sources.py`) — с
+запросами, которые мейнтейнеры библиотеки гоняют против живых API. Живые
+тесты (`-m network`) бьют в `api.worldbank.org`, `data.imf.org`,
+`ec.europa.eu` напрямую; в песочнице разработки они заблокированы сетевой
+политикой (egress 403 через прокси) — это ограничение окружения, а не самих
+провайдеров, и такие тесты стоит прогнать перед реальным использованием
+на машине с доступом в интернет.
+
+MCP-сервер и CLI тестируются через их собственные протоколы вызова
+(`server.call_tool(...)`, `typer.testing.CliRunner`), а не только через
+`tools.py` напрямую — именно так нашёлся баг с потоками, описанный выше.
+
+## Что дальше
+
+Границы MVP, обоснование решений и полная последовательность разработки — в
+[`plan.md`](./plan.md). Коротко: FastAPI REST-слой поверх того же ядра →
+веб-дашборд → национальные источники (Росстат/ЕМИСС) → отдельное чат-приложение.
