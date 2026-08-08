@@ -51,13 +51,6 @@ def test_as_dict_is_json_friendly(wb_provider, sdmx_dataset):
     assert isinstance(payload["attribution"]["retrieved_at"], str)
 
 
-def test_search_is_not_yet_implemented(wb_provider):
-    # Catalog search is a separate build step (task #3); the provider says so
-    # instead of silently returning nothing.
-    with pytest.raises(NotImplementedError):
-        wb_provider.search("population")
-
-
 def test_describe_exposes_attribution_fields(wb_provider):
     description = wb_provider.describe()
     assert description["source_id"] == "WB_WDI"

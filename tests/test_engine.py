@@ -4,8 +4,9 @@ from datetime import datetime, timezone
 
 import pytest
 
+from universal_statistician.core.catalog import Catalog, IndicatorEntry
 from universal_statistician.core.engine import QueryEngine, UnknownSourceError
-from universal_statistician.core.models import Attribution, IndicatorMeta, Observation, SeriesResult
+from universal_statistician.core.models import Attribution, Observation, SeriesResult
 from universal_statistician.providers.base import Provider
 
 
@@ -32,16 +33,23 @@ class FakeProvider(Provider):
             ),
         )
 
-    def search(self, query: str, limit: int = 20) -> list[IndicatorMeta]:
-        return []
-
     def describe(self) -> dict:
         return {"source_id": self.source_id, "source_name": self.source_name}
 
 
 @pytest.fixture
 def engine():
-    return QueryEngine({"FAKE": FakeProvider("FAKE")})
+    catalog = Catalog()
+    catalog.add(
+        [
+            IndicatorEntry(
+                indicator_id="SOME_INDICATOR",
+                source_id="FAKE",
+                names={"en": "Some fake indicator for testing"},
+            )
+        ]
+    )
+    return QueryEngine({"FAKE": FakeProvider("FAKE")}, catalog=catalog)
 
 
 def test_get_series_dispatches_to_the_right_provider(engine):
@@ -58,3 +66,8 @@ def test_unknown_source_raises(engine):
 def test_list_sources_reports_every_configured_provider(engine):
     sources = engine.list_sources()
     assert sources == [{"source_id": "FAKE", "source_name": "Fake FAKE"}]
+
+
+def test_search_indicator_delegates_to_catalog(engine):
+    results = engine.search_indicator("fake")
+    assert [r.indicator_id for r in results] == ["SOME_INDICATOR"]

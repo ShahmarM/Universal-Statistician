@@ -13,12 +13,7 @@ from datetime import datetime, timezone
 import pandas as pd
 import sdmx
 
-from universal_statistician.core.models import (
-    Attribution,
-    IndicatorMeta,
-    Observation,
-    SeriesResult,
-)
+from universal_statistician.core.models import Attribution, Observation, SeriesResult
 from universal_statistician.providers.base import Provider
 from universal_statistician.providers.registry import SDMXSourceConfig
 
@@ -93,12 +88,6 @@ class SDMXProvider(Provider):
             frequency=self._frequency(),
             observations=observations,
             attribution=attribution,
-        )
-
-    def search(self, query: str, limit: int = 20) -> list[IndicatorMeta]:
-        raise NotImplementedError(
-            "Indicator search lands with the catalog/index (see task #3); "
-            "get_series() with a known indicator id already works."
         )
 
     def describe(self) -> dict:

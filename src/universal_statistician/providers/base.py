@@ -1,16 +1,20 @@
-"""The Provider interface: one implementation per official data source.
+"""The Provider interface: one implementation per queryable dataset.
 
 Any interface (MCP server, CLI, future API) talks to sources only through this
 contract, never through a source's raw client library. That's what lets the
 same query engine grow from one source to a dozen without the interfaces
 having to know anything changed.
+
+Indicator search is deliberately *not* part of this interface: discovery is
+cross-source by nature (see core/catalog.py) and belongs to the QueryEngine,
+not to any one provider.
 """
 
 from __future__ import annotations
 
 from abc import ABC, abstractmethod
 
-from universal_statistician.core.models import IndicatorMeta, SeriesResult
+from universal_statistician.core.models import SeriesResult
 
 
 class Provider(ABC):
@@ -27,10 +31,6 @@ class Provider(ABC):
         end_period: str | None = None,
     ) -> SeriesResult:
         """Fetch one indicator's time series for one area, normalized and attributed."""
-
-    @abstractmethod
-    def search(self, query: str, limit: int = 20) -> list[IndicatorMeta]:
-        """Search this source's indicator catalog."""
 
     @abstractmethod
     def describe(self) -> dict:
