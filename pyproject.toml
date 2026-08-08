@@ -1,0 +1,28 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "universal-statistician"
+version = "0.1.0"
+description = "Universal statistical assistant: any official statistic, any period, normalized and attributed to its source."
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "sdmx1>=2.27.0",
+    "pandas>=2.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0",
+]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+markers = [
+    "network: requires internet access to a live official-statistics API (skipped by default)",
+]
