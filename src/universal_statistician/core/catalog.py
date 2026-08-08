@@ -10,6 +10,7 @@ no per-query network round trip.
 from __future__ import annotations
 
 import sqlite3
+import threading
 from dataclasses import dataclass
 
 from universal_statistician.core.models import IndicatorMeta
@@ -43,9 +44,17 @@ class IndicatorEntry:
 
 class Catalog:
     def __init__(self, connection: sqlite3.Connection | None = None) -> None:
-        self._conn = connection or sqlite3.connect(":memory:")
-        self._conn.execute(_SCHEMA)
-        self._conn.commit()
+        # MCP tool calls run each synchronous tool in a worker thread, not the
+        # thread that constructed this engine — sqlite3's default
+        # check_same_thread guard would reject every one of those calls.
+        # check_same_thread=False plus our own lock keeps the single
+        # in-memory connection (required: a fresh connection per thread would
+        # each see an *empty* separate ":memory:" database) safe to share.
+        self._conn = connection or sqlite3.connect(":memory:", check_same_thread=False)
+        self._lock = threading.Lock()
+        with self._lock:
+            self._conn.execute(_SCHEMA)
+            self._conn.commit()
 
     def add(self, entries: list[IndicatorEntry]) -> None:
         rows = [
@@ -53,26 +62,30 @@ class Catalog:
             for entry in entries
             for lang, name in entry.names.items()
         ]
-        self._conn.executemany(
-            "INSERT INTO indicators (indicator_id, source_id, lang, name, description) "
-            "VALUES (?, ?, ?, ?, ?)",
-            rows,
-        )
-        self._conn.commit()
+        with self._lock:
+            self._conn.executemany(
+                "INSERT INTO indicators (indicator_id, source_id, lang, name, description) "
+                "VALUES (?, ?, ?, ?, ?)",
+                rows,
+            )
+            self._conn.commit()
 
     def search(self, query: str, limit: int = 20) -> list[IndicatorMeta]:
         fts_query = self._fts_query(query)
         if fts_query is None:
             return []
 
-        cursor = self._conn.execute(
-            "SELECT indicator_id, source_id, name, description FROM indicators "
-            "WHERE indicators MATCH ? ORDER BY rank",
-            (fts_query,),
-        )
+        with self._lock:
+            cursor = self._conn.execute(
+                "SELECT indicator_id, source_id, name, description FROM indicators "
+                "WHERE indicators MATCH ? ORDER BY rank",
+                (fts_query,),
+            )
+            rows = cursor.fetchall()
+
         seen: set[tuple[str, str]] = set()
         results: list[IndicatorMeta] = []
-        for indicator_id, source_id, name, description in cursor:
+        for indicator_id, source_id, name, description in rows:
             key = (source_id, indicator_id)
             if key in seen:
                 continue

@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+from concurrent.futures import ThreadPoolExecutor
+
 from universal_statistician.core.cache import Cache
 
 
@@ -39,6 +41,18 @@ def test_set_overwrites_existing_key():
     cache.set("key", {"a": 1}, ttl_seconds=60)
     cache.set("key", {"a": 2}, ttl_seconds=60)
     assert cache.get("key") == {"a": 2}
+
+
+def test_get_and_set_work_from_a_different_thread():
+    # Regression test: an MCP server runs each synchronous tool call in a
+    # worker thread, not the thread that constructed the engine (and its
+    # Cache) — see the matching test in test_catalog.py for the bug this
+    # caught end to end.
+    cache = Cache(time_func=FakeClock())
+    with ThreadPoolExecutor(max_workers=1) as pool:
+        pool.submit(cache.set, "key", {"a": 1}, 60).result()
+        result = pool.submit(cache.get, "key").result()
+    assert result == {"a": 1}
 
 
 def test_make_key_is_stable_and_position_sensitive():

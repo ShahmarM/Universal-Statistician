@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+from concurrent.futures import ThreadPoolExecutor
+
 from universal_statistician.core.catalog import Catalog, IndicatorEntry
 from universal_statistician.providers.catalog_seed import CATALOG_SEED
 
@@ -8,6 +10,21 @@ def build_catalog(entries):
     catalog = Catalog()
     catalog.add(entries)
     return catalog
+
+
+def test_search_works_from_a_different_thread():
+    # Regression test: an MCP server runs each synchronous tool call in a
+    # worker thread, not the thread that constructed the engine (and its
+    # Catalog). sqlite3's default same-thread guard rejects that outright,
+    # and a fresh connection per thread would each see an empty separate
+    # ":memory:" database — this caught a real bug end to end via
+    # server.call_tool(), not just by calling Catalog directly.
+    catalog = build_catalog(
+        [IndicatorEntry(indicator_id="SP_POP_TOTL", source_id="WB_WDI", names={"en": "Population, total"})]
+    )
+    with ThreadPoolExecutor(max_workers=1) as pool:
+        results = pool.submit(catalog.search, "population").result()
+    assert [r.indicator_id for r in results] == ["SP_POP_TOTL"]
 
 
 def test_search_matches_english_label():

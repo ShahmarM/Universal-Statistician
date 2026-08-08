@@ -87,3 +87,11 @@ class IndicatorMeta:
     name: str
     source_id: str
     description: str | None = None
+
+    def as_dict(self) -> dict:
+        return {
+            "indicator_id": self.indicator_id,
+            "name": self.name,
+            "source_id": self.source_id,
+            "description": self.description,
+        }

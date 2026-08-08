@@ -34,6 +34,9 @@ class QueryEngine:
     def list_sources(self) -> list[dict]:
         return [p.describe() for p in self._providers.values()]
 
+    def describe_source(self, source_id: str) -> dict:
+        return self._get_provider(source_id).describe()
+
     def search_indicator(self, query: str, limit: int = 20) -> list[IndicatorMeta]:
         return self._catalog.search(query, limit=limit)
 

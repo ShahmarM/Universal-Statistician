@@ -39,6 +39,25 @@ MVP в разработке. Реализовано:
   вычисляемые колонки помечены `derived=True` и атрибуции не имеют — они не
   получены из источника, а посчитаны здесь, и это видно в структуре ответа,
   а не только в комментарии.
+- `tools` (`src/universal_statistician/tools.py`) — межинтерфейсный слой:
+  `search_indicator`, `get_series`, `compare`, `list_sources`, `describe_source`
+  как обычные Python-функции, принимающие `QueryEngine` и возвращающие
+  JSON-совместимые словари. MCP-сервер и будущий CLI — тонкие обёртки над
+  этими же функциями, а не два отдельных места с одной и той же логикой.
+- `mcp_server` (`src/universal_statistician/mcp_server.py`) — MCP-сервер
+  (Python MCP SDK, `mcp.server.mcpserver.MCPServer`), публикует все пять
+  функций из `tools.py` как MCP-инструменты. Запуск: `universal-statistician-mcp`
+  (entry point, stdio-транспорт по умолчанию) — подключается как обычный MCP-сервер
+  к Claude Desktop/Code или другому MCP-хосту.
+
+  При первом сквозном тесте через `server.call_tool(...)` (а не напрямую через
+  `tools.py`) нашёлся реальный баг: MCP-сервер выполняет каждый синхронный
+  tool-вызов в отдельном worker-потоке, а не в том, где создавался движок —
+  `sqlite3`-соединения `Catalog`/`Cache` по умолчанию (`check_same_thread=True`)
+  такие вызовы отклоняют. Отдельное соединение на поток не подходит: для
+  `:memory:`-баз это была бы каждый раз новая пустая база. Исправлено:
+  `check_same_thread=False` + собственный `threading.Lock` на оба класса,
+  с regression-тестами через `ThreadPoolExecutor` в `test_catalog.py`/`test_cache.py`.
 
 Важный нюанс, вскрывшийся при добавлении второго и третьего источника: запись в
 реестре — это не "агентство целиком", а **конкретный запрашиваемый датасет**
@@ -121,3 +140,13 @@ print(table.as_dict())  # {"columns": [...], "rows": [{"period": "2015", "AFG": 
 (3 записи — по одной на источник, см. `providers/catalog_seed.py`). Полное
 покрытие каждого датафлоу требует живого запроса к codelist/conceptscheme
 источника, что в этой песочнице недоступно (см. раздел про тесты).
+
+## Запуск MCP-сервера
+
+```bash
+universal-statistician-mcp   # stdio-транспорт, добавить в конфиг MCP-хоста
+```
+
+Инструменты: `search_indicator`, `get_series`, `compare`, `list_sources`,
+`describe_source` — сигнатуры и докстринги в `mcp_server.py` (докстринг
+становится описанием инструмента для LLM-хоста).
