@@ -38,3 +38,20 @@ class LookupProvider(Provider):
 
     def describe(self) -> dict:
         return {"source_id": self.source_id}
+
+
+class FailingProvider(Provider):
+    """Fake Provider simulating an upstream failure (e.g. a network-blocked
+    SDMX host), to test that callers turn it into a clean error rather than
+    an unhandled crash."""
+
+    def __init__(self, source_id: str = "FAKE") -> None:
+        self.source_id = source_id
+        self.source_name = f"Fake {source_id}"
+        self.cache_ttl_seconds = 3600
+
+    def get_series(self, indicator_id, ref_area, *, start_period=None, end_period=None):
+        raise ConnectionError("simulated upstream network failure")
+
+    def describe(self) -> dict:
+        return {"source_id": self.source_id}

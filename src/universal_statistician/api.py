@@ -10,6 +10,7 @@ from __future__ import annotations
 from typing import Optional
 
 from fastapi import FastAPI, HTTPException
+from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 
 from universal_statistician import tools
@@ -24,12 +25,32 @@ app = FastAPI(
     ),
 )
 
+# Personal/local tool, no auth (see plan.md) — the dashboard may be served by
+# Vite's dev server or as static files, on whatever local port either picks,
+# so we allow any localhost/127.0.0.1 origin rather than hardcoding one.
+app.add_middleware(
+    CORSMiddleware,
+    allow_origin_regex=r"http://(localhost|127\.0\.0\.1)(:\d+)?",
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 _engine: QueryEngine = default_engine()
 
 
 def _call(fn, *args, **kwargs):
-    """Run a tools.py call and translate its two user-input error types into
-    HTTP responses instead of a raw 500 — same principle as cli.py's _run."""
+    """Run a tools.py call and translate errors into HTTP responses instead
+    of a raw 500 — same principle as cli.py's _run.
+
+    The broad `except Exception` at the end matters more than it looks: a
+    live browser test against this endpoint (get_series hitting a
+    network-blocked SDMX host) showed that letting an unhandled provider
+    exception escape doesn't just produce a 500 — the browser reports it as
+    a CORS failure instead, because the response never completes normally
+    enough for CORSMiddleware to attach its headers. Catching it here and
+    raising a normal HTTPException fixes both the misleading error and gives
+    the client an actual explanation.
+    """
     try:
         return fn(*args, **kwargs)
     except UnknownSourceError as exc:
@@ -39,6 +60,10 @@ def _call(fn, *args, **kwargs):
         raise HTTPException(status_code=404, detail=detail) from exc
     except ValueError as exc:
         raise HTTPException(status_code=400, detail=str(exc)) from exc
+    except Exception as exc:
+        raise HTTPException(
+            status_code=502, detail=f"Upstream data source request failed: {exc}"
+        ) from exc
 
 
 @app.get("/sources")

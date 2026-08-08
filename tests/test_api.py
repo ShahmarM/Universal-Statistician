@@ -11,7 +11,7 @@ from fastapi.testclient import TestClient
 from universal_statistician import api
 from universal_statistician.core.engine import QueryEngine
 
-from .helpers import LookupProvider, make_series
+from .helpers import FailingProvider, LookupProvider, make_series
 
 client = TestClient(api.app)
 
@@ -85,3 +85,21 @@ def test_compare_cross_country_against_a_fake_engine(monkeypatch):
     payload = response.json()
     keys = {c["key"] for c in payload["columns"]}
     assert {"AFG", "USA", "AFG__yoy_growth_pct", "AFG__rank"} <= keys
+
+
+def test_provider_failure_is_a_clean_502_with_cors_headers(monkeypatch):
+    # Regression test: a live browser run against a network-blocked SDMX host
+    # showed that an *unhandled* provider exception doesn't just 500 — the
+    # browser reports it as a CORS failure, because the response never
+    # completes normally enough for CORSMiddleware to attach its headers.
+    # _call()'s broad except Exception must turn this into a normal
+    # HTTPException so CORS headers are still present.
+    monkeypatch.setattr(api, "_engine", QueryEngine({"FAKE": FailingProvider()}))
+    response = client.get(
+        "/series",
+        params={"source_id": "FAKE", "indicator_id": "POP", "ref_area": "AFG"},
+        headers={"Origin": "http://127.0.0.1:5173"},
+    )
+    assert response.status_code == 502
+    assert "simulated upstream network failure" in response.json()["detail"]
+    assert response.headers.get("access-control-allow-origin") == "http://127.0.0.1:5173"
