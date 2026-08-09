@@ -178,6 +178,14 @@ class InvestigationState:
     provenance_references: list[dict] = field(default_factory=list)
     tool_call_history: list[ToolCallRecord] = field(default_factory=list)
     iteration_count: int = 0
+    #: Actual provider/API requests attempted (agent/tools.py::retrieve_series
+    #: increments this once per geography it tries, success or failure) --
+    #: distinct from tool-call count, since one retrieve_series call can
+    #: request many geographies at once. AgentLimits.max_provider_calls
+    #: bounds *this*, not how many times the retrieve_series tool itself was
+    #: invoked, so a single call requesting 20 countries can't silently
+    #: bypass the budget a limit of e.g. 15 was meant to enforce.
+    provider_call_count: int = 0
     #: The investigator's own final free-text turn (Phase 2) — debug-visible
     #: only, never the user-facing answer. See agent/loop.py's module
     #: docstring for why the answer writer (Phase 6) never uses this.

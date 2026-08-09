@@ -255,6 +255,46 @@ def test_investigate_caps_retrieve_series_calls_at_max_provider_calls():
     assert len(executed) == 2
 
 
+def test_max_provider_calls_counts_geographies_requested_not_retrieve_series_invocations():
+    # Regression guard: a single retrieve_series call can request many
+    # geographies at once, which is many actual provider requests, not one
+    # -- counting *tool-call* invocations against max_provider_calls would
+    # let one call for e.g. 20 countries silently blow past a limit of 15.
+    cid = catalog_id("WB_WDI", "NY_GDP_MKTP_CD")
+    big_request = ToolUseBlock(
+        type="tool_use", id="tu_1", name="retrieve_series",
+        input={"catalog_id": cid, "geographies": ["AZE", "GEO", "KAZ", "ARM", "TUR"]},
+    )
+    client = FakeClient([_message(big_request, stop_reason="tool_use"), _message(TextBlock(type="text", text="done"))])
+    agent = _agent(client, limits=AgentLimits(max_iterations=100, max_tool_calls=100, max_provider_calls=3))
+
+    state = agent.investigate("q")
+
+    # The one tool call is entirely blocked (5 requested > 3 remaining) --
+    # not partially executed, not silently allowed through.
+    assert len(state.tool_call_history) == 1
+    assert "error" in state.tool_call_history[0].output_summary
+    assert "max_provider_calls" in state.tool_call_history[0].output_summary["error"]
+    assert state.provider_call_count == 0
+
+
+def test_max_provider_calls_allows_a_call_that_fits_within_the_remaining_budget():
+    cid = catalog_id("WB_WDI", "NY_GDP_MKTP_CD")
+    request = ToolUseBlock(
+        type="tool_use", id="tu_1", name="retrieve_series",
+        input={"catalog_id": cid, "geographies": ["AZE", "GEO", "KAZ"]},
+    )
+    client = FakeClient([_message(request, stop_reason="tool_use"), _message(TextBlock(type="text", text="done"))])
+    agent = _agent(client, limits=AgentLimits(max_iterations=100, max_tool_calls=100, max_provider_calls=3))
+
+    state = agent.investigate("q")
+
+    assert "error" not in state.tool_call_history[0].output_summary
+    # Only AZE has fixture data (GEO/KAZ raise inside get_series and are
+    # caught) -- all three still count as real attempted provider requests.
+    assert state.provider_call_count == 3
+
+
 def test_investigate_stops_cleanly_when_the_llm_call_fails():
     agent = _agent(RaisingClient())
 

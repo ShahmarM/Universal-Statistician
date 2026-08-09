@@ -78,6 +78,16 @@ class AgentLimits:
     timeout_seconds: float = 120.0
 
 
+def _requested_geography_count(tool_input: dict) -> int:
+    """How many actual provider requests a pending retrieve_series call
+    would make -- one per geography, matching agent/tools.py::retrieve_series's
+    own per-geography loop exactly. Malformed input (not a list) counts as 0
+    rather than raising here; retrieve_series itself will report the real
+    error when it actually runs."""
+    geographies = tool_input.get("geographies") if isinstance(tool_input, dict) else None
+    return len(geographies) if isinstance(geographies, list) else 0
+
+
 def _summarize_tool_output(result: dict) -> dict:
     """A small, debug-safe summary of a tool result for
     InvestigationState.tool_call_history — full payloads already live in
@@ -196,11 +206,26 @@ class StatisticalAgent:
                         },
                         0.0,
                     )
-                elif block.name == "retrieve_series" and self._count(state, "retrieve_series") >= (
-                    self.limits.max_provider_calls
+                elif block.name == "retrieve_series" and (
+                    state.provider_call_count + _requested_geography_count(block.input)
+                    > self.limits.max_provider_calls
                 ):
+                    # Checked prospectively against the *geographies this
+                    # call is about to request*, not against how many times
+                    # retrieve_series has been called -- a single call
+                    # requesting many geographies is many provider requests,
+                    # not one (see InvestigationState.provider_call_count).
                     result, duration_ms = (
-                        {"error": f"max_provider_calls limit ({self.limits.max_provider_calls}) reached."},
+                        {
+                            "error": (
+                                f"max_provider_calls limit ({self.limits.max_provider_calls}) "
+                                f"would be exceeded: {state.provider_call_count} provider "
+                                f"request(s) already made, this call requests "
+                                f"{_requested_geography_count(block.input)} more. Request fewer "
+                                "geographies per call, reuse already-retrieved result_ids, or "
+                                "conclude the investigation."
+                            )
+                        },
                         0.0,
                     )
                 else:

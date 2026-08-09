@@ -259,6 +259,10 @@ def retrieve_series(
 
     for geo in geographies:
         canonical = resolve_geography(geo)
+        # Counted here, not by counting retrieve_series tool calls (see
+        # InvestigationState.provider_call_count) -- this is the actual
+        # provider/cache request, whether it succeeds or fails.
+        state.provider_call_count += 1
         try:
             series = state.engine.get_series(
                 source_id,
