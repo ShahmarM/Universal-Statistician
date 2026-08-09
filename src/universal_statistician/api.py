@@ -202,11 +202,28 @@ def compare(body: CompareRequest) -> dict:
 
 class QuestionRequest(BaseModel):
     question: str
-    #: Use AnthropicPlanner (server's ANTHROPIC_API_KEY env var) instead of
-    #: the default RuleBasedPlanner. Never accepts a key in the request body
-    #: — only a boolean opt-in into whatever the server process already has
-    #: configured, the same source `ustat chat`/`ustat plan --llm` use.
+    #: Use Anthropic-backed LLM components (server's ANTHROPIC_API_KEY env
+    #: var) instead of the deterministic defaults — AnthropicPlanner for
+    #: fast mode's interpretation step, and (agent Phase 8) AnthropicAgent/
+    #: AnthropicAnswerWriter/AnthropicVerifier for research mode's
+    #: investigation/answer-writing/verification steps. Never accepts a key
+    #: in the request body — only a boolean opt-in into whatever the server
+    #: process already has configured, the same source `ustat chat`/
+    #: `ustat plan --llm` use.
     use_llm: bool = False
+    #: "auto" (default) | "fast" | "research" — an explicit override always
+    #: wins over auto's question-text heuristic (agent/modes.py::select_mode,
+    #: task section 7). Only meaningful for /ask; /plan always uses the
+    #: legacy fast-mode planner regardless of this field.
+    mode: str = "auto"
+    #: Include the investigation audit trail (tool calls, candidates
+    #: considered/rejected, iteration count, the investigator's own debug
+    #: summary) in the response under "debug". Never includes anything
+    #: resembling hidden chain-of-thought — there is none to expose, since
+    #: the investigator only ever produces tool calls and a short final
+    #: summary, not extended-thinking tokens. Ignored outside research mode
+    #: (nothing to show).
+    debug: bool = False
 
 
 def _resolve_planner(use_llm: bool) -> Optional[LLMPlanner]:
@@ -224,6 +241,27 @@ def _resolve_planner(use_llm: bool) -> Optional[LLMPlanner]:
     return AnthropicPlanner(client=Anthropic())
 
 
+def _resolve_agent_components(use_llm: bool):
+    """The three agent-mode LLM roles (Phase 8), all sharing one client —
+    same ANTHROPIC_API_KEY gate as _resolve_planner, and the same "None
+    means run without an LLM" contract agent/modes.py already honors by
+    falling back to fast mode with a warning rather than erroring."""
+    if not use_llm:
+        return None, None, None
+    if not os.environ.get("ANTHROPIC_API_KEY"):
+        raise HTTPException(
+            status_code=400,
+            detail="use_llm=true requires ANTHROPIC_API_KEY to be set in the server's environment.",
+        )
+    from anthropic import Anthropic
+
+    from universal_statistician.agent.llm import AnthropicAgent, AnthropicAnswerWriter
+    from universal_statistician.agent.verifier import AnthropicVerifier
+
+    client = Anthropic()
+    return AnthropicAgent(client=client), AnthropicAnswerWriter(client=client), AnthropicVerifier(client=client)
+
+
 @app.post("/plan")
 def plan(body: QuestionRequest) -> dict:
     """Structured query plan for a question — interpretation and
@@ -235,7 +273,48 @@ def plan(body: QuestionRequest) -> dict:
 
 @app.post("/ask")
 def ask(body: QuestionRequest) -> dict:
-    """Full pipeline (section 21): question -> plan -> retrieval ->
-    transformations -> validation -> answer + table + chart + citations."""
+    """Full pipeline (task section 15): question -> mode selection (auto/
+    fast/research, explicit override honored) -> investigation/plan ->
+    retrieval -> transformations -> validation -> optional LLM verification
+    -> answer + table + chart + citations.
+
+    Fast mode is core/ask.py's original single-pass pipeline, unchanged.
+    Research mode is agent/loop.py's iterative StatisticalAgent (agent
+    Phases 1-7); it requires use_llm=true (an LLM has to drive the
+    investigation) and otherwise falls back to fast mode with a warning
+    rather than erroring, same principle RuleBasedPlanner already applies
+    when no LLM is configured for planning.
+    """
+    from universal_statistician.agent.modes import answer_question_with_mode
+
     planner = _resolve_planner(body.use_llm)
-    return _call(tools.ask, _engine, body.question, planner)
+    llm_agent, answer_writer, verifier = _resolve_agent_components(body.use_llm)
+
+    run = _call(
+        answer_question_with_mode,
+        _engine,
+        body.question,
+        mode=body.mode,
+        planner=planner,
+        llm_agent=llm_agent,
+        answer_writer=answer_writer,
+        verifier=verifier,
+    )
+
+    result = run.result.as_dict()
+    result["mode_used"] = run.mode_used
+    if run.investigation is not None and run.investigation.verification_results:
+        result["verification"] = run.investigation.verification_results[-1]
+    else:
+        result["verification"] = None
+    if body.debug and run.investigation is not None:
+        state = run.investigation
+        result["debug"] = {
+            "iteration_count": state.iteration_count,
+            "tool_call_history": [record.as_dict() for record in state.tool_call_history],
+            "candidates_considered": [c.as_dict() for c in state.candidates_considered],
+            "candidates_rejected": [c.as_dict() for c in state.candidates_rejected],
+            "verification_results": list(state.verification_results),
+            "investigator_summary": state.investigator_summary,
+        }
+    return result
