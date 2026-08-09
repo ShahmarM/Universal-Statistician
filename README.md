@@ -16,15 +16,20 @@
 ```
 frontend/                React + Vite + TypeScript дашборд поверх REST API (три вкладки)
 mcp_server.py / cli.py / api.py   тонкие обёртки трёх интерфейсов поверх tools.py
-tools.py                 search_indicator, get_series, compare, list_sources, describe_source
+tools.py                 search_indicator, get_series, compare, list_sources, describe_source, refresh_catalog, catalog_stats
 core/compose.py          сравнительные таблицы поверх нескольких get_series() + вычисляемые колонки
 core/engine.py           QueryEngine — единая точка входа: провайдеры + Catalog + Cache
-core/catalog.py          локальный многоязычный полнотекстовый индекс индикаторов (SQLite FTS5)
+core/catalog.py          локальный многоязычный полнотекстовый индекс индикаторов (SQLite FTS5 + метаданные)
+core/ingestion.py        discovery → нормализация → каталог (upsert, incremental refresh)
 core/cache.py            локальный TTL-кэш поверх get_series() (SQLite)
 providers/sdmx_provider.py + registry.py   генерик-провайдер поверх sdmx1, источники — записи в реестре
 providers/pxweb_provider.py + pxweb_registry.py   генерик-провайдер поверх pxwebpy (второй, не-SDMX протокол)
 chat.py                  CLI-чат поверх Claude API, инструменты и их схемы переиспользуются от mcp_server.py
 ```
+
+Более крупная инициатива поверх этого MVP — расширение на десятки источников
+и естественноязыковой статистик — расписана по фазам в
+[`docs/architecture/nl-platform.md`](./docs/architecture/nl-platform.md).
 
 `Provider` — единственный контракт (`get_series`, `describe`), который должен
 реализовать источник данных; поиск (`search`) сознательно вынесен из него в
@@ -86,6 +91,25 @@ Starlette тоже выполняет синхронные хендлеры в w
 `_mcp_server.server.call_tool(...)` (лишний `.server`) — упало бы на первом
 же вызове инструмента. Поймано офлайн-тестом (`test_execute_tool_call_*`),
 без необходимости в живом диалоге с Claude.
+
+### Каталог: от статичного seed к discovery-пайплайну (Фаза 1)
+
+`IndicatorMeta`/`IndicatorEntry` расширены необязательными полями (`unit`,
+`frequency`, `dataset_id`, `geographic_coverage`, `dimensions`,
+`source_organization`, `official_url`, `last_updated`, `keywords`) —
+обратно совместимо: старые записи с одним кодом и меткой (как в
+`catalog_seed.py`) по-прежнему валидны, просто с пустыми новыми полями.
+`Catalog.add()` теперь честный upsert по `(source_id, indicator_id)`, а не
+только вставка — повторный запуск ingestion обновляет запись, а не плодит
+дубликаты. Провайдер может (необязательно) реализовать
+`MetadataDiscoverable.discover_catalog_entries()`
+(`providers/base.py`) — тогда `core/ingestion.py` умеет выкачать его каталог
+целиком через `ustat catalog refresh [SOURCE_ID]` вместо ручного
+перечисления индикаторов. Ни один из зарегистрированных источников пока
+этого не реализует (Фазы 2-6) — команда честно репортит
+`"does not support metadata discovery"`, а не падает и не делает вид, что
+что-то произошло. Подробности архитектуры — в
+[`docs/architecture/nl-platform.md`](./docs/architecture/nl-platform.md).
 
 ## Покрытие источников
 
@@ -151,6 +175,9 @@ ustat search population
 ustat series WB_WDI SP_POP_TOTL AFG --start 2015 --end 2020
 ustat compare WB_WDI --indicator SP_POP_TOTL --ref-area AFG --ref-area USA --growth --rank
 ustat compare WB_WDI --indicator-id SP_POP_TOTL --indicator-id NY.GDP.MKTP.CD --for-area AFG
+ustat catalog stats             # индикаторов в каталоге, по источнику
+ustat catalog refresh           # discovery-ingestion для всех источников, что его поддерживают
+ustat catalog refresh WB_WDI    # то же самое для одного источника
 ```
 
 Некорректный запрос (неизвестный источник, неполный `compare`) печатает
@@ -289,8 +316,12 @@ Suite (CAGR, currency conversion, index rebasing и др.) — не реализ
 Границы MVP, обоснование решений и полная последовательность разработки — в
 [`plan.md`](./plan.md). MVP, REST API, веб-дашборд, второй (не-SDMX)
 источник и CLI-чат готовы. Росстат/ЕМИСС осознанно отложены (см. выше).
-Ближайшие следующие шаги (см. оценку по бенчмарку выше) — `unit`/`formula`/
-`input_series` в provenance и явная `status`-таксономия
-(Official/Derived/Composite/User-defined/Estimated), затем — по исходному
-плану: более сложная аналитика (прогнозирование, регрессии) поверх
-compose-слоя.
+
+Начата более крупная инициатива — расширение на десятки источников +
+естественноязыковой статистик поверх текущего ядра, по 13 фазам, статус —
+в [`docs/architecture/nl-platform.md`](./docs/architecture/nl-platform.md).
+Фаза 1 (архитектура каталога и нормализация метаданных) готова; следующая —
+полное discovery-покрытие World Bank (Фаза 2). Отдельно, из оценки по
+бенчмарку выше: `formula`/`input_series` в provenance derived-таблиц и явная
+`status`-таксономия (Official/Derived/Composite/User-defined/Estimated)
+запланированы как часть Фазы 10 (provenance/citation system).

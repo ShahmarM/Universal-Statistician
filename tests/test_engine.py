@@ -9,6 +9,8 @@ from universal_statistician.core.engine import QueryEngine, UnknownSourceError
 from universal_statistician.core.models import Attribution, Observation, SeriesResult
 from universal_statistician.providers.base import Provider
 
+from .test_ingestion import DiscoverableProvider, _entry
+
 
 class FakeProvider(Provider):
     """Stub Provider for exercising the engine without any real data source."""
@@ -94,3 +96,31 @@ def test_get_series_cache_is_keyed_by_full_query():
     engine.get_series("FAKE", "SOME_INDICATOR", "AFG", start_period="2020")
 
     assert len(provider.calls) == 3
+
+
+def test_refresh_catalog_for_one_source_delegates_to_ingestion():
+    catalog = Catalog()
+    provider = DiscoverableProvider("FAKE", [_entry()])
+    engine = QueryEngine({"FAKE": provider}, catalog=catalog)
+
+    reports = engine.refresh_catalog("FAKE")
+
+    assert len(reports) == 1
+    assert reports[0].source_id == "FAKE"
+    assert reports[0].added == 1
+    assert engine.search_indicator("population")
+
+
+def test_refresh_catalog_without_source_id_refreshes_every_discoverable_provider():
+    catalog = Catalog()
+    engine = QueryEngine(
+        {
+            "FAKE": DiscoverableProvider("FAKE", [_entry()]),
+            "OTHER": FakeProvider("OTHER"),
+        },
+        catalog=catalog,
+    )
+
+    reports = engine.refresh_catalog()
+
+    assert [r.source_id for r in reports] == ["FAKE"]

@@ -3,17 +3,40 @@
 This is what makes the assistant "universal" rather than just a thin SDMX
 client: raw provider access only works if you already know an indicator's
 code. The catalog is built once from each registered dataset's seed metadata
-(see providers/catalog_seed.py) and searched locally — instant and offline,
-no per-query network round trip.
+(see providers/catalog_seed.py) or from a provider's own discovered metadata
+(see core/ingestion.py) and searched locally — instant and offline, no
+per-query network round trip.
+
+Two tables back this:
+
+- `indicators`, an FTS5 virtual table, unchanged in spirit from the original
+  design: one row per (indicator, language), giving free multilingual
+  full-text search. Extended with a few more *searchable* columns (keywords,
+  unit, source_organization, geo) per this phase's requirement that search
+  cover more than just the name/description.
+- `catalog_meta`, a plain table keyed by (source_id, indicator_id), holding
+  the richer optional metadata (dataset_id, dimensions, geographic coverage,
+  ...) that doesn't need full-text search — just retrieval alongside a
+  search hit. Kept separate from the FTS table because FTS5 doesn't support
+  a primary key / true UPDATE-in-place, which `catalog_meta` needs for
+  ingestion to upsert (see add()) rather than accumulate duplicates on every
+  refresh.
+
+Both are plain SQLite tables/indexes — deliberately nothing here depends on
+SQLite-only syntax beyond FTS5 itself, so a later move to PostgreSQL (with
+its own full-text search) would replace this module's internals without
+changing IndicatorEntry/IndicatorMeta or any caller.
 """
 
 from __future__ import annotations
 
+import json
 import sqlite3
 import threading
 from dataclasses import dataclass
+from datetime import datetime, timezone
 
-from universal_statistician.core.models import IndicatorMeta
+from universal_statistician.core.models import DimensionSpec, IndicatorMeta
 
 _SCHEMA = """
 CREATE VIRTUAL TABLE IF NOT EXISTS indicators USING fts5(
@@ -21,25 +44,60 @@ CREATE VIRTUAL TABLE IF NOT EXISTS indicators USING fts5(
     source_id UNINDEXED,
     lang UNINDEXED,
     name,
-    description UNINDEXED
-)
+    description UNINDEXED,
+    keywords,
+    unit,
+    source_organization,
+    geo
+);
+
+CREATE TABLE IF NOT EXISTS catalog_meta (
+    source_id TEXT NOT NULL,
+    indicator_id TEXT NOT NULL,
+    dataset_id TEXT,
+    unit TEXT,
+    frequency TEXT,
+    geographic_coverage TEXT,
+    dimensions TEXT,
+    source_organization TEXT,
+    official_url TEXT,
+    last_updated TEXT,
+    keywords TEXT,
+    ingested_at TEXT NOT NULL,
+    PRIMARY KEY (source_id, indicator_id)
+);
 """
 
 
 @dataclass(frozen=True)
 class IndicatorEntry:
-    """One indicator as fed into the catalog: a code plus its label(s).
+    """One indicator as fed into the catalog: a code plus its label(s) and
+    (optionally) the richer metadata a source's discovery API can supply.
 
     `names` maps language code -> label, e.g. {"en": "...", "fr": "..."}, so a
     query can match whichever language the source published — the multilingual
     requirement is satisfied by indexing every label a source gives us, not by
     translating anything ourselves.
+
+    The remaining fields mirror `IndicatorMeta` and stay optional for the same
+    reason: a manually seeded entry (providers/catalog_seed.py) may only have
+    a code and a label, while a discovered entry (core/ingestion.py, fed by a
+    MetadataDiscoverable provider) can populate all of them.
     """
 
     indicator_id: str
     source_id: str
     names: dict[str, str]
     description: str | None = None
+    dataset_id: str | None = None
+    unit: str | None = None
+    frequency: str | None = None
+    geographic_coverage: tuple[str, ...] | None = None
+    dimensions: tuple[DimensionSpec, ...] | None = None
+    source_organization: str | None = None
+    official_url: str | None = None
+    last_updated: str | None = None
+    keywords: tuple[str, ...] | None = None
 
 
 class Catalog:
@@ -53,22 +111,86 @@ class Catalog:
         self._conn = connection or sqlite3.connect(":memory:", check_same_thread=False)
         self._lock = threading.Lock()
         with self._lock:
-            self._conn.execute(_SCHEMA)
+            self._conn.executescript(_SCHEMA)
             self._conn.commit()
 
     def add(self, entries: list[IndicatorEntry]) -> None:
-        rows = [
-            (entry.indicator_id, entry.source_id, lang, name, entry.description)
-            for entry in entries
-            for lang, name in entry.names.items()
-        ]
+        """Insert or, for an (source_id, indicator_id) pair already present,
+        replace it — so re-running ingestion (core/ingestion.py) to refresh a
+        source's metadata updates existing entries instead of accumulating
+        duplicates or stale language labels next to current ones."""
+        now = datetime.now(timezone.utc).isoformat()
         with self._lock:
-            self._conn.executemany(
-                "INSERT INTO indicators (indicator_id, source_id, lang, name, description) "
-                "VALUES (?, ?, ?, ?, ?)",
-                rows,
-            )
+            for entry in entries:
+                self._conn.execute(
+                    "DELETE FROM indicators WHERE source_id = ? AND indicator_id = ?",
+                    (entry.source_id, entry.indicator_id),
+                )
+                keywords_text = " ".join(entry.keywords) if entry.keywords else None
+                geo_text = " ".join(entry.geographic_coverage) if entry.geographic_coverage else None
+                rows = [
+                    (
+                        entry.indicator_id,
+                        entry.source_id,
+                        lang,
+                        name,
+                        entry.description,
+                        keywords_text,
+                        entry.unit,
+                        entry.source_organization,
+                        geo_text,
+                    )
+                    for lang, name in entry.names.items()
+                ]
+                self._conn.executemany(
+                    "INSERT INTO indicators "
+                    "(indicator_id, source_id, lang, name, description, keywords, unit, "
+                    "source_organization, geo) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)",
+                    rows,
+                )
+                self._conn.execute(
+                    "INSERT OR REPLACE INTO catalog_meta "
+                    "(source_id, indicator_id, dataset_id, unit, frequency, "
+                    "geographic_coverage, dimensions, source_organization, official_url, "
+                    "last_updated, keywords, ingested_at) "
+                    "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+                    (
+                        entry.source_id,
+                        entry.indicator_id,
+                        entry.dataset_id,
+                        entry.unit,
+                        entry.frequency,
+                        json.dumps(list(entry.geographic_coverage))
+                        if entry.geographic_coverage is not None
+                        else None,
+                        json.dumps([d.as_dict() for d in entry.dimensions])
+                        if entry.dimensions is not None
+                        else None,
+                        entry.source_organization,
+                        entry.official_url,
+                        entry.last_updated,
+                        json.dumps(list(entry.keywords)) if entry.keywords is not None else None,
+                        now,
+                    ),
+                )
             self._conn.commit()
+
+    def get(self, source_id: str, indicator_id: str) -> IndicatorMeta | None:
+        """Direct lookup by exact (source_id, indicator_id) — no full-text
+        matching. Used by ingestion (core/ingestion.py) to detect whether a
+        discovered entry is new, changed, or unchanged, without the ambiguity
+        a search() query could introduce."""
+        with self._lock:
+            row = self._conn.execute(
+                "SELECT indicator_id, source_id, name, description FROM indicators "
+                "WHERE source_id = ? AND indicator_id = ? LIMIT 1",
+                (source_id, indicator_id),
+            ).fetchone()
+            if row is None:
+                return None
+            meta_row = self._fetch_meta(source_id, indicator_id)
+        found_indicator_id, found_source_id, name, description = row
+        return self._build(found_indicator_id, found_source_id, name, description, meta_row)
 
     def search(self, query: str, limit: int = 20) -> list[IndicatorMeta]:
         fts_query = self._fts_query(query)
@@ -83,24 +205,84 @@ class Catalog:
             )
             rows = cursor.fetchall()
 
-        seen: set[tuple[str, str]] = set()
-        results: list[IndicatorMeta] = []
-        for indicator_id, source_id, name, description in rows:
-            key = (source_id, indicator_id)
-            if key in seen:
-                continue
-            seen.add(key)
-            results.append(
-                IndicatorMeta(
-                    indicator_id=indicator_id,
-                    name=name,
-                    source_id=source_id,
-                    description=description,
-                )
-            )
-            if len(results) >= limit:
-                break
+            seen: set[tuple[str, str]] = set()
+            results: list[IndicatorMeta] = []
+            for indicator_id, source_id, name, description in rows:
+                key = (source_id, indicator_id)
+                if key in seen:
+                    continue
+                seen.add(key)
+                meta_row = self._fetch_meta(source_id, indicator_id)
+                results.append(self._build(indicator_id, source_id, name, description, meta_row))
+                if len(results) >= limit:
+                    break
         return results
+
+    def stats(self) -> dict[str, int]:
+        """Indicator count per source — a cheap sanity check after ingestion
+        (see `ustat catalog stats`), not a substitute for IngestionReport."""
+        with self._lock:
+            rows = self._conn.execute(
+                "SELECT source_id, COUNT(DISTINCT indicator_id) FROM indicators "
+                "GROUP BY source_id ORDER BY source_id"
+            ).fetchall()
+        return {source_id: count for source_id, count in rows}
+
+    def _fetch_meta(self, source_id: str, indicator_id: str) -> tuple | None:
+        """Caller must already hold self._lock."""
+        return self._conn.execute(
+            "SELECT dataset_id, unit, frequency, geographic_coverage, dimensions, "
+            "source_organization, official_url, last_updated, keywords "
+            "FROM catalog_meta WHERE source_id = ? AND indicator_id = ?",
+            (source_id, indicator_id),
+        ).fetchone()
+
+    @staticmethod
+    def _build(
+        indicator_id: str,
+        source_id: str,
+        name: str,
+        description: str | None,
+        meta_row: tuple | None,
+    ) -> IndicatorMeta:
+        if meta_row is None:
+            return IndicatorMeta(
+                indicator_id=indicator_id, name=name, source_id=source_id, description=description
+            )
+        (
+            dataset_id,
+            unit,
+            frequency,
+            geographic_coverage_json,
+            dimensions_json,
+            source_organization,
+            official_url,
+            last_updated,
+            keywords_json,
+        ) = meta_row
+        return IndicatorMeta(
+            indicator_id=indicator_id,
+            name=name,
+            source_id=source_id,
+            description=description,
+            dataset_id=dataset_id,
+            unit=unit,
+            frequency=frequency,
+            geographic_coverage=(
+                tuple(json.loads(geographic_coverage_json))
+                if geographic_coverage_json is not None
+                else None
+            ),
+            dimensions=(
+                tuple(DimensionSpec.from_dict(d) for d in json.loads(dimensions_json))
+                if dimensions_json is not None
+                else None
+            ),
+            source_organization=source_organization,
+            official_url=official_url,
+            last_updated=last_updated,
+            keywords=tuple(json.loads(keywords_json)) if keywords_json is not None else None,
+        )
 
     @staticmethod
     def _fts_query(query: str) -> str | None:

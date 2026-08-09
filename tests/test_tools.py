@@ -48,9 +48,15 @@ def test_search_indicator_returns_dicts():
     engine = QueryEngine({"FAKE": provider}, catalog=catalog)
 
     results = tools.search_indicator(engine, "population")
-    assert results == [
-        {"indicator_id": "POP", "name": "Population", "source_id": "FAKE", "description": None}
-    ]
+    assert len(results) == 1
+    assert results[0]["indicator_id"] == "POP"
+    assert results[0]["name"] == "Population"
+    assert results[0]["source_id"] == "FAKE"
+    assert results[0]["description"] is None
+    # Newer optional metadata fields (dataset_id, unit, dimensions, ...) are
+    # present but unset for an entry seeded without them — see IndicatorMeta.
+    assert results[0]["dataset_id"] is None
+    assert results[0]["dimensions"] is None
 
 
 def test_compare_cross_country_mode(engine):

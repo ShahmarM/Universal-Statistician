@@ -15,6 +15,8 @@ from universal_statistician import tools
 from universal_statistician.core.engine import UnknownSourceError, default_engine
 
 app = typer.Typer(add_completion=False, help="Universal Statistician CLI (dev/smoke-test tool).")
+catalog_app = typer.Typer(add_completion=False, help="Catalog metadata ingestion (admin-triggered).")
+app.add_typer(catalog_app, name="catalog")
 _engine = default_engine()
 
 
@@ -103,6 +105,25 @@ def list_sources_cmd() -> None:
 def describe_source_cmd(source_id: str) -> None:
     """Describe one registered data source."""
     _run(tools.describe_source, _engine, source_id)
+
+
+@catalog_app.command("refresh")
+def catalog_refresh(
+    source_id: Optional[str] = typer.Argument(
+        None, help="Refresh only this source; omit to refresh every source that supports discovery."
+    ),
+) -> None:
+    """Re-discover and upsert catalog metadata (core/ingestion.py). A source
+    without a discovery implementation is reported, not silently skipped,
+    when refreshed by name; omitting source_id only touches sources that do
+    support it."""
+    _run(tools.refresh_catalog, _engine, source_id)
+
+
+@catalog_app.command("stats")
+def catalog_stats() -> None:
+    """Indicator count per source currently in the catalog."""
+    _run(tools.catalog_stats, _engine)
 
 
 @app.command()

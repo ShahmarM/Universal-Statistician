@@ -40,6 +40,23 @@ def list_sources(engine: QueryEngine) -> list[dict]:
     return engine.list_sources()
 
 
+def refresh_catalog(engine: QueryEngine, source_id: str | None = None) -> list[dict]:
+    return [
+        {
+            "source_id": r.source_id,
+            "added": r.added,
+            "updated": r.updated,
+            "unchanged": r.unchanged,
+            "errors": list(r.errors),
+        }
+        for r in engine.refresh_catalog(source_id)
+    ]
+
+
+def catalog_stats(engine: QueryEngine) -> dict[str, int]:
+    return engine.catalog_stats()
+
+
 def describe_source(engine: QueryEngine, source_id: str) -> dict:
     return engine.describe_source(source_id)
 

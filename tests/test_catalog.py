@@ -3,6 +3,7 @@ from __future__ import annotations
 from concurrent.futures import ThreadPoolExecutor
 
 from universal_statistician.core.catalog import Catalog, IndicatorEntry
+from universal_statistician.core.models import DimensionSpec, DimensionValue
 from universal_statistician.providers.catalog_seed import CATALOG_SEED
 
 
@@ -122,3 +123,99 @@ def test_catalog_seed_is_searchable_and_matches_registry():
 
     results = catalog.search("population")
     assert any(r.indicator_id == "SP_POP_TOTL" for r in results)
+
+
+def test_search_enriches_results_with_rich_metadata_when_present():
+    entry = IndicatorEntry(
+        indicator_id="NY_GDP_PCAP_CD",
+        source_id="WB_WDI",
+        names={"en": "GDP per capita (current US$)"},
+        description="GDP per capita.",
+        dataset_id="WDI",
+        unit="current US$",
+        frequency="A",
+        geographic_coverage=("AFG", "USA"),
+        dimensions=(DimensionSpec(code="unit", label="Unit", values=(DimensionValue("USD"),)),),
+        source_organization="World Bank",
+        official_url="https://api.worldbank.org",
+        last_updated="2026-01-01",
+        keywords=("gdp", "per capita"),
+    )
+    catalog = build_catalog([entry])
+
+    results = catalog.search("gdp per capita")
+    assert len(results) == 1
+    meta = results[0]
+    assert meta.dataset_id == "WDI"
+    assert meta.unit == "current US$"
+    assert meta.frequency == "A"
+    assert meta.geographic_coverage == ("AFG", "USA")
+    assert meta.dimensions == (
+        DimensionSpec(code="unit", label="Unit", values=(DimensionValue("USD"),)),
+    )
+    assert meta.source_organization == "World Bank"
+    assert meta.official_url == "https://api.worldbank.org"
+    assert meta.last_updated == "2026-01-01"
+    assert meta.keywords == ("gdp", "per capita")
+
+
+def test_search_without_rich_metadata_leaves_new_fields_none():
+    catalog = build_catalog(
+        [IndicatorEntry(indicator_id="SP_POP_TOTL", source_id="WB_WDI", names={"en": "Population, total"})]
+    )
+    results = catalog.search("population")
+    assert results[0].dataset_id is None
+    assert results[0].dimensions is None
+
+
+def test_get_returns_none_for_unknown_pair():
+    catalog = Catalog()
+    assert catalog.get("WB_WDI", "NOPE") is None
+
+
+def test_get_returns_the_entry_by_exact_id():
+    catalog = build_catalog(
+        [IndicatorEntry(indicator_id="SP_POP_TOTL", source_id="WB_WDI", names={"en": "Population, total"})]
+    )
+    meta = catalog.get("WB_WDI", "SP_POP_TOTL")
+    assert meta is not None
+    assert meta.name == "Population, total"
+
+
+def test_add_upserts_rather_than_duplicating_on_reingestion():
+    catalog = build_catalog(
+        [
+            IndicatorEntry(
+                indicator_id="SP_POP_TOTL",
+                source_id="WB_WDI",
+                names={"en": "Population, total"},
+                unit="count",
+            )
+        ]
+    )
+    # Simulate a refresh discovering updated metadata for the same series.
+    catalog.add(
+        [
+            IndicatorEntry(
+                indicator_id="SP_POP_TOTL",
+                source_id="WB_WDI",
+                names={"en": "Population, total"},
+                unit="persons",
+            )
+        ]
+    )
+
+    results = catalog.search("population")
+    assert len(results) == 1
+    assert results[0].unit == "persons"
+
+
+def test_stats_counts_distinct_indicators_per_source():
+    catalog = build_catalog(
+        [
+            IndicatorEntry(indicator_id="A", source_id="WB_WDI", names={"en": "A"}),
+            IndicatorEntry(indicator_id="B", source_id="WB_WDI", names={"en": "B", "fr": "B fr"}),
+            IndicatorEntry(indicator_id="C", source_id="ESTAT_NAMA_10_GDP", names={"en": "C"}),
+        ]
+    )
+    assert catalog.stats() == {"ESTAT_NAMA_10_GDP": 1, "WB_WDI": 2}
