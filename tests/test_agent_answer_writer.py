@@ -131,6 +131,24 @@ def test_extract_numbers_still_matches_a_real_number_next_to_an_identifier():
     assert numbers == [(78.8, 1)]
 
 
+def test_extract_numbers_does_not_misread_a_year_range_hyphen_as_a_negative_sign():
+    # Live-observed false positive: derived-column labels for growth-type
+    # calculations are formatted like "CAGR % (2015-2023)" -- without a
+    # digit-aware guard on the leading "-", the hyphen joining the range was
+    # misread as a minus sign, producing a fabricated "-2023" that could
+    # never match any real evidence value and flagged an otherwise fully
+    # grounded answer as containing an ungrounded number.
+    numbers = extract_numbers(
+        "GDP (constant 2015 US$) (AZE): CAGR % (2015-2023) (2023): 1.0186314940939356."
+    )
+    assert numbers == [(1.0186314940939356, 16)]
+
+
+def test_extract_numbers_still_matches_a_real_negative_number():
+    numbers = extract_numbers("The value dropped by -5.2% last year.")
+    assert numbers == [(-5.2, 1)]
+
+
 # ---- check_citation ---------------------------------------------------------
 
 

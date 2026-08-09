@@ -150,9 +150,16 @@ WRITE_ANSWER_TOOL_SCHEMA = {
 #: the identifier "result_1" as if it were a bare statistic "1.0",
 #: producing a false "ungrounded number" flag on text that never actually
 #: claimed a number at all.
+#: The leading digit is also guarded against an immediately-preceding digit,
+#: so a leading "-" is only ever read as a minus sign when nothing but a
+#: non-digit (or nothing) precedes it -- live-observed without this: derived
+#: column labels like "CAGR % (2015-2023)" misparsed the hyphen joining a
+#: year *range* as a negative sign, producing a fabricated "-2023" that
+#: could never match any real evidence value and flagged the whole label as
+#: an ungrounded number.
 _NUMBER_PATTERN = re.compile(
-    r"(?<![A-Za-z_])-?\d{1,3}(?:,\d{3})+(?:\.\d+)?%?(?![A-Za-z_])"
-    r"|(?<![A-Za-z_])-?\d+(?:\.\d+)?%?(?![A-Za-z_])"
+    r"(?<![A-Za-z_\d])-?\d{1,3}(?:,\d{3})+(?:\.\d+)?%?(?![A-Za-z_])"
+    r"|(?<![A-Za-z_\d])-?\d+(?:\.\d+)?%?(?![A-Za-z_])"
 )
 
 #: A bare 4-digit integer in this range is treated as a period/year
