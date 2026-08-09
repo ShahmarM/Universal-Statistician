@@ -27,7 +27,13 @@ _RAW_GDP_PER_CAPITA = {
 def test_parse_indicator_builds_entry_from_the_documented_shape():
     entry = parse_indicator(_RAW_GDP_PER_CAPITA)
 
-    assert entry.indicator_id == "NY.GDP.PCAP.CD"
+    # NOT "NY.GDP.PCAP.CD": WB's REST API returns dot-separated codes, but
+    # "." is the SDMX key separator (sdmx_provider.py::_build_key) and
+    # sdmx1's own verified worked example for this source uses the
+    # underscore form (registry.py) — indicator_id must be the
+    # SDMX-retrievable spelling, or every discovered WB indicator would be
+    # unqueryable via get_series().
+    assert entry.indicator_id == "NY_GDP_PCAP_CD"
     assert entry.source_id == "WB_WDI"
     assert entry.names == {"en": "GDP per capita (current US$)"}
     assert entry.description == (
@@ -40,7 +46,21 @@ def test_parse_indicator_builds_entry_from_the_documented_shape():
         "World Bank national accounts data, and OECD National Accounts data files."
     )
     assert entry.official_url
-    assert entry.keywords == ("Economy & Growth",)
+    # The original dot-form code stays searchable even though it's no longer
+    # the retrieval identifier — WB's own docs/website never show underscores.
+    assert entry.keywords == ("Economy & Growth", "NY.GDP.PCAP.CD")
+
+
+def test_parse_indicator_normalizes_dots_to_underscores_for_sdmx_retrieval():
+    # The bug this guards: a discovered indicator_id containing literal dots
+    # would build a malformed SDMX key (sdmx_provider.py joins
+    # key_dimensions with "."), silently splitting one indicator code into
+    # several key segments.
+    entry = parse_indicator({"id": "SP.POP.TOTL"})
+
+    assert entry.indicator_id == "SP_POP_TOTL"
+    assert "." not in entry.indicator_id
+    assert entry.keywords == ("SP.POP.TOTL",)
 
 
 def test_parse_indicator_handles_missing_optional_fields():
@@ -51,6 +71,7 @@ def test_parse_indicator_handles_missing_optional_fields():
     assert entry.description is None
     assert entry.unit is None
     assert entry.source_organization is None
+    # Already SDMX-safe (no dots) -> nothing extra to add to keywords.
     assert entry.keywords is None
 
 
@@ -110,7 +131,7 @@ def test_discover_wb_wdi_entries_parses_every_fetched_page():
     entries = discover_wb_wdi_entries(session)
 
     assert len(entries) == 1
-    assert entries[0].indicator_id == "NY.GDP.PCAP.CD"
+    assert entries[0].indicator_id == "NY_GDP_PCAP_CD"
 
 
 @pytest.mark.network
@@ -120,4 +141,7 @@ def test_live_discovery_returns_a_large_indicator_set():
     shape, not whether the live endpoint still matches it)."""
     entries = discover_wb_wdi_entries()
     assert len(entries) > 1000  # WDI has on the order of 1,500 indicators
-    assert any(e.indicator_id == "SP.POP.TOTL" for e in entries)
+    # Normalized (see parse_indicator): the live API returns "SP.POP.TOTL",
+    # dots converted to underscores so the entry is actually retrievable.
+    assert any(e.indicator_id == "SP_POP_TOTL" for e in entries)
+    assert not any("." in e.indicator_id for e in entries)

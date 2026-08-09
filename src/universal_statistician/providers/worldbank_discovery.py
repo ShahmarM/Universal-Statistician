@@ -60,8 +60,27 @@ def parse_indicator(raw: dict[str, Any], *, dataset_id: str = "WDI") -> Indicato
     testable without any network access — the same separation already used
     by SDMXProvider._to_series_result / PXWebProvider._to_series_result.
     """
-    indicator_id = raw["id"]
-    name = raw.get("name") or indicator_id
+    raw_id = raw["id"]
+
+    # A real, code-provable identifier-compatibility bug (section: "metadata
+    # discovery and observation retrieval use compatible identifiers"),
+    # caught by static inspection rather than a live call: World Bank's own
+    # v2 REST API publishes indicator codes in DOT-separated form everywhere
+    # in its documentation and this endpoint's own payloads (e.g.
+    # "NY.GDP.PCAP.CD" — see this module's own test fixture). But "." is the
+    # SDMX key *segment separator* (sdmx_provider.py::_build_key joins
+    # key_dimensions with "."), and sdmx1's own verified worked example for
+    # this exact source uses the UNDERSCORE form of the same code
+    # ("SP_POP_TOTL", registry.py's SOURCES["WB_WDI"] docstring citing
+    # sdmx/tests/test_sources.py). A discovered indicator_id containing
+    # literal dots would silently split into extra key segments and build a
+    # malformed SDMX query — every indicator beyond the one hand-seeded in
+    # catalog_seed.py (already in underscore form) would be unretrievable.
+    # Normalizing here, at the one place a WB indicator code enters the
+    # catalog, keeps `IndicatorEntry.indicator_id` always round-trippable
+    # into SDMXProvider.get_series() the moment discovery ever runs for real.
+    indicator_id = raw_id.replace(".", "_")
+    name = raw.get("name") or raw_id
     description = (raw.get("sourceNote") or "").strip() or None
     unit = (raw.get("unit") or "").strip() or None
 
@@ -73,9 +92,13 @@ def parse_indicator(raw: dict[str, Any], *, dataset_id: str = "WDI") -> Indicato
     source_organization = (raw.get("sourceOrganization") or "").strip() or None
 
     topics = raw.get("topics") or []
-    keywords = tuple(
-        t["value"] for t in topics if isinstance(t, dict) and t.get("value")
-    ) or None
+    keyword_list = [t["value"] for t in topics if isinstance(t, dict) and t.get("value")]
+    # The original dot-form code is WB's public, documented spelling (their
+    # own website/docs never show the underscore form) — keep it searchable
+    # even though it's no longer the retrieval identifier.
+    if raw_id != indicator_id:
+        keyword_list.append(raw_id)
+    keywords = tuple(keyword_list) or None
 
     return IndicatorEntry(
         indicator_id=indicator_id,
