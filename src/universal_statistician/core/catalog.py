@@ -31,6 +31,7 @@ changing IndicatorEntry/IndicatorMeta or any caller.
 from __future__ import annotations
 
 import json
+import re
 import sqlite3
 import threading
 from dataclasses import dataclass
@@ -119,6 +120,87 @@ def _primary_name(entry: IndicatorEntry) -> str | None:
     if not entry.names:
         return None
     return entry.names.get("en") or next(iter(entry.names.values()))
+
+
+def _tokenize(text: str) -> list[str]:
+    return [t for t in re.split(r"[^a-z0-9]+", text.lower()) if t]
+
+
+#: bm25() weights, positional over the FTS5 table's *indexed* (non-UNINDEXED)
+#: columns in schema order: name, keywords, unit, source_organization, geo.
+#: Live-benchmarked (Phase C) against the real catalog: `source_organization`
+#: for World Bank entries carries a long free-text data-lineage citation
+#: ("World Bank (WB), type: GDP estimates; ...") that incidentally contains
+#: unrelated concept words — e.g. it made "GDP" match entries with nothing to
+#: do with GDP, just because their *citation* mentions "GDP estimates" as a
+#: methodology. Weighted to ~0 rather than dropped from the index entirely:
+#: it still contributes to the MATCH (so organization-name searches keep
+#: working), it just stops being counted as a relevance signal.
+_BM25_COLUMN_WEIGHTS: tuple[float, ...] = (10.0, 2.0, 1.0, 0.0, 0.2)
+
+#: Generic qualifier words that commonly appear in official indicator names
+#: without narrowing the concept ("Population, total", "Unemployment ...
+#: (modeled ILO estimate)") — real, live-observed naming patterns across
+#: World Bank/Eurostat. Counted as a much smaller penalty than a genuinely
+#: narrowing word (e.g. "rural", "youth", "female") when a name has query-
+#: unrelated tokens, so the flagship/general indicator isn't penalized as
+#: heavily for its administrative suffix as a real sub-breakdown is for its
+#: narrowing qualifier.
+_GENERIC_QUALIFIER_TOKENS = frozenset(
+    {
+        "total", "overall", "all", "both", "aggregate", "annual", "current",
+        "constant", "modeled", "estimate", "estimates", "national", "index",
+        "rate", "rates", "level", "average", "standard", "combined", "ilo",
+    }
+)
+
+
+def _composite_score(name: str, query_tokens: list[str], bm25_relevance: float) -> float:
+    """Re-rank signal on top of raw bm25 (Phase C).
+
+    Live benchmarking against the real, fully-populated catalog (38,789
+    indicators) found that raw bm25 alone systematically fails the exact
+    thing catalog search exists for: finding the flagship/general indicator
+    for a bare concept like "GDP" or "population". bm25 rewards term
+    frequency and column-match breadth, which has no notion of "this is the
+    canonical indicator" vs. "this is a narrow sub-breakdown that happens to
+    repeat the query term" — e.g. "Population ages 0-14 (% of total
+    population)" contains "population" twice and out-scores the true
+    flagship "Population, total", which contains it once.
+
+    This scores each bm25 candidate by how much of its *name* is the query
+    concept and how little else it says, which is what "flagship/general
+    indicator" actually means for how official statistical sources name
+    things:
+
+    - `coverage`: fraction of query tokens present (by prefix) in the name.
+    - `exact`: fraction of query tokens present as an exact whole-word match
+      (rewards "population" over a name that only contains "populations").
+    - `extra_penalty`: cost of every name token *not* matching the query,
+      discounted for generic administrative qualifiers (see
+      `_GENERIC_QUALIFIER_TOKENS`) so "Population, total" isn't penalized
+      as if "total" were as narrowing as "rural" or "youth".
+    - `bm25_relevance` (already negative-is-better from SQLite) breaks ties
+      among otherwise-equal candidates using the underlying full-text score.
+
+    Deliberately not embeddings, per this phase's explicit instruction to
+    optimize lexical/metadata ranking first — this is pure token-overlap
+    arithmetic over the *already normalized* catalog metadata.
+    """
+    if not query_tokens:
+        return 0.0
+    name_tokens = _tokenize(name)
+    coverage = sum(1 for t in query_tokens if any(nt.startswith(t) for nt in name_tokens)) / len(
+        query_tokens
+    )
+    exact = sum(1 for t in query_tokens if t in name_tokens) / len(query_tokens)
+    matched_name_tokens = {nt for nt in name_tokens if any(nt.startswith(t) for t in query_tokens)}
+    extra_penalty = sum(
+        0.4 if t in _GENERIC_QUALIFIER_TOKENS else 1.0
+        for t in name_tokens
+        if t not in matched_name_tokens
+    )
+    return coverage * 100.0 + exact * 40.0 - extra_penalty * 4.0 + (-bm25_relevance) * 0.3
 
 
 class Catalog:
@@ -263,29 +345,48 @@ class Catalog:
         return self._build(indicator_id, source_id, name, description, tuple(meta_row))
 
     def search(self, query: str, limit: int = 20) -> list[IndicatorMeta]:
+        """Full-text search, re-ranked to favor the flagship/general indicator
+        for a bare concept query over narrow sub-breakdowns or incidental
+        matches (Phase C: a real, live-benchmarked search-quality gap — see
+        `_composite_score()`'s docstring for what plain FTS5 bm25 gets
+        wrong and why).
+        """
         fts_query = self._fts_query(query)
         if fts_query is None:
             return []
+        query_tokens = _tokenize(query)
 
         with self._lock:
+            # A wide candidate pool (bm25-ordered, cheap: SQLite does this in
+            # the C extension) that the Python-side composite score below then
+            # re-sorts — re-ranking only the top N candidates keeps this from
+            # becoming an O(matches) Python loop on a broad prefix query that
+            # matches thousands of rows (e.g. "population*" alone matches
+            # 2,000+ rows in the real live catalog).
+            pool_size = max(limit * 20, 200)
             cursor = self._conn.execute(
-                "SELECT indicator_id, source_id, name, description FROM indicators "
-                "WHERE indicators MATCH ? ORDER BY rank",
-                (fts_query,),
+                "SELECT indicator_id, source_id, name, description, "
+                f"bm25(indicators, {', '.join('?' * len(_BM25_COLUMN_WEIGHTS))}) AS relevance "
+                "FROM indicators WHERE indicators MATCH ? ORDER BY relevance LIMIT ?",
+                (*_BM25_COLUMN_WEIGHTS, fts_query, pool_size),
             )
             rows = cursor.fetchall()
 
             seen: set[tuple[str, str]] = set()
-            results: list[IndicatorMeta] = []
-            for indicator_id, source_id, name, description in rows:
+            scored: list[tuple[float, str, str, str, str | None]] = []
+            for indicator_id, source_id, name, description, relevance in rows:
                 key = (source_id, indicator_id)
                 if key in seen:
                     continue
                 seen.add(key)
+                composite = _composite_score(name, query_tokens, relevance)
+                scored.append((composite, indicator_id, source_id, name, description))
+            scored.sort(key=lambda item: item[0], reverse=True)
+
+            results: list[IndicatorMeta] = []
+            for _composite, indicator_id, source_id, name, description in scored[:limit]:
                 meta_row = self._fetch_meta(source_id, indicator_id)
                 results.append(self._build(indicator_id, source_id, name, description, meta_row))
-                if len(results) >= limit:
-                    break
         return results
 
     def stats(self) -> dict[str, int]:
@@ -399,10 +500,6 @@ class Catalog:
 
     @staticmethod
     def _fts_query(query: str) -> str | None:
-        # Prefix-match every token so partial words ("popul") still hit, and
-        # strip characters FTS5's query syntax treats specially.
-        tokens = [
-            "".join(ch for ch in token if ch.isalnum()) for token in query.strip().split()
-        ]
-        tokens = [t for t in tokens if t]
+        # Prefix-match every token so partial words ("popul") still hit.
+        tokens = _tokenize(query)
         return " ".join(f"{t}*" for t in tokens) if tokens else None
