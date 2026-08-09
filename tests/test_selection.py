@@ -62,6 +62,79 @@ def test_catalog_search_rank_breaks_ties_between_equally_named_candidates():
     assert result.selected_indicators == (flagship,)
 
 
+def test_word_order_does_not_block_the_name_match_bonus():
+    # Live-discovered bug: the name-match bonus was a literal substring
+    # check, so concept "total population" did not match candidate name
+    # "Population, total" (the words are the same, just reordered) even
+    # though a human would call that an exact match.
+    reordered = CandidateIndicator(
+        indicator_id="SP_POP_TOTL", source_id="WB_WDI", name="Population, total", concept="total population",
+    )
+    plan = _plan(concepts=("total population",), candidate_indicators=(reordered,))
+
+    _, reasons = score_candidate(reordered, plan)
+
+    assert any("every word of the requested concept" in r for r in reasons)
+
+
+def test_a_demographic_subgroup_share_does_not_outrank_the_real_total():
+    # Live-discovered bug, the actual root cause of a wrong benchmark
+    # answer ("Azerbaijan's population was 50.98"): for concept "total
+    # population", "Population, female (% of total population)" contains
+    # every one of the concept's words (so it got the same name-match bonus
+    # as "Population, total") with nothing penalizing the fact that it
+    # measures a completely different thing -- a demographic subgroup's
+    # share, not a population count. Without a qualifier penalty this
+    # subgroup-share series could outrank (or, as a retrieval fallback,
+    # get chosen over) the real total.
+    total = CandidateIndicator(
+        indicator_id="SP_POP_TOTL", source_id="WB_WDI", name="Population, total",
+        concept="total population", search_rank=0,
+    )
+    female_share = CandidateIndicator(
+        indicator_id="SP_POP_TOTL_FE_ZS", source_id="WB_WDI",
+        name="Population, female (% of total population)",
+        concept="total population", search_rank=1,
+    )
+    plan = _plan(concepts=("total population",), candidate_indicators=(female_share, total))
+
+    result = select_indicators(plan)
+
+    assert result.selected_indicators == (total,)
+
+
+def test_a_qualifier_word_already_present_in_the_concept_is_not_penalized():
+    # The qualifier penalty is symmetric: if the concept itself asks for a
+    # subgroup ("female population"), a candidate naming that subgroup must
+    # not be punished for it.
+    female = CandidateIndicator(
+        indicator_id="SP_POP_TOTL_FE_ZS", source_id="WB_WDI",
+        name="Population, female (% of total population)", concept="female population",
+    )
+    plan = _plan(concepts=("female population",), candidate_indicators=(female,))
+
+    score, reasons = score_candidate(female, plan)
+
+    assert not any("does not ask for" in r for r in reasons)
+
+
+def test_percentage_concepts_are_not_penalized_for_being_percentages():
+    # The qualifier penalty is deliberately narrow: "%"/"rate"/"growth" are
+    # NOT qualifier markers, because they are the natural unit for many
+    # concepts (inflation, unemployment) without the concept text spelling
+    # it out -- penalizing them would wrongly punish the correct candidate
+    # for exactly the concepts this project cares most about.
+    inflation = CandidateIndicator(
+        indicator_id="FP_CPI_TOTL_ZG", source_id="WB_WDI",
+        name="Inflation, consumer prices (annual %)", concept="inflation",
+    )
+    plan = _plan(concepts=("inflation",), candidate_indicators=(inflation,))
+
+    _, reasons = score_candidate(inflation, plan)
+
+    assert not any("does not ask for" in r for r in reasons)
+
+
 def test_geographic_coverage_of_requested_areas_wins():
     covers_all = CandidateIndicator(
         indicator_id="COVERS", source_id="A", name="GDP", concept="gdp",

@@ -37,9 +37,43 @@ implicit.
 
 from __future__ import annotations
 
+import re
 from dataclasses import replace
 
 from universal_statistician.core.query_plan import CandidateIndicator, QueryPlan
+
+#: Markers that indicate a candidate measures a different *subject* than
+#: the plain concept requested -- one demographic subgroup, or a per-person
+#: rate -- even when its name otherwise shares every word with the concept.
+#: Live-discovered root cause this exists for: for concept "total
+#: population", "Population, female (% of total population)" contains
+#: every one of the concept's words (so the name-match bonus below fired)
+#: while the actually-correct "Population, total" does not (word order
+#: differs) -- unpenalized, this let a subgroup-share series outrank the
+#: real headcount series as the fallback candidate, producing an answer
+#: like "Azerbaijan's population was 50.98" (the female population
+#: *share*, not a population count) with no indication anything was wrong.
+#: Deliberately narrow: NOT "%"/"percent"/"growth"/"rate"/"share"/"ratio"
+#: -- those are the *natural* unit for many concepts (inflation,
+#: unemployment) without the concept text spelling it out, and penalizing
+#: them flips the correct choice for exactly those cases (see
+#: test_catalog_search_rank_breaks_ties_between_equally_named_candidates).
+#: `qualifiers_in()` below is symmetric: it flags a marker only when the
+#: concept text doesn't already ask for it, so "female population" as the
+#: concept itself is unaffected.
+_QUALIFIER_MARKERS = ("female", "male", "per capita")
+
+
+def _words(text: str) -> frozenset[str]:
+    return frozenset(re.findall(r"[a-z0-9]+", text.lower()))
+
+
+def _qualifiers_in(text_lower: str) -> frozenset[str]:
+    # Whole-word/whole-phrase matching, not bare substring -- "male" is a
+    # substring of "female", so a naive `marker in text_lower` check would
+    # (wrongly) claim "male" is mentioned by a name that only says "female".
+    words = _words(text_lower)
+    return frozenset(m for m in _QUALIFIER_MARKERS if (m in text_lower if " " in m or m == "%" else m in words))
 
 
 def score_candidate(candidate: CandidateIndicator, plan: QueryPlan) -> tuple[float, tuple[str, ...]]:
@@ -66,12 +100,21 @@ def score_candidate(candidate: CandidateIndicator, plan: QueryPlan) -> tuple[flo
 
     concept_lower = candidate.concept.strip().lower()
     name_lower = candidate.name.lower()
-    if concept_lower and concept_lower in name_lower:
+    concept_words = _words(concept_lower)
+    if concept_words and concept_words <= _words(name_lower):
         score += 2.0
-        reasons.append(f"name contains the requested concept {candidate.concept!r}")
+        reasons.append(f"name contains every word of the requested concept {candidate.concept!r}")
     else:
         score += 0.5
         reasons.append("matched by catalog full-text search, not an exact name match")
+
+    unexpected_qualifiers = _qualifiers_in(name_lower) - _qualifiers_in(concept_lower)
+    if unexpected_qualifiers:
+        score -= 2.5
+        reasons.append(
+            f"name mentions {sorted(unexpected_qualifiers)!r}, which the requested concept "
+            f"{candidate.concept!r} does not ask for -- likely a different statistic"
+        )
 
     if plan.geographies and candidate.geographic_coverage:
         requested = {g.upper() for g in plan.geographies}
