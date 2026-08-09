@@ -54,6 +54,8 @@ CREATE VIRTUAL TABLE IF NOT EXISTS indicators USING fts5(
 CREATE TABLE IF NOT EXISTS catalog_meta (
     source_id TEXT NOT NULL,
     indicator_id TEXT NOT NULL,
+    name TEXT,
+    description TEXT,
     dataset_id TEXT,
     unit TEXT,
     frequency TEXT,
@@ -69,14 +71,15 @@ CREATE TABLE IF NOT EXISTS catalog_meta (
 );
 """
 
-#: Phase F added `catalog_meta.semantics` after Phase B's persistent
-#: on-disk catalog already shipped — `CREATE TABLE IF NOT EXISTS` above is a
-#: no-op against a real ~/.universal_statistician/catalog.db file created
-#: before this phase, so a plain schema-string change alone would silently
-#: leave that column missing and crash the very first INSERT. Guarded,
+#: Phase F added `catalog_meta.semantics`, Phase H added `.name`/
+#: `.description`, both after Phase B's persistent on-disk catalog already
+#: shipped — `CREATE TABLE IF NOT EXISTS` above is a no-op against a real
+#: ~/.universal_statistician/catalog.db file created before either phase,
+#: so a plain schema-string change alone would silently leave a column
+#: missing and crash the first INSERT/SELECT that needs it. Guarded,
 #: idempotent migration below (like _SCHEMA itself, safe to run on every
 #: Catalog() construction).
-_MIGRATIONS: tuple[str, ...] = ("semantics",)
+_MIGRATIONS: tuple[str, ...] = ("semantics", "name", "description")
 
 
 @dataclass(frozen=True)
@@ -112,6 +115,12 @@ class IndicatorEntry:
     semantics: StatisticalSemantics | None = None
 
 
+def _primary_name(entry: IndicatorEntry) -> str | None:
+    if not entry.names:
+        return None
+    return entry.names.get("en") or next(iter(entry.names.values()))
+
+
 class Catalog:
     def __init__(self, connection: sqlite3.Connection | None = None) -> None:
         # MCP tool calls run each synchronous tool in a worker thread, not the
@@ -140,80 +149,118 @@ class Catalog:
         """Insert or, for an (source_id, indicator_id) pair already present,
         replace it — so re-running ingestion (core/ingestion.py) to refresh a
         source's metadata updates existing entries instead of accumulating
-        duplicates or stale language labels next to current ones."""
+        duplicates or stale language labels next to current ones.
+
+        Batched with executemany() across the *whole* entries list, not one
+        round trip per entry — a real, live-discovered performance issue
+        (Phase H): a single source's discovery can return tens of thousands
+        of entries (US Census's ACS1 alone has 36,632 variable codes), and
+        the original per-entry-loop version issuing 2-3 individual
+        `execute()` calls per entry took minutes for a catalog that size.
+        """
+        if not entries:
+            return
+
+        # Last one wins for a duplicate (source_id, indicator_id) within
+        # the same batch — matches the old per-entry delete-then-insert
+        # loop's behavior. Real discovery payloads shouldn't produce
+        # duplicates (codelists are keyed dicts), but batching every
+        # DELETE before any INSERT (below, for performance) would
+        # otherwise leave two FTS rows for one key instead of the later
+        # entry replacing the earlier one.
+        deduped: dict[tuple[str, str], IndicatorEntry] = {}
+        for entry in entries:
+            deduped[(entry.source_id, entry.indicator_id)] = entry
+        entries = list(deduped.values())
+
         now = datetime.now(timezone.utc).isoformat()
         with self._lock:
-            for entry in entries:
-                self._conn.execute(
-                    "DELETE FROM indicators WHERE source_id = ? AND indicator_id = ?",
-                    (entry.source_id, entry.indicator_id),
+            self._conn.executemany(
+                "DELETE FROM indicators WHERE source_id = ? AND indicator_id = ?",
+                [(entry.source_id, entry.indicator_id) for entry in entries],
+            )
+
+            indicator_rows = [
+                (
+                    entry.indicator_id,
+                    entry.source_id,
+                    lang,
+                    name,
+                    entry.description,
+                    " ".join(entry.keywords) if entry.keywords else None,
+                    entry.unit,
+                    entry.source_organization,
+                    " ".join(entry.geographic_coverage) if entry.geographic_coverage else None,
                 )
-                keywords_text = " ".join(entry.keywords) if entry.keywords else None
-                geo_text = " ".join(entry.geographic_coverage) if entry.geographic_coverage else None
-                rows = [
-                    (
-                        entry.indicator_id,
-                        entry.source_id,
-                        lang,
-                        name,
-                        entry.description,
-                        keywords_text,
-                        entry.unit,
-                        entry.source_organization,
-                        geo_text,
-                    )
-                    for lang, name in entry.names.items()
-                ]
+                for entry in entries
+                for lang, name in entry.names.items()
+            ]
+            if indicator_rows:
                 self._conn.executemany(
                     "INSERT INTO indicators "
                     "(indicator_id, source_id, lang, name, description, keywords, unit, "
                     "source_organization, geo) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)",
-                    rows,
+                    indicator_rows,
                 )
-                self._conn.execute(
-                    "INSERT OR REPLACE INTO catalog_meta "
-                    "(source_id, indicator_id, dataset_id, unit, frequency, "
-                    "geographic_coverage, dimensions, source_organization, official_url, "
-                    "last_updated, keywords, semantics, ingested_at) "
-                    "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
-                    (
-                        entry.source_id,
-                        entry.indicator_id,
-                        entry.dataset_id,
-                        entry.unit,
-                        entry.frequency,
-                        json.dumps(list(entry.geographic_coverage))
-                        if entry.geographic_coverage is not None
-                        else None,
-                        json.dumps([d.as_dict() for d in entry.dimensions])
-                        if entry.dimensions is not None
-                        else None,
-                        entry.source_organization,
-                        entry.official_url,
-                        entry.last_updated,
-                        json.dumps(list(entry.keywords)) if entry.keywords is not None else None,
-                        json.dumps(entry.semantics.as_dict()) if entry.semantics is not None else None,
-                        now,
-                    ),
+
+            meta_rows = [
+                (
+                    entry.source_id,
+                    entry.indicator_id,
+                    _primary_name(entry),
+                    entry.description,
+                    entry.dataset_id,
+                    entry.unit,
+                    entry.frequency,
+                    json.dumps(list(entry.geographic_coverage))
+                    if entry.geographic_coverage is not None
+                    else None,
+                    json.dumps([d.as_dict() for d in entry.dimensions])
+                    if entry.dimensions is not None
+                    else None,
+                    entry.source_organization,
+                    entry.official_url,
+                    entry.last_updated,
+                    json.dumps(list(entry.keywords)) if entry.keywords is not None else None,
+                    json.dumps(entry.semantics.as_dict()) if entry.semantics is not None else None,
+                    now,
                 )
+                for entry in entries
+            ]
+            self._conn.executemany(
+                "INSERT OR REPLACE INTO catalog_meta "
+                "(source_id, indicator_id, name, description, dataset_id, unit, frequency, "
+                "geographic_coverage, dimensions, source_organization, official_url, "
+                "last_updated, keywords, semantics, ingested_at) "
+                "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+                meta_rows,
+            )
             self._conn.commit()
 
     def get(self, source_id: str, indicator_id: str) -> IndicatorMeta | None:
         """Direct lookup by exact (source_id, indicator_id) — no full-text
-        matching. Used by ingestion (core/ingestion.py) to detect whether a
-        discovered entry is new, changed, or unchanged, without the ambiguity
-        a search() query could introduce."""
+        matching, and (Phase H) no FTS5 table scan either: queries
+        `catalog_meta` alone, which has a real PRIMARY KEY index on
+        (source_id, indicator_id). The `indicators` FTS5 table's
+        `indicator_id`/`source_id` columns are UNINDEXED (required for a
+        full-text virtual table), so filtering by them there forces a full
+        table scan of every row — fine for one lookup, but a real,
+        live-discovered O(n²) problem for `core/ingestion.py`'s
+        change-detection loop, which calls this once per discovered entry
+        (a single source can return tens of thousands — US Census's ACS1:
+        36,632 variables — which made a full `ustat catalog refresh`
+        against it take minutes instead of well under a second)."""
         with self._lock:
             row = self._conn.execute(
-                "SELECT indicator_id, source_id, name, description FROM indicators "
-                "WHERE source_id = ? AND indicator_id = ? LIMIT 1",
+                "SELECT name, description, dataset_id, unit, frequency, geographic_coverage, "
+                "dimensions, source_organization, official_url, last_updated, keywords, semantics "
+                "FROM catalog_meta WHERE source_id = ? AND indicator_id = ?",
                 (source_id, indicator_id),
             ).fetchone()
-            if row is None:
-                return None
-            meta_row = self._fetch_meta(source_id, indicator_id)
-        found_indicator_id, found_source_id, name, description = row
-        return self._build(found_indicator_id, found_source_id, name, description, meta_row)
+        if row is None:
+            return None
+        name, description, *meta_row = row
+        return self._build(indicator_id, source_id, name, description, tuple(meta_row))
 
     def search(self, query: str, limit: int = 20) -> list[IndicatorMeta]:
         fts_query = self._fts_query(query)

@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+import time
+
 from universal_statistician.core.catalog import Catalog, IndicatorEntry
 from universal_statistician.core.ingestion import ingest_source, refresh_all
 from universal_statistician.providers.base import Provider
@@ -115,3 +117,69 @@ def test_refresh_all_only_touches_discoverable_providers():
 
     assert [r.source_id for r in reports] == ["FAKE"]
     assert reports[0].added == 1
+
+
+# ---- Performance (Phase H): a real, live-discovered issue — a single
+# source's discovery can return tens of thousands of entries (US Census's
+# ACS1: 36,632 variable codes), and both Catalog.get()'s FTS5 table scan
+# and re-writing every entry's FTS row on every refresh (even unchanged
+# ones) independently made a real `ustat catalog refresh` take minutes
+# instead of well under a second. Bounded, not exact-timed (machine-
+# dependent), but tight enough to catch either regression coming back. ---
+
+
+def _large_provider(n: int, *, changed_name: str | None = None) -> DiscoverableProvider:
+    entries = [
+        IndicatorEntry(indicator_id=f"VAR_{i:06d}", source_id="FAKE", names={"en": f"Variable {i}"})
+        for i in range(n)
+    ]
+    if changed_name is not None:
+        entries[0] = IndicatorEntry(
+            indicator_id=entries[0].indicator_id, source_id="FAKE", names={"en": changed_name}
+        )
+    return DiscoverableProvider("FAKE", entries)
+
+
+def test_ingest_source_scales_to_tens_of_thousands_of_new_entries():
+    catalog = Catalog()
+    provider = _large_provider(20_000)
+
+    started = time.monotonic()
+    report = ingest_source("FAKE", provider, catalog)
+    elapsed = time.monotonic() - started
+
+    assert report.added == 20_000
+    assert elapsed < 10  # was minutes before the Phase H fix; typically well under 1s
+
+
+def test_ingest_source_repeat_refresh_of_an_unchanged_large_catalog_is_fast():
+    # The realistic steady-state case: a periodic `ustat catalog refresh`
+    # against a large source where nothing actually changed. Only new/
+    # changed entries should touch the FTS table at all.
+    catalog = Catalog()
+    provider = _large_provider(20_000)
+    ingest_source("FAKE", provider, catalog)
+
+    started = time.monotonic()
+    report = ingest_source("FAKE", provider, catalog)
+    elapsed = time.monotonic() - started
+
+    assert report.unchanged == 20_000
+    assert report.added == 0
+    assert elapsed < 5  # was minutes before the Phase H fix; typically well under 1s
+
+
+def test_ingest_source_repeat_refresh_with_one_change_stays_fast():
+    catalog = Catalog()
+    provider = _large_provider(20_000)
+    ingest_source("FAKE", provider, catalog)
+    changed_provider = _large_provider(20_000, changed_name="Renamed")
+
+    started = time.monotonic()
+    report = ingest_source("FAKE", changed_provider, catalog)
+    elapsed = time.monotonic() - started
+
+    assert report.updated == 1
+    assert report.unchanged == 19_999
+    assert elapsed < 5
+    assert catalog.get("FAKE", "VAR_000000").name == "Renamed"

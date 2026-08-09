@@ -96,16 +96,26 @@ def ingest_source(source_id: str, provider: Provider, catalog: Catalog) -> Inges
         )
 
     added = updated = unchanged = 0
+    changed_entries: list[IndicatorEntry] = []
     for entry in entries:
         existing = catalog.get(entry.source_id, entry.indicator_id)
         if existing is None:
             added += 1
+            changed_entries.append(entry)
         elif _entry_matches_existing(entry, existing):
             unchanged += 1
         else:
             updated += 1
+            changed_entries.append(entry)
 
-    catalog.add(entries)
+    # Only write entries that are actually new or changed (Phase H: a real,
+    # live-discovered performance issue) — Catalog.add()'s DELETE+INSERT
+    # against the `indicators` FTS5 table is real, non-trivial work per
+    # entry, and re-running it for entries that provably haven't changed
+    # (the common case on a repeat `ustat catalog refresh` of a large,
+    # mostly-stable source) was pure waste, turning every idempotent
+    # re-refresh into O(n) unnecessary FTS writes.
+    catalog.add(changed_entries)
 
     return IngestionReport(
         source_id=source_id,
