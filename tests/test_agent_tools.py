@@ -119,6 +119,101 @@ def test_search_series_does_not_duplicate_candidates_across_calls():
     assert len(ids) == len(set(ids))
 
 
+def _engine_for_rerank_test() -> QueryEngine:
+    # "Electricity production" (short, exact-match name) beats
+    # "Electricity production, national statistics office series" (longer,
+    # diluted match) on pure catalog lexical rank -- confirmed empirically
+    # against the real Catalog.search() ranking, same technique used
+    # elsewhere in this project's fixtures (e.g. test_agent_loop.py's
+    # nominal-vs-real GDP tie). But only the second one actually covers AZE.
+    class _RaisingProvider(LookupProvider):
+        def get_series(self, *a, **k):
+            raise NotImplementedError
+
+    provider = _RaisingProvider("TEST", {})
+    catalog = Catalog()
+    catalog.add(
+        [
+            IndicatorEntry(
+                indicator_id="ELEC", source_id="TEST", names={"en": "Electricity production"},
+                unit="GWh", frequency="A", geographic_coverage=("USA",),
+            ),
+            IndicatorEntry(
+                indicator_id="ELEC_AZE_ONLY", source_id="TEST",
+                names={"en": "Electricity production, national statistics office series"},
+                unit="GWh", frequency="M", geographic_coverage=("AZE",),
+            ),
+        ]
+    )
+    return QueryEngine({"TEST": provider}, catalog=catalog)
+
+
+def test_search_series_boosts_a_candidate_that_covers_the_requested_geography():
+    state = InvestigationState(question="q", engine=_engine_for_rerank_test())
+    lexical_only = agent_tools.search_series(state, query="electricity production")
+    assert lexical_only["candidates"][0]["indicator_id"] == "ELEC"  # confirms the lexical baseline
+
+    state2 = InvestigationState(question="q", engine=_engine_for_rerank_test())
+    result = agent_tools.search_series(state2, query="electricity production", geography="AZE")
+    assert result["candidates"][0]["indicator_id"] == "ELEC_AZE_ONLY"
+    assert "covers requested geography" in result["candidates"][0]["search_score_note"]
+
+
+def test_search_series_boosts_a_candidate_matching_the_requested_frequency():
+    state = InvestigationState(question="q", engine=_engine_for_rerank_test())
+    result = agent_tools.search_series(state, query="electricity production", frequency="M")
+    assert result["candidates"][0]["indicator_id"] == "ELEC_AZE_ONLY"
+
+
+def test_search_series_never_excludes_a_candidate_for_an_unmatched_geography():
+    # Boosted order, never filtered -- both candidates must still appear.
+    state = InvestigationState(question="q", engine=_engine_for_rerank_test())
+    result = agent_tools.search_series(state, query="electricity production", geography="AZE")
+    ids = {c["indicator_id"] for c in result["candidates"]}
+    assert ids == {"ELEC", "ELEC_AZE_ONLY"}
+
+
+def _engine_for_period_rerank_test() -> QueryEngine:
+    # Same short-name-wins-lexically technique as _engine_for_rerank_test(),
+    # this time with real retrievable data for the lower-ranked candidate so
+    # a prior retrieve_series can establish known period coverage for it.
+    provider = LookupProvider(
+        "TEST",
+        {("ELEC_AZE_ONLY", "AZE"): make_series("ELEC_AZE_ONLY", "AZE", {"2022": 1.0, "2023": 2.0}, source_id="TEST")},
+    )
+    catalog = Catalog()
+    catalog.add(
+        [
+            IndicatorEntry(
+                indicator_id="ELEC", source_id="TEST", names={"en": "Electricity production"},
+                unit="GWh", frequency="A",
+            ),
+            IndicatorEntry(
+                indicator_id="ELEC_AZE_ONLY", source_id="TEST",
+                names={"en": "Electricity production, national statistics office series"},
+                unit="GWh", frequency="A",
+            ),
+        ]
+    )
+    return QueryEngine({"TEST": provider}, catalog=catalog)
+
+
+def test_search_series_boosts_a_candidate_already_confirmed_to_cover_the_requested_period():
+    # Only meaningful once something has actually been retrieved earlier in
+    # this investigation (agent/tools.py::_known_period_coverage) -- here,
+    # ELEC_AZE_ONLY (ranked lower lexically, see _engine_for_rerank_test's
+    # docstring) is pre-retrieved and confirmed to cover 2023.
+    state = InvestigationState(question="q", engine=_engine_for_period_rerank_test())
+    lexical_only = agent_tools.search_series(state, query="electricity production")
+    assert lexical_only["candidates"][0]["indicator_id"] == "ELEC"  # lexical baseline
+
+    state2 = InvestigationState(question="q", engine=_engine_for_period_rerank_test())
+    agent_tools.retrieve_series(state2, catalog_id=catalog_id("TEST", "ELEC_AZE_ONLY"), geographies=["AZE"])
+    result = agent_tools.search_series(state2, query="electricity production", start_period="2023", end_period="2023")
+    assert result["candidates"][0]["indicator_id"] == "ELEC_AZE_ONLY"
+    assert any("cover the requested period" in r for r in result["candidates"][0]["search_score_note"].split("; "))
+
+
 # ---- inspect_series --------------------------------------------------------
 
 

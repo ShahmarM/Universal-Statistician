@@ -50,6 +50,84 @@ from universal_statistician.core.validation import validate_table
 # ---- search_series ----------------------------------------------------
 
 
+#: How much a lexical-rank position (0 = catalog's own top hit) is worth in
+#: the re-rank score below, before any of the other signals apply — the
+#: catalog's own bm25/metadata relevance (Phase C) stays the dominant
+#: signal; geography/frequency/unit/period only ever nudge the order
+#: within what's already a plausible lexical match, never override it
+#: outright. Mirrors core/selection.py::score_candidate's weight scale
+#: (geography +1.5/-1.0, frequency +1.0/-0.5) for consistency, though the
+#: two functions score different shapes (IndicatorMeta here vs.
+#: CandidateIndicator/QueryPlan there) and aren't sharable as one.
+_LEXICAL_RANK_WEIGHT = 1.0
+_LEXICAL_RANK_SPAN = 10
+
+
+def _rerank_score(
+    meta,
+    lexical_rank: int,
+    *,
+    geography: str | None,
+    frequency: str | None,
+    unit_hint: str | None,
+    period_covered: bool | None,
+) -> tuple[float, list[str]]:
+    """Score one search_indicator() candidate for re-ranking. Every signal
+    besides the base lexical rank is a *nudge*, never a hard filter or a
+    penalty for merely-unknown metadata — "unknown" only ever leaves the
+    score unchanged, matching this project's existing "absence of metadata
+    is not evidence of mismatch" rule (see core/selection.py, core/
+    validation.py)."""
+    score = max(0.0, _LEXICAL_RANK_SPAN - lexical_rank) * _LEXICAL_RANK_WEIGHT
+    reasons = [f"catalog lexical rank {lexical_rank}"]
+
+    if geography:
+        if meta.geographic_coverage is None:
+            reasons.append("geographic_coverage unknown (not penalized)")
+        elif geography.upper() in {g.upper() for g in meta.geographic_coverage}:
+            score += 1.5
+            reasons.append(f"covers requested geography {geography!r}")
+        else:
+            score -= 1.0
+            reasons.append(f"geographic_coverage does not list requested geography {geography!r}")
+
+    if frequency:
+        if meta.frequency is None:
+            reasons.append("frequency unknown (not penalized)")
+        elif meta.frequency.strip().upper() == frequency.strip().upper():
+            score += 1.0
+            reasons.append(f"matches requested frequency {frequency!r}")
+        else:
+            score -= 0.5
+            reasons.append(f"frequency {meta.frequency!r} differs from requested {frequency!r}")
+
+    if unit_hint:
+        if meta.unit is None:
+            reasons.append("unit unknown (not penalized)")
+        elif unit_hint.strip().lower() in meta.unit.lower():
+            score += 0.5
+            reasons.append(f"unit matches hint {unit_hint!r}")
+        else:
+            # Never penalized: the same real-world unit is phrased
+            # inconsistently across sources ("current US$" vs "USD,
+            # current prices"), so a substring miss here is weak evidence
+            # at best -- inspect_series is what actually confirms this.
+            reasons.append(f"unit {meta.unit!r} does not obviously match hint {unit_hint!r} (not penalized)")
+
+    if period_covered is True:
+        # Weighted above a single lexical-rank step (unlike the other
+        # signals here) -- this one is never a guess, it's a fact this
+        # investigation already confirmed by actually retrieving data, so
+        # it should be able to outweigh a marginally-better lexical match.
+        score += 1.5
+        reasons.append("already confirmed in this investigation to cover the requested period")
+    elif period_covered is False:
+        score -= 1.5
+        reasons.append("already confirmed in this investigation to NOT cover the requested period")
+
+    return score, reasons
+
+
 def search_series(
     state: InvestigationState,
     *,
@@ -62,27 +140,50 @@ def search_series(
     source_preference: str | None = None,
     limit: int = 10,
 ) -> dict:
-    """Find candidate series in the local catalog. Deterministic lexical/
-    metadata ranking (Catalog.search(), Phase C) orders results; that
-    order is a *hint*, never a selection — the LLM must inspect (and may
-    reject) candidates rather than trusting rank 0 automatically."""
+    """Find candidate series in the local catalog. The catalog's own
+    lexical/metadata search (Catalog.search(), Phase C) supplies the base
+    relevance ranking; geography/frequency/unit_hint/period (when already
+    known — see check_coverage) then nudge that order via _rerank_score()
+    without ever excluding a candidate outright (source_preference is the
+    one hard filter, by design — it means "only this source", not "prefer
+    this source"). The final order is still a *hint*, never a selection —
+    the LLM must inspect (and may reject) candidates rather than trusting
+    rank 0 automatically."""
     limit = max(1, min(limit, 25))
-    fetch_limit = min(limit * 3, 50) if source_preference else limit
+    # Fetch a wider pool than `limit` whenever a re-ranking signal is given
+    # (not just source_preference) -- otherwise a genuinely better-matching
+    # candidate for the requested geography/frequency could sit just past
+    # the lexical-only cutoff and never even be considered for re-ranking.
+    reranking = any([geography, frequency, unit_hint, start_period, end_period])
+    fetch_limit = min(limit * 3, 50) if (source_preference or reranking) else limit
     results = state.engine.search_indicator(query, limit=fetch_limit)
     if source_preference:
         results = [r for r in results if r.source_id == source_preference]
-    results = results[:limit]
+
+    period_geo_filter = [geography] if geography else []
+    scored = []
+    for lexical_rank, meta in enumerate(results):
+        period_covered: bool | None = None
+        if start_period or end_period:
+            cid = make_catalog_id(meta.source_id, meta.indicator_id)
+            earliest, latest, covered_for = _known_period_coverage(state, cid, period_geo_filter)
+            if earliest is not None:
+                period_covered = not (
+                    (start_period and start_period > latest) or (end_period and end_period < earliest)
+                )
+        score, reasons = _rerank_score(
+            meta, lexical_rank,
+            geography=geography, frequency=frequency, unit_hint=unit_hint, period_covered=period_covered,
+        )
+        scored.append((score, lexical_rank, meta, reasons))
+
+    # Stable on lexical_rank as the tiebreaker: equal re-rank scores keep
+    # the catalog's own original relative order rather than an arbitrary one.
+    scored.sort(key=lambda item: (-item[0], item[1]))
 
     candidates: list[CandidateSummary] = []
-    for rank, meta in enumerate(results):
+    for final_rank, (_score, lexical_rank, meta, reasons) in enumerate(scored[:limit]):
         cid = make_catalog_id(meta.source_id, meta.indicator_id)
-        if meta.geographic_coverage is None:
-            score_note = "geographic_coverage is not recorded for this indicator (unknown, not excluded)"
-        elif geography and geography.upper() not in {g.upper() for g in meta.geographic_coverage}:
-            score_note = f"catalog geographic_coverage does not list {geography!r}"
-        else:
-            score_note = f"{len(meta.geographic_coverage)} area(s) in catalog geographic_coverage"
-
         summary = CandidateSummary(
             catalog_id=cid,
             source_id=meta.source_id,
@@ -96,8 +197,8 @@ def search_series(
             seasonally_adjusted=meta.semantics.seasonally_adjusted if meta.semantics else None,
             geographic_coverage=meta.geographic_coverage,
             official_url=meta.official_url,
-            search_rank=rank,
-            search_score_note=score_note,
+            search_rank=final_rank,
+            search_score_note="; ".join(reasons),
         )
         candidates.append(summary)
         if cid not in {c.catalog_id for c in state.candidates_considered}:
@@ -108,7 +209,9 @@ def search_series(
         "candidates": [c.as_dict() for c in candidates],
         "count": len(candidates),
         "note": (
-            "Ranked by catalog search relevance only (lexical/metadata match), "
+            "Ranked by catalog lexical relevance, nudged by how well each "
+            "candidate's known metadata matches geography/frequency/unit_hint/"
+            "period (never a hard filter except source_preference) — still "
             "not semantic correctness for this question. A bare concept query "
             "commonly returns several plausible candidates (e.g. nominal vs. "
             "real GDP, national vs. modeled-estimate unemployment) — use "
@@ -582,12 +685,12 @@ TOOL_SCHEMAS: list[dict] = [
             "type": "object",
             "properties": {
                 "query": {"type": "string", "description": "Concept/search text, e.g. 'real GDP growth'."},
-                "geography": {"type": ["string", "null"], "description": "A country/area, if known, used only to annotate candidates' coverage — never filters them out."},
-                "start_period": {"type": ["string", "null"]},
-                "end_period": {"type": ["string", "null"]},
-                "frequency": {"type": ["string", "null"], "description": "e.g. 'A', 'Q', 'M', if the question implies one."},
-                "unit_hint": {"type": ["string", "null"]},
-                "source_preference": {"type": ["string", "null"], "description": "A specific source_id to restrict results to, e.g. 'WB_WDI'."},
+                "geography": {"type": ["string", "null"], "description": "A country/area, if known — boosts candidates whose catalog geographic_coverage includes it; never excludes a candidate outright (coverage is often unrecorded, not absent)."},
+                "start_period": {"type": ["string", "null"], "description": "Boosts candidates already confirmed (via a prior retrieve_series in this investigation) to cover this period; has no effect on a candidate never retrieved yet."},
+                "end_period": {"type": ["string", "null"], "description": "Same effect as start_period."},
+                "frequency": {"type": ["string", "null"], "description": "e.g. 'A', 'Q', 'M' — boosts a matching candidate, nudges down a mismatched one."},
+                "unit_hint": {"type": ["string", "null"], "description": "Boosts a candidate whose catalog unit text contains this — never penalized on a miss, since units are phrased inconsistently across sources."},
+                "source_preference": {"type": ["string", "null"], "description": "A specific source_id to restrict results to, e.g. 'WB_WDI' — the one hard filter here, unlike the other parameters."},
                 "limit": {"type": "integer", "minimum": 1, "maximum": 25, "default": 10},
             },
             "required": ["query"],
