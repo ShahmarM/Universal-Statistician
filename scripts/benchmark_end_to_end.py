@@ -28,6 +28,7 @@ Usage:
 from __future__ import annotations
 
 import argparse
+import time
 import json
 import sys
 from dataclasses import dataclass, field
@@ -368,7 +369,7 @@ def _check_calculation(result, bq: BenchmarkQuestion) -> bool | None:
     return ok if checked else None
 
 
-def run(sample_file: str | None) -> int:
+def run(sample_file: str | None, delay_seconds: float) -> int:
     engine = default_engine()
     questions = build_questions()
 
@@ -392,6 +393,14 @@ def run(sample_file: str | None) -> int:
     for bq in questions:
         cat_counts = by_category.setdefault(bq.category, {"total": 0, "end_to_end_success": 0})
         cat_counts["total"] += 1
+        if delay_seconds:
+            # World Bank's live SDMX endpoint returned a sustained wall of
+            # 502s partway through an earlier unpaced ~110-question run
+            # (real, live-discovered) — SDMXProvider's retry-with-backoff
+            # helps but a fixed 3-attempt retry can't outlast *sustained*
+            # rate limiting, only brief blips. Pacing our own request rate
+            # is the other half of being a well-behaved API consumer.
+            time.sleep(delay_seconds)
 
         planner = ScriptedPlanner(bq.interpretation)
         try:
@@ -481,5 +490,11 @@ def run(sample_file: str | None) -> int:
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--sample-file", default=None)
+    parser.add_argument(
+        "--delay-seconds",
+        type=float,
+        default=0.5,
+        help="Pause between questions to avoid tripping upstream rate limiting (see run()).",
+    )
     args = parser.parse_args()
-    sys.exit(run(args.sample_file))
+    sys.exit(run(args.sample_file, args.delay_seconds))
