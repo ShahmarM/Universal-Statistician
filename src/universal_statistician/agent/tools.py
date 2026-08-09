@@ -32,36 +32,17 @@ dicts are built from.
 from __future__ import annotations
 
 import time
-from dataclasses import replace
 
+from universal_statistician.agent.expressions import CALCULATE_OPERATIONS, CalculationRequest, execute_calculation
 from universal_statistician.agent.state import (
     CandidateSummary,
-    DerivedResult,
     InvestigationState,
     RejectedCandidate,
     RetrievedResult,
     catalog_id as make_catalog_id,
     parse_catalog_id,
 )
-from universal_statistician.core.compose import (
-    ComparisonColumn,
-    ComparisonTable,
-    with_absolute_change,
-    with_average,
-    with_cagr,
-    with_cumulative_growth,
-    with_difference,
-    with_growth,
-    with_index_column,
-    with_moving_average,
-    with_per_capita_pair,
-    with_period_over_period_growth,
-    with_pp_change,
-    with_rank,
-    with_share_pair,
-    with_sum,
-    with_weighted_average,
-)
+from universal_statistician.core.compose import ComparisonColumn, ComparisonTable
 from universal_statistician.core.geography import provider_ref_area, resolve_geography
 from universal_statistician.core.provenance import resolve_provenance
 from universal_statistician.core.validation import validate_table
@@ -428,246 +409,21 @@ def compare_series(state: InvestigationState, *, result_ids: list[str]) -> dict:
 
 # ---- calculate --------------------------------------------------------
 
-_SIMPLE_OPS = {
-    "growth": with_growth,
-    "yoy_growth": with_growth,
-    "period_over_period_growth": with_period_over_period_growth,
-    "absolute_change": with_absolute_change,
-    "pp_change": with_pp_change,
-    "percentage_point_change": with_pp_change,
-}
-_RANGE_OPS = {"cagr": with_cagr, "cumulative_growth": with_cumulative_growth}
-_PAIR_OPS = {
-    "share": with_share_pair,
-    "per_capita": with_per_capita_pair,
-    "difference": with_difference,
-}
-_AGGREGATE_OPS = {"sum": with_sum, "average": with_average}
 
-CALCULATE_OPERATIONS = tuple(
-    sorted({*_SIMPLE_OPS, *_RANGE_OPS, *_PAIR_OPS, *_AGGREGATE_OPS, "index", "weighted_average", "rank", "moving_average"})
-)
-
-
-def _rename_column(table: ComparisonTable, old_key: str, new_key: str) -> ComparisonTable:
-    new_columns = tuple(
-        replace(c, key=new_key) if c.key == old_key else c for c in table.columns
-    )
-    new_values = {
-        (period, new_key if key == old_key else key): value
-        for (period, key), value in table.values.items()
-    }
-    new_dependencies = {
-        (period, new_key if key == old_key else key): tuple(
-            (new_key if k == old_key else k, p) for k, p in deps
-        )
-        for (period, key), deps in table.cell_dependencies.items()
-    }
-    return ComparisonTable(columns=new_columns, values=new_values, cell_dependencies=new_dependencies)
-
-
-def _scratch_table(state: InvestigationState, keys: list[str]) -> ComparisonTable:
-    unknown = [k for k in keys if k not in {c.key for c in state.table.columns}]
-    if unknown:
-        raise ValueError(
-            f"Unknown result_id(s) {unknown} — calculate() only accepts result_ids "
-            "already produced by retrieve_series/calculate, never an invented value."
-        )
-    columns = tuple(state.table.column(k) for k in keys)
-    values = {
-        (p, k): state.table.value_at(p, k) for k in keys for p in state.table.periods()
-    }
-    cell_dependencies = {
-        key: deps for key, deps in state.table.cell_dependencies.items() if key[1] in keys
-    }
-    return ComparisonTable(columns=columns, values=values, cell_dependencies=cell_dependencies)
-
-
-def _single_new_column_key(before: ComparisonTable, after: ComparisonTable) -> str:
-    before_keys = {c.key for c in before.columns}
-    new_keys = [c.key for c in after.columns if c.key not in before_keys]
-    if not new_keys:
-        raise ValueError(
-            "This calculation produced no new value — commonly because the input "
-            "has fewer observations than the operation needs (e.g. growth needs "
-            "at least two periods with values)."
-        )
-    return new_keys[0]
-
-
-def calculate(
-    state: InvestigationState,
-    *,
-    operation: str,
-    input: str | None = None,
-    inputs: list[str] | None = None,
-    numerator: str | None = None,
-    denominator: str | None = None,
-    left: str | None = None,
-    right: str | None = None,
-    weights: dict[str, float] | None = None,
-    base_period: str | None = None,
-    base_value: float = 100.0,
-    start_period: str | None = None,
-    end_period: str | None = None,
-    window: int | None = None,
-    output_name: str | None = None,
-) -> dict:
+def calculate(state: InvestigationState, **kwargs) -> dict:
     """Execute one deterministic statistical transformation over
-    already-retrieved/derived result_ids. Wraps core/compose.py's existing
-    with_*() functions — never a new implementation, never arbitrary code.
-    See CALCULATE_OPERATIONS for the closed set of supported operations."""
-    op = operation.strip().lower()
+    already-retrieved/derived result_ids. Parses and validates `kwargs`
+    into a agent/expressions.py::CalculationRequest (a closed operation
+    enum, never arbitrary code or a formula string), then dispatches it
+    onto core/compose.py's existing with_*() functions — never a new
+    calculation implementation. See CALCULATE_OPERATIONS for the closed
+    set of supported operations."""
     try:
-        if op in _SIMPLE_OPS:
-            if not input:
-                raise ValueError(f"operation {op!r} requires `input` (a single result_id).")
-            before = _scratch_table(state, [input])
-            after = _SIMPLE_OPS[op](before)
-            new_key = _single_new_column_key(before, after)
-            result_id = state.new_result_id()
-            renamed = _rename_column(after, new_key, result_id)
-            if output_name:
-                renamed = replace(renamed, columns=tuple(
-                    replace(c, label=output_name) if c.key == result_id else c for c in renamed.columns
-                ))
-            state.merge_derived_table(renamed, result_id)
-            input_ids = (input,)
-
-        elif op in _RANGE_OPS:
-            if not input:
-                raise ValueError(f"operation {op!r} requires `input` (a single result_id).")
-            before = _scratch_table(state, [input])
-            after = _RANGE_OPS[op](before, start_period=start_period, end_period=end_period)
-            new_key = _single_new_column_key(before, after)
-            result_id = state.new_result_id()
-            renamed = _rename_column(after, new_key, result_id)
-            state.merge_derived_table(renamed, result_id)
-            input_ids = (input,)
-
-        elif op == "moving_average":
-            if not input:
-                raise ValueError("operation 'moving_average' requires `input` (a single result_id).")
-            if not window:
-                raise ValueError("operation 'moving_average' requires `window` (an integer >= 2).")
-            before = _scratch_table(state, [input])
-            after = with_moving_average(before, window)
-            new_key = _single_new_column_key(before, after)
-            result_id = state.new_result_id()
-            renamed = _rename_column(after, new_key, result_id)
-            state.merge_derived_table(renamed, result_id)
-            input_ids = (input,)
-
-        elif op == "index":
-            if not input or not base_period:
-                raise ValueError("operation 'index' requires `input` and `base_period`.")
-            result_id = state.new_result_id()
-            table = with_index_column(
-                state.table, input, base_period, base_value=base_value, result_key=result_id
-            )
-            state.merge_derived_table(table, result_id)
-            input_ids = (input,)
-
-        elif op in _PAIR_OPS:
-            if op == "difference":
-                a, b = left, right
-                if not a or not b:
-                    raise ValueError("operation 'difference' requires `left` and `right`.")
-            else:
-                a, b = numerator, denominator
-                if not a or not b:
-                    raise ValueError(f"operation {op!r} requires `numerator` and `denominator`.")
-            _scratch_table(state, [a, b])  # validates both keys exist
-            result_id = state.new_result_id()
-            table = _PAIR_OPS[op](state.table, a, b, result_key=result_id)
-            state.merge_derived_table(table, result_id)
-            input_ids = (a, b)
-
-        elif op in _AGGREGATE_OPS:
-            if not inputs or len(inputs) < 2:
-                raise ValueError(f"operation {op!r} requires `inputs` (at least two result_ids).")
-            _scratch_table(state, inputs)
-            result_id = state.new_result_id()
-            table = _AGGREGATE_OPS[op](state.table, inputs, result_key=result_id, result_label=op)
-            state.merge_derived_table(table, result_id)
-            input_ids = tuple(inputs)
-
-        elif op == "weighted_average":
-            if not weights or len(weights) < 2:
-                raise ValueError(
-                    "operation 'weighted_average' requires `weights` "
-                    "(a {result_id: weight} mapping with at least two entries)."
-                )
-            _scratch_table(state, list(weights))
-            result_id = state.new_result_id()
-            table = with_weighted_average(
-                state.table, weights, result_key=result_id, result_label="weighted_average"
-            )
-            state.merge_derived_table(table, result_id)
-            input_ids = tuple(weights)
-
-        elif op == "rank":
-            if not inputs or len(inputs) < 2:
-                raise ValueError("operation 'rank' requires `inputs` (at least two result_ids).")
-            before = _scratch_table(state, inputs)
-            after = with_rank(before)
-            new_result_ids = []
-            for original_key in inputs:
-                rank_key = f"{original_key}__rank"
-                new_id = state.new_result_id()
-                renamed = _rename_column(after, rank_key, new_id)
-                # merge_derived_table expects a table containing exactly the
-                # inputs it already knows about plus this one new column —
-                # `renamed` still carries every rank column from this batch,
-                # which is harmless (merge only reads the one requested key).
-                state.merge_derived_table(renamed, new_id)
-                new_result_ids.append({"input": original_key, "result_id": new_id})
-            return {
-                "operation": op,
-                "results": new_result_ids,
-                "formula": "descending rank among the given inputs, per period",
-            }
-
-        else:
-            raise ValueError(
-                f"Unknown operation {op!r}. Supported operations: {list(CALCULATE_OPERATIONS)}."
-            )
+        request = CalculationRequest.from_dict(kwargs)
     except ValueError as exc:
-        return {"operation": op, "error": str(exc)}
-
-    derived_values = {p: state.table.value_at(p, result_id) for p in state.table.periods()}
-    derived_values = {p: v for p, v in derived_values.items() if v is not None}
-    column = state.table.column(result_id)
-
-    calc_warnings: tuple[str, ...] = ()
-    if not derived_values:
-        message = (
-            f"calculate({op}) on {input_ids} produced no computed values — the "
-            "input(s) likely don't have enough overlapping/consecutive periods "
-            "for this operation (e.g. growth needs at least two periods, cagr/"
-            "cumulative_growth need both a start and end value)."
-        )
-        state.warnings.append(message)
-        calc_warnings = (message,)
-
-    state.derived[result_id] = DerivedResult(
-        result_id=result_id,
-        operation=op,
-        formula=column.formula or "",
-        input_result_ids=input_ids,
-        warnings=calc_warnings,
-    )
-    result = {
-        "operation": op,
-        "result_id": result_id,
-        "formula": column.formula,
-        "input_result_ids": list(input_ids),
-        "values": derived_values,
-        "unit": column.unit,
-    }
-    if calc_warnings:
-        result["warning"] = calc_warnings[0]
-    return result
+        operation = str(kwargs.get("operation") or "").strip().lower()
+        return {"operation": operation, "error": str(exc)}
+    return execute_calculation(state, request)
 
 
 # ---- validate -----------------------------------------------------------
