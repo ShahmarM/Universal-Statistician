@@ -1,6 +1,9 @@
 from __future__ import annotations
 
+from unittest.mock import Mock
+
 import pytest
+import requests
 from sdmx.model.v21 import (
     DataSet,
     DataStructureDefinition,
@@ -18,6 +21,12 @@ from universal_statistician.providers.sdmx_provider import SDMXProvider
 @pytest.fixture
 def wb_provider():
     return SDMXProvider(SOURCES["WB_WDI"])
+
+
+def _http_error(status_code: int) -> requests.exceptions.HTTPError:
+    response = Mock()
+    response.status_code = status_code
+    return requests.exceptions.HTTPError(response=response)
 
 
 def test_build_key_matches_wb_wdi_dimension_order(wb_provider):
@@ -128,6 +137,75 @@ def test_to_series_result_carries_the_dataflows_fixed_unit_and_semantics(sdmx_da
         "per_capita": None,
         "seasonally_adjusted": None,
     }
+
+
+def test_request_with_retry_recovers_from_a_transient_502(wb_provider, monkeypatch):
+    # Phase H: a real, live-discovered failure mode — running ~100
+    # sequential requests against World Bank's SDMX endpoint with no pacing
+    # produced a wall of 502s partway through. Verifies the retry actually
+    # recovers rather than just not-crashing-immediately.
+    monkeypatch.setattr("universal_statistician.providers.sdmx_provider.time.sleep", lambda s: None)
+    calls = []
+
+    def fake_data(*args, **kwargs):
+        calls.append(1)
+        if len(calls) < 3:
+            raise _http_error(502)
+        return "success"
+
+    monkeypatch.setattr(wb_provider._client, "data", fake_data)
+
+    result = wb_provider._request_with_retry("A.SP_POP_TOTL.AFG", {})
+
+    assert result == "success"
+    assert len(calls) == 3
+
+
+def test_request_with_retry_gives_up_after_max_attempts(wb_provider, monkeypatch):
+    monkeypatch.setattr("universal_statistician.providers.sdmx_provider.time.sleep", lambda s: None)
+    monkeypatch.setattr(
+        wb_provider._client, "data", Mock(side_effect=_http_error(503))
+    )
+
+    with pytest.raises(requests.exceptions.HTTPError):
+        wb_provider._request_with_retry("A.SP_POP_TOTL.AFG", {})
+
+    assert wb_provider._client.data.call_count == 3
+
+
+def test_request_with_retry_does_not_retry_a_non_transient_http_error(wb_provider, monkeypatch):
+    # A 404 (unknown indicator/country) is a real error, not a transient
+    # capacity issue — retrying it would just waste time before failing
+    # the same way anyway.
+    mock_sleep = Mock()
+    monkeypatch.setattr("universal_statistician.providers.sdmx_provider.time.sleep", mock_sleep)
+    monkeypatch.setattr(
+        wb_provider._client, "data", Mock(side_effect=_http_error(404))
+    )
+
+    with pytest.raises(requests.exceptions.HTTPError):
+        wb_provider._request_with_retry("A.SP_POP_TOTL.AFG", {})
+
+    assert wb_provider._client.data.call_count == 1
+    mock_sleep.assert_not_called()
+
+
+def test_request_with_retry_recovers_from_a_connection_error(wb_provider, monkeypatch):
+    monkeypatch.setattr("universal_statistician.providers.sdmx_provider.time.sleep", lambda s: None)
+    calls = []
+
+    def fake_data(*args, **kwargs):
+        calls.append(1)
+        if len(calls) < 2:
+            raise requests.exceptions.ConnectionError("reset")
+        return "success"
+
+    monkeypatch.setattr(wb_provider._client, "data", fake_data)
+
+    result = wb_provider._request_with_retry("A.SP_POP_TOTL.AFG", {})
+
+    assert result == "success"
+    assert len(calls) == 2
 
 
 @pytest.mark.network

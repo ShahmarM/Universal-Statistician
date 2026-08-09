@@ -8,9 +8,11 @@ not new provider classes.
 
 from __future__ import annotations
 
+import time
 from datetime import datetime, timezone
 
 import pandas as pd
+import requests
 import sdmx
 
 from universal_statistician.core.models import Attribution, Observation, SeriesResult
@@ -18,6 +20,19 @@ from universal_statistician.providers.base import Provider
 from universal_statistician.providers.registry import SDMXSourceConfig
 
 _FREQUENCIES = {"A", "Q", "M", "D"}
+
+#: Transient upstream failures worth retrying rather than failing the whole
+#: request on. Live-discovered (Phase H): running ~100 sequential real
+#: requests against World Bank's SDMX endpoint with no pacing produced a
+#: wall of "502 Bad Gateway" responses partway through the run — a
+#: server-side capacity/rate-limiting response, not a real data problem,
+#: and the previous code had no retry at all so every one of those became
+#: a permanent failure for that call. 502/503/504 are the standard
+#: "try again" statuses; a bare ConnectionError (reset, DNS hiccup) gets
+#: the same treatment.
+_RETRYABLE_STATUS_CODES = {502, 503, 504}
+_MAX_ATTEMPTS = 3
+_RETRY_BACKOFF_SECONDS = (1.0, 2.0)
 
 
 class SDMXProvider(Provider):
@@ -54,9 +69,24 @@ class SDMXProvider(Provider):
         if end_period:
             params["endPeriod"] = end_period
 
-        message = self._client.data(self.config.dataflow_id, key=key, params=params)
+        message = self._request_with_retry(key, params)
         dataset = message.data[0]
         return self._to_series_result(dataset, indicator_id, ref_area)
+
+    def _request_with_retry(self, key: str, params: dict):
+        last_error: Exception | None = None
+        for attempt in range(_MAX_ATTEMPTS):
+            try:
+                return self._client.data(self.config.dataflow_id, key=key, params=params)
+            except requests.exceptions.HTTPError as exc:
+                if exc.response is None or exc.response.status_code not in _RETRYABLE_STATUS_CODES:
+                    raise
+                last_error = exc
+            except requests.exceptions.ConnectionError as exc:
+                last_error = exc
+            if attempt < _MAX_ATTEMPTS - 1:
+                time.sleep(_RETRY_BACKOFF_SECONDS[attempt])
+        raise last_error
 
     def _to_series_result(self, dataset, indicator_id: str, ref_area: str) -> SeriesResult:
         """Pure conversion step, kept separate from _client.data() so it can be
