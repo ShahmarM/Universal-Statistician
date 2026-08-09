@@ -2,6 +2,21 @@
 and explainably (section 12), from the catalog candidates a QueryPlan already
 carries.
 
+Agent-migration note (Phase 3, see docs/architecture/agent-migration-note.md):
+this module's automatic, unreviewable Top-1 pick is now scoped to
+core/ask.py's legacy single-pass path — fast mode, manual/API callers, and
+existing tests that construct a QueryPlan directly. The primary
+natural-language path (agent/loop.py's StatisticalAgent, "research" mode)
+never calls select_indicators() at all: it chooses a series by calling
+agent/tools.py's search_series (ranking is a *hint*, never a verdict),
+inspect_series (to compare candidates' actual metadata), and
+reject_candidate (recording *why* an unsuitable one was ruled out) before
+ever calling retrieve_series — replacing "the ranking function chooses"
+with "the LLM chooses, informed by ranking and real metadata, with its
+reasoning recorded in InvestigationState for audit." This module is not
+rewritten or removed; it remains exactly what fast mode and every existing
+caller of build_query_plan()/select_indicators() needs.
+
 Deliberately pure — no engine/network dependency: by the time a plan reaches
 here (core/query_plan.py's build_query_plan()), every candidate already
 carries the catalog metadata (unit, frequency, geographic_coverage) needed to

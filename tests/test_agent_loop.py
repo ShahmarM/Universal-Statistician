@@ -264,6 +264,105 @@ def test_investigate_stops_cleanly_when_the_llm_call_fails():
     assert any("LLM call failed" in w for w in state.warnings)
 
 
+# ---- Phase 3: LLM candidate inspection replaces blind Top-1 selection -----
+#
+# core/selection.py::select_indicators() (blind, automatic Top-1) is never
+# called anywhere in this file — the agent path has no access to it at all
+# (agent/tools.py doesn't import selection.py). These tests prove the
+# *replacement* mechanism works: inspecting multiple candidates before
+# choosing, and searching again after rejecting an unsuitable one, rather
+# than only asserting the negative ("selection.py wasn't called").
+
+
+def test_investigate_inspects_both_gdp_candidates_before_choosing_the_real_one():
+    # Task section 4's own example: a bare "GDP" search must not result in
+    # picking current-price GDP just because it scores highly — the agent
+    # inspects the actual candidates' price_basis metadata first.
+    nominal = catalog_id("WB_WDI", "NY_GDP_MKTP_CD")
+    real = catalog_id("WB_WDI", "NY_GDP_MKTP_KD")
+    client = FakeClient(
+        [
+            _message(
+                ToolUseBlock(type="tool_use", id="tu_1", name="search_series", input={"query": "GDP growth"}),
+                stop_reason="tool_use",
+            ),
+            _message(
+                ToolUseBlock(type="tool_use", id="tu_2", name="inspect_series", input={"catalog_id": nominal}),
+                ToolUseBlock(type="tool_use", id="tu_3", name="inspect_series", input={"catalog_id": real}),
+                stop_reason="tool_use",
+            ),
+            _message(
+                ToolUseBlock(
+                    type="tool_use", id="tu_4", name="reject_candidate",
+                    input={"catalog_id": nominal, "reason": "current-price (nominal), question asks for growth in real terms"},
+                ),
+                stop_reason="tool_use",
+            ),
+            _message(
+                ToolUseBlock(
+                    type="tool_use", id="tu_5", name="retrieve_series",
+                    input={"catalog_id": real, "geographies": ["AZE"]},
+                ),
+                stop_reason="tool_use",
+            ),
+            _message(TextBlock(type="text", text="Used the constant-price series.")),
+        ]
+    )
+    agent = _agent(client)
+
+    state = agent.investigate("Show GDP growth in Azerbaijan")
+
+    inspected = [r.input["catalog_id"] for r in state.tool_call_history if r.tool_name == "inspect_series"]
+    assert set(inspected) == {nominal, real}
+    assert state.candidates_rejected[0].catalog_id == nominal
+    assert list(state.retrieved.values())[0].catalog_id == real
+
+
+def test_investigate_searches_again_after_rejecting_an_incompatible_candidate():
+    # task section 19's "Agent retry": the first candidate found is
+    # unsuitable, so the agent rejects it and issues a *second* search
+    # rather than settling for what it already has.
+    only_candidate = catalog_id("WB_WDI", "NY_GDP_MKTP_CD")
+    real = catalog_id("WB_WDI", "NY_GDP_MKTP_KD")
+    client = FakeClient(
+        [
+            _message(
+                ToolUseBlock(
+                    type="tool_use", id="tu_1", name="search_series",
+                    input={"query": "GDP", "source_preference": "WB_WDI", "limit": 1},
+                ),
+                stop_reason="tool_use",
+            ),
+            _message(
+                ToolUseBlock(
+                    type="tool_use", id="tu_2", name="reject_candidate",
+                    input={"catalog_id": only_candidate, "reason": "nominal, need real GDP"},
+                ),
+                stop_reason="tool_use",
+            ),
+            _message(
+                ToolUseBlock(type="tool_use", id="tu_3", name="search_series", input={"query": "real GDP constant prices"}),
+                stop_reason="tool_use",
+            ),
+            _message(
+                ToolUseBlock(
+                    type="tool_use", id="tu_4", name="retrieve_series",
+                    input={"catalog_id": real, "geographies": ["AZE"]},
+                ),
+                stop_reason="tool_use",
+            ),
+            _message(TextBlock(type="text", text="Found and used the real GDP series on the second search.")),
+        ]
+    )
+    agent = _agent(client)
+
+    state = agent.investigate("Real GDP growth in Azerbaijan")
+
+    search_calls = [r for r in state.tool_call_history if r.tool_name == "search_series"]
+    assert len(search_calls) == 2
+    assert real in state.resolve_result_ids()["retrieved"].values()
+
+
 # ---- evidence package -----------------------------------------------------
 
 
