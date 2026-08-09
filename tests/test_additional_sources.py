@@ -82,22 +82,27 @@ def test_live_eurostat_gdp_smoke():
     assert result.observations
 
 
-def test_oecd_is_not_registered_pending_a_verified_discovery_example():
-    """Regression guard for the Phase 5 investigation (registry.py's module
-    docstring / docs/architecture/nl-platform.md): OECD is absent from
-    SOURCES not because structure discovery is unsupported (it isn't —
-    datastructure/dataflow/codelist are all declared supported below) but
-    because sdmx1's own test suite has no *specific, verified* worked
-    example for any of them, only for an unfiltered `data` query. If a
-    future sdmx1 release adds one, this documents exactly what to look for
-    to safely register a real entry."""
-    assert "OECD" not in SOURCES
+def test_oecd_namain10_is_registered_with_the_live_verified_key():
+    """Regression guard for Phase I: OECD was deliberately left unregistered
+    through Phase 5 and the live-verification round (no verified working
+    example existed) — see registry.py's module docstring for that history.
+    Revisited with real network access: sdmx.oecd.org/public/rest (the
+    CURRENT official endpoint, not the deprecated stats.oecd.org one that
+    needed an unsafe legacy TLS downgrade) does support a genuine, specific,
+    verified `datastructure` query, unlike what sdmx1's own test suite alone
+    could confirm. One dataflow (National Accounts, expenditure approach)
+    is now registered as "OECD_NAMAIN10" — see providers/oecd_provider.py
+    and registry.py for the full investigation."""
+    assert "OECD_NAMAIN10" in SOURCES
+
+    config = SOURCES["OECD_NAMAIN10"]
+    assert config.source_id == "OECD"
+    assert config.structure_id == "DSD_NAMAIN10"
 
     source = sdmx.Client("OECD").source
     assert source.supports[sdmx.Resource.datastructure] is True
-    assert source.supports[sdmx.Resource.dataflow] is True
-    assert source.supports[sdmx.Resource.codelist] is True
     # The generic combined "structure" endpoint (distinct from the more
-    # specific "datastructure" endpoint entries_from_dsd() actually needs)
-    # genuinely is unsupported — the one accurate part of the original claim.
+    # specific "datastructure" endpoint entries_from_dsd() actually uses)
+    # genuinely is unsupported — the one accurate part of the original,
+    # pre-Phase-I claim that OECD couldn't be safely registered.
     assert source.supports[sdmx.Resource.structure] is False

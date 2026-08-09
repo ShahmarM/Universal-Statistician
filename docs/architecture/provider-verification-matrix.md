@@ -121,7 +121,7 @@ Status legend:
 | Eurostat (`ESTAT_NAMA_10_GDP`) | **VERIFIED live** — real DSD resolved through the external-reference follow-up | **VERIFIED live** | **VERIFIED live** — ref-area codelist enumerated from the same resolved DSD | **VERIFIED live** — confirmed correct after the TIME_PERIOD fix (`[TIME_PERIOD, geo, na_item, unit, freq]`) | VERIFIED — unit (`"EUR million, current prices"`) and structured semantics (Phase F) | VERIFIED | **VERIFIED** |
 | Statistics Sweden / PX-Web (`SCB_TAB6471`) | **VERIFIED live** | **VERIFIED live** | NOT VERIFIED / not applicable — `ref_area_dimension` is honestly repurposed to `Alder` (age); no regional breakdown wired up | PARTIALLY VERIFIED — period format confirmed live; client-side range filtering not independently stress-tested | NOT VERIFIED — content code `000007SF`'s real-world meaning is still unconfirmed | VERIFIED | **VERIFIED** |
 | US Census (`US_CENSUS_ACS1`) | **VERIFIED live** — `variables.json` fetched for real, no key required | PARTIALLY VERIFIED — the missing-key failure path is now live-confirmed and handled cleanly; the success path (with a real `CENSUS_API_KEY`) is not yet verified in this session | PARTIALLY VERIFIED — `for=state:{ref_area}` assumes FIPS state codes; discovery doesn't enumerate a geography codelist | VERIFIED — one request per plain 4-digit year is an unambiguous, explicitly-handled protocol constraint | NOT VERIFIED — `variables.json`'s `label`/`concept` fields aren't parsed for unit information | VERIFIED | PARTIALLY VERIFIED |
-| OECD | NOT VERIFIED — not registered (see `providers/registry.py`'s module docstring and Phase I) | NOT VERIFIED — not registered | — | — | — | — | NOT VERIFIED |
+| OECD (`OECD_NAMAIN10`) | **VERIFIED live** — real DSD (12 dimensions) resolved directly, 308 real TRANSACTION codes discovered and ingested | PARTIALLY VERIFIED — the flagship indicator (`B1GQ`/GDP) confirmed live for 7 countries (USA, DEU, FRA, JPN, GBR, ITA, KOR), cross-checked exactly against World Bank's own figure; other TRANSACTION codes in the same 308-code discovery (e.g. `P3`, `P51G`) 404 under this dataflow's fixed non-indicator dimensions — a real, documented "advertised but not populated" gap, same category as Phase H's Eurostat/Census findings | **VERIFIED live** — `ref_area` is alpha-3, confirmed working for 7 countries | **VERIFIED live** — periods correct, `TIME_PERIOD` first in the index like every other SDMX source | VERIFIED — `unit_label`/structured semantics fixed at the dataflow level (Phase F pattern) | VERIFIED | PARTIALLY VERIFIED |
 
 ## Phase A (historical): the code-level-only audit
 
@@ -146,4 +146,9 @@ above (1,498 indicators, zero remaining dots).
   https://api.census.gov/data/key_signup.html) before its retrieval path
   can be called genuinely verified — the mechanism is correct and the
   failure mode is now honest, but the success path hasn't been observed.
-- **OECD** remains unregistered pending Phase I.
+- **OECD** is now registered (`OECD_NAMAIN10`, one verified dataflow —
+  National Accounts, expenditure approach). The flagship GDP indicator
+  (`B1GQ`) is reliable across the 7 countries spot-checked; other codes in
+  the same discovered codelist are not all guaranteed to resolve under
+  this dataflow's fixed key — see
+  `docs/benchmarks/phase-i-oecd-report.md` for the full investigation.

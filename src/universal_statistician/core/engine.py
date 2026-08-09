@@ -23,6 +23,7 @@ from universal_statistician.providers.census_provider import CensusProvider
 from universal_statistician.providers.census_registry import SOURCES as CENSUS_SOURCES
 from universal_statistician.providers.eurostat_provider import EurostatProvider
 from universal_statistician.providers.imf_provider import IMFProvider
+from universal_statistician.providers.oecd_provider import OECDProvider
 from universal_statistician.providers.pxweb_provider import PXWebProvider
 from universal_statistician.providers.pxweb_registry import PXWEB_SOURCES
 from universal_statistician.providers.registry import SOURCES
@@ -33,6 +34,7 @@ _DISCOVERABLE_SDMX_PROVIDERS = {
     "WB_WDI": WorldBankProvider,
     "IMF_DATA_CPI": IMFProvider,
     "ESTAT_NAMA_10_GDP": EurostatProvider,
+    "OECD_NAMAIN10": OECDProvider,
 }
 
 #: Structured logging (section 26): catalog searches, cache hit/miss,

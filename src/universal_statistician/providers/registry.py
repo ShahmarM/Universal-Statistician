@@ -25,47 +25,30 @@ the live APIs from this environment (see the `network`-marked tests) — treat
 them as verified-on-paper until an environment with network access to these
 hosts confirms them.
 
-OECD is deliberately not registered yet (re-investigated for Phase 5, see
-docs/architecture/nl-platform.md for the full writeup, including a
-correction of an overbroad first-pass claim caught by this project's own
-regression test — test_additional_sources.py's
-test_oecd_is_not_registered_because_structure_discovery_is_unsupported):
+OECD history (Phase 5 through the live-verification round): deliberately
+left unregistered because no *specific, verified* worked example existed —
+sdmx1's own test suite has exactly one real, network-exercised OECD query
+(`data`, `resource_id="DSD_MSTI@DF_MSTI"`, with no key — an unfiltered whole-
+dataflow fetch, not a specific series), and the one genuinely verified
+*filtered* query (`OECD_JSON`, `TestOECD_JSON`) needs a non-generic client
+because its legacy `stats.oecd.org` endpoint requires downgrading the SSL/TLS
+handshake — the library's own maintainers document this as disabling
+protection against man-in-the-middle attacks. Not a trade this project makes.
 
-- sdmx1's bundled sources.json / `sdmx.Client("OECD").source.supports`
-  marks the *generic* combined `structure` endpoint unsupported
-  (`False`) for OECD — but `datastructure`, `dataflow`, `codelist`, and
-  `conceptscheme` are each declared *supported* (`True`). Structure
-  discovery is not blanket-impossible here the way it is for OECD_JSON
-  (below); this project's first pass over-read the `False` flags and that
-  was wrong — worth stating plainly rather than quietly fixing.
-- What's still missing is a *specific verified worked example*: `sdmx1`'s
-  own test suite (TestOECD.endpoint_args) has exactly one real,
-  network-exercised OECD query — `data`, `resource_id="DSD_MSTI@DF_MSTI"`,
-  with **no key** (fetches the entire dataflow, not one series) — and no
-  entry at all for `datastructure`/`dataflow`/`codelist` with a specific
-  resource_id. Unlike IMF (verified: `structure`, `resource_id="DSD_CPI"`)
-  and Eurostat (verified: `NAMA_10_GDP`'s dataflow→structure resolution),
-  there is nothing here to copy the way `entries_from_dsd()`
-  (sdmx_discovery.py) needs — calling `dataflow`/`datastructure` with a
-  *guessed* resource_id (even one derived from the composite
-  `"DSD_MSTI@DF_MSTI"` id, whose `@`-joined format itself isn't confirmed
-  to mean what it looks like it means) would be exactly the guess this
-  project refuses to ship.
-- The only source with a genuinely verified *filtered* query,
-  `OECD_JSON` (TestOECD_JSON: `resource_id="ITF_GOODS_TRANSPORT",
-  key=".T-CONT-RL-TEU+T-CONT-RL-TON"`), needs a non-generic client
-  (`sdmx.source.oecd_json.Client`) because its legacy `stats.oecd.org`
-  endpoint requires downgrading the SSL/TLS handshake to connect — the
-  library's own maintainers document this as disabling protection against
-  man-in-the-middle attacks and warn "use with caution." Not a trade this
-  project makes for one narrow, discovery-incapable, legacy dataflow.
-
-None of this rules out OECD forever: a documented worked structure-discovery
-example against the current sdmx.oecd.org API (from OECD's own developer
-docs, or a live environment able to inspect a dataflow's DSD directly) would
-unblock it the same way Eurostat/IMF were unblocked — no new architecture
-needed, only a verified SDMXSourceConfig entry and reuse of
-sdmx_discovery.py::entries_from_dsd().
+**Phase I: resolved.** With real network access, `sdmx.Client("OECD")`'s
+current source definition points at `https://sdmx.oecd.org/public/rest` —
+OECD's *current* official endpoint, not the deprecated `stats.oecd.org` one
+that needed the unsafe TLS downgrade above. A specific, live-verified
+worked example now exists for one dataflow (`OECD_NAMAIN10` below) — no
+guessing, no TLS workaround. Building its key required live trial (querying
+with every non-REF_AREA dimension wildcarded to see which fixed combination
+actually returns data — several plausible-looking combinations 404'd even
+though those codes exist in their codelists), then cross-checking the
+result against World Bank's own GDP figure for the same country/year
+(exact match) — see providers/oecd_provider.py's docstring for the full
+story. Scoped narrowly to this one dataflow, the same way Eurostat/IMF were
+each scoped to one verified dataflow rather than attempting OECD's full
+~1,500 dataflows at once.
 """
 
 from __future__ import annotations
@@ -174,5 +157,43 @@ SOURCES: dict[str, SDMXSourceConfig] = {
         semantics=StatisticalSemantics(
             price_basis="nominal", currency="EUR", currency_scale="millions"
         ),
+    ),
+    "OECD_NAMAIN10": SDMXSourceConfig(
+        registry_id="OECD_NAMAIN10",
+        source_id="OECD",
+        source_name="OECD — National Accounts (GDP and main aggregates, expenditure approach)",
+        dataflow_id="DSD_NAMAIN10@DF_TABLE1_EXPENDITURE",
+        # Verified live (Phase I): sdmx.oecd.org/public/rest (the CURRENT
+        # official endpoint — sdmx1's own "OECD" source definition; no
+        # legacy stats.oecd.org TLS workaround needed, unlike the
+        # deprecated endpoint that blocked this source for every earlier
+        # phase). Built by querying live with every non-REF_AREA dimension
+        # wildcarded for one country to find which fixed combination
+        # actually returns data (see providers/oecd_provider.py for the
+        # full story) rather than guessing from the DSD's codelists alone.
+        # Cross-checked against World Bank's own GDP figure for the same
+        # country/year (2022, USA: 26,054,614 million, exact match) and an
+        # independent direct curl to OECD's REST endpoint.
+        # SECTOR/COUNTERPART_SECTOR pinned to "S1" (total economy),
+        # INSTR_ASSET/ACTIVITY/EXPENDITURE pinned to "_Z" (not applicable/
+        # total), UNIT_MEASURE pinned to "USD_EXC" (US$, exchange-rate
+        # converted), PRICE_BASE pinned to "V" (current prices),
+        # TRANSFORMATION pinned to "N" (non-transformed/level data),
+        # TABLE_IDENTIFIER pinned to "T0102" (GDP identity, expenditure
+        # side) — {indicator} carries the TRANSACTION code (e.g. "B1GQ"
+        # for GDP, "P3" for final consumption expenditure, "P51G" for
+        # gross fixed capital formation, ...).
+        key_dimensions=(
+            "A", "{ref_area}", "S1", "S1", "{indicator}", "_Z", "_Z", "_Z",
+            "USD_EXC", "V", "N", "T0102",
+        ),
+        website="https://data-explorer.oecd.org/",
+        # Verified live: a plain `datastructure` request for "DSD_NAMAIN10"
+        # resolves the full DSD inline (is_external_reference=False) — no
+        # Eurostat-style external-reference follow-up request needed. See
+        # providers/oecd_provider.py.
+        structure_id="DSD_NAMAIN10",
+        unit_label="US$ (exchange rate converted), current prices",
+        semantics=StatisticalSemantics(price_basis="nominal", currency="USD"),
     ),
 }
