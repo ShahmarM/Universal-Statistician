@@ -132,9 +132,30 @@ export interface ChartSpec {
 // only fields present in both are safe to read without checking `mode_used`
 // first.
 
+// One table cell's stable identity (agent/evidence.py, task section 2) --
+// what an LLM-written answer must cite to ground a number. Keyed by
+// evidence_id ("{result_id}@{period}") in EvidencePackage.evidence.
+export interface EvidenceEntry {
+  evidence_id: string;
+  result_id: string;
+  period: string;
+  value: number;
+  unit: string | null;
+  value_kind: string;
+  indicator_id: string | null;
+  geography: string | null;
+  source_id: string | null;
+  source_name: string | null;
+  dataset_id: string | null;
+  operation: string | null;
+  formula: string | null;
+  input_evidence_ids: string[];
+}
+
 export interface EvidencePackage {
   question: string;
   table: ComparisonTable;
+  evidence: Record<string, EvidenceEntry>;
   candidates_considered: Record<string, unknown>[];
   candidates_rejected: Record<string, unknown>[];
   result_ids: Record<string, unknown>;

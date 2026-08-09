@@ -29,6 +29,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass, field
 
+from universal_statistician.agent.evidence import EvidenceEntry, build_evidence_index
 from universal_statistician.core.compose import ComparisonColumn, ComparisonTable
 from universal_statistician.core.engine import QueryEngine
 from universal_statistician.core.models import SeriesResult
@@ -234,6 +235,14 @@ class InvestigationState:
             },
         )
 
+    def evidence_index(self) -> dict[str, EvidenceEntry]:
+        """Every populated table cell as a stable evidence_id -> EvidenceEntry
+        map (agent/evidence.py) — the grounding surface agent/answer_writer.py's
+        citation check and agent/verifier.py's semantic check both use.
+        Rebuilt fresh from `table` each call, never cached, so it can never
+        go stale relative to it."""
+        return build_evidence_index(self)
+
     def resolve_result_ids(self) -> dict:
         """Debug/summary view: every result_id this investigation has
         produced, base and derived alike — task section 15's `debug=true`
@@ -250,14 +259,17 @@ class InvestigationState:
         """The "final structured evidence package" the investigation loop
         produces (task section 1's architecture diagram) — everything
         downstream (validation, the answer writer, the verifier) may use,
-        and *only* what it may use: the accumulated table, resolved
-        provenance, warnings/assumptions, and which candidates were
-        considered/rejected. Never includes tool_call_history's full
-        payloads or the investigator's own free text — see agent/loop.py's
-        module docstring on why `investigator_summary` is debug-only."""
+        and *only* what it may use: the accumulated table, the per-cell
+        evidence index (agent/evidence.py — what a numeric claim must cite
+        to be grounded), resolved provenance, warnings/assumptions, and
+        which candidates were considered/rejected. Never includes
+        tool_call_history's full payloads or the investigator's own free
+        text — see agent/loop.py's module docstring on why
+        `investigator_summary` is debug-only."""
         return {
             "question": self.question,
             "table": self.table.as_dict(),
+            "evidence": {eid: entry.as_dict() for eid, entry in self.evidence_index().items()},
             "candidates_considered": [c.as_dict() for c in self.candidates_considered],
             "candidates_rejected": [c.as_dict() for c in self.candidates_rejected],
             "result_ids": self.resolve_result_ids(),

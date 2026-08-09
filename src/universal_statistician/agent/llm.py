@@ -6,12 +6,22 @@ wide enough to let one role quietly do another's job (the investigator
 must not write final prose, the answer writer must not call tools, the
 verifier must not touch data):
 
-- `LLMAgent` (Phase 2) — the iterative investigator
+- `LLMAgent` (Phase 2, this module) — the iterative investigator
   (agent/loop.py's `StatisticalAgent`): one tool-calling turn at a time.
-- `LLMAnswerWriter` (Phase 6) — writes prose from already-validated
-  evidence only, no tool access.
+- `LLMAnswerWriter` (agent/answer_writer.py, Phase 6/section 2) — writes
+  a grounded answer from already-validated evidence only, no tool access.
 - `LLMVerifier` (agent/verifier.py, Phase 7) — checks a draft answer
   against the evidence, no tool access, cannot modify data.
+
+`LLMAnswerWriter` and `LLMVerifier` live in their own modules rather than
+here, each self-contained with the Protocol, its concrete Anthropic
+implementation, and the dataclasses it exchanges (AnswerDraft/Citation,
+VerificationReport) — avoids a circular import (answer_writer.py needs
+its own return-type dataclasses, which would otherwise have to live here
+and be imported back into it) and keeps each role's full contract in one
+place. `LLMAgent` stays here because agent/loop.py's return shape is
+already a plain SDK-message-like object, not a dataclass this module
+would need to define.
 
 Each Protocol's shape mirrors the already-established convention in this
 project (planning/anthropic_planner.py, chat.py): a client is injected,
@@ -27,7 +37,6 @@ agent/loop.py, agent/answer_writer.py, or agent/verifier.py.
 
 from __future__ import annotations
 
-import json
 from dataclasses import dataclass
 from typing import Any, Protocol, runtime_checkable
 
@@ -67,33 +76,3 @@ class AnthropicAgent:
         )
 
 
-@runtime_checkable
-class LLMAnswerWriter(Protocol):
-    def write(self, *, system: str, evidence: dict) -> str:
-        """Produce prose from a JSON-serializable evidence package only —
-        no tools, no message history, no ability to ask a follow-up
-        question. See agent/answer_writer.py (Phase 6) for what `evidence`
-        contains and how the result is checked for unsupported numbers
-        before being trusted."""
-        ...
-
-
-@dataclass
-class AnthropicAnswerWriter:
-    """LLMAnswerWriter backed by the Claude API — a single, tool-free call:
-    system instruction plus the evidence package as the only user turn.
-    Deliberately no `tools=` argument at all, unlike AnthropicAgent — this
-    role cannot call anything, by construction, not just by prompt."""
-
-    client: Any
-    model: str = DEFAULT_MODEL
-    max_tokens: int = 2048
-
-    def write(self, *, system: str, evidence: dict) -> str:
-        response = self.client.messages.create(
-            model=self.model,
-            max_tokens=self.max_tokens,
-            system=system,
-            messages=[{"role": "user", "content": json.dumps(evidence, default=str)}],
-        )
-        return "".join(block.text for block in response.content if block.type == "text")

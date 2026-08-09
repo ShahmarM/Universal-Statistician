@@ -5,7 +5,8 @@ from __future__ import annotations
 import pytest
 from anthropic.types import Message, TextBlock, ToolUseBlock, Usage
 
-from universal_statistician.agent.llm import AnthropicAgent, AnthropicAnswerWriter
+from universal_statistician.agent.answer_writer import WRITE_ANSWER_TOOL_NAME, AnthropicAnswerWriter
+from universal_statistician.agent.llm import AnthropicAgent
 from universal_statistician.agent.modes import (
     UNABLE_TO_VERIFY_TEXT,
     answer_question_with_mode,
@@ -62,6 +63,20 @@ class FakeClient:
 
     def create(self, **kwargs):
         return self._responses.pop(0)
+
+
+def _write_answer_message(text: str, citations: list[dict]) -> Message:
+    return Message(
+        id="msg_write", model="claude-sonnet-5", role="assistant", type="message",
+        stop_reason="tool_use", stop_sequence=None,
+        content=[
+            ToolUseBlock(
+                type="tool_use", id="tu_write", name=WRITE_ANSWER_TOOL_NAME,
+                input={"text": text, "citations": citations},
+            )
+        ],
+        usage=Usage(input_tokens=1, output_tokens=1),
+    )
 
 
 def _verify_message(status: str, issues: list[dict] | None = None) -> Message:
@@ -187,14 +202,19 @@ def test_run_research_mode_uses_the_answer_writer_when_it_produces_supported_pro
     engine = _engine()
     llm_agent = AnthropicAgent(client=client)
     writer_client = FakeClient(
-        [_message(TextBlock(type="text", text="Azerbaijan's population reached 10.5 million in 2024."))]
+        [
+            _write_answer_message(
+                "Azerbaijan's population reached 10.5 million in 2024.",
+                [{"evidence_id": "result_1@2024", "stated_value": "10.5", "claimed_geography": "AZE"}],
+            )
+        ]
     )
     answer_writer = AnthropicAnswerWriter(client=writer_client)
 
     result, state = run_research_mode(engine, llm_agent, "Population of Azerbaijan?", answer_writer=answer_writer)
 
     assert result.answer == "Azerbaijan's population reached 10.5 million in 2024."
-    assert not any("unsupported" in w.lower() for w in result.warnings)
+    assert not any("ungrounded" in w.lower() for w in result.warnings)
 
 
 def test_run_research_mode_falls_back_to_the_deterministic_answer_when_the_writer_fabricates_a_number():
@@ -215,8 +235,8 @@ def test_run_research_mode_falls_back_to_the_deterministic_answer_when_the_write
     llm_agent = AnthropicAgent(client=client)
     writer_client = FakeClient(
         [
-            _message(TextBlock(type="text", text="Azerbaijan's population reached 99.9 million in 2024.")),
-            _message(TextBlock(type="text", text="Azerbaijan's population reached 88.8 million in 2024.")),
+            _write_answer_message("Azerbaijan's population reached 99.9 million in 2024.", []),
+            _write_answer_message("Azerbaijan's population reached 88.8 million in 2024.", []),
         ]
     )
     answer_writer = AnthropicAnswerWriter(client=writer_client)
@@ -224,7 +244,7 @@ def test_run_research_mode_falls_back_to_the_deterministic_answer_when_the_write
     result, state = run_research_mode(engine, llm_agent, "Population of Azerbaijan?", answer_writer=answer_writer)
 
     assert "10.5" in result.answer
-    assert any("unsupported" in w.lower() for w in result.warnings)
+    assert any("ungrounded" in w.lower() for w in result.warnings)
 
 
 def test_run_research_mode_returns_immediately_on_a_passing_verification():
@@ -417,7 +437,12 @@ def test_answer_question_with_mode_passes_the_answer_writer_through_to_research_
     engine = _engine()
     llm_agent = AnthropicAgent(client=client)
     writer_client = FakeClient(
-        [_message(TextBlock(type="text", text="Azerbaijan's population reached 10.5 million in 2024."))]
+        [
+            _write_answer_message(
+                "Azerbaijan's population reached 10.5 million in 2024.",
+                [{"evidence_id": "result_1@2024", "stated_value": "10.5", "claimed_geography": "AZE"}],
+            )
+        ]
     )
     answer_writer = AnthropicAnswerWriter(client=writer_client)
 

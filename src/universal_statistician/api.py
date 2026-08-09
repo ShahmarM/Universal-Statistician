@@ -255,7 +255,8 @@ def _resolve_agent_components(use_llm: bool):
         )
     from anthropic import Anthropic
 
-    from universal_statistician.agent.llm import AnthropicAgent, AnthropicAnswerWriter
+    from universal_statistician.agent.answer_writer import AnthropicAnswerWriter
+    from universal_statistician.agent.llm import AnthropicAgent
     from universal_statistician.agent.verifier import AnthropicVerifier
 
     client = Anthropic()

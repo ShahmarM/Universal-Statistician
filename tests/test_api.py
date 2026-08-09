@@ -10,7 +10,8 @@ from anthropic.types import Message, TextBlock, ToolUseBlock, Usage
 from fastapi.testclient import TestClient
 
 from universal_statistician import api
-from universal_statistician.agent.llm import AnthropicAgent, AnthropicAnswerWriter
+from universal_statistician.agent.answer_writer import WRITE_ANSWER_TOOL_NAME, AnthropicAnswerWriter
+from universal_statistician.agent.llm import AnthropicAgent
 from universal_statistician.agent.state import catalog_id as agent_catalog_id
 from universal_statistician.agent.verifier import VERIFY_TOOL_NAME, AnthropicVerifier
 from universal_statistician.core.catalog import Catalog, IndicatorEntry
@@ -228,7 +229,22 @@ def test_ask_runs_research_mode_and_exposes_a_debug_trail_when_requested(monkeyp
         ]
     )
     writer_client = _ScriptedTextClient(
-        _agent_message(TextBlock(type="text", text="Afghanistan's population was 11.0 in 2020."))
+        Message(
+            id="msg_write", model="claude-sonnet-5", role="assistant", type="message",
+            stop_reason="tool_use", stop_sequence=None,
+            content=[
+                ToolUseBlock(
+                    type="tool_use", id="tu_write", name=WRITE_ANSWER_TOOL_NAME,
+                    input={
+                        "text": "Afghanistan's population was 11.0 in 2020.",
+                        "citations": [
+                            {"evidence_id": "result_1@2020", "stated_value": "11.0", "claimed_geography": "AFG"}
+                        ],
+                    },
+                )
+            ],
+            usage=Usage(input_tokens=1, output_tokens=1),
+        )
     )
     verifier_client = _ScriptedTextClient(
         Message(

@@ -1,13 +1,17 @@
 """Independent verification pass over a draft answer (Phase 7).
 
-Where agent/answer_writer.py's numeric-consistency guard is a narrow,
-code-only check ("is every number in the draft present in the evidence?"),
-this module is a second, independent LLM pass that checks the draft against
-the evidence for *semantic* errors a regex can't catch — comparing nominal
-to real GDP without saying so, attributing a value to the wrong country,
-presenting a FAILED validation as a clean result, and so on. It is deliberately
-narrower than the investigator: no tools, no message history, cannot touch
-data, can only report a structured verdict.
+Where agent/answer_writer.py's grounding guard is a narrow, code-only
+check ("does every citation's evidence_id exist, and does its declared
+geography/period/value_kind actually match" — task section 2), this
+module is a second, independent LLM pass that checks the draft's *prose*
+against the evidence for semantic errors a citation-ID check structurally
+cannot see — the free text disagreeing with its own citations, comparing
+nominal to real GDP without saying so, presenting a FAILED validation as a
+clean result, and so on (see agent/evidence.py's docstring on why both
+layers are needed: a citation check verifies declared metadata, not
+literal prose agreement). It is deliberately narrower than the
+investigator: no tools, no message history, cannot touch data, can only
+report a structured verdict.
 
 Like agent/answer_writer.py's number check, the verdict is forced into a
 closed schema (via a forced Claude tool call, mirroring
@@ -56,8 +60,9 @@ VERIFIER_SYSTEM_PROMPT = (
     "supposedly built from. You have no tools and cannot look anything up "
     "beyond what's given below.\n\n"
     "Check specifically for:\n"
-    "- unsupported_number: a number in the draft that isn't in the evidence "
-    "(table cell values or provenance_references), even allowing for "
+    "- unsupported_number: a number in the draft that isn't backed by any "
+    "cell in the evidence's `evidence` object (evidence_id -> {value, unit, "
+    "value_kind, geography, period, ...}) or `table`, even allowing for "
     "reasonable rounding.\n"
     "- price_basis_mismatch: comparing or combining nominal (current-price) "
     "and real (constant-price) figures without disclosing it.\n"

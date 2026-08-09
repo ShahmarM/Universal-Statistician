@@ -42,8 +42,8 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 
-from universal_statistician.agent.answer_writer import write_and_verify_answer
-from universal_statistician.agent.llm import LLMAgent, LLMAnswerWriter
+from universal_statistician.agent.answer_writer import LLMAnswerWriter, write_and_verify_answer
+from universal_statistician.agent.llm import LLMAgent
 from universal_statistician.agent.loop import AgentLimits, StatisticalAgent
 from universal_statistician.agent.state import InvestigationState
 from universal_statistician.agent.verifier import LLMVerifier, VerificationReport
@@ -215,10 +215,11 @@ def run_research_mode(
                 state.evidence_package(), answer_writer, fallback_text=fallback_text
             )
             answer_text = write_result.text
-            if not write_result.llm_written and write_result.unsupported_numbers:
+            if not write_result.llm_written and (write_result.ungrounded_numbers or write_result.citation_problems):
                 state.warnings.append(
-                    "LLM answer-writer produced unsupported numbers "
-                    f"{write_result.unsupported_numbers}; used the deterministic answer instead."
+                    "LLM answer-writer produced ungrounded numbers "
+                    f"{write_result.ungrounded_numbers} or incompatible citations "
+                    f"{write_result.citation_problems}; used the deterministic answer instead."
                 )
 
         if verifier is None:
