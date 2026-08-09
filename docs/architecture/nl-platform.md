@@ -286,6 +286,68 @@ first request reaches
 `sdmx1`'s own default, not invented here) and fails cleanly against the
 network block.
 
+## OECD investigated, not integrated (Phase 5)
+
+Phase 5 asked for OECD "as a first-class official provider," using the same
+normalized `Provider`/`MetadataDiscoverable` interfaces already built for
+World Bank/IMF/Eurostat. Re-investigated with the same ground-truth
+standard as every other source.
+
+**Correction, stated plainly rather than quietly fixed:** the first pass at
+this investigation checked `sdmx.Client("OECD_JSON").source.supports` and
+wrongly generalized its "everything except data/metadata is unsupported"
+result to OECD as a whole. Checking the actual "OECD" source (not
+"OECD_JSON") shows `datastructure`, `dataflow`, `codelist`, and
+`conceptscheme` are each declared **supported** — only the generic combined
+`structure` endpoint (a different, less-used SDMX resource type from the
+`datastructure` endpoint `sdmx_discovery.py::entries_from_dsd()` actually
+needs) is `False`. This project's own regression test
+(`test_oecd_is_not_registered_pending_a_verified_discovery_example`) caught
+the error before it shipped as a false claim — worth recording as an
+example of the "verify, don't assert" discipline catching itself, not just
+external sources.
+
+The real, narrower reason OECD stays unregistered:
+
+1. **Endpoint types are supported; a specific verified example is not.**
+   `sdmx1`'s own test suite (`TestOECD.endpoint_args`) has exactly one real,
+   network-exercised OECD query — `data`, `resource_id="DSD_MSTI@DF_MSTI"`,
+   with **no key** (fetches the entire dataflow, not one series) — and
+   nothing for `datastructure`/`dataflow`/`codelist` with a specific
+   resource_id to copy. Unlike IMF (verified: `structure`,
+   `resource_id="DSD_CPI"`, Phase 3) and Eurostat (verified: `NAMA_10_GDP`'s
+   dataflow→structure resolution, Phase 4), there's no worked discovery
+   example here. Calling `dataflow`/`datastructure` with a *guessed*
+   resource_id — even one derived from the composite `"DSD_MSTI@DF_MSTI"`
+   id, whose `@`-joined format itself isn't confirmed to mean what it looks
+   like it means — would be exactly the guess this project refuses to ship.
+2. **The one source with a genuinely verified *filtered* query, `OECD_JSON`**
+   (`TestOECD_JSON`: `resource_id="ITF_GOODS_TRANSPORT",
+   key=".T-CONT-RL-TEU+T-CONT-RL-TON"`), needs a non-generic client
+   (`sdmx.source.oecd_json.Client`, not the plain `sdmx.Client` this
+   project uses for every other SDMX source) because — per that module's
+   own docstring — its legacy `stats.oecd.org` endpoint requires
+   downgrading the SSL/TLS handshake to connect at all, which the library's
+   maintainers explicitly document as disabling protection against
+   man-in-the-middle attacks, adding: "use with caution." Not a trade this
+   project makes for one narrow, discovery-incapable, legacy dataflow.
+
+Verified with real, reproducible commands (see
+`test_additional_sources.py`): `sdmx.Client("OECD").source.supports[...]`
+for each specific resource type (not just OECD_JSON's blanket result); and
+reading `sdmx/source/oecd_json.py`'s own `Client()` factory docstring for
+the SSL warning.
+
+**Not ruled out permanently** — the architecture doesn't need to change:
+a documented worked structure-discovery example against the current
+`sdmx.oecd.org` API (from OECD's own developer docs, or a live environment
+able to inspect a dataflow's DSD directly) would unblock a real
+`OECDProvider` the same way Eurostat and IMF were unblocked in Phases 3-4 —
+a verified `SDMXSourceConfig` entry and a provider reusing
+`sdmx_discovery.py::entries_from_dsd()` exactly like IMF and Eurostat do.
+Full reasoning is in `providers/registry.py`'s module docstring, extended
+for this phase.
+
 ## Not yet built (tracked per-phase)
 
 Query planning, ambiguity handling, source-selection ranking, the expanded
@@ -302,7 +364,7 @@ this document with its own section once implemented, following the same
 | 2 | World Bank broad catalog discovery | ✅ done |
 | 3 | Generalized IMF provider/catalog | ✅ done |
 | 4 | Generalized Eurostat integration | ✅ done |
-| 5 | OECD as first-class provider | not started |
+| 5 | OECD as first-class provider | 🚫 investigated, not safely integrable — see write-up above |
 | 6 | National statistical office plugin architecture | not started |
 | 7 | Structured query planner + NL interface | not started |
 | 8 | Source/indicator selection ranking | not started |

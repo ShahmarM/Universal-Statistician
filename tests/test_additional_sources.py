@@ -9,6 +9,7 @@ skipped-by-default live smoke test) for the two sources added afterward.
 from __future__ import annotations
 
 import pytest
+import sdmx
 
 from universal_statistician.providers.registry import SOURCES
 from universal_statistician.providers.sdmx_provider import SDMXProvider
@@ -75,3 +76,24 @@ def test_live_eurostat_gdp_smoke():
         "B1GQ", "LU", start_period="2012", end_period="2015"
     )
     assert result.observations
+
+
+def test_oecd_is_not_registered_pending_a_verified_discovery_example():
+    """Regression guard for the Phase 5 investigation (registry.py's module
+    docstring / docs/architecture/nl-platform.md): OECD is absent from
+    SOURCES not because structure discovery is unsupported (it isn't —
+    datastructure/dataflow/codelist are all declared supported below) but
+    because sdmx1's own test suite has no *specific, verified* worked
+    example for any of them, only for an unfiltered `data` query. If a
+    future sdmx1 release adds one, this documents exactly what to look for
+    to safely register a real entry."""
+    assert "OECD" not in SOURCES
+
+    source = sdmx.Client("OECD").source
+    assert source.supports[sdmx.Resource.datastructure] is True
+    assert source.supports[sdmx.Resource.dataflow] is True
+    assert source.supports[sdmx.Resource.codelist] is True
+    # The generic combined "structure" endpoint (distinct from the more
+    # specific "datastructure" endpoint entries_from_dsd() actually needs)
+    # genuinely is unsupported — the one accurate part of the original claim.
+    assert source.supports[sdmx.Resource.structure] is False

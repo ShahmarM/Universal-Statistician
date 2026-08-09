@@ -25,13 +25,47 @@ the live APIs from this environment (see the `network`-marked tests) — treat
 them as verified-on-paper until an environment with network access to these
 hosts confirms them.
 
-OECD is deliberately not registered yet: sdmx1's own test suite queries an
-OECD dataflow without a filtering key (i.e. "fetch everything"), so there is
-no verified single-series example query to copy the way there is for the
-other three sources. Adding OECD needs either live access to inspect a
-dataflow's DSD, or a documented worked example — guessing a key order here
-would risk shipping a config that fails, or worse, silently returns the
-wrong series.
+OECD is deliberately not registered yet (re-investigated for Phase 5, see
+docs/architecture/nl-platform.md for the full writeup, including a
+correction of an overbroad first-pass claim caught by this project's own
+regression test — test_additional_sources.py's
+test_oecd_is_not_registered_because_structure_discovery_is_unsupported):
+
+- sdmx1's bundled sources.json / `sdmx.Client("OECD").source.supports`
+  marks the *generic* combined `structure` endpoint unsupported
+  (`False`) for OECD — but `datastructure`, `dataflow`, `codelist`, and
+  `conceptscheme` are each declared *supported* (`True`). Structure
+  discovery is not blanket-impossible here the way it is for OECD_JSON
+  (below); this project's first pass over-read the `False` flags and that
+  was wrong — worth stating plainly rather than quietly fixing.
+- What's still missing is a *specific verified worked example*: `sdmx1`'s
+  own test suite (TestOECD.endpoint_args) has exactly one real,
+  network-exercised OECD query — `data`, `resource_id="DSD_MSTI@DF_MSTI"`,
+  with **no key** (fetches the entire dataflow, not one series) — and no
+  entry at all for `datastructure`/`dataflow`/`codelist` with a specific
+  resource_id. Unlike IMF (verified: `structure`, `resource_id="DSD_CPI"`)
+  and Eurostat (verified: `NAMA_10_GDP`'s dataflow→structure resolution),
+  there is nothing here to copy the way `entries_from_dsd()`
+  (sdmx_discovery.py) needs — calling `dataflow`/`datastructure` with a
+  *guessed* resource_id (even one derived from the composite
+  `"DSD_MSTI@DF_MSTI"` id, whose `@`-joined format itself isn't confirmed
+  to mean what it looks like it means) would be exactly the guess this
+  project refuses to ship.
+- The only source with a genuinely verified *filtered* query,
+  `OECD_JSON` (TestOECD_JSON: `resource_id="ITF_GOODS_TRANSPORT",
+  key=".T-CONT-RL-TEU+T-CONT-RL-TON"`), needs a non-generic client
+  (`sdmx.source.oecd_json.Client`) because its legacy `stats.oecd.org`
+  endpoint requires downgrading the SSL/TLS handshake to connect — the
+  library's own maintainers document this as disabling protection against
+  man-in-the-middle attacks and warn "use with caution." Not a trade this
+  project makes for one narrow, discovery-incapable, legacy dataflow.
+
+None of this rules out OECD forever: a documented worked structure-discovery
+example against the current sdmx.oecd.org API (from OECD's own developer
+docs, or a live environment able to inspect a dataflow's DSD directly) would
+unblock it the same way Eurostat/IMF were unblocked — no new architecture
+needed, only a verified SDMXSourceConfig entry and reuse of
+sdmx_discovery.py::entries_from_dsd().
 """
 
 from __future__ import annotations
