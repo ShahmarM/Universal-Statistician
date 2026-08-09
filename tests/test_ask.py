@@ -6,7 +6,7 @@ from universal_statistician.core.engine import QueryEngine
 from universal_statistician.core.query_plan import QuestionInterpretation, TransformationSpec
 from universal_statistician.core.validation import ValidationStatus
 
-from .helpers import LookupProvider, make_series
+from .helpers import FailingProvider, LookupProvider, make_series
 
 
 class ScriptedPlanner:
@@ -68,6 +68,65 @@ def test_answer_question_falls_back_to_catalog_unit_when_the_provider_gives_none
     assert result.table is not None
     column = next(c for c in result.table["columns"] if c["key"] == "AFG")
     assert column["unit"] == "persons"
+
+
+def test_answer_question_falls_back_to_the_next_candidate_when_the_top_one_fails_to_retrieve():
+    # Live-observed root cause: select_indicators() keeps only the single
+    # top-ranked candidate per concept. That candidate can score highest
+    # (e.g. because its catalog metadata claims geographic_coverage the
+    # real data doesn't actually have) and still fail at *retrieval* --
+    # previously there was no way back to the next-best candidate
+    # build_query_plan() had already found, so the whole question failed
+    # outright even though a perfectly good answer was one candidate away.
+    bad_provider = FailingProvider("BAD_SRC")
+    good_provider = LookupProvider(
+        "WB_WDI", {("SP_POP_TOTL", "AFG"): make_series("SP_POP_TOTL", "AFG", {"2020": 11.0}, source_id="WB_WDI")}
+    )
+    catalog = Catalog()
+    catalog.add(
+        [
+            # Scores higher (claims AFG coverage, exact concept-in-name
+            # match) but its provider always fails.
+            IndicatorEntry(
+                indicator_id="POP_BAD", source_id="BAD_SRC", names={"en": "Population, total"},
+                geographic_coverage=("AFG",),
+            ),
+            # Scores lower (no declared geographic_coverage at all) but
+            # actually has the data.
+            IndicatorEntry(
+                indicator_id="SP_POP_TOTL", source_id="WB_WDI", names={"en": "Population, total"},
+            ),
+        ]
+    )
+    engine = QueryEngine({"BAD_SRC": bad_provider, "WB_WDI": good_provider}, catalog=catalog)
+    planner = ScriptedPlanner(QuestionInterpretation(concepts=("population",), geographies=("AFG",)))
+
+    result = answer_question(engine, "population of Afghanistan", planner=planner)
+
+    assert result.table is not None
+    assert result.table["rows"][0]["AFG"] == 11.0
+    assert any("used the next-best catalog match" in w for w in result.warnings)
+    assert any("BAD_SRC/POP_BAD" in w for w in result.warnings)
+    assert any("WB_WDI/SP_POP_TOTL" in w for w in result.warnings)
+
+
+def test_answer_question_reports_every_attempt_when_all_candidates_fail_to_retrieve():
+    bad_provider_1 = FailingProvider("BAD_1")
+    bad_provider_2 = FailingProvider("BAD_2")
+    catalog = Catalog()
+    catalog.add(
+        [
+            IndicatorEntry(indicator_id="POP_A", source_id="BAD_1", names={"en": "Population, total"}),
+            IndicatorEntry(indicator_id="POP_B", source_id="BAD_2", names={"en": "Population, total"}),
+        ]
+    )
+    engine = QueryEngine({"BAD_1": bad_provider_1, "BAD_2": bad_provider_2}, catalog=catalog)
+    planner = ScriptedPlanner(QuestionInterpretation(concepts=("population",), geographies=("AFG",)))
+
+    result = answer_question(engine, "population of Afghanistan", planner=planner)
+
+    assert result.table is None
+    assert any("BAD_1/POP_A" in w and "BAD_2/POP_B" in w for w in result.warnings)
 
 
 def test_answer_question_returns_a_clarification_without_retrieving_anything():

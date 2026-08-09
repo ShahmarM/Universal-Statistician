@@ -191,8 +191,20 @@ def validate_table(
         )
 
     # requested geographies actually returned
+    #
+    # Matched on `ref_area`, never `key` -- `key` is only the geography
+    # code itself for core/ask.py's legacy compare_across_countries()
+    # tables (compose.py sets key=ref_area=ref_area there, so the two
+    # happen to coincide); agent/tools.py::retrieve_series() instead keys
+    # every column by an opaque result_id ("result_1", ...), with the real
+    # geography recorded in `ref_area`. A `key`-based check silently never
+    # matched anything for that path -- live-observed via the research-mode
+    # agent's own validate() calls flagging a real AZE/GEO/KAZ retrieval as
+    # "missing" even though the data was right there under a different key.
     for geo in requested_geographies:
-        col = next((c for c in base_columns if c.key == geo), None)
+        col = next(
+            (c for c in base_columns if c.ref_area is not None and c.ref_area.upper() == geo.upper()), None
+        )
         if col is None:
             findings.append(
                 ValidationFinding(
@@ -201,7 +213,7 @@ def validate_table(
                     f"Requested geography {geo!r} has no corresponding column in the result",
                 )
             )
-        elif not any(table.value_at(p, geo) is not None for p in table.periods()):
+        elif not any(table.value_at(p, col.key) is not None for p in table.periods()):
             findings.append(
                 ValidationFinding(
                     ValidationStatus.WARNING,

@@ -192,7 +192,7 @@ def test_validate_table_does_not_flag_unknown_price_basis_as_a_contradiction():
 
 
 def test_validate_table_warns_when_a_requested_geography_is_missing():
-    col = ComparisonColumn(key="AFG", label="AFG", attribution=_attribution())
+    col = ComparisonColumn(key="AFG", label="AFG", attribution=_attribution(), ref_area="AFG")
     table = build_comparison([(col, _series("POP", "AFG", {"2020": 10.0}))])
 
     result = validate_table(table, requested_geographies=("AFG", "USA"))
@@ -200,6 +200,25 @@ def test_validate_table_warns_when_a_requested_geography_is_missing():
     assert any(
         f.check == "requested_geographies_returned" and "USA" in f.message for f in result.findings
     )
+    assert not any(
+        f.check == "requested_geographies_returned" and "'AFG'" in f.message for f in result.findings
+    )
+
+
+def test_validate_table_matches_a_requested_geography_by_ref_area_not_by_column_key():
+    # Regression guard for a live-observed bug: agent/tools.py::retrieve_series
+    # keys every column by an opaque result_id ("result_1", ...), never by
+    # the geography code itself -- only core/ask.py's legacy
+    # compare_across_countries() happens to key columns by ref_area
+    # (key=ref_area=ref_area). A key-based check silently flagged every
+    # real agent-mode retrieval as "missing" even though the exact
+    # requested country's data was right there under `ref_area`.
+    col = ComparisonColumn(key="result_1", label="Population (AFG)", attribution=_attribution(), ref_area="AFG")
+    table = build_comparison([(col, _series("POP", "AFG", {"2020": 10.0}))])
+
+    result = validate_table(table, requested_geographies=("AFG",))
+
+    assert not any(f.check == "requested_geographies_returned" for f in result.findings)
 
 
 def test_validate_table_warns_when_requested_period_range_not_covered():
