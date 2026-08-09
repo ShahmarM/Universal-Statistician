@@ -40,6 +40,36 @@ def _engine_with_population() -> QueryEngine:
     return QueryEngine({"WB_WDI": provider}, catalog=catalog)
 
 
+def test_answer_question_falls_back_to_catalog_unit_when_the_provider_gives_none():
+    # Phase F: LookupProvider/make_series never set SeriesResult.unit (the
+    # same as most real providers today, see core/models.py) - the catalog's
+    # own per-indicator unit (from search_indicator(), carried on
+    # CandidateIndicator) must still show up on the built ComparisonColumn.
+    provider = LookupProvider(
+        "WB_WDI",
+        {("SP_POP_TOTL", "AFG"): make_series("SP_POP_TOTL", "AFG", {"2020": 11.0}, source_id="WB_WDI")},
+    )
+    catalog = Catalog()
+    catalog.add(
+        [
+            IndicatorEntry(
+                indicator_id="SP_POP_TOTL",
+                source_id="WB_WDI",
+                names={"en": "Population, total"},
+                unit="persons",
+            )
+        ]
+    )
+    engine = QueryEngine({"WB_WDI": provider}, catalog=catalog)
+    planner = ScriptedPlanner(QuestionInterpretation(concepts=("population",), geographies=("AFG",)))
+
+    result = answer_question(engine, "population of Afghanistan", planner=planner)
+
+    assert result.table is not None
+    column = next(c for c in result.table["columns"] if c["key"] == "AFG")
+    assert column["unit"] == "persons"
+
+
 def test_answer_question_returns_a_clarification_without_retrieving_anything():
     engine = _engine_with_population()
     planner = ScriptedPlanner(

@@ -24,6 +24,8 @@ from __future__ import annotations
 
 from dataclasses import dataclass, field
 
+from universal_statistician.core.models import StatisticalSemantics
+
 
 @dataclass(frozen=True)
 class CandidateIndicator:
@@ -31,10 +33,10 @@ class CandidateIndicator:
     proposed by an LLM, always the result of Catalog.search().
 
     Carries the same optional metadata IndicatorMeta does (unit, frequency,
-    geographic_coverage) so source/indicator selection (core/selection.py,
-    Phase 8) can score candidates without a second catalog lookup — this is
-    exactly what engine.search_indicator() already returned in
-    build_query_plan() below, just not previously kept.
+    geographic_coverage, semantics) so source/indicator selection
+    (core/selection.py, Phase 8) can score candidates without a second
+    catalog lookup — this is exactly what engine.search_indicator() already
+    returned in build_query_plan() below, just not previously kept.
     """
 
     indicator_id: str
@@ -45,6 +47,8 @@ class CandidateIndicator:
     unit: str | None = None
     frequency: str | None = None
     geographic_coverage: tuple[str, ...] | None = None
+    #: Structured semantics (Phase F) — see StatisticalSemantics.
+    semantics: StatisticalSemantics | None = None
 
     def as_dict(self) -> dict:
         return {
@@ -57,6 +61,7 @@ class CandidateIndicator:
             "geographic_coverage": (
                 list(self.geographic_coverage) if self.geographic_coverage is not None else None
             ),
+            "semantics": self.semantics.as_dict() if self.semantics is not None else None,
         }
 
 
@@ -297,6 +302,7 @@ def build_query_plan(
             unit=match.unit,
             frequency=match.frequency,
             geographic_coverage=match.geographic_coverage,
+            semantics=match.semantics,
         )
         for concept in all_concepts
         for match in engine.search_indicator(concept, limit=candidates_per_concept)

@@ -71,10 +71,12 @@ def entries_from_dsd(dsd, config: SDMXSourceConfig, *, source_organization: str)
                 names={"en": str(item.name)},
                 description=str(item.description) if item.description else None,
                 dataset_id=config.dataflow_id,
+                unit=config.unit_label,
                 frequency=frequency,
                 geographic_coverage=geographic_coverage,
                 source_organization=source_organization,
                 official_url=config.website,
+                semantics=config.semantics,
             )
         )
     return entries

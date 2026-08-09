@@ -2,8 +2,8 @@ from __future__ import annotations
 
 from concurrent.futures import ThreadPoolExecutor
 
-from universal_statistician.core.catalog import Catalog, IndicatorEntry
-from universal_statistician.core.models import DimensionSpec, DimensionValue
+from universal_statistician.core.catalog import _SCHEMA, Catalog, IndicatorEntry
+from universal_statistician.core.models import DimensionSpec, DimensionValue, StatisticalSemantics
 from universal_statistician.providers.catalog_seed import CATALOG_SEED
 
 
@@ -140,6 +140,7 @@ def test_search_enriches_results_with_rich_metadata_when_present():
         official_url="https://api.worldbank.org",
         last_updated="2026-01-01",
         keywords=("gdp", "per capita"),
+        semantics=StatisticalSemantics(price_basis="nominal", currency="USD"),
     )
     catalog = build_catalog([entry])
 
@@ -157,6 +158,7 @@ def test_search_enriches_results_with_rich_metadata_when_present():
     assert meta.official_url == "https://api.worldbank.org"
     assert meta.last_updated == "2026-01-01"
     assert meta.keywords == ("gdp", "per capita")
+    assert meta.semantics == StatisticalSemantics(price_basis="nominal", currency="USD")
 
 
 def test_search_without_rich_metadata_leaves_new_fields_none():
@@ -166,6 +168,39 @@ def test_search_without_rich_metadata_leaves_new_fields_none():
     results = catalog.search("population")
     assert results[0].dataset_id is None
     assert results[0].dimensions is None
+    assert results[0].semantics is None
+
+
+def test_catalog_migrates_an_on_disk_db_created_before_the_semantics_column():
+    # Phase B shipped persistent on-disk catalogs before Phase F added
+    # catalog_meta.semantics - opening an existing file built on the old
+    # schema must not crash (see Catalog._migrate()).
+    import sqlite3
+
+    connection = sqlite3.connect(":memory:", check_same_thread=False)
+    old_schema = _SCHEMA.replace("    semantics TEXT,\n", "")
+    assert "semantics" not in old_schema  # sanity: the replace actually did something
+    connection.executescript(old_schema)
+    connection.execute(
+        "INSERT INTO catalog_meta (source_id, indicator_id, ingested_at) VALUES (?, ?, ?)",
+        ("WB_WDI", "SP_POP_TOTL", "2026-01-01T00:00:00+00:00"),
+    )
+    connection.commit()
+
+    catalog = Catalog(connection)  # must not raise
+    catalog.add(
+        [
+            IndicatorEntry(
+                indicator_id="NY_GDP_PCAP_CD",
+                source_id="WB_WDI",
+                names={"en": "GDP per capita"},
+                semantics=StatisticalSemantics(price_basis="nominal"),
+            )
+        ]
+    )
+
+    meta = catalog.get("WB_WDI", "NY_GDP_PCAP_CD")
+    assert meta.semantics == StatisticalSemantics(price_basis="nominal")
 
 
 def test_get_returns_none_for_unknown_pair():

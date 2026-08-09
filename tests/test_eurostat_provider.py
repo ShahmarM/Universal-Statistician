@@ -109,6 +109,11 @@ def test_discover_follows_the_external_reference_to_resolve_the_dsd(eurostat_pro
     assert b1gq.dataset_id == "NAMA_10_GDP"
     assert b1gq.frequency == "A"
     assert b1gq.geographic_coverage == ("DE", "LU")
+    # Phase F: structurally known from the registry entry (unit pinned to
+    # CP_MEUR), not inferred from the indicator's name.
+    assert b1gq.unit == "EUR million, current prices"
+    assert b1gq.semantics.price_basis == "nominal"
+    assert b1gq.semantics.currency == "EUR"
 
     # Two real requests: the dataflow stub, then the follow-up resolve.
     assert [c[0] for c in eurostat_provider._client.calls] == ["dataflow", None]

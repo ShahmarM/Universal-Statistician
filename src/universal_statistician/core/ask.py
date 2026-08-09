@@ -126,10 +126,18 @@ def _fetch_table(engine: QueryEngine, plan: QueryPlan) -> tuple[ComparisonTable 
                 key=key,
                 label=label,
                 attribution=series.attribution,
-                unit=series.unit,
+                # Prefer the provider's own unit/semantics (Phase F: some
+                # dataflows, e.g. Eurostat's CP_MEUR, know it structurally
+                # for every fetch); fall back to the catalog's per-indicator
+                # metadata (candidate.unit/.semantics, from
+                # engine.search_indicator()) when the provider itself
+                # didn't supply one - e.g. World Bank, where unit varies by
+                # indicator and only discovery (Phase 2) captures it.
+                unit=series.unit or candidate.unit,
                 frequency=series.frequency,
                 indicator_id=candidate.indicator_id,
                 ref_area=ref_area,
+                semantics=series.semantics or candidate.semantics,
             )
             columns.append((column, series))
 

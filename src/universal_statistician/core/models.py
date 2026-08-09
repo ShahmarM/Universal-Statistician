@@ -41,6 +41,61 @@ class Attribution:
 
 
 @dataclass(frozen=True)
+class StatisticalSemantics:
+    """Structured statistical semantics for an indicator/series (section:
+    "introduce structured statistical semantics where available... Do NOT
+    try to infer these purely from indicator names when reliable metadata
+    exists").
+
+    Every field is optional and defaults to None ("unknown"), not a guess —
+    populated only where a source's own, structurally-known metadata makes
+    it certain (e.g. Eurostat's NAMA_10_GDP dataflow pins its `unit`
+    dimension to `CP_MEUR`, Eurostat's own documented code for "current
+    prices, million euro" — see providers/registry.py — so price_basis/
+    currency/currency_scale are known facts about that dataflow, not an
+    inference from an indicator's display name). core/validation.py reads
+    this to flag combining series with clearly incompatible semantics (e.g.
+    nominal vs. real) the same "unknown never counts as a contradiction"
+    way it already does for unit/frequency.
+    """
+
+    #: "nominal" (current prices), "real" (constant prices), "index",
+    #: "percent", "percentage_points" — the kind of quantity a value is,
+    #: when a source's metadata pins it unambiguously.
+    price_basis: str | None = None
+    #: ISO 4217-style currency code (e.g. "EUR", "USD"), when fixed by the
+    #: source's own unit dimension.
+    currency: str | None = None
+    #: e.g. "millions", "thousands", "units" — the scale a currency value is
+    #: expressed in, when fixed by the source.
+    currency_scale: str | None = None
+    #: True/False only when a source's metadata states it explicitly; None
+    #: (not False) when unknown — this project never treats "not stated" as
+    #: "definitely not per-capita/not seasonally adjusted".
+    per_capita: bool | None = None
+    seasonally_adjusted: bool | None = None
+
+    def as_dict(self) -> dict:
+        return {
+            "price_basis": self.price_basis,
+            "currency": self.currency,
+            "currency_scale": self.currency_scale,
+            "per_capita": self.per_capita,
+            "seasonally_adjusted": self.seasonally_adjusted,
+        }
+
+    @staticmethod
+    def from_dict(payload: dict) -> "StatisticalSemantics":
+        return StatisticalSemantics(
+            price_basis=payload.get("price_basis"),
+            currency=payload.get("currency"),
+            currency_scale=payload.get("currency_scale"),
+            per_capita=payload.get("per_capita"),
+            seasonally_adjusted=payload.get("seasonally_adjusted"),
+        )
+
+
+@dataclass(frozen=True)
 class Observation:
     period: str
     value: float | None
@@ -62,6 +117,11 @@ class SeriesResult:
     #: core/validation.py's unit-consistency check has a real field to read
     #: rather than needing another model change later.
     unit: str | None = None
+    #: Structured semantics (Phase F) — see StatisticalSemantics. Populated
+    #: from providers/registry.py's SDMXSourceConfig.semantics when a
+    #: dataflow's own fixed key dimensions make it certain (e.g. Eurostat's
+    #: CP_MEUR), None otherwise — never inferred from the indicator's name.
+    semantics: "StatisticalSemantics | None" = None
 
     def as_dict(self) -> dict:
         return {
@@ -73,12 +133,14 @@ class SeriesResult:
             ],
             "attribution": self.attribution.as_dict(),
             "unit": self.unit,
+            "semantics": self.semantics.as_dict() if self.semantics is not None else None,
         }
 
     @staticmethod
     def from_dict(payload: dict) -> "SeriesResult":
         """Inverse of as_dict() — round-trips a result through the cache
         without losing its type (callers should never see a bare dict)."""
+        semantics_payload = payload.get("semantics")
         return SeriesResult(
             indicator_id=payload["indicator_id"],
             ref_area=payload["ref_area"],
@@ -89,6 +151,9 @@ class SeriesResult:
             ),
             attribution=Attribution.from_dict(payload["attribution"]),
             unit=payload.get("unit"),
+            semantics=StatisticalSemantics.from_dict(semantics_payload)
+            if semantics_payload is not None
+            else None,
         )
 
 
@@ -171,6 +236,8 @@ class IndicatorMeta:
     #: core/ingestion.py's IngestionReport for our own ingestion timestamps).
     last_updated: str | None = None
     keywords: tuple[str, ...] | None = None
+    #: Structured semantics (Phase F) — see StatisticalSemantics.
+    semantics: "StatisticalSemantics | None" = None
 
     def as_dict(self) -> dict:
         return {
@@ -191,4 +258,5 @@ class IndicatorMeta:
             "official_url": self.official_url,
             "last_updated": self.last_updated,
             "keywords": list(self.keywords) if self.keywords is not None else None,
+            "semantics": self.semantics.as_dict() if self.semantics is not None else None,
         }

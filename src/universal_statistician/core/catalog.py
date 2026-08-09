@@ -36,7 +36,7 @@ import threading
 from dataclasses import dataclass
 from datetime import datetime, timezone
 
-from universal_statistician.core.models import DimensionSpec, IndicatorMeta
+from universal_statistician.core.models import DimensionSpec, IndicatorMeta, StatisticalSemantics
 
 _SCHEMA = """
 CREATE VIRTUAL TABLE IF NOT EXISTS indicators USING fts5(
@@ -63,10 +63,20 @@ CREATE TABLE IF NOT EXISTS catalog_meta (
     official_url TEXT,
     last_updated TEXT,
     keywords TEXT,
+    semantics TEXT,
     ingested_at TEXT NOT NULL,
     PRIMARY KEY (source_id, indicator_id)
 );
 """
+
+#: Phase F added `catalog_meta.semantics` after Phase B's persistent
+#: on-disk catalog already shipped — `CREATE TABLE IF NOT EXISTS` above is a
+#: no-op against a real ~/.universal_statistician/catalog.db file created
+#: before this phase, so a plain schema-string change alone would silently
+#: leave that column missing and crash the very first INSERT. Guarded,
+#: idempotent migration below (like _SCHEMA itself, safe to run on every
+#: Catalog() construction).
+_MIGRATIONS: tuple[str, ...] = ("semantics",)
 
 
 @dataclass(frozen=True)
@@ -98,6 +108,8 @@ class IndicatorEntry:
     official_url: str | None = None
     last_updated: str | None = None
     keywords: tuple[str, ...] | None = None
+    #: Structured semantics (Phase F) — see StatisticalSemantics.
+    semantics: StatisticalSemantics | None = None
 
 
 class Catalog:
@@ -112,7 +124,17 @@ class Catalog:
         self._lock = threading.Lock()
         with self._lock:
             self._conn.executescript(_SCHEMA)
+            self._migrate()
             self._conn.commit()
+
+    def _migrate(self) -> None:
+        """Caller must already hold self._lock. Adds any column _SCHEMA
+        gained after a real on-disk catalog.db (Phase B) might already have
+        been created without it — see _MIGRATIONS' docstring above."""
+        existing = {row[1] for row in self._conn.execute("PRAGMA table_info(catalog_meta)")}
+        for column in _MIGRATIONS:
+            if column not in existing:
+                self._conn.execute(f"ALTER TABLE catalog_meta ADD COLUMN {column} TEXT")
 
     def add(self, entries: list[IndicatorEntry]) -> None:
         """Insert or, for an (source_id, indicator_id) pair already present,
@@ -152,8 +174,8 @@ class Catalog:
                     "INSERT OR REPLACE INTO catalog_meta "
                     "(source_id, indicator_id, dataset_id, unit, frequency, "
                     "geographic_coverage, dimensions, source_organization, official_url, "
-                    "last_updated, keywords, ingested_at) "
-                    "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+                    "last_updated, keywords, semantics, ingested_at) "
+                    "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
                     (
                         entry.source_id,
                         entry.indicator_id,
@@ -170,6 +192,7 @@ class Catalog:
                         entry.official_url,
                         entry.last_updated,
                         json.dumps(list(entry.keywords)) if entry.keywords is not None else None,
+                        json.dumps(entry.semantics.as_dict()) if entry.semantics is not None else None,
                         now,
                     ),
                 )
@@ -269,7 +292,7 @@ class Catalog:
         """Caller must already hold self._lock."""
         return self._conn.execute(
             "SELECT dataset_id, unit, frequency, geographic_coverage, dimensions, "
-            "source_organization, official_url, last_updated, keywords "
+            "source_organization, official_url, last_updated, keywords, semantics "
             "FROM catalog_meta WHERE source_id = ? AND indicator_id = ?",
             (source_id, indicator_id),
         ).fetchone()
@@ -296,6 +319,7 @@ class Catalog:
             official_url,
             last_updated,
             keywords_json,
+            semantics_json,
         ) = meta_row
         return IndicatorMeta(
             indicator_id=indicator_id,
@@ -319,6 +343,11 @@ class Catalog:
             official_url=official_url,
             last_updated=last_updated,
             keywords=tuple(json.loads(keywords_json)) if keywords_json is not None else None,
+            semantics=(
+                StatisticalSemantics.from_dict(json.loads(semantics_json))
+                if semantics_json is not None
+                else None
+            ),
         )
 
     @staticmethod

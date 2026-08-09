@@ -89,6 +89,8 @@ class SDMXProvider(Provider):
             frequency=self._frequency(),
             observations=observations,
             attribution=attribution,
+            unit=self.config.unit_label,
+            semantics=self.config.semantics,
         )
 
     def describe(self) -> dict:

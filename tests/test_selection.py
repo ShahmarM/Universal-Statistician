@@ -1,7 +1,8 @@
 from __future__ import annotations
 
+from universal_statistician.core.models import StatisticalSemantics
 from universal_statistician.core.query_plan import CandidateIndicator, QueryPlan
-from universal_statistician.core.selection import select_indicators
+from universal_statistician.core.selection import score_candidate, select_indicators
 
 
 def _plan(**kwargs) -> QueryPlan:
@@ -69,6 +70,21 @@ def test_frequency_match_is_preferred():
     result = select_indicators(plan)
 
     assert result.selected_indicators == (matching,)
+
+
+def test_documented_semantics_earns_a_small_score_bonus():
+    plan = _plan(concepts=("gdp",))
+    with_semantics = CandidateIndicator(
+        indicator_id="X", source_id="A", name="GDP", concept="gdp",
+        semantics=StatisticalSemantics(price_basis="nominal"),
+    )
+    without_semantics = CandidateIndicator(indicator_id="Y", source_id="A", name="GDP", concept="gdp")
+
+    score_with, reasons_with = score_candidate(with_semantics, plan)
+    score_without, _ = score_candidate(without_semantics, plan)
+
+    assert score_with > score_without
+    assert any("semantics" in r for r in reasons_with)
 
 
 def test_concept_with_no_candidates_is_noted_not_silently_dropped():

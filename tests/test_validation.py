@@ -9,7 +9,12 @@ from universal_statistician.core.compose import (
     build_comparison,
     with_ratio,
 )
-from universal_statistician.core.models import Attribution, Observation, SeriesResult
+from universal_statistician.core.models import (
+    Attribution,
+    Observation,
+    SeriesResult,
+    StatisticalSemantics,
+)
 from universal_statistician.core.validation import (
     ValidationStatus,
     validate_series,
@@ -148,6 +153,39 @@ def test_validate_table_warns_on_differing_known_units():
     result = validate_table(table)
 
     assert any(f.check == "unit_consistency" for f in result.findings)
+
+
+def test_validate_table_warns_on_differing_known_price_bases():
+    col_a = ComparisonColumn(
+        key="A", label="A", attribution=_attribution(),
+        semantics=StatisticalSemantics(price_basis="nominal"),
+    )
+    col_b = ComparisonColumn(
+        key="B", label="B", attribution=_attribution(),
+        semantics=StatisticalSemantics(price_basis="real"),
+    )
+    table = build_comparison(
+        [(col_a, _series("X", "A", {"2020": 1.0})), (col_b, _series("X", "B", {"2020": 1.0}))]
+    )
+
+    result = validate_table(table)
+
+    assert any(f.check == "price_basis_consistency" for f in result.findings)
+
+
+def test_validate_table_does_not_flag_unknown_price_basis_as_a_contradiction():
+    col_a = ComparisonColumn(
+        key="A", label="A", attribution=_attribution(),
+        semantics=StatisticalSemantics(price_basis="nominal"),
+    )
+    col_b = ComparisonColumn(key="B", label="B", attribution=_attribution())  # no semantics at all
+    table = build_comparison(
+        [(col_a, _series("X", "A", {"2020": 1.0})), (col_b, _series("X", "B", {"2020": 1.0}))]
+    )
+
+    result = validate_table(table)
+
+    assert not any(f.check == "price_basis_consistency" for f in result.findings)
 
 
 # ---- validate_table: requested geographies / periods ---------------------------

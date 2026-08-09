@@ -679,3 +679,53 @@ fallback — для гипотетической производной коло
 приходит в `AskResult.provenance`, с тем же форматом, что и раньше.
 
 **257 офлайн-тестов** (было 252).
+
+**Фаза F готова**: `unit` и структурная статистическая семантика.
+
+Раньше `SDMXProvider._to_series_result()` вообще не заполнял `SeriesResult.
+unit`, даже когда discovery (Фаза 2) уже нашёл его для конкретного
+индикатора (World Bank) — известный пробел, честно зафиксированный ещё в
+матрице верификации (Фаза A). Два независимых источника unit теперь оба
+задействованы, по принципу "не гадать по названию, а использовать то, что
+реально известно":
+
+1. **Структурно известный на уровне датафлоу** — `SDMXSourceConfig` получил
+   `unit_label`/`semantics`; у Eurostat `NAMA_10_GDP` unit ЗАФИКСИРОВАН как
+   ключевой параметр запроса (`CP_MEUR` — собственный документированный код
+   Eurostat "Current prices, million euro"), поэтому это факт о всём
+   датафлоу, а не догадка по имени индикатора — заполняется на каждый
+   фетч и на каждую discovered-запись (`entries_from_dsd()`).
+2. **Известный только per-индикатор, из каталога** — у World Bank/IMF unit
+   не фиксирован на уровне датафлоу, но discovery (Фаза 2) уже кладёт его
+   в `IndicatorEntry.unit`. `core/ask.py::_fetch_table()` теперь предпочитает
+   `series.unit`, а при его отсутствии берёт `candidate.unit` (то, что уже
+   вернул `engine.search_indicator()`) — тот же принцип "provider, если
+   знает; иначе каталог", не изобретённое значение.
+
+Новая структурная модель `StatisticalSemantics` (`core/models.py`):
+`price_basis` (nominal/real/index/percent/percentage_points), `currency`,
+`currency_scale`, `per_capita`, `seasonally_adjusted` — каждое поле `None`
+("неизвестно") по умолчанию, заполняется только там, где источник
+действительно это гарантирует (сейчас — Eurostat NAMA_10_GDP: `price_basis
+="nominal"`, `currency="EUR"`, `currency_scale="millions"`). Проведено
+через весь путь данных: `SDMXSourceConfig` → `SeriesResult`/`IndicatorEntry`
+→ `IndicatorMeta`/`CandidateIndicator` → `ComparisonColumn` — тот же
+сквозной паттерн, что уже был у `unit`/`frequency`/`geographic_coverage`.
+
+Использовано, а не просто сохранено: `core/validation.py` получил
+`price_basis_consistency` — предупреждение, когда у двух БАЗОВЫХ колонок
+оба price_basis ИЗВЕСТНЫ и РАЗЛИЧАЮТСЯ (например, номинальный ряд рядом с
+реальным без явного запроса на такое сравнение), тем же принципом
+"неизвестное не считается противоречием", что уже применялся для
+unit/frequency. `core/selection.py::score_candidate()` даёт небольшой бонус
+кандидату с документированной семантикой — тот же паттерн, что уже был у
+"unit is documented".
+
+`Catalog`-схема пополнилась колонкой `semantics` — `CREATE TABLE IF NOT
+EXISTS` не трогает уже существующий файл, поэтому добавлена явная,
+идемпотентная миграция (`Catalog._migrate()`, `ALTER TABLE ... ADD COLUMN`
+только если колонки ещё нет) — без неё уже существующий персистентный
+`catalog.db` из Фазы B сломался бы на первой же записи после обновления;
+проверено отдельным тестом, симулирующим файл со старой схемой.
+
+**266 офлайн-тестов** (было 257).

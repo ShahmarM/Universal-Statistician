@@ -72,6 +72,8 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 
+from universal_statistician.core.models import StatisticalSemantics
+
 
 @dataclass(frozen=True)
 class SDMXSourceConfig:
@@ -102,6 +104,17 @@ class SDMXSourceConfig:
     #: (see providers/worldbank_discovery.py for why World Bank uses a
     #: different mechanism entirely rather than guessing one here).
     structure_id: str | None = None
+    #: Human-readable unit label (Phase F), set only when a dataflow's own
+    #: key_dimensions *pin* the unit to a fixed value (e.g. Eurostat's
+    #: NAMA_10_GDP pins unit="CP_MEUR") — a structurally known fact about
+    #: the whole dataflow, not a per-indicator guess. None for a source
+    #: whose unit varies by indicator (World Bank, IMF) — those need the
+    #: catalog's per-indicator IndicatorEntry.unit instead (see
+    #: core/ask.py::_fetch_table, which prefers that when this is None).
+    unit_label: str | None = None
+    #: Structured semantics (Phase F), same "only when structurally certain"
+    #: rule as unit_label — see StatisticalSemantics.
+    semantics: StatisticalSemantics | None = None
     #: How long a fetched series stays cached before being re-fetched. Official
     #: statistics are revised on the order of days/months, not minutes, so a
     #: day is a safe default for every source registered so far.
@@ -151,5 +164,15 @@ SOURCES: dict[str, SDMXSourceConfig] = {
         # (e.g. "B1GQ" for GDP) and {ref_area} the geo code (e.g. "LU").
         key_dimensions=("A", "CP_MEUR", "{indicator}", "{ref_area}"),
         website="https://ec.europa.eu/eurostat/web/sdmx-web-services/example-queries",
+        # Phase F: CP_MEUR is Eurostat's own documented unit code for
+        # "Current prices, million euro" (see Eurostat's SDMX metadata /
+        # unit codelist) — pinned as a fixed key dimension above, so every
+        # entry in this dataflow is unambiguously nominal (current-price)
+        # EUR millions. Structurally known from the registry entry itself,
+        # not inferred from any indicator's display name.
+        unit_label="EUR million, current prices",
+        semantics=StatisticalSemantics(
+            price_basis="nominal", currency="EUR", currency_scale="millions"
+        ),
     ),
 }

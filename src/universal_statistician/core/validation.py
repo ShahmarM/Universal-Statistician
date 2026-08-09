@@ -168,6 +168,28 @@ def validate_table(
             )
         )
 
+    # price-basis consistency (Phase F) — same "unknown is never a
+    # contradiction" rule: only flagged when two base columns' price_basis
+    # (nominal/real/index/percent/...) are both known and differ, e.g.
+    # combining a current-price series with a constant-price one without
+    # anyone asking for that conversion.
+    known_price_bases = sorted(
+        {
+            c.semantics.price_basis
+            for c in base_columns
+            if c.semantics is not None and c.semantics.price_basis
+        }
+    )
+    if len(known_price_bases) > 1:
+        findings.append(
+            ValidationFinding(
+                ValidationStatus.WARNING,
+                "price_basis_consistency",
+                f"Base columns have differing known price bases: {known_price_bases} — "
+                "e.g. combining nominal and real values directly is usually not meaningful.",
+            )
+        )
+
     # requested geographies actually returned
     for geo in requested_geographies:
         col = next((c for c in base_columns if c.key == geo), None)

@@ -26,7 +26,7 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 
 from universal_statistician.core.engine import QueryEngine
-from universal_statistician.core.models import Attribution, SeriesResult
+from universal_statistician.core.models import Attribution, SeriesResult, StatisticalSemantics
 
 #: One entry per (input_column_key, input_period) an output cell actually
 #: depended on to compute its value.
@@ -59,6 +59,10 @@ class ComparisonColumn:
     #: example does ("NY.GDP.PCAP.CD" + "Azerbaijan").
     indicator_id: str | None = None
     ref_area: str | None = None
+    #: Structured semantics (Phase F) — see StatisticalSemantics. None for a
+    #: derived column (computed here, not published with its own semantics)
+    #: as well as for a base column whose source doesn't expose it.
+    semantics: StatisticalSemantics | None = None
 
 
 @dataclass(frozen=True)
@@ -106,6 +110,7 @@ class ComparisonTable:
                     "frequency": c.frequency,
                     "indicator_id": c.indicator_id,
                     "ref_area": c.ref_area,
+                    "semantics": c.semantics.as_dict() if c.semantics is not None else None,
                 }
                 for c in self.columns
             ],
@@ -157,6 +162,7 @@ def compare_across_countries(
             frequency=series.frequency,
             indicator_id=indicator_id,
             ref_area=ref_area,
+            semantics=series.semantics,
         )
         columns.append((column, series))
     return build_comparison(columns)
@@ -185,6 +191,7 @@ def compare_across_indicators(
             frequency=series.frequency,
             indicator_id=indicator_id,
             ref_area=ref_area,
+            semantics=series.semantics,
         )
         columns.append((column, series))
     return build_comparison(columns)

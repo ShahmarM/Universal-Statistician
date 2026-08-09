@@ -69,6 +69,13 @@ def score_candidate(candidate: CandidateIndicator, plan: QueryPlan) -> tuple[flo
         score += 0.1
         reasons.append("unit is documented in the catalog")
 
+    if candidate.semantics is not None and candidate.semantics.price_basis:
+        score += 0.1
+        reasons.append(
+            f"statistical semantics documented in the catalog (price_basis="
+            f"{candidate.semantics.price_basis!r})"
+        )
+
     return score, tuple(reasons)
 
 

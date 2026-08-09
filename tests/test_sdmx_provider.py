@@ -58,6 +58,42 @@ def test_describe_exposes_attribution_fields(wb_provider):
     assert description["website"].startswith("https://")
 
 
+def test_to_series_result_has_no_unit_or_semantics_when_not_fixed_by_the_dataflow(
+    wb_provider, sdmx_dataset
+):
+    # WB_WDI's unit varies per indicator (not fixed at the dataflow level,
+    # unlike Eurostat's CP_MEUR) - see providers/registry.py's unit_label
+    # docstring. core/ask.py's _fetch_table() fills this in from the
+    # catalog instead (Phase F).
+    dataset = sdmx_dataset({"2020": 1.5}, ref_area="AFG", indicator="SP_POP_TOTL")
+    result = wb_provider._to_series_result(dataset, "SP_POP_TOTL", "AFG")
+
+    assert result.unit is None
+    assert result.semantics is None
+
+
+def test_to_series_result_carries_the_dataflows_fixed_unit_and_semantics(sdmx_dataset):
+    # Eurostat's NAMA_10_GDP pins unit=CP_MEUR for every indicator in the
+    # dataflow (Phase F) - structurally known at the SDMXSourceConfig
+    # level, so every fetch from this source carries it.
+    provider = SDMXProvider(SOURCES["ESTAT_NAMA_10_GDP"])
+    dataset = sdmx_dataset({"2020": 1.5}, ref_area="LU", indicator="B1GQ")
+
+    result = provider._to_series_result(dataset, "B1GQ", "LU")
+
+    assert result.unit == "EUR million, current prices"
+    assert result.semantics.price_basis == "nominal"
+    assert result.semantics.currency == "EUR"
+    assert result.semantics.currency_scale == "millions"
+    assert result.as_dict()["semantics"] == {
+        "price_basis": "nominal",
+        "currency": "EUR",
+        "currency_scale": "millions",
+        "per_capita": None,
+        "seasonally_adjusted": None,
+    }
+
+
 @pytest.mark.network
 def test_live_get_series_smoke():
     """Real call against the World Bank SDMX API — requires outbound network
