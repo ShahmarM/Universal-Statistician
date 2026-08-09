@@ -21,8 +21,17 @@ take a plain ComparisonTable and don't need a QueryPlan). The answer text
 is deterministic (`_build_answer_text`) unless an `answer_writer` is
 supplied, in which case Phase 6's `write_and_verify_answer()` replaces it
 with LLM prose constrained to the same validated evidence and checked for
-unsupported numbers, falling back to the deterministic text on failure —
-nothing about retrieval, calculation, or validation changes either way.
+unsupported numbers, falling back to the deterministic text on failure.
+
+If a `verifier` (agent/verifier.py's LLMVerifier, Phase 7) is also
+supplied, the draft answer goes through one further independent check
+before being returned: on a FAIL verdict, the investigator gets one more
+bounded round (reusing already-retrieved evidence, see
+StatisticalAgent.investigate()'s `state`/`instruction` parameters) to
+address the reported issues, then the answer is rebuilt and re-verified,
+up to `max_verification_rounds` — never an unbounded back-and-forth, and
+AgentLimits still bounds the underlying tool-call budget across every
+round combined, not per round.
 """
 
 from __future__ import annotations
@@ -33,6 +42,7 @@ from universal_statistician.agent.answer_writer import write_and_verify_answer
 from universal_statistician.agent.llm import LLMAgent, LLMAnswerWriter
 from universal_statistician.agent.loop import AgentLimits, StatisticalAgent
 from universal_statistician.agent.state import InvestigationState
+from universal_statistician.agent.verifier import LLMVerifier, VerificationReport
 from universal_statistician.core.answer import AskResult, ChartSeries, ChartSpec
 from universal_statistician.core.ask import (
     _build_answer_text,
@@ -114,6 +124,18 @@ def _chart_spec_from_state(state: InvestigationState) -> ChartSpec | None:
     )
 
 
+def _retry_instruction(question: str, report: VerificationReport) -> str:
+    issue_lines = "\n".join(f"- {issue.category}: {issue.detail}" for issue in report.issues)
+    return (
+        f"{question}\n\nA verification pass reviewed your previous investigation and found "
+        f"problems that must be fixed before the answer can be presented:\n{issue_lines}\n\n"
+        "Continue investigating to address these specifically — retrieve/inspect/calculate "
+        "whatever is missing, reject a candidate that turned out wrong, or add an assumption/"
+        "warning explaining a genuine limitation. Reuse already-retrieved result_ids where "
+        "they're still valid."
+    )
+
+
 def run_research_mode(
     engine: QueryEngine,
     llm_agent: LLMAgent,
@@ -121,6 +143,8 @@ def run_research_mode(
     *,
     limits: AgentLimits | None = None,
     answer_writer: LLMAnswerWriter | None = None,
+    verifier: LLMVerifier | None = None,
+    max_verification_rounds: int = 2,
 ) -> tuple[AskResult, InvestigationState]:
     """Run the iterative StatisticalAgent, then apply the same deterministic
     validation gate every path in this project applies before presenting a
@@ -131,35 +155,72 @@ def run_research_mode(
     used only as the fallback for Phase 6's `write_and_verify_answer()` —
     the returned answer is LLM prose constrained to the same evidence and
     checked for unsupported numbers, never unchecked. Without one, the
-    deterministic text is returned as-is (e.g. fast-mode-style callers, or
-    tests that don't need an LLM answer-writer configured).
+    deterministic text is used as the answer directly.
+
+    If `verifier` is also supplied, that answer then goes through Phase 7's
+    independent semantic check; a FAIL sends the investigator back for one
+    more bounded round (see `_retry_instruction`) before rebuilding and
+    re-verifying, up to `max_verification_rounds`. If it still hasn't
+    passed when the bound is reached, the last answer is kept but a clear
+    warning is attached — never presented as silently clean.
 
     Returns (AskResult, InvestigationState) — the state is the full audit
     trail (task section 15's `debug=true` payload), kept separate from the
     AskResult callers get by default."""
     agent = StatisticalAgent(engine, llm_agent, limits=limits)
-    state = agent.investigate(question)
-
+    state: InvestigationState | None = None
     validation = None
-    if state.table.columns:
-        validation = validate_table(state.table)
-        state.validation_results.append(validation.as_dict())
+    answer_text = ""
+    report: VerificationReport | None = None
 
+    rounds = max(1, max_verification_rounds) if verifier is not None else 1
+    for round_number in range(1, rounds + 1):
+        if state is None:
+            state = agent.investigate(question)
+        else:
+            assert report is not None
+            state = agent.investigate(question, state=state, instruction=_retry_instruction(question, report))
+
+        validation = None
+        if state.table.columns:
+            validation = validate_table(state.table)
+            state.validation_results.append(validation.as_dict())
+
+        fallback_text = _build_answer_text(state.table if state.table.columns else None, validation)
+        answer_text = fallback_text
+        if answer_writer is not None:
+            write_result = write_and_verify_answer(
+                state.evidence_package(), answer_writer, fallback_text=fallback_text
+            )
+            answer_text = write_result.text
+            if not write_result.llm_written and write_result.unsupported_numbers:
+                state.warnings.append(
+                    "LLM answer-writer produced unsupported numbers "
+                    f"{write_result.unsupported_numbers}; used the deterministic answer instead."
+                )
+
+        if verifier is None:
+            break
+
+        report = verifier.verify(question=question, evidence=state.evidence_package(), draft_answer=answer_text)
+        state.verification_results.append(report.as_dict())
+
+        if report.status != "FAIL":
+            if report.status == "WARNING":
+                for issue in report.issues:
+                    state.warnings.append(f"Verification warning ({issue.category}): {issue.detail}")
+            break
+
+        if round_number == rounds:
+            issue_summary = "; ".join(f"{issue.category}: {issue.detail}" for issue in report.issues)
+            state.warnings.append(
+                f"Verification failed after {rounds} round(s) and could not be resolved: "
+                f"{issue_summary or 'no specific issues reported'}."
+            )
+
+    assert state is not None
     table_dict = state.table.as_dict() if state.table.columns else None
     chart = _chart_spec_from_state(state) if state.table.columns else None
-
-    fallback_text = _build_answer_text(state.table if state.table.columns else None, validation)
-    answer_text = fallback_text
-    if answer_writer is not None:
-        write_result = write_and_verify_answer(
-            state.evidence_package(), answer_writer, fallback_text=fallback_text
-        )
-        answer_text = write_result.text
-        if not write_result.llm_written and write_result.unsupported_numbers:
-            state.warnings.append(
-                "LLM answer-writer produced unsupported numbers "
-                f"{write_result.unsupported_numbers}; used the deterministic answer instead."
-            )
 
     return (
         AskResult(
@@ -193,6 +254,8 @@ def answer_question_with_mode(
     llm_agent: LLMAgent | None = None,
     limits: AgentLimits | None = None,
     answer_writer: LLMAnswerWriter | None = None,
+    verifier: LLMVerifier | None = None,
+    max_verification_rounds: int = 2,
 ) -> ModeRunResult:
     """The single entry point api.py's /ask (Phase 8) calls: resolves the
     mode, runs the matching path, and returns a uniform result shape.
@@ -227,7 +290,13 @@ def answer_question_with_mode(
 
     if resolved == "research":
         result, state = run_research_mode(
-            engine, llm_agent, question, limits=limits, answer_writer=answer_writer
+            engine,
+            llm_agent,
+            question,
+            limits=limits,
+            answer_writer=answer_writer,
+            verifier=verifier,
+            max_verification_rounds=max_verification_rounds,
         )
         return ModeRunResult(result=result, mode_used="research", investigation=state)
 

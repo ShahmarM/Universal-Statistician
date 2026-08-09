@@ -108,11 +108,39 @@ class StatisticalAgent:
         self.limits = limits or AgentLimits()
         self.system_prompt = system_prompt
 
-    def investigate(self, question: str) -> InvestigationState:
-        state = InvestigationState(question=question, engine=self.engine)
-        messages: list[dict] = [{"role": "user", "content": question}]
+    def investigate(
+        self,
+        question: str,
+        *,
+        state: InvestigationState | None = None,
+        instruction: str | None = None,
+    ) -> InvestigationState:
+        """Run the investigation loop. Pass `state` (from a prior call) plus
+        `instruction` to continue an existing investigation instead of
+        starting fresh — Phase 7's investigator<->verifier retry loop uses
+        this so a second round can build on already-retrieved/derived
+        results (same InvestigationState, same result_ids) instead of
+        redoing work; `state.iteration_count`/`tool_call_history` keep
+        accumulating, so AgentLimits still bound the *whole* verified
+        investigation, not just one round of it."""
+        resuming = state is not None
+        if state is None:
+            state = InvestigationState(question=question, engine=self.engine)
+            messages: list[dict] = [{"role": "user", "content": question}]
+        else:
+            prompt = instruction or question
+            messages = [
+                {
+                    "role": "user",
+                    "content": (
+                        f"{prompt}\n\nEvidence already gathered so far (reuse these "
+                        f"result_ids where they're still valid instead of "
+                        f"re-retrieving them):\n{json.dumps(state.evidence_package(), default=str)}"
+                    ),
+                }
+            ]
         started_at = time.monotonic()
-        investigator_summary = ""
+        investigator_summary = state.investigator_summary if resuming else ""
 
         while True:
             state.iteration_count += 1

@@ -169,6 +169,12 @@ class InvestigationState:
     unresolved_ambiguities: list[str] = field(default_factory=list)
     warnings: list[str] = field(default_factory=list)
     validation_results: list[dict] = field(default_factory=list)
+    #: One entry per investigator<->verifier round (Phase 7), each a
+    #: VerificationReport.as_dict() — debug-only, like tool_call_history:
+    #: the verifier's own past verdicts are not fed back into
+    #: evidence_package(), only used by agent/modes.py's retry loop to
+    #: decide whether to send the investigator back for another round.
+    verification_results: list[dict] = field(default_factory=list)
     provenance_references: list[dict] = field(default_factory=list)
     tool_call_history: list[ToolCallRecord] = field(default_factory=list)
     iteration_count: int = 0

@@ -13,6 +13,7 @@ from universal_statistician.agent.modes import (
     select_mode,
 )
 from universal_statistician.agent.state import catalog_id
+from universal_statistician.agent.verifier import VERIFY_TOOL_NAME, AnthropicVerifier
 from universal_statistician.core.catalog import Catalog, IndicatorEntry
 from universal_statistician.core.engine import QueryEngine
 from universal_statistician.core.query_plan import QuestionInterpretation
@@ -60,6 +61,20 @@ class FakeClient:
 
     def create(self, **kwargs):
         return self._responses.pop(0)
+
+
+def _verify_message(status: str, issues: list[dict] | None = None) -> Message:
+    return Message(
+        id="msg_verify", model="claude-sonnet-5", role="assistant", type="message",
+        stop_reason="tool_use", stop_sequence=None,
+        content=[
+            ToolUseBlock(
+                type="tool_use", id="tu_verify", name=VERIFY_TOOL_NAME,
+                input={"status": status, "issues": issues or []},
+            )
+        ],
+        usage=Usage(input_tokens=1, output_tokens=1),
+    )
 
 
 # ---- select_mode ------------------------------------------------------
@@ -209,6 +224,125 @@ def test_run_research_mode_falls_back_to_the_deterministic_answer_when_the_write
 
     assert "10.5" in result.answer
     assert any("unsupported" in w.lower() for w in result.warnings)
+
+
+def test_run_research_mode_returns_immediately_on_a_passing_verification():
+    cid = catalog_id("WB_WDI", "SP_POP_TOTL")
+    client = FakeClient(
+        [
+            _message(
+                ToolUseBlock(
+                    type="tool_use", id="tu_1", name="retrieve_series",
+                    input={"catalog_id": cid, "geographies": ["AZE"]},
+                ),
+                stop_reason="tool_use",
+            ),
+            _message(TextBlock(type="text", text="Retrieved population.")),
+        ]
+    )
+    engine = _engine()
+    llm_agent = AnthropicAgent(client=client)
+    verifier = AnthropicVerifier(client=FakeClient([_verify_message("PASS")]))
+
+    result, state = run_research_mode(engine, llm_agent, "Population of Azerbaijan?", verifier=verifier)
+
+    assert result.table is not None
+    assert state.verification_results == [{"status": "PASS", "issues": []}]
+    assert not any("verification" in w.lower() for w in result.warnings)
+
+
+def test_run_research_mode_sends_the_investigator_back_on_a_failing_verification_then_passes():
+    cid = catalog_id("WB_WDI", "SP_POP_TOTL")
+    agent_client = FakeClient(
+        [
+            _message(
+                ToolUseBlock(
+                    type="tool_use", id="tu_1", name="retrieve_series",
+                    input={"catalog_id": cid, "geographies": ["AZE"]},
+                ),
+                stop_reason="tool_use",
+            ),
+            _message(TextBlock(type="text", text="Retrieved population.")),
+            _message(TextBlock(type="text", text="Confirmed the figure, nothing more to retrieve.")),
+        ]
+    )
+    engine = _engine()
+    llm_agent = AnthropicAgent(client=agent_client)
+    verifier_client = FakeClient(
+        [
+            _verify_message("FAIL", [{"category": "unsupported_number", "detail": "99.9 not in evidence"}]),
+            _verify_message("PASS"),
+        ]
+    )
+    verifier = AnthropicVerifier(client=verifier_client)
+
+    result, state = run_research_mode(
+        engine, llm_agent, "Population of Azerbaijan?", verifier=verifier, max_verification_rounds=2
+    )
+
+    assert len(state.verification_results) == 2
+    assert state.verification_results[0]["status"] == "FAIL"
+    assert state.verification_results[1]["status"] == "PASS"
+    assert not any("could not be resolved" in w for w in result.warnings)
+
+
+def test_run_research_mode_stops_after_max_verification_rounds_and_warns():
+    cid = catalog_id("WB_WDI", "SP_POP_TOTL")
+    agent_client = FakeClient(
+        [
+            _message(
+                ToolUseBlock(
+                    type="tool_use", id="tu_1", name="retrieve_series",
+                    input={"catalog_id": cid, "geographies": ["AZE"]},
+                ),
+                stop_reason="tool_use",
+            ),
+            _message(TextBlock(type="text", text="Retrieved population.")),
+            _message(TextBlock(type="text", text="Still the same figure.")),
+        ]
+    )
+    engine = _engine()
+    llm_agent = AnthropicAgent(client=agent_client)
+    verifier_client = FakeClient(
+        [
+            _verify_message("FAIL", [{"category": "unsupported_number", "detail": "still wrong"}]),
+            _verify_message("FAIL", [{"category": "unsupported_number", "detail": "still wrong"}]),
+        ]
+    )
+    verifier = AnthropicVerifier(client=verifier_client)
+
+    result, state = run_research_mode(
+        engine, llm_agent, "Population of Azerbaijan?", verifier=verifier, max_verification_rounds=2
+    )
+
+    assert len(state.verification_results) == 2
+    assert any("could not be resolved" in w for w in result.warnings)
+
+
+def test_run_research_mode_keeps_going_but_warns_on_a_warning_verdict():
+    cid = catalog_id("WB_WDI", "SP_POP_TOTL")
+    client = FakeClient(
+        [
+            _message(
+                ToolUseBlock(
+                    type="tool_use", id="tu_1", name="retrieve_series",
+                    input={"catalog_id": cid, "geographies": ["AZE"]},
+                ),
+                stop_reason="tool_use",
+            ),
+            _message(TextBlock(type="text", text="Retrieved population.")),
+        ]
+    )
+    engine = _engine()
+    llm_agent = AnthropicAgent(client=client)
+    verifier = AnthropicVerifier(
+        client=FakeClient([_verify_message("WARNING", [{"category": "ignored_warning", "detail": "minor caveat"}])])
+    )
+
+    result, state = run_research_mode(engine, llm_agent, "Population of Azerbaijan?", verifier=verifier)
+
+    assert len(state.verification_results) == 1
+    assert any("minor caveat" in w for w in result.warnings)
 
 
 # ---- answer_question_with_mode --------------------------------------------

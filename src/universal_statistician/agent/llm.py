@@ -8,10 +8,10 @@ verifier must not touch data):
 
 - `LLMAgent` (Phase 2) — the iterative investigator
   (agent/loop.py's `StatisticalAgent`): one tool-calling turn at a time.
-- `LLMAnswerWriter` (this phase) — writes prose from already-validated
+- `LLMAnswerWriter` (Phase 6) — writes prose from already-validated
   evidence only, no tool access.
-- `LLMVerifier` (Phase 7) — checks a draft answer against the evidence,
-  no tool access, cannot modify data.
+- `LLMVerifier` (agent/verifier.py, Phase 7) — checks a draft answer
+  against the evidence, no tool access, cannot modify data.
 
 Each Protocol's shape mirrors the already-established convention in this
 project (planning/anthropic_planner.py, chat.py): a client is injected,
