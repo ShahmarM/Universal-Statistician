@@ -52,6 +52,7 @@ from universal_statistician.core.catalog import IndicatorEntry
 from universal_statistician.core.models import Attribution, Observation, SeriesResult
 from universal_statistician.providers.base import Provider
 from universal_statistician.providers.census_registry import BASE_URL, CensusSourceConfig
+from universal_statistician.providers.http_config import upstream_timeout_seconds
 
 #: https://api.census.gov/data/key_signup.html
 CENSUS_API_KEY_ENV_VAR = "CENSUS_API_KEY"
@@ -108,7 +109,7 @@ class CensusProvider(Provider):
         api_key = os.environ.get(CENSUS_API_KEY_ENV_VAR)
         if api_key:
             params["key"] = api_key
-        response = self._http().get(url, params=params, timeout=30)
+        response = self._http().get(url, params=params, timeout=upstream_timeout_seconds())
         if response.status_code == 404:
             return None  # no data published for this year/variable/geography
         if response.headers.get("X-DataWebAPI-KeyError"):
@@ -163,7 +164,7 @@ class CensusProvider(Provider):
 
     def discover_catalog_entries(self) -> list[IndicatorEntry]:
         url = f"{BASE_URL}/{self.config.variables_year}/{self.config.dataset_path}/variables.json"
-        response = self._http().get(url, timeout=30)
+        response = self._http().get(url, timeout=upstream_timeout_seconds())
         response.raise_for_status()
         return self._entries_from_variables(response.json())
 

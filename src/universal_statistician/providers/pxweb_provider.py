@@ -41,6 +41,7 @@ from pxweb import PxApi
 from universal_statistician.core.catalog import IndicatorEntry
 from universal_statistician.core.models import Attribution, Observation, SeriesResult
 from universal_statistician.providers.base import Provider
+from universal_statistician.providers.http_config import upstream_timeout_seconds
 from universal_statistician.providers.pxweb_registry import PXWebSourceConfig
 
 
@@ -61,7 +62,7 @@ class PXWebProvider(Provider):
 
     def _api(self) -> PxApi:
         if self._api_instance is None:
-            self._api_instance = PxApi(self.config.api_url)
+            self._api_instance = PxApi(self.config.api_url, timeout=int(upstream_timeout_seconds()))
         return self._api_instance
 
     def get_series(
@@ -145,7 +146,11 @@ class PXWebProvider(Provider):
         # A fresh, separate PxApi instance rather than self._api(): this one
         # requests a specific language for discovery labels, which must not
         # change get_series()'s already-verified, language-unset behavior.
-        discovery_api = PxApi(self.config.api_url, language=self.config.discovery_language)
+        discovery_api = PxApi(
+            self.config.api_url,
+            language=self.config.discovery_language,
+            timeout=int(upstream_timeout_seconds()),
+        )
         variables = discovery_api.get_table_variables(self.config.table_id)
         return self._entries_from_variables(variables)
 

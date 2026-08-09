@@ -1,0 +1,27 @@
+name: CI
+
+on:
+  push:
+    branches: ["**"]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install package with dev dependencies
+        run: pip install -e ".[dev]"
+
+      # Offline suite only (see pyproject.toml's "network" marker) -- these
+      # tests hit real official statistics APIs and would make CI flaky and
+      # dependent on hosts this project doesn't control. Run
+      # `pytest -m network` locally/manually against a real network to
+      # verify live behavior (see docs/architecture/provider-verification-matrix.md).
+      - name: Run offline test suite
+        run: pytest -q -m "not network"

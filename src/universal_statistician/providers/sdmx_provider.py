@@ -17,6 +17,7 @@ import sdmx
 
 from universal_statistician.core.models import Attribution, Observation, SeriesResult
 from universal_statistician.providers.base import Provider
+from universal_statistician.providers.http_config import upstream_timeout_seconds
 from universal_statistician.providers.registry import SDMXSourceConfig
 
 _FREQUENCIES = {"A", "Q", "M", "D"}
@@ -41,7 +42,7 @@ class SDMXProvider(Provider):
         self.source_id = config.source_id
         self.source_name = config.source_name
         self.cache_ttl_seconds = config.cache_ttl_seconds
-        self._client = sdmx.Client(config.source_id)
+        self._client = sdmx.Client(config.source_id, timeout=upstream_timeout_seconds())
 
     def _build_key(self, indicator_id: str, ref_area: str) -> str:
         parts = [

@@ -152,3 +152,74 @@ def test_ask_with_use_llm_but_no_api_key_is_400(monkeypatch):
     response = client.post("/ask", json={"question": "population", "use_llm": True})
     assert response.status_code == 400
     assert "ANTHROPIC_API_KEY" in response.json()["detail"]
+
+
+# ---- Phase K: production readiness -----------------------------------------
+
+
+def test_health_reports_ok_and_catalog_stats_without_touching_any_provider(monkeypatch):
+    # The whole point of /health (per this project's "startup never
+    # requires upstream APIs" rule): even with every provider replaced by
+    # one that raises on any call, /health must still succeed, because it
+    # only reads the local catalog.
+    monkeypatch.setattr(api, "_engine", QueryEngine({"FAKE": FailingProvider("FAKE")}, catalog=Catalog()))
+
+    response = client.get("/health")
+
+    assert response.status_code == 200
+    body = response.json()
+    assert body["status"] == "ok"
+    assert "catalog" in body
+
+
+def test_cors_kwargs_defaults_to_localhost_only(monkeypatch):
+    monkeypatch.delenv("USTAT_CORS_ORIGINS", raising=False)
+    assert api._cors_kwargs() == {
+        "allow_origin_regex": r"http://(localhost|127\.0\.0\.1)(:\d+)?"
+    }
+
+
+def test_cors_kwargs_reads_a_comma_separated_env_var(monkeypatch):
+    monkeypatch.setenv("USTAT_CORS_ORIGINS", "https://a.example.com, https://b.example.com")
+    assert api._cors_kwargs() == {
+        "allow_origins": ["https://a.example.com", "https://b.example.com"]
+    }
+
+
+def test_rate_limiter_allows_up_to_the_configured_max():
+    limiter = api._RateLimiter(max_requests=2, window_seconds=60)
+    assert limiter.allow("1.2.3.4") is True
+    assert limiter.allow("1.2.3.4") is True
+    assert limiter.allow("1.2.3.4") is False
+
+
+def test_rate_limiter_tracks_clients_independently():
+    limiter = api._RateLimiter(max_requests=1, window_seconds=60)
+    assert limiter.allow("1.2.3.4") is True
+    assert limiter.allow("5.6.7.8") is True  # a different client, own budget
+    assert limiter.allow("1.2.3.4") is False
+
+
+def test_rate_limiter_resets_after_the_window_elapses(monkeypatch):
+    limiter = api._RateLimiter(max_requests=1, window_seconds=10)
+    times = iter([100.0, 100.0, 111.0])
+    monkeypatch.setattr(api.time, "monotonic", lambda: next(times))
+
+    assert limiter.allow("1.2.3.4") is True
+    assert limiter.allow("1.2.3.4") is False  # still within the window
+    assert limiter.allow("1.2.3.4") is True  # window elapsed, budget reset
+
+
+def test_rate_limiter_disabled_when_max_requests_is_zero():
+    limiter = api._RateLimiter(max_requests=0, window_seconds=60)
+    assert all(limiter.allow("1.2.3.4") for _ in range(1000))
+
+
+def test_rate_limit_middleware_returns_429_once_the_limit_is_exceeded(monkeypatch):
+    monkeypatch.setattr(api, "_rate_limiter", api._RateLimiter(max_requests=1, window_seconds=60))
+
+    first = client.get("/health")
+    second = client.get("/health")
+
+    assert first.status_code == 200
+    assert second.status_code == 429

@@ -8,10 +8,13 @@ dashboard, per plan.md's step 9.
 from __future__ import annotations
 
 import os
+import threading
+import time
 from typing import Optional
 
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, Request
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import JSONResponse
 from pydantic import BaseModel
 
 from universal_statistician import tools
@@ -27,15 +30,73 @@ app = FastAPI(
     ),
 )
 
-# Personal/local tool, no auth (see plan.md) — the dashboard may be served by
-# Vite's dev server or as static files, on whatever local port either picks,
-# so we allow any localhost/127.0.0.1 origin rather than hardcoding one.
+
+def _cors_kwargs() -> dict:
+    """Phase K: allowed origins configurable via USTAT_CORS_ORIGINS (a
+    comma-separated list, e.g. "https://app.example.com,https://example.com")
+    for a real deployment. Unset keeps this project's original personal/
+    local-tool default: any localhost/127.0.0.1 origin, since the dashboard
+    may be served by Vite's dev server or as static files on whatever local
+    port either picks — never widened to "allow everything" implicitly."""
+    origins = os.environ.get("USTAT_CORS_ORIGINS")
+    if origins:
+        return {"allow_origins": [o.strip() for o in origins.split(",") if o.strip()]}
+    return {"allow_origin_regex": r"http://(localhost|127\.0\.0\.1)(:\d+)?"}
+
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origin_regex=r"http://(localhost|127\.0\.0\.1)(:\d+)?",
     allow_methods=["*"],
     allow_headers=["*"],
+    **_cors_kwargs(),
 )
+
+
+class _RateLimiter:
+    """Basic in-process rate limiting (Phase K) — a fixed-window counter per
+    client IP. Deliberately not Redis-backed: this project's stated scope is
+    a personal/local tool run as a single process (see plan.md), and a
+    single dict behind a lock is the whole job for that case. This would
+    need a shared backend to work correctly across multiple worker
+    processes/replicas — documented here, not silently assumed away, so a
+    future multi-process deployment doesn't get a false sense of protection.
+    """
+
+    def __init__(self, max_requests: int, window_seconds: float) -> None:
+        self._max_requests = max_requests
+        self._window_seconds = window_seconds
+        self._lock = threading.Lock()
+        self._counts: dict[str, tuple[int, float]] = {}
+
+    def allow(self, key: str) -> bool:
+        if self._max_requests <= 0:
+            return True
+        now = time.monotonic()
+        with self._lock:
+            count, window_start = self._counts.get(key, (0, now))
+            if now - window_start >= self._window_seconds:
+                count, window_start = 0, now
+            count += 1
+            self._counts[key] = (count, window_start)
+            return count <= self._max_requests
+
+
+#: USTAT_RATE_LIMIT_REQUESTS=0 disables rate limiting entirely (the default
+#: --- a personal/local tool with no untrusted traffic doesn't need it on by
+#: default; a real deployment sets both env vars).
+_rate_limiter = _RateLimiter(
+    max_requests=int(os.environ.get("USTAT_RATE_LIMIT_REQUESTS", "0")),
+    window_seconds=float(os.environ.get("USTAT_RATE_LIMIT_WINDOW_SECONDS", "60")),
+)
+
+
+@app.middleware("http")
+async def _rate_limit_middleware(request: Request, call_next):
+    client = request.client.host if request.client else "unknown"
+    if not _rate_limiter.allow(client):
+        return JSONResponse(status_code=429, content={"detail": "Rate limit exceeded"})
+    return await call_next(request)
+
 
 _engine: QueryEngine = default_engine()
 
@@ -66,6 +127,18 @@ def _call(fn, *args, **kwargs):
         raise HTTPException(
             status_code=502, detail=f"Upstream data source request failed: {exc}"
         ) from exc
+
+
+@app.get("/health")
+def health() -> dict:
+    """Liveness/readiness check (Phase K). Deliberately touches only the
+    local catalog (a SQLite read, see Catalog.summary()) — never an
+    upstream provider API. A deploy/orchestration probe must be able to
+    tell the process is up even when every external statistics API is
+    unreachable; that's the whole point of this project's "startup never
+    requires upstream APIs" rule (see core/engine.py's _open_catalog())."""
+    catalog = _engine.catalog_stats()
+    return {"status": "ok", "catalog": catalog}
 
 
 @app.get("/sources")
