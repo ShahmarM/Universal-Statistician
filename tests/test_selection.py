@@ -31,6 +31,37 @@ def test_exact_name_match_beats_fuzzy_match():
     assert result.selected_indicators == (exact,)
 
 
+def test_catalog_search_rank_breaks_ties_between_equally_named_candidates():
+    # Phase H: reproduces a real, live-discovered bug. Both candidates'
+    # names contain "inflation" (one as the actual concept, one as an
+    # unrelated compound modifier: "...inflation-adjusted dollars"), and
+    # neither carries geographic_coverage/frequency data to differentiate
+    # on — before search_rank existed, this was an exact score tie broken
+    # alphabetically by source_id, which picked US_CENSUS_ACS1's noise
+    # entry over WB_WDI's flagship indicator purely because "US..." sorts
+    # before "WB...". Catalog.search() (Phase C) already ranked the real
+    # match first; search_rank is what lets selection see that.
+    flagship = CandidateIndicator(
+        indicator_id="FP_CPI_TOTL_ZG",
+        source_id="WB_WDI",
+        name="Inflation, consumer prices (annual %)",
+        concept="inflation",
+        search_rank=0,
+    )
+    noise = CandidateIndicator(
+        indicator_id="B19313C_001E",
+        source_id="US_CENSUS_ACS1",
+        name="Estimate!!Aggregate income in the past 12 months (in 2022 inflation-adjusted dollars)",
+        concept="inflation",
+        search_rank=3,
+    )
+    plan = _plan(concepts=("inflation",), candidate_indicators=(noise, flagship))
+
+    result = select_indicators(plan)
+
+    assert result.selected_indicators == (flagship,)
+
+
 def test_geographic_coverage_of_requested_areas_wins():
     covers_all = CandidateIndicator(
         indicator_id="COVERS", source_id="A", name="GDP", concept="gdp",

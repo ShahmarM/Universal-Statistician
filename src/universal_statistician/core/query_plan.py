@@ -71,6 +71,18 @@ class CandidateIndicator:
     geographic_coverage: tuple[str, ...] | None = None
     #: Structured semantics (Phase F) — see StatisticalSemantics.
     semantics: StatisticalSemantics | None = None
+    #: 0-based position in engine.search_indicator()'s results for this
+    #: concept (Phase H: a real, live-discovered bug otherwise threw this
+    #: information away). Catalog.search() already ranks the flagship/
+    #: general indicator above narrow sub-breakdowns and cross-source noise
+    #: (Phase C's composite scoring) — score_candidate() re-scores from
+    #: catalog *metadata* alone and has no equivalent signal, so without
+    #: this, a noise candidate that happens to tie on metadata (e.g. a
+    #: substring name match plus no geographic_coverage data to
+    #: differentiate on) could out-rank the true top search result on an
+    #: arbitrary (source_id, indicator_id) tie-break. See
+    #: core/selection.py::score_candidate().
+    search_rank: int = 0
 
     def as_dict(self) -> dict:
         return {
@@ -84,6 +96,7 @@ class CandidateIndicator:
                 list(self.geographic_coverage) if self.geographic_coverage is not None else None
             ),
             "semantics": self.semantics.as_dict() if self.semantics is not None else None,
+            "search_rank": self.search_rank,
         }
 
 
@@ -344,9 +357,10 @@ def build_query_plan(
             frequency=match.frequency,
             geographic_coverage=match.geographic_coverage,
             semantics=match.semantics,
+            search_rank=rank,
         )
         for concept in all_concepts
-        for match in engine.search_indicator(concept, limit=candidates_per_concept)
+        for rank, match in enumerate(engine.search_indicator(concept, limit=candidates_per_concept))
     )
 
     return QueryPlan(

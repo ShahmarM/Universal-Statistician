@@ -33,6 +33,22 @@ def score_candidate(candidate: CandidateIndicator, plan: QueryPlan) -> tuple[flo
     score = 0.0
     reasons: list[str] = []
 
+    # Phase H: a real, live-discovered bug — without this, every candidate
+    # for a concept only differs on catalog *metadata* (name substring,
+    # geographic_coverage, frequency), which routinely ties (e.g. no
+    # candidate has geographic_coverage data at all, or two names both
+    # contain the concept word — one as the actual concept, one as an
+    # unrelated compound modifier like "inflation-adjusted"). A tie then
+    # fell through to an arbitrary (source_id, indicator_id) sort, which
+    # picked US_CENSUS_ACS1's noise entry over WB_WDI's flagship indicator
+    # for a plain "inflation" query purely because "US_CENSUS_ACS1" sorts
+    # before "WB_WDI" alphabetically. Catalog.search() already ranks
+    # candidates well (Phase C's composite scoring); this carries that
+    # ranking through instead of discarding it and re-deriving a weaker
+    # signal from scratch.
+    score += max(0, 5 - candidate.search_rank) * 0.3
+    reasons.append(f"catalog search rank {candidate.search_rank}")
+
     concept_lower = candidate.concept.strip().lower()
     name_lower = candidate.name.lower()
     if concept_lower and concept_lower in name_lower:
