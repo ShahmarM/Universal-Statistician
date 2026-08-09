@@ -75,6 +75,14 @@ class QueryEngine:
         )
         return results
 
+    def describe_indicator(self, source_id: str, indicator_id: str) -> IndicatorMeta | None:
+        """Direct-by-id catalog lookup (Catalog.get()) — unlike
+        search_indicator(), no ranking/text-matching involved: used by the
+        agent's inspect_series tool (agent/tools.py) to fetch full metadata
+        for one specific catalog_id a caller already has, e.g. from a prior
+        search_series result."""
+        return self._catalog.get(source_id, indicator_id)
+
     def _get_provider(self, source_id: str) -> Provider:
         try:
             return self._providers[source_id]
