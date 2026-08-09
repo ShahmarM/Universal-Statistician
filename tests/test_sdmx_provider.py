@@ -1,6 +1,15 @@
 from __future__ import annotations
 
 import pytest
+from sdmx.model.v21 import (
+    DataSet,
+    DataStructureDefinition,
+    Dimension,
+    Key,
+    Observation as SdmxObservation,
+    PrimaryMeasure,
+    TimeDimension,
+)
 
 from universal_statistician.providers.registry import SOURCES
 from universal_statistician.providers.sdmx_provider import SDMXProvider
@@ -39,6 +48,33 @@ def test_to_series_result_normalizes_and_attributes(wb_provider, sdmx_dataset):
     assert attribution.dataset_id == "WDI"
     assert attribution.source_url
     assert attribution.retrieved_at is not None
+
+
+def test_to_series_result_finds_time_period_by_name_not_position(wb_provider):
+    # Regression guard for a real, previously-shipped bug (found live,
+    # Phase H): _to_series_result() used to grab index_tuple[-1] assuming
+    # TIME_PERIOD sorts last. Verified live it never does (World Bank/IMF/
+    # Eurostat all put it first) - this builds a dataset where TIME_PERIOD
+    # is deliberately in the MIDDLE, with a trailing dimension whose value
+    # ("XYZ") would be silently and wrongly used as the "period" by a
+    # position-based lookup, to prove the fix is genuinely order-independent,
+    # not just coincidentally still correct for one particular fixture order.
+    dsd = DataStructureDefinition(id="ORDER_TEST_DSD")
+    dsd.dimensions.append(Dimension(id="REF_AREA", order=1))
+    dsd.dimensions.append(TimeDimension(id="TIME_PERIOD", order=2))
+    dsd.dimensions.append(Dimension(id="TRAILING_ATTR", order=3))
+    dsd.measures.append(PrimaryMeasure(id="OBS_VALUE"))
+
+    dataset = DataSet(structured_by=dsd)
+    key = dsd.make_key(
+        Key, {"REF_AREA": "AFG", "TIME_PERIOD": "2021", "TRAILING_ATTR": "XYZ"}
+    )
+    dataset.add_obs([SdmxObservation(dimension=key, value=42.0)])
+
+    result = wb_provider._to_series_result(dataset, "SP_POP_TOTL", "AFG")
+
+    assert [o.period for o in result.observations] == ["2021"]
+    assert result.observations[0].period != "XYZ"
 
 
 def test_as_dict_is_json_friendly(wb_provider, sdmx_dataset):

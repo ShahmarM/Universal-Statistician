@@ -36,9 +36,19 @@ from sdmx.model.v21 import (
 def sdmx_dataset():
     def _build(observations: dict[str, float | None], ref_area: str, indicator: str) -> DataSet:
         dsd = DataStructureDefinition(id="TEST_DSD")
-        dsd.dimensions.append(Dimension(id="REF_AREA", order=1))
-        dsd.dimensions.append(Dimension(id="SERIES", order=2))
-        dsd.dimensions.append(TimeDimension(id="TIME_PERIOD", order=3))
+        # Dimension order verified live (Phase H, `pytest -m network`
+        # against World Bank/IMF/Eurostat): sdmx.to_pandas() always puts
+        # TIME_PERIOD *first* in the resulting index, regardless of how
+        # many other dimensions/attributes follow it - never last. An
+        # earlier version of this fixture declared TIME_PERIOD last, which
+        # is why SDMXProvider._to_series_result()'s old `index_tuple[-1]`
+        # bug (grabbing FREQ/an attribute instead of the real period) went
+        # undetected offline: the fixture and the bug were wrong the same
+        # way. Declaring it first here, matching live reality, is what
+        # makes this fixture an actual regression guard again.
+        dsd.dimensions.append(TimeDimension(id="TIME_PERIOD", order=1))
+        dsd.dimensions.append(Dimension(id="REF_AREA", order=2))
+        dsd.dimensions.append(Dimension(id="SERIES", order=3))
         dsd.measures.append(PrimaryMeasure(id="OBS_VALUE"))
 
         dataset = DataSet(structured_by=dsd)

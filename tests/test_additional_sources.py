@@ -60,10 +60,14 @@ def test_eurostat_gdp_parses_and_attributes(sdmx_dataset):
 
 @pytest.mark.network
 def test_live_imf_data_cpi_smoke():
-    """Mirrors sdmx1's own TestIMF_DATA example exactly. Requires network
-    access this sandbox denies; run with `pytest -m network` elsewhere."""
+    """sdmx1's own TestIMF_DATA example uses ref_area="111" (a legacy IMF
+    numeric country code) - verified live (Phase H) to no longer return any
+    data: IMF's live CL_COUNTRY codelist for this dataflow only contains
+    ISO 3166-1 alpha-3 codes today ("USA", "AFG", ...), not "111". "USA"
+    confirmed live to return 100+ real monthly CPI observations; see
+    docs/architecture/provider-verification-matrix.md."""
     result = SDMXProvider(SOURCES["IMF_DATA_CPI"]).get_series(
-        "CP01", "111", start_period="2018"
+        "CP01", "USA", start_period="2018"
     )
     assert result.observations
 

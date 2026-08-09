@@ -60,14 +60,33 @@ class SDMXProvider(Provider):
 
     def _to_series_result(self, dataset, indicator_id: str, ref_area: str) -> SeriesResult:
         """Pure conversion step, kept separate from _client.data() so it can be
-        unit-tested against an in-memory DataSet without any network call."""
+        unit-tested against an in-memory DataSet without any network call.
+
+        Finds the period by the TIME_PERIOD index level's *name*, not a
+        fixed position — a real, previously-shipped bug (found live,
+        Phase H: `pytest -m network` against World Bank/IMF/Eurostat) used
+        `index_tuple[-1]`, assuming TIME_PERIOD sorts last in
+        `sdmx.to_pandas()`'s resulting MultiIndex. It never does: verified
+        live for all three sources, `sdmx.to_pandas()` always puts
+        TIME_PERIOD *first* (World Bank: `[TIME_PERIOD, REF_AREA, SERIES,
+        FREQ]`; IMF: `[TIME_PERIOD, INDEX_TYPE, COICOP_1999, ...]`;
+        Eurostat: `[TIME_PERIOD, geo, na_item, unit, freq]`) — `[-1]` was
+        silently grabbing FREQ/SECURITY_CLASSIFICATION/`freq` as the
+        "period" instead. The offline synthetic fixture (tests/conftest.py)
+        happened to declare its dimensions with TIME_PERIOD last too, so
+        this was never caught by any offline test — both were wrong the
+        same way. Looking up by name, rather than trusting either a fixed
+        position or this project's own prior (incorrect) assumption, is
+        correct regardless of dimension count or order for any source.
+        """
         series = sdmx.to_pandas(dataset)
+        time_period_position = series.index.names.index("TIME_PERIOD")
 
         observations = tuple(
             sorted(
                 (
                     Observation(
-                        period=str(index_tuple[-1]),
+                        period=str(index_tuple[time_period_position]),
                         value=None if pd.isna(value) else float(value),
                     )
                     for index_tuple, value in series.items()

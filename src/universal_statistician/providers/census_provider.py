@@ -2,8 +2,8 @@
 for why this is a third, deliberately different wire-protocol family
 alongside SDMX and PX-Web.
 
-Two real protocol differences from every other provider in this project,
-both handled explicitly rather than papered over:
+Three real protocol differences from every other provider in this project,
+all handled explicitly rather than papered over:
 
 1. **One HTTP request per year, not one request for a period range.**
    Census publishes one dataset per year (`/data/{year}/{dataset}`); there is
@@ -16,6 +16,20 @@ both handled explicitly rather than papered over:
    an empty result row** — skipped explicitly (contributes no Observation
    for that period) rather than raising, so one missing year doesn't fail an
    entire multi-year request; any other HTTP error still propagates.
+3. **The `/data/{year}/{dataset}` query endpoint requires an API key** —
+   verified live (Phase H): an unauthenticated request gets redirected
+   (`X-DataWebAPI-KeyError: 1`) to an HTML "missing key" page instead of
+   JSON. This corrects an earlier, unverified assumption in this project
+   that small unauthenticated requests were accepted; they are not, at
+   least not for this dataset today. `variables.json` (discovery) does
+   *not* require one — verified live too, a real, confirmed asymmetry, not
+   a guess either way. The key is read from the `CENSUS_API_KEY`
+   environment variable (same "environment variables provide credentials,
+   never commit API keys" principle already used for
+   `ANTHROPIC_API_KEY`) — free to obtain at
+   https://api.census.gov/data/key_signup.html. Without it, get_series()
+   raises a clear error rather than the cryptic JSONDecodeError an
+   unauthenticated request produces (the HTML redirect target isn't JSON).
 
 Response shape (see census_registry.py's docstring for the honesty caveat):
 a plain 2D JSON array, `[["NAME","B01003_001E","state"], ["Alabama",
@@ -28,6 +42,7 @@ a single area). Every value is a string, including numeric ones.
 
 from __future__ import annotations
 
+import os
 from datetime import datetime, timezone
 from typing import Any
 
@@ -37,6 +52,13 @@ from universal_statistician.core.catalog import IndicatorEntry
 from universal_statistician.core.models import Attribution, Observation, SeriesResult
 from universal_statistician.providers.base import Provider
 from universal_statistician.providers.census_registry import BASE_URL, CensusSourceConfig
+
+#: https://api.census.gov/data/key_signup.html
+CENSUS_API_KEY_ENV_VAR = "CENSUS_API_KEY"
+
+
+class CensusMissingApiKeyError(RuntimeError):
+    pass
 
 #: Variable codes that describe geography/identity rather than a statistic —
 #: never real indicators, so discovery excludes them rather than seeding the
@@ -82,11 +104,25 @@ class CensusProvider(Provider):
 
     def _fetch_year(self, year: str, indicator_id: str, ref_area: str) -> Observation | None:
         url = f"{BASE_URL}/{year}/{self.config.dataset_path}"
-        response = self._http().get(
-            url, params={"get": f"NAME,{indicator_id}", "for": f"state:{ref_area}"}, timeout=30
-        )
+        params = {"get": f"NAME,{indicator_id}", "for": f"state:{ref_area}"}
+        api_key = os.environ.get(CENSUS_API_KEY_ENV_VAR)
+        if api_key:
+            params["key"] = api_key
+        response = self._http().get(url, params=params, timeout=30)
         if response.status_code == 404:
             return None  # no data published for this year/variable/geography
+        if response.headers.get("X-DataWebAPI-KeyError"):
+            # An unauthenticated (or invalid-key) request 302s to an HTML
+            # "missing key" page, not a JSON error - requests follows the
+            # redirect by default, so response.status_code is 200 here and
+            # response.json() would fail with an opaque JSONDecodeError
+            # instead of explaining what actually went wrong.
+            raise CensusMissingApiKeyError(
+                f"US Census API rejected the request for missing/invalid credentials "
+                f"(no error from a plain 404, an HTML page instead of JSON). Set the "
+                f"{CENSUS_API_KEY_ENV_VAR} environment variable — free key at "
+                "https://api.census.gov/data/key_signup.html"
+            )
         response.raise_for_status()
         return self._parse_year_response(response.json(), indicator_id, year)
 

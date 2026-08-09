@@ -23,8 +23,29 @@ class SDMXDiscoveryError(RuntimeError):
 
 
 def _enumerated_codelist(dimension):
+    """The dimension's enumerated codelist, wherever the live DSD actually
+    put it — verified to differ by source (Phase H, live `pytest -m
+    network` run): Eurostat's NAMA_10_GDP puts a real, non-empty codelist
+    directly on each dimension's own `local_representation` (already
+    covered by the offline fixture this project built before any live
+    access existed, and confirmed live). IMF's DSD_CPI does not — every one
+    of its dimensions' `local_representation` came back `None` from a live
+    `datastructure` request, and the real, fully-populated codelist (343
+    country codes, 15 COICOP categories, etc.) was only reachable via each
+    dimension's *concept*'s `core_representation` instead. Checked here as
+    a fallback, in that order, rather than assumed for either source."""
     representation = dimension.local_representation
-    return representation.enumerated if representation is not None else None
+    codelist = representation.enumerated if representation is not None else None
+    if codelist is not None and codelist.items:
+        return codelist
+
+    concept = dimension.concept_identity
+    if concept is not None and concept.core_representation is not None:
+        concept_codelist = concept.core_representation.enumerated
+        if concept_codelist is not None and concept_codelist.items:
+            return concept_codelist
+
+    return None
 
 
 def entries_from_dsd(dsd, config: SDMXSourceConfig, *, source_organization: str) -> list[IndicatorEntry]:
