@@ -36,7 +36,22 @@ SYSTEM_PROMPT = (
     "and only set needs_clarification=true with a specific "
     "clarification_question when the possible interpretations would give "
     "materially different results — do not ask for clarification on minor "
-    "ambiguities you can reasonably resolve yourself."
+    "ambiguities you can reasonably resolve yourself.\n\n"
+    "Each entry in `transformations` describes WHAT statistical operation is "
+    "required — never a number, never a computed result. Simple operations "
+    "(growth, yoy_growth, period_over_period_growth, absolute_change, "
+    "pp_change, cagr, cumulative_growth, rank) only need `operation` set. "
+    "Operations that combine two series (share, per_capita, difference) need "
+    "the concept fields their schema describes (e.g. share's "
+    "numerator_concept/denominator_concept) — write each referenced concept "
+    "as a natural-language phrase exactly like `concepts`, e.g. 'non-oil GDP' "
+    "or 'total GDP', never an indicator code; you do not need to also repeat "
+    "it in the top-level `concepts` array, it gets resolved through the "
+    "catalog either way. `index` needs input_concept and base_period (e.g. "
+    "'2015'); base_value defaults to 100 if omitted. `weighted_average` "
+    "combines a single concept's values across several of the question's "
+    "geographies — `inputs` must be geography/country codes already present "
+    "in `geographies`, one per entry of `weights`, not concepts."
 )
 
 PLAN_TOOL_SCHEMA = {
@@ -71,8 +86,69 @@ PLAN_TOOL_SCHEMA = {
             },
             "transformations": {
                 "type": "array",
-                "items": {"type": "string"},
-                "description": "e.g. ['yoy_growth', 'cumulative_growth', 'ratio', 'rank'] if the question asks for a computed value rather than a raw observation.",
+                "items": {
+                    "type": "object",
+                    "properties": {
+                        "operation": {
+                            "type": "string",
+                            "enum": [
+                                "growth", "yoy_growth", "period_over_period_growth",
+                                "absolute_change", "pp_change", "cagr", "cumulative_growth",
+                                "rank", "share", "per_capita", "difference", "index",
+                                "weighted_average",
+                            ],
+                        },
+                        "numerator_concept": {
+                            "type": ["string", "null"],
+                            "description": "share/per_capita only: natural-language concept, never a code.",
+                        },
+                        "denominator_concept": {
+                            "type": ["string", "null"],
+                            "description": "share/per_capita only: natural-language concept, never a code.",
+                        },
+                        "input_concept": {
+                            "type": ["string", "null"],
+                            "description": "index only: natural-language concept, never a code.",
+                        },
+                        "base_period": {
+                            "type": ["string", "null"],
+                            "description": "index only: the period rebased to base_value, e.g. '2015'.",
+                        },
+                        "base_value": {
+                            "type": ["number", "null"],
+                            "description": "index only: defaults to 100 if omitted.",
+                        },
+                        "left_concept": {
+                            "type": ["string", "null"],
+                            "description": "difference only: natural-language concept, never a code.",
+                        },
+                        "right_concept": {
+                            "type": ["string", "null"],
+                            "description": "difference only: natural-language concept, never a code.",
+                        },
+                        "inputs": {
+                            "type": "array",
+                            "items": {"type": "string"},
+                            "description": "weighted_average only: geography/country codes already in `geographies`, not concepts.",
+                        },
+                        "weights": {
+                            "type": "array",
+                            "items": {"type": "number"},
+                            "description": "weighted_average only: one weight per entry of `inputs`, same order.",
+                        },
+                        "output_name": {
+                            "type": ["string", "null"],
+                            "description": "Optional human-readable name for the result, e.g. 'non-oil share of GDP'.",
+                        },
+                    },
+                    "required": ["operation"],
+                },
+                "description": (
+                    "Statistical operations the question asks for, each describing WHAT to "
+                    "compute — never a number. e.g. [{'operation': 'cumulative_growth'}] for "
+                    "'cumulative GDP growth', or [{'operation': 'share', 'numerator_concept': "
+                    "'non-oil GDP', 'denominator_concept': 'total GDP'}] for a share question."
+                ),
             },
             "comparison": {
                 "type": ["string", "null"],

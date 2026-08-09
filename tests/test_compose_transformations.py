@@ -18,11 +18,14 @@ from universal_statistician.core.compose import (
     with_cumulative_growth,
     with_difference,
     with_index,
+    with_index_column,
     with_moving_average,
     with_per_capita,
+    with_per_capita_pair,
     with_period_over_period_growth,
     with_pp_change,
     with_share,
+    with_share_pair,
     with_sum,
     with_weighted_average,
 )
@@ -170,6 +173,90 @@ def test_with_per_capita_divides_by_population_column():
     result = with_per_capita(table, population_key="POP")
 
     assert result.value_at("2020", "GDP__per_capita") == pytest.approx(100.0)
+
+
+# ---- with_share_pair / with_per_capita_pair / with_index_column (Phase D: -----
+# precise two-key/single-column counterparts used by structured
+# transformation dispatch, core/ask.py) ------------------------------------------
+
+
+def test_with_share_pair_computes_percentage_of_denominator():
+    table = _table(NONOIL={"2020": 60.0}, TOTAL={"2020": 100.0})
+    result = with_share_pair(table, "NONOIL", "TOTAL")
+
+    assert result.value_at("2020", "NONOIL__share_of_TOTAL") == pytest.approx(60.0)
+    col = next(c for c in result.columns if c.key == "NONOIL__share_of_TOTAL")
+    assert col.input_series == ("NONOIL", "TOTAL")
+
+
+def test_with_share_pair_supports_a_custom_result_key():
+    table = _table(NONOIL={"2020": 60.0}, TOTAL={"2020": 100.0})
+    result = with_share_pair(table, "NONOIL", "TOTAL", result_key="AZE__non_oil_share")
+
+    assert result.value_at("2020", "AZE__non_oil_share") == pytest.approx(60.0)
+
+
+def test_with_share_pair_unknown_column_raises():
+    table = _table(NONOIL={"2020": 60.0})
+    with pytest.raises(ValueError):
+        with_share_pair(table, "NONOIL", "NOPE")
+
+
+def test_with_share_pair_only_touches_the_named_pair_not_every_base_column():
+    # Unlike with_share() (which adds a derived column for every OTHER base
+    # column against the total), the precise pair variant must not produce
+    # anything for a third, unrelated base column in the same table.
+    table = _table(NONOIL={"2020": 60.0}, TOTAL={"2020": 100.0}, POP={"2020": 10.0})
+    result = with_share_pair(table, "NONOIL", "TOTAL")
+
+    keys = {c.key for c in result.columns}
+    assert "POP__share_of_TOTAL" not in keys
+    assert len(result.columns) == 4  # 3 base + exactly 1 derived
+
+
+def test_with_per_capita_pair_divides_numerator_by_denominator():
+    table = _table(GDP={"2020": 1000.0}, POP={"2020": 10.0})
+    result = with_per_capita_pair(table, "GDP", "POP")
+
+    assert result.value_at("2020", "GDP__per_capita") == pytest.approx(100.0)
+    col = next(c for c in result.columns if c.key == "GDP__per_capita")
+    assert col.input_series == ("GDP", "POP")
+
+
+def test_with_per_capita_pair_unknown_column_raises():
+    table = _table(GDP={"2020": 1000.0})
+    with pytest.raises(ValueError):
+        with_per_capita_pair(table, "GDP", "NOPE")
+
+
+def test_with_index_column_rebases_only_the_named_column():
+    table = _table(GDP={"2015": 50.0, "2020": 75.0}, POP={"2015": 10.0, "2020": 12.0})
+    result = with_index_column(table, "GDP", "2015")
+
+    assert result.value_at("2015", "GDP__index") == pytest.approx(100.0)
+    assert result.value_at("2020", "GDP__index") == pytest.approx(150.0)
+    keys = {c.key for c in result.columns}
+    assert "POP__index" not in keys  # the untouched column must not get indexed too
+
+
+def test_with_index_column_supports_a_custom_base_value_and_result_key():
+    table = _table(GDP={"2015": 50.0, "2020": 75.0})
+    result = with_index_column(table, "GDP", "2015", base_value=1.0, result_key="AZE__gdp_index")
+
+    assert result.value_at("2015", "AZE__gdp_index") == pytest.approx(1.0)
+    assert result.value_at("2020", "AZE__gdp_index") == pytest.approx(1.5)
+
+
+def test_with_index_column_raises_when_base_period_missing():
+    table = _table(GDP={"2020": 75.0})
+    with pytest.raises(ValueError, match="base_period"):
+        with_index_column(table, "GDP", "2015")
+
+
+def test_with_index_column_unknown_column_raises():
+    table = _table(GDP={"2015": 50.0})
+    with pytest.raises(ValueError):
+        with_index_column(table, "NOPE", "2015")
 
 
 # ---- with_sum / with_average / with_weighted_average ---------------------------

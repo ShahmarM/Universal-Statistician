@@ -6,6 +6,7 @@ from universal_statistician.core.query_plan import (
     CandidateIndicator,
     QuestionInterpretation,
     QueryPlan,
+    TransformationSpec,
     build_query_plan,
 )
 
@@ -101,3 +102,95 @@ def test_question_interpretation_from_dict_defaults_missing_fields():
     assert interpretation.ranking is False
     assert interpretation.output_type == "table"
     assert interpretation.needs_clarification is False
+
+
+# ---- TransformationSpec: structured "WHAT to compute", never a value -----------
+
+
+def test_transformation_spec_from_dict_parses_a_structured_operation():
+    spec = TransformationSpec.from_dict(
+        {
+            "operation": "share",
+            "numerator_concept": "non-oil GDP",
+            "denominator_concept": "total GDP",
+            "output_name": "non-oil share of GDP",
+        }
+    )
+
+    assert spec.operation == "share"
+    assert spec.numerator_concept == "non-oil GDP"
+    assert spec.denominator_concept == "total GDP"
+    assert spec.output_name == "non-oil share of GDP"
+    assert spec.concepts_referenced() == ("non-oil GDP", "total GDP")
+
+
+def test_transformation_spec_from_dict_accepts_a_bare_string_for_backward_compatibility():
+    spec = TransformationSpec.from_dict("cumulative_growth")
+
+    assert spec.operation == "cumulative_growth"
+    assert spec.concepts_referenced() == ()
+
+
+def test_transformation_spec_concepts_referenced_covers_every_operation_kind():
+    index_spec = TransformationSpec(operation="index", input_concept="real GDP", base_period="2015")
+    assert index_spec.concepts_referenced() == ("real GDP",)
+
+    diff_spec = TransformationSpec(operation="difference", left_concept="A", right_concept="B")
+    assert diff_spec.concepts_referenced() == ("A", "B")
+
+    # weighted_average's `inputs` are geography codes, never concepts.
+    wavg_spec = TransformationSpec(operation="weighted_average", inputs=("DEU", "FRA"), weights=(1.0, 2.0))
+    assert wavg_spec.concepts_referenced() == ()
+
+
+def test_transformation_spec_as_dict_round_trips_through_from_dict():
+    original = TransformationSpec(
+        operation="index", input_concept="real GDP", base_period="2015", base_value=100.0
+    )
+
+    restored = TransformationSpec.from_dict(original.as_dict())
+
+    assert restored == original
+
+
+def test_question_interpretation_from_dict_parses_structured_transformations():
+    interpretation = QuestionInterpretation.from_dict(
+        {
+            "concepts": ["GDP"],
+            "transformations": [
+                {"operation": "index", "input_concept": "GDP", "base_period": "2015"},
+                "rank",  # bare-string form still accepted
+            ],
+        }
+    )
+
+    assert len(interpretation.transformations) == 2
+    assert interpretation.transformations[0].operation == "index"
+    assert interpretation.transformations[0].input_concept == "GDP"
+    assert interpretation.transformations[1].operation == "rank"
+
+
+def test_build_query_plan_resolves_concepts_referenced_only_inside_a_transformation():
+    # The planner named "Unemployment rate" only inside a share
+    # transformation, not in the top-level concepts list - build_query_plan
+    # must still resolve it through the catalog, and select_indicators()
+    # (which loops over plan.concepts) must be able to select it.
+    engine = _engine_with_catalog()
+    interpretation = QuestionInterpretation(
+        concepts=("GDP per capita",),
+        geographies=("AFG",),
+        transformations=(
+            TransformationSpec(
+                operation="share",
+                numerator_concept="Unemployment rate",
+                denominator_concept="GDP per capita",
+            ),
+        ),
+    )
+
+    plan = build_query_plan("share question", interpretation, engine)
+
+    assert "Unemployment rate" in plan.concepts
+    assert "GDP per capita" in plan.concepts
+    concepts_seen = {c.concept for c in plan.candidate_indicators}
+    assert "Unemployment rate" in concepts_seen

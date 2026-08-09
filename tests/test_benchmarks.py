@@ -23,7 +23,7 @@ from __future__ import annotations
 from universal_statistician.core.ask import answer_question
 from universal_statistician.core.catalog import Catalog, IndicatorEntry
 from universal_statistician.core.engine import QueryEngine
-from universal_statistician.core.query_plan import QuestionInterpretation
+from universal_statistician.core.query_plan import QuestionInterpretation, TransformationSpec
 from universal_statistician.core.validation import ValidationStatus
 
 from .helpers import LookupProvider, make_series
@@ -192,7 +192,7 @@ def test_benchmark_cumulative_gdp_growth_2015_2024():
             geographies=("AZE",),
             start_period="2015",
             end_period="2024",
-            transformations=("cumulative_growth",),
+            transformations=(TransformationSpec(operation="cumulative_growth"),),
             output_type="answer",
         )
     )

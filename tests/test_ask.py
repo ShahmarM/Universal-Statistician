@@ -3,7 +3,7 @@ from __future__ import annotations
 from universal_statistician.core.ask import answer_question
 from universal_statistician.core.catalog import Catalog, IndicatorEntry
 from universal_statistician.core.engine import QueryEngine
-from universal_statistician.core.query_plan import QuestionInterpretation
+from universal_statistician.core.query_plan import QuestionInterpretation, TransformationSpec
 from universal_statistician.core.validation import ValidationStatus
 
 from .helpers import LookupProvider, make_series
@@ -110,7 +110,9 @@ def test_answer_question_applies_a_named_transformation():
     engine = _engine_with_population()
     planner = ScriptedPlanner(
         QuestionInterpretation(
-            concepts=("population",), geographies=("AFG",), transformations=("growth",)
+            concepts=("population",),
+            geographies=("AFG",),
+            transformations=(TransformationSpec(operation="growth"),),
         )
     )
 
@@ -124,7 +126,9 @@ def test_answer_question_notes_an_unsupported_transformation_without_failing():
     engine = _engine_with_population()
     planner = ScriptedPlanner(
         QuestionInterpretation(
-            concepts=("population",), geographies=("AFG",), transformations=("some_unknown_op",)
+            concepts=("population",),
+            geographies=("AFG",),
+            transformations=(TransformationSpec(operation="some_unknown_op"),),
         )
     )
 
@@ -132,6 +136,56 @@ def test_answer_question_notes_an_unsupported_transformation_without_failing():
 
     assert result.table is not None  # base retrieval still succeeds
     assert any("not auto-applied" in w for w in result.warnings)
+
+
+def test_answer_question_applies_a_structured_share_transformation():
+    provider = LookupProvider(
+        "WB_WDI",
+        {
+            ("NY_GDP_MKTP_CD", "AZE"): make_series(
+                "NY_GDP_MKTP_CD", "AZE", {"2023": 100.0}, source_id="WB_WDI"
+            ),
+            ("NY_GDP_MKTP_NONOIL", "AZE"): make_series(
+                "NY_GDP_MKTP_NONOIL", "AZE", {"2023": 60.0}, source_id="WB_WDI"
+            ),
+        },
+    )
+    catalog = Catalog()
+    catalog.add(
+        [
+            IndicatorEntry(indicator_id="NY_GDP_MKTP_CD", source_id="WB_WDI", names={"en": "Total GDP"}),
+            IndicatorEntry(
+                indicator_id="NY_GDP_MKTP_NONOIL", source_id="WB_WDI", names={"en": "Nonoil GDP"}
+            ),
+        ]
+    )
+    engine = QueryEngine({"WB_WDI": provider}, catalog=catalog)
+    planner = ScriptedPlanner(
+        QuestionInterpretation(
+            concepts=(),
+            geographies=("AZE",),
+            transformations=(
+                TransformationSpec(
+                    operation="share",
+                    numerator_concept="Nonoil GDP",
+                    denominator_concept="Total GDP",
+                    output_name="non_oil_share",
+                ),
+            ),
+        )
+    )
+
+    result = answer_question(
+        engine, "What share of Azerbaijan's GDP is non-oil GDP?", planner=planner
+    )
+
+    assert result.table is not None
+    keys = {c["key"] for c in result.table["columns"]}
+    assert "AZE__non_oil_share" in keys
+    share_column = next(c for c in result.table["columns"] if c["key"] == "AZE__non_oil_share")
+    assert share_column["derived"] is True
+    assert set(share_column["input_series"]) == {"NY_GDP_MKTP_NONOIL", "NY_GDP_MKTP_CD"}
+    assert result.table["rows"][0]["AZE__non_oil_share"] == 60.0  # 60/100 * 100
 
 
 def test_answer_question_surfaces_validation_warnings_in_the_answer_text():

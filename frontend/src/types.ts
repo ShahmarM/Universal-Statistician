@@ -62,6 +62,20 @@ export interface CandidateIndicator {
   geographic_coverage: string[] | null;
 }
 
+export interface TransformationSpec {
+  operation: string;
+  numerator_concept: string | null;
+  denominator_concept: string | null;
+  input_concept: string | null;
+  base_period: string | null;
+  base_value: number | null;
+  left_concept: string | null;
+  right_concept: string | null;
+  inputs: string[];
+  weights: number[];
+  output_name: string | null;
+}
+
 export interface QueryPlan {
   question: string;
   concepts: string[];
@@ -70,7 +84,7 @@ export interface QueryPlan {
   start_period: string | null;
   end_period: string | null;
   frequency: string | null;
-  transformations: string[];
+  transformations: TransformationSpec[];
   comparison: string | null;
   ranking: boolean;
   output_type: string;

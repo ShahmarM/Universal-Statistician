@@ -538,6 +538,137 @@ def with_difference(
     return ComparisonTable(columns=table.columns + (new_column,), values=new_values)
 
 
+def with_share_pair(
+    table: ComparisonTable, numerator_key: str, denominator_key: str, *, result_key: str | None = None
+) -> ComparisonTable:
+    """Add one derived column: numerator_key's value as a percentage of
+    denominator_key's value, for every period both are present.
+
+    The precise two-column counterpart to with_share() (which computes a
+    share for every OTHER base column against one shared total) — this is
+    what a structured {"operation": "share", "numerator_concept": ...,
+    "denominator_concept": ...} transformation (core/query_plan.py's
+    TransformationSpec, dispatched from core/ask.py) needs: exactly the two
+    columns the planner named, nothing else in the table touched."""
+    known_keys = {c.key for c in table.columns}
+    if numerator_key not in known_keys:
+        raise ValueError(f"Unknown column {numerator_key!r}")
+    if denominator_key not in known_keys:
+        raise ValueError(f"Unknown column {denominator_key!r}")
+
+    share_key = result_key or f"{numerator_key}__share_of_{denominator_key}"
+    if share_key in known_keys:
+        return table
+
+    label_num = table.column(numerator_key).label
+    label_den = table.column(denominator_key).label
+    new_values = dict(table.values)
+    for period in table.periods():
+        value = table.value_at(period, numerator_key)
+        total = table.value_at(period, denominator_key)
+        if value is not None and total:
+            new_values[(period, share_key)] = value / total * 100
+
+    new_column = ComparisonColumn(
+        key=share_key,
+        label=f"{label_num}: share of {label_den} (%)",
+        attribution=None,
+        derived=True,
+        formula="numerator / denominator * 100",
+        input_series=(numerator_key, denominator_key),
+    )
+    return ComparisonTable(columns=table.columns + (new_column,), values=new_values)
+
+
+def with_per_capita_pair(
+    table: ComparisonTable, numerator_key: str, denominator_key: str, *, result_key: str | None = None
+) -> ComparisonTable:
+    """Add one derived column: numerator_key's value divided by
+    denominator_key's value, for every period both are present.
+
+    The precise two-column counterpart to with_per_capita() (which divides
+    every OTHER base column by one shared population column) — for a
+    structured {"operation": "per_capita", "numerator_concept": ...,
+    "denominator_concept": ...} transformation."""
+    known_keys = {c.key for c in table.columns}
+    if numerator_key not in known_keys:
+        raise ValueError(f"Unknown column {numerator_key!r}")
+    if denominator_key not in known_keys:
+        raise ValueError(f"Unknown column {denominator_key!r}")
+
+    pc_key = result_key or f"{numerator_key}__per_capita"
+    if pc_key in known_keys:
+        return table
+
+    label_num = table.column(numerator_key).label
+    new_values = dict(table.values)
+    for period in table.periods():
+        value = table.value_at(period, numerator_key)
+        denominator = table.value_at(period, denominator_key)
+        if value is not None and denominator:
+            new_values[(period, pc_key)] = value / denominator
+
+    new_column = ComparisonColumn(
+        key=pc_key,
+        label=f"{label_num} per capita",
+        attribution=None,
+        derived=True,
+        formula="numerator / denominator",
+        input_series=(numerator_key, denominator_key),
+    )
+    return ComparisonTable(columns=table.columns + (new_column,), values=new_values)
+
+
+def with_index_column(
+    table: ComparisonTable,
+    column_key: str,
+    base_period: str,
+    *,
+    base_value: float = 100.0,
+    result_key: str | None = None,
+) -> ComparisonTable:
+    """Add one derived column: column_key's value rebased so base_period =
+    base_value (default 100, the classic index-number convention).
+
+    The precise single-column counterpart to with_index() (which rebases
+    EVERY base column in the table to the same base_period) — for a
+    structured {"operation": "index", "input_concept": ...} transformation,
+    which targets exactly the one column the planner named. Rebasing every
+    base column would be wrong whenever the table also holds an unrelated
+    column for a different concept selected by the same question (e.g. a
+    population column fetched for a separate per_capita transformation)."""
+    known_keys = {c.key for c in table.columns}
+    if column_key not in known_keys:
+        raise ValueError(f"Unknown column {column_key!r}")
+
+    index_key = result_key or f"{column_key}__index"
+    if index_key in known_keys:
+        return table
+
+    base = table.value_at(base_period, column_key)
+    if not base:
+        raise ValueError(
+            f"Cannot index {column_key!r}: no non-zero value at base_period {base_period!r}"
+        )
+
+    label = table.column(column_key).label
+    new_values = dict(table.values)
+    for period in table.periods():
+        value = table.value_at(period, column_key)
+        if value is not None:
+            new_values[(period, index_key)] = value / base * base_value
+
+    new_column = ComparisonColumn(
+        key=index_key,
+        label=f"{label}: index ({base_period}={base_value:g})",
+        attribution=None,
+        derived=True,
+        formula=f"value / value[{base_period}] * {base_value:g}",
+        input_series=(column_key,),
+    )
+    return ComparisonTable(columns=table.columns + (new_column,), values=new_values)
+
+
 def with_share(table: ComparisonTable, total_key: str) -> ComparisonTable:
     """Add a `{key}__share_of_{total_key}` derived column per other base
     column: that column's value as a percentage of the total column's value."""

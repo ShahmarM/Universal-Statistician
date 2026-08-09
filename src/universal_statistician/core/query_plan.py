@@ -61,6 +61,111 @@ class CandidateIndicator:
 
 
 @dataclass(frozen=True)
+class TransformationSpec:
+    """One requested statistical operation — WHAT to compute, never a value
+    (section: the planner "must describe WHAT statistical operation is
+    required. It must NOT supply numerical data.").
+
+    `operation` is the only required field. Operations that combine two or
+    more series carry the *natural-language concepts* to look them up by —
+    `numerator_concept`/`denominator_concept` (share, per_capita),
+    `input_concept` (index), `left_concept`/`right_concept` (difference) —
+    exactly like QuestionInterpretation.concepts: never an indicator code,
+    always resolved through the same catalog search build_query_plan()
+    already runs for the top-level concepts (see that function's handling
+    of `referenced_concepts()` below — a transformation concept doesn't
+    need to also be duplicated into the top-level `concepts` list, it gets
+    searched either way).
+
+    `inputs`/`weights` (weighted_average) are the one exception: given this
+    project's table shape (one concept's values across several
+    geographies, or several concepts' values for one geography — see
+    core/compose.py's ComparisonTable), a weighted average combines across
+    *geographies* of a single already-selected concept (e.g. "population-
+    weighted average inflation across DEU/FRA/ITA"), so `inputs` holds
+    geography/area codes, not concepts — those geographies must already be
+    present in `QueryPlan.geographies` for their columns to exist to
+    combine.
+
+    Simple operations that don't reference another series at all (growth,
+    yoy_growth, period_over_period_growth, absolute_change, pp_change,
+    cagr, cumulative_growth, rank) only set `operation`; every other field
+    stays None/empty, and core/ask.py dispatches them exactly as before
+    this phase (a bare compose.py function call, no concept resolution
+    needed since they operate on whatever's already in the table).
+    """
+
+    operation: str
+    numerator_concept: str | None = None
+    denominator_concept: str | None = None
+    input_concept: str | None = None
+    base_period: str | None = None
+    base_value: float | None = None
+    left_concept: str | None = None
+    right_concept: str | None = None
+    #: weighted_average only: geography/area codes to combine (see class
+    #: docstring) — must line up 1:1 with `weights`.
+    inputs: tuple[str, ...] = ()
+    weights: tuple[float, ...] = ()
+    #: Optional human-readable name for the derived column/answer this
+    #: transformation produces (e.g. "non-oil share of GDP"); falls back to
+    #: a generated key (see core/ask.py) when not given.
+    output_name: str | None = None
+
+    def concepts_referenced(self) -> tuple[str, ...]:
+        """Every natural-language concept this transformation needs
+        resolved through the catalog — never `inputs` (geography codes, not
+        concepts; see class docstring)."""
+        return tuple(
+            c
+            for c in (
+                self.numerator_concept,
+                self.denominator_concept,
+                self.input_concept,
+                self.left_concept,
+                self.right_concept,
+            )
+            if c
+        )
+
+    def as_dict(self) -> dict:
+        return {
+            "operation": self.operation,
+            "numerator_concept": self.numerator_concept,
+            "denominator_concept": self.denominator_concept,
+            "input_concept": self.input_concept,
+            "base_period": self.base_period,
+            "base_value": self.base_value,
+            "left_concept": self.left_concept,
+            "right_concept": self.right_concept,
+            "inputs": list(self.inputs),
+            "weights": list(self.weights),
+            "output_name": self.output_name,
+        }
+
+    @staticmethod
+    def from_dict(payload: "str | dict") -> "TransformationSpec":
+        # Backward compatibility: a bare operation name (e.g. "growth"),
+        # what every planner produced before structured transformations —
+        # and still the natural way to write a simple, no-concept operation.
+        if isinstance(payload, str):
+            return TransformationSpec(operation=payload)
+        return TransformationSpec(
+            operation=payload["operation"],
+            numerator_concept=payload.get("numerator_concept"),
+            denominator_concept=payload.get("denominator_concept"),
+            input_concept=payload.get("input_concept"),
+            base_period=payload.get("base_period"),
+            base_value=payload.get("base_value"),
+            left_concept=payload.get("left_concept"),
+            right_concept=payload.get("right_concept"),
+            inputs=tuple(payload.get("inputs") or ()),
+            weights=tuple(payload.get("weights") or ()),
+            output_name=payload.get("output_name"),
+        )
+
+
+@dataclass(frozen=True)
 class QuestionInterpretation:
     """A planner's (LLM or rule-based) reading of a natural-language
     question — everything *except* indicator codes, which only
@@ -72,7 +177,7 @@ class QuestionInterpretation:
     start_period: str | None = None
     end_period: str | None = None
     frequency: str | None = None
-    transformations: tuple[str, ...] = ()
+    transformations: tuple[TransformationSpec, ...] = ()
     #: "cross_country" (one concept, several geographies) or
     #: "cross_indicator" (several concepts, one geography), or None for a
     #: single indicator/area question — mirrors core/compose.py's two
@@ -94,7 +199,9 @@ class QuestionInterpretation:
             start_period=payload.get("start_period"),
             end_period=payload.get("end_period"),
             frequency=payload.get("frequency"),
-            transformations=tuple(payload.get("transformations") or ()),
+            transformations=tuple(
+                TransformationSpec.from_dict(t) for t in (payload.get("transformations") or ())
+            ),
             comparison=payload.get("comparison"),
             ranking=bool(payload.get("ranking", False)),
             output_type=payload.get("output_type") or "table",
@@ -116,7 +223,7 @@ class QueryPlan:
     start_period: str | None = None
     end_period: str | None = None
     frequency: str | None = None
-    transformations: tuple[str, ...] = ()
+    transformations: tuple[TransformationSpec, ...] = ()
     comparison: str | None = None
     ranking: bool = False
     output_type: str = "table"
@@ -137,7 +244,7 @@ class QueryPlan:
             "start_period": self.start_period,
             "end_period": self.end_period,
             "frequency": self.frequency,
-            "transformations": list(self.transformations),
+            "transformations": [t.as_dict() for t in self.transformations],
             "comparison": self.comparison,
             "ranking": self.ranking,
             "output_type": self.output_type,
@@ -158,12 +265,29 @@ def build_query_plan(
 ) -> QueryPlan:
     """Resolve an interpretation's concepts into real catalog candidates.
 
+    Also resolves every concept referenced *inside* a transformation
+    (TransformationSpec.concepts_referenced() — e.g. a `share`
+    transformation's numerator_concept/denominator_concept) even if the
+    planner didn't separately list it in `interpretation.concepts` — the
+    planner only has to name a concept once, wherever it naturally belongs,
+    not duplicate it into two places for the catalog to see it. `QueryPlan.
+    concepts` (unlike `interpretation.concepts`) is the union of both, so
+    core/selection.py's select_indicators() — which loops over
+    `plan.concepts` — actually selects an indicator for a
+    transformation-only concept too, not just top-level ones.
+
     `engine` is typed loosely (not core.engine.QueryEngine) to avoid a
     circular import — core/engine.py already imports providers that
     eventually need catalog/query_plan types; this only calls the one
     method every QueryEngine has (search_indicator), so a Protocol isn't
     worth the ceremony here.
     """
+    all_concepts = list(interpretation.concepts)
+    for transformation in interpretation.transformations:
+        for concept in transformation.concepts_referenced():
+            if concept not in all_concepts:
+                all_concepts.append(concept)
+
     candidate_indicators = tuple(
         CandidateIndicator(
             indicator_id=match.indicator_id,
@@ -174,13 +298,13 @@ def build_query_plan(
             frequency=match.frequency,
             geographic_coverage=match.geographic_coverage,
         )
-        for concept in interpretation.concepts
+        for concept in all_concepts
         for match in engine.search_indicator(concept, limit=candidates_per_concept)
     )
 
     return QueryPlan(
         question=question,
-        concepts=interpretation.concepts,
+        concepts=tuple(all_concepts),
         candidate_indicators=candidate_indicators,
         geographies=interpretation.geographies,
         start_period=interpretation.start_period,

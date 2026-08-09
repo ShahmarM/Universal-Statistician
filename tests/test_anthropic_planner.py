@@ -53,7 +53,7 @@ def test_interpret_forces_the_plan_tool_and_parses_its_input():
                 "geographies": ["AFG", "GEO", "KAZ"],
                 "start_period": "2015",
                 "end_period": None,
-                "transformations": ["cumulative_growth"],
+                "transformations": [{"operation": "cumulative_growth"}],
                 "comparison": "cross_country",
                 "ranking": False,
                 "output_type": "comparison_table",
@@ -73,8 +73,43 @@ def test_interpret_forces_the_plan_tool_and_parses_its_input():
     assert interpretation.geographies == ("AFG", "GEO", "KAZ")
     assert interpretation.start_period == "2015"
     assert interpretation.comparison == "cross_country"
-    assert interpretation.transformations == ("cumulative_growth",)
+    assert len(interpretation.transformations) == 1
+    assert interpretation.transformations[0].operation == "cumulative_growth"
     assert interpretation.assumptions == ("Interpreted 'growth' as real GDP per capita growth.",)
+
+
+def test_interpret_parses_a_structured_share_transformation():
+    client = FakeClient(
+        _plan_response(
+            {
+                "concepts": [],
+                "geographies": ["AZE"],
+                "transformations": [
+                    {
+                        "operation": "share",
+                        "numerator_concept": "non-oil GDP",
+                        "denominator_concept": "total GDP",
+                        "output_name": "non-oil share of GDP",
+                    }
+                ],
+                "output_type": "answer",
+                "assumptions": [],
+                "needs_clarification": False,
+            }
+        )
+    )
+    planner = AnthropicPlanner(client=client)
+
+    interpretation = planner.interpret("What share of Azerbaijan's GDP is non-oil GDP?")
+
+    assert len(interpretation.transformations) == 1
+    spec = interpretation.transformations[0]
+    assert spec.operation == "share"
+    assert spec.numerator_concept == "non-oil GDP"
+    assert spec.denominator_concept == "total GDP"
+    assert spec.output_name == "non-oil share of GDP"
+    # Never a number/code in a transformation - only natural-language concepts.
+    assert spec.concepts_referenced() == ("non-oil GDP", "total GDP")
 
     # tool_choice forces the plan tool — the model cannot answer with free text.
     call = client.calls[0]
