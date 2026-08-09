@@ -172,6 +172,10 @@ class InvestigationState:
     provenance_references: list[dict] = field(default_factory=list)
     tool_call_history: list[ToolCallRecord] = field(default_factory=list)
     iteration_count: int = 0
+    #: The investigator's own final free-text turn (Phase 2) — debug-visible
+    #: only, never the user-facing answer. See agent/loop.py's module
+    #: docstring for why the answer writer (Phase 6) never uses this.
+    investigator_summary: str = ""
 
     _next_result_id: int = field(default=1, repr=False)
 
@@ -226,4 +230,26 @@ class InvestigationState:
                 rid: {"operation": d.operation, "inputs": list(d.input_result_ids)}
                 for rid, d in self.derived.items()
             },
+        }
+
+    def evidence_package(self) -> dict:
+        """The "final structured evidence package" the investigation loop
+        produces (task section 1's architecture diagram) — everything
+        downstream (validation, the answer writer, the verifier) may use,
+        and *only* what it may use: the accumulated table, resolved
+        provenance, warnings/assumptions, and which candidates were
+        considered/rejected. Never includes tool_call_history's full
+        payloads or the investigator's own free text — see agent/loop.py's
+        module docstring on why `investigator_summary` is debug-only."""
+        return {
+            "question": self.question,
+            "table": self.table.as_dict(),
+            "candidates_considered": [c.as_dict() for c in self.candidates_considered],
+            "candidates_rejected": [c.as_dict() for c in self.candidates_rejected],
+            "result_ids": self.resolve_result_ids(),
+            "assumptions": list(self.assumptions),
+            "unresolved_ambiguities": list(self.unresolved_ambiguities),
+            "warnings": list(self.warnings),
+            "validation_results": list(self.validation_results),
+            "provenance_references": list(self.provenance_references),
         }
