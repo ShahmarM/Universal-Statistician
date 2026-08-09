@@ -81,4 +81,35 @@ PXWEB_SOURCES: dict[str, PXWebSourceConfig] = {
         time_dimension="Tid",
         website="https://www.scb.se/en/services/open-data-api/api-for-the-statistical-database/",
     ),
+    "SSB_09189": PXWebSourceConfig(
+        registry_id="SSB_09189",
+        # Verified live (Phase J): pxwebpy's own get_known_apis() includes
+        # "ssb" -> "https://data.ssb.no/api/pxwebapi/v2" out of the box —
+        # the same PX-Web v2 protocol/library already used for SCB, just a
+        # different agency, exactly the "one new registry entry, no new
+        # architecture" pattern that PX-Web support was built to prove
+        # (see pxweb_provider.py's module docstring).
+        api_url="ssb",
+        source_name="Statistics Norway (SSB)",
+        table_id="09189",
+        # Live-verified table (search("gross domestic product") against the
+        # real API): "Final expenditure and gross domestic product
+        # 1970-2025", 3 variables total, no regional dimension (SSB's
+        # national-accounts tables are Norway-wide by nature — nothing to
+        # break down by region here). indicator_dimension="Makrost" carries
+        # the actual macroeconomic-indicator code (e.g. "bnpb.nr23_9" =
+        # "Gross domestic product, market values", one of 51 real codes).
+        indicator_dimension="Makrost",
+        # Repurposed, same principle as SCB's "Alder" above — no genuine
+        # ref_area exists in this table, so this selects ContentsCode's
+        # price basis instead ("Priser"=current prices NOK million,
+        # "Faste"=constant 2023 prices, "Volum"=annual volume change %,
+        # "Endringer"=other). Live-verified: value_codes={"Makrost":
+        # ["bnpb.nr23_9"], "ContentsCode": ["Priser"], "Tid": ["*"]}
+        # returns real NOK-million GDP figures for 1970-2025 (2022:
+        # 5,935,035 million NOK).
+        ref_area_dimension="ContentsCode",
+        time_dimension="Tid",
+        website="https://www.ssb.no/en/nasjonalregnskap-og-konjunkturer/nasjonalregnskap/statistikk/nasjonalregnskap",
+    ),
 }
