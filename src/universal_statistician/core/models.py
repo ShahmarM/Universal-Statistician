@@ -74,6 +74,17 @@ class StatisticalSemantics:
     #: "definitely not per-capita/not seasonally adjusted".
     per_capita: bool | None = None
     seasonally_adjusted: bool | None = None
+    #: The reference year a "real"/"index" series is expressed relative to
+    #: (e.g. "2015" for World Bank's "GDP (constant 2015 US$)"), when a
+    #: source's own metadata states it explicitly — often literally in the
+    #: indicator's published name/unit, not an inference. None (not a
+    #: guess) when the source doesn't pin one down.
+    base_year: str | None = None
+    #: Free-text methodology note from the source's own documentation
+    #: (e.g. a revision/compilation caveat), when a provider's discovery
+    #: API supplies one verbatim. None — not a fabricated summary — when
+    #: it doesn't; task section 3: "never invent missing metadata."
+    methodology_notes: str | None = None
 
     def as_dict(self) -> dict:
         return {
@@ -82,6 +93,8 @@ class StatisticalSemantics:
             "currency_scale": self.currency_scale,
             "per_capita": self.per_capita,
             "seasonally_adjusted": self.seasonally_adjusted,
+            "base_year": self.base_year,
+            "methodology_notes": self.methodology_notes,
         }
 
     @staticmethod
@@ -92,6 +105,8 @@ class StatisticalSemantics:
             currency_scale=payload.get("currency_scale"),
             per_capita=payload.get("per_capita"),
             seasonally_adjusted=payload.get("seasonally_adjusted"),
+            base_year=payload.get("base_year"),
+            methodology_notes=payload.get("methodology_notes"),
         )
 
 
@@ -99,6 +114,17 @@ class StatisticalSemantics:
 class Observation:
     period: str
     value: float | None
+    #: "actual" / "provisional" / "forecast" / "estimate", when the
+    #: provider's wire protocol exposes an observation-status flag (e.g.
+    #: SDMX's OBS_STATUS attribute). Optional and commonly None today —
+    #: same reasoning as SeriesResult.unit below: none of the providers in
+    #: this project currently extract it, but the field exists so a
+    #: provider that *can* supply it has somewhere to put it, and so
+    #: agent/tools.py::inspect_provenance has a real field to read rather
+    #: than needing another model change later. Never inferred or guessed
+    #: when the provider didn't supply it — stays None, surfaced as
+    #: "unknown", not silently assumed "actual".
+    status: str | None = None
 
 
 @dataclass(frozen=True)
@@ -129,7 +155,7 @@ class SeriesResult:
             "ref_area": self.ref_area,
             "frequency": self.frequency,
             "observations": [
-                {"period": o.period, "value": o.value} for o in self.observations
+                {"period": o.period, "value": o.value, "status": o.status} for o in self.observations
             ],
             "attribution": self.attribution.as_dict(),
             "unit": self.unit,
@@ -139,14 +165,17 @@ class SeriesResult:
     @staticmethod
     def from_dict(payload: dict) -> "SeriesResult":
         """Inverse of as_dict() — round-trips a result through the cache
-        without losing its type (callers should never see a bare dict)."""
+        without losing its type (callers should never see a bare dict).
+        `status` must round-trip too (core/cache.py's TTL cache stores
+        exactly this dict) or a provider-supplied actual/provisional/
+        forecast flag would silently vanish on every cache hit."""
         semantics_payload = payload.get("semantics")
         return SeriesResult(
             indicator_id=payload["indicator_id"],
             ref_area=payload["ref_area"],
             frequency=payload["frequency"],
             observations=tuple(
-                Observation(period=o["period"], value=o["value"])
+                Observation(period=o["period"], value=o["value"], status=o.get("status"))
                 for o in payload["observations"]
             ),
             attribution=Attribution.from_dict(payload["attribution"]),

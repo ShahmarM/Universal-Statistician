@@ -227,7 +227,14 @@ def search_series(
 
 def inspect_series(state: InvestigationState, *, catalog_id: str) -> dict:
     """Full normalized metadata for one specific catalog_id (as returned by
-    search_series) — never a text search."""
+    search_series) — never a text search. Every field the catalog actually
+    has is included (task section 3): definition/description, source and
+    dataset, unit, frequency, nominal/real and base_year (via `semantics`),
+    seasonal adjustment (via `semantics`), geographic coverage, and —
+    whenever this catalog_id was already retrieved earlier in this same
+    investigation — real observed time coverage (see
+    _known_period_coverage(), also used by check_coverage). Never invents a
+    missing field: absent metadata comes back as null/None, not a guess."""
     source_id, indicator_id = parse_catalog_id(catalog_id)
     meta = state.engine.describe_indicator(source_id, indicator_id)
     if meta is None:
@@ -236,6 +243,7 @@ def inspect_series(state: InvestigationState, *, catalog_id: str) -> dict:
             "found": False,
             "error": "No catalog entry found for this catalog_id.",
         }
+    earliest, latest, period_known_for = _known_period_coverage(state, catalog_id, [])
     return {
         "catalog_id": catalog_id,
         "found": True,
@@ -254,13 +262,23 @@ def inspect_series(state: InvestigationState, *, catalog_id: str) -> dict:
         "official_url": meta.official_url,
         "last_updated": meta.last_updated,
         "keywords": list(meta.keywords) if meta.keywords is not None else None,
+        #: price_basis (nominal/real/index/...), currency, currency_scale,
+        #: per_capita, seasonally_adjusted, base_year, methodology_notes --
+        #: every field None ("unknown"), never guessed, when the source's
+        #: own metadata doesn't state it (core/models.py::StatisticalSemantics).
         "semantics": meta.semantics.as_dict() if meta.semantics is not None else None,
+        "earliest_period": earliest,
+        "latest_period": latest,
+        "period_coverage_known": earliest is not None,
+        "period_coverage_known_for_geographies": period_known_for,
         "note": (
-            "Time coverage (earliest/latest real observation) and actual/"
-            "provisional/forecast status are not available from catalog "
-            "metadata alone — this catalog does not store per-observation "
-            "vintage flags. Call retrieve_series to see real observations and "
-            "their periods."
+            "Time coverage above reflects real observations already retrieved "
+            "earlier in this investigation, if any -- unknown (null), not "
+            "absent, until retrieve_series has actually run on this catalog_id. "
+            "Per-observation actual/provisional/forecast status is not "
+            "summarized here (it can vary period to period); "
+            "inspect_provenance reports it for one specific observation once "
+            "retrieved, when the source's own data supplies it."
         ),
     }
 
@@ -629,9 +647,34 @@ def validate(
 # ---- inspect_provenance ---------------------------------------------------
 
 
+def _attach_observation_status(state: InvestigationState, node: dict) -> None:
+    """Enrich a provenance dict (in place, recursively) with each real
+    observation leaf's actual/provisional/forecast status, when the
+    provider that supplied it populated one (core/models.py::Observation.
+    status). core/provenance.py's ObservationProvenance doesn't carry this
+    itself (a core module, source-agnostic); this agent-layer enrichment
+    reads it back from InvestigationState.retrieved, which still holds
+    each RetrievedResult's raw SeriesResult with its real Observation
+    objects. Stays None ("unknown") whenever the provider didn't supply
+    one -- never guessed."""
+    if node.get("kind") == "observation":
+        record = state.retrieved.get(node.get("column_key"))
+        status = None
+        if record is not None:
+            for obs in record.series.observations:
+                if obs.period == node.get("period"):
+                    status = obs.status
+                    break
+        node["status"] = status
+    for child in node.get("inputs") or ():
+        _attach_observation_status(state, child)
+
+
 def inspect_provenance(state: InvestigationState, *, result_id: str, period: str | None = None) -> dict:
     """Resolve one result (base or derived, at any depth) back to the exact
-    official observation(s) it came from."""
+    official observation(s) it came from — including each observation's
+    actual/provisional/forecast status when the source supplied one (see
+    _attach_observation_status; null/unknown otherwise, never guessed)."""
     if result_id not in {c.key for c in state.table.columns}:
         return {"error": f"Unknown result_id {result_id!r}"}
     if period is None:
@@ -648,6 +691,7 @@ def inspect_provenance(state: InvestigationState, *, result_id: str, period: str
         return {"error": str(exc)}
 
     payload = provenance.as_dict()
+    _attach_observation_status(state, payload)
     state.provenance_references.append(payload)
     return payload
 
@@ -698,7 +742,14 @@ TOOL_SCHEMAS: list[dict] = [
     },
     {
         "name": "inspect_series",
-        "description": "Full normalized metadata for one specific candidate, identified by the catalog_id a prior search_series/inspect_series result returned.",
+        "description": (
+            "Full normalized metadata for one specific candidate, identified by the catalog_id "
+            "a prior search_series/inspect_series result returned: definition, source/dataset, "
+            "unit, frequency, statistical semantics (nominal/real, base_year, seasonal "
+            "adjustment, ...), geographic coverage, and -- if this catalog_id was already "
+            "retrieved earlier in this investigation -- real observed time coverage. Any field "
+            "the catalog doesn't have comes back null, never guessed."
+        ),
         "input_schema": {
             "type": "object",
             "properties": {
@@ -802,7 +853,11 @@ TOOL_SCHEMAS: list[dict] = [
     },
     {
         "name": "inspect_provenance",
-        "description": "Resolve one result (base or derived, at any depth) back to the exact official observation(s) it came from.",
+        "description": (
+            "Resolve one result (base or derived, at any depth) back to the exact official "
+            "observation(s) it came from, including each observation's actual/provisional/"
+            "forecast status when the source supplied one (null if not)."
+        ),
         "input_schema": {
             "type": "object",
             "properties": {

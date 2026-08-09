@@ -25,8 +25,8 @@ def test_get_series_returns_json_friendly_dict(engine):
     payload = tools.get_series(engine, "FAKE", "POP", "AFG")
     assert payload["indicator_id"] == "POP"
     assert payload["observations"] == [
-        {"period": "2019", "value": 10.0},
-        {"period": "2020", "value": 11.0},
+        {"period": "2019", "value": 10.0, "status": None},
+        {"period": "2020", "value": 11.0, "status": None},
     ]
     assert payload["attribution"]["source_id"] == "FAKE"
 

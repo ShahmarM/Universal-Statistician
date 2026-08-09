@@ -4,11 +4,13 @@ arguments, exactly the shape an LLM's tool_use block would supply."""
 
 from __future__ import annotations
 
+from datetime import datetime, timezone
+
 from universal_statistician.agent import tools as agent_tools
 from universal_statistician.agent.state import InvestigationState, catalog_id
 from universal_statistician.core.catalog import Catalog, IndicatorEntry
 from universal_statistician.core.engine import QueryEngine
-from universal_statistician.core.models import StatisticalSemantics
+from universal_statistician.core.models import Attribution, Observation, SeriesResult, StatisticalSemantics
 
 from .helpers import LookupProvider, make_series
 
@@ -225,6 +227,58 @@ def test_inspect_series_returns_full_metadata():
     assert result["unit"] == "constant 2015 US$"
     assert result["semantics"]["price_basis"] == "real"
     assert result["geographic_coverage"] == ["AZE", "GEO"]
+
+
+def test_inspect_series_reports_semantics_fields_as_none_when_the_source_does_not_state_them():
+    # base_year/methodology_notes are real optional fields on
+    # StatisticalSemantics -- absent here (the fixture catalog entry never
+    # sets them), so they must come back None, never guessed.
+    state = _state()
+    result = agent_tools.inspect_series(state, catalog_id=catalog_id("WB_WDI", "NY_GDP_MKTP_KD"))
+    assert result["semantics"]["base_year"] is None
+    assert result["semantics"]["methodology_notes"] is None
+
+
+def test_inspect_series_reports_base_year_and_methodology_notes_when_the_source_states_them():
+    provider = LookupProvider(
+        "TEST", {("GDP_REAL", "AZE"): make_series("GDP_REAL", "AZE", {"2023": 42.0}, source_id="TEST")}
+    )
+    catalog = Catalog()
+    catalog.add(
+        [
+            IndicatorEntry(
+                indicator_id="GDP_REAL", source_id="TEST", names={"en": "GDP (constant 2015 prices)"},
+                unit="constant 2015 US$", frequency="A",
+                semantics=StatisticalSemantics(
+                    price_basis="real", base_year="2015",
+                    methodology_notes="Rebased to 2015 prices; see source documentation for revision history.",
+                ),
+            ),
+        ]
+    )
+    state = InvestigationState(question="q", engine=QueryEngine({"TEST": provider}, catalog=catalog))
+
+    result = agent_tools.inspect_series(state, catalog_id=catalog_id("TEST", "GDP_REAL"))
+
+    assert result["semantics"]["base_year"] == "2015"
+    assert "revision history" in result["semantics"]["methodology_notes"]
+
+
+def test_inspect_series_reports_period_coverage_unknown_before_any_retrieval():
+    state = _state()
+    result = agent_tools.inspect_series(state, catalog_id=catalog_id("WB_WDI", "NY_GDP_MKTP_KD"))
+    assert result["period_coverage_known"] is False
+    assert result["earliest_period"] is None
+    assert result["latest_period"] is None
+
+
+def test_inspect_series_reports_real_period_coverage_after_a_prior_retrieval():
+    state = _state()
+    _retrieve(state, "NY_GDP_MKTP_KD")
+    result = agent_tools.inspect_series(state, catalog_id=catalog_id("WB_WDI", "NY_GDP_MKTP_KD"))
+    assert result["period_coverage_known"] is True
+    assert result["earliest_period"] == "2020"
+    assert result["latest_period"] == "2023"
 
 
 def test_inspect_series_unknown_catalog_id_is_not_found():
@@ -559,6 +613,33 @@ def test_inspect_provenance_resolves_a_derived_result_to_its_inputs():
     assert result["kind"] == "derived"
     assert result["inputs"]
     assert all(i["kind"] == "observation" for i in result["inputs"])
+
+
+def test_inspect_provenance_reports_observation_status_as_none_when_the_provider_did_not_supply_one():
+    state = _state()
+    r1 = _retrieve(state, "NY_GDP_MKTP_CD")
+    result = agent_tools.inspect_provenance(state, result_id=r1, period="2022")
+    assert result["status"] is None
+
+
+def test_inspect_provenance_attaches_observation_status_when_the_provider_supplied_one():
+    series = SeriesResult(
+        indicator_id="GDP_PROV", ref_area="AZE", frequency="A",
+        observations=(Observation(period="2023", value=50.0, status="provisional"),),
+        attribution=Attribution(
+            source_id="TEST", source_name="Fake TEST", dataset_id="FAKE_DS",
+            retrieved_at=datetime(2026, 1, 1, tzinfo=timezone.utc),
+        ),
+    )
+    provider = LookupProvider("TEST", {("GDP_PROV", "AZE"): series})
+    catalog = Catalog()
+    catalog.add([IndicatorEntry(indicator_id="GDP_PROV", source_id="TEST", names={"en": "GDP (provisional)"})])
+    state = InvestigationState(question="q", engine=QueryEngine({"TEST": provider}, catalog=catalog))
+
+    r1 = agent_tools.retrieve_series(state, catalog_id=catalog_id("TEST", "GDP_PROV"), geographies=["AZE"])["results"][0]["result_id"]
+    result = agent_tools.inspect_provenance(state, result_id=r1, period="2023")
+
+    assert result["status"] == "provisional"
 
 
 # ---- reject_candidate --------------------------------------------------

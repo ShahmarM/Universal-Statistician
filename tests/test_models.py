@@ -33,6 +33,32 @@ def test_series_result_round_trips_through_dict():
     assert restored == result
 
 
+def test_series_result_round_trips_observation_status_through_dict():
+    # Regression guard: as_dict()/from_dict() is exactly what core/cache.py's
+    # TTL cache uses to store a SeriesResult -- if `status` weren't
+    # serialized/deserialized, a provider-supplied actual/provisional/
+    # forecast flag would silently vanish on the very next cache hit.
+    result = SeriesResult(
+        indicator_id="SP_POP_TOTL",
+        ref_area="AFG",
+        frequency="A",
+        observations=(
+            Observation(period="2019", value=100.0, status="actual"),
+            Observation(period="2020", value=105.0, status="provisional"),
+        ),
+        attribution=Attribution(
+            source_id="WB_WDI", source_name="World Bank", dataset_id="WDI",
+            retrieved_at=datetime(2026, 8, 8, 12, 0, 0, tzinfo=timezone.utc),
+        ),
+    )
+
+    restored = SeriesResult.from_dict(result.as_dict())
+
+    assert restored == result
+    assert restored.observations[0].status == "actual"
+    assert restored.observations[1].status == "provisional"
+
+
 def test_series_result_round_trips_semantics_through_dict():
     result = SeriesResult(
         indicator_id="B1GQ",
@@ -63,5 +89,17 @@ def test_statistical_semantics_defaults_to_all_unknown():
     assert semantics.price_basis is None
     assert semantics.per_capita is None
     assert semantics.seasonally_adjusted is None
+    assert semantics.base_year is None
+    assert semantics.methodology_notes is None
     restored = StatisticalSemantics.from_dict(semantics.as_dict())
     assert restored == semantics
+
+
+def test_statistical_semantics_round_trips_base_year_and_methodology_notes():
+    semantics = StatisticalSemantics(
+        price_basis="real", base_year="2015", methodology_notes="Rebased annually; see source docs."
+    )
+    restored = StatisticalSemantics.from_dict(semantics.as_dict())
+    assert restored == semantics
+    assert restored.base_year == "2015"
+    assert restored.methodology_notes == "Rebased annually; see source docs."

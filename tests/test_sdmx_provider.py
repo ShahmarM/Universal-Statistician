@@ -91,7 +91,7 @@ def test_as_dict_is_json_friendly(wb_provider, sdmx_dataset):
     result = wb_provider._to_series_result(dataset, "SP_POP_TOTL", "AFG")
 
     payload = result.as_dict()
-    assert payload["observations"] == [{"period": "2020", "value": 1.5}]
+    assert payload["observations"] == [{"period": "2020", "value": 1.5, "status": None}]
     assert payload["attribution"]["source_id"] == "WB_WDI"
     assert isinstance(payload["attribution"]["retrieved_at"], str)
 
@@ -136,6 +136,8 @@ def test_to_series_result_carries_the_dataflows_fixed_unit_and_semantics(sdmx_da
         "currency_scale": "millions",
         "per_capita": None,
         "seasonally_adjusted": None,
+        "base_year": None,
+        "methodology_notes": None,
     }
 
 
