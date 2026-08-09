@@ -269,5 +269,32 @@ Discovery идёт через **другой** официальный API World 
 **110 офлайн-тестов** (было 101). `requests` добавлен как прямая (была
 транзитивная через `sdmx1`) зависимость в `pyproject.toml`.
 
-Следующая фаза — Фаза 3, обобщённая интеграция IMF (несколько датафлоу вместо
-одного CPI).
+### Фаза 3 — готово
+
+`IMFProvider(SDMXProvider)` (`providers/imf_provider.py`) добавляет
+`discover_catalog_entries()` через настоящий SDMX structure-запрос
+(`client.get("datastructure", resource_id="DSD_CPI")`) — в отличие от World
+Bank, для IMF в тест-сьюте `sdmx1` ЕСТЬ проверенный пример
+(`TestIMF_DATA.endpoint_args`: `"structure": dict(resource_id="DSD_CPI")`,
+`"codelist": dict(resource_id="CL_COUNTRY")`), так что здесь не пришлось
+уходить на отдельный REST API, как для WB. Ключевой архитектурный приём:
+вместо того чтобы гадать, какое измерение DSD — "индикаторное", discovery
+переиспользует ту же самую верифицированную позицию из
+`key_dimensions` (`"{indicator}"`/`"{ref_area}"`), которая уже используется
+для `get_series()` — один проверенный факт, а не два независимо угаданных;
+несовпадение числа измерений даёт явную `IMFDiscoveryError`, а не тихий
+неверный маппинг. `SDMXSourceConfig` получил поля `registry_id` (ключ в
+`SOURCES`, нужен потому что `IndicatorEntry.source_id` должен быть именно
+им — `"IMF_DATA_CPI"`, а не `config.source_id` `"IMF_DATA"`, который также
+используется в `Attribution.source_id`, — асимметрия, которая существовала
+и раньше, но не была явной) и `structure_id`.
+
+Тесты — на реальных объектах `sdmx.model.v21`
+(`DataStructureDefinition`/`Dimension`/`Codelist`/`Item`), включая кейс
+несовпадения числа измерений. Живой прогон `ustat catalog refresh
+IMF_DATA_CPI` из песочницы подтвердил точный URL
+(`.../datastructure/all/DSD_CPI/latest?references=all` — `references=all`
+подставился сам, дефолт самой библиотеки `sdmx1`, не угаданный параметр) и
+чистую обработку сетевого сбоя. **117 офлайн-тестов** (было 110).
+
+Следующая фаза — Фаза 4, обобщённая интеграция Eurostat.

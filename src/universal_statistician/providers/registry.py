@@ -41,8 +41,18 @@ from dataclasses import dataclass
 
 @dataclass(frozen=True)
 class SDMXSourceConfig:
+    #: This entry's own key in SOURCES (e.g. "IMF_DATA_CPI"), duplicated here
+    #: rather than only implicit in the dict, because it's the id every
+    #: catalog entry discovered for this source must carry as
+    #: IndicatorEntry.source_id — QueryEngine looks providers up by registry
+    #: key, not by the underlying SDMX agency id below, and those two
+    #: legitimately differ whenever more than one registry entry shares an
+    #: agency (as IMF_DATA_CPI does — see `source_id`).
+    registry_id: str
     #: id sdmx1 (the `sdmx` package) uses to identify the underlying source,
-    #: e.g. "WB_WDI", "ESTAT". Several registry entries may share this id.
+    #: e.g. "WB_WDI", "ESTAT". Several registry entries may share this id —
+    #: this is also what ends up in a fetched SeriesResult's
+    #: Attribution.source_id (see SDMXProvider._to_series_result).
     source_id: str
     source_name: str
     #: resource_id passed to Client.data() — the specific dataflow to query.
@@ -52,6 +62,12 @@ class SDMXSourceConfig:
     #: placeholder: "{indicator}" / "{ref_area}".
     key_dimensions: tuple[str, ...]
     website: str
+    #: resource_id passed to Client.get("datastructure", ...) for catalog
+    #: discovery (core/ingestion.py via a MetadataDiscoverable provider) —
+    #: None for sources without a verified structure-discovery endpoint
+    #: (see providers/worldbank_discovery.py for why World Bank uses a
+    #: different mechanism entirely rather than guessing one here).
+    structure_id: str | None = None
     #: How long a fetched series stays cached before being re-fetched. Official
     #: statistics are revised on the order of days/months, not minutes, so a
     #: day is a safe default for every source registered so far.
@@ -60,6 +76,7 @@ class SDMXSourceConfig:
 
 SOURCES: dict[str, SDMXSourceConfig] = {
     "WB_WDI": SDMXSourceConfig(
+        registry_id="WB_WDI",
         source_id="WB_WDI",
         source_name="World Bank — World Development Indicators",
         dataflow_id="WDI",
@@ -69,6 +86,7 @@ SOURCES: dict[str, SDMXSourceConfig] = {
         website="https://datahelpdesk.worldbank.org/knowledgebase/articles/1886701-sdmx-api-queries",
     ),
     "IMF_DATA_CPI": SDMXSourceConfig(
+        registry_id="IMF_DATA_CPI",
         source_id="IMF_DATA",
         source_name="IMF — Consumer Price Index (CPI) dataflow",
         dataflow_id="CPI",
@@ -78,8 +96,17 @@ SOURCES: dict[str, SDMXSourceConfig] = {
         # then fixed index-type "IX" and monthly frequency "M".
         key_dimensions=("{ref_area}", "CPI", "{indicator}", "IX", "M"),
         website="https://data.imf.org",
+        # Verified: sdmx/tests/test_sources.py::TestIMF_DATA also declares
+        # "structure": dict(resource_id="DSD_CPI") and
+        # "codelist": dict(resource_id="CL_COUNTRY") as real, working
+        # IMF_DATA endpoints — real ground truth for structure discovery,
+        # unlike World Bank (see structure_id's docstring above). See
+        # providers/imf_provider.py for how this DSD is used to discover
+        # every COICOP indicator this dataflow actually publishes.
+        structure_id="DSD_CPI",
     ),
     "ESTAT_NAMA_10_GDP": SDMXSourceConfig(
+        registry_id="ESTAT_NAMA_10_GDP",
         source_id="ESTAT",
         source_name="Eurostat — National Accounts (GDP and main aggregates)",
         dataflow_id="NAMA_10_GDP",

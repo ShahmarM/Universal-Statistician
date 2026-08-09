@@ -198,6 +198,54 @@ instances satisfy `isinstance(x, MetadataDiscoverable)` — `SDMXProvider`
 instances for IMF/Eurostat do not, correctly reflecting that those sources
 don't have discovery yet (Phases 3-4), even though they share a base class.
 
+## Generalized IMF integration (Phase 3)
+
+`IMFProvider` (`providers/imf_provider.py`) also subclasses `SDMXProvider`,
+but — unlike World Bank — IMF genuinely has a **verified SDMX structure
+-discovery path**: `sdmx1`'s own integration test suite
+(`TestIMF_DATA.endpoint_args`) declares `"structure": dict(resource_id=
+"DSD_CPI")` and `"codelist": dict(resource_id="CL_COUNTRY")` as real,
+exercised endpoints. So discovery here calls
+`client.get("datastructure", resource_id="DSD_CPI")` — a genuine SDMX
+structure request, not a bespoke REST API — and walks the returned DSD's
+dimensions.
+
+The DSD tells us the *codes* (e.g. `CP01`, `CP02`, ... every COICOP
+category the CPI dataflow actually publishes) for whichever dimension turns
+out to be "the indicator dimension" — but nothing in the DSD response is
+labeled "this is the indicator dimension" by name. Rather than guess a
+dimension ID string, discovery reuses the **same fact already verified**
+for `get_series()`: `SDMXSourceConfig.key_dimensions`' `"{indicator}"`/
+`"{ref_area}"` placeholder positions are defined (registry.py's own
+docstring) to match that dimension's position in the DSD's declared order.
+So discovery and retrieval stay consistent with each other *by
+construction* — one verified fact reused twice, not two independently
+guessed ones. If a DSD response doesn't have exactly as many non-time
+dimensions as `key_dimensions` declares, `IMFDiscoveryError` is raised
+(surfaced as a clean `IngestionReport` error) rather than silently mapping
+the wrong dimension.
+
+`SDMXSourceConfig` gained two fields to support this and any future
+SDMX-structure-discoverable source: `registry_id` (this entry's own key in
+`SOURCES` — needed because `IndicatorEntry.source_id` must be the registry
+key `QueryEngine` looks providers up by, e.g. `"IMF_DATA_CPI"`, which is
+*not* the same as `config.source_id` (`"IMF_DATA"`, the underlying SDMX
+agency id also used in `Attribution.source_id` — a distinction that
+pre-existed this phase and is now made explicit rather than implicit) and
+`structure_id` (the DSD resource id, `None` for sources without one).
+
+Discovery is unit-tested against a `StructureMessage` built from real
+`sdmx.model.v21` classes (`DataStructureDefinition`/`Dimension`/`Codelist`/
+`Item`) — the same in-memory-object approach `tests/conftest.py` already
+uses for data messages — including a case where the dimension count doesn't
+match `key_dimensions`, proving the mismatch is reported cleanly rather than
+silently mis-mapped. A live attempt via `ustat catalog refresh IMF_DATA_CPI`
+from this sandbox confirmed the request reaches
+`.../datastructure/all/DSD_CPI/latest?references=all` — note `references=all`
+was applied automatically by `sdmx1`'s own default for a specific
+`datastructure` resource_id (its documented behavior, not a parameter this
+project invented) — and fails cleanly against the network block.
+
 ## Not yet built (tracked per-phase)
 
 Query planning, ambiguity handling, source-selection ranking, the expanded
@@ -212,7 +260,7 @@ this document with its own section once implemented, following the same
 |---|---|---|
 | 1 | Catalog architecture & metadata normalization | ✅ done |
 | 2 | World Bank broad catalog discovery | ✅ done |
-| 3 | Generalized IMF provider/catalog | not started |
+| 3 | Generalized IMF provider/catalog | ✅ done |
 | 4 | Generalized Eurostat integration | not started |
 | 5 | OECD as first-class provider | not started |
 | 6 | National statistical office plugin architecture | not started |

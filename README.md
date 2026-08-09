@@ -116,7 +116,7 @@ Starlette тоже выполняет синхронные хендлеры в w
 | Источник | Датафлоу/таблица | Статус |
 |---|---|---|
 | World Bank | WDI (все индикаторы, discovery через `ustat catalog refresh WB_WDI`) | ✅ `WB_WDI` |
-| IMF | CPI (Consumer Price Index) | ✅ `IMF_DATA_CPI` |
+| IMF | CPI (Consumer Price Index), discovery через `ustat catalog refresh IMF_DATA_CPI` | ✅ `IMF_DATA_CPI` |
 | Eurostat | NAMA_10_GDP (нацсчета/ВВП, текущие цены) | ✅ `ESTAT_NAMA_10_GDP` |
 | Statistics Sweden (SCB) | TAB6471 (PX-Web, не SDMX) | ✅ `SCB_TAB6471` |
 | OECD | — | не добавлен: нет проверенного рабочего примера запроса (см. `registry.py`) |
@@ -263,7 +263,12 @@ payload, собранном по опубликованной документа
 из песочницы ровно настолько, чтобы подтвердить URL и корректную обработку
 сетевого сбоя (см. `docs/architecture/nl-platform.md`).
 
-Провайдерная логика тестируется на реальных объектах `sdmx.model.DataSet`,
+`IMFProvider`'s discovery (`test_imf_provider.py`) идёт ещё дальше того же
+принципа: не просто payload, а полноценный `StructureMessage`, собранный из
+настоящих классов `sdmx.model.v21`
+(`DataStructureDefinition`/`Dimension`/`Codelist`/`Item`) — включая тест на
+несовпадение числа измерений (явная ошибка вместо тихого неверного
+маппинга). Провайдерная логика тестируется на реальных объектах `sdmx.model.DataSet`,
 собранных в памяти (`tests/conftest.py`), а не на выдуманной структуре.
 Значения ключей (`_build_key`) сверяются с примерами из собственного
 интеграционного тест-сьюта `sdmx1` (`sdmx/tests/test_sources.py`) — с
@@ -328,9 +333,11 @@ Suite (CAGR, currency conversion, index rebasing и др.) — не реализ
 Начата более крупная инициатива — расширение на десятки источников +
 естественноязыковой статистик поверх текущего ядра, по 13 фазам, статус —
 в [`docs/architecture/nl-platform.md`](./docs/architecture/nl-platform.md).
-Фазы 1-2 готовы (архитектура каталога + полное discovery-покрытие World
-Bank через его v2 REST API, отдельный от SDMX-эндпоинта `get_series()`);
-следующая — обобщённая интеграция IMF (Фаза 3). Отдельно, из оценки по
+Фазы 1-3 готовы: архитектура каталога, discovery-покрытие World Bank (через
+его v2 REST API — отдельный от SDMX-эндпоинта `get_series()`) и IMF (через
+настоящий SDMX structure-запрос к `DSD_CPI`, в отличие от World Bank —
+проверено тест-сьютом `sdmx1`). Следующая — обобщённая интеграция Eurostat
+(Фаза 4). Отдельно, из оценки по
 бенчмарку выше: `formula`/`input_series` в provenance derived-таблиц и явная
 `status`-таксономия (Official/Derived/Composite/User-defined/Estimated)
 запланированы как часть Фазы 10 (provenance/citation system).

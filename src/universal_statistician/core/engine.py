@@ -13,11 +13,14 @@ from universal_statistician.core.ingestion import IngestionReport, ingest_source
 from universal_statistician.core.models import IndicatorMeta, SeriesResult
 from universal_statistician.providers.base import Provider
 from universal_statistician.providers.catalog_seed import CATALOG_SEED
+from universal_statistician.providers.imf_provider import IMFProvider
 from universal_statistician.providers.pxweb_provider import PXWebProvider
 from universal_statistician.providers.pxweb_registry import PXWEB_SOURCES
 from universal_statistician.providers.registry import SOURCES
 from universal_statistician.providers.sdmx_provider import SDMXProvider
 from universal_statistician.providers.worldbank_provider import WorldBankProvider
+
+_DISCOVERABLE_SDMX_PROVIDERS = {"WB_WDI": WorldBankProvider, "IMF_DATA_CPI": IMFProvider}
 
 
 class UnknownSourceError(KeyError):
@@ -107,10 +110,13 @@ def default_engine() -> QueryEngine:
     cause).
     """
     providers: dict[str, Provider] = {
-        # World Bank additionally supports catalog discovery (Phase 2) via a
-        # different provider class — see WorldBankProvider's docstring for
-        # why that's a subclass rather than a change to SDMXProvider itself.
-        source_id: (WorldBankProvider if source_id == "WB_WDI" else SDMXProvider)(config)
+        # Some SDMX sources additionally support catalog discovery (Phases
+        # 2-3) via a dedicated subclass — see WorldBankProvider's and
+        # IMFProvider's docstrings for why each is a subclass rather than a
+        # change to SDMXProvider itself (their discovery mechanisms are
+        # genuinely different from each other, and from sources that don't
+        # have one yet).
+        source_id: _DISCOVERABLE_SDMX_PROVIDERS.get(source_id, SDMXProvider)(config)
         for source_id, config in SOURCES.items()
     }
     providers.update(
