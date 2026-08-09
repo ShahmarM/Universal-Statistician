@@ -16,6 +16,9 @@ from universal_statistician.core.compose import (
     with_ratio,
 )
 from universal_statistician.core.engine import QueryEngine
+from universal_statistician.core.query_plan import build_query_plan
+from universal_statistician.planning.base import LLMPlanner
+from universal_statistician.planning.rule_based_planner import RuleBasedPlanner
 
 
 def search_indicator(engine: QueryEngine, query: str, limit: int = 20) -> list[dict]:
@@ -55,6 +58,17 @@ def refresh_catalog(engine: QueryEngine, source_id: str | None = None) -> list[d
 
 def catalog_stats(engine: QueryEngine) -> dict[str, int]:
     return engine.catalog_stats()
+
+
+def build_plan(engine: QueryEngine, question: str, planner: LLMPlanner | None = None) -> dict:
+    """Interpret a natural-language question into an inspectable QueryPlan,
+    without retrieving anything. Defaults to RuleBasedPlanner (no external
+    dependency) so this stays usable without an LLM configured — callers
+    that want real NL understanding pass an AnthropicPlanner explicitly
+    (see cli.py's `plan --llm`)."""
+    planner = planner or RuleBasedPlanner()
+    interpretation = planner.interpret(question)
+    return build_query_plan(question, interpretation, engine).as_dict()
 
 
 def describe_source(engine: QueryEngine, source_id: str) -> dict:

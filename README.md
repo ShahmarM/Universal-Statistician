@@ -21,6 +21,8 @@ core/compose.py          сравнительные таблицы поверх 
 core/engine.py           QueryEngine — единая точка входа: провайдеры + Catalog + Cache
 core/catalog.py          локальный многоязычный полнотекстовый индекс индикаторов (SQLite FTS5 + метаданные)
 core/ingestion.py        discovery → нормализация → каталог (upsert, incremental refresh)
+core/query_plan.py       QueryPlan/QuestionInterpretation + build_query_plan() (резолв концептов через каталог)
+planning/                LLMPlanner: RuleBasedPlanner (без LLM) + AnthropicPlanner (forced tool call)
 core/cache.py            локальный TTL-кэш поверх get_series() (SQLite)
 providers/sdmx_provider.py + registry.py   генерик-провайдер поверх sdmx1, источники — записи в реестре
 providers/pxweb_provider.py + pxweb_registry.py   генерик-провайдер поверх pxwebpy (второй, не-SDMX протокол)
@@ -180,6 +182,8 @@ ustat compare WB_WDI --indicator-id SP_POP_TOTL --indicator-id NY.GDP.MKTP.CD --
 ustat catalog stats             # индикаторов в каталоге, по источнику
 ustat catalog refresh           # discovery-ingestion для всех источников, что его поддерживают
 ustat catalog refresh WB_WDI    # то же самое для одного источника
+ustat plan "population"         # структурный query plan (без LLM: вся фраза = один поисковый концепт)
+ustat plan "GDP growth" --llm   # то же самое через Claude (AnthropicPlanner, нужен ANTHROPIC_API_KEY)
 ```
 
 Некорректный запрос (неизвестный источник, неполный `compare`) печатает
@@ -360,8 +364,14 @@ Eurostat (тот же путь, что использует сам `sdmx1` в с
 US Census Bureau, не SDMX и не PX-Web/JSON-stat), с честной оговоркой:
 подтверждено только документацией, не тест-сьютом зависимости (как у
 SDMX/PX-Web), поэтому без seed-записи в каталоге до подтверждения вживую.
-Следующая — структурный query planner и NL-интерфейс (Фаза 7). Отдельно, из
-оценки по
+Фаза 7 готова: `core/query_plan.py` (`QueryPlan`/`QuestionInterpretation`)
+и `planning/` (`RuleBasedPlanner` без LLM + `AnthropicPlanner` через
+forced tool call — модель физически не может подставить в план код
+индикатора, для этого в схеме плана просто нет поля; коды резолвятся
+только через `QueryEngine.search_indicator()`, реальный каталог).
+`ustat plan "<question>"` — inspectable-план без ретрива, по требованию
+секции 10. Следующая — ранжирование источников/индикаторов (Фаза 8).
+Отдельно, из оценки по
 бенчмарку выше: `formula`/`input_series` в provenance derived-таблиц и явная
 `status`-таксономия (Official/Derived/Composite/User-defined/Estimated)
 запланированы как часть Фазы 10 (provenance/citation system).

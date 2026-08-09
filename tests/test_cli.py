@@ -92,6 +92,22 @@ def test_catalog_refresh_and_stats_against_a_discoverable_fake_engine(monkeypatc
     assert json.loads(stats_result.stdout) == {"FAKE": 1}
 
 
+def test_plan_uses_the_rule_based_planner_by_default():
+    result = runner.invoke(cli.app, ["plan", "population"])
+    assert result.exit_code == 0
+    payload = json.loads(result.stdout)
+    assert payload["question"] == "population"
+    assert payload["concepts"] == ["population"]
+    assert payload["assumptions"]  # rule-based planner always explains itself
+
+
+def test_plan_with_llm_but_no_api_key_exits_cleanly(monkeypatch):
+    monkeypatch.delenv("ANTHROPIC_API_KEY", raising=False)
+    result = runner.invoke(cli.app, ["plan", "population", "--llm"])
+    assert result.exit_code == 1
+    assert "ANTHROPIC_API_KEY" in result.stderr
+
+
 def test_catalog_refresh_unknown_source_exits_nonzero(monkeypatch):
     monkeypatch.setattr(cli, "_engine", QueryEngine({"FAKE": LookupProvider("FAKE", {})}))
 

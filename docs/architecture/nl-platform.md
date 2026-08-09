@@ -19,13 +19,13 @@ table below for current status. This file is updated after every phase.
 User question
   |
   v
-LLM/query planner        (Phase 7 — not yet built)
+LLM/query planner        planning/ — RuleBasedPlanner + AnthropicPlanner (Phase 7)
   |
   v
 Catalog search            core/catalog.py — implemented, being extended
   |
   v
-Query plan                 (Phase 7 — not yet built)
+Query plan                 core/query_plan.py: QueryPlan (Phase 7)
   |
   v
 Provider selection          core/engine.py — implemented (manual); ranking is Phase 8
@@ -420,6 +420,68 @@ instance) and `ustat catalog refresh US_CENSUS_ACS1` reaches
 `.../data/2022/acs/acs1/variables.json` — both fail cleanly against the
 network block.
 
+## Structured query planner + NL interface (Phase 7)
+
+`core/query_plan.py` defines the explicit, inspectable plan object the
+"expose query plans in developer/debug mode" requirement (section 10)
+calls for: `QuestionInterpretation` (a planner's reading of a question —
+concepts, geographies, periods, transformations, comparison shape, output
+type, assumptions, clarification need) and `QueryPlan` (that interpretation
+plus the catalog's actual candidate indicators, resolvable to JSON via
+`as_dict()` for a future `/ask` response).
+
+**The anti-hallucination mechanism (section 23) is structural, not a
+prompt instruction:** `QuestionInterpretation` has no field for an
+indicator code at all — a planner can only propose natural-language
+`concepts`. `build_query_plan()` is the *only* place `CandidateIndicator`
+objects get created, and it does so by calling
+`QueryEngine.search_indicator()` — the same deterministic catalog search
+every interface already uses — once per concept. An LLM literally cannot
+put a fabricated code into a QueryPlan; there's nowhere in the data model
+for one to go.
+
+`planning/` (new top-level package, parallel to `providers/` — isolated
+because it depends on an optional external LLM client, per section 22):
+
+- `planning/base.py`: `LLMPlanner`, a structural `Protocol` (same reasoning
+  as `MetadataDiscoverable`) — any object with `interpret(question) ->
+  QuestionInterpretation` qualifies, no shared base class forced on
+  planners as different as the two below.
+- `planning/rule_based_planner.py`: `RuleBasedPlanner` — no LLM, no
+  external dependency. Satisfies section 22's "the statistical platform
+  should remain operational for structured/manual queries without an LLM":
+  treats the whole question as one literal catalog search phrase and says
+  so explicitly via `assumptions`, rather than pretending to understand
+  natural language it can't.
+- `planning/anthropic_planner.py`: `AnthropicPlanner` — wraps the Claude
+  API via a **forced tool call** (`tool_choice={"type": "tool", "name":
+  "propose_query_plan"}`, a real, verified Anthropic SDK parameter shape),
+  not free text: the model can only respond by filling in the plan schema,
+  which has no slot for a data value or a code. The system prompt encodes
+  section 11's ambiguity rule directly: infer the conventional reading when
+  confident, record it in `assumptions`, and only set
+  `needs_clarification` when interpretations would materially change the
+  result. Mirrors `chat.py`'s pattern exactly — client injected, testable
+  with a fake client built from real `anthropic.types` objects, no
+  `ANTHROPIC_API_KEY` needed for tests.
+
+Exposed now, ahead of the full `/ask` endpoint (Phase 11), via `ustat plan
+"<question>"` (rule-based by default; `--llm` for `AnthropicPlanner`) —
+lets a plan be inspected before Phase 9's calculation/validation layer or
+Phase 11's answer builder exist, matching the letter of "before retrieving
+observations, the plan should be inspectable/debuggable." A live run
+against the real catalog (`ustat plan "population"`) resolved a real
+candidate (`SP_POP_TOTL`); a stricter phrase (`"population of
+Afghanistan"`) honestly returned zero candidates rather than a false match
+— the rule-based planner's real, expected limitation, not a bug.
+
+Source/indicator **selection** among candidates (`QueryPlan.
+selected_indicators`) is Phase 8; calculation/validation
+(`QueryPlan.validation_notes`) is Phase 9 — both fields exist on `QueryPlan`
+now, empty, because their shape is already specified by this task's own
+target `/ask` response (section 10), and stabilizing it avoids a breaking
+change to every caller once those phases land.
+
 ## Not yet built (tracked per-phase)
 
 Query planning, ambiguity handling, source-selection ranking, the expanded
@@ -438,7 +500,7 @@ this document with its own section once implemented, following the same
 | 4 | Generalized Eurostat integration | ✅ done |
 | 5 | OECD as first-class provider | 🚫 investigated, not safely integrable — see write-up above |
 | 6 | National statistical office plugin architecture | ✅ done |
-| 7 | Structured query planner + NL interface | not started |
+| 7 | Structured query planner + NL interface | ✅ done |
 | 8 | Source/indicator selection ranking | not started |
 | 9 | Calculation and validation engine | not started |
 | 10 | Provenance/citation system | not started |

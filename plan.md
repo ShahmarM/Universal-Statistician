@@ -402,4 +402,51 @@ discovery-инстанс `PxApi` с запрошенным языком, не т
 `ustat catalog refresh US_CENSUS_ACS1` → `.../data/2022/acs/acs1/variables.json`
 — оба падают чисто на сетевой блокировке. **133 офлайн-теста** (было 125).
 
-Следующая фаза — Фаза 7, структурный query planner и NL-интерфейс.
+### Фаза 7 — готово
+
+`core/query_plan.py`: `QuestionInterpretation` (то, что предлагает
+planner — концепты, географии, периоды, трансформации, вид сравнения,
+output_type, assumptions, needs_clarification) и `QueryPlan` (то же плюс
+реальные кандидаты индикаторов из каталога). **Защита от галлюцинаций —
+структурная, не промпт-инструкция**: в `QuestionInterpretation` физически
+нет поля под код индикатора — planner может предложить только
+natural-language `concepts`. `build_query_plan()` — единственное место,
+где создаются `CandidateIndicator`, и делает это вызовом
+`QueryEngine.search_indicator()` (тот же детерминированный поиск, что у
+всех интерфейсов) — LLM в принципе некуда подставить выдуманный код.
+
+Новый пакет `planning/` (параллельно `providers/`, изолирован, потому что
+зависит от опционального внешнего LLM-клиента — секция 22):
+- `planning/base.py`: `LLMPlanner`, структурный `Protocol` (тот же приём,
+  что `MetadataDiscoverable`).
+- `planning/rule_based_planner.py`: `RuleBasedPlanner` — без LLM и внешних
+  зависимостей, вся фраза = один буквальный поисковый концепт, честно
+  объясняет ограничение через `assumptions`, а не делает вид, что понял
+  естественный язык.
+- `planning/anthropic_planner.py`: `AnthropicPlanner` — Claude через
+  **принудительный tool call** (`tool_choice={"type": "tool", "name":
+  "propose_query_plan"}`, реальный, проверенный параметр Anthropic SDK), не
+  свободный текст — модель может ответить только заполнив схему плана, где
+  просто нет места под число или код. Системный промпт — прямое отражение
+  секции 11 (ambiguity handling): типовая интерпретация при уверенности,
+  явно записана в `assumptions`, `needs_clarification` только когда
+  интерпретации дали бы существенно разный результат. Тот же паттерн, что
+  `chat.py` — клиент инжектится, тестируется фейковым клиентом на реальных
+  `anthropic.types` объектах, без ключа.
+
+Выставлено уже сейчас, до полного `/ask` (Фаза 11): `ustat plan
+"<question>"` (`--llm` для `AnthropicPlanner`) — план можно посмотреть до
+того, как появятся вычисления/валидация (Фаза 9) или answer builder
+(Фаза 11), по букве требования "expose query plans in developer/debug
+mode". Живой прогон на реальном каталоге: `ustat plan "population"` нашёл
+`SP_POP_TOTL`; `ustat plan "population of Afghanistan"` честно вернул
+пустой список кандидатов — реальное, ожидаемое ограничение
+rule-based planner'а, не баг.
+
+`QueryPlan.selected_indicators` (Фаза 8) и `.validation_notes` (Фаза 9) —
+уже в датаклассе, пустые: форма задана самим ТЗ (секция 10), стабилизация
+сейчас избавляет от breaking change в вызывающем коде позже.
+
+**146 офлайн-тестов** (было 133).
+
+Следующая фаза — Фаза 8, ранжирование источников/индикаторов.
