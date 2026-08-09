@@ -194,3 +194,67 @@ def test_build_query_plan_resolves_concepts_referenced_only_inside_a_transformat
     assert "GDP per capita" in plan.concepts
     concepts_seen = {c.concept for c in plan.candidate_indicators}
     assert "Unemployment rate" in concepts_seen
+
+
+# ---- Phase G: geography resolution (a real LLM planner routinely writes a
+# country NAME rather than the code a provider needs - see
+# docs/benchmarks/phase-g-live-planner-report.md) --------------------------
+
+
+def test_build_query_plan_resolves_country_names_to_alpha_3_codes():
+    engine = _engine_with_catalog()
+    interpretation = QuestionInterpretation(
+        concepts=("GDP per capita",), geographies=("Azerbaijan", "Georgia")
+    )
+
+    plan = build_query_plan("q", interpretation, engine)
+
+    assert plan.geographies == ("AZE", "GEO")
+
+
+def test_build_query_plan_leaves_already_correct_codes_unchanged():
+    engine = _engine_with_catalog()
+    interpretation = QuestionInterpretation(concepts=("GDP per capita",), geographies=("AFG", "USA"))
+
+    plan = build_query_plan("q", interpretation, engine)
+
+    assert plan.geographies == ("AFG", "USA")
+
+
+def test_build_query_plan_resolves_weighted_average_inputs_as_geographies():
+    engine = _engine_with_catalog()
+    interpretation = QuestionInterpretation(
+        concepts=("GDP per capita",),
+        geographies=("Germany", "France"),
+        transformations=(
+            TransformationSpec(
+                operation="weighted_average", inputs=("Germany", "France"), weights=(1.0, 2.0)
+            ),
+        ),
+    )
+
+    plan = build_query_plan("q", interpretation, engine)
+
+    assert plan.transformations[0].inputs == ("DEU", "FRA")
+
+
+def test_question_interpretation_from_dict_treats_latest_as_a_missing_period():
+    # Caught live: AnthropicPlanner wrote end_period="latest" for "...to the
+    # latest available year" instead of leaving it null.
+    interpretation = QuestionInterpretation.from_dict(
+        {"concepts": ["GDP"], "start_period": "2015", "end_period": "latest"}
+    )
+
+    assert interpretation.start_period == "2015"
+    assert interpretation.end_period is None
+
+
+def test_question_interpretation_from_dict_cleans_transformation_base_period_too():
+    interpretation = QuestionInterpretation.from_dict(
+        {
+            "concepts": ["GDP"],
+            "transformations": [{"operation": "index", "input_concept": "GDP", "base_period": "Present"}],
+        }
+    )
+
+    assert interpretation.transformations[0].base_period is None

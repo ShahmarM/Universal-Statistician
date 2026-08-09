@@ -51,7 +51,17 @@ SYSTEM_PROMPT = (
     "'2015'); base_value defaults to 100 if omitted. `weighted_average` "
     "combines a single concept's values across several of the question's "
     "geographies — `inputs` must be geography/country codes already present "
-    "in `geographies`, one per entry of `weights`, not concepts."
+    "in `geographies`, one per entry of `weights`, not concepts.\n\n"
+    "For `geographies` (and weighted_average's `inputs`), prefer ISO 3166-1 "
+    "alpha-3 country codes when you are confident of one (e.g. 'AZE' for "
+    "Azerbaijan) — the system also resolves plain country names on its own, "
+    "so a name is an acceptable fallback, but a correct code avoids any "
+    "ambiguity. For `start_period`/`end_period`, use an actual period value "
+    "(e.g. '2015', '2020-Q1') or leave the field null/omitted when the "
+    "question doesn't specify one (e.g. 'the latest available year') — "
+    "never write words like 'latest', 'present', or 'current' as the period "
+    "value itself; the system resolves an omitted period to whatever is "
+    "actually latest/earliest in the retrieved data."
 )
 
 PLAN_TOOL_SCHEMA = {
@@ -76,10 +86,20 @@ PLAN_TOOL_SCHEMA = {
             "geographies": {
                 "type": "array",
                 "items": {"type": "string"},
-                "description": "Countries/areas the question concerns, in whatever form the user used them (names or codes).",
+                "description": (
+                    "Countries/areas the question concerns. Prefer ISO 3166-1 alpha-3 "
+                    "codes (e.g. 'AZE') when confident; a plain country name is an "
+                    "acceptable fallback, the system resolves it."
+                ),
             },
-            "start_period": {"type": ["string", "null"]},
-            "end_period": {"type": ["string", "null"]},
+            "start_period": {
+                "type": ["string", "null"],
+                "description": "An actual period value (e.g. '2015') or null - never the word 'latest'/'present'/'current'.",
+            },
+            "end_period": {
+                "type": ["string", "null"],
+                "description": "An actual period value (e.g. '2024') or null - never the word 'latest'/'present'/'current'.",
+            },
             "frequency": {
                 "type": ["string", "null"],
                 "description": "e.g. 'A' (annual), 'Q' (quarterly), 'M' (monthly), if the question implies one.",

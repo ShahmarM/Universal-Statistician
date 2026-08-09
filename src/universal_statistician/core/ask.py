@@ -38,6 +38,7 @@ from universal_statistician.core.compose import (
     with_weighted_average,
 )
 from universal_statistician.core.engine import QueryEngine
+from universal_statistician.core.geography import provider_ref_area
 from universal_statistician.core.models import SeriesResult
 from universal_statistician.core.provenance import resolve_provenance
 from universal_statistician.core.query_plan import QueryPlan, TransformationSpec, build_query_plan
@@ -105,7 +106,15 @@ def _fetch_table(engine: QueryEngine, plan: QueryPlan) -> tuple[ComparisonTable 
                 series = engine.get_series(
                     candidate.source_id,
                     candidate.indicator_id,
-                    ref_area,
+                    # plan.geographies is already the canonical alpha-3 form
+                    # (core/query_plan.py::build_query_plan); convert to
+                    # whatever code this specific source's ref_area actually
+                    # expects (e.g. Eurostat's alpha-2) only here, at the
+                    # retrieval call itself — the column below still keys
+                    # off the canonical `ref_area`, not this converted one,
+                    # so validation/chart labels stay consistent regardless
+                    # of which source served a given geography.
+                    provider_ref_area(ref_area, source_id=candidate.source_id),
                     start_period=plan.start_period,
                     end_period=plan.end_period,
                 )

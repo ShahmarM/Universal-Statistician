@@ -119,6 +119,22 @@ def test_answer_question_builds_a_full_result_for_a_single_indicator_single_area
     assert result.chart["series"] == [{"key": "AFG", "label": "AFG"}]
 
 
+def test_answer_question_resolves_a_country_name_from_the_planner_to_retrieve_data():
+    # Phase G: caught live, running AnthropicPlanner against real questions
+    # - the model wrote "Afghanistan" (a country name), and every one of 10
+    # example questions failed retrieval for exactly this reason before
+    # core/geography.py existed. This locks the fix in with the same shape
+    # a real planner actually produced, not a hypothetical.
+    engine = _engine_with_population()
+    planner = ScriptedPlanner(QuestionInterpretation(concepts=("population",), geographies=("Afghanistan",)))
+
+    result = answer_question(engine, "population of Afghanistan", planner=planner)
+
+    assert result.table is not None
+    assert result.table["columns"][0]["key"] == "AFG"
+    assert not result.warnings
+
+
 def test_answer_question_handles_cross_country_comparison():
     engine = _engine_with_population()
     planner = ScriptedPlanner(

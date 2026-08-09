@@ -22,9 +22,31 @@ to every caller once those phases land, but nothing here computes them yet.
 
 from __future__ import annotations
 
-from dataclasses import dataclass, field
+from dataclasses import dataclass, field, replace
 
+from universal_statistician.core.geography import resolve_geography
 from universal_statistician.core.models import StatisticalSemantics
+
+#: Words a real LLM planner has been observed writing in start_period/
+#: end_period instead of leaving the field null (Phase G: caught live,
+#: running AnthropicPlanner against real questions like "...to the latest
+#: available year" — the model wrote the literal string "latest" as
+#: end_period rather than omitting it). A period is meant to be an actual
+#: value like "2015" or "2020-Q1"; every downstream consumer (get_series's
+#: start/endPeriod params, compose.py's `end_period or periods[-1]`
+#: "resolve to latest" idiom, validation's period-coverage check) already
+#: treats None correctly as "not specified" — treating these words as None
+#: here, structurally, is more robust than hoping every model always
+#: follows the prompt's instruction to use null.
+_NON_PERIOD_WORDS = {"latest", "present", "now", "current", "today", "n/a", "unknown", "none"}
+
+
+def _clean_period(value: str | None) -> str | None:
+    if value is None:
+        return None
+    if str(value).strip().lower() in _NON_PERIOD_WORDS:
+        return None
+    return value
 
 
 @dataclass(frozen=True)
@@ -160,7 +182,7 @@ class TransformationSpec:
             numerator_concept=payload.get("numerator_concept"),
             denominator_concept=payload.get("denominator_concept"),
             input_concept=payload.get("input_concept"),
-            base_period=payload.get("base_period"),
+            base_period=_clean_period(payload.get("base_period")),
             base_value=payload.get("base_value"),
             left_concept=payload.get("left_concept"),
             right_concept=payload.get("right_concept"),
@@ -201,8 +223,8 @@ class QuestionInterpretation:
         return QuestionInterpretation(
             concepts=tuple(payload.get("concepts") or ()),
             geographies=tuple(payload.get("geographies") or ()),
-            start_period=payload.get("start_period"),
-            end_period=payload.get("end_period"),
+            start_period=_clean_period(payload.get("start_period")),
+            end_period=_clean_period(payload.get("end_period")),
             frequency=payload.get("frequency"),
             transformations=tuple(
                 TransformationSpec.from_dict(t) for t in (payload.get("transformations") or ())
@@ -281,6 +303,17 @@ def build_query_plan(
     `plan.concepts` — actually selects an indicator for a
     transformation-only concept too, not just top-level ones.
 
+    Also resolves every geography to its canonical ISO 3166-1 alpha-3 form
+    (core/geography.py) — a real LLM planner routinely writes a country
+    NAME ("Azerbaijan") rather than the code a provider's ref_area needs
+    (found live running AnthropicPlanner, Phase G), and the system prompt
+    alone can't be trusted to make every model comply. Resolved once, here,
+    so every downstream consumer (selection scoring's geographic_coverage
+    check, column keys, validation, chart labels) sees the same canonical
+    value; the source-specific code format (e.g. Eurostat's alpha-2) is
+    applied only at the retrieval call boundary (core/ask.py::_fetch_table),
+    not baked into the plan itself.
+
     `engine` is typed loosely (not core.engine.QueryEngine) to avoid a
     circular import — core/engine.py already imports providers that
     eventually need catalog/query_plan types; this only calls the one
@@ -292,6 +325,14 @@ def build_query_plan(
         for concept in transformation.concepts_referenced():
             if concept not in all_concepts:
                 all_concepts.append(concept)
+
+    geographies = tuple(resolve_geography(g) for g in interpretation.geographies)
+    # weighted_average's `inputs` are geography codes too (see
+    # TransformationSpec's docstring) - same resolution, same reason.
+    transformations = tuple(
+        replace(t, inputs=tuple(resolve_geography(g) for g in t.inputs)) if t.inputs else t
+        for t in interpretation.transformations
+    )
 
     candidate_indicators = tuple(
         CandidateIndicator(
@@ -312,11 +353,11 @@ def build_query_plan(
         question=question,
         concepts=tuple(all_concepts),
         candidate_indicators=candidate_indicators,
-        geographies=interpretation.geographies,
+        geographies=geographies,
         start_period=interpretation.start_period,
         end_period=interpretation.end_period,
         frequency=interpretation.frequency,
-        transformations=interpretation.transformations,
+        transformations=transformations,
         comparison=interpretation.comparison,
         ranking=interpretation.ranking,
         output_type=interpretation.output_type,
