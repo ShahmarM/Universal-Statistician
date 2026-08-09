@@ -27,6 +27,7 @@ from dataclasses import dataclass
 from enum import Enum
 
 from universal_statistician.core.compose import ComparisonTable
+from universal_statistician.core.geography import resolve_geography
 from universal_statistician.core.models import SeriesResult
 
 
@@ -201,9 +202,23 @@ def validate_table(
     # matched anything for that path -- live-observed via the research-mode
     # agent's own validate() calls flagging a real AZE/GEO/KAZ retrieval as
     # "missing" even though the data was right there under a different key.
+    #
+    # Both sides are resolved through resolve_geography() before comparing
+    # -- live-observed follow-up bug: the agent's own tool calls (and thus
+    # `requested_geographies`) routinely carry a full country name
+    # ("Georgia") while `ref_area` is always the ISO alpha-3 code ("GEO");
+    # a bare .upper() == .upper() compare never matched those, producing
+    # the same false "missing geography" warning this whole check exists to
+    # avoid, just from the opposite side (spelling, not column key).
     for geo in requested_geographies:
+        resolved_geo = resolve_geography(geo).upper()
         col = next(
-            (c for c in base_columns if c.ref_area is not None and c.ref_area.upper() == geo.upper()), None
+            (
+                c
+                for c in base_columns
+                if c.ref_area is not None and resolve_geography(c.ref_area).upper() == resolved_geo
+            ),
+            None,
         )
         if col is None:
             findings.append(

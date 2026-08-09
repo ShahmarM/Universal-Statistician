@@ -221,6 +221,22 @@ def test_validate_table_matches_a_requested_geography_by_ref_area_not_by_column_
     assert not any(f.check == "requested_geographies_returned" for f in result.findings)
 
 
+def test_validate_table_matches_a_requested_geography_given_as_a_full_country_name():
+    # Regression guard for a live-observed follow-up to the ref_area-vs-key
+    # bug above: the agent's own tool calls routinely pass a full country
+    # name ("Georgia") as the requested geography while `ref_area` is
+    # always the ISO alpha-3 code ("GEO") -- a bare-string compare (even
+    # once fixed to use ref_area) still never matched those, producing a
+    # false "missing geography" warning on a retrieval that actually
+    # succeeded.
+    col = ComparisonColumn(key="result_1", label="GDP (Georgia)", attribution=_attribution(), ref_area="GEO")
+    table = build_comparison([(col, _series("NY_GDP_MKTP_KD_ZG", "GEO", {"2020": 7.5}))])
+
+    result = validate_table(table, requested_geographies=("Georgia",))
+
+    assert not any(f.check == "requested_geographies_returned" for f in result.findings)
+
+
 def test_validate_table_warns_when_requested_period_range_not_covered():
     col = ComparisonColumn(key="AFG", label="AFG", attribution=_attribution())
     table = build_comparison([(col, _series("POP", "AFG", {"2010": 10.0}))])
