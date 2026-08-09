@@ -162,6 +162,42 @@ with `providers.base.LookupProvider`-style fakes in `tests/test_ingestion.py`
 before any real source implements discovery, the same "prove the pipeline
 offline first" approach already used for `SDMXProvider`/`PXWebProvider`.
 
+## World Bank broad catalog discovery (Phase 2)
+
+`WorldBankProvider` (`providers/worldbank_provider.py`) subclasses
+`SDMXProvider` — `get_series()`/`describe()` are unchanged — and adds
+`discover_catalog_entries()`, backed by `providers/worldbank_discovery.py`.
+
+This calls a **different** World Bank API than `get_series()` does. Data
+retrieval uses the SDMX API (`SDMXProvider`, verified against `sdmx1`'s own
+integration test suite). Discovery uses World Bank's other official API, the
+bespoke v2 REST endpoint `GET /v2/source/2/indicator` (source id 2 = World
+Development Indicators — the same database the SDMX dataflow queries),
+documented at
+https://datahelpdesk.worldbank.org/knowledgebase/articles/898581. `sdmx1`'s
+test suite has no verified example of an SDMX *structure* request (codelist/
+dataflow) for this source, only `data` — so this deliberately doesn't guess
+an SDMX-structure route for discovery, the same "no verified example, don't
+guess" rule already applied to OECD.
+
+Honesty check, consistent with every other source in this project: the v2
+REST API's shape is real, published documentation, but this has **not** been
+exercised against the live endpoint from this sandbox (network blocked).
+Parsing (`parse_indicator`) and pagination (`fetch_pages`) are both unit
+-tested offline — the pagination loop against a fake session, parsing
+against a payload built from the documented shape — and one `network`-marked
+test (`test_live_discovery_returns_a_large_indicator_set`) is left for a
+machine with real internet access. A live attempt from this sandbox via
+`ustat catalog refresh WB_WDI` was run and confirmed the request reaches the
+correct URL and fails cleanly (reported in `IngestionReport.errors`, not a
+crash) when the proxy blocks it — real evidence the wiring is correct end to
+end, short of the response body itself.
+
+`MetadataDiscoverable` is a structural `Protocol`, so only `WorldBankProvider`
+instances satisfy `isinstance(x, MetadataDiscoverable)` — `SDMXProvider`
+instances for IMF/Eurostat do not, correctly reflecting that those sources
+don't have discovery yet (Phases 3-4), even though they share a base class.
+
 ## Not yet built (tracked per-phase)
 
 Query planning, ambiguity handling, source-selection ranking, the expanded
@@ -175,7 +211,7 @@ this document with its own section once implemented, following the same
 | Phase | Scope | Status |
 |---|---|---|
 | 1 | Catalog architecture & metadata normalization | ✅ done |
-| 2 | World Bank broad catalog discovery | not started |
+| 2 | World Bank broad catalog discovery | ✅ done |
 | 3 | Generalized IMF provider/catalog | not started |
 | 4 | Generalized Eurostat integration | not started |
 | 5 | OECD as first-class provider | not started |

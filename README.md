@@ -115,7 +115,7 @@ Starlette тоже выполняет синхронные хендлеры в w
 
 | Источник | Датафлоу/таблица | Статус |
 |---|---|---|
-| World Bank | WDI (все индикаторы) | ✅ `WB_WDI` |
+| World Bank | WDI (все индикаторы, discovery через `ustat catalog refresh WB_WDI`) | ✅ `WB_WDI` |
 | IMF | CPI (Consumer Price Index) | ✅ `IMF_DATA_CPI` |
 | Eurostat | NAMA_10_GDP (нацсчета/ВВП, текущие цены) | ✅ `ESTAT_NAMA_10_GDP` |
 | Statistics Sweden (SCB) | TAB6471 (PX-Web, не SDMX) | ✅ `SCB_TAB6471` |
@@ -255,6 +255,14 @@ pytest                 # офлайн-тесты (по умолчанию сет
 pytest -m network      # + живые запросы к World Bank / IMF / Eurostat / SCB (нужен доступ в интернет)
 ```
 
+`WorldBankProvider`'s discovery (`test_worldbank_discovery.py`,
+`test_worldbank_provider.py`) следует тому же принципу: парсинг проверен на
+payload, собранном по опубликованной документации World Bank v2 API,
+пагинация — на фейковой сессии, а единственное, что реально требует сети
+(сам ответ живого эндпоинта), помечено `network` и один раз прогнано вживую
+из песочницы ровно настолько, чтобы подтвердить URL и корректную обработку
+сетевого сбоя (см. `docs/architecture/nl-platform.md`).
+
 Провайдерная логика тестируется на реальных объектах `sdmx.model.DataSet`,
 собранных в памяти (`tests/conftest.py`), а не на выдуманной структуре.
 Значения ключей (`_build_key`) сверяются с примерами из собственного
@@ -320,8 +328,9 @@ Suite (CAGR, currency conversion, index rebasing и др.) — не реализ
 Начата более крупная инициатива — расширение на десятки источников +
 естественноязыковой статистик поверх текущего ядра, по 13 фазам, статус —
 в [`docs/architecture/nl-platform.md`](./docs/architecture/nl-platform.md).
-Фаза 1 (архитектура каталога и нормализация метаданных) готова; следующая —
-полное discovery-покрытие World Bank (Фаза 2). Отдельно, из оценки по
+Фазы 1-2 готовы (архитектура каталога + полное discovery-покрытие World
+Bank через его v2 REST API, отдельный от SDMX-эндпоинта `get_series()`);
+следующая — обобщённая интеграция IMF (Фаза 3). Отдельно, из оценки по
 бенчмарку выше: `formula`/`input_series` в provenance derived-таблиц и явная
 `status`-таксономия (Official/Derived/Composite/User-defined/Estimated)
 запланированы как часть Фазы 10 (provenance/citation system).

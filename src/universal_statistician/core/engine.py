@@ -17,6 +17,7 @@ from universal_statistician.providers.pxweb_provider import PXWebProvider
 from universal_statistician.providers.pxweb_registry import PXWEB_SOURCES
 from universal_statistician.providers.registry import SOURCES
 from universal_statistician.providers.sdmx_provider import SDMXProvider
+from universal_statistician.providers.worldbank_provider import WorldBankProvider
 
 
 class UnknownSourceError(KeyError):
@@ -106,7 +107,11 @@ def default_engine() -> QueryEngine:
     cause).
     """
     providers: dict[str, Provider] = {
-        source_id: SDMXProvider(config) for source_id, config in SOURCES.items()
+        # World Bank additionally supports catalog discovery (Phase 2) via a
+        # different provider class — see WorldBankProvider's docstring for
+        # why that's a subclass rather than a change to SDMXProvider itself.
+        source_id: (WorldBankProvider if source_id == "WB_WDI" else SDMXProvider)(config)
+        for source_id, config in SOURCES.items()
     }
     providers.update(
         {source_id: PXWebProvider(config) for source_id, config in PXWEB_SOURCES.items()}
