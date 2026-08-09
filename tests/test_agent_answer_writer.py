@@ -116,6 +116,21 @@ def test_extract_numbers_excludes_bare_four_digit_years():
     assert not any(value == 2022 for value, _ in numbers)
 
 
+def test_extract_numbers_does_not_misread_a_digit_embedded_in_an_identifier():
+    # Live-observed false positive: deterministic validation-finding text
+    # routinely mentions column identifiers like "result_1"/"result_2" --
+    # without a word-boundary guard, the trailing digit got misparsed as a
+    # bare statistic ("1.0"), flagging text that never claimed any number
+    # at all as containing an "ungrounded number".
+    numbers = extract_numbers("Column 'result_1' has gap(s) in its annual coverage: [(1981, 1983), (1998, 2008)]")
+    assert numbers == []
+
+
+def test_extract_numbers_still_matches_a_real_number_next_to_an_identifier():
+    numbers = extract_numbers("result_1 was 78.8 in 2022")
+    assert numbers == [(78.8, 1)]
+
+
 # ---- check_citation ---------------------------------------------------------
 
 

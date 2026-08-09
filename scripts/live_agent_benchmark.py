@@ -217,45 +217,69 @@ def _recheck_derived_values(state) -> dict:
     return {"derived_entries_checked": checked, "mismatches": mismatches}
 
 
+class BenchmarkAborted(Exception):
+    """Raised when the whole run must stop early (e.g. the API key ran out
+    of credit) -- distinct from a single question failing, which is
+    recorded and skipped instead. Carries the partial `runs` completed so
+    far so the caller can still save/report them rather than losing
+    everything already paid for."""
+
+    def __init__(self, message: str, runs: list["QuestionRun"]) -> None:
+        super().__init__(message)
+        self.runs = runs
+
+
 def run_all(
     engine: QueryEngine,
     client: Anthropic,
     questions: list[BenchQuestion],
     *,
     limits: AgentLimits | None = None,
+    on_result=None,
 ) -> list[QuestionRun]:
+    """Runs every question, calling `on_result(runs)` after each one
+    completes (for incremental saving -- a long live run is expensive
+    enough in real API calls that losing partial progress to a crash near
+    the end is a real cost, not just an inconvenience). A single
+    question's own failure is recorded, not fatal to the batch; a hard API
+    failure (e.g. BadRequestError from an exhausted credit balance) stops
+    the whole run via BenchmarkAborted, since every subsequent call would
+    fail identically -- there is nothing to gain by continuing to try."""
+    from anthropic import APIStatusError
+
     planner = AnthropicPlanner(client=client, model=MODEL)
     llm_agent = AnthropicAgent(client=client, model=MODEL)
     answer_writer = AnthropicAnswerWriter(client=client, model=MODEL)
     verifier = AnthropicVerifier(client=client, model=MODEL)
     limits = limits or AgentLimits()
 
-    runs = []
+    runs: list[QuestionRun] = []
     for i, question in enumerate(questions, start=1):
         print(f"[{i}/{len(questions)}] ({question.category}) {question.text}", file=sys.stderr)
 
-        started = time.monotonic()
-        fast_result = run_fast_mode(engine, question.text, planner=planner)
-        fast_latency = time.monotonic() - started
+        try:
+            started = time.monotonic()
+            fast_result = run_fast_mode(engine, question.text, planner=planner)
+            fast_latency = time.monotonic() - started
 
-        started = time.monotonic()
-        research_result, state = run_research_mode(
-            engine, llm_agent, question.text,
-            limits=limits, answer_writer=answer_writer, verifier=verifier,
-        )
-        research_latency = time.monotonic() - started
+            started = time.monotonic()
+            research_result, state = run_research_mode(
+                engine, llm_agent, question.text,
+                limits=limits, answer_writer=answer_writer, verifier=verifier,
+            )
+            research_latency = time.monotonic() - started
+        except APIStatusError as exc:
+            raise BenchmarkAborted(f"API call failed, stopping the run: {exc}", runs) from exc
 
         grounding = {}
         if state.table.columns:
-            from universal_statistician.agent.answer_writer import AnswerDraft, Citation
-
-            # write_and_verify_answer() already ran the grounding check
-            # internally and may have fallen back -- re-derive the same
-            # check here against the FINAL evidence for reporting, treating
-            # the returned answer text as the draft (citations aren't
-            # preserved past write_and_verify_answer, so this re-checks
-            # numbers-in-text against the evidence directly as a coarser
-            # but still meaningful grounding signal for the report).
+            # write_and_verify_answer() already ran the real per-citation
+            # grounding check internally and may have fallen back --
+            # re-derive a coarser check here against the FINAL evidence for
+            # reporting (citations aren't preserved past
+            # write_and_verify_answer(), so this checks numbers-in-text
+            # against the flat evidence value set directly; still a
+            # meaningful signal, just not the exact same per-citation check).
             from universal_statistician.agent.answer_writer import extract_numbers
 
             evidence = state.evidence_package()["evidence"]
@@ -283,6 +307,8 @@ def run_all(
                 calculation_recheck=_recheck_derived_values(state),
             )
         )
+        if on_result is not None:
+            on_result(runs)
     return runs
 
 
@@ -317,9 +343,49 @@ def summarize(runs: list[QuestionRun]) -> dict:
     }
 
 
+def _build_payload(runs: list[QuestionRun]) -> dict:
+    summary = summarize(runs)
+    return {
+        "generated_at": datetime.now(timezone.utc).isoformat(),
+        "summary": summary,
+        "questions": [
+            {
+                "category": r.question.category,
+                "text": r.question.text,
+                "probes": r.question.probes,
+                "fast": {
+                    "table": r.fast.table is not None,
+                    "answer": r.fast.answer,
+                    "sources": len(r.fast.sources),
+                    "warnings": list(r.fast.warnings),
+                    "latency_s": r.fast_latency_s,
+                },
+                "research": {
+                    "table": r.research.table is not None,
+                    "answer": r.research.answer,
+                    "sources": len(r.research.sources),
+                    "warnings": list(r.research.warnings),
+                    "latency_s": r.research_latency_s,
+                    "llm_calls": r.research_llm_calls,
+                    "provider_calls": r.research_provider_calls,
+                    "tool_calls": r.research_tool_calls,
+                    "candidates_rejected": len(r.research_state.candidates_rejected),
+                    "verification_status": (
+                        r.research_state.verification_results[-1]["status"]
+                        if r.research_state.verification_results else None
+                    ),
+                },
+                "grounding": r.grounding,
+                "calculation_recheck": r.calculation_recheck,
+            }
+            for r in runs
+        ],
+    }
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    parser.add_argument("--json", type=Path, default=None, help="Write raw per-question results as JSON to PATH.")
+    parser.add_argument("--json", type=Path, default=None, help="Write raw per-question results as JSON to PATH (updated after every question, not only at the end).")
     parser.add_argument("--limit", type=int, default=None, help="Only run the first N questions.")
     parser.add_argument("--only", type=str, default=None, help="Only run questions in this category.")
     parser.add_argument("--max-tool-calls", type=int, default=25)
@@ -348,50 +414,29 @@ def main() -> None:
         print("No questions selected.", file=sys.stderr)
         raise SystemExit(1)
 
-    client = Anthropic()
-    runs = run_all(engine, client, questions, limits=AgentLimits(max_tool_calls=args.max_tool_calls))
-    summary = summarize(runs)
+    def _save(current_runs: list[QuestionRun]) -> None:
+        if args.json:
+            args.json.write_text(json.dumps(_build_payload(current_runs), indent=2, default=str))
 
+    client = Anthropic()
+    try:
+        runs = run_all(
+            engine, client, questions,
+            limits=AgentLimits(max_tool_calls=args.max_tool_calls), on_result=_save,
+        )
+    except BenchmarkAborted as exc:
+        print(f"\n{exc}", file=sys.stderr)
+        print(f"Completed {len(exc.runs)}/{len(questions)} questions before stopping.", file=sys.stderr)
+        _save(exc.runs)
+        if args.json and exc.runs:
+            print(f"Partial results saved to {args.json}", file=sys.stderr)
+        raise SystemExit(2) from exc
+
+    summary = summarize(runs)
     print(json.dumps(summary, indent=2))
 
     if args.json:
-        payload = {
-            "generated_at": datetime.now(timezone.utc).isoformat(),
-            "summary": summary,
-            "questions": [
-                {
-                    "category": r.question.category,
-                    "text": r.question.text,
-                    "probes": r.question.probes,
-                    "fast": {
-                        "table": r.fast.table is not None,
-                        "answer": r.fast.answer,
-                        "sources": len(r.fast.sources),
-                        "warnings": list(r.fast.warnings),
-                        "latency_s": r.fast_latency_s,
-                    },
-                    "research": {
-                        "table": r.research.table is not None,
-                        "answer": r.research.answer,
-                        "sources": len(r.research.sources),
-                        "warnings": list(r.research.warnings),
-                        "latency_s": r.research_latency_s,
-                        "llm_calls": r.research_llm_calls,
-                        "provider_calls": r.research_provider_calls,
-                        "tool_calls": r.research_tool_calls,
-                        "candidates_rejected": len(r.research_state.candidates_rejected),
-                        "verification_status": (
-                            r.research_state.verification_results[-1]["status"]
-                            if r.research_state.verification_results else None
-                        ),
-                    },
-                    "grounding": r.grounding,
-                    "calculation_recheck": r.calculation_recheck,
-                }
-                for r in runs
-            ],
-        }
-        args.json.write_text(json.dumps(payload, indent=2, default=str))
+        _save(runs)
         print(f"\nWrote raw results to {args.json}", file=sys.stderr)
 
 

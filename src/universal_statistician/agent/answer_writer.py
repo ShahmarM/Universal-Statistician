@@ -143,7 +143,17 @@ WRITE_ANSWER_TOOL_SCHEMA = {
 
 #: Matches a numeric token, with proper thousands-grouped commas (groups of
 #: exactly 3 digits) or plain digits, optional decimal part, optional %.
-_NUMBER_PATTERN = re.compile(r"-?\d{1,3}(?:,\d{3})+(?:\.\d+)?%?|-?\d+(?:\.\d+)?%?")
+#: Guarded on both sides against a letter/underscore immediately adjacent
+#: (word-boundary via lookaround, not \b -- \b doesn't fire between "_" and
+#: a digit, since both count as "word" characters) -- live-observed
+#: without this: "Column 'result_1' has gap(s)..." misparsed the "1" in
+#: the identifier "result_1" as if it were a bare statistic "1.0",
+#: producing a false "ungrounded number" flag on text that never actually
+#: claimed a number at all.
+_NUMBER_PATTERN = re.compile(
+    r"(?<![A-Za-z_])-?\d{1,3}(?:,\d{3})+(?:\.\d+)?%?(?![A-Za-z_])"
+    r"|(?<![A-Za-z_])-?\d+(?:\.\d+)?%?(?![A-Za-z_])"
+)
 
 #: A bare 4-digit integer in this range is treated as a period/year
 #: reference, not a statistic requiring evidence support.
