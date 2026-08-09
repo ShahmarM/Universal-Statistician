@@ -31,7 +31,11 @@ StatisticalAgent.investigate()'s `state`/`instruction` parameters) to
 address the reported issues, then the answer is rebuilt and re-verified,
 up to `max_verification_rounds` — never an unbounded back-and-forth, and
 AgentLimits still bounds the underlying tool-call budget across every
-round combined, not per round.
+round combined, not per round. If the LAST round still FAILs, the numeric
+answer is never returned as if it were valid: `answer` becomes a fixed
+`UNABLE_TO_VERIFY_TEXT` instead of the draft/fallback text — a verifier
+that caught a real problem must not be silently overridden just because
+the retry budget ran out.
 """
 
 from __future__ import annotations
@@ -124,6 +128,22 @@ def _chart_spec_from_state(state: InvestigationState) -> ChartSpec | None:
     )
 
 
+#: Returned as `answer` (never the draft/fallback text) when the LAST
+#: verification round still FAILs — deliberately contains no numbers of
+#: its own, so it can never itself become an unsupported numerical claim.
+#: The specific issues that caused the failure are still fully available
+#: in `state.warnings`/`state.verification_results` (and the API's
+#: `verification` field) for a human to review; they just never get
+#: presented as part of a confirmed answer.
+UNABLE_TO_VERIFY_TEXT = (
+    "I could not verify this answer with confidence, even after a follow-up "
+    "investigation. Automated verification found unresolved issues with the "
+    "draft answer, so I'm not presenting a number here as confirmed — see "
+    "the warnings and verification results for what specifically failed and "
+    "the retrieved data for manual review."
+)
+
+
 def _retry_instruction(question: str, report: VerificationReport) -> str:
     issue_lines = "\n".join(f"- {issue.category}: {issue.detail}" for issue in report.issues)
     return (
@@ -161,8 +181,10 @@ def run_research_mode(
     independent semantic check; a FAIL sends the investigator back for one
     more bounded round (see `_retry_instruction`) before rebuilding and
     re-verifying, up to `max_verification_rounds`. If it still hasn't
-    passed when the bound is reached, the last answer is kept but a clear
-    warning is attached — never presented as silently clean.
+    passed when the bound is reached, `answer` becomes `UNABLE_TO_VERIFY_TEXT`
+    — the failed numeric draft is never returned as if it were a valid
+    answer, on the same "never silently return unsupported prose" principle
+    Phase 6's answer-writer guard already applies to a single number.
 
     Returns (AskResult, InvestigationState) — the state is the full audit
     trail (task section 15's `debug=true` payload), kept separate from the
@@ -217,6 +239,12 @@ def run_research_mode(
                 f"Verification failed after {rounds} round(s) and could not be resolved: "
                 f"{issue_summary or 'no specific issues reported'}."
             )
+            # The draft answer failed verification and retrying didn't fix
+            # it -- it must never be handed back as though it were valid,
+            # numbers and all (task: "A final verifier FAIL must never
+            # return the failed numerical answer as valid").
+            answer_text = UNABLE_TO_VERIFY_TEXT
+            break
 
     assert state is not None
     table_dict = state.table.as_dict() if state.table.columns else None

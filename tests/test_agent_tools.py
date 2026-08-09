@@ -222,6 +222,37 @@ def test_compare_series_flags_price_basis_and_unit_differences():
     assert "disclaimer" in result
 
 
+def test_compare_series_median_absolute_difference_is_median_of_magnitudes_not_of_signed_values():
+    # Regression guard: diffs of [-10, 1, 2] have a *signed* median of 1,
+    # but the median of their *magnitudes* [1, 2, 10] is 2 -- a field named
+    # "median_absolute_difference" must report the latter. A naive
+    # `abs(median(signed_diffs))` implementation would wrongly return 1
+    # here; only computing the median of the abs() values directly gives 2.
+    provider = LookupProvider(
+        "MED_TEST",
+        {
+            ("A_IND", "AZE"): make_series("A_IND", "AZE", {"2020": 0.0, "2021": 1.0, "2022": 2.0}, source_id="MED_TEST"),
+            ("B_IND", "AZE"): make_series("B_IND", "AZE", {"2020": 10.0, "2021": 0.0, "2022": 0.0}, source_id="MED_TEST"),
+        },
+    )
+    catalog = Catalog()
+    catalog.add(
+        [
+            IndicatorEntry(indicator_id="A_IND", source_id="MED_TEST", names={"en": "A"}, unit="u", frequency="A"),
+            IndicatorEntry(indicator_id="B_IND", source_id="MED_TEST", names={"en": "B"}, unit="u", frequency="A"),
+        ]
+    )
+    engine = QueryEngine({"MED_TEST": provider}, catalog=catalog)
+    state = InvestigationState(question="q", engine=engine)
+
+    r1 = agent_tools.retrieve_series(state, catalog_id=catalog_id("MED_TEST", "A_IND"), geographies=["AZE"])["results"][0]["result_id"]
+    r2 = agent_tools.retrieve_series(state, catalog_id=catalog_id("MED_TEST", "B_IND"), geographies=["AZE"])["results"][0]["result_id"]
+
+    result = agent_tools.compare_series(state, result_ids=[r1, r2])
+
+    assert result["numeric_comparison"]["median_absolute_difference"] == 2.0
+
+
 def test_compare_series_requires_at_least_two_results():
     state = _state()
     r1 = agent_tools.retrieve_series(

@@ -7,6 +7,7 @@ from anthropic.types import Message, TextBlock, ToolUseBlock, Usage
 
 from universal_statistician.agent.llm import AnthropicAgent, AnthropicAnswerWriter
 from universal_statistician.agent.modes import (
+    UNABLE_TO_VERIFY_TEXT,
     answer_question_with_mode,
     run_fast_mode,
     run_research_mode,
@@ -317,6 +318,11 @@ def test_run_research_mode_stops_after_max_verification_rounds_and_warns():
 
     assert len(state.verification_results) == 2
     assert any("could not be resolved" in w for w in result.warnings)
+    # The failed numeric draft must never be handed back as if it were a
+    # valid answer -- "unable to verify" replaces it entirely, not a warning
+    # bolted onto the same (still-failed) prose.
+    assert result.answer == UNABLE_TO_VERIFY_TEXT
+    assert "10.5" not in result.answer
 
 
 def test_run_research_mode_keeps_going_but_warns_on_a_warning_verdict():

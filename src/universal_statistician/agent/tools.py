@@ -367,17 +367,23 @@ def compare_series(state: InvestigationState, *, result_ids: list[str]) -> dict:
         ]
         if diffs:
             sorted_by_magnitude = sorted(diffs, key=lambda item: abs(item[1]))
-            sorted_values = sorted(d for _p, d in diffs)
-            n = len(sorted_values)
-            median = (
-                sorted_values[n // 2]
+            # median(|A - B|), not |median(A - B)| -- those diverge whenever
+            # the signed differences aren't symmetric around zero (e.g.
+            # diffs [-10, 1, 2]: median of the signed values is 1, but the
+            # median of the *magnitudes* [1, 2, 10] is 2). The field is
+            # named "median_absolute_difference", so it must report the
+            # former, not incidentally compute the latter.
+            sorted_abs_values = sorted(abs(d) for _p, d in diffs)
+            n = len(sorted_abs_values)
+            median_abs = (
+                sorted_abs_values[n // 2]
                 if n % 2
-                else (sorted_values[n // 2 - 1] + sorted_values[n // 2]) / 2
+                else (sorted_abs_values[n // 2 - 1] + sorted_abs_values[n // 2]) / 2
             )
             numeric_comparison = {
                 "overlapping_period_count": len(diffs),
                 "mean_absolute_difference": sum(abs(d) for _p, d in diffs) / len(diffs),
-                "median_absolute_difference": abs(median),
+                "median_absolute_difference": median_abs,
                 "largest_differences": [
                     {"period": p, "difference": d} for p, d in reversed(sorted_by_magnitude[-3:])
                 ],
