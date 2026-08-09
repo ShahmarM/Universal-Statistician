@@ -5,6 +5,30 @@ SDMXProvider's shape exactly (get_series/describe, a pure parsing step
 separated from the network call for offline testability), but talks a
 completely different wire protocol underneath. That's the point: nothing
 above Provider had to change to add this.
+
+Catalog discovery (Phase 6, national statistical office plugin
+architecture): unlike SDMX, where World Bank/IMF/Eurostat each needed a
+genuinely different discovery mechanism (see worldbank_discovery.py,
+imf_provider.py, eurostat_provider.py's module docstrings), PX-Web's
+`get_table_variables()` is *already* generic across every agency running
+the protocol — it's the exact same method get_series() already calls to
+find the time dimension's label, just reading one more field
+(`category.label`, a code -> label mapping for an enumerated dimension)
+from the same, already-relied-upon response shape. So
+`discover_catalog_entries()` lives directly on `PXWebProvider` itself, not
+a per-source subclass: every PX-Web source registered here gets discovery
+"for free" the moment its `indicator_dimension` is a real enumerated
+variable in that table — proving the plugin architecture generalizes across
+agencies, which is the actual point of this phase.
+
+Ground truth for the `category.label` shape: pxweb's own
+`PxApi.get_table_variables()` implementation (`pxweb/api.py`) builds this
+dict directly from the live `/tables/{id}/metadata` response's
+`dimension[key].category.label` field — read from the library's actual
+source, not a docstring guess, and it's the same field
+`PXWebProvider.get_series()` already depends on for the time dimension's
+label. Not independently verified against a live call in this sandbox
+(network blocked, same limitation as everywhere else in this project).
 """
 
 from __future__ import annotations
@@ -14,6 +38,7 @@ from typing import Any
 
 from pxweb import PxApi
 
+from universal_statistician.core.catalog import IndicatorEntry
 from universal_statistician.core.models import Attribution, Observation, SeriesResult
 from universal_statistician.providers.base import Provider
 from universal_statistician.providers.pxweb_registry import PXWebSourceConfig
@@ -115,3 +140,34 @@ class PXWebProvider(Provider):
             "table_id": self.config.table_id,
             "website": self.config.website,
         }
+
+    def discover_catalog_entries(self) -> list[IndicatorEntry]:
+        # A fresh, separate PxApi instance rather than self._api(): this one
+        # requests a specific language for discovery labels, which must not
+        # change get_series()'s already-verified, language-unset behavior.
+        discovery_api = PxApi(self.config.api_url, language=self.config.discovery_language)
+        variables = discovery_api.get_table_variables(self.config.table_id)
+        return self._entries_from_variables(variables)
+
+    def _entries_from_variables(self, variables: dict[str, Any]) -> list[IndicatorEntry]:
+        """Pure conversion step, kept separate from the network call for the
+        same offline-testability reason as _to_series_result()."""
+        indicator_var = variables.get(self.config.indicator_dimension, {})
+        codes = indicator_var.get("category", {}).get("label", {})
+
+        ref_area_var = variables.get(self.config.ref_area_dimension, {})
+        ref_area_codes = tuple(sorted(ref_area_var.get("category", {}).get("label", {})))
+        geographic_coverage = ref_area_codes or None
+
+        return [
+            IndicatorEntry(
+                indicator_id=code,
+                source_id=self.config.registry_id,
+                names={self.config.discovery_language: label},
+                dataset_id=self.config.table_id,
+                geographic_coverage=geographic_coverage,
+                source_organization=self.source_name,
+                official_url=self.config.website,
+            )
+            for code, label in codes.items()
+        ]

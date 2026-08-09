@@ -348,6 +348,78 @@ a verified `SDMXSourceConfig` entry and a provider reusing
 Full reasoning is in `providers/registry.py`'s module docstring, extended
 for this phase.
 
+## National statistical office plugin architecture (Phase 6)
+
+Two things happened in this phase, deliberately different in kind:
+
+**1. PX-Web discovery became generic, not per-agency.** Unlike SDMX — where
+World Bank, IMF, and Eurostat each needed a genuinely different discovery
+mechanism (Phases 2-4) — PX-Web's `PxApi.get_table_variables()` is *already*
+identical across every agency running the protocol. It's the exact method
+`get_series()` already calls to find the time dimension's label; discovery
+just reads one more field (`category.label`, a code → label map) from the
+same response shape, read directly from `pxweb`'s own implementation
+(`pxweb/api.py`), not guessed. So `discover_catalog_entries()` was added
+directly to `PXWebProvider` itself — every PX-Web source registered in
+`pxweb_registry.py` gets discovery automatically, no per-agency subclass
+needed. This is the concrete proof the plugin architecture *does*
+generalize once a source's discovery mechanism is generic enough — SCB
+(Statistics Sweden), already registered since the original MVP, now
+discovers its real content codes instead of relying on the single
+hand-seeded `000007SF` entry. A second PX-Web agency (Statistics Norway,
+`ssb` — a real, library-recognized shorthand per `pxweb`'s own
+`known_apis`) was **not** registered: no verified table id exists for it
+the way `TAB6471` was verified for SCB (pxwebpy's own test suite), and
+guessing one would be exactly the risk this project refuses to take. Adding
+it later needs only one verified table id — no new code.
+
+**2. `CensusProvider`** (`providers/census_provider.py`) adds a **third**,
+deliberately different wire-protocol family: the US Census Bureau's plain
+REST/JSON API (`api.census.gov`), unrelated to both SDMX and PX-Web/
+JSON-stat. Two genuine protocol differences, handled explicitly:
+
+- Census publishes **one dataset per year**, not one endpoint spanning a
+  period range — `get_series()` therefore requires both `start_period` and
+  `end_period` (raises otherwise) and issues one HTTP request per year.
+- A year with no data for a variable/geography is a **404**, not an empty
+  result — skipped explicitly (contributes no observation for that period)
+  rather than failing the whole multi-year request; any other HTTP error
+  still propagates.
+
+Scoped to the American Community Survey 1-Year Estimates, whose
+"detailed table" variable codes (e.g. `B01003_001E`, total population) have
+been stable for over a decade — chosen over the Population Estimates
+Program specifically because PEP's variable *names* have changed across
+vintages, which this project's ground-truth standard won't paper over.
+`discover_catalog_entries()` reads Census's own `variables.json` endpoint
+(`{"variables": {"CODE": {"label": ..., "concept": ..., ...}}}`), excluding
+geography/identity fields (`NAME`, `GEO_ID`, ...) that aren't statistics.
+
+**Honesty check, same standard as every other source:** Census's API shape
+is real, extremely stable, published documentation
+(census.gov/data/developers), not independently verified against a live
+call from this sandbox. Unlike SDMX/PX-Web sources, there's no bundled
+client library whose own test suite could serve as ground truth here — the
+confidence is "well-documented and essentially unchanged for over a decade,"
+the same tier of evidence Phase 2 already accepted for World Bank's v2 REST
+API, not the stronger "verified in a dependency's own CI-tested suite" tier
+IMF/Eurostat/SCB have. Parsing is unit-tested against payloads built from
+the documented shape; `network`-marked tests are left for a machine with
+real access. Because `CATALOG_SEED` is explicitly documented (its own
+module docstring) as containing only indicators "already verified end to
+end in `get_series()`," no Census entry was added there — consistent with
+that stated policy, not an oversight; `ustat catalog refresh
+US_CENSUS_ACS1` is how its catalog gets populated once network access
+confirms this works.
+
+Live attempts from this sandbox confirmed both:
+`ustat catalog refresh SCB_TAB6471` reaches
+`.../api/v2/config?lang=en` (the discovery-specific `PxApi` instance's
+requested language, correctly separate from `get_series()`'s unset-language
+instance) and `ustat catalog refresh US_CENSUS_ACS1` reaches
+`.../data/2022/acs/acs1/variables.json` — both fail cleanly against the
+network block.
+
 ## Not yet built (tracked per-phase)
 
 Query planning, ambiguity handling, source-selection ranking, the expanded
@@ -365,7 +437,7 @@ this document with its own section once implemented, following the same
 | 3 | Generalized IMF provider/catalog | ✅ done |
 | 4 | Generalized Eurostat integration | ✅ done |
 | 5 | OECD as first-class provider | 🚫 investigated, not safely integrable — see write-up above |
-| 6 | National statistical office plugin architecture | not started |
+| 6 | National statistical office plugin architecture | ✅ done |
 | 7 | Structured query planner + NL interface | not started |
 | 8 | Source/indicator selection ranking | not started |
 | 9 | Calculation and validation engine | not started |

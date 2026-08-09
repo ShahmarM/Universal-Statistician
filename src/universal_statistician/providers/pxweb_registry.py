@@ -34,6 +34,12 @@ from dataclasses import dataclass, field
 
 @dataclass(frozen=True)
 class PXWebSourceConfig:
+    #: This entry's own key in PXWEB_SOURCES (e.g. "SCB_TAB6471") — needed
+    #: for the same reason SDMXSourceConfig.registry_id is (see registry.py):
+    #: IndicatorEntry.source_id must be the key QueryEngine looks providers
+    #: up by, which differs from PXWebProvider.source_id (config.api_url
+    #: upper-cased, e.g. "SCB" — used in Attribution.source_id instead).
+    registry_id: str
     #: Passed to pxweb.PxApi(url=...): a known shorthand ("scb", "ssb") or a
     #: full PX-Web API v2 base URL for another agency running the same API.
     api_url: str
@@ -50,11 +56,20 @@ class PXWebSourceConfig:
     website: str
     #: Other dimensions this table requires, pinned to a fixed value code.
     fixed_value_codes: dict[str, str] = field(default_factory=dict)
+    #: Language requested for discovery (core/ingestion.py via
+    #: PXWebProvider.discover_catalog_entries()) — PxApi(url, language=...)
+    #: is a real, documented pxwebpy constructor parameter (see
+    #: providers/pxweb_provider.py's discovery docstring), but this project
+    #: hasn't independently verified every PX-Web agency actually returns
+    #: English labels for it; "en" is a reasonable default a caller can
+    #: override per source once that's confirmed.
+    discovery_language: str = "en"
     cache_ttl_seconds: int = 86400
 
 
 PXWEB_SOURCES: dict[str, PXWebSourceConfig] = {
     "SCB_TAB6471": PXWebSourceConfig(
+        registry_id="SCB_TAB6471",
         api_url="scb",
         source_name="Statistics Sweden (SCB)",
         table_id="TAB6471",

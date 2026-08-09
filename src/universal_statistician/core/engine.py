@@ -13,6 +13,8 @@ from universal_statistician.core.ingestion import IngestionReport, ingest_source
 from universal_statistician.core.models import IndicatorMeta, SeriesResult
 from universal_statistician.providers.base import Provider
 from universal_statistician.providers.catalog_seed import CATALOG_SEED
+from universal_statistician.providers.census_provider import CensusProvider
+from universal_statistician.providers.census_registry import SOURCES as CENSUS_SOURCES
 from universal_statistician.providers.eurostat_provider import EurostatProvider
 from universal_statistician.providers.imf_provider import IMFProvider
 from universal_statistician.providers.pxweb_provider import PXWebProvider
@@ -126,6 +128,9 @@ def default_engine() -> QueryEngine:
     }
     providers.update(
         {source_id: PXWebProvider(config) for source_id, config in PXWEB_SOURCES.items()}
+    )
+    providers.update(
+        {source_id: CensusProvider(config) for source_id, config in CENSUS_SOURCES.items()}
     )
     catalog = Catalog()
     catalog.add(CATALOG_SEED)

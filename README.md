@@ -118,8 +118,10 @@ Starlette тоже выполняет синхронные хендлеры в w
 | World Bank | WDI (все индикаторы, discovery через `ustat catalog refresh WB_WDI`) | ✅ `WB_WDI` |
 | IMF | CPI (Consumer Price Index), discovery через `ustat catalog refresh IMF_DATA_CPI` | ✅ `IMF_DATA_CPI` |
 | Eurostat | NAMA_10_GDP (нацсчета/ВВП, текущие цены), discovery через `ustat catalog refresh ESTAT_NAMA_10_GDP` | ✅ `ESTAT_NAMA_10_GDP` |
-| Statistics Sweden (SCB) | TAB6471 (PX-Web, не SDMX) | ✅ `SCB_TAB6471` |
+| Statistics Sweden (SCB) | TAB6471 (PX-Web, не SDMX), discovery через `ustat catalog refresh SCB_TAB6471` | ✅ `SCB_TAB6471` |
+| US Census Bureau | ACS 1-Year Estimates (REST/JSON, третий, не-SDMX/не-PXWeb протокол), discovery через `ustat catalog refresh US_CENSUS_ACS1` | ✅ `US_CENSUS_ACS1` |
 | OECD | — | не добавлен: типы эндпоинтов (`datastructure`/`dataflow`/`codelist`) поддерживаются, но нет ни одного проверенного примера запроса к ним, только к `data` без ключа + единственный проверенный пример с ключом (`OECD_JSON`) требует небезопасного SSL-даунгрейда — см. `registry.py`/`docs/architecture/nl-platform.md` |
+| Statistics Norway (SSB) | — | не добавлен: реальный, известный библиотеке `pxweb` шорткат (`"ssb"`), но нет проверенного table_id — угадывать не стал |
 | Росстат / ЕМИСС | — | не добавлен: см. ниже |
 
 Каталог индикаторов пока содержит только четыре уже проверенных в
@@ -351,7 +353,14 @@ Eurostat (тот же путь, что использует сам `sdmx1` в с
 в докстринге самой библиотеки). Архитектурно ничего не меняется — как
 только появится проверенный пример structure-запроса по текущему
 `sdmx.oecd.org` API, добавление пройдёт тем же путём, что IMF/Eurostat.
-Следующая — плагин-архитектура для нацстатслужб (Фаза 6). Отдельно, из
+Фаза 6 готова: PX-Web discovery обобщён (не по-агентски, как SDMX, а сразу
+на уровне `PXWebProvider` — тот же `get_table_variables()`, что уже
+использует `get_series()`, просто читает ещё одно поле), плюс добавлен
+`CensusProvider` — третий, принципиально другой протокол (обычный REST/JSON
+US Census Bureau, не SDMX и не PX-Web/JSON-stat), с честной оговоркой:
+подтверждено только документацией, не тест-сьютом зависимости (как у
+SDMX/PX-Web), поэтому без seed-записи в каталоге до подтверждения вживую.
+Следующая — структурный query planner и NL-интерфейс (Фаза 7). Отдельно, из
 оценки по
 бенчмарку выше: `formula`/`input_series` в provenance derived-таблиц и явная
 `status`-таксономия (Official/Derived/Composite/User-defined/Estimated)
