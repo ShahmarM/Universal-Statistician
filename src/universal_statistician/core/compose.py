@@ -46,6 +46,15 @@ class ComparisonColumn:
     #: None in practice today.
     unit: str | None = None
     frequency: str | None = None
+    #: The indicator/series id and geography this base column's values came
+    #: from — None for a derived column. `key`/`label` alone conflate these
+    #: (compare_across_countries uses `key` for ref_area with one shared
+    #: indicator; compare_across_indicators uses `key` for indicator_id with
+    #: one shared ref_area), so core/provenance.py (Phase 10) needs these
+    #: explicit to build a citation that names both, the way section 17's
+    #: example does ("NY.GDP.PCAP.CD" + "Azerbaijan").
+    indicator_id: str | None = None
+    ref_area: str | None = None
 
 
 @dataclass(frozen=True)
@@ -78,6 +87,8 @@ class ComparisonTable:
                     "input_series": list(c.input_series) if c.input_series is not None else None,
                     "unit": c.unit,
                     "frequency": c.frequency,
+                    "indicator_id": c.indicator_id,
+                    "ref_area": c.ref_area,
                 }
                 for c in self.columns
             ],
@@ -127,6 +138,8 @@ def compare_across_countries(
             attribution=series.attribution,
             unit=series.unit,
             frequency=series.frequency,
+            indicator_id=indicator_id,
+            ref_area=ref_area,
         )
         columns.append((column, series))
     return build_comparison(columns)
@@ -153,6 +166,8 @@ def compare_across_indicators(
             attribution=series.attribution,
             unit=series.unit,
             frequency=series.frequency,
+            indicator_id=indicator_id,
+            ref_area=ref_area,
         )
         columns.append((column, series))
     return build_comparison(columns)

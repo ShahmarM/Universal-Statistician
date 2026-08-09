@@ -19,6 +19,7 @@ mcp_server.py / cli.py / api.py   тонкие обёртки трёх инте�
 tools.py                 search_indicator, get_series, compare, list_sources, describe_source, refresh_catalog, catalog_stats
 core/compose.py          сравнительные таблицы + вычисляемые колонки (growth/CAGR/index/moving average/...) с lineage (formula/input_series)
 core/validation.py       validate_series/validate_table — структурные PASS/WARNING/FAIL находки
+core/provenance.py       resolve_provenance() — полная цепочка любой ячейки таблицы вплоть до первичных наблюдений
 core/engine.py           QueryEngine — единая точка входа: провайдеры + Catalog + Cache
 core/catalog.py          локальный многоязычный полнотекстовый индекс индикаторов (SQLite FTS5 + метаданные)
 core/ingestion.py        discovery → нормализация → каталог (upsert, incremental refresh)
@@ -390,8 +391,20 @@ forced tool call — модель физически не может подст�
 (FAIL без источника), unit/frequency-согласованность (WARNING только
 когда ОБА значения известны и расходятся — неизвестное не считается
 противоречием), покрытие запрошенных регионов/периода, пробелы в годовом
-покрытии, целостность lineage производных колонок. Следующая —
-provenance/citation-система (Фаза 10). Отдельно, из оценки по
-бенчмарку выше: `formula`/`input_series` в provenance derived-таблиц и явная
+покрытии, целостность lineage производных колонок.
+
+Фаза 10 готова: `core/provenance.py::resolve_provenance()` строит полную
+цепочку от любой ячейки таблицы (базовой или производной, на любой
+глубине вычислений) до первичных наблюдений — ровно в формате примера из
+секции 17 ("Calculated by Universal Statistician" + formula + inputs с
+источником/датасетом/временем получения). Честно зафиксированный предел:
+для операций, зависящих от нескольких периодов одного и того же входа
+(`with_growth`, `with_cagr`, moving average), резолвер не гадает, какой
+именно период сыграл роль — прикладывает провенанс по каждому периоду с
+данными и явно объясняет почему, вместо правдоподобно выглядящей, но
+потенциально неверной точной ссылки. Следующая — `/ask`-эндпоинт и модель
+ответа (Фаза 11). Отдельно, из оценки по
+бенчмарку выше: `formula`/`input_series` в provenance derived-таблиц (уже
+сделано в Фазах 9-10) и явная
 `status`-таксономия (Official/Derived/Composite/User-defined/Estimated)
 запланированы как часть Фазы 10 (provenance/citation system).

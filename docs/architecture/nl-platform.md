@@ -46,7 +46,7 @@ Validation                     core/validation.py — PASS/WARNING/FAIL (Phase 9
 Answer builder                 (Phase 11 — not yet built)
   |
   v
-Chart + table + citations      (Phases 11-12 — not yet built)
+Chart + table + citations      core/provenance.py resolves citations (Phase 10); chart/table are Phases 11-12
 ```
 
 Every interface (MCP server, CLI, REST API, dashboard, chat) sits as a thin
@@ -612,6 +612,45 @@ A live run chained `compare_across_countries`-shaped data through
 missing requested geography and a genuine annual-coverage gap — both
 flagged by name, not silently absorbed.
 
+## Provenance/citation system (Phase 10)
+
+`core/provenance.py::resolve_provenance(table, column_key, period)` walks a
+`ComparisonTable` cell — base or derived, at any depth of computation — into
+a full, traceable chain: `ObservationProvenance` for a directly-retrieved
+value (provider, organization, dataset, indicator/series id, geography,
+period, value, unit, official URL, retrieval timestamp) or
+`DerivedProvenance` for a computed one (formula, `"Calculated by Universal
+Statistician"`, a calculation timestamp, and the provenance of every
+input — recursively). A live run reproduces section 17's own example almost
+verbatim: a ratio's provenance carries its formula and resolves both inputs
+down to real `WB_WDI`/`NY_GDP_PCAP_CD` observations with source, dataset,
+and retrieval time.
+
+Two small, well-motivated extensions made this possible:
+
+- `ComparisonColumn` gained explicit `indicator_id`/`ref_area` — previously
+  only implicit in `key` (which means different things depending on
+  comparison shape: a ref_area in `compare_across_countries`, an indicator
+  id in `compare_across_indicators`), so provenance couldn't previously
+  name both the way section 17's example does ("NY.GDP.PCAP.CD" +
+  "Azerbaijan") without guessing which one `key` was.
+- Recursion works through *any* depth — a rank-of-a-ratio or a
+  difference-of-two-ratios (real, reachable via `with_difference`'s
+  arbitrary column arguments) resolves all the way down to observations,
+  not just one level.
+
+**Honesty limit, stated in the resolver's own docstring rather than
+hidden:** `input_series` (Phase 9) records *which columns* a derived value
+came from, not *which periods* of those columns — exact for same-period
+operations (ratio, share, per_capita, difference, index, rank, sum,
+average, weighted_average), but genuinely ambiguous for operations that
+span more than one period of the same input (`with_growth`'s
+previous+current, `with_cagr`'s start+end, a moving average's whole
+window). For those, the resolver does not guess a single period — it
+attaches provenance for *every* period that input actually has a value,
+with an explicit `note` explaining why, rather than presenting
+specific-looking but potentially wrong period references as certain.
+
 ## Not yet built (tracked per-phase)
 
 Query planning, ambiguity handling, source-selection ranking, the expanded
@@ -633,7 +672,7 @@ this document with its own section once implemented, following the same
 | 7 | Structured query planner + NL interface | ✅ done |
 | 8 | Source/indicator selection ranking | ✅ done |
 | 9 | Calculation and validation engine | ✅ done |
-| 10 | Provenance/citation system | not started |
+| 10 | Provenance/citation system | ✅ done |
 | 11 | `/ask` endpoint and structured answer model | not started |
 | 12 | Natural-language frontend experience | not started |
 | 13 | Benchmarks, integration tests, hardening | not started |
