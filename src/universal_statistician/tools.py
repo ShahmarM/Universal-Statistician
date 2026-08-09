@@ -58,7 +58,7 @@ def refresh_catalog(engine: QueryEngine, source_id: str | None = None) -> list[d
     ]
 
 
-def catalog_stats(engine: QueryEngine) -> dict[str, int]:
+def catalog_stats(engine: QueryEngine) -> dict:
     return engine.catalog_stats()
 
 

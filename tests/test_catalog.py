@@ -219,3 +219,69 @@ def test_stats_counts_distinct_indicators_per_source():
         ]
     )
     assert catalog.stats() == {"ESTAT_NAMA_10_GDP": 1, "WB_WDI": 2}
+
+
+def test_summary_reports_sources_datasets_indicators_and_last_refresh():
+    catalog = build_catalog(
+        [
+            IndicatorEntry(
+                indicator_id="A", source_id="WB_WDI", names={"en": "A"}, dataset_id="WDI"
+            ),
+            IndicatorEntry(
+                indicator_id="B", source_id="WB_WDI", names={"en": "B"}, dataset_id="WDI"
+            ),
+            IndicatorEntry(
+                indicator_id="C",
+                source_id="ESTAT_NAMA_10_GDP",
+                names={"en": "C"},
+                dataset_id="NAMA_10_GDP",
+            ),
+        ]
+    )
+
+    summary = catalog.summary()
+
+    assert summary["sources"] == 2
+    assert summary["datasets"] == 2  # (WB_WDI, WDI) and (ESTAT_NAMA_10_GDP, NAMA_10_GDP)
+    assert summary["indicators"] == 3
+    assert summary["records_per_source"] == {"ESTAT_NAMA_10_GDP": 1, "WB_WDI": 2}
+    assert summary["last_refresh_by_source"].keys() == {"WB_WDI", "ESTAT_NAMA_10_GDP"}
+    assert summary["last_refresh"]  # a real timestamp, not None/empty
+
+
+def test_summary_on_an_empty_catalog_reports_zeros_not_an_error():
+    catalog = Catalog()
+
+    summary = catalog.summary()
+
+    assert summary == {
+        "sources": 0,
+        "datasets": 0,
+        "indicators": 0,
+        "records_per_source": {},
+        "last_refresh": None,
+        "last_refresh_by_source": {},
+    }
+
+
+def test_refreshing_the_same_entries_twice_does_not_duplicate_rows():
+    # Phase B requirement: "running it twice must update existing entries
+    # rather than creating duplicates" — checked at the actual storage
+    # level (row counts), not just IngestionReport's added/updated/unchanged
+    # labels (already covered separately in tests/test_ingestion.py).
+    entries = [
+        IndicatorEntry(indicator_id="A", source_id="WB_WDI", names={"en": "A"}, dataset_id="WDI"),
+        IndicatorEntry(indicator_id="B", source_id="WB_WDI", names={"en": "B"}, dataset_id="WDI"),
+    ]
+    catalog = Catalog()
+
+    catalog.add(entries)
+    first_summary = catalog.summary()
+    catalog.add(entries)  # same entries again, e.g. a second `ustat catalog refresh`
+    second_summary = catalog.summary()
+
+    assert first_summary["indicators"] == 2
+    assert second_summary["indicators"] == 2  # not 4
+    assert second_summary["records_per_source"] == {"WB_WDI": 2}
+    assert catalog.search("A")
+    assert len(catalog.search("A")) == 1  # one row, not a duplicate

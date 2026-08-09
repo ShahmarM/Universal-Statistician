@@ -8,7 +8,10 @@ source lookup, indicator search, or caching.
 from __future__ import annotations
 
 import logging
+import os
+import sqlite3
 import time
+from pathlib import Path
 
 from universal_statistician.core.cache import Cache
 from universal_statistician.core.catalog import Catalog
@@ -126,16 +129,54 @@ class QueryEngine:
             return [ingest_source(source_id, self._get_provider(source_id), self._catalog)]
         return refresh_all(self._providers, self._catalog)
 
-    def catalog_stats(self) -> dict[str, int]:
-        """Indicator count per source currently in the catalog (see
-        Catalog.stats()) — a cheap way to see ingestion's effect without
-        re-running it."""
-        return self._catalog.stats()
+    def catalog_stats(self) -> dict:
+        """Catalog-health snapshot (see Catalog.summary()) — sources/
+        datasets/indicators counts, per-source breakdown, last refresh
+        time — a cheap way to see ingestion's effect without re-running it."""
+        return self._catalog.summary()
+
+
+#: Where the catalog's SQLite database lives by default (Phase B: "the
+#: catalog must persist between application restarts... do not rely on an
+#: in-memory catalog for the normal deployed application"). Overridable via
+#: USTAT_CATALOG_DB_PATH; the literal value ":memory:" opts back into a
+#: non-persistent catalog — what every offline test in this project uses
+#: (see tests/conftest.py, which sets this env var before cli.py/api.py/
+#: mcp_server.py — each of which builds a default_engine() at import time —
+#: are ever imported, so the test suite never touches a real file here).
+DEFAULT_CATALOG_DB_PATH = Path.home() / ".universal_statistician" / "catalog.db"
+
+
+def _catalog_db_path() -> str:
+    return os.environ.get("USTAT_CATALOG_DB_PATH", str(DEFAULT_CATALOG_DB_PATH))
+
+
+def _open_catalog() -> Catalog:
+    path = _catalog_db_path()
+    if path == ":memory:":
+        catalog = Catalog()
+        catalog.add(CATALOG_SEED)
+        return catalog
+
+    Path(path).parent.mkdir(parents=True, exist_ok=True)
+    connection = sqlite3.connect(path, check_same_thread=False)
+    catalog = Catalog(connection)
+    if not catalog.stats():
+        # First run against this database file: seed the small set of
+        # indicators already verified end-to-end in get_series() (see
+        # providers/catalog_seed.py), so search/get_series work before
+        # anyone has run `ustat catalog refresh`. Never re-seeds an
+        # already-populated catalog on a later restart — that would
+        # silently overwrite richer, discovered metadata (Phase 2-6) with
+        # the seed's minimal placeholders every time the app starts.
+        catalog.add(CATALOG_SEED)
+    return catalog
 
 
 def default_engine() -> QueryEngine:
-    """QueryEngine wired up with every registered source (SDMX and PX-Web
-    alike), and a catalog pre-populated from providers/catalog_seed.py.
+    """QueryEngine wired up with every registered source (SDMX, PX-Web, and
+    Census alike), and a catalog persisted to disk (see _open_catalog()) so
+    metadata discovered via `ustat catalog refresh` survives restarts.
 
     Provider construction must stay network-free here: this runs at startup
     for every interface (MCP, CLI, API), before anyone has asked for
@@ -143,7 +184,8 @@ def default_engine() -> QueryEngine:
     moment must not break every other source's availability. SDMXProvider
     and PXWebProvider both connect lazily on first use for exactly this
     reason (see PXWebProvider's docstring for the bug this would otherwise
-    cause).
+    cause). Opening the catalog's own SQLite file is a local disk operation,
+    not a network call, so it stays safe to do unconditionally here.
     """
     providers: dict[str, Provider] = {
         # Some SDMX sources additionally support catalog discovery (Phases
@@ -161,6 +203,4 @@ def default_engine() -> QueryEngine:
     providers.update(
         {source_id: CensusProvider(config) for source_id, config in CENSUS_SOURCES.items()}
     )
-    catalog = Catalog()
-    catalog.add(CATALOG_SEED)
-    return QueryEngine(providers, catalog)
+    return QueryEngine(providers, _open_catalog())

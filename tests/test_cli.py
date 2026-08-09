@@ -89,7 +89,15 @@ def test_catalog_refresh_and_stats_against_a_discoverable_fake_engine(monkeypatc
 
     stats_result = runner.invoke(cli.app, ["catalog", "stats"])
     assert stats_result.exit_code == 0
-    assert json.loads(stats_result.stdout) == {"FAKE": 1}
+    stats = json.loads(stats_result.stdout)
+    # Richer summary (Phase B), not just the old per-source indicator count:
+    # sources/datasets/indicators totals, a per-source breakdown, and when
+    # each source was last ingested.
+    assert stats["sources"] == 1
+    assert stats["indicators"] == 1
+    assert stats["records_per_source"] == {"FAKE": 1}
+    assert stats["last_refresh_by_source"]["FAKE"]  # a real timestamp, not empty
+    assert stats["last_refresh"]
 
 
 def test_plan_uses_the_rule_based_planner_by_default():

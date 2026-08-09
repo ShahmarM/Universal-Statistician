@@ -228,6 +228,43 @@ class Catalog:
             ).fetchall()
         return {source_id: count for source_id, count in rows}
 
+    def summary(self) -> dict:
+        """Catalog-health snapshot for `ustat catalog stats` (production
+        catalog population workflow, Phase B): how many sources/datasets/
+        indicators are actually in the catalog right now, broken down per
+        source, plus when each source was last ingested — everything
+        `stats()` alone can't show (it only has the per-source indicator
+        count, kept as-is for backward compatibility)."""
+        with self._lock:
+            per_source = dict(
+                self._conn.execute(
+                    "SELECT source_id, COUNT(DISTINCT indicator_id) FROM indicators "
+                    "GROUP BY source_id ORDER BY source_id"
+                ).fetchall()
+            )
+            (dataset_count,) = self._conn.execute(
+                "SELECT COUNT(*) FROM ("
+                "  SELECT DISTINCT source_id, dataset_id FROM catalog_meta "
+                "  WHERE dataset_id IS NOT NULL"
+                ")"
+            ).fetchone()
+            last_refresh_by_source = dict(
+                self._conn.execute(
+                    "SELECT source_id, MAX(ingested_at) FROM catalog_meta GROUP BY source_id"
+                ).fetchall()
+            )
+            (overall_last_refresh,) = self._conn.execute(
+                "SELECT MAX(ingested_at) FROM catalog_meta"
+            ).fetchone()
+        return {
+            "sources": len(per_source),
+            "datasets": dataset_count,
+            "indicators": sum(per_source.values()),
+            "records_per_source": per_source,
+            "last_refresh": overall_last_refresh,
+            "last_refresh_by_source": last_refresh_by_source,
+        }
+
     def _fetch_meta(self, source_id: str, indicator_id: str) -> tuple | None:
         """Caller must already hold self._lock."""
         return self._conn.execute(

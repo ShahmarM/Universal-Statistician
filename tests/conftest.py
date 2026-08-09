@@ -7,6 +7,19 @@ real `sdmx.to_pandas` conversion, rather than a hand-guessed shape.
 
 from __future__ import annotations
 
+import os
+
+# Must run before cli.py/api.py/mcp_server.py are ever imported by any test
+# module — each builds a default_engine() at import time (module-level
+# `_engine = default_engine()`), and since Phase B that opens a real,
+# persistent SQLite file under the developer's home directory by default
+# (core/engine.py::DEFAULT_CATALOG_DB_PATH). conftest.py is collected before
+# any test module in this directory, so setting this here — not inside a
+# fixture — guarantees the whole test suite stays on the same non-persistent
+# in-memory catalog every other test in this project already assumes,
+# without ever touching a real file on the machine running the tests.
+os.environ.setdefault("USTAT_CATALOG_DB_PATH", ":memory:")
+
 import pytest
 from sdmx.model.v21 import (
     DataSet,
