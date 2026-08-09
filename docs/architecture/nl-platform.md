@@ -246,6 +246,46 @@ was applied automatically by `sdmx1`'s own default for a specific
 `datastructure` resource_id (its documented behavior, not a parameter this
 project invented) — and fails cleanly against the network block.
 
+## Generalized Eurostat integration (Phase 4)
+
+`EurostatProvider` (`providers/eurostat_provider.py`) follows the exact
+discovery path `sdmx1`'s own integration test
+(`TestESTAT.test_ss_data` — the same test `registry.py` already cites for
+this dataflow's key format) uses against the live API:
+
+```python
+dsd = client.dataflow(resource_id="NAMA_10_GDP").dataflow["NAMA_10_GDP"].structure
+if dsd.is_external_reference:
+    dsd = client.get(resource=dsd).structure[0]
+```
+
+That test's own comment documents a real, Eurostat-specific server quirk:
+*"Even with `?references=all`, ESTAT returns a short message with the DSD as
+an external reference. Query again to get its actual contents."* — a
+dataflow response's `.structure` is only a stub reference, not the resolved
+DSD, unlike IMF's direct structure request (Phase 3). This is a real,
+maintainer-observed behavior copied from the library's own test, not
+guessed.
+
+Once resolved, turning the DSD into `IndicatorEntry` objects is **shared**
+with `IMFProvider` via the new `providers/sdmx_discovery.py` module
+(`entries_from_dsd()`) — both providers reuse the same "key_dimensions
+placeholder position tells you which DSD dimension is the indicator/ref_area
+one" logic (see Phase 3's section above), now factored out instead of
+duplicated. `IMFProvider`'s own `IMFDiscoveryError` became an alias for the
+shared `SDMXDiscoveryError` for backward compatibility.
+
+Tested offline with a fake client reproducing the real
+external-reference-then-resolve sequence (two real requests: `dataflow` stub,
+then the follow-up `resource=` resolve) built from real `sdmx.model.v21`
+classes, plus a case where the DSD resolves in one step (proving the
+follow-up request is correctly skipped when unnecessary). A live attempt via
+`ustat catalog refresh ESTAT_NAMA_10_GDP` from this sandbox confirmed the
+first request reaches
+`.../dataflow/ESTAT/NAMA_10_GDP/latest?references=descendants` (again,
+`sdmx1`'s own default, not invented here) and fails cleanly against the
+network block.
+
 ## Not yet built (tracked per-phase)
 
 Query planning, ambiguity handling, source-selection ranking, the expanded
@@ -261,7 +301,7 @@ this document with its own section once implemented, following the same
 | 1 | Catalog architecture & metadata normalization | ✅ done |
 | 2 | World Bank broad catalog discovery | ✅ done |
 | 3 | Generalized IMF provider/catalog | ✅ done |
-| 4 | Generalized Eurostat integration | not started |
+| 4 | Generalized Eurostat integration | ✅ done |
 | 5 | OECD as first-class provider | not started |
 | 6 | National statistical office plugin architecture | not started |
 | 7 | Structured query planner + NL interface | not started |

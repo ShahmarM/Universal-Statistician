@@ -13,6 +13,7 @@ from universal_statistician.core.ingestion import IngestionReport, ingest_source
 from universal_statistician.core.models import IndicatorMeta, SeriesResult
 from universal_statistician.providers.base import Provider
 from universal_statistician.providers.catalog_seed import CATALOG_SEED
+from universal_statistician.providers.eurostat_provider import EurostatProvider
 from universal_statistician.providers.imf_provider import IMFProvider
 from universal_statistician.providers.pxweb_provider import PXWebProvider
 from universal_statistician.providers.pxweb_registry import PXWEB_SOURCES
@@ -20,7 +21,11 @@ from universal_statistician.providers.registry import SOURCES
 from universal_statistician.providers.sdmx_provider import SDMXProvider
 from universal_statistician.providers.worldbank_provider import WorldBankProvider
 
-_DISCOVERABLE_SDMX_PROVIDERS = {"WB_WDI": WorldBankProvider, "IMF_DATA_CPI": IMFProvider}
+_DISCOVERABLE_SDMX_PROVIDERS = {
+    "WB_WDI": WorldBankProvider,
+    "IMF_DATA_CPI": IMFProvider,
+    "ESTAT_NAMA_10_GDP": EurostatProvider,
+}
 
 
 class UnknownSourceError(KeyError):

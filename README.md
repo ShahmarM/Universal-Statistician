@@ -117,7 +117,7 @@ Starlette тоже выполняет синхронные хендлеры в w
 |---|---|---|
 | World Bank | WDI (все индикаторы, discovery через `ustat catalog refresh WB_WDI`) | ✅ `WB_WDI` |
 | IMF | CPI (Consumer Price Index), discovery через `ustat catalog refresh IMF_DATA_CPI` | ✅ `IMF_DATA_CPI` |
-| Eurostat | NAMA_10_GDP (нацсчета/ВВП, текущие цены) | ✅ `ESTAT_NAMA_10_GDP` |
+| Eurostat | NAMA_10_GDP (нацсчета/ВВП, текущие цены), discovery через `ustat catalog refresh ESTAT_NAMA_10_GDP` | ✅ `ESTAT_NAMA_10_GDP` |
 | Statistics Sweden (SCB) | TAB6471 (PX-Web, не SDMX) | ✅ `SCB_TAB6471` |
 | OECD | — | не добавлен: нет проверенного рабочего примера запроса (см. `registry.py`) |
 | Росстат / ЕМИСС | — | не добавлен: см. ниже |
@@ -333,11 +333,14 @@ Suite (CAGR, currency conversion, index rebasing и др.) — не реализ
 Начата более крупная инициатива — расширение на десятки источников +
 естественноязыковой статистик поверх текущего ядра, по 13 фазам, статус —
 в [`docs/architecture/nl-platform.md`](./docs/architecture/nl-platform.md).
-Фазы 1-3 готовы: архитектура каталога, discovery-покрытие World Bank (через
-его v2 REST API — отдельный от SDMX-эндпоинта `get_series()`) и IMF (через
-настоящий SDMX structure-запрос к `DSD_CPI`, в отличие от World Bank —
-проверено тест-сьютом `sdmx1`). Следующая — обобщённая интеграция Eurostat
-(Фаза 4). Отдельно, из оценки по
+Фазы 1-4 готовы: архитектура каталога, discovery-покрытие World Bank (через
+его v2 REST API), IMF (настоящий SDMX structure-запрос к `DSD_CPI`) и
+Eurostat (тот же путь, что использует сам `sdmx1` в своём тест-сьюте, с
+поправкой на реальную особенность ESTAT — DSD в ответе `dataflow` приходит
+внешней ссылкой-заглушкой, нужен второй запрос на резолв). Логика
+"DSD → каталоговые записи" для IMF и Eurostat теперь общая
+(`providers/sdmx_discovery.py`). Следующая — плагин-архитектура для OECD
+(Фаза 5). Отдельно, из оценки по
 бенчмарку выше: `formula`/`input_series` в provenance derived-таблиц и явная
 `status`-таксономия (Official/Derived/Composite/User-defined/Estimated)
 запланированы как часть Фазы 10 (provenance/citation system).

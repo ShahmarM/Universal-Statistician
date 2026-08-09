@@ -297,4 +297,33 @@ IMF_DATA_CPI` из песочницы подтвердил точный URL
 подставился сам, дефолт самой библиотеки `sdmx1`, не угаданный параметр) и
 чистую обработку сетевого сбоя. **117 офлайн-тестов** (было 110).
 
-Следующая фаза — Фаза 4, обобщённая интеграция Eurostat.
+### Фаза 4 — готово
+
+`EurostatProvider(SDMXProvider)` (`providers/eurostat_provider.py`) идёт по
+пути, который сам `sdmx1` использует в своём тест-сьюте
+(`TestESTAT.test_ss_data` — тот же тест, на который уже ссылался
+`registry.py` за форматом ключа): `dataflow(resource_id=...).dataflow[...]
+.structure`, и если `dsd.is_external_reference` — второй запрос
+`client.get(resource=dsd)` на резолв. Комментарий в самом тесте объясняет
+почему: "Even with ?references=all, ESTAT returns a short message with the
+DSD as an external reference" — реальная, задокументированная в тест-сьюте
+особенность именно ESTAT (в отличие от IMF, где один structure-запрос
+резолвится сразу).
+
+Логика "DSD → список `IndicatorEntry`" вынесена в общий
+`providers/sdmx_discovery.py::entries_from_dsd()` — переиспользуется и
+`IMFProvider`, и `EurostatProvider` (тот же приём с позицией
+`{indicator}`/`{ref_area}` в `key_dimensions`, теперь не продублирован, а
+факторизован). `IMFDiscoveryError` стал алиасом на общий
+`SDMXDiscoveryError` для обратной совместимости.
+
+Тесты — фейковый клиент, воспроизводящий реальную двухшаговую
+external-reference-then-resolve последовательность на настоящих объектах
+`sdmx.model.v21`, плюс кейс однократного резолва (подтверждает, что второй
+запрос корректно пропускается, когда не нужен). Живой прогон `ustat catalog
+refresh ESTAT_NAMA_10_GDP` подтвердил точный URL первого запроса
+(`.../dataflow/ESTAT/NAMA_10_GDP/latest?references=descendants`, опять
+дефолт самой библиотеки) и чистую обработку сетевого сбоя. **121 офлайн-тест**
+(было 117).
+
+Следующая фаза — Фаза 5, OECD как полноценный источник.
