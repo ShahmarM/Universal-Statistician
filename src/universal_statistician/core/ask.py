@@ -16,6 +16,9 @@ rewriting numbers (section 18).
 
 from __future__ import annotations
 
+import logging
+import time
+
 from universal_statistician.core.answer import AskResult, ChartSeries, ChartSpec
 from universal_statistician.core.compose import (
     ComparisonColumn,
@@ -37,6 +40,13 @@ from universal_statistician.core.selection import select_indicators
 from universal_statistician.core.validation import ValidationResult, ValidationStatus, validate_table
 from universal_statistician.planning.base import LLMPlanner
 from universal_statistician.planning.rule_based_planner import RuleBasedPlanner
+
+#: Structured logging (section 26): question received, plan built,
+#: indicators selected, transformations applied, validation outcome, total
+#: request time — core/engine.py's get_series() separately logs cache
+#: hit/miss and per-provider retrieval time, so this module doesn't
+#: duplicate that, only the steps specific to this pipeline.
+logger = logging.getLogger(__name__)
 
 #: Transformations applicable with no extra parameters beyond what a
 #: QueryPlan already carries (start_period/end_period). Ratio/share/
@@ -62,6 +72,10 @@ _RANGE_TRANSFORMATIONS = {
 
 def _normalize(name: str) -> str:
     return name.strip().lower().replace(" ", "_").replace("-", "_")
+
+
+def _elapsed_ms(started_at: float) -> float:
+    return round((time.monotonic() - started_at) * 1000, 1)
 
 
 def _fetch_table(engine: QueryEngine, plan: QueryPlan) -> tuple[ComparisonTable | None, list[str]]:
@@ -213,11 +227,27 @@ def _build_chart_spec(table: ComparisonTable | None, plan: QueryPlan) -> ChartSp
 def answer_question(
     engine: QueryEngine, question: str, planner: LLMPlanner | None = None
 ) -> AskResult:
+    started_at = time.monotonic()
+    logger.info("ask.question_received", extra={"question": question})
+
     planner = planner or RuleBasedPlanner()
     interpretation = planner.interpret(question)
     plan = select_indicators(build_query_plan(question, interpretation, engine))
+    logger.info(
+        "ask.plan_built",
+        extra={
+            "concepts": list(plan.concepts),
+            "candidate_count": len(plan.candidate_indicators),
+            "selected": [(c.source_id, c.indicator_id) for c in plan.selected_indicators],
+            "needs_clarification": plan.needs_clarification,
+        },
+    )
 
     if plan.needs_clarification:
+        logger.info(
+            "ask.completed",
+            extra={"outcome": "needs_clarification", "elapsed_ms": _elapsed_ms(started_at)},
+        )
         return AskResult(
             question=question,
             query_plan=plan.as_dict(),
@@ -232,6 +262,14 @@ def answer_question(
 
     table, warnings = _fetch_table(engine, plan)
     if table is None:
+        logger.info(
+            "ask.completed",
+            extra={
+                "outcome": "no_table",
+                "warning_count": len(warnings),
+                "elapsed_ms": _elapsed_ms(started_at),
+            },
+        )
         return AskResult(
             question=question,
             query_plan=plan.as_dict(),
@@ -246,6 +284,10 @@ def answer_question(
 
     table, transform_warnings = _apply_transformations(table, plan)
     warnings.extend(transform_warnings)
+    logger.info(
+        "ask.transformations_applied",
+        extra={"requested": list(plan.transformations), "warning_count": len(transform_warnings)},
+    )
 
     validation = validate_table(
         table,
@@ -254,6 +296,15 @@ def answer_question(
         requested_end_period=plan.end_period,
     )
     chart = _build_chart_spec(table, plan)
+    logger.info(
+        "ask.completed",
+        extra={
+            "outcome": "answered",
+            "validation_status": validation.status.value,
+            "warning_count": len(warnings),
+            "elapsed_ms": _elapsed_ms(started_at),
+        },
+    )
 
     return AskResult(
         question=question,

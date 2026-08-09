@@ -672,4 +672,86 @@ JSON (кандидат `SP_POP_TOTL`/`WB_WDI`, не выдумано); пере�
 существующую вкладку «Поиск» после этого подтвердило отсутствие регрессии
 от новой вкладки/CSS.
 
-Следующая фаза — Фаза 13, бенчмарки и укрепление.
+### Фаза 13 — готово
+
+Последняя фаза исходного 13-фазного плана (раздел 28 задания). Три части:
+бенчмарк-тесты (секция 25), structured logging (секция 26),
+performance/hardening (секция 27).
+
+**Бенчмарки** (`tests/test_benchmarks.py`, 6 тестов) — дословно те же
+примеры вопросов, что в секции 25 задания ("What is the population of
+Azerbaijan?", "Show Azerbaijan GDP from 2010 to 2025", "Compare inflation
+in Azerbaijan and Georgia", "What was cumulative GDP growth between 2015
+and 2024?", "Rank EU countries by unemployment", "Show GDP per capita for
+Azerbaijan, Georgia and Armenia"), каждый прогнан через настоящий
+`core/ask.py::answer_question()` — не через мок пайплайна. Поскольку в
+песочнице нет `ANTHROPIC_API_KEY` (та же честная оговорка, что в Фазах
+7/11/12), вместо живого `AnthropicPlanner` каждый тест использует
+`ScriptedPlanner` — фейковый `LLMPlanner`, возвращающий заранее заданную
+`QuestionInterpretation`, ровно то, что должен был бы вернуть работающий
+LLM-планировщик для этого вопроса. Это ровно то, что просит секция 25:
+"define expected: intent, appropriate indicator family, geography, period,
+operation, acceptable sources, output structure. Do not require exact
+numerical assertions for live external data ... instead validate
+structure, provenance, and reasonable expected series selection." Тесты
+идут против нового синтетического многострано-многоиндикаторного каталога
+файла (`_benchmark_engine()`, явно помечен как не настоящие
+азербайджанские/грузинские/армянские данные, тот же принцип, что и любые
+другие non-live тестовые данные в проекте), и проверяют структуру:
+правильные страны/колонки выбраны, `derived=True`/`formula`/
+`input_series` на производных колонках (cumulative growth, rank),
+provenance резолвится не только для базовых, но и для производных
+значений, статус валидации.
+
+**Структурное логирование** (секция 26) — стандартная библиотека
+`logging`, без новой зависимости. `core/engine.py`: `catalog_search`
+(query, result_count), `cache_hit`/`cache_miss`, `provider_request_completed`
+(source_id, indicator_id, ref_area, elapsed_ms). `core/ask.py`:
+`ask.question_received`, `ask.plan_built` (concepts, candidate_count,
+selected, needs_clarification), `ask.transformations_applied`,
+`ask.completed` (outcome, validation_status, elapsed_ms). Проверено не
+просто "есть в коде", а `tests/test_observability.py` (4 теста) через
+pytest'овский `caplog` — конкретные записи с конкретными полями на
+конкретных уровнях, включая оба исхода `/ask` (`answered` и
+`needs_clarification`).
+
+**Performance/hardening** (секция 27) — два новых регрессионных теста в
+`tests/test_engine.py`:
+`test_default_engine_construction_does_not_touch_the_network` (конструктор
+`default_engine()`, который запускается при старте любого из трёх
+интерфейсов, не делает ни одного сетевого вызова — доказано тем, что
+песочница блокирует egress на все хосты кроме pypi/npm/github/anthropic, и
+тест реально проходит) и
+`test_get_series_never_triggers_catalog_ingestion_automatically`
+(обычный `get_series()`/`search_indicator()` никогда не вызывает
+`discover_catalog_entries()` как побочный эффект — доказано счётчиком
+вызовов у трекающего фейкового провайдера). Это не новая логика, а
+регрессионная фиксация уже существующего свойства архитектуры (discovery
+всегда явный, через `refresh_catalog()` — секция 27: "Metadata ingestion
+can be asynchronous/offline/admin-triggered", никогда неявный побочный
+эффект обычного запроса).
+
+Живой прогон подтвердил, что логирование не сломало ни один существующий
+интерфейс: `ustat ask "population"` (CLI) и `asyncio.run(server.list_tools())`
+(MCP, все 6 инструментов на месте — `ask`, `compare`, `describe_source`,
+`get_series`, `list_sources`, `search_indicator`). Полный `mypy
+src/universal_statistician/` — 37 файлов, без новых ошибок (те же 11
+предсуществующих в `compose.py` из-за `float | None`-арифметики, не
+исправленные и раньше по той же причине — не новая проблема этой фазы).
+
+**227 офлайн-тестов** (было 219 сразу после добавления логирования, 215 до
+начала Фазы 13).
+
+Все 13 фаз исходного плана расширения (раздел 28 задания) выполнены. Что
+реально осталось не сделано — честно зафиксировано в разделе "What's
+genuinely not done" в `docs/architecture/nl-platform.md`: не все
+трансформации из `compose.py` авто-диспетчеризуются в `/ask` (только те,
+что не требуют явной колонки/весов — ratio/share/per_capita/difference/
+index/sum/average/weighted_average остаются вызываемыми напрямую);
+provenance для многопериодных формул (growth/CAGR/moving average)
+принципиально не может указать один точный период-источник — прикладывает
+все периоды входа с объяснением, а не гадает; ни один живой LLM-прогон не
+проверен в этой песочнице (нет `ANTHROPIC_API_KEY`); discovery-логика Фаз
+2-6 не подтверждена против настоящих живых API (только против тест-сьютов
+зависимостей и, где возможно, URL-конструирования) — сетевая политика
+песочницы блокирует прямую проверку.

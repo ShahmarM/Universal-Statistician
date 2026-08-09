@@ -5,7 +5,7 @@ from datetime import datetime, timezone
 import pytest
 
 from universal_statistician.core.catalog import Catalog, IndicatorEntry
-from universal_statistician.core.engine import QueryEngine, UnknownSourceError
+from universal_statistician.core.engine import QueryEngine, UnknownSourceError, default_engine
 from universal_statistician.core.models import Attribution, Observation, SeriesResult
 from universal_statistician.providers.base import Provider
 
@@ -124,3 +124,47 @@ def test_refresh_catalog_without_source_id_refreshes_every_discoverable_provider
     reports = engine.refresh_catalog()
 
     assert [r.source_id for r in reports] == ["FAKE"]
+
+
+# ---- Performance (section 27): no full-database downloads on ordinary queries --
+
+
+def test_default_engine_construction_does_not_touch_the_network():
+    # Regression guard, not just implicit via other tests importing cli.py/
+    # api.py/mcp_server.py: default_engine() runs at startup for every
+    # interface, so it must stay network-free — SDMXProvider/PXWebProvider/
+    # CensusProvider/WorldBankProvider/IMFProvider/EurostatProvider all
+    # connect lazily on first use for exactly this reason (see e.g.
+    # PXWebProvider's docstring for the bug this would otherwise cause).
+    # No mocking needed: this sandbox's egress policy blocks every host but
+    # pypi/npm/github/anthropic, so any real network attempt here would
+    # raise, not silently succeed.
+    engine = default_engine()
+    # describe_source() raises UnknownSourceError for a key not in the
+    # engine's providers dict — no exception means construction registered
+    # every expected source without any of them making a network call.
+    for registry_key in ("WB_WDI", "IMF_DATA_CPI", "ESTAT_NAMA_10_GDP", "SCB_TAB6471", "US_CENSUS_ACS1"):
+        engine.describe_source(registry_key)
+
+
+def test_get_series_never_triggers_catalog_ingestion_automatically():
+    # Section 27: "Metadata ingestion can be asynchronous/offline/admin
+    # -triggered" - i.e. never a side effect of an ordinary query. Proven
+    # by construction: DiscoverableProvider tracks whether its discovery
+    # method was called at all.
+    class TrackedDiscoverableProvider(FakeProvider):
+        def __init__(self, source_id: str) -> None:
+            super().__init__(source_id)
+            self.discovery_calls = 0
+
+        def discover_catalog_entries(self):
+            self.discovery_calls += 1
+            return []
+
+    provider = TrackedDiscoverableProvider("FAKE")
+    engine = QueryEngine({"FAKE": provider})
+
+    engine.get_series("FAKE", "SOME_INDICATOR", "AFG")
+    engine.search_indicator("anything")
+
+    assert provider.discovery_calls == 0

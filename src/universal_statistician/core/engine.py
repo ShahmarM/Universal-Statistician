@@ -7,6 +7,9 @@ source lookup, indicator search, or caching.
 
 from __future__ import annotations
 
+import logging
+import time
+
 from universal_statistician.core.cache import Cache
 from universal_statistician.core.catalog import Catalog
 from universal_statistician.core.ingestion import IngestionReport, ingest_source, refresh_all
@@ -28,6 +31,15 @@ _DISCOVERABLE_SDMX_PROVIDERS = {
     "IMF_DATA_CPI": IMFProvider,
     "ESTAT_NAMA_10_GDP": EurostatProvider,
 }
+
+#: Structured logging (section 26): catalog searches, cache hit/miss,
+#: provider requests, retrieval time. Deliberately stdlib `logging`, not a
+#: new dependency — a personal/local tool doesn't need a metrics pipeline,
+#: only records worth grepping/forwarding if one is added later. Never logs
+#: secrets: nothing here touches ANTHROPIC_API_KEY or any credential, only
+#: source/indicator/area identifiers and timings, all already public in
+#: this project's own catalog/registry.
+logger = logging.getLogger(__name__)
 
 
 class UnknownSourceError(KeyError):
@@ -52,7 +64,11 @@ class QueryEngine:
         return self._get_provider(source_id).describe()
 
     def search_indicator(self, query: str, limit: int = 20) -> list[IndicatorMeta]:
-        return self._catalog.search(query, limit=limit)
+        results = self._catalog.search(query, limit=limit)
+        logger.info(
+            "catalog_search", extra={"query": query, "limit": limit, "result_count": len(results)}
+        )
+        return results
 
     def _get_provider(self, source_id: str) -> Provider:
         try:
@@ -73,14 +89,27 @@ class QueryEngine:
     ) -> SeriesResult:
         provider = self._get_provider(source_id)
         cache_key = Cache.make_key(source_id, indicator_id, ref_area, start_period, end_period)
+        log_context = {
+            "source_id": source_id,
+            "indicator_id": indicator_id,
+            "ref_area": ref_area,
+            "start_period": start_period,
+            "end_period": end_period,
+        }
 
         cached = self._cache.get(cache_key)
         if cached is not None:
+            logger.info("cache_hit", extra=log_context)
             return SeriesResult.from_dict(cached)
 
+        logger.info("cache_miss", extra=log_context)
+        started_at = time.monotonic()
         result = provider.get_series(
             indicator_id, ref_area, start_period=start_period, end_period=end_period
         )
+        elapsed_ms = round((time.monotonic() - started_at) * 1000, 1)
+        logger.info("provider_request_completed", extra={**log_context, "elapsed_ms": elapsed_ms})
+
         self._cache.set(cache_key, result.as_dict(), ttl_seconds=provider.cache_ttl_seconds)
         return result
 

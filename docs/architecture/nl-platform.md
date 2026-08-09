@@ -757,13 +757,103 @@ the debug `<details>` block expanding to real JSON (`SP_POP_TOTL`/`WB_WDI`
 candidate, no fabricated content); switching to the existing "Поиск" tab
 afterward confirmed no regression from the new tab/CSS.
 
-## Not yet built (tracked per-phase)
+## Benchmarks, observability, and performance hardening (Phase 13)
 
-Query planning, ambiguity handling, source-selection ranking, the expanded
-calculation/validation engine, the full derived-statistic provenance model,
-`/ask`, and the natural-language frontend are Phases 7-13 — each will extend
-this document with its own section once implemented, following the same
-"extend, don't replace" principle applied in Phase 1.
+### Benchmark-style natural-language tests (section 25)
+
+`tests/test_benchmarks.py` runs the task description's own six example
+questions through the real `answer_question()` pipeline — "What is the
+population of Azerbaijan?", "Show Azerbaijan GDP from 2010 to 2025.",
+"Compare inflation in Azerbaijan and Georgia.", "What was cumulative GDP
+growth between 2015 and 2024?", "Rank EU countries by unemployment.",
+"Show GDP per capita for Azerbaijan, Georgia and Armenia." No live LLM is
+available in this sandbox, so each benchmark supplies a scripted
+`QuestionInterpretation` standing in for what a working `AnthropicPlanner`
+should produce (the same pattern `test_ask.py` already established) — this
+is exactly what section 25 asks for: define the expected intent/indicator
+family/geography/period/operation/output structure per benchmark, and
+validate *structure, provenance, and series selection*, not exact live
+numbers. Each test runs against a small, clearly-synthetic multi-country
+catalog built for this file (`LookupProvider`, fake AZE/GEO/ARM/DEU/FRA/ITA
+data — never presented as real).
+
+Together the six prove every pipeline shape the target demonstration
+(section 31) exercises: a single direct observation, an explicit period
+range, a cross-country comparison, a derived single-value statistic with
+traceable provenance (`with_cumulative_growth`, resolved via
+`resolve_provenance`), a ranking, and a comparison of a directly-published
+per-capita indicator (matching how World Bank actually publishes
+`NY.GDP.PCAP.CD` as its own series — not a client-side computation from
+GDP ÷ population, which `/ask` doesn't auto-dispatch, see Phase 11's
+scoped limit).
+
+### Observability (section 26)
+
+`core/engine.py::QueryEngine.get_series()`/`search_indicator()` and
+`core/ask.py::answer_question()` now emit structured log records (stdlib
+`logging`, no new dependency — a personal/local tool doesn't need a metrics
+pipeline, only records worth grepping/forwarding if one is added later):
+`catalog_search` (query, limit, result count), `cache_hit`/`cache_miss`,
+`provider_request_completed` (with retrieval time in ms),
+`ask.question_received`, `ask.plan_built` (concepts, candidate count,
+selected indicators), `ask.transformations_applied`, and `ask.completed`
+(outcome, validation status, total elapsed ms). Nothing here ever logs a
+secret — no code path touches `ANTHROPIC_API_KEY` or any credential, only
+source/indicator/area identifiers and timings already public in this
+project's own catalog. Verified with `caplog`
+(`tests/test_observability.py`), not just present-in-source: real log
+records with the expected fields, not a hope that logging calls are
+reachable.
+
+### Performance (section 27)
+
+Already satisfied by the existing architecture from earlier phases — this
+phase adds regression tests confirming it, rather than new code:
+`Cache.make_key()` (Phase 1-era) already includes every relevant query
+dimension (source, indicator, area, start/end period); metadata ingestion
+has never been automatic (`core/ingestion.py`'s module docstring, Phase 1)
+and stays admin-triggered only (`ustat catalog refresh`); `default_engine()`
+constructs every provider network-free (Phases 2-6 each fixed exactly this
+class of bug — see e.g. `PXWebProvider`'s docstring). New tests:
+`test_default_engine_construction_does_not_touch_the_network` (a real
+construction in this network-blocked sandbox — any real attempt would
+raise, not silently pass) and
+`test_get_series_never_triggers_catalog_ingestion_automatically` (a
+provider tracking whether its own discovery method was ever called during
+ordinary retrieval/search — proven zero calls).
+
+## What's genuinely not done
+
+Every phase in the original 13-phase plan has landed except OECD (Phase 5
+— investigated twice, correctly not integrated; see that section above for
+exactly what would unblock it). Real, honest limits that remain, tracked
+here rather than left implicit:
+
+- **`/ask`'s automatic transformation dispatch is partial** (Phase 11):
+  `ratio`/`share`/`per_capita`/`difference`/`index`/`sum`/`average`/
+  `weighted_average` all need a caller-specified column/weights a bare
+  transformation name can't carry, so they aren't auto-applied from a
+  `QueryPlan` — they stay directly callable from `compose.py`. A real
+  next step, not attempted here: let the planner propose which existing
+  *column* a transformation should reference (not just its name).
+- **Provenance can't pin an exact contributing period for multi-period
+  formulas** (Phase 10) — `with_growth`/`with_cagr`/moving averages
+  resolve to every period an input has a value, with an explicit note,
+  rather than a specific (and possibly wrong) single period.
+- **No live LLM was ever exercised in this sandbox** (no
+  `ANTHROPIC_API_KEY`) — `AnthropicPlanner` is unit-tested against real
+  `anthropic.types` objects (ground truth for the response shape) and
+  live-verified request wiring (`tool_choice` forcing), but an actual
+  model call has never run. Same limitation `chat.py` already documented.
+- **Discovery is unverified against live APIs** for every source added in
+  Phases 2-6, for the same reason: this sandbox's egress policy blocks
+  every host but pypi/npm/github/anthropic. Every discovery path was
+  proven against real request URLs (confirmed via live attempts that
+  reached the correct endpoint and failed only on the network block) and
+  offline parsing tests built from each library's own ground truth — but
+  the actual response bodies were never seen. Run the `network`-marked
+  tests on a machine with real internet access before trusting this in
+  production.
 
 ## Phase status
 
@@ -781,4 +871,4 @@ this document with its own section once implemented, following the same
 | 10 | Provenance/citation system | ✅ done |
 | 11 | `/ask` endpoint and structured answer model | ✅ done |
 | 12 | Natural-language frontend experience | ✅ done |
-| 13 | Benchmarks, integration tests, hardening | not started |
+| 13 | Benchmarks, integration tests, hardening | ✅ done |

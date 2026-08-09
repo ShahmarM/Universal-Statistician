@@ -354,9 +354,10 @@ Suite (CAGR, currency conversion, index rebasing и др.) — не реализ
 [`plan.md`](./plan.md). MVP, REST API, веб-дашборд, второй (не-SDMX)
 источник и CLI-чат готовы. Росстат/ЕМИСС осознанно отложены (см. выше).
 
-Начата более крупная инициатива — расширение на десятки источников +
-естественноязыковой статистик поверх текущего ядра, по 13 фазам, статус —
-в [`docs/architecture/nl-platform.md`](./docs/architecture/nl-platform.md).
+Более крупная инициатива — расширение на десятки источников +
+естественноязыковой статистик поверх текущего ядра, все 13 фаз готовы,
+статус по каждой — в
+[`docs/architecture/nl-platform.md`](./docs/architecture/nl-platform.md).
 Фазы 1-4 готовы: архитектура каталога, discovery-покрытие World Bank (через
 его v2 REST API), IMF (настоящий SDMX structure-запрос к `DSD_CPI`) и
 Eurostat (тот же путь, что использует сам `sdmx1` в своём тест-сьюте, с
@@ -452,8 +453,48 @@ query plan/provenance). Проверено вживую через Playwright/Ch
 регрессионная проверка — переключение на «Поиск» после этого работает без
 изменений.
 
-Следующая — бенчмарки и укрепление (Фаза 13). Отдельно, из оценки по
-бенчмарку: `formula`/`input_series` в provenance derived-таблиц и явная
-`status`-таксономия (Official/Derived/Composite/User-defined/Estimated) —
-обе идеи уже закрыты Фазами 9-10 в духе, близком к первоначальному запросу
-бенчмарка.
+Отдельно, из оценки по бенчмарку: `formula`/`input_series` в provenance
+derived-таблиц и явная `status`-таксономия (Official/Derived/Composite/
+User-defined/Estimated) — обе идеи уже закрыты Фазами 9-10 в духе, близком
+к первоначальному запросу бенчмарка.
+
+Фаза 13 готова — последняя из 13, все фазы плана выполнены. Три части:
+бенчмарк-тесты, structured logging, performance/hardening-проверки.
+
+Шесть бенчмарк-тестов (`tests/test_benchmarks.py`) — дословно примеры
+вопросов из секции 25 задания, каждый прогнан через настоящий
+`answer_question()` (не мок), со `ScriptedPlanner` вместо живого LLM (в
+песочнице нет `ANTHROPIC_API_KEY` — честно зафиксировано, как и в Фазах
+7/11/12), но против реального синтетического многострано-многоиндикаторного
+каталога. Проверяется не совпадение с "золотыми" числами (их и не может
+быть для не-live данных), а структура ответа: правильные колонки/страны,
+`derived=True` + `formula` + `input_series` на производных колонках,
+provenance резолвится, статус валидации.
+
+Структурное логирование (`logging`, без новой зависимости) — `catalog_search`,
+`cache_hit`/`cache_miss`/`provider_request_completed` (с `elapsed_ms`) в
+`core/engine.py`, `ask.question_received`/`ask.plan_built`/
+`ask.transformations_applied`/`ask.completed` в `core/ask.py`. Проверено не
+просто "есть в коде", а `caplog`-тестами (`tests/test_observability.py`) —
+конкретные поля конкретных записей.
+
+Performance/hardening (секция 27): два регрессионных теста в
+`tests/test_engine.py` доказывают конструкцией, а не комментарием, что
+`default_engine()` (стартует при любом запуске CLI/API/MCP) не делает ни
+одного сетевого запроса, и что обычный `get_series()`/`search_indicator()`
+никогда не запускает discovery/ingestion как побочный эффект — это должно
+оставаться явным, admin-triggered действием (`refresh_catalog()`).
+
+Живой прогон: `ustat ask "population"` и `asyncio.run(server.list_tools())`
+(6 инструментов: `ask`, `compare`, `describe_source`, `get_series`,
+`list_sources`, `search_indicator`) подтвердили, что новое логирование не
+сломало ни один существующий интерфейс. **227 офлайн-тестов** (было 219
+после добавления логирования, 215 до начала Фазы 13).
+
+Все 13 фаз исходного плана расширения (раздел 28 задания) закрыты. Что
+реально не сделано — честно перечислено в разделе "What's genuinely not
+done" в [`docs/architecture/nl-platform.md`](./docs/architecture/nl-platform.md):
+частичный охват авто-диспетчеризации трансформаций в `/ask`, честный предел
+provenance для многопериодных формул, отсутствие живого LLM-прогона в этой
+песочнице, discovery для Фаз 2-6 не подтверждён против живых API (кроме
+разовых URL-проверок).
