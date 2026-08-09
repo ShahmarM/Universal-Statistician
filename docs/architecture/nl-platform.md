@@ -28,7 +28,7 @@ Catalog search            core/catalog.py — implemented, being extended
 Query plan                 core/query_plan.py: QueryPlan (Phase 7)
   |
   v
-Provider selection          core/engine.py — implemented (manual); ranking is Phase 8
+Provider selection          core/selection.py — deterministic, explainable ranking (Phase 8)
   |
   v
 Official APIs                providers/*_provider.py
@@ -482,6 +482,52 @@ now, empty, because their shape is already specified by this task's own
 target `/ask` response (section 10), and stabilizing it avoids a breaking
 change to every caller once those phases land.
 
+## Source/indicator selection ranking (Phase 8)
+
+`core/selection.py::select_indicators(plan)` picks exactly one candidate
+per concept from `QueryPlan.candidate_indicators`, deterministically and
+explainably (section 12), populating `QueryPlan.selected_indicators`.
+
+Deliberately pure — no engine/network dependency. By the time a plan
+reaches here, `CandidateIndicator` already carries the catalog metadata
+(`unit`, `frequency`, `geographic_coverage`) needed to score it — extended
+onto `CandidateIndicator` this phase specifically for this (it's exactly
+what `engine.search_indicator()` already returned in `build_query_plan()`,
+just not previously kept).
+
+Scoring criteria, each contributing an explicit, human-readable reason
+recorded per selection (never just a bare number):
+
+- **Name match quality** — the requested concept appearing in the
+  indicator's name scores higher than a full-text match that isn't an
+  exact substring.
+- **Geographic coverage** — a candidate whose known coverage includes every
+  requested geography scores higher than one that excludes them; a
+  candidate with *no recorded coverage* (not yet discovered) is treated as
+  neutral, never penalized the same way as a source that's confirmed *not*
+  to cover the request — an important distinction between "unknown" and
+  "no."
+- **Frequency match** — a candidate matching a requested frequency scores
+  higher than a mismatched one; again neutral when unknown.
+
+Freshness/completeness (also listed in section 12) are **not** scored here:
+evaluating them needs retrieved observations, not just catalog metadata,
+and belongs with the validation layer (Phase 9), not selection.
+
+**"Never silently mix incompatible series" (section 12) is enforced by
+construction**, not a warning bolted on after the fact: selection always
+picks exactly one source per concept — candidates for the same concept are
+never merged — and if a multi-concept plan's selections end up spanning
+different sources, that fact is appended to `assumptions` explicitly
+(`"Selected indicators for different concepts come from different sources
+(...) — verify unit/frequency compatibility before combining them"`) rather
+than left implicit for a caller to discover only after combining them.
+
+Wired into `tools.build_plan()` (and therefore `ustat plan`) right after
+`build_query_plan()` — a live run against the real catalog
+(`ustat plan "population"`) shows the full pipeline: catalog match →
+selection reason → `selected_indicators`.
+
 ## Not yet built (tracked per-phase)
 
 Query planning, ambiguity handling, source-selection ranking, the expanded
@@ -501,7 +547,7 @@ this document with its own section once implemented, following the same
 | 5 | OECD as first-class provider | 🚫 investigated, not safely integrable — see write-up above |
 | 6 | National statistical office plugin architecture | ✅ done |
 | 7 | Structured query planner + NL interface | ✅ done |
-| 8 | Source/indicator selection ranking | not started |
+| 8 | Source/indicator selection ranking | ✅ done |
 | 9 | Calculation and validation engine | not started |
 | 10 | Provenance/citation system | not started |
 | 11 | `/ask` endpoint and structured answer model | not started |

@@ -80,9 +80,13 @@ def test_query_plan_as_dict_is_json_friendly():
 
     payload = plan.as_dict()
     assert payload["question"] == "q"
-    assert payload["candidate_indicators"] == [
-        {"indicator_id": "X", "source_id": "WB_WDI", "name": "GDP", "concept": "gdp"}
-    ]
+    assert len(payload["candidate_indicators"]) == 1
+    candidate = payload["candidate_indicators"][0]
+    assert candidate["indicator_id"] == "X"
+    assert candidate["source_id"] == "WB_WDI"
+    assert candidate["name"] == "GDP"
+    assert candidate["concept"] == "gdp"
+    assert candidate["unit"] is None
     assert payload["selected_indicators"] == []
     assert payload["validation_notes"] == []
     assert payload["assumptions"] == ["inferred real GDP"]

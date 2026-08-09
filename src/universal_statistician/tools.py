@@ -17,6 +17,7 @@ from universal_statistician.core.compose import (
 )
 from universal_statistician.core.engine import QueryEngine
 from universal_statistician.core.query_plan import build_query_plan
+from universal_statistician.core.selection import select_indicators
 from universal_statistician.planning.base import LLMPlanner
 from universal_statistician.planning.rule_based_planner import RuleBasedPlanner
 
@@ -68,7 +69,8 @@ def build_plan(engine: QueryEngine, question: str, planner: LLMPlanner | None = 
     (see cli.py's `plan --llm`)."""
     planner = planner or RuleBasedPlanner()
     interpretation = planner.interpret(question)
-    return build_query_plan(question, interpretation, engine).as_dict()
+    plan = build_query_plan(question, interpretation, engine)
+    return select_indicators(plan).as_dict()
 
 
 def describe_source(engine: QueryEngine, source_id: str) -> dict:

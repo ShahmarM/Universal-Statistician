@@ -22,6 +22,7 @@ core/engine.py           QueryEngine — единая точка входа: п�
 core/catalog.py          локальный многоязычный полнотекстовый индекс индикаторов (SQLite FTS5 + метаданные)
 core/ingestion.py        discovery → нормализация → каталог (upsert, incremental refresh)
 core/query_plan.py       QueryPlan/QuestionInterpretation + build_query_plan() (резолв концептов через каталог)
+core/selection.py        select_indicators() — детерминированный, объяснимый выбор одного источника на концепт
 planning/                LLMPlanner: RuleBasedPlanner (без LLM) + AnthropicPlanner (forced tool call)
 core/cache.py            локальный TTL-кэш поверх get_series() (SQLite)
 providers/sdmx_provider.py + registry.py   генерик-провайдер поверх sdmx1, источники — записи в реестре
@@ -370,8 +371,15 @@ forced tool call — модель физически не может подст�
 индикатора, для этого в схеме плана просто нет поля; коды резолвятся
 только через `QueryEngine.search_indicator()`, реальный каталог).
 `ustat plan "<question>"` — inspectable-план без ретрива, по требованию
-секции 10. Следующая — ранжирование источников/индикаторов (Фаза 8).
-Отдельно, из оценки по
+секции 10. Фаза 8 готова: `core/selection.py::select_indicators()` —
+детерминированный, объяснимый выбор ровно одного источника на концепт
+(качество совпадения имени + географическое покрытие + частота, каждый
+критерий с явной причиной в `assumptions`, "неизвестно" не штрафуется
+наравне с "точно не покрывает"). "Никогда не смешивать несовместимые ряды
+молча" — не отдельная проверка, а следствие конструкции: один источник на
+концепт всегда, и если разные концепты одного плана разошлись по разным
+источникам — это явно попадает в `assumptions`. Следующая — вычислительный
+движок с валидацией (Фаза 9). Отдельно, из оценки по
 бенчмарку выше: `formula`/`input_series` в provenance derived-таблиц и явная
 `status`-таксономия (Official/Derived/Composite/User-defined/Estimated)
 запланированы как часть Фазы 10 (provenance/citation system).

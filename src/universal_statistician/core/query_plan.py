@@ -28,13 +28,23 @@ from dataclasses import dataclass, field
 @dataclass(frozen=True)
 class CandidateIndicator:
     """One indicator the catalog matched for a requested concept — never
-    proposed by an LLM, always the result of Catalog.search()."""
+    proposed by an LLM, always the result of Catalog.search().
+
+    Carries the same optional metadata IndicatorMeta does (unit, frequency,
+    geographic_coverage) so source/indicator selection (core/selection.py,
+    Phase 8) can score candidates without a second catalog lookup — this is
+    exactly what engine.search_indicator() already returned in
+    build_query_plan() below, just not previously kept.
+    """
 
     indicator_id: str
     source_id: str
     name: str
     #: Which requested concept (QueryPlan.concepts) this candidate came from.
     concept: str
+    unit: str | None = None
+    frequency: str | None = None
+    geographic_coverage: tuple[str, ...] | None = None
 
     def as_dict(self) -> dict:
         return {
@@ -42,6 +52,11 @@ class CandidateIndicator:
             "source_id": self.source_id,
             "name": self.name,
             "concept": self.concept,
+            "unit": self.unit,
+            "frequency": self.frequency,
+            "geographic_coverage": (
+                list(self.geographic_coverage) if self.geographic_coverage is not None else None
+            ),
         }
 
 
@@ -155,6 +170,9 @@ def build_query_plan(
             source_id=match.source_id,
             name=match.name,
             concept=concept,
+            unit=match.unit,
+            frequency=match.frequency,
+            geographic_coverage=match.geographic_coverage,
         )
         for concept in interpretation.concepts
         for match in engine.search_indicator(concept, limit=candidates_per_concept)
