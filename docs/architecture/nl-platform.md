@@ -716,6 +716,47 @@ geography identified" since the rule-based planner doesn't extract one);
 `POST /ask {"use_llm": true}` without a server-side key returns a clean
 `400`, not a crash.
 
+## Natural-language frontend experience (Phase 12)
+
+`frontend/src/components/AskTab.tsx` — a new "Спросить" (Ask) tab, first/
+default in the dashboard's tab order (section 24's "primary interaction"),
+built the same way every other tab is: `frontend/src/api.ts` gains typed
+`ask()`/`buildPlan()` calls to `POST /ask`/`POST /plan`, `types.ts` gains
+the matching TypeScript interfaces (`AskResult`, `QueryPlan`,
+`ChartSpec`, `ValidationResult`, ...) mirroring the backend's `as_dict()`
+shapes field-for-field. Existing tabs (Search/Series/Compare) are
+unchanged.
+
+Result view covers every element section 24 asks for: concise answer text,
+a `recharts` line chart (same component/color convention `CompareTab.tsx`
+already established) when a chart spec and table are present, the
+structured table (derived columns marked `*`, same convention as
+`CompareTab`), a sources/citation list, an assumptions list, a warnings
+banner (new `.warning-banner` style, amber — distinct from the existing red
+`.error-banner`, since a warning isn't a failure), a validation status
+badge (`PASS`/`WARNING`/`FAIL`, colored) with an expandable findings list,
+and two collapsible (`<details>`) debug sections: the full query plan JSON
+and the resolved provenance JSON — both real, inspectable data, not a
+summary.
+
+Example suggestions are split honestly rather than presented as uniformly
+usable: short phrases (`"population"`, `"gross domestic product"`) that the
+default `RuleBasedPlanner` can actually resolve against the demo catalog,
+and the richer natural-language examples from section 24 itself, labeled
+as needing the "Использовать Claude" checkbox — a boolean opt-in into
+`AnthropicPlanner` via `use_llm` in the request body (never a key typed
+into the frontend; the key lives only in the server's environment, same
+principle as `api.py`'s `_resolve_planner`).
+
+Verified live (Playwright/Chromium, not just `tsc --noEmit`, per this
+project's established practice of browser-checking UI work): asking
+`"population"` against a real backend returns a real answer showing the
+honest "no geography identified" limitation with its warning banner styled
+correctly, the assumptions list populated from the real `QueryPlan`, and
+the debug `<details>` block expanding to real JSON (`SP_POP_TOTL`/`WB_WDI`
+candidate, no fabricated content); switching to the existing "Поиск" tab
+afterward confirmed no regression from the new tab/CSS.
+
 ## Not yet built (tracked per-phase)
 
 Query planning, ambiguity handling, source-selection ranking, the expanded
@@ -739,5 +780,5 @@ this document with its own section once implemented, following the same
 | 9 | Calculation and validation engine | ✅ done |
 | 10 | Provenance/citation system | ✅ done |
 | 11 | `/ask` endpoint and structured answer model | ✅ done |
-| 12 | Natural-language frontend experience | not started |
+| 12 | Natural-language frontend experience | ✅ done |
 | 13 | Benchmarks, integration tests, hardening | not started |

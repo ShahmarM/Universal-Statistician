@@ -1,19 +1,21 @@
 import { useState } from 'react';
 import './App.css';
+import AskTab from './components/AskTab';
 import SearchTab from './components/SearchTab';
 import SeriesTab from './components/SeriesTab';
 import CompareTab from './components/CompareTab';
 
-type Tab = 'search' | 'series' | 'compare';
+type Tab = 'ask' | 'search' | 'series' | 'compare';
 
 const TABS: { id: Tab; label: string }[] = [
+  { id: 'ask', label: 'Спросить' },
   { id: 'search', label: 'Поиск' },
   { id: 'series', label: 'Ряд' },
   { id: 'compare', label: 'Сравнение' },
 ];
 
 export default function App() {
-  const [tab, setTab] = useState<Tab>('search');
+  const [tab, setTab] = useState<Tab>('ask');
 
   return (
     <div className="app">
@@ -37,6 +39,7 @@ export default function App() {
       </nav>
 
       <main>
+        {tab === 'ask' && <AskTab />}
         {tab === 'search' && <SearchTab />}
         {tab === 'series' && <SeriesTab />}
         {tab === 'compare' && <CompareTab />}

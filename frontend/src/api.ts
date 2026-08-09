@@ -1,4 +1,11 @@
-import type { ComparisonTable, IndicatorMeta, SeriesResult, SourceDescription } from './types';
+import type {
+  AskResult,
+  ComparisonTable,
+  IndicatorMeta,
+  QueryPlan,
+  SeriesResult,
+  SourceDescription,
+} from './types';
 
 const API_BASE = import.meta.env.VITE_API_BASE_URL ?? 'http://127.0.0.1:8000';
 
@@ -82,5 +89,19 @@ export function compare(body: CompareRequestBody): Promise<ComparisonTable> {
   return request('/compare', {
     method: 'POST',
     body: JSON.stringify(body),
+  });
+}
+
+export function ask(question: string, useLlm = false): Promise<AskResult> {
+  return request('/ask', {
+    method: 'POST',
+    body: JSON.stringify({ question, use_llm: useLlm }),
+  });
+}
+
+export function buildPlan(question: string, useLlm = false): Promise<QueryPlan> {
+  return request('/plan', {
+    method: 'POST',
+    body: JSON.stringify({ question, use_llm: useLlm }),
   });
 }
