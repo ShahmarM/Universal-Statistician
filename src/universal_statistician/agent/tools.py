@@ -165,6 +165,33 @@ def inspect_series(state: InvestigationState, *, catalog_id: str) -> dict:
 # ---- check_coverage -----------------------------------------------------
 
 
+def _known_period_coverage(
+    state: InvestigationState, cid: str, geographies: list[str]
+) -> tuple[str | None, str | None, list[str]]:
+    """Earliest/latest period actually observed for `cid`, computed only
+    from real observations already retrieved earlier in *this*
+    investigation (InvestigationState.retrieved) — never fabricated or
+    estimated. Returns (None, None, []) when nothing has been retrieved
+    for this catalog_id yet, which check_coverage reports honestly as
+    "unknown", not as "no data available"."""
+    geo_set = {g.upper() for g in geographies} if geographies else None
+    periods: set[str] = set()
+    covered: list[str] = []
+    for record in state.retrieved.values():
+        if record.catalog_id != cid:
+            continue
+        if geo_set is not None and record.ref_area.upper() not in geo_set:
+            continue
+        obs_periods = [o.period for o in record.series.observations if o.value is not None]
+        if obs_periods:
+            periods.update(obs_periods)
+            covered.append(record.ref_area)
+    if not periods:
+        return None, None, []
+    ordered = sorted(periods)
+    return ordered[0], ordered[-1], covered
+
+
 def check_coverage(
     state: InvestigationState,
     *,
@@ -174,8 +201,13 @@ def check_coverage(
     end_period: str | None = None,
     frequency: str | None = None,
 ) -> dict:
-    """Metadata-only, inexpensive pre-check of whether candidate(s) can
-    plausibly answer the question, before spending a retrieval call."""
+    """Inexpensive pre-check of whether candidate(s) can plausibly answer
+    the question, before spending a retrieval call. Geographic/frequency
+    checks are metadata-only; period coverage is metadata-only too EXCEPT
+    when this exact catalog_id was already retrieved earlier in this same
+    investigation, in which case the real observed earliest/latest period
+    is reported (see _known_period_coverage) — still never a guess, just
+    real data this investigation already has in hand."""
     canonical_geographies = [resolve_geography(g) for g in geographies]
     results = []
     for cid in catalog_ids:
@@ -210,6 +242,20 @@ def check_coverage(
             if missing:
                 warnings.append(f"Requested area(s) not in catalog geographic_coverage: {missing}")
 
+        earliest, latest, period_known_for = _known_period_coverage(state, cid, canonical_geographies)
+        period_coverage_known = earliest is not None
+        if period_coverage_known:
+            if start_period and start_period > latest:
+                warnings.append(
+                    f"Already-retrieved data for {period_known_for} only goes up to "
+                    f"{latest!r}, before the requested start_period {start_period!r}."
+                )
+            if end_period and end_period < earliest:
+                warnings.append(
+                    f"Already-retrieved data for {period_known_for} only starts at "
+                    f"{earliest!r}, after the requested end_period {end_period!r}."
+                )
+
         results.append(
             {
                 "catalog_id": cid,
@@ -219,9 +265,10 @@ def check_coverage(
                 "geographic_coverage_known": meta.geographic_coverage is not None,
                 "requested_start_period": start_period,
                 "requested_end_period": end_period,
-                "earliest_period": None,
-                "latest_period": None,
-                "period_coverage_known": False,
+                "earliest_period": earliest,
+                "latest_period": latest,
+                "period_coverage_known": period_coverage_known,
+                "period_coverage_known_for_geographies": period_known_for,
                 "frequency_compatible": frequency_compatible,
                 "warnings": warnings,
             }
@@ -230,11 +277,12 @@ def check_coverage(
     return {
         "results": results,
         "note": (
-            "Period coverage is not tracked in catalog metadata for any source "
-            "in this project — it can only be confirmed by retrieve_series. "
-            "geographic_coverage, when present, IS real catalog metadata, not a "
-            "guess; when absent, availability is genuinely unknown, not assumed "
-            "false."
+            "Period coverage comes only from real observations already "
+            "retrieved earlier in this investigation (retrieve_series must run "
+            "on a catalog_id before its period coverage is known here) — never "
+            "a guess or an estimate. geographic_coverage, when present, IS real "
+            "catalog metadata, not a guess; when absent, availability is "
+            "genuinely unknown, not assumed false."
         ),
     }
 
@@ -558,7 +606,13 @@ TOOL_SCHEMAS: list[dict] = [
     },
     {
         "name": "check_coverage",
-        "description": "Metadata-only, inexpensive check of whether candidate(s) can plausibly answer the question before retrieving full data.",
+        "description": (
+            "Inexpensive check of whether candidate(s) can plausibly answer the question "
+            "before retrieving full data. Geography/frequency checks are catalog metadata; "
+            "period coverage (earliest/latest_period) is only known once a catalog_id has "
+            "already been retrieved earlier in this investigation -- unknown, not absent, "
+            "before that."
+        ),
         "input_schema": {
             "type": "object",
             "properties": {

@@ -166,6 +166,49 @@ def test_check_coverage_flags_frequency_mismatch():
     assert any("frequency" in w.lower() for w in entry["warnings"])
 
 
+def test_check_coverage_reports_period_unknown_before_anything_is_retrieved():
+    state = _state()
+    result = agent_tools.check_coverage(
+        state, catalog_ids=[catalog_id("WB_WDI", "NY_GDP_MKTP_CD")], geographies=["AZE"]
+    )
+    entry = result["results"][0]
+    assert entry["period_coverage_known"] is False
+    assert entry["earliest_period"] is None
+    assert entry["latest_period"] is None
+
+
+def test_check_coverage_reports_real_earliest_latest_period_after_a_prior_retrieval():
+    # NY_GDP_MKTP_CD/AZE's fixture observations span 2020-2023 (_engine()
+    # above) -- once retrieve_series has actually pulled it earlier in the
+    # same investigation, check_coverage must report that real range, not
+    # remain "unknown" forever.
+    state = _state()
+    agent_tools.retrieve_series(state, catalog_id=catalog_id("WB_WDI", "NY_GDP_MKTP_CD"), geographies=["AZE"])
+
+    result = agent_tools.check_coverage(
+        state, catalog_ids=[catalog_id("WB_WDI", "NY_GDP_MKTP_CD")], geographies=["AZE"]
+    )
+    entry = result["results"][0]
+    assert entry["period_coverage_known"] is True
+    assert entry["earliest_period"] == "2020"
+    assert entry["latest_period"] == "2023"
+    assert entry["period_coverage_known_for_geographies"] == ["AZE"]
+
+
+def test_check_coverage_warns_when_requested_period_is_outside_already_retrieved_range():
+    state = _state()
+    agent_tools.retrieve_series(state, catalog_id=catalog_id("WB_WDI", "NY_GDP_MKTP_CD"), geographies=["AZE"])
+
+    result = agent_tools.check_coverage(
+        state,
+        catalog_ids=[catalog_id("WB_WDI", "NY_GDP_MKTP_CD")],
+        geographies=["AZE"],
+        start_period="2030",
+    )
+    entry = result["results"][0]
+    assert any("2030" in w for w in entry["warnings"])
+
+
 # ---- retrieve_series --------------------------------------------------------
 
 
