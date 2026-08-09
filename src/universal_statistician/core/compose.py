@@ -23,10 +23,14 @@ column.
 
 from __future__ import annotations
 
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 
 from universal_statistician.core.engine import QueryEngine
 from universal_statistician.core.models import Attribution, SeriesResult
+
+#: One entry per (input_column_key, input_period) an output cell actually
+#: depended on to compute its value.
+CellDependency = tuple[str, str]
 
 
 @dataclass(frozen=True)
@@ -62,6 +66,19 @@ class ComparisonTable:
     columns: tuple[ComparisonColumn, ...]
     #: (period, column_key) -> value
     values: dict[tuple[str, str], float | None]
+    #: (period, column_key) -> the exact (input_column_key, input_period)
+    #: pairs that specific cell was computed from — Phase E ("exact derived
+    #: provenance"): recorded by each with_*() transformation at the moment
+    #: it computes a value, never inferred afterward from formula text or
+    #: ComparisonColumn.input_series (which only names *columns*, shared
+    #: across every period of a derived column — too coarse for an
+    #: operation like with_growth, where period P's value depends on
+    #: different specific input periods than period Q's). Only set for
+    #: derived cells; absent (not just empty) for a base cell. Internal to
+    #: core/provenance.py's resolver — deliberately not part of
+    #: ComparisonTable.as_dict()'s JSON shape (AskResult.provenance already
+    #: carries the resolved chain for whatever cell was asked about).
+    cell_dependencies: dict[tuple[str, str], tuple[CellDependency, ...]] = field(default_factory=dict)
 
     def periods(self) -> tuple[str, ...]:
         return tuple(sorted({period for period, _column_key in self.values}))
@@ -197,6 +214,7 @@ def with_growth(table: ComparisonTable) -> ComparisonTable:
     base_columns = _base_columns(table)
     existing_keys = {c.key for c in table.columns}
     new_values = dict(table.values)
+    new_dependencies = dict(table.cell_dependencies)
     new_columns = list(table.columns)
 
     for column in base_columns:
@@ -220,8 +238,12 @@ def with_growth(table: ComparisonTable) -> ComparisonTable:
             curr_value = table.value_at(current, column.key)
             if prev_value:  # skip growth-from-zero (undefined) and prev_value is None
                 new_values[(current, growth_key)] = (curr_value - prev_value) / prev_value * 100
+                new_dependencies[(current, growth_key)] = (
+                    (column.key, previous),
+                    (column.key, current),
+                )
 
-    return ComparisonTable(columns=tuple(new_columns), values=new_values)
+    return ComparisonTable(columns=tuple(new_columns), values=new_values, cell_dependencies=new_dependencies)
 
 
 def with_period_over_period_growth(table: ComparisonTable) -> ComparisonTable:
@@ -231,6 +253,7 @@ def with_period_over_period_growth(table: ComparisonTable) -> ComparisonTable:
     base_columns = _base_columns(table)
     existing_keys = {c.key for c in table.columns}
     new_values = dict(table.values)
+    new_dependencies = dict(table.cell_dependencies)
     new_columns = list(table.columns)
 
     for column in base_columns:
@@ -254,8 +277,12 @@ def with_period_over_period_growth(table: ComparisonTable) -> ComparisonTable:
             curr_value = table.value_at(current, column.key)
             if prev_value:
                 new_values[(current, growth_key)] = (curr_value - prev_value) / prev_value * 100
+                new_dependencies[(current, growth_key)] = (
+                    (column.key, previous),
+                    (column.key, current),
+                )
 
-    return ComparisonTable(columns=tuple(new_columns), values=new_values)
+    return ComparisonTable(columns=tuple(new_columns), values=new_values, cell_dependencies=new_dependencies)
 
 
 def with_absolute_change(table: ComparisonTable) -> ComparisonTable:
@@ -264,6 +291,7 @@ def with_absolute_change(table: ComparisonTable) -> ComparisonTable:
     base_columns = _base_columns(table)
     existing_keys = {c.key for c in table.columns}
     new_values = dict(table.values)
+    new_dependencies = dict(table.cell_dependencies)
     new_columns = list(table.columns)
 
     for column in base_columns:
@@ -286,8 +314,9 @@ def with_absolute_change(table: ComparisonTable) -> ComparisonTable:
             prev_value = table.value_at(previous, column.key)
             curr_value = table.value_at(current, column.key)
             new_values[(current, change_key)] = curr_value - prev_value
+            new_dependencies[(current, change_key)] = ((column.key, previous), (column.key, current))
 
-    return ComparisonTable(columns=tuple(new_columns), values=new_values)
+    return ComparisonTable(columns=tuple(new_columns), values=new_values, cell_dependencies=new_dependencies)
 
 
 def with_pp_change(table: ComparisonTable) -> ComparisonTable:
@@ -299,6 +328,7 @@ def with_pp_change(table: ComparisonTable) -> ComparisonTable:
     base_columns = _base_columns(table)
     existing_keys = {c.key for c in table.columns}
     new_values = dict(table.values)
+    new_dependencies = dict(table.cell_dependencies)
     new_columns = list(table.columns)
 
     for column in base_columns:
@@ -321,8 +351,9 @@ def with_pp_change(table: ComparisonTable) -> ComparisonTable:
             prev_value = table.value_at(previous, column.key)
             curr_value = table.value_at(current, column.key)
             new_values[(current, pp_key)] = curr_value - prev_value
+            new_dependencies[(current, pp_key)] = ((column.key, previous), (column.key, current))
 
-    return ComparisonTable(columns=tuple(new_columns), values=new_values)
+    return ComparisonTable(columns=tuple(new_columns), values=new_values, cell_dependencies=new_dependencies)
 
 
 def _year(period: str) -> int:
@@ -350,6 +381,7 @@ def with_cagr(
     base_columns = _base_columns(table)
     existing_keys = {c.key for c in table.columns}
     new_values = dict(table.values)
+    new_dependencies = dict(table.cell_dependencies)
     new_columns = list(table.columns)
 
     for column in base_columns:
@@ -379,8 +411,9 @@ def with_cagr(
             years = _year(end) - _year(start)
             if years > 0:
                 new_values[(end, cagr_key)] = ((end_value / start_value) ** (1 / years) - 1) * 100
+                new_dependencies[(end, cagr_key)] = ((column.key, start), (column.key, end))
 
-    return ComparisonTable(columns=tuple(new_columns), values=new_values)
+    return ComparisonTable(columns=tuple(new_columns), values=new_values, cell_dependencies=new_dependencies)
 
 
 def with_cumulative_growth(
@@ -393,6 +426,7 @@ def with_cumulative_growth(
     base_columns = _base_columns(table)
     existing_keys = {c.key for c in table.columns}
     new_values = dict(table.values)
+    new_dependencies = dict(table.cell_dependencies)
     new_columns = list(table.columns)
 
     for column in base_columns:
@@ -420,8 +454,9 @@ def with_cumulative_growth(
         )
         if start_value and end_value is not None:
             new_values[(end, cum_key)] = (end_value / start_value - 1) * 100
+            new_dependencies[(end, cum_key)] = ((column.key, start), (column.key, end))
 
-    return ComparisonTable(columns=tuple(new_columns), values=new_values)
+    return ComparisonTable(columns=tuple(new_columns), values=new_values, cell_dependencies=new_dependencies)
 
 
 def with_index(table: ComparisonTable, base_period: str) -> ComparisonTable:
@@ -433,6 +468,7 @@ def with_index(table: ComparisonTable, base_period: str) -> ComparisonTable:
     base_columns = _base_columns(table)
     existing_keys = {c.key for c in table.columns}
     new_values = dict(table.values)
+    new_dependencies = dict(table.cell_dependencies)
     new_columns = list(table.columns)
 
     for column in base_columns:
@@ -460,8 +496,12 @@ def with_index(table: ComparisonTable, base_period: str) -> ComparisonTable:
             value = table.value_at(period, column.key)
             if value is not None:
                 new_values[(period, index_key)] = value / base_value * 100
+                new_dependencies[(period, index_key)] = (
+                    (column.key, base_period),
+                    (column.key, period),
+                )
 
-    return ComparisonTable(columns=tuple(new_columns), values=new_values)
+    return ComparisonTable(columns=tuple(new_columns), values=new_values, cell_dependencies=new_dependencies)
 
 
 def with_moving_average(table: ComparisonTable, window: int) -> ComparisonTable:
@@ -475,6 +515,7 @@ def with_moving_average(table: ComparisonTable, window: int) -> ComparisonTable:
     base_columns = _base_columns(table)
     existing_keys = {c.key for c in table.columns}
     new_values = dict(table.values)
+    new_dependencies = dict(table.cell_dependencies)
     new_columns = list(table.columns)
 
     for column in base_columns:
@@ -497,8 +538,11 @@ def with_moving_average(table: ComparisonTable, window: int) -> ComparisonTable:
             window_periods = periods_with_values[i - window + 1 : i + 1]
             values = [table.value_at(p, column.key) for p in window_periods]
             new_values[(periods_with_values[i], ma_key)] = sum(values) / window
+            new_dependencies[(periods_with_values[i], ma_key)] = tuple(
+                (column.key, p) for p in window_periods
+            )
 
-    return ComparisonTable(columns=tuple(new_columns), values=new_values)
+    return ComparisonTable(columns=tuple(new_columns), values=new_values, cell_dependencies=new_dependencies)
 
 
 def with_difference(
@@ -521,11 +565,13 @@ def with_difference(
     label_a = table.column(key_a).label
     label_b = table.column(key_b).label
     new_values = dict(table.values)
+    new_dependencies = dict(table.cell_dependencies)
     for period in table.periods():
         value_a = table.value_at(period, key_a)
         value_b = table.value_at(period, key_b)
         if value_a is not None and value_b is not None:
             new_values[(period, diff_key)] = value_a - value_b
+            new_dependencies[(period, diff_key)] = ((key_a, period), (key_b, period))
 
     new_column = ComparisonColumn(
         key=diff_key,
@@ -535,7 +581,9 @@ def with_difference(
         formula="value_a - value_b",
         input_series=(key_a, key_b),
     )
-    return ComparisonTable(columns=table.columns + (new_column,), values=new_values)
+    return ComparisonTable(
+        columns=table.columns + (new_column,), values=new_values, cell_dependencies=new_dependencies
+    )
 
 
 def with_share_pair(
@@ -563,11 +611,13 @@ def with_share_pair(
     label_num = table.column(numerator_key).label
     label_den = table.column(denominator_key).label
     new_values = dict(table.values)
+    new_dependencies = dict(table.cell_dependencies)
     for period in table.periods():
         value = table.value_at(period, numerator_key)
         total = table.value_at(period, denominator_key)
         if value is not None and total:
             new_values[(period, share_key)] = value / total * 100
+            new_dependencies[(period, share_key)] = ((numerator_key, period), (denominator_key, period))
 
     new_column = ComparisonColumn(
         key=share_key,
@@ -577,7 +627,9 @@ def with_share_pair(
         formula="numerator / denominator * 100",
         input_series=(numerator_key, denominator_key),
     )
-    return ComparisonTable(columns=table.columns + (new_column,), values=new_values)
+    return ComparisonTable(
+        columns=table.columns + (new_column,), values=new_values, cell_dependencies=new_dependencies
+    )
 
 
 def with_per_capita_pair(
@@ -602,11 +654,13 @@ def with_per_capita_pair(
 
     label_num = table.column(numerator_key).label
     new_values = dict(table.values)
+    new_dependencies = dict(table.cell_dependencies)
     for period in table.periods():
         value = table.value_at(period, numerator_key)
         denominator = table.value_at(period, denominator_key)
         if value is not None and denominator:
             new_values[(period, pc_key)] = value / denominator
+            new_dependencies[(period, pc_key)] = ((numerator_key, period), (denominator_key, period))
 
     new_column = ComparisonColumn(
         key=pc_key,
@@ -616,7 +670,9 @@ def with_per_capita_pair(
         formula="numerator / denominator",
         input_series=(numerator_key, denominator_key),
     )
-    return ComparisonTable(columns=table.columns + (new_column,), values=new_values)
+    return ComparisonTable(
+        columns=table.columns + (new_column,), values=new_values, cell_dependencies=new_dependencies
+    )
 
 
 def with_index_column(
@@ -653,10 +709,12 @@ def with_index_column(
 
     label = table.column(column_key).label
     new_values = dict(table.values)
+    new_dependencies = dict(table.cell_dependencies)
     for period in table.periods():
         value = table.value_at(period, column_key)
         if value is not None:
             new_values[(period, index_key)] = value / base * base_value
+            new_dependencies[(period, index_key)] = ((column_key, base_period), (column_key, period))
 
     new_column = ComparisonColumn(
         key=index_key,
@@ -666,7 +724,9 @@ def with_index_column(
         formula=f"value / value[{base_period}] * {base_value:g}",
         input_series=(column_key,),
     )
-    return ComparisonTable(columns=table.columns + (new_column,), values=new_values)
+    return ComparisonTable(
+        columns=table.columns + (new_column,), values=new_values, cell_dependencies=new_dependencies
+    )
 
 
 def with_share(table: ComparisonTable, total_key: str) -> ComparisonTable:
@@ -678,6 +738,7 @@ def with_share(table: ComparisonTable, total_key: str) -> ComparisonTable:
 
     existing_keys = {c.key for c in table.columns}
     new_values = dict(table.values)
+    new_dependencies = dict(table.cell_dependencies)
     new_columns = list(table.columns)
 
     for column in base_columns:
@@ -701,8 +762,9 @@ def with_share(table: ComparisonTable, total_key: str) -> ComparisonTable:
             total_value = table.value_at(period, total_key)
             if value is not None and total_value:
                 new_values[(period, share_key)] = value / total_value * 100
+                new_dependencies[(period, share_key)] = ((column.key, period), (total_key, period))
 
-    return ComparisonTable(columns=tuple(new_columns), values=new_values)
+    return ComparisonTable(columns=tuple(new_columns), values=new_values, cell_dependencies=new_dependencies)
 
 
 def with_per_capita(table: ComparisonTable, population_key: str) -> ComparisonTable:
@@ -718,6 +780,7 @@ def with_per_capita(table: ComparisonTable, population_key: str) -> ComparisonTa
 
     existing_keys = {c.key for c in table.columns}
     new_values = dict(table.values)
+    new_dependencies = dict(table.cell_dependencies)
     new_columns = list(table.columns)
 
     for column in base_columns:
@@ -741,8 +804,9 @@ def with_per_capita(table: ComparisonTable, population_key: str) -> ComparisonTa
             population = table.value_at(period, population_key)
             if value is not None and population:
                 new_values[(period, pc_key)] = value / population
+                new_dependencies[(period, pc_key)] = ((column.key, period), (population_key, period))
 
-    return ComparisonTable(columns=tuple(new_columns), values=new_values)
+    return ComparisonTable(columns=tuple(new_columns), values=new_values, cell_dependencies=new_dependencies)
 
 
 def with_ratio(table: ComparisonTable, baseline_key: str) -> ComparisonTable:
@@ -754,6 +818,7 @@ def with_ratio(table: ComparisonTable, baseline_key: str) -> ComparisonTable:
         raise ValueError(f"Unknown baseline column {baseline_key!r}")
 
     new_values = dict(table.values)
+    new_dependencies = dict(table.cell_dependencies)
     existing_keys = {c.key for c in table.columns}
     new_columns = list(table.columns)
 
@@ -778,8 +843,9 @@ def with_ratio(table: ComparisonTable, baseline_key: str) -> ComparisonTable:
             baseline_value = table.value_at(period, baseline_key)
             if value is not None and baseline_value:
                 new_values[(period, ratio_key)] = value / baseline_value
+                new_dependencies[(period, ratio_key)] = ((column.key, period), (baseline_key, period))
 
-    return ComparisonTable(columns=tuple(new_columns), values=new_values)
+    return ComparisonTable(columns=tuple(new_columns), values=new_values, cell_dependencies=new_dependencies)
 
 
 def _aggregate(
@@ -799,10 +865,12 @@ def _aggregate(
         return table
 
     new_values = dict(table.values)
+    new_dependencies = dict(table.cell_dependencies)
     for period in table.periods():
         values = [table.value_at(period, k) for k in keys]
         if all(v is not None for v in values):
             new_values[(period, result_key)] = combine(values)
+            new_dependencies[(period, result_key)] = tuple((k, period) for k in keys)
 
     new_column = ComparisonColumn(
         key=result_key,
@@ -812,7 +880,9 @@ def _aggregate(
         formula=formula,
         input_series=tuple(keys),
     )
-    return ComparisonTable(columns=table.columns + (new_column,), values=new_values)
+    return ComparisonTable(
+        columns=table.columns + (new_column,), values=new_values, cell_dependencies=new_dependencies
+    )
 
 
 def with_sum(
@@ -879,6 +949,7 @@ def with_rank(table: ComparisonTable) -> ComparisonTable:
     existing_keys = {c.key for c in table.columns}
     all_base_keys = tuple(c.key for c in base_columns)
     new_values = dict(table.values)
+    new_dependencies = dict(table.cell_dependencies)
     new_columns = list(table.columns) + [
         ComparisonColumn(
             key=f"{c.key}__rank",
@@ -899,7 +970,14 @@ def with_rank(table: ComparisonTable) -> ComparisonTable:
             if table.value_at(period, c.key) is not None
         ]
         scored.sort(key=lambda item: item[1], reverse=True)
+        # Every rank at this period depends on every column that actually
+        # took part in the comparison at this period (i.e. had a value) -
+        # not the full all_base_keys list, which may include columns with
+        # no value at this particular period and so didn't influence the
+        # ordering here.
+        participating = tuple((k, period) for k, _v in scored)
         for rank, (key, _value) in enumerate(scored, start=1):
             new_values[(period, f"{key}__rank")] = float(rank)
+            new_dependencies[(period, f"{key}__rank")] = participating
 
-    return ComparisonTable(columns=tuple(new_columns), values=new_values)
+    return ComparisonTable(columns=tuple(new_columns), values=new_values, cell_dependencies=new_dependencies)

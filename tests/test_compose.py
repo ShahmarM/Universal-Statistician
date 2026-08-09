@@ -35,6 +35,31 @@ def test_build_comparison_aligns_on_period_axis():
     assert table.value_at("2020", "USA") == 300.0
 
 
+def test_build_comparison_has_no_cell_dependencies_for_base_columns():
+    col = ComparisonColumn(key="AFG", label="AFG", attribution=None)
+    table = build_comparison([(col, _series("POP", "AFG", {"2020": 10.0}))])
+
+    assert table.cell_dependencies == {}
+
+
+def test_with_growth_records_exact_per_cell_dependencies():
+    # Phase E: cell_dependencies is keyed by (period, column_key), one entry
+    # per output cell, distinct from input_series (which only names the
+    # input *column*, shared across every period).
+    col = ComparisonColumn(key="AFG", label="AFG", attribution=None)
+    table = with_growth(
+        build_comparison([(col, _series("POP", "AFG", {"2019": 10.0, "2020": 11.0}))])
+    )
+
+    assert table.cell_dependencies[("2020", "AFG__yoy_growth_pct")] == (
+        ("AFG", "2019"),
+        ("AFG", "2020"),
+    )
+    # No dependency recorded for 2019 - it's the first period, with_growth
+    # never computes a value there.
+    assert ("2019", "AFG__yoy_growth_pct") not in table.cell_dependencies
+
+
 def test_compare_across_countries_fetches_one_series_per_country():
     provider = LookupProvider(
         "FAKE",
