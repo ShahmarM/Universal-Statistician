@@ -15,19 +15,22 @@ caller asks for "auto" (the default); a caller may always override
 explicitly with "fast" or "research" (task section 7's "explicit API
 override").
 
-Research mode's answer text/chart here are still built deterministically
-from the investigation's table (reusing core/ask.py's own table->text/
-citations helpers, which take a plain ComparisonTable and don't need a
-QueryPlan) — Phase 6 replaces the *text* with a separate LLM answer-
-writing pass constrained to the same validated evidence; nothing about
-retrieval, calculation, or validation changes then.
+Research mode's chart is still built deterministically from the
+investigation's table (reusing core/ask.py's own citations helpers, which
+take a plain ComparisonTable and don't need a QueryPlan). The answer text
+is deterministic (`_build_answer_text`) unless an `answer_writer` is
+supplied, in which case Phase 6's `write_and_verify_answer()` replaces it
+with LLM prose constrained to the same validated evidence and checked for
+unsupported numbers, falling back to the deterministic text on failure —
+nothing about retrieval, calculation, or validation changes either way.
 """
 
 from __future__ import annotations
 
 from dataclasses import dataclass
 
-from universal_statistician.agent.llm import LLMAgent
+from universal_statistician.agent.answer_writer import write_and_verify_answer
+from universal_statistician.agent.llm import LLMAgent, LLMAnswerWriter
 from universal_statistician.agent.loop import AgentLimits, StatisticalAgent
 from universal_statistician.agent.state import InvestigationState
 from universal_statistician.core.answer import AskResult, ChartSeries, ChartSpec
@@ -117,11 +120,19 @@ def run_research_mode(
     question: str,
     *,
     limits: AgentLimits | None = None,
+    answer_writer: LLMAnswerWriter | None = None,
 ) -> tuple[AskResult, InvestigationState]:
     """Run the iterative StatisticalAgent, then apply the same deterministic
     validation gate every path in this project applies before presenting a
     numerical answer — the orchestrator runs this unconditionally, it never
     depends on the LLM having remembered to call the `validate` tool itself.
+
+    If `answer_writer` is supplied, the deterministic table-derived text is
+    used only as the fallback for Phase 6's `write_and_verify_answer()` —
+    the returned answer is LLM prose constrained to the same evidence and
+    checked for unsupported numbers, never unchecked. Without one, the
+    deterministic text is returned as-is (e.g. fast-mode-style callers, or
+    tests that don't need an LLM answer-writer configured).
 
     Returns (AskResult, InvestigationState) — the state is the full audit
     trail (task section 15's `debug=true` payload), kept separate from the
@@ -137,11 +148,24 @@ def run_research_mode(
     table_dict = state.table.as_dict() if state.table.columns else None
     chart = _chart_spec_from_state(state) if state.table.columns else None
 
+    fallback_text = _build_answer_text(state.table if state.table.columns else None, validation)
+    answer_text = fallback_text
+    if answer_writer is not None:
+        write_result = write_and_verify_answer(
+            state.evidence_package(), answer_writer, fallback_text=fallback_text
+        )
+        answer_text = write_result.text
+        if not write_result.llm_written and write_result.unsupported_numbers:
+            state.warnings.append(
+                "LLM answer-writer produced unsupported numbers "
+                f"{write_result.unsupported_numbers}; used the deterministic answer instead."
+            )
+
     return (
         AskResult(
             question=question,
             query_plan=state.evidence_package(),
-            answer=_build_answer_text(state.table if state.table.columns else None, validation),
+            answer=answer_text,
             table=table_dict,
             chart=chart.as_dict() if chart else None,
             sources=_unique_sources(state.table) if state.table.columns else (),
@@ -168,6 +192,7 @@ def answer_question_with_mode(
     planner: LLMPlanner | None = None,
     llm_agent: LLMAgent | None = None,
     limits: AgentLimits | None = None,
+    answer_writer: LLMAnswerWriter | None = None,
 ) -> ModeRunResult:
     """The single entry point api.py's /ask (Phase 8) calls: resolves the
     mode, runs the matching path, and returns a uniform result shape.
@@ -201,7 +226,9 @@ def answer_question_with_mode(
         return ModeRunResult(result=result, mode_used="fast")
 
     if resolved == "research":
-        result, state = run_research_mode(engine, llm_agent, question, limits=limits)
+        result, state = run_research_mode(
+            engine, llm_agent, question, limits=limits, answer_writer=answer_writer
+        )
         return ModeRunResult(result=result, mode_used="research", investigation=state)
 
     result = run_fast_mode(engine, question, planner=planner)

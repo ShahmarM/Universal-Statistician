@@ -5,7 +5,7 @@ from __future__ import annotations
 import pytest
 from anthropic.types import Message, TextBlock, ToolUseBlock, Usage
 
-from universal_statistician.agent.llm import AnthropicAgent
+from universal_statistician.agent.llm import AnthropicAgent, AnthropicAnswerWriter
 from universal_statistician.agent.modes import (
     answer_question_with_mode,
     run_fast_mode,
@@ -154,6 +154,63 @@ def test_run_research_mode_answers_honestly_when_nothing_was_retrieved():
     assert result.validation is None
 
 
+def test_run_research_mode_uses_the_answer_writer_when_it_produces_supported_prose():
+    cid = catalog_id("WB_WDI", "SP_POP_TOTL")
+    client = FakeClient(
+        [
+            _message(
+                ToolUseBlock(
+                    type="tool_use", id="tu_1", name="retrieve_series",
+                    input={"catalog_id": cid, "geographies": ["AZE"]},
+                ),
+                stop_reason="tool_use",
+            ),
+            _message(TextBlock(type="text", text="Retrieved population.")),
+        ]
+    )
+    engine = _engine()
+    llm_agent = AnthropicAgent(client=client)
+    writer_client = FakeClient(
+        [_message(TextBlock(type="text", text="Azerbaijan's population reached 10.5 million in 2024."))]
+    )
+    answer_writer = AnthropicAnswerWriter(client=writer_client)
+
+    result, state = run_research_mode(engine, llm_agent, "Population of Azerbaijan?", answer_writer=answer_writer)
+
+    assert result.answer == "Azerbaijan's population reached 10.5 million in 2024."
+    assert not any("unsupported" in w.lower() for w in result.warnings)
+
+
+def test_run_research_mode_falls_back_to_the_deterministic_answer_when_the_writer_fabricates_a_number():
+    cid = catalog_id("WB_WDI", "SP_POP_TOTL")
+    client = FakeClient(
+        [
+            _message(
+                ToolUseBlock(
+                    type="tool_use", id="tu_1", name="retrieve_series",
+                    input={"catalog_id": cid, "geographies": ["AZE"]},
+                ),
+                stop_reason="tool_use",
+            ),
+            _message(TextBlock(type="text", text="Retrieved population.")),
+        ]
+    )
+    engine = _engine()
+    llm_agent = AnthropicAgent(client=client)
+    writer_client = FakeClient(
+        [
+            _message(TextBlock(type="text", text="Azerbaijan's population reached 99.9 million in 2024.")),
+            _message(TextBlock(type="text", text="Azerbaijan's population reached 88.8 million in 2024.")),
+        ]
+    )
+    answer_writer = AnthropicAnswerWriter(client=writer_client)
+
+    result, state = run_research_mode(engine, llm_agent, "Population of Azerbaijan?", answer_writer=answer_writer)
+
+    assert "10.5" in result.answer
+    assert any("unsupported" in w.lower() for w in result.warnings)
+
+
 # ---- answer_question_with_mode --------------------------------------------
 
 
@@ -201,6 +258,39 @@ def test_answer_question_with_mode_runs_research_when_an_llm_agent_is_given():
     assert run.mode_used == "research"
     assert run.investigation is not None
     assert run.investigation.retrieved
+
+
+def test_answer_question_with_mode_passes_the_answer_writer_through_to_research_mode():
+    cid = catalog_id("WB_WDI", "SP_POP_TOTL")
+    client = FakeClient(
+        [
+            _message(
+                ToolUseBlock(
+                    type="tool_use", id="tu_1", name="retrieve_series",
+                    input={"catalog_id": cid, "geographies": ["AZE"]},
+                ),
+                stop_reason="tool_use",
+            ),
+            _message(TextBlock(type="text", text="Retrieved population.")),
+        ]
+    )
+    engine = _engine()
+    llm_agent = AnthropicAgent(client=client)
+    writer_client = FakeClient(
+        [_message(TextBlock(type="text", text="Azerbaijan's population reached 10.5 million in 2024."))]
+    )
+    answer_writer = AnthropicAnswerWriter(client=writer_client)
+
+    run = answer_question_with_mode(
+        engine,
+        "Compare data sources for Azerbaijan's population",
+        mode="research",
+        llm_agent=llm_agent,
+        answer_writer=answer_writer,
+    )
+
+    assert run.mode_used == "research"
+    assert run.result.answer == "Azerbaijan's population reached 10.5 million in 2024."
 
 
 def test_answer_question_with_mode_respects_an_explicit_fast_override_even_with_an_llm_agent():
