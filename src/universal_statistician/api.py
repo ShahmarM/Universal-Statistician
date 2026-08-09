@@ -7,6 +7,7 @@ dashboard, per plan.md's step 9.
 
 from __future__ import annotations
 
+import os
 from typing import Optional
 
 from fastapi import FastAPI, HTTPException
@@ -15,6 +16,7 @@ from pydantic import BaseModel
 
 from universal_statistician import tools
 from universal_statistician.core.engine import QueryEngine, UnknownSourceError, default_engine
+from universal_statistician.planning.base import LLMPlanner
 
 app = FastAPI(
     title="Universal Statistician",
@@ -123,3 +125,44 @@ def compare(body: CompareRequest) -> dict:
         rank=body.rank,
         ratio_to=body.ratio_to,
     )
+
+
+class QuestionRequest(BaseModel):
+    question: str
+    #: Use AnthropicPlanner (server's ANTHROPIC_API_KEY env var) instead of
+    #: the default RuleBasedPlanner. Never accepts a key in the request body
+    #: — only a boolean opt-in into whatever the server process already has
+    #: configured, the same source `ustat chat`/`ustat plan --llm` use.
+    use_llm: bool = False
+
+
+def _resolve_planner(use_llm: bool) -> Optional[LLMPlanner]:
+    if not use_llm:
+        return None
+    if not os.environ.get("ANTHROPIC_API_KEY"):
+        raise HTTPException(
+            status_code=400,
+            detail="use_llm=true requires ANTHROPIC_API_KEY to be set in the server's environment.",
+        )
+    from anthropic import Anthropic
+
+    from universal_statistician.planning.anthropic_planner import AnthropicPlanner
+
+    return AnthropicPlanner(client=Anthropic())
+
+
+@app.post("/plan")
+def plan(body: QuestionRequest) -> dict:
+    """Structured query plan for a question — interpretation and
+    catalog-resolved candidate/selected indicators only, no retrieval.
+    Debug/inspection endpoint (section 10)."""
+    planner = _resolve_planner(body.use_llm)
+    return _call(tools.build_plan, _engine, body.question, planner)
+
+
+@app.post("/ask")
+def ask(body: QuestionRequest) -> dict:
+    """Full pipeline (section 21): question -> plan -> retrieval ->
+    transformations -> validation -> answer + table + chart + citations."""
+    planner = _resolve_planner(body.use_llm)
+    return _call(tools.ask, _engine, body.question, planner)

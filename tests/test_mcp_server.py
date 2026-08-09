@@ -32,7 +32,7 @@ def call(name: str, arguments: dict):
     return json.loads(result.content[0].text)
 
 
-def test_all_five_tools_are_registered():
+def test_all_six_tools_are_registered():
     tool_list = asyncio.run(server.list_tools())
     assert {t.name for t in tool_list} == {
         "search_indicator",
@@ -40,6 +40,7 @@ def test_all_five_tools_are_registered():
         "compare",
         "list_sources",
         "describe_source",
+        "ask",
     }
 
 
@@ -63,3 +64,13 @@ def test_search_indicator_tool_call_runs_in_a_worker_thread_successfully():
     # that constructed it.
     results = call("search_indicator", {"query": "population"})
     assert any(row["indicator_id"] == "SP_POP_TOTL" for row in results)
+
+
+def test_ask_tool_call_resolves_a_catalog_candidate_without_network():
+    # RuleBasedPlanner never extracts a geography from the phrase, so
+    # retrieval is skipped honestly (no network call needed) — safe to run
+    # through the real MCP protocol path in this sandbox.
+    result = call("ask", {"question": "population"})
+    assert result["table"] is None
+    assert any("No geography" in w for w in result["warnings"])
+    assert result["query_plan"]["selected_indicators"][0]["indicator_id"] == "SP_POP_TOTL"

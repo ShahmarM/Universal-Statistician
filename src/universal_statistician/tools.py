@@ -8,6 +8,7 @@ this dispatch logic once per interface.
 
 from __future__ import annotations
 
+from universal_statistician.core.ask import answer_question
 from universal_statistician.core.compose import (
     compare_across_countries,
     compare_across_indicators,
@@ -71,6 +72,13 @@ def build_plan(engine: QueryEngine, question: str, planner: LLMPlanner | None = 
     interpretation = planner.interpret(question)
     plan = build_query_plan(question, interpretation, engine)
     return select_indicators(plan).as_dict()
+
+
+def ask(engine: QueryEngine, question: str, planner: LLMPlanner | None = None) -> dict:
+    """Full pipeline (Phase 11): question -> plan -> retrieval ->
+    transformations -> validation -> answer + table + chart + citations.
+    See core/ask.py::answer_question for the orchestration itself."""
+    return answer_question(engine, question, planner=planner).as_dict()
 
 
 def describe_source(engine: QueryEngine, source_id: str) -> dict:

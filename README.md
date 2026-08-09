@@ -20,6 +20,8 @@ tools.py                 search_indicator, get_series, compare, list_sources, de
 core/compose.py          сравнительные таблицы + вычисляемые колонки (growth/CAGR/index/moving average/...) с lineage (formula/input_series)
 core/validation.py       validate_series/validate_table — структурные PASS/WARNING/FAIL находки
 core/provenance.py       resolve_provenance() — полная цепочка любой ячейки таблицы вплоть до первичных наблюдений
+core/answer.py           AskResult/ChartSpec — модель структурированного ответа
+core/ask.py              answer_question() — вся цепочка: план → выбор → ретрив → трансформации → валидация → ответ
 core/engine.py           QueryEngine — единая точка входа: провайдеры + Catalog + Cache
 core/catalog.py          локальный многоязычный полнотекстовый индекс индикаторов (SQLite FTS5 + метаданные)
 core/ingestion.py        discovery → нормализация → каталог (upsert, incremental refresh)
@@ -187,6 +189,8 @@ ustat catalog refresh           # discovery-ingestion для всех источ
 ustat catalog refresh WB_WDI    # то же самое для одного источника
 ustat plan "population"         # структурный query plan (без LLM: вся фраза = один поисковый концепт)
 ustat plan "GDP growth" --llm   # то же самое через Claude (AnthropicPlanner, нужен ANTHROPIC_API_KEY)
+ustat ask "population"          # полный пайплайн: план → выбор → ретрив → трансформации → валидация → ответ
+ustat ask "GDP growth" --llm    # то же самое, интерпретация через Claude
 ```
 
 Некорректный запрос (неизвестный источник, неполный `compare`) печатает
@@ -206,6 +210,10 @@ uvicorn universal_statistician.api:app --reload
 | `GET /search?q=...&limit=` | `tools.search_indicator` |
 | `GET /series?source_id=&indicator_id=&ref_area=&start_period=&end_period=` | `tools.get_series` |
 | `POST /compare` (JSON-тело = параметры `tools.compare`) | `tools.compare` (400 при некорректной форме запроса) |
+| `POST /plan` (`{"question": ..., "use_llm": false}`) | `tools.build_plan` — inspectable-план без ретрива |
+| `POST /ask` (`{"question": ..., "use_llm": false}`) | `tools.ask` — полный пайплайн, structured answer |
+
+`use_llm: true` включает `AnthropicPlanner` через `ANTHROPIC_API_KEY` **сервера** (никогда не из тела запроса) — без ключа отдаёт чистый `400`, не падение.
 
 **Веб-дашборд** (React + Vite + TypeScript, требует запущенный REST API):
 
@@ -402,9 +410,32 @@ forced tool call — модель физически не может подст�
 (`with_growth`, `with_cagr`, moving average), резолвер не гадает, какой
 именно период сыграл роль — прикладывает провенанс по каждому периоду с
 данными и явно объясняет почему, вместо правдоподобно выглядящей, но
-потенциально неверной точной ссылки. Следующая — `/ask`-эндпоинт и модель
-ответа (Фаза 11). Отдельно, из оценки по
-бенчмарку выше: `formula`/`input_series` в provenance derived-таблиц (уже
-сделано в Фазах 9-10) и явная
-`status`-таксономия (Official/Derived/Composite/User-defined/Estimated)
-запланированы как часть Фазы 10 (provenance/citation system).
+потенциально неверной точной ссылки.
+
+Фаза 11 готова: `core/answer.py` (`AskResult`/`ChartSpec` — модель ответа
+из секций 18/20/21) и `core/ask.py::answer_question()` — вся цепочка из
+целевой архитектуры (секция 9), теперь по-настоящему собранная: план →
+выбор → **ретрив** (по каждой выбранной паре индикатор×география через
+`QueryEngine.get_series()`, отказ по одной паре — предупреждение, не
+падение всей таблицы) → **трансформации** (`plan.transformations`
+диспетчеризуются по имени на функции `compose.py`, не требующие
+дополнительных аргументов — `growth`/`cagr`/`rank`/... — честно
+ограниченный охват для первой версии, отмечено предупреждением, не
+проигнорировано молча) → **валидация** → **ответ** (текст собирается
+шаблоном только из провалидированной таблицы — никогда LLM не
+переписывает числа, секция 18) → provenance/chart/sources.
+
+Выставлено на всех трёх интерфейсах: `POST /ask`/`POST /plan` (api.py,
+`use_llm` только как флаг, ключ — из окружения сервера, никогда из тела
+запроса), `ustat ask`/`ustat plan --llm` (cli.py), и MCP-инструмент `ask`
+(сознательно только на `RuleBasedPlanner` — у MCP-хоста уже есть своё
+понимание естественного языка, второй внутренний LLM-вызов был бы
+избыточен). Живые прогоны подтвердили все три: `ustat ask population`,
+`POST /ask`/`POST /plan` по-настоящему через HTTP (включая чистый `400` на
+`use_llm=true` без ключа).
+
+Следующая — естественноязыковой интерфейс в дашборде (Фаза 12). Отдельно,
+из оценки по бенчмарку: `formula`/`input_series` в provenance
+derived-таблиц и явная `status`-таксономия
+(Official/Derived/Composite/User-defined/Estimated) — обе идеи уже закрыты
+Фазами 9-10 в духе, близком к первоначальному запросу бенчмарка.

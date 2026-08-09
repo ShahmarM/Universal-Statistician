@@ -43,10 +43,10 @@ Calculation engine            core/compose.py — with_cagr/with_index/with_movi
 Validation                     core/validation.py — PASS/WARNING/FAIL (Phase 9)
   |
   v
-Answer builder                 (Phase 11 — not yet built)
+Answer builder                 core/ask.py::answer_question() + core/answer.py (Phase 11)
   |
   v
-Chart + table + citations      core/provenance.py resolves citations (Phase 10); chart/table are Phases 11-12
+Chart + table + citations      core/answer.py's AskResult/ChartSpec (Phase 11); frontend rendering is Phase 12
 ```
 
 Every interface (MCP server, CLI, REST API, dashboard, chat) sits as a thin
@@ -651,6 +651,71 @@ attaches provenance for *every* period that input actually has a value,
 with an explicit `note` explaining why, rather than presenting
 specific-looking but potentially wrong period references as certain.
 
+## /ask endpoint and structured answer model (Phase 11)
+
+`core/answer.py` defines the response shape sections 18/20/21 describe:
+`AskResult` (question, query_plan, answer text, table, chart, sources,
+provenance, warnings, validation) and `ChartSpec` (chart_type/title/axes/
+series/source_note — data only, no server-side rendering; the frontend,
+Phase 12, draws it with the existing `recharts` setup already in the
+dashboard).
+
+`core/ask.py::answer_question(engine, question, planner=None)` is the
+orchestration pipeline (section 9's target diagram, now fully wired):
+interpret → plan → select → **retrieve** → **transform** → **validate** →
+**answer + chart + citations**. Every step reuses an already-built module —
+this file only adds the glue:
+
+- **Retrieval**: for each selected indicator × requested geography, calls
+  `QueryEngine.get_series()` and assembles a `ComparisonTable` via
+  `build_comparison()` — column keys/labels follow the existing
+  `compare_across_countries`/`compare_across_indicators` conventions when
+  only one axis varies (indicator or geography), and combine both when a
+  plan varies both at once. A retrieval failure for one indicator/area
+  becomes a warning, not a crash — the rest of the table still builds.
+- **Transformations**: `plan.transformations` (free-form strings from the
+  planner) dispatch by name to the no-extra-argument compose.py functions
+  (`growth`, `period_over_period_growth`, `absolute_change`, `pp_change`,
+  `rank`, `cagr`, `cumulative_growth`). Transformations needing a
+  caller-specified column/weights (ratio, share, per_capita, difference,
+  index, sum, average, weighted_average) are **not** auto-dispatched here —
+  an honestly scoped limit, noted as a warning rather than silently
+  ignored; they stay directly callable from `compose.py` for now.
+- **Validation**: `validate_table()` runs with the plan's requested
+  geographies/period range, so /ask's validation is genuinely tied to what
+  was asked, not just what came back.
+- **Answer text is template-built from the validated table only** — never
+  an LLM rewriting numbers (section 18): one line per column reporting its
+  latest available period and value, plus any non-PASS validation findings
+  appended verbatim. No question goes through a second LLM call to phrase
+  the answer; the planner (if an LLM one is used) only ever produces the
+  *interpretation*, before any number exists.
+- **Provenance**: `resolve_provenance()` (Phase 10) resolved for every
+  column's latest period.
+- Three outcomes short-circuit before retrieval, each explicit rather than
+  a generic error: `needs_clarification` (asks the question back, no
+  retrieval attempted), no geography identified, and no catalog candidate
+  selected — matching section 23's "if the requested statistic cannot be
+  found, say so."
+
+Exposed on all three interfaces: `POST /ask` and `POST /plan` (api.py, both
+taking `{"question": ..., "use_llm": false}` — `use_llm` opts into
+`AnthropicPlanner` using the *server's own* `ANTHROPIC_API_KEY` env var,
+never a key in the request body; missing key is a clean `400`, not a
+crash), `ustat ask`/`ustat plan --llm` (cli.py, same `_resolve_llm_planner`
+helper shared with `plan`), and an `ask` MCP tool — deliberately using only
+the deterministic `RuleBasedPlanner` in the MCP case, since an MCP-connected
+host has already done the natural-language understanding to produce
+`question`; a second internal LLM call there would be redundant with the
+server's own stated design (mcp_server.py's docstring).
+
+Live end-to-end runs confirmed all three surfaces: `ustat ask population`
+resolves a real catalog candidate; `POST /ask {"question": "population"}`
+returns 200 with the full structured shape (and honestly reports "no
+geography identified" since the rule-based planner doesn't extract one);
+`POST /ask {"use_llm": true}` without a server-side key returns a clean
+`400`, not a crash.
+
 ## Not yet built (tracked per-phase)
 
 Query planning, ambiguity handling, source-selection ranking, the expanded
@@ -673,6 +738,6 @@ this document with its own section once implemented, following the same
 | 8 | Source/indicator selection ranking | ✅ done |
 | 9 | Calculation and validation engine | ✅ done |
 | 10 | Provenance/citation system | ✅ done |
-| 11 | `/ask` endpoint and structured answer model | not started |
+| 11 | `/ask` endpoint and structured answer model | ✅ done |
 | 12 | Natural-language frontend experience | not started |
 | 13 | Benchmarks, integration tests, hardening | not started |

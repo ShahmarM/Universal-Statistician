@@ -126,42 +126,58 @@ def catalog_stats() -> None:
     _run(tools.catalog_stats, _engine)
 
 
+def _resolve_llm_planner(use_llm: bool, model: str):
+    """Shared by `plan --llm` and `ask --llm`: an AnthropicPlanner backed by
+    ANTHROPIC_API_KEY, or None (RuleBasedPlanner fallback) — same
+    ANTHROPIC_API_KEY-not-set handling as `chat`."""
+    if not use_llm:
+        return None
+
+    import os
+
+    if not os.environ.get("ANTHROPIC_API_KEY"):
+        typer.echo(
+            "ANTHROPIC_API_KEY is not set. Get a key at "
+            "https://console.anthropic.com/ and export it, then retry.",
+            err=True,
+        )
+        raise typer.Exit(code=1)
+
+    from anthropic import Anthropic
+
+    from universal_statistician.planning.anthropic_planner import AnthropicPlanner
+
+    return AnthropicPlanner(client=Anthropic(), model=model)
+
+
+_LLM_OPTION_HELP = (
+    "Interpret with AnthropicPlanner (requires ANTHROPIC_API_KEY) instead of "
+    "the deterministic rule-based fallback."
+)
+
+
 @app.command()
 def plan(
     question: str,
-    use_llm: bool = typer.Option(
-        False,
-        "--llm",
-        help=(
-            "Interpret with AnthropicPlanner (requires ANTHROPIC_API_KEY) instead of "
-            "the deterministic rule-based fallback."
-        ),
-    ),
+    use_llm: bool = typer.Option(False, "--llm", help=_LLM_OPTION_HELP),
     model: str = "claude-sonnet-5",
 ) -> None:
     """Build and print a structured query plan for a question — interpretation
     and catalog-resolved candidate indicators only, no retrieval. Debug/inspection
     entry point for the query planner (section 10: plans must be inspectable
     before any data is fetched)."""
-    planner = None
-    if use_llm:
-        import os
+    _run(tools.build_plan, _engine, question, _resolve_llm_planner(use_llm, model))
 
-        if not os.environ.get("ANTHROPIC_API_KEY"):
-            typer.echo(
-                "ANTHROPIC_API_KEY is not set. Get a key at "
-                "https://console.anthropic.com/ and export it, then retry.",
-                err=True,
-            )
-            raise typer.Exit(code=1)
 
-        from anthropic import Anthropic
-
-        from universal_statistician.planning.anthropic_planner import AnthropicPlanner
-
-        planner = AnthropicPlanner(client=Anthropic(), model=model)
-
-    _run(tools.build_plan, _engine, question, planner)
+@app.command()
+def ask(
+    question: str,
+    use_llm: bool = typer.Option(False, "--llm", help=_LLM_OPTION_HELP),
+    model: str = "claude-sonnet-5",
+) -> None:
+    """Full pipeline (section 21): question -> plan -> retrieval ->
+    transformations -> validation -> answer + table + chart + citations."""
+    _run(tools.ask, _engine, question, _resolve_llm_planner(use_llm, model))
 
 
 @app.command()

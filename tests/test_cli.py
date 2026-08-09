@@ -108,6 +108,21 @@ def test_plan_with_llm_but_no_api_key_exits_cleanly(monkeypatch):
     assert "ANTHROPIC_API_KEY" in result.stderr
 
 
+def test_ask_uses_the_rule_based_planner_by_default():
+    result = runner.invoke(cli.app, ["ask", "population"])
+    assert result.exit_code == 0
+    payload = json.loads(result.stdout)
+    assert payload["question"] == "population"
+    assert "warnings" in payload and "table" in payload
+
+
+def test_ask_with_llm_but_no_api_key_exits_cleanly(monkeypatch):
+    monkeypatch.delenv("ANTHROPIC_API_KEY", raising=False)
+    result = runner.invoke(cli.app, ["ask", "population", "--llm"])
+    assert result.exit_code == 1
+    assert "ANTHROPIC_API_KEY" in result.stderr
+
+
 def test_catalog_refresh_unknown_source_exits_nonzero(monkeypatch):
     monkeypatch.setattr(cli, "_engine", QueryEngine({"FAKE": LookupProvider("FAKE", {})}))
 

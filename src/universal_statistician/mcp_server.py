@@ -96,6 +96,20 @@ def describe_source(source_id: str) -> dict:
     return tools.describe_source(_engine, source_id)
 
 
+@server.tool()
+def ask(question: str) -> dict:
+    """Full pipeline for a literal catalog search phrase: resolve it against
+    the indicator catalog, retrieve official observations, apply any
+    requested computation, validate, and return an answer with citations
+    and provenance — one call instead of composing search_indicator +
+    get_series/compare yourself. Uses a deterministic, non-LLM interpreter
+    for the phrase (this server assumes the connected host already did
+    natural-language understanding to produce `question`); prefer
+    search_indicator + get_series/compare directly for anything requiring
+    real NL interpretation beyond a literal search phrase."""
+    return tools.ask(_engine, question)
+
+
 def main() -> None:
     server.run()
 

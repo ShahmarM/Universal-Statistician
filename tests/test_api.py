@@ -9,6 +9,7 @@ from __future__ import annotations
 from fastapi.testclient import TestClient
 
 from universal_statistician import api
+from universal_statistician.core.catalog import Catalog, IndicatorEntry
 from universal_statistician.core.engine import QueryEngine
 
 from .helpers import FailingProvider, LookupProvider, make_series
@@ -103,3 +104,51 @@ def test_provider_failure_is_a_clean_502_with_cors_headers(monkeypatch):
     assert response.status_code == 502
     assert "simulated upstream network failure" in response.json()["detail"]
     assert response.headers.get("access-control-allow-origin") == "http://127.0.0.1:5173"
+
+
+def test_plan_returns_an_inspectable_plan_without_retrieval():
+    response = client.post("/plan", json={"question": "population"})
+    assert response.status_code == 200
+    payload = response.json()
+    assert payload["question"] == "population"
+    assert payload["concepts"] == ["population"]
+    assert payload["assumptions"]
+
+
+def test_plan_with_use_llm_but_no_api_key_is_400(monkeypatch):
+    monkeypatch.delenv("ANTHROPIC_API_KEY", raising=False)
+    response = client.post("/plan", json={"question": "population", "use_llm": True})
+    assert response.status_code == 400
+    assert "ANTHROPIC_API_KEY" in response.json()["detail"]
+
+
+def test_ask_finds_a_catalog_candidate_but_cannot_retrieve_without_a_geography(monkeypatch):
+    # The rule-based planner (default, no ANTHROPIC_API_KEY here) never
+    # extracts a geography from question text — it only echoes the whole
+    # question as one search concept. So /ask honestly reports "no
+    # geography" rather than fabricating a country to query. Full retrieval
+    # through /ask is exercised in test_ask.py against a scripted planner
+    # that does supply geographies (unreachable via this HTTP surface,
+    # which only offers RuleBasedPlanner vs AnthropicPlanner).
+    provider = LookupProvider(
+        "FAKE",
+        {("POP", "AFG"): make_series("POP", "AFG", {"2019": 10.0, "2020": 11.0})},
+    )
+    catalog = Catalog()
+    catalog.add([IndicatorEntry(indicator_id="POP", source_id="FAKE", names={"en": "Population"})])
+    monkeypatch.setattr(api, "_engine", QueryEngine({"FAKE": provider}, catalog=catalog))
+
+    response = client.post("/ask", json={"question": "population"})
+
+    assert response.status_code == 200
+    payload = response.json()
+    assert payload["table"] is None
+    assert any("No geography" in w for w in payload["warnings"])
+    assert payload["query_plan"]["selected_indicators"][0]["indicator_id"] == "POP"
+
+
+def test_ask_with_use_llm_but_no_api_key_is_400(monkeypatch):
+    monkeypatch.delenv("ANTHROPIC_API_KEY", raising=False)
+    response = client.post("/ask", json={"question": "population", "use_llm": True})
+    assert response.status_code == 400
+    assert "ANTHROPIC_API_KEY" in response.json()["detail"]

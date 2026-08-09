@@ -55,6 +55,7 @@ def test_get_tool_schemas_matches_the_mcp_server():
         "compare",
         "list_sources",
         "describe_source",
+        "ask",
     }
     for schema in schemas:
         assert schema["description"]
