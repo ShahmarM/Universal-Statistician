@@ -81,6 +81,8 @@ def test_with_growth_computes_percent_change():
 
     growth_col = next(c for c in result.columns if c.key == "AFG__yoy_growth_pct")
     assert growth_col.derived is True
+    assert growth_col.formula
+    assert growth_col.input_series == ("AFG",)
     assert result.value_at("2019", "AFG__yoy_growth_pct") is None  # no prior period
     assert result.value_at("2020", "AFG__yoy_growth_pct") == pytest.approx(10.0)
 
@@ -122,6 +124,8 @@ def test_with_ratio_divides_by_baseline_column():
 
     assert result.value_at("2020", "AFG__ratio_to_USA") == pytest.approx(0.05)
     assert all(c.key != "USA__ratio_to_USA" for c in result.columns)
+    ratio_col = next(c for c in result.columns if c.key == "AFG__ratio_to_USA")
+    assert ratio_col.input_series == ("AFG", "USA")
 
 
 def test_with_ratio_does_not_duplicate_columns_when_called_twice():

@@ -37,10 +37,10 @@ Official APIs                providers/*_provider.py
 Normalized observations      core/models.py: SeriesResult / Observation / Attribution
   |
   v
-Calculation engine            core/compose.py — implemented; expansion is Phase 9
+Calculation engine            core/compose.py — with_cagr/with_index/with_moving_average/... (Phase 9)
   |
   v
-Validation                     (Phase 9 — not yet built)
+Validation                     core/validation.py — PASS/WARNING/FAIL (Phase 9)
   |
   v
 Answer builder                 (Phase 11 — not yet built)
@@ -528,6 +528,90 @@ Wired into `tools.build_plan()` (and therefore `ustat plan`) right after
 (`ustat plan "population"`) shows the full pipeline: catalog match →
 selection reason → `selected_indicators`.
 
+## Calculation and validation engine (Phase 9)
+
+### Calculation: compose.py expanded, with lineage
+
+`ComparisonColumn` gained `formula` (a short, human-readable description of
+the calculation) and `input_series` (the column keys it came from) — this
+is the "lineage" section 14/17 require, and it's what the earlier
+UOSA-Bench assessment flagged as the single highest-priority gap
+(`docs/benchmarks/uosa-bench-v1-assessment.md`). Every derived column
+`with_growth`/`with_ratio`/`with_rank` and everything new below produces
+now carries both fields — inspectable via `ComparisonTable.as_dict()`.
+
+New transformations, each independently tested, each populating
+formula/input_series: `with_absolute_change`, `with_pp_change` (percentage
+-point change, distinct key/label from absolute change even though the
+math is the same — the point is self-documenting intent), `with_cagr` and
+`with_cumulative_growth` (single value over a range, recorded at the end
+period — not a per-period series; both reject non-annual periods with a
+clear `ValueError` rather than silently computing a wrong "annual" rate
+from monthly/quarterly data), `with_index` (rebasing to 100 at a base
+period), `with_moving_average`, `with_difference` (general two-column
+subtraction), `with_share` and `with_per_capita` (percentage-of-total and
+per-capita — both thin, clearly-named wrappers over the same ratio
+mechanics as `with_ratio`, kept separate because they're distinct,
+frequently-requested concepts per section 14), and `with_sum`/
+`with_average`/`with_weighted_average` (cross-column aggregation for a
+period, weights always caller-supplied per section 14's "weights
+explicitly defined" — never inferred; a period is skipped, not
+partial-summed, if any input column is missing a value that period).
+`with_period_over_period_growth` is also new: identical math to
+`with_growth`, under an honest, frequency-neutral name/label for callers
+who want to avoid `with_growth`'s long-documented "always says YoY, even
+for monthly data" nuance without breaking existing callers of the original.
+
+`SeriesResult` gained a `unit` field (also flagged in the UOSA-Bench
+assessment) and `ComparisonColumn` gained `unit`/`frequency`, populated
+from the fetching `SeriesResult` in `compare_across_countries`/
+`compare_across_indicators`. Honestly scoped: no provider in this project
+currently extracts `unit` from its source's response (SDMX/PX-Web/Census
+don't return it inline with observation values the way they return
+frequency) — the field exists so validation has somewhere real to read
+from, and so a provider that *can* supply it later doesn't need another
+model change.
+
+### Validation: core/validation.py
+
+`validate_series(series)` and `validate_table(table, ...)` produce a
+structured `ValidationResult` (`PASS`/`WARNING`/`FAIL` findings, each
+naming the specific check and a human-readable message) — a `FAIL` sets
+`ValidationResult.ok = False`, section 16's "a FAIL should prevent an
+unsupported numerical answer," meant to gate the future answer builder
+(Phase 11).
+
+`validate_series()` runs on one freshly retrieved `SeriesResult`, before
+periods flatten into a table's `(period, key) -> value` dict: duplicate
+periods (`WARNING`), a NaN value that should have been normalized to `None`
+(`FAIL` — a real bug class, not a data-quality note), an empty result
+(`WARNING`).
+
+`validate_table()` runs on a `ComparisonTable`, possibly post
+-transformation: citations exist for every base column (`FAIL` if a base
+column has no `Attribution` — this project's core principle, not just a
+checklist item), unit/frequency consistency across base columns
+(`WARNING`, and only when *both* compared values are actually known and
+differ — an unknown unit is never treated as a contradiction, the same
+"unknown isn't a no" principle `core/selection.py` already applies),
+requested geographies/period-range actually covered (`WARNING`),
+unexpected gaps in annual coverage (`WARNING`, conservatively scoped to
+columns whose periods all parse as plain 4-digit years, so it never
+misfires on monthly/quarterly data it can't reason about safely), and
+derived-column lineage integrity — every `input_series` reference must
+point at a column that actually exists in the table (`FAIL` if not: broken
+lineage is worse than a warning) and every derived column must carry a
+`formula` (`WARNING` if missing). "Impossible transformations" (also
+section 16) are caught earlier, structurally, by the transformation
+functions' own `ValueError`s (unknown baseline/column, missing base
+period, non-annual CAGR) rather than re-checked here.
+
+A live run chained `compare_across_countries`-shaped data through
+`with_growth` then `validate_table(..., requested_geographies=("AFG",
+"USA"), requested_start_period="2010")` and got real, correct findings: a
+missing requested geography and a genuine annual-coverage gap — both
+flagged by name, not silently absorbed.
+
 ## Not yet built (tracked per-phase)
 
 Query planning, ambiguity handling, source-selection ranking, the expanded
@@ -548,7 +632,7 @@ this document with its own section once implemented, following the same
 | 6 | National statistical office plugin architecture | ✅ done |
 | 7 | Structured query planner + NL interface | ✅ done |
 | 8 | Source/indicator selection ranking | ✅ done |
-| 9 | Calculation and validation engine | not started |
+| 9 | Calculation and validation engine | ✅ done |
 | 10 | Provenance/citation system | not started |
 | 11 | `/ask` endpoint and structured answer model | not started |
 | 12 | Natural-language frontend experience | not started |

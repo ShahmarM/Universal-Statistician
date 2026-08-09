@@ -17,7 +17,8 @@
 frontend/                React + Vite + TypeScript дашборд поверх REST API (три вкладки)
 mcp_server.py / cli.py / api.py   тонкие обёртки трёх интерфейсов поверх tools.py
 tools.py                 search_indicator, get_series, compare, list_sources, describe_source, refresh_catalog, catalog_stats
-core/compose.py          сравнительные таблицы поверх нескольких get_series() + вычисляемые колонки
+core/compose.py          сравнительные таблицы + вычисляемые колонки (growth/CAGR/index/moving average/...) с lineage (formula/input_series)
+core/validation.py       validate_series/validate_table — структурные PASS/WARNING/FAIL находки
 core/engine.py           QueryEngine — единая точка входа: провайдеры + Catalog + Cache
 core/catalog.py          локальный многоязычный полнотекстовый индекс индикаторов (SQLite FTS5 + метаданные)
 core/ingestion.py        discovery → нормализация → каталог (upsert, incremental refresh)
@@ -378,8 +379,19 @@ forced tool call — модель физически не может подст�
 наравне с "точно не покрывает"). "Никогда не смешивать несовместимые ряды
 молча" — не отдельная проверка, а следствие конструкции: один источник на
 концепт всегда, и если разные концепты одного плана разошлись по разным
-источникам — это явно попадает в `assumptions`. Следующая — вычислительный
-движок с валидацией (Фаза 9). Отдельно, из оценки по
+источникам — это явно попадает в `assumptions`. Фаза 9 готова: `core/compose.py` пополнился lineage (`formula`/
+`input_series` на каждой производной колонке — главный пункт из оценки по
+бенчмарку закрыт) и десятком новых операций (`with_cagr`,
+`with_cumulative_growth`, `with_index`, `with_moving_average`,
+`with_difference`, `with_share`, `with_per_capita`, `with_sum`/
+`with_average`/`with_weighted_average`, `with_absolute_change`,
+`with_pp_change`). `core/validation.py` — структурные PASS/WARNING/FAIL
+находки (`validate_series`/`validate_table`): цитирование обязательно
+(FAIL без источника), unit/frequency-согласованность (WARNING только
+когда ОБА значения известны и расходятся — неизвестное не считается
+противоречием), покрытие запрошенных регионов/периода, пробелы в годовом
+покрытии, целостность lineage производных колонок. Следующая —
+provenance/citation-система (Фаза 10). Отдельно, из оценки по
 бенчмарку выше: `formula`/`input_series` в provenance derived-таблиц и явная
 `status`-таксономия (Official/Derived/Composite/User-defined/Estimated)
 запланированы как часть Фазы 10 (provenance/citation system).

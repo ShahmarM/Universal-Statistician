@@ -53,6 +53,15 @@ class SeriesResult:
     frequency: str
     observations: tuple[Observation, ...]
     attribution: Attribution
+    #: Unit of measure (e.g. "current US$", "persons"), when the provider's
+    #: wire protocol actually exposes it. Optional and commonly None today —
+    #: none of the providers in this project currently extract it from their
+    #: source's response (SDMX/PX-Web/Census don't return it inline with
+    #: observation values the way they do frequency); the field exists so a
+    #: provider that *can* supply it has somewhere to put it, and so
+    #: core/validation.py's unit-consistency check has a real field to read
+    #: rather than needing another model change later.
+    unit: str | None = None
 
     def as_dict(self) -> dict:
         return {
@@ -63,6 +72,7 @@ class SeriesResult:
                 {"period": o.period, "value": o.value} for o in self.observations
             ],
             "attribution": self.attribution.as_dict(),
+            "unit": self.unit,
         }
 
     @staticmethod
@@ -78,6 +88,7 @@ class SeriesResult:
                 for o in payload["observations"]
             ),
             attribution=Attribution.from_dict(payload["attribution"]),
+            unit=payload.get("unit"),
         )
 
 
