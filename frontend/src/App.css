@@ -306,3 +306,66 @@ details summary {
   font-size: 0.8rem;
   max-height: 320px;
 }
+
+.mode-selector {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 0.5rem 0.9rem 0.7rem;
+  margin: 0 0 1rem;
+  font-size: 0.9rem;
+}
+
+.mode-selector legend {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  padding: 0 0.3rem;
+}
+
+.mode-selector label.radio {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  cursor: help;
+}
+
+.debug-toggle {
+  margin-left: auto;
+}
+
+.mode-used-line {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-bottom: 0.3rem;
+}
+
+.mode-used-badge {
+  display: inline-block;
+  padding: 0.1rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  background: #e0e7ff;
+  color: #3730a3;
+}
+
+.investigation-debug {
+  margin-top: 1.25rem;
+}
+
+.investigation-debug h3 {
+  font-size: 0.95rem;
+  margin-bottom: 0.4rem;
+}
+
+.tool-call-list {
+  padding-left: 1.2rem;
+  font-size: 0.85rem;
+}
+
+.tool-call-list li {
+  margin-bottom: 0.5rem;
+}

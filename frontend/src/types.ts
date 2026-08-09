@@ -122,9 +122,87 @@ export interface ChartSpec {
   source_note: string;
 }
 
+// ---- agent modes (Phase 8): Fast/Research/Auto -----------------------------
+//
+// Fast mode's `query_plan` is the QueryPlan shape above (from core/ask.py's
+// legacy pipeline). Research mode's is agent/state.py's
+// InvestigationState.evidence_package() instead — a different shape sharing
+// only a few fields (assumptions/warnings). `AskResult.query_plan` is typed
+// as the union of both since either can come back depending on `mode_used`;
+// only fields present in both are safe to read without checking `mode_used`
+// first.
+
+export interface EvidencePackage {
+  question: string;
+  table: ComparisonTable;
+  candidates_considered: Record<string, unknown>[];
+  candidates_rejected: Record<string, unknown>[];
+  result_ids: Record<string, unknown>;
+  assumptions: string[];
+  unresolved_ambiguities: string[];
+  warnings: string[];
+  validation_results: Record<string, unknown>[];
+  provenance_references: Record<string, unknown>[];
+}
+
+export interface ToolCallRecord {
+  iteration: number;
+  tool_name: string;
+  input: Record<string, unknown>;
+  output_summary: Record<string, unknown>;
+  duration_ms: number;
+}
+
+export interface CandidateSummary {
+  catalog_id: string;
+  source_id: string;
+  indicator_id: string;
+  title: string;
+  organization: string | null;
+  dataset_id: string | null;
+  unit: string | null;
+  frequency: string | null;
+  price_basis: string | null;
+  seasonally_adjusted: boolean | null;
+  geographic_coverage: string[] | null;
+  official_url: string | null;
+  search_rank: number;
+  search_score_note: string;
+}
+
+export interface RejectedCandidate {
+  catalog_id: string;
+  reason: string;
+}
+
+export interface VerificationIssue {
+  category: string;
+  detail: string;
+}
+
+export interface VerificationReport {
+  status: 'PASS' | 'WARNING' | 'FAIL';
+  issues: VerificationIssue[];
+}
+
+// The investigation's full audit trail, only present when the request set
+// debug=true — never contains hidden chain-of-thought, only the tool calls
+// actually made and the investigator's own short final summary (see
+// agent/loop.py: it produces tool calls plus that summary, nothing else).
+export interface DebugTrail {
+  iteration_count: number;
+  tool_call_history: ToolCallRecord[];
+  candidates_considered: CandidateSummary[];
+  candidates_rejected: RejectedCandidate[];
+  verification_results: VerificationReport[];
+  investigator_summary: string;
+}
+
+export type AskMode = 'auto' | 'fast' | 'research';
+
 export interface AskResult {
   question: string;
-  query_plan: QueryPlan;
+  query_plan: QueryPlan | EvidencePackage;
   answer: string;
   table: ComparisonTable | null;
   chart: ChartSpec | null;
@@ -132,4 +210,7 @@ export interface AskResult {
   provenance: Record<string, unknown>[];
   warnings: string[];
   validation: ValidationResult | null;
+  mode_used: 'fast' | 'research';
+  verification: VerificationReport | null;
+  debug?: DebugTrail;
 }

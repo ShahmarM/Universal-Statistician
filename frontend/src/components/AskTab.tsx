@@ -10,8 +10,20 @@ import {
   YAxis,
 } from 'recharts';
 import { ApiError, ask } from '../api';
-import type { AskResult } from '../types';
+import type { AskMode, AskResult } from '../types';
 import ErrorBanner from './ErrorBanner';
+
+const MODE_LABELS: Record<AskMode, string> = {
+  auto: 'Авто',
+  fast: 'Быстрый',
+  research: 'Исследование',
+};
+
+const MODE_HINTS: Record<AskMode, string> = {
+  auto: 'Сам решает по тексту вопроса — прямой поиск быстро, сравнение/«почему» — через исследование.',
+  fast: 'Один проход: план → поиск → лучший индикатор → данные. Быстро, для прямых вопросов.',
+  research: 'Модель сама пошагово ищет, проверяет и сравнивает источники (нужен Claude).',
+};
 
 const CHART_COLORS = ['#2563eb', '#dc2626', '#059669', '#d97706', '#7c3aed', '#0891b2'];
 
@@ -35,6 +47,8 @@ function ValidationBadge({ status }: { status: 'PASS' | 'WARNING' | 'FAIL' }) {
 export default function AskTab() {
   const [question, setQuestion] = useState('');
   const [useLlm, setUseLlm] = useState(false);
+  const [mode, setMode] = useState<AskMode>('auto');
+  const [debug, setDebug] = useState(false);
   const [result, setResult] = useState<AskResult | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
@@ -44,7 +58,7 @@ export default function AskTab() {
     setResult(null);
     setLoading(true);
     try {
-      setResult(await ask(q, useLlm));
+      setResult(await ask(q, { useLlm, mode, debug }));
     } catch (err) {
       setError(err instanceof ApiError ? err.message : 'Unexpected error.');
     } finally {
@@ -81,7 +95,11 @@ export default function AskTab() {
           aria-label="Question"
         />
         <button type="submit" disabled={loading || !question.trim()}>
-          {loading ? 'Спрашиваю…' : 'Спросить'}
+          {loading
+            ? mode === 'research' || (mode === 'auto' && useLlm)
+              ? 'Исследую (поиск → проверка данных → расчёт)…'
+              : 'Спрашиваю…'
+            : 'Спросить'}
         </button>
       </form>
 
@@ -89,6 +107,26 @@ export default function AskTab() {
         <input type="checkbox" checked={useLlm} onChange={(e) => setUseLlm(e.target.checked)} />
         Использовать Claude для интерпретации
       </label>
+
+      <fieldset className="mode-selector">
+        <legend>Режим</legend>
+        {(Object.keys(MODE_LABELS) as AskMode[]).map((m) => (
+          <label key={m} className="radio" title={MODE_HINTS[m]}>
+            <input
+              type="radio"
+              name="ask-mode"
+              value={m}
+              checked={mode === m}
+              onChange={() => setMode(m)}
+            />
+            {MODE_LABELS[m]}
+          </label>
+        ))}
+        <label className="checkbox debug-toggle">
+          <input type="checkbox" checked={debug} onChange={(e) => setDebug(e.target.checked)} />
+          Показать ход исследования (debug)
+        </label>
+      </fieldset>
 
       <div className="examples">
         <p className="hint">Примеры (без Claude):</p>
@@ -113,11 +151,21 @@ export default function AskTab() {
 
       {result && (
         <div className="ask-result">
+          <p className="mode-used-line">
+            Режим: <span className="mode-used-badge">{MODE_LABELS[result.mode_used]}</span>
+          </p>
+
           <p className="answer">{result.answer}</p>
 
           {result.validation && (
             <p className="validation-line">
               Валидация: <ValidationBadge status={result.validation.status} />
+            </p>
+          )}
+
+          {result.verification && (
+            <p className="validation-line">
+              Проверка ответа: <ValidationBadge status={result.verification.status} />
             </p>
           )}
 
@@ -238,6 +286,83 @@ export default function AskTab() {
               <summary>Provenance</summary>
               <pre className="debug-json">{JSON.stringify(result.provenance, null, 2)}</pre>
             </details>
+          )}
+
+          {result.debug && (
+            <div className="investigation-debug">
+              <h3>
+                Ход исследования ({result.debug.iteration_count}{' '}
+                {result.debug.iteration_count === 1 ? 'шаг' : 'шагов'})
+              </h3>
+
+              {result.debug.investigator_summary && (
+                <p className="hint">Итог инвестигатора: {result.debug.investigator_summary}</p>
+              )}
+
+              {result.debug.tool_call_history.length > 0 && (
+                <details open>
+                  <summary>Вызовы инструментов ({result.debug.tool_call_history.length})</summary>
+                  <ol className="tool-call-list">
+                    {result.debug.tool_call_history.map((call, i) => (
+                      <li key={i}>
+                        <code>{call.tool_name}</code>
+                        <pre className="debug-json">{JSON.stringify(call.input, null, 2)}</pre>
+                        <pre className="debug-json">{JSON.stringify(call.output_summary, null, 2)}</pre>
+                      </li>
+                    ))}
+                  </ol>
+                </details>
+              )}
+
+              {result.debug.candidates_considered.length > 0 && (
+                <details>
+                  <summary>Рассмотренные варианты ({result.debug.candidates_considered.length})</summary>
+                  <ul>
+                    {result.debug.candidates_considered.map((c) => (
+                      <li key={c.catalog_id}>
+                        {c.title} — {c.catalog_id}
+                        {c.unit ? ` (${c.unit})` : ''}
+                      </li>
+                    ))}
+                  </ul>
+                </details>
+              )}
+
+              {result.debug.candidates_rejected.length > 0 && (
+                <details>
+                  <summary>Отклонённые варианты ({result.debug.candidates_rejected.length})</summary>
+                  <ul>
+                    {result.debug.candidates_rejected.map((c, i) => (
+                      <li key={i}>
+                        {c.catalog_id}: {c.reason}
+                      </li>
+                    ))}
+                  </ul>
+                </details>
+              )}
+
+              {result.debug.verification_results.length > 0 && (
+                <details>
+                  <summary>Раунды проверки ({result.debug.verification_results.length})</summary>
+                  <ul>
+                    {result.debug.verification_results.map((v, i) => (
+                      <li key={i}>
+                        <ValidationBadge status={v.status} />
+                        {v.issues.length > 0 && (
+                          <ul>
+                            {v.issues.map((issue, j) => (
+                              <li key={j}>
+                                [{issue.category}] {issue.detail}
+                              </li>
+                            ))}
+                          </ul>
+                        )}
+                      </li>
+                    ))}
+                  </ul>
+                </details>
+              )}
+            </div>
           )}
         </div>
       )}

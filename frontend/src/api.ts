@@ -1,4 +1,5 @@
 import type {
+  AskMode,
   AskResult,
   ComparisonTable,
   IndicatorMeta,
@@ -92,10 +93,21 @@ export function compare(body: CompareRequestBody): Promise<ComparisonTable> {
   });
 }
 
-export function ask(question: string, useLlm = false): Promise<AskResult> {
+export interface AskOptions {
+  useLlm?: boolean;
+  mode?: AskMode;
+  debug?: boolean;
+}
+
+export function ask(question: string, options: AskOptions = {}): Promise<AskResult> {
   return request('/ask', {
     method: 'POST',
-    body: JSON.stringify({ question, use_llm: useLlm }),
+    body: JSON.stringify({
+      question,
+      use_llm: options.useLlm ?? false,
+      mode: options.mode ?? 'auto',
+      debug: options.debug ?? false,
+    }),
   });
 }
 
