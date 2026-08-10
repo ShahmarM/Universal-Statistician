@@ -22,15 +22,9 @@ from universal_statistician.providers.registry import SDMXSourceConfig
 
 _FREQUENCIES = {"A", "Q", "M", "D"}
 
-#: Transient upstream failures worth retrying rather than failing the whole
-#: request on. Live-discovered (Phase H): running ~100 sequential real
-#: requests against World Bank's SDMX endpoint with no pacing produced a
-#: wall of "502 Bad Gateway" responses partway through the run — a
-#: server-side capacity/rate-limiting response, not a real data problem,
-#: and the previous code had no retry at all so every one of those became
-#: a permanent failure for that call. 502/503/504 are the standard
-#: "try again" statuses; a bare ConnectionError (reset, DNS hiccup) gets
-#: the same treatment.
+#: Transient upstream failures worth retrying: sustained real traffic
+#: against World Bank's endpoint returns 502s under load, which are
+#: capacity responses, not data problems. ConnectionError is treated alike.
 _RETRYABLE_STATUS_CODES = {502, 503, 504}
 _MAX_ATTEMPTS = 3
 _RETRY_BACKOFF_SECONDS = (1.0, 2.0)
@@ -90,25 +84,13 @@ class SDMXProvider(Provider):
         raise last_error
 
     def _to_series_result(self, dataset, indicator_id: str, ref_area: str) -> SeriesResult:
-        """Pure conversion step, kept separate from _client.data() so it can be
-        unit-tested against an in-memory DataSet without any network call.
+        """Pure conversion step, separated from _client.data() so it is
+        unit-testable without network.
 
-        Finds the period by the TIME_PERIOD index level's *name*, not a
-        fixed position — a real, previously-shipped bug (found live,
-        Phase H: `pytest -m network` against World Bank/IMF/Eurostat) used
-        `index_tuple[-1]`, assuming TIME_PERIOD sorts last in
-        `sdmx.to_pandas()`'s resulting MultiIndex. It never does: verified
-        live for all three sources, `sdmx.to_pandas()` always puts
-        TIME_PERIOD *first* (World Bank: `[TIME_PERIOD, REF_AREA, SERIES,
-        FREQ]`; IMF: `[TIME_PERIOD, INDEX_TYPE, COICOP_1999, ...]`;
-        Eurostat: `[TIME_PERIOD, geo, na_item, unit, freq]`) — `[-1]` was
-        silently grabbing FREQ/SECURITY_CLASSIFICATION/`freq` as the
-        "period" instead. The offline synthetic fixture (tests/conftest.py)
-        happened to declare its dimensions with TIME_PERIOD last too, so
-        this was never caught by any offline test — both were wrong the
-        same way. Looking up by name, rather than trusting either a fixed
-        position or this project's own prior (incorrect) assumption, is
-        correct regardless of dimension count or order for any source.
+        The period is found by the TIME_PERIOD level's *name*, never a
+        fixed position: to_pandas()'s MultiIndex order varies by source
+        (it is first, not last, for World Bank/IMF/Eurostat), and a
+        positional lookup silently returned FREQ as the "period".
         """
         series = sdmx.to_pandas(dataset)
         time_period_position = series.index.names.index("TIME_PERIOD")

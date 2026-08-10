@@ -1,13 +1,8 @@
 """The Provider interface: one implementation per queryable dataset.
 
-Any interface (MCP server, CLI, future API) talks to sources only through this
-contract, never through a source's raw client library. That's what lets the
-same query engine grow from one source to a dozen without the interfaces
-having to know anything changed.
-
-Indicator search is deliberately *not* part of this interface: discovery is
-cross-source by nature (see core/catalog.py) and belongs to the QueryEngine,
-not to any one provider.
+Interfaces talk to sources only through this contract, never a source's
+raw client library. Indicator search is deliberately absent: discovery is
+cross-source by nature and belongs to the QueryEngine.
 """
 
 from __future__ import annotations
@@ -45,30 +40,14 @@ class Provider(ABC):
 @runtime_checkable
 class MetadataDiscoverable(Protocol):
     """Optional capability: a Provider that can discover its own catalog
-    entries from the live source, for core/ingestion.py to call.
-
-    Deliberately *not* part of the required Provider contract: discovery
-    needs a source's metadata/codelist API, which not every provider has
-    (yet) implemented, or reachable network access to call at all (see
-    providers/registry.py's module docstring on why OECD isn't registered —
-    the same "no verified example, don't guess" principle applies here). A
-    provider that doesn't implement this simply keeps relying on a manually
-    curated catalog seed (providers/catalog_seed.py), same as every provider
-    today — ingestion is additive, not a requirement to keep working.
-
-    A `Protocol` rather than an ABC mixin so an existing Provider subclass
-    can gain this capability by adding one method, without changing its base
-    class or its `isinstance` identity for anything already checking
-    `isinstance(x, Provider)`.
-    """
+    entries from the live source. Not part of the required contract —
+    discovery needs a metadata/codelist API not every source has, and a
+    provider without it keeps relying on the manual catalog seed. A
+    Protocol, not an ABC mixin, so a subclass gains it by adding one method
+    without changing its base class."""
 
     def discover_catalog_entries(self) -> list[IndicatorEntry]:
-        """Return every indicator this provider's source currently publishes,
-        normalized as IndicatorEntry objects ready for Catalog.add().
-
-        Implementations should populate as much of IndicatorEntry's optional
-        metadata (unit, frequency, dimensions, geographic_coverage, ...) as
-        the source's own discovery API exposes — see core/models.py's
-        IndicatorMeta docstring on why every one of those fields is optional
-        rather than required."""
+        """Every indicator the source currently publishes, normalized for
+        Catalog.add(), populating as much optional metadata as the source's
+        discovery API exposes."""
         ...

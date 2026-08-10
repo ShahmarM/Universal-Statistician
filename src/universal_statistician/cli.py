@@ -1,7 +1,6 @@
-"""CLI over the same core engine — for development and smoke-testing without
-an MCP client. Thin like mcp_server.py: every command is a call into
-universal_statistician.tools, printed as JSON. No separate output formatting
-logic to keep in sync with the MCP server's response shape.
+"""CLI over the same core engine, for development and smoke-testing without
+an MCP client. Thin like mcp_server.py: every command calls into tools.py
+and prints JSON, so there is no second output format to keep in sync.
 """
 
 from __future__ import annotations
@@ -25,14 +24,12 @@ def _print(payload) -> None:
 
 
 def _run(fn, *args, **kwargs) -> None:
-    """Call an operation that can fail on bad user input (unknown source,
-    malformed compare() shape) and print a clean message instead of a raw
-    traceback — everything else is a real bug and should still surface."""
+    """Print a clean message for bad user input instead of a traceback;
+    anything else is a real bug and still surfaces."""
     try:
         _print(fn(*args, **kwargs))
     except (ValueError, UnknownSourceError) as exc:
-        # UnknownSourceError subclasses KeyError, whose __str__ wraps the
-        # message in an extra layer of repr-quoting — undo that for display.
+        # KeyError's __str__ adds repr-quoting; unwrap for display.
         message = exc.args[0] if exc.args else str(exc)
         typer.echo(message, err=True)
         raise typer.Exit(code=1) from exc

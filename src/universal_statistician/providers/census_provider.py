@@ -1,43 +1,18 @@
-"""Provider for the US Census Bureau's REST/JSON API — see census_registry.py
-for why this is a third, deliberately different wire-protocol family
-alongside SDMX and PX-Web.
+"""Provider for the US Census Bureau's REST/JSON API — a third wire-protocol
+family alongside SDMX and PX-Web, with three real differences:
 
-Three real protocol differences from every other provider in this project,
-all handled explicitly rather than papered over:
+1. **One request per year.** Census publishes one dataset per year and has
+   no period-range parameter, so get_series() requires both start_period
+   and end_period and loops over the range.
+2. **A missing year/variable/geography combination is a 404**, skipped so
+   one missing year doesn't fail a multi-year request; other HTTP errors
+   still propagate.
+3. **The data endpoint requires an API key** (`CENSUS_API_KEY`); an
+   unauthenticated request 302s to an HTML page rather than returning
+   JSON. Discovery's `variables.json` does not — a verified asymmetry.
 
-1. **One HTTP request per year, not one request for a period range.**
-   Census publishes one dataset per year (`/data/{year}/{dataset}`); there is
-   no query parameter for a start/end period the way SDMX and PX-Web have.
-   get_series() therefore requires *both* start_period and end_period (raises
-   ValueError otherwise — this project's "no synthetic defaults" principle
-   applied to a genuine protocol constraint, not a convenience shortcut) and
-   loops over each year in range.
-2. **A year with no data for a variable/geography combination is a 404, not
-   an empty result row** — skipped explicitly (contributes no Observation
-   for that period) rather than raising, so one missing year doesn't fail an
-   entire multi-year request; any other HTTP error still propagates.
-3. **The `/data/{year}/{dataset}` query endpoint requires an API key** —
-   verified live (Phase H): an unauthenticated request gets redirected
-   (`X-DataWebAPI-KeyError: 1`) to an HTML "missing key" page instead of
-   JSON. This corrects an earlier, unverified assumption in this project
-   that small unauthenticated requests were accepted; they are not, at
-   least not for this dataset today. `variables.json` (discovery) does
-   *not* require one — verified live too, a real, confirmed asymmetry, not
-   a guess either way. The key is read from the `CENSUS_API_KEY`
-   environment variable (same "environment variables provide credentials,
-   never commit API keys" principle already used for
-   `ANTHROPIC_API_KEY`) — free to obtain at
-   https://api.census.gov/data/key_signup.html. Without it, get_series()
-   raises a clear error rather than the cryptic JSONDecodeError an
-   unauthenticated request produces (the HTML redirect target isn't JSON).
-
-Response shape (see census_registry.py's docstring for the honesty caveat):
-a plain 2D JSON array, `[["NAME","B01003_001E","state"], ["Alabama",
-"5024279","01"]]` — header row, then one data row per requested geography
-(exactly one here, since get_series always scopes `for=state:{ref_area}` to
-a single area). Every value is a string, including numeric ones.
-`variables.json` (discovery) is `{"variables": {"CODE": {"label": ...,
-"concept": ..., "group": ..., ...}, ...}}`.
+Response shape: a 2D JSON array (header row, then one row per geography),
+every value a string. `variables.json` is `{"variables": {CODE: {...}}}`.
 """
 
 from __future__ import annotations
@@ -61,9 +36,7 @@ CENSUS_API_KEY_ENV_VAR = "CENSUS_API_KEY"
 class CensusMissingApiKeyError(RuntimeError):
     pass
 
-#: Variable codes that describe geography/identity rather than a statistic —
-#: never real indicators, so discovery excludes them rather than seeding the
-#: catalog with entries like "NAME: Geographic Area Name".
+#: Geography/identity codes, not statistics — excluded from discovery.
 _NON_INDICATOR_VARIABLES = {"NAME", "GEO_ID", "state", "for", "in"}
 
 
@@ -113,11 +86,9 @@ class CensusProvider(Provider):
         if response.status_code == 404:
             return None  # no data published for this year/variable/geography
         if response.headers.get("X-DataWebAPI-KeyError"):
-            # An unauthenticated (or invalid-key) request 302s to an HTML
-            # "missing key" page, not a JSON error - requests follows the
-            # redirect by default, so response.status_code is 200 here and
-            # response.json() would fail with an opaque JSONDecodeError
-            # instead of explaining what actually went wrong.
+            # The 302 to an HTML "missing key" page is followed by default,
+            # so status is 200 and .json() would raise an opaque
+            # JSONDecodeError instead of naming the real problem.
             raise CensusMissingApiKeyError(
                 f"US Census API rejected the request for missing/invalid credentials "
                 f"(no error from a plain 404, an HTML page instead of JSON). Set the "
@@ -129,8 +100,7 @@ class CensusProvider(Provider):
 
     @staticmethod
     def _parse_year_response(rows: list[list[str]], indicator_id: str, year: str) -> Observation:
-        """Pure conversion step, kept separate from the network call for
-        offline testability — same separation as every other provider here."""
+        """Pure conversion step, separated from the network call."""
         header, data_row = rows[0], rows[1]
         value_text = data_row[header.index(indicator_id)]
         value = None if value_text is None else float(value_text)
@@ -169,7 +139,7 @@ class CensusProvider(Provider):
         return self._entries_from_variables(response.json())
 
     def _entries_from_variables(self, payload: dict[str, Any]) -> list[IndicatorEntry]:
-        """Pure conversion step, kept separate from the network call."""
+        """Pure conversion step, separated from the network call."""
         entries = []
         for code, meta in payload.get("variables", {}).items():
             if code in _NON_INDICATOR_VARIABLES or not isinstance(meta, dict):

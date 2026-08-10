@@ -279,6 +279,21 @@ class Catalog:
                 results.append(self._build(indicator_id, source_id, name, description, meta_row))
         return results
 
+    def get_all_for_source(self, source_id: str) -> dict[str, IndicatorMeta]:
+        """Every indicator this source has, keyed by indicator_id — one
+        query instead of one per indicator, for ingestion's change
+        detection over sources with tens of thousands of entries."""
+        with self._lock:
+            rows = self._conn.execute(
+                "SELECT indicator_id, name, description, dataset_id, unit, frequency, "
+                "geographic_coverage, dimensions, source_organization, official_url, "
+                "last_updated, keywords, semantics FROM catalog_meta WHERE source_id = ?",
+                (source_id,),
+            ).fetchall()
+        return {
+            row[0]: self._build(row[0], source_id, row[1], row[2], tuple(row[3:])) for row in rows
+        }
+
     def stats(self) -> dict[str, int]:
         """Indicator count per source."""
         with self._lock:

@@ -1,9 +1,7 @@
-"""Interface-agnostic tool functions shared by the MCP server and the CLI.
+"""Interface-agnostic tool functions shared by every interface.
 
-Each function takes an explicit QueryEngine and returns plain, JSON-friendly
-data (dicts/lists), never a dataclass — so the MCP server and the CLI (and
-any future interface) serialize results the same way without re-implementing
-this dispatch logic once per interface.
+Each takes an explicit QueryEngine and returns JSON-friendly data, never a
+dataclass, so no interface re-implements this dispatch or serialization.
 """
 
 from __future__ import annotations
@@ -63,11 +61,9 @@ def catalog_stats(engine: QueryEngine) -> dict:
 
 
 def build_plan(engine: QueryEngine, question: str, planner: LLMPlanner | None = None) -> dict:
-    """Interpret a natural-language question into an inspectable QueryPlan,
-    without retrieving anything. Defaults to RuleBasedPlanner (no external
-    dependency) so this stays usable without an LLM configured — callers
-    that want real NL understanding pass an AnthropicPlanner explicitly
-    (see cli.py's `plan --llm`)."""
+    """Interpret a question into an inspectable QueryPlan without
+    retrieving anything. Defaults to RuleBasedPlanner so it stays usable
+    with no LLM configured."""
     planner = planner or RuleBasedPlanner()
     interpretation = planner.interpret(question)
     plan = build_query_plan(question, interpretation, engine)
@@ -75,9 +71,8 @@ def build_plan(engine: QueryEngine, question: str, planner: LLMPlanner | None = 
 
 
 def ask(engine: QueryEngine, question: str, planner: LLMPlanner | None = None) -> dict:
-    """Full pipeline (Phase 11): question -> plan -> retrieval ->
-    transformations -> validation -> answer + table + chart + citations.
-    See core/ask.py::answer_question for the orchestration itself."""
+    """Full pipeline: question -> plan -> retrieval -> transformations ->
+    validation -> answer + table + chart + citations."""
     return answer_question(engine, question, planner=planner).as_dict()
 
 

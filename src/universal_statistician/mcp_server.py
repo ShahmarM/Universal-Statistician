@@ -1,10 +1,8 @@
 """MCP server exposing the query engine as tools for an LLM host.
 
-Deliberately thin: every tool here is a one-line call into universal_statistician.tools,
-which is where the actual dispatch logic lives (and is unit-tested without any
-MCP protocol machinery). Understanding the user's natural-language request
-into these structured calls is the connected LLM host's job, not this
-server's — see plan.md on why we don't build our own NLU.
+Thin by design: every tool is a one-line call into tools.py, where the
+dispatch logic lives and is tested without MCP machinery. Turning natural
+language into these structured calls is the connected host's job.
 """
 
 from __future__ import annotations

@@ -1,12 +1,6 @@
-"""The answer-result model (section 18/20/21): what /ask (Phase 11's
-endpoint, api.py) returns, and a chart specification separate from any
-particular charting library.
-
-Deliberately data, not rendering: ChartSpec names series by the same column
-keys ComparisonTable already uses, so the frontend (Phase 12) draws it with
-the charting approach already in place (recharts), not a new one, and
-`table` stays the structured ComparisonTable.as_dict() shape (section 19:
-never only a formatted markdown string).
+"""The answer-result model /ask returns, plus a charting-library-agnostic
+chart spec. Data, not rendering: ChartSpec names series by ComparisonTable's
+own column keys, and `table` stays structured, never a markdown string.
 """
 
 from __future__ import annotations
@@ -47,23 +41,21 @@ class ChartSpec:
 @dataclass(frozen=True)
 class AskResult:
     question: str
-    #: QueryPlan.as_dict() — interpretation + candidate/selected indicators,
-    #: inspectable/debuggable per section 10.
+    #: QueryPlan.as_dict() (or the agent's evidence package in research
+    #: mode) — the inspectable record of how the answer was reached.
     query_plan: dict
-    #: Deterministic, template-built from `table`/`validation` only — never
-    #: independently rewritten by an LLM (section 18).
+    #: Built from `table`/`validation`, or by the grounding-checked answer
+    #: writer — never an LLM independently rewriting numbers.
     answer: str
     #: ComparisonTable.as_dict(), or None if nothing could be retrieved.
     table: dict | None
     chart: dict | None
-    #: Deduplicated Attribution dicts for every base column actually used.
+    #: Deduplicated Attribution dicts for every base column used.
     sources: tuple[dict, ...]
-    #: Provenance (core/provenance.py) for the latest-period value of every
-    #: column — base and derived alike.
+    #: Provenance for each column's latest-period value, base and derived.
     provenance: tuple[dict, ...]
     warnings: tuple[str, ...]
-    #: ValidationResult.as_dict(), or None if validation didn't run (e.g.
-    #: retrieval never happened because the plan needed clarification).
+    #: ValidationResult.as_dict(), or None if validation didn't run.
     validation: dict | None
 
     def as_dict(self) -> dict:

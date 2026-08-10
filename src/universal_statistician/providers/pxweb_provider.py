@@ -1,34 +1,14 @@
 """Generic Provider backed by any PX-Web v2 source known to `pxwebpy`.
 
-One instance per configured table (see pxweb_registry.py) — mirrors
-SDMXProvider's shape exactly (get_series/describe, a pure parsing step
-separated from the network call for offline testability), but talks a
-completely different wire protocol underneath. That's the point: nothing
-above Provider had to change to add this.
+One instance per configured table, mirroring SDMXProvider's shape over a
+completely different wire protocol — nothing above Provider changed to add
+it.
 
-Catalog discovery (Phase 6, national statistical office plugin
-architecture): unlike SDMX, where World Bank/IMF/Eurostat each needed a
-genuinely different discovery mechanism (see worldbank_discovery.py,
-imf_provider.py, eurostat_provider.py's module docstrings), PX-Web's
-`get_table_variables()` is *already* generic across every agency running
-the protocol — it's the exact same method get_series() already calls to
-find the time dimension's label, just reading one more field
-(`category.label`, a code -> label mapping for an enumerated dimension)
-from the same, already-relied-upon response shape. So
-`discover_catalog_entries()` lives directly on `PXWebProvider` itself, not
-a per-source subclass: every PX-Web source registered here gets discovery
-"for free" the moment its `indicator_dimension` is a real enumerated
-variable in that table — proving the plugin architecture generalizes across
-agencies, which is the actual point of this phase.
-
-Ground truth for the `category.label` shape: pxweb's own
-`PxApi.get_table_variables()` implementation (`pxweb/api.py`) builds this
-dict directly from the live `/tables/{id}/metadata` response's
-`dimension[key].category.label` field — read from the library's actual
-source, not a docstring guess, and it's the same field
-`PXWebProvider.get_series()` already depends on for the time dimension's
-label. Not independently verified against a live call in this sandbox
-(network blocked, same limitation as everywhere else in this project).
+Unlike SDMX, where each agency needed its own discovery mechanism,
+PX-Web's `get_table_variables()` is already generic across agencies (it is
+the same call get_series() uses for the time dimension's label, reading
+one more field), so discover_catalog_entries() lives on PXWebProvider
+itself rather than per-source subclasses.
 """
 
 from __future__ import annotations
@@ -51,19 +31,25 @@ class PXWebProvider(Provider):
         self.source_id = config.api_url.upper()
         self.source_name = config.source_name
         self.cache_ttl_seconds = config.cache_ttl_seconds
-        # Deliberately NOT constructed here: PxApi(...) makes an eager network
-        # call in its own __init__ (fetches /config and a table count) rather
-        # than lazily connecting like sdmx.Client() does. Building it eagerly
-        # would mean default_engine() — called at startup by every interface —
-        # tries to reach this specific agency's API before anyone has asked
-        # for anything from it, breaking app startup entirely if that host
-        # is unreachable. See _api() below and its regression test.
+        # Lazy: PxApi.__init__ makes an eager network call (unlike
+        # sdmx.Client), so building it here would make default_engine() —
+        # run at startup by every interface — reach this agency's API
+        # before anything asks for it, breaking startup if it's down.
         self._api_instance: PxApi | None = None
+        self._table_variables: dict[str, Any] | None = None
 
     def _api(self) -> PxApi:
         if self._api_instance is None:
             self._api_instance = PxApi(self.config.api_url, timeout=int(upstream_timeout_seconds()))
         return self._api_instance
+
+    def _variables(self) -> dict[str, Any]:
+        """Table metadata, fetched once per instance — it is fixed for this
+        config's table_id, and get_series() would otherwise spend a network
+        round trip on it for every single retrieval."""
+        if self._table_variables is None:
+            self._table_variables = self._api().get_table_variables(self.config.table_id)
+        return self._table_variables
 
     def get_series(
         self,
@@ -79,8 +65,7 @@ class PXWebProvider(Provider):
             self.config.time_dimension: ["*"],
             **{k: [v] for k, v in self.config.fixed_value_codes.items()},
         }
-        variables = self._api().get_table_variables(self.config.table_id)
-        time_label = variables[self.config.time_dimension]["label"]
+        time_label = self._variables()[self.config.time_dimension]["label"]
         rows = self._api().get_table_data(
             table_id=self.config.table_id, value_codes=value_codes, show="code"
         )
@@ -97,9 +82,8 @@ class PXWebProvider(Provider):
         start_period: str | None,
         end_period: str | None,
     ) -> SeriesResult:
-        """Pure conversion step, kept separate from the network calls so it
-        can be unit-tested against rows produced by pxwebpy's own
-        unpack_table_data() fed a synthetic JSON-stat2 response — no network."""
+        """Pure conversion step, separated from the network calls so it is
+        unit-testable without network."""
         observations = []
         for row in rows:
             period = row[time_label]
@@ -129,9 +113,8 @@ class PXWebProvider(Provider):
         )
 
     def _frequency(self) -> str:
-        # PX-Web period codes vary by table; the registered TAB6471 uses
-        # "YYYYMmm" (monthly). Not derivable generically without a live call,
-        # so this is source-specific rather than sniffed like SDMXProvider's.
+        # PX-Web period codes vary by table and aren't derivable generically;
+        # the registered TAB6471 is monthly.
         return "M"
 
     def describe(self) -> dict:
@@ -143,9 +126,9 @@ class PXWebProvider(Provider):
         }
 
     def discover_catalog_entries(self) -> list[IndicatorEntry]:
-        # A fresh, separate PxApi instance rather than self._api(): this one
-        # requests a specific language for discovery labels, which must not
-        # change get_series()'s already-verified, language-unset behavior.
+        # A separate PxApi rather than self._api(): this one requests a
+        # specific label language, which must not change get_series()'s
+        # verified language-unset behavior.
         discovery_api = PxApi(
             self.config.api_url,
             language=self.config.discovery_language,
@@ -155,8 +138,7 @@ class PXWebProvider(Provider):
         return self._entries_from_variables(variables)
 
     def _entries_from_variables(self, variables: dict[str, Any]) -> list[IndicatorEntry]:
-        """Pure conversion step, kept separate from the network call for the
-        same offline-testability reason as _to_series_result()."""
+        """Pure conversion step, separated from the network call."""
         indicator_var = variables.get(self.config.indicator_dimension, {})
         codes = indicator_var.get("category", {}).get("label", {})
 

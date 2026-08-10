@@ -1,10 +1,7 @@
 """Chat over the same tools the MCP server exposes, via Claude API tool use.
 
-Reuses mcp_server.server for both tool schemas (list_tools) and tool
-execution (call_tool) rather than describing or dispatching them a second
-time — the same "define once, reuse across interfaces" principle already
-applied to tools.py, just extended one level further to cover the tool
-*schemas* too, not only their logic.
+Reuses mcp_server.server for both schemas and execution rather than
+describing or dispatching them a second time.
 """
 
 from __future__ import annotations
@@ -28,8 +25,7 @@ SYSTEM_PROMPT = (
 
 
 def get_tool_schemas() -> list[dict]:
-    """Anthropic `tools` list, built from the MCP server's own tool
-    definitions rather than a second hand-written copy."""
+    """Anthropic `tools` list, built from the MCP server's own definitions."""
     mcp_tools = asyncio.run(_mcp_server.list_tools())
     return [
         {"name": t.name, "description": t.description, "input_schema": t.input_schema}
@@ -38,15 +34,9 @@ def get_tool_schemas() -> list[dict]:
 
 
 def execute_tool_call(name: str, arguments: dict) -> tuple[str, bool]:
-    """Run one tool call through the MCP server's real call_tool(), and
-    return (text, is_error) ready to feed back to Claude as a tool_result.
-
-    Anything call_tool() raises (ToolError on bad input, or an unhandled
-    provider exception) becomes an error tool_result instead of crashing the
-    chat loop — Claude can see the failure and decide how to respond, the
-    same way a human would read an error message rather than the process
-    dying.
-    """
+    """Run one tool call through the MCP server's call_tool() and return
+    (text, is_error) for a tool_result. Anything raised becomes an error
+    result the model can react to, rather than crashing the loop."""
     try:
         result = asyncio.run(_mcp_server.call_tool(name, arguments))
     except Exception as exc:
@@ -57,11 +47,8 @@ def execute_tool_call(name: str, arguments: dict) -> tuple[str, bool]:
 
 @dataclass
 class ChatSession:
-    """The conversation loop, independent of any specific Anthropic client
-    instance — `client` only needs a `.messages.create(...)` method
-    returning something with the real SDK's `Message` shape (`.content`
-    list of blocks with `.type`/`.text`/`.name`/`.input`/`.id`), so tests can
-    inject a fake without touching the network or needing an API key."""
+    """The conversation loop. `client` needs only `.messages.create(...)`
+    returning the SDK's Message shape, so tests can inject a fake."""
 
     client: Any
     model: str = DEFAULT_MODEL
@@ -100,9 +87,8 @@ class ChatSession:
 
 
 def run_chat(model: str = DEFAULT_MODEL) -> None:
-    """Thin REPL: stdin/stdout loop over ChatSession. Not unit-tested, same
-    as cli.py/mcp_server.py not testing their own process entry points —
-    the logic worth testing lives in ChatSession and execute_tool_call."""
+    """Thin stdin/stdout REPL over ChatSession; the testable logic lives in
+    ChatSession and execute_tool_call."""
     import os
 
     if not os.environ.get("ANTHROPIC_API_KEY"):
