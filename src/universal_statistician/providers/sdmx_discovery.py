@@ -1,15 +1,12 @@
 """Shared logic for turning a resolved SDMX DataStructureDefinition into
-IndicatorEntry objects, reused by every SDMX source with a *verified*
-structure-discovery path (currently IMFProvider, EurostatProvider).
+IndicatorEntry objects, reused by every SDMX source with a verified
+structure-discovery path.
 
-Fetching the DSD itself is source-specific — IMF's is one direct
-`datastructure` request (imf_provider.py); Eurostat's dataflow response
-returns the DSD as an external-reference stub that needs a second request to
-resolve (eurostat_provider.py), a real quirk documented in sdmx1's own test
-suite. Once resolved, mapping the DSD onto catalog entries is identical for
-both: reuse the already-verified key_dimensions placeholder position (see
-registry.py's docstring) to find "the indicator dimension" and "the ref_area
-dimension" — never a guessed dimension ID string.
+Fetching the DSD is source-specific (IMF/OECD resolve it inline; Eurostat
+returns an external-reference stub needing a second request), but mapping
+it onto catalog entries is identical: the indicator and ref_area
+dimensions are found by their verified key_dimensions placeholder
+position, never a guessed dimension ID.
 """
 
 from __future__ import annotations
@@ -23,17 +20,10 @@ class SDMXDiscoveryError(RuntimeError):
 
 
 def _enumerated_codelist(dimension):
-    """The dimension's enumerated codelist, wherever the live DSD actually
-    put it — verified to differ by source (Phase H, live `pytest -m
-    network` run): Eurostat's NAMA_10_GDP puts a real, non-empty codelist
-    directly on each dimension's own `local_representation` (already
-    covered by the offline fixture this project built before any live
-    access existed, and confirmed live). IMF's DSD_CPI does not — every one
-    of its dimensions' `local_representation` came back `None` from a live
-    `datastructure` request, and the real, fully-populated codelist (343
-    country codes, 15 COICOP categories, etc.) was only reachable via each
-    dimension's *concept*'s `core_representation` instead. Checked here as
-    a fallback, in that order, rather than assumed for either source."""
+    """The dimension's enumerated codelist, wherever the live DSD put it:
+    Eurostat populates `local_representation`, IMF leaves it None and
+    exposes the codelist via the dimension's concept instead. Both are
+    checked, in that order, rather than assumed."""
     representation = dimension.local_representation
     codelist = representation.enumerated if representation is not None else None
     if codelist is not None and codelist.items:

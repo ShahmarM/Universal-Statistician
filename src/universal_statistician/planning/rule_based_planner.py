@@ -1,11 +1,8 @@
-"""Deterministic fallback planner: no LLM, no external dependency.
-
-Exists so the platform "remains operational for structured/manual queries
-without an LLM" (section 22) — e.g. no ANTHROPIC_API_KEY configured, or a
-caller that wants a plan without any model call. It cannot understand
-natural language, so it makes the narrowest possible interpretation (the
-whole question as one literal catalog search phrase) and says so explicitly
-via `assumptions` rather than pretending to have understood anything.
+"""Deterministic fallback planner: no LLM, no external dependency, so the
+platform stays usable with no API key configured. It cannot understand
+natural language, so it takes the narrowest possible interpretation — the
+whole question as one literal search phrase — and says so in `assumptions`
+rather than pretending to have understood more.
 """
 
 from __future__ import annotations

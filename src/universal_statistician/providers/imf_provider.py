@@ -1,34 +1,14 @@
 """IMF provider: SDMXProvider's data retrieval plus catalog discovery via
 the CPI dataflow's own Data Structure Definition (DSD).
 
-Unlike World Bank (Phase 2, providers/worldbank_discovery.py), IMF genuinely
-has a verified SDMX *structure*-discovery path: sdmx1's own integration test
-suite (sdmx/tests/test_sources.py::TestIMF_DATA) declares
-`"structure": dict(resource_id="DSD_CPI")` and
-`"codelist": dict(resource_id="CL_COUNTRY")` as real, exercised IMF_DATA
-endpoints — so this uses genuine SDMX structure requests, not a bespoke REST
-API, for exactly the same "don't guess, use verified ground truth" reason
-this project applies everywhere else.
-
-sdmx1 defaults a `datastructure` request (given a specific resource_id) to
-`?references=all`, resolving every dimension's referenced codelist inline —
-this is the library's own documented default (sdmx/rest/v21.py's
-handle_structure()), not a query parameter this module invents. Unlike
-Eurostat (Phase 4, eurostat_provider.py), IMF's structure response resolves
-directly — no external-reference stub to follow up on.
+Unlike World Bank, IMF has a verified SDMX structure-discovery path, so
+this uses genuine structure requests rather than a bespoke REST API.
+sdmx1 defaults such a request to `?references=all`, resolving each
+dimension's codelist inline, and IMF's response resolves directly — no
+external-reference stub to follow up on as Eurostat needs.
 
 Turning the resolved DSD into IndicatorEntry objects is shared with
-EurostatProvider — see sdmx_discovery.py's module docstring for why that's
-factored out rather than duplicated.
-
-Honesty check, consistent with every other source: this has not been
-exercised against the live API from this sandbox (network blocked).
-Discovery logic is unit-tested against a StructureMessage built from real
-sdmx.model.v21 classes (DataStructureDefinition/Dimension/Codelist/Item),
-the same in-memory-object approach tests/conftest.py already uses for data
-messages — not a hand-guessed response shape. The one thing that needs a
-live call (whether DSD_CPI's real response still matches this shape) is
-covered only by the `network`-marked test.
+EurostatProvider — see sdmx_discovery.py.
 """
 
 from __future__ import annotations

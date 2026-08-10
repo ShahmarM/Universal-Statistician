@@ -1,12 +1,10 @@
-"""World Bank provider: SDMXProvider's data retrieval plus catalog discovery.
+"""World Bank provider: SDMXProvider's data retrieval plus catalog
+discovery.
 
-A subclass of SDMXProvider — not a change to it — so IMF and Eurostat (also
-SDMXProvider instances, per registry.py) don't accidentally start claiming
-MetadataDiscoverable support just by sharing the base class. Each source's
-discovery mechanism is genuinely different (see worldbank_discovery.py's
-docstring on why World Bank's is its own bespoke REST API, not an SDMX
-structure request) and gets added source by source, per phase, not by
-widening the shared SDMXProvider.
+A subclass rather than a change to SDMXProvider, so plain SDMX sources
+don't start claiming MetadataDiscoverable support by sharing a base class.
+World Bank's discovery is its own REST API, not an SDMX structure request
+— see worldbank_discovery.py.
 """
 
 from __future__ import annotations

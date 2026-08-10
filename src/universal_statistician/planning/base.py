@@ -1,13 +1,9 @@
-"""The LLMPlanner abstraction (section 22): core statistical functionality
-must not be hard-coded around one LLM provider, and must keep working for
-structured/manual queries with no LLM configured at all.
+"""The LLMPlanner abstraction: core functionality is never hard-coded
+around one LLM provider and keeps working with none configured.
 
-A Protocol (structural typing, like providers.base.MetadataDiscoverable)
-rather than an ABC: any object with a matching `interpret()` method works,
-without forcing a shared base class on planners as different as
-RuleBasedPlanner (no external dependency at all) and AnthropicPlanner
-(wraps the Anthropic SDK) — the same reasoning that kept
-MetadataDiscoverable structural rather than a mixin.
+A Protocol rather than an ABC, so planners as different as
+RuleBasedPlanner (no dependencies) and AnthropicPlanner (wraps the SDK)
+need no shared base class.
 """
 
 from __future__ import annotations

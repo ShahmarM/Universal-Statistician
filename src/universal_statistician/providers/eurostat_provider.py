@@ -1,34 +1,16 @@
 """Eurostat provider: SDMXProvider's data retrieval plus catalog discovery,
 generalized beyond the single hard-coded NAMA_10_GDP/B1GQ seed entry.
 
-Ground truth: sdmx1's own integration test (sdmx/tests/test_sources.py::
-TestESTAT.test_ss_data) — the exact test registry.py already cites for this
-dataflow's key format — walks precisely this discovery path against the
-live API:
+Eurostat-specific quirk, per sdmx1's own live-exercised test: even with
+`?references=all`, a `dataflow` response's `.structure` is only a stub
+reference, so resolving the real DSD takes a second request:
 
     dsd = client.dataflow(resource_id="NAMA_10_GDP").dataflow["NAMA_10_GDP"].structure
     if dsd.is_external_reference:
         dsd = client.get(resource=dsd).structure[0]
 
-That comment ("Even with ?references=all, ESTAT returns a short message
-with the DSD as an external reference. Query again to get its actual
-contents.") documents a real, Eurostat-specific server quirk: a `dataflow`
-response's `.structure` is only a *stub* reference to the DSD, not the DSD
-itself, so a second request is needed to resolve it. This is a real,
-maintainer-observed behavior copied from the library's own test, not
-guessed — the same principle already applied to every other source's key
-format in this project.
-
 Once resolved, mapping the DSD onto catalog entries is shared with
-IMFProvider — see sdmx_discovery.py's module docstring.
-
-Honesty check, consistent with every other source: this has not been
-exercised against the live API from this sandbox (network blocked).
-Discovery is unit-tested against a StructureMessage sequence built from real
-sdmx.model.v21 classes reproducing the external-reference-then-resolve
-pattern above, not a hand-guessed shape. The one thing that needs a live
-call (whether the real response still matches this shape) is covered only
-by the `network`-marked test.
+IMFProvider — see sdmx_discovery.py.
 """
 
 from __future__ import annotations

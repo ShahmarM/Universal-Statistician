@@ -75,7 +75,6 @@ class IndicatorEntry:
     official_url: str | None = None
     last_updated: str | None = None
     keywords: tuple[str, ...] | None = None
-    #: Structured semantics (Phase F) — see StatisticalSemantics.
     semantics: StatisticalSemantics | None = None
 
 

@@ -1,17 +1,11 @@
-"""Seed indicator metadata for the catalog, one list per registered dataset.
+"""Seed indicator metadata, one list per registered dataset — the minimum
+that makes search and get_series work on a fresh database before anyone
+runs `ustat catalog refresh`, which replaces it with full live discovery.
 
-Populating this from each source's live codelist/conceptscheme (so the
-catalog covers *every* indicator a dataflow offers, not just a hand-picked
-few) needs network access this sandbox doesn't have — see registry.py's
-module docstring. Until then, the catalog is seeded with the indicators this
-project has already verified end to end in get_series() (same codes as the
-registry's key-format tests), so search results are guaranteed queryable, not
-just guessed labels.
-
-English labels are standard usage for these codes. The Eurostat entry also
-carries French and German, Eurostat's other two official documentation
-languages for national-accounts labels — verified terminology, not machine
-translation.
+Every code here is one already verified end to end through get_series(),
+so a seeded search result is guaranteed queryable rather than a guessed
+label. The Eurostat entry carries French and German alongside English,
+Eurostat's own documentation languages for these labels.
 """
 
 from __future__ import annotations

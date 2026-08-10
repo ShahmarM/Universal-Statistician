@@ -161,8 +161,7 @@ def plan(
 ) -> None:
     """Build and print a structured query plan for a question — interpretation
     and catalog-resolved candidate indicators only, no retrieval. Debug/inspection
-    entry point for the query planner (section 10: plans must be inspectable
-    before any data is fetched)."""
+    entry point: plans are inspectable before any data is fetched."""
     _run(tools.build_plan, _engine, question, _resolve_llm_planner(use_llm, model))
 
 
@@ -172,7 +171,7 @@ def ask(
     use_llm: bool = typer.Option(False, "--llm", help=_LLM_OPTION_HELP),
     model: str = "claude-sonnet-5",
 ) -> None:
-    """Full pipeline (section 21): question -> plan -> retrieval ->
+    """Full pipeline: question -> plan -> retrieval ->
     transformations -> validation -> answer + table + chart + citations."""
     _run(tools.ask, _engine, question, _resolve_llm_planner(use_llm, model))
 
