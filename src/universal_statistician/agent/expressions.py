@@ -1,24 +1,14 @@
-"""Structured calculation-expression schema + executor (Phase 4).
+"""Structured calculation-expression schema + executor.
 
-A `CalculationRequest` is the *only* way the LLM can ask for a
-computation: a closed `operation` enum plus `result_id` references,
-validated here — before `InvestigationState` is touched at all — against
-a fixed, per-operation required-field contract. There is no path from an
-LLM tool call to arbitrary code, a formula string, or a raw number: every
-field either names an operation from `CALCULATE_OPERATIONS` or copies a
-`result_id`/period string verbatim from a previous tool result.
+A CalculationRequest is the only way the LLM can ask for a computation: a
+closed operation enum plus result_id references, validated per-operation
+before any state is touched. Dispatch goes onto compose.py's with_*()
+functions — no formula is implemented here, and there is no path from a
+tool call to arbitrary code or a raw number.
 
-`agent/tools.py::calculate()` is a thin wrapper around this module:
-parse -> `CalculationRequest.from_dict()` -> `execute_calculation()`. All
-dispatch onto `core/compose.py`'s existing `with_*()` functions lives
-here, not duplicated in tools.py — this module still doesn't reimplement
-a single formula.
-
-Example requests (task section 8):
-
+Examples:
     {"operation": "cagr", "input": "result_12", "start_period": "2015", "end_period": "2025"}
     {"operation": "share", "numerator": "result_17", "denominator": "result_18"}
-    {"operation": "index", "input": "result_4", "base_period": "2015", "base_value": 100}
 """
 
 from __future__ import annotations
@@ -79,11 +69,8 @@ CALCULATE_OPERATIONS = tuple(
 
 @dataclass(frozen=True)
 class CalculationRequest:
-    """Validated shape of one `calculate` tool call. Construct only via
-    `from_dict()` — the bare constructor performs no validation, so
-    callers within this module that already know a request is well-formed
-    (none do; `execute_calculation()` always receives a `from_dict()`
-    result) aren't tempted to bypass it."""
+    """Validated shape of one `calculate` tool call. Construct via
+    from_dict() — the bare constructor performs no validation."""
 
     operation: str
     input: str | None = None
@@ -133,9 +120,8 @@ class CalculationRequest:
         return request
 
     def _check_required_fields(self) -> None:
-        """Per-operation required-field contract — raises ValueError with a
-        specific, actionable message rather than failing deep inside
-        execute_calculation() with a confusing KeyError/TypeError."""
+        """Per-operation required-field contract; raises a specific
+        ValueError instead of a confusing failure deep in execution."""
         op = self.operation
         if op in _SIMPLE_OPS or op in _RANGE_OPS:
             if not self.input:
@@ -300,9 +286,8 @@ def execute_calculation(state: InvestigationState, request: CalculationRequest) 
             for original_key in inputs:
                 rank_key = f"{original_key}__rank"
                 new_id = state.new_result_id()
-                # Renamed fresh from `after` each time (not from a previous
-                # rename), and merge_derived_table only reads the one
-                # requested key, so no key collisions across iterations.
+                # Renamed fresh from `after` each time; merge reads only the
+                # one requested key, so no collisions across iterations.
                 renamed = _rename_column(after, rank_key, new_id)
                 state.merge_derived_table(renamed, new_id)
                 new_result_ids.append({"input": original_key, "result_id": new_id})

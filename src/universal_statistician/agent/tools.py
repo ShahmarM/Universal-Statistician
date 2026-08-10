@@ -1,37 +1,17 @@
-"""The trusted statistical tool layer (Phase 1).
+"""Trusted statistical tool layer.
 
-Every function here is deterministic and reads/writes only
-`InvestigationState` plus the already-existing, already-tested modules
-this project built for the legacy single-pass `/ask` path (Catalog,
-QueryEngine, core/compose.py, core/validation.py, core/provenance.py) —
-nothing here talks to a provider or the database directly, and nothing
-here is reimplemented from scratch. See docs/architecture/
-agent-migration-note.md for exactly what's wrapped vs. new.
-
-The LLM (agent/loop.py, Phase 2) may only:
-  - supply search text, geography/period/frequency *hints*, and a
-    `catalog_id`/`result_id` it copied verbatim from a previous tool
-    result — never an indicator code, observation value, or country code
-    it invented itself.
-  - choose *which* tool to call and *when* to stop investigating.
-
-It may never:
-  - supply a numeric observation value (retrieve_series is the only
-    source of numbers).
-  - supply a formula or arbitrary code (calculate() dispatches a closed
-    enum of operations onto core/compose.py's existing with_*()
-    functions; see _dispatch_calculation()).
-  - decide validation's PASS/WARNING/FAIL outcome (validate_table() does).
-
-Tool inputs/outputs are plain JSON-serializable dicts (not dataclasses)
-because that's what an LLM tool-use API actually exchanges; the
-structured dataclasses in agent/state.py are the source of truth these
-dicts are built from.
+Every function is deterministic and only wraps the existing core modules
+(Catalog, QueryEngine, compose, validation, provenance). The LLM may only
+supply search text, hints, and catalog_id/result_id values copied from
+previous tool results — never numeric values, formulas, or validation
+verdicts. Inputs/outputs are plain JSON dicts (what a tool-use API
+exchanges); agent/state.py's dataclasses are the source of truth.
 """
 
 from __future__ import annotations
 
 import time
+from statistics import median
 
 from universal_statistician.agent.expressions import CALCULATE_OPERATIONS, CalculationRequest, execute_calculation
 from universal_statistician.agent.state import (
@@ -50,15 +30,8 @@ from universal_statistician.core.validation import validate_table
 # ---- search_series ----------------------------------------------------
 
 
-#: How much a lexical-rank position (0 = catalog's own top hit) is worth in
-#: the re-rank score below, before any of the other signals apply — the
-#: catalog's own bm25/metadata relevance (Phase C) stays the dominant
-#: signal; geography/frequency/unit/period only ever nudge the order
-#: within what's already a plausible lexical match, never override it
-#: outright. Mirrors core/selection.py::score_candidate's weight scale
-#: (geography +1.5/-1.0, frequency +1.0/-0.5) for consistency, though the
-#: two functions score different shapes (IndicatorMeta here vs.
-#: CandidateIndicator/QueryPlan there) and aren't sharable as one.
+#: Lexical rank stays the dominant signal; metadata signals only nudge.
+#: Weights mirror core/selection.py::score_candidate's scale.
 _LEXICAL_RANK_WEIGHT = 1.0
 _LEXICAL_RANK_SPAN = 10
 
@@ -72,12 +45,8 @@ def _rerank_score(
     unit_hint: str | None,
     period_covered: bool | None,
 ) -> tuple[float, list[str]]:
-    """Score one search_indicator() candidate for re-ranking. Every signal
-    besides the base lexical rank is a *nudge*, never a hard filter or a
-    penalty for merely-unknown metadata — "unknown" only ever leaves the
-    score unchanged, matching this project's existing "absence of metadata
-    is not evidence of mismatch" rule (see core/selection.py, core/
-    validation.py)."""
+    """Re-rank one search candidate. Metadata signals nudge, never hard-
+    filter; unknown metadata leaves the score unchanged."""
     score = max(0.0, _LEXICAL_RANK_SPAN - lexical_rank) * _LEXICAL_RANK_WEIGHT
     reasons = [f"catalog lexical rank {lexical_rank}"]
 
@@ -108,17 +77,13 @@ def _rerank_score(
             score += 0.5
             reasons.append(f"unit matches hint {unit_hint!r}")
         else:
-            # Never penalized: the same real-world unit is phrased
-            # inconsistently across sources ("current US$" vs "USD,
-            # current prices"), so a substring miss here is weak evidence
-            # at best -- inspect_series is what actually confirms this.
+            # Not penalized: units are phrased inconsistently across sources,
+            # so a substring miss is weak evidence.
             reasons.append(f"unit {meta.unit!r} does not obviously match hint {unit_hint!r} (not penalized)")
 
     if period_covered is True:
-        # Weighted above a single lexical-rank step (unlike the other
-        # signals here) -- this one is never a guess, it's a fact this
-        # investigation already confirmed by actually retrieving data, so
-        # it should be able to outweigh a marginally-better lexical match.
+        # Confirmed by real retrieval in this investigation, so it may
+        # outweigh a marginally-better lexical match.
         score += 1.5
         reasons.append("already confirmed in this investigation to cover the requested period")
     elif period_covered is False:
@@ -140,20 +105,13 @@ def search_series(
     source_preference: str | None = None,
     limit: int = 10,
 ) -> dict:
-    """Find candidate series in the local catalog. The catalog's own
-    lexical/metadata search (Catalog.search(), Phase C) supplies the base
-    relevance ranking; geography/frequency/unit_hint/period (when already
-    known — see check_coverage) then nudge that order via _rerank_score()
-    without ever excluding a candidate outright (source_preference is the
-    one hard filter, by design — it means "only this source", not "prefer
-    this source"). The final order is still a *hint*, never a selection —
-    the LLM must inspect (and may reject) candidates rather than trusting
-    rank 0 automatically."""
+    """Find candidate series in the local catalog. Lexical relevance is the
+    base ranking; geography/frequency/unit_hint/period nudge the order via
+    _rerank_score(). source_preference is the one hard filter. The order is
+    a hint, never a selection."""
     limit = max(1, min(limit, 25))
-    # Fetch a wider pool than `limit` whenever a re-ranking signal is given
-    # (not just source_preference) -- otherwise a genuinely better-matching
-    # candidate for the requested geography/frequency could sit just past
-    # the lexical-only cutoff and never even be considered for re-ranking.
+    # Fetch a wider pool when re-ranking, so a better metadata match just
+    # past the lexical cutoff can still surface.
     reranking = any([geography, frequency, unit_hint, start_period, end_period])
     fetch_limit = min(limit * 3, 50) if (source_preference or reranking) else limit
     results = state.engine.search_indicator(query, limit=fetch_limit)
@@ -177,10 +135,10 @@ def search_series(
         )
         scored.append((score, lexical_rank, meta, reasons))
 
-    # Stable on lexical_rank as the tiebreaker: equal re-rank scores keep
-    # the catalog's own original relative order rather than an arbitrary one.
+    # Tiebreak on lexical_rank so equal scores keep the catalog's order.
     scored.sort(key=lambda item: (-item[0], item[1]))
 
+    already_considered = {c.catalog_id for c in state.candidates_considered}
     candidates: list[CandidateSummary] = []
     for final_rank, (_score, lexical_rank, meta, reasons) in enumerate(scored[:limit]):
         cid = make_catalog_id(meta.source_id, meta.indicator_id)
@@ -201,7 +159,8 @@ def search_series(
             search_score_note="; ".join(reasons),
         )
         candidates.append(summary)
-        if cid not in {c.catalog_id for c in state.candidates_considered}:
+        if cid not in already_considered:
+            already_considered.add(cid)
             state.candidates_considered.append(summary)
 
     return {
@@ -226,15 +185,9 @@ def search_series(
 
 
 def inspect_series(state: InvestigationState, *, catalog_id: str) -> dict:
-    """Full normalized metadata for one specific catalog_id (as returned by
-    search_series) — never a text search. Every field the catalog actually
-    has is included (task section 3): definition/description, source and
-    dataset, unit, frequency, nominal/real and base_year (via `semantics`),
-    seasonal adjustment (via `semantics`), geographic coverage, and —
-    whenever this catalog_id was already retrieved earlier in this same
-    investigation — real observed time coverage (see
-    _known_period_coverage(), also used by check_coverage). Never invents a
-    missing field: absent metadata comes back as null/None, not a guess."""
+    """Full normalized metadata for one catalog_id, plus real observed time
+    coverage if it was already retrieved in this investigation. Absent
+    metadata comes back as None, never guessed."""
     source_id, indicator_id = parse_catalog_id(catalog_id)
     meta = state.engine.describe_indicator(source_id, indicator_id)
     if meta is None:
@@ -262,10 +215,6 @@ def inspect_series(state: InvestigationState, *, catalog_id: str) -> dict:
         "official_url": meta.official_url,
         "last_updated": meta.last_updated,
         "keywords": list(meta.keywords) if meta.keywords is not None else None,
-        #: price_basis (nominal/real/index/...), currency, currency_scale,
-        #: per_capita, seasonally_adjusted, base_year, methodology_notes --
-        #: every field None ("unknown"), never guessed, when the source's
-        #: own metadata doesn't state it (core/models.py::StatisticalSemantics).
         "semantics": meta.semantics.as_dict() if meta.semantics is not None else None,
         "earliest_period": earliest,
         "latest_period": latest,
@@ -289,12 +238,9 @@ def inspect_series(state: InvestigationState, *, catalog_id: str) -> dict:
 def _known_period_coverage(
     state: InvestigationState, cid: str, geographies: list[str]
 ) -> tuple[str | None, str | None, list[str]]:
-    """Earliest/latest period actually observed for `cid`, computed only
-    from real observations already retrieved earlier in *this*
-    investigation (InvestigationState.retrieved) — never fabricated or
-    estimated. Returns (None, None, []) when nothing has been retrieved
-    for this catalog_id yet, which check_coverage reports honestly as
-    "unknown", not as "no data available"."""
+    """Earliest/latest period observed for `cid`, from observations already
+    retrieved in this investigation only — never estimated. (None, None, [])
+    means "not retrieved yet" (unknown), not "no data"."""
     geo_set = {g.upper() for g in geographies} if geographies else None
     periods: set[str] = set()
     covered: list[str] = []
@@ -322,13 +268,9 @@ def check_coverage(
     end_period: str | None = None,
     frequency: str | None = None,
 ) -> dict:
-    """Inexpensive pre-check of whether candidate(s) can plausibly answer
-    the question, before spending a retrieval call. Geographic/frequency
-    checks are metadata-only; period coverage is metadata-only too EXCEPT
-    when this exact catalog_id was already retrieved earlier in this same
-    investigation, in which case the real observed earliest/latest period
-    is reported (see _known_period_coverage) — still never a guess, just
-    real data this investigation already has in hand."""
+    """Cheap pre-check before spending a retrieval call. Geography and
+    frequency come from catalog metadata; period coverage only from
+    observations already retrieved in this investigation — never a guess."""
     canonical_geographies = [resolve_geography(g) for g in geographies]
     results = []
     for cid in catalog_ids:
@@ -428,9 +370,7 @@ def retrieve_series(
 
     for geo in geographies:
         canonical = resolve_geography(geo)
-        # Counted here, not by counting retrieve_series tool calls (see
-        # InvestigationState.provider_call_count) -- this is the actual
-        # provider/cache request, whether it succeeds or fails.
+        # One count per actual provider/cache request, success or failure.
         state.provider_call_count += 1
         try:
             series = state.engine.get_series(
@@ -507,11 +447,8 @@ def compare_series(state: InvestigationState, *, result_ids: list[str]) -> dict:
         records.append(record)
         columns.append(state.table.column(rid))
 
-    # Read from the enriched ComparisonColumn (retrieve_series' unit/semantics
-    # fallback: the provider's own value if it supplied one, else the
-    # catalog's per-indicator metadata — see retrieve_series()), not the raw
-    # SeriesResult, which is commonly missing unit/semantics for sources that
-    # don't return them inline (see core/models.py::SeriesResult's docstring).
+    # Read from the enriched ComparisonColumn (provider value with catalog
+    # fallback), not the raw SeriesResult, which often lacks unit/semantics.
     units = sorted({c.unit for c in columns if c.unit})
     frequencies = sorted({c.frequency for c in columns if c.frequency})
     price_bases = sorted(
@@ -540,19 +477,9 @@ def compare_series(state: InvestigationState, *, result_ids: list[str]) -> dict:
         ]
         if diffs:
             sorted_by_magnitude = sorted(diffs, key=lambda item: abs(item[1]))
-            # median(|A - B|), not |median(A - B)| -- those diverge whenever
-            # the signed differences aren't symmetric around zero (e.g.
-            # diffs [-10, 1, 2]: median of the signed values is 1, but the
-            # median of the *magnitudes* [1, 2, 10] is 2). The field is
-            # named "median_absolute_difference", so it must report the
-            # former, not incidentally compute the latter.
-            sorted_abs_values = sorted(abs(d) for _p, d in diffs)
-            n = len(sorted_abs_values)
-            median_abs = (
-                sorted_abs_values[n // 2]
-                if n % 2
-                else (sorted_abs_values[n // 2 - 1] + sorted_abs_values[n // 2]) / 2
-            )
+            # median(|A - B|), not |median(A - B)| — these diverge when the
+            # signed diffs aren't symmetric around zero.
+            median_abs = median(abs(d) for _p, d in diffs)
             numeric_comparison = {
                 "overlapping_period_count": len(diffs),
                 "mean_absolute_difference": sum(abs(d) for _p, d in diffs) / len(diffs),
@@ -590,13 +517,10 @@ def compare_series(state: InvestigationState, *, result_ids: list[str]) -> dict:
 
 
 def calculate(state: InvestigationState, **kwargs) -> dict:
-    """Execute one deterministic statistical transformation over
-    already-retrieved/derived result_ids. Parses and validates `kwargs`
-    into a agent/expressions.py::CalculationRequest (a closed operation
-    enum, never arbitrary code or a formula string), then dispatches it
-    onto core/compose.py's existing with_*() functions — never a new
-    calculation implementation. See CALCULATE_OPERATIONS for the closed
-    set of supported operations."""
+    """Execute one deterministic transformation over already-retrieved/
+    derived result_ids: validates kwargs into a CalculationRequest (closed
+    operation enum, never arbitrary code) and dispatches onto compose.py's
+    with_*() functions."""
     try:
         request = CalculationRequest.from_dict(kwargs)
     except ValueError as exc:
@@ -648,15 +572,9 @@ def validate(
 
 
 def _attach_observation_status(state: InvestigationState, node: dict) -> None:
-    """Enrich a provenance dict (in place, recursively) with each real
-    observation leaf's actual/provisional/forecast status, when the
-    provider that supplied it populated one (core/models.py::Observation.
-    status). core/provenance.py's ObservationProvenance doesn't carry this
-    itself (a core module, source-agnostic); this agent-layer enrichment
-    reads it back from InvestigationState.retrieved, which still holds
-    each RetrievedResult's raw SeriesResult with its real Observation
-    objects. Stays None ("unknown") whenever the provider didn't supply
-    one -- never guessed."""
+    """Enrich a provenance dict (in place, recursively) with each
+    observation leaf's actual/provisional/forecast status, read back from
+    state.retrieved. None ("unknown") when the provider didn't supply one."""
     if node.get("kind") == "observation":
         record = state.retrieved.get(node.get("column_key"))
         status = None
@@ -671,10 +589,9 @@ def _attach_observation_status(state: InvestigationState, node: dict) -> None:
 
 
 def inspect_provenance(state: InvestigationState, *, result_id: str, period: str | None = None) -> dict:
-    """Resolve one result (base or derived, at any depth) back to the exact
-    official observation(s) it came from — including each observation's
-    actual/provisional/forecast status when the source supplied one (see
-    _attach_observation_status; null/unknown otherwise, never guessed)."""
+    """Resolve one result (base or derived) back to the exact official
+    observation(s) it came from, including each observation's status when
+    the source supplied one."""
     if result_id not in {c.key for c in state.table.columns}:
         return {"error": f"Unknown result_id {result_id!r}"}
     if period is None:
@@ -700,21 +617,14 @@ def inspect_provenance(state: InvestigationState, *, result_id: str, period: str
 
 
 def reject_candidate(state: InvestigationState, *, catalog_id: str, reason: str) -> dict:
-    """Explicitly record that a candidate was inspected and ruled out — not
-    in the required-tool list verbatim, but needed to make "the LLM
-    inspects and rejects unsuitable candidates" (task section 4) auditable
-    rather than only inferable from which candidates were never retrieved."""
+    """Record that a candidate was inspected and ruled out, making the
+    rejection auditable."""
     state.candidates_rejected.append(RejectedCandidate(catalog_id=catalog_id, reason=reason))
     return {"catalog_id": catalog_id, "recorded": True}
 
 
-# ---- tool schemas (Anthropic tool-use format, vendor-neutral shape) -------
-#
-# Consumed by agent/llm.py's Anthropic-backed LLMAgent (Phase 2); kept here,
-# next to the functions they describe, so a schema can never drift from what
-# the function actually accepts the way a second hand-written copy could —
-# the same "define once" principle chat.py already applies by building its
-# tool list from mcp_server.py's own definitions.
+# ---- tool schemas (Anthropic tool-use format) -----------------------------
+# Kept next to the functions they describe so they can't drift.
 
 TOOL_SCHEMAS: list[dict] = [
     {
@@ -898,10 +808,8 @@ TOOL_FUNCTIONS = {
 
 
 def dispatch_tool(state: InvestigationState, name: str, arguments: dict) -> dict:
-    """Generic entry point agent/loop.py calls for every LLM tool_use block.
-    Never raises for a bad tool name/arguments shape — returns a structured
-    error dict instead, since a tool_result the LLM can read and react to is
-    strictly more useful than a crashed investigation."""
+    """Entry point for every LLM tool_use block. Bad tool names/arguments
+    return a structured error dict instead of raising, so the LLM can react."""
     fn = TOOL_FUNCTIONS.get(name)
     if fn is None:
         return {"error": f"Unknown tool {name!r}. Available tools: {sorted(TOOL_FUNCTIONS)}."}
@@ -914,9 +822,7 @@ def dispatch_tool(state: InvestigationState, name: str, arguments: dict) -> dict
 
 
 def timed_dispatch_tool(state: InvestigationState, name: str, arguments: dict) -> tuple[dict, float]:
-    """Same as dispatch_tool(), plus wall-clock duration in milliseconds —
-    used by agent/loop.py to populate InvestigationState.tool_call_history
-    without every individual tool needing its own timing code."""
+    """dispatch_tool() plus wall-clock duration in milliseconds."""
     started = time.monotonic()
     result = dispatch_tool(state, name, arguments)
     duration_ms = round((time.monotonic() - started) * 1000, 2)

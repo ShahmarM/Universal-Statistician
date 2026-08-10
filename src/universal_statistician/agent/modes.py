@@ -1,41 +1,12 @@
-"""Fast / Research / Auto execution modes (Phase 5).
+"""Fast / Research / Auto execution modes.
 
-Two execution paths, not one expensive loop forced onto every question:
-
-- **Fast mode** is core/ask.py's existing, unchanged legacy pipeline
-  (plan once -> search -> deterministic Top-1 select -> retrieve ->
-  validate -> answer) — low latency, low LLM/tool usage, right for a
-  simple direct lookup ("Population of Azerbaijan in 2024").
-- **Research mode** runs agent/loop.py's iterative StatisticalAgent —
-  right for multi-source comparison, ambiguous concepts, multi-series
-  calculations, and explanatory ("why...") questions.
-
-`select_mode()` picks between them from the question text when the
-caller asks for "auto" (the default); a caller may always override
-explicitly with "fast" or "research" (task section 7's "explicit API
-override").
-
-Research mode's chart is still built deterministically from the
-investigation's table (reusing core/ask.py's own citations helpers, which
-take a plain ComparisonTable and don't need a QueryPlan). The answer text
-is deterministic (`_build_answer_text`) unless an `answer_writer` is
-supplied, in which case Phase 6's `write_and_verify_answer()` replaces it
-with LLM prose constrained to the same validated evidence and checked for
-unsupported numbers, falling back to the deterministic text on failure.
-
-If a `verifier` (agent/verifier.py's LLMVerifier, Phase 7) is also
-supplied, the draft answer goes through one further independent check
-before being returned: on a FAIL verdict, the investigator gets one more
-bounded round (reusing already-retrieved evidence, see
-StatisticalAgent.investigate()'s `state`/`instruction` parameters) to
-address the reported issues, then the answer is rebuilt and re-verified,
-up to `max_verification_rounds` — never an unbounded back-and-forth, and
-AgentLimits still bounds the underlying tool-call budget across every
-round combined, not per round. If the LAST round still FAILs, the numeric
-answer is never returned as if it were valid: `answer` becomes a fixed
-`UNABLE_TO_VERIFY_TEXT` instead of the draft/fallback text — a verifier
-that caught a real problem must not be silently overridden just because
-the retry budget ran out.
+Fast mode is core/ask.py's single-pass pipeline; research mode is the
+iterative StatisticalAgent. select_mode() resolves "auto" from question
+text. With an `answer_writer`, LLM prose (grounding-checked, deterministic
+fallback) replaces the deterministic answer text; with a `verifier`, a
+FAIL verdict sends the investigator back for a bounded retry, and if the
+last round still FAILs the answer becomes UNABLE_TO_VERIFY_TEXT — a
+failed numeric draft is never returned as valid.
 """
 
 from __future__ import annotations
@@ -58,12 +29,8 @@ from universal_statistician.core.engine import QueryEngine
 from universal_statistician.core.validation import validate_table
 from universal_statistician.planning.base import LLMPlanner
 
-#: Phrases that signal a question needs iterative, multi-source
-#: investigation rather than one direct lookup — task section 7's own
-#: list ("why", "compare sources", "what drove", "contribution", ...).
-#: Deliberately a plain substring heuristic, not another LLM call: mode
-#: selection itself must stay cheap, or "auto" would cost as much as
-#: research mode for every question.
+#: Phrases signalling iterative investigation. A plain substring heuristic
+#: — mode selection must stay cheap, not cost an LLM call itself.
 _RESEARCH_SIGNAL_PHRASES = (
     "why",
     "compare",
@@ -89,9 +56,8 @@ VALID_MODES = ("auto", "fast", "research")
 
 
 def select_mode(question: str, requested: str = "auto") -> str:
-    """Resolve "auto"/"fast"/"research" to the mode that will actually run.
-    Raises ValueError for anything else — an unrecognized mode should fail
-    loudly, not silently fall back to one or the other."""
+    """Resolve "auto"/"fast"/"research" to the mode that will run; raises
+    ValueError for anything else."""
     normalized = (requested or "auto").strip().lower()
     if normalized not in VALID_MODES:
         raise ValueError(f"Unknown mode {requested!r}; expected one of {VALID_MODES}.")
@@ -107,8 +73,7 @@ def select_mode(question: str, requested: str = "auto") -> str:
 def run_fast_mode(
     engine: QueryEngine, question: str, planner: LLMPlanner | None = None
 ) -> AskResult:
-    """The legacy single-pass pipeline, unchanged — see
-    docs/architecture/agent-migration-note.md."""
+    """The legacy single-pass pipeline, unchanged."""
     return answer_question(engine, question, planner=planner)
 
 
@@ -128,13 +93,9 @@ def _chart_spec_from_state(state: InvestigationState) -> ChartSpec | None:
     )
 
 
-#: Returned as `answer` (never the draft/fallback text) when the LAST
-#: verification round still FAILs — deliberately contains no numbers of
-#: its own, so it can never itself become an unsupported numerical claim.
-#: The specific issues that caused the failure are still fully available
-#: in `state.warnings`/`state.verification_results` (and the API's
-#: `verification` field) for a human to review; they just never get
-#: presented as part of a confirmed answer.
+#: Returned as `answer` when the last verification round still FAILs.
+#: Contains no numbers, so it can't itself be an unsupported claim; the
+#: failing issues remain in warnings/verification_results.
 UNABLE_TO_VERIFY_TEXT = (
     "I could not verify this answer with confidence, even after a follow-up "
     "investigation. Automated verification found unresolved issues with the "
@@ -166,29 +127,11 @@ def run_research_mode(
     verifier: LLMVerifier | None = None,
     max_verification_rounds: int = 2,
 ) -> tuple[AskResult, InvestigationState]:
-    """Run the iterative StatisticalAgent, then apply the same deterministic
-    validation gate every path in this project applies before presenting a
-    numerical answer — the orchestrator runs this unconditionally, it never
-    depends on the LLM having remembered to call the `validate` tool itself.
-
-    If `answer_writer` is supplied, the deterministic table-derived text is
-    used only as the fallback for Phase 6's `write_and_verify_answer()` —
-    the returned answer is LLM prose constrained to the same evidence and
-    checked for unsupported numbers, never unchecked. Without one, the
-    deterministic text is used as the answer directly.
-
-    If `verifier` is also supplied, that answer then goes through Phase 7's
-    independent semantic check; a FAIL sends the investigator back for one
-    more bounded round (see `_retry_instruction`) before rebuilding and
-    re-verifying, up to `max_verification_rounds`. If it still hasn't
-    passed when the bound is reached, `answer` becomes `UNABLE_TO_VERIFY_TEXT`
-    — the failed numeric draft is never returned as if it were a valid
-    answer, on the same "never silently return unsupported prose" principle
-    Phase 6's answer-writer guard already applies to a single number.
-
-    Returns (AskResult, InvestigationState) — the state is the full audit
-    trail (task section 15's `debug=true` payload), kept separate from the
-    AskResult callers get by default."""
+    """Run the iterative StatisticalAgent, always applying the
+    deterministic validation gate (never dependent on the LLM having
+    called `validate` itself). See the module docstring for how
+    `answer_writer`/`verifier` shape the returned answer. Returns
+    (AskResult, InvestigationState) — the state is the full audit trail."""
     agent = StatisticalAgent(engine, llm_agent, limits=limits)
     state: InvestigationState | None = None
     validation = None
@@ -240,10 +183,7 @@ def run_research_mode(
                 f"Verification failed after {rounds} round(s) and could not be resolved: "
                 f"{issue_summary or 'no specific issues reported'}."
             )
-            # The draft answer failed verification and retrying didn't fix
-            # it -- it must never be handed back as though it were valid,
-            # numbers and all (task: "A final verifier FAIL must never
-            # return the failed numerical answer as valid").
+            # A draft that failed verification is never handed back as valid.
             answer_text = UNABLE_TO_VERIFY_TEXT
             break
 
@@ -286,16 +226,9 @@ def answer_question_with_mode(
     verifier: LLMVerifier | None = None,
     max_verification_rounds: int = 2,
 ) -> ModeRunResult:
-    """The single entry point api.py's /ask (Phase 8) calls: resolves the
-    mode, runs the matching path, and returns a uniform result shape.
-
-    Research mode requires an `llm_agent` (there is no "iteratively
-    investigate without an LLM" fallback — the entire point of research
-    mode is the model driving the loop); falls back to fast mode with a
-    warning if one wasn't supplied, the same "remain operational without
-    an LLM configured" principle RuleBasedPlanner already applies to fast
-    mode's own planning step.
-    """
+    """The single entry point /ask calls: resolve the mode, run the
+    matching path, return a uniform shape. Research mode needs an
+    `llm_agent`; without one it falls back to fast mode with a warning."""
     resolved = select_mode(question, mode)
 
     if resolved == "research" and llm_agent is None:

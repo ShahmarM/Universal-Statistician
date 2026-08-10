@@ -1,31 +1,11 @@
-"""Independent verification pass over a draft answer (Phase 7).
+"""Independent LLM verification pass over a draft answer.
 
-Where agent/answer_writer.py's grounding guard is a narrow, code-only
-check ("does every citation's evidence_id exist, and does its declared
-geography/period/value_kind actually match" — task section 2), this
-module is a second, independent LLM pass that checks the draft's *prose*
-against the evidence for semantic errors a citation-ID check structurally
-cannot see — the free text disagreeing with its own citations, comparing
-nominal to real GDP without saying so, presenting a FAILED validation as a
-clean result, and so on (see agent/evidence.py's docstring on why both
-layers are needed: a citation check verifies declared metadata, not
-literal prose agreement). It is deliberately narrower than the
-investigator: no tools, no message history, cannot touch data, can only
-report a structured verdict.
-
-Like agent/answer_writer.py's number check, the verdict is forced into a
-closed schema (via a forced Claude tool call, mirroring
-planning/anthropic_planner.py's pattern) rather than free text: `status`
-is one of PASS/WARNING/FAIL and every `issue.category` is one of a fixed
-enum (ISSUE_CATEGORIES) — the retry loop in agent/modes.py reasons about
-*which kind* of problem was found, not prose.
-
-agent/modes.py::run_research_mode() uses this in a bounded investigator<->
-verifier retry loop (task section 10): on FAIL, the investigator gets a
-further bounded round to address the reported issues (reusing already-
-retrieved evidence, see StatisticalAgent.investigate()'s `state`/
-`instruction` parameters), then the draft is rebuilt and re-verified, up
-to `max_verification_rounds` — never an unbounded back-and-forth.
+Complements answer_writer.py's code-only citation check by reading the
+draft's *prose* against the evidence for semantic errors a citation-ID
+check can't see (prose disagreeing with its own citations, nominal vs.
+real compared silently, a FAILED validation presented as clean). No
+tools, no history; the verdict is a forced tool call with a closed
+status/category enum agent/modes.py's bounded retry loop reasons about.
 """
 
 from __future__ import annotations
@@ -38,10 +18,8 @@ DEFAULT_MODEL = "claude-sonnet-5"
 
 VERIFY_TOOL_NAME = "report_verification"
 
-#: Closed set of semantic error classes the verifier can flag — mirrors
-#: agent/expressions.py's CALCULATE_OPERATIONS: a fixed enum the rest of
-#: the system can reason about programmatically, not freeform text an
-#: unparseable model reply could hide anything behind.
+#: Closed set of semantic error classes — programmatically reasoned about,
+#: never freeform text.
 ISSUE_CATEGORIES = (
     "contradicts_evidence",
     "geography_mismatch",
@@ -161,20 +139,15 @@ class VerificationReport:
 @runtime_checkable
 class LLMVerifier(Protocol):
     def verify(self, *, question: str, evidence: dict, draft_answer: str) -> VerificationReport:
-        """Check `draft_answer` against `evidence` only — no tools, no
-        ability to fetch more data, cannot modify anything. Returns a
-        structured verdict, never free text the caller would need to
-        parse itself."""
+        """Check `draft_answer` against `evidence` only; returns a
+        structured verdict, never free text."""
         ...
 
 
 @dataclass
 class AnthropicVerifier:
-    """LLMVerifier backed by the Claude API via a forced tool call — the
-    model can only respond by filling in VERIFY_TOOL_SCHEMA's fields,
-    mirroring planning/anthropic_planner.py::AnthropicPlanner. `client` is
-    injected, never constructed here, for the same offline-testability
-    reason as every other LLM role in this package."""
+    """LLMVerifier via a forced tool call — the model can only fill in
+    VERIFY_TOOL_SCHEMA. `client` is injected for testability."""
 
     client: Any
     model: str = DEFAULT_MODEL

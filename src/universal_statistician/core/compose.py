@@ -1,24 +1,9 @@
 """Derived comparison tables built from multiple get_series() calls.
 
-This is what makes the assistant answer "GDP per capita for X, Y, Z from
-2015-2024" rather than only "one indicator, one country, one call" — the
-capability the MVP scope was explicitly widened for. A ComparisonTable is
-plain data (columns + period/column -> value cells); building one is
-separated from computing derived columns (growth/ratio/rank/...) so each
-step is independently testable and callers can mix and match.
-
-Every base column keeps the Attribution of the get_series() call it came
-from — cells from different countries or indicators must never be blended
-without each one's own source staying visible. Derived columns carry no
-Attribution of their own: they're computed here, not fetched from any
-official source, and are labeled `derived=True` so a caller can never
-mistake a computed number for one reported directly by a source. Every
-derived column also carries `formula` (a short, human-readable description
-of the calculation) and `input_series` (the column keys it was computed
-from) — this project's task description (section 14/17) calls this
-"lineage," and it is what lets a derived value be traced back to the exact
-official observations behind it, the same way Attribution does for a base
-column.
+Base columns keep the Attribution of the fetch they came from; derived
+columns carry `derived=True`, `formula`, and `input_series` instead of an
+Attribution, so computed numbers are never mistaken for source-reported
+ones and stay traceable to their inputs.
 """
 
 from __future__ import annotations
@@ -28,8 +13,7 @@ from dataclasses import dataclass, field
 from universal_statistician.core.engine import QueryEngine
 from universal_statistician.core.models import Attribution, SeriesResult, StatisticalSemantics
 
-#: One entry per (input_column_key, input_period) an output cell actually
-#: depended on to compute its value.
+#: (input_column_key, input_period) an output cell depended on.
 CellDependency = tuple[str, str]
 
 
@@ -39,29 +23,16 @@ class ComparisonColumn:
     label: str
     attribution: Attribution | None
     derived: bool = False
-    #: Short, human-readable description of how this column was computed —
-    #: None for a base column (it wasn't computed, it was fetched).
+    #: How the column was computed; None for a base (fetched) column.
     formula: str | None = None
-    #: Column keys this one was computed from — None for a base column.
+    #: Column keys this one was computed from; None for a base column.
     input_series: tuple[str, ...] | None = None
-    #: Carried from the fetching SeriesResult for a base column (None for a
-    #: derived one) — core/validation.py's unit/frequency-consistency checks
-    #: read these; see SeriesResult.unit's docstring on why unit is commonly
-    #: None in practice today.
     unit: str | None = None
     frequency: str | None = None
-    #: The indicator/series id and geography this base column's values came
-    #: from — None for a derived column. `key`/`label` alone conflate these
-    #: (compare_across_countries uses `key` for ref_area with one shared
-    #: indicator; compare_across_indicators uses `key` for indicator_id with
-    #: one shared ref_area), so core/provenance.py (Phase 10) needs these
-    #: explicit to build a citation that names both, the way section 17's
-    #: example does ("NY.GDP.PCAP.CD" + "Azerbaijan").
+    #: Explicit series identity for base columns (key/label alone conflate
+    #: indicator vs. geography); None for derived columns.
     indicator_id: str | None = None
     ref_area: str | None = None
-    #: Structured semantics (Phase F) — see StatisticalSemantics. None for a
-    #: derived column (computed here, not published with its own semantics)
-    #: as well as for a base column whose source doesn't expose it.
     semantics: StatisticalSemantics | None = None
 
 
@@ -70,22 +41,20 @@ class ComparisonTable:
     columns: tuple[ComparisonColumn, ...]
     #: (period, column_key) -> value
     values: dict[tuple[str, str], float | None]
-    #: (period, column_key) -> the exact (input_column_key, input_period)
-    #: pairs that specific cell was computed from — Phase E ("exact derived
-    #: provenance"): recorded by each with_*() transformation at the moment
-    #: it computes a value, never inferred afterward from formula text or
-    #: ComparisonColumn.input_series (which only names *columns*, shared
-    #: across every period of a derived column — too coarse for an
-    #: operation like with_growth, where period P's value depends on
-    #: different specific input periods than period Q's). Only set for
-    #: derived cells; absent (not just empty) for a base cell. Internal to
-    #: core/provenance.py's resolver — deliberately not part of
-    #: ComparisonTable.as_dict()'s JSON shape (AskResult.provenance already
-    #: carries the resolved chain for whatever cell was asked about).
+    #: (period, column_key) -> exact input cells it was computed from.
+    #: Recorded by each with_*() at compute time (input_series is per-column,
+    #: too coarse for per-period lineage). Set only for derived cells; not
+    #: part of as_dict()'s JSON shape.
     cell_dependencies: dict[tuple[str, str], tuple[CellDependency, ...]] = field(default_factory=dict)
 
     def periods(self) -> tuple[str, ...]:
-        return tuple(sorted({period for period, _column_key in self.values}))
+        # Memoized: tables are treated as immutable (every with_*() builds a
+        # new one) and this is called from per-column loops.
+        cached = self.__dict__.get("_periods")
+        if cached is None:
+            cached = tuple(sorted({period for period, _column_key in self.values}))
+            object.__setattr__(self, "_periods", cached)
+        return cached
 
     def value_at(self, period: str, column_key: str) -> float | None:
         return self.values.get((period, column_key))
@@ -125,12 +94,8 @@ class ComparisonTable:
 
 
 def build_comparison(columns: list[tuple[ComparisonColumn, SeriesResult]]) -> ComparisonTable:
-    """Assemble a table from already-fetched (column, SeriesResult) pairs.
-
-    Pure and network-free: fetching lives in compare_across_countries() /
-    compare_across_indicators() below, this just aligns results onto a shared
-    period axis.
-    """
+    """Assemble a table from already-fetched (column, SeriesResult) pairs;
+    pure and network-free."""
     values: dict[tuple[str, str], float | None] = {}
     for column, series in columns:
         for obs in series.observations:
@@ -205,162 +170,84 @@ def _periods_with_values(table: ComparisonTable, key: str) -> list[str]:
     return sorted(p for p in table.periods() if table.value_at(p, key) is not None)
 
 
-def with_growth(table: ComparisonTable) -> ComparisonTable:
-    """Add a `{key}__yoy_growth_pct` derived column per base column: percent
-    change from the previous period present in that column (chronological
-    order by period string — true for every period format this project uses
-    so far: "YYYY" and "YYYY-MM" both sort correctly as plain strings).
-
-    Named "yoy" for historical reasons (see README's documented nuance): the
-    math is period-over-period, not necessarily annual — accurate for a
-    yearly table, but a monthly table's result is really month-over-month
-    computed correctly, just under this label. New callers wanting an
-    accurate label for non-annual data should use with_period_over_period_growth,
-    which computes the identical value under a frequency-neutral name.
-    """
-    base_columns = _base_columns(table)
+def _with_adjacent_delta(
+    table: ComparisonTable, *, suffix: str, label_suffix: str, formula: str, compute
+) -> ComparisonTable:
+    """Add a `{key}{suffix}` derived column per base column, computed from
+    each adjacent (previous, current) pair of periods with values.
+    `compute(prev, curr)` returns the cell value, or None to skip."""
     existing_keys = {c.key for c in table.columns}
     new_values = dict(table.values)
     new_dependencies = dict(table.cell_dependencies)
     new_columns = list(table.columns)
 
-    for column in base_columns:
-        growth_key = f"{column.key}__yoy_growth_pct"
-        if growth_key in existing_keys:
+    for column in _base_columns(table):
+        new_key = f"{column.key}{suffix}"
+        if new_key in existing_keys:
             continue
 
         periods_with_values = _periods_with_values(table, column.key)
         new_columns.append(
             ComparisonColumn(
-                key=growth_key,
-                label=f"{column.label}: YoY growth %",
+                key=new_key,
+                label=f"{column.label}: {label_suffix}",
                 attribution=None,
                 derived=True,
-                formula="(current - previous) / previous * 100",
+                formula=formula,
                 input_series=(column.key,),
             )
         )
         for previous, current in zip(periods_with_values, periods_with_values[1:]):
-            prev_value = table.value_at(previous, column.key)
-            curr_value = table.value_at(current, column.key)
-            if prev_value:  # skip growth-from-zero (undefined) and prev_value is None
-                new_values[(current, growth_key)] = (curr_value - prev_value) / prev_value * 100
-                new_dependencies[(current, growth_key)] = (
-                    (column.key, previous),
-                    (column.key, current),
-                )
+            value = compute(table.value_at(previous, column.key), table.value_at(current, column.key))
+            if value is not None:
+                new_values[(current, new_key)] = value
+                new_dependencies[(current, new_key)] = ((column.key, previous), (column.key, current))
 
     return ComparisonTable(columns=tuple(new_columns), values=new_values, cell_dependencies=new_dependencies)
+
+
+def _relative_growth(prev: float | None, curr: float) -> float | None:
+    # None for growth-from-zero (undefined).
+    return (curr - prev) / prev * 100 if prev else None
+
+
+def with_growth(table: ComparisonTable) -> ComparisonTable:
+    """Add a `{key}__yoy_growth_pct` column per base column: percent change
+    from the previous period with a value. "yoy" is historical naming — the
+    math is period-over-period; see with_period_over_period_growth for the
+    frequency-neutral name."""
+    return _with_adjacent_delta(
+        table, suffix="__yoy_growth_pct", label_suffix="YoY growth %",
+        formula="(current - previous) / previous * 100", compute=_relative_growth,
+    )
 
 
 def with_period_over_period_growth(table: ComparisonTable) -> ComparisonTable:
-    """Same calculation as with_growth(), under an honest, frequency-neutral
-    label and key (`{key}__period_over_period_growth_pct`) — for callers who
-    want to avoid with_growth()'s "yoy" naming when the table isn't annual."""
-    base_columns = _base_columns(table)
-    existing_keys = {c.key for c in table.columns}
-    new_values = dict(table.values)
-    new_dependencies = dict(table.cell_dependencies)
-    new_columns = list(table.columns)
-
-    for column in base_columns:
-        growth_key = f"{column.key}__period_over_period_growth_pct"
-        if growth_key in existing_keys:
-            continue
-
-        periods_with_values = _periods_with_values(table, column.key)
-        new_columns.append(
-            ComparisonColumn(
-                key=growth_key,
-                label=f"{column.label}: period-over-period growth %",
-                attribution=None,
-                derived=True,
-                formula="(current - previous) / previous * 100",
-                input_series=(column.key,),
-            )
-        )
-        for previous, current in zip(periods_with_values, periods_with_values[1:]):
-            prev_value = table.value_at(previous, column.key)
-            curr_value = table.value_at(current, column.key)
-            if prev_value:
-                new_values[(current, growth_key)] = (curr_value - prev_value) / prev_value * 100
-                new_dependencies[(current, growth_key)] = (
-                    (column.key, previous),
-                    (column.key, current),
-                )
-
-    return ComparisonTable(columns=tuple(new_columns), values=new_values, cell_dependencies=new_dependencies)
+    """with_growth() under a frequency-neutral key/label
+    (`{key}__period_over_period_growth_pct`)."""
+    return _with_adjacent_delta(
+        table, suffix="__period_over_period_growth_pct", label_suffix="period-over-period growth %",
+        formula="(current - previous) / previous * 100", compute=_relative_growth,
+    )
 
 
 def with_absolute_change(table: ComparisonTable) -> ComparisonTable:
-    """Add a `{key}__abs_change` derived column per base column: current
-    minus previous period present in that column (level change, not %)."""
-    base_columns = _base_columns(table)
-    existing_keys = {c.key for c in table.columns}
-    new_values = dict(table.values)
-    new_dependencies = dict(table.cell_dependencies)
-    new_columns = list(table.columns)
-
-    for column in base_columns:
-        change_key = f"{column.key}__abs_change"
-        if change_key in existing_keys:
-            continue
-
-        periods_with_values = _periods_with_values(table, column.key)
-        new_columns.append(
-            ComparisonColumn(
-                key=change_key,
-                label=f"{column.label}: absolute change",
-                attribution=None,
-                derived=True,
-                formula="current - previous",
-                input_series=(column.key,),
-            )
-        )
-        for previous, current in zip(periods_with_values, periods_with_values[1:]):
-            prev_value = table.value_at(previous, column.key)
-            curr_value = table.value_at(current, column.key)
-            new_values[(current, change_key)] = curr_value - prev_value
-            new_dependencies[(current, change_key)] = ((column.key, previous), (column.key, current))
-
-    return ComparisonTable(columns=tuple(new_columns), values=new_values, cell_dependencies=new_dependencies)
+    """Add a `{key}__abs_change` column per base column: current minus
+    previous period (level change, not %)."""
+    return _with_adjacent_delta(
+        table, suffix="__abs_change", label_suffix="absolute change",
+        formula="current - previous", compute=lambda prev, curr: curr - prev,
+    )
 
 
 def with_pp_change(table: ComparisonTable) -> ComparisonTable:
-    """Add a `{key}__pp_change` derived column per base column: current
-    minus previous period, in percentage points — for columns whose values
-    are themselves already a percentage/rate (e.g. an inflation rate or an
-    unemployment rate), where subtracting is the correct comparison, not
-    dividing (see with_growth for a %-of-value comparison instead)."""
-    base_columns = _base_columns(table)
-    existing_keys = {c.key for c in table.columns}
-    new_values = dict(table.values)
-    new_dependencies = dict(table.cell_dependencies)
-    new_columns = list(table.columns)
-
-    for column in base_columns:
-        pp_key = f"{column.key}__pp_change"
-        if pp_key in existing_keys:
-            continue
-
-        periods_with_values = _periods_with_values(table, column.key)
-        new_columns.append(
-            ComparisonColumn(
-                key=pp_key,
-                label=f"{column.label}: change (pp)",
-                attribution=None,
-                derived=True,
-                formula="current - previous (percentage points)",
-                input_series=(column.key,),
-            )
-        )
-        for previous, current in zip(periods_with_values, periods_with_values[1:]):
-            prev_value = table.value_at(previous, column.key)
-            curr_value = table.value_at(current, column.key)
-            new_values[(current, pp_key)] = curr_value - prev_value
-            new_dependencies[(current, pp_key)] = ((column.key, previous), (column.key, current))
-
-    return ComparisonTable(columns=tuple(new_columns), values=new_values, cell_dependencies=new_dependencies)
+    """Add a `{key}__pp_change` column per base column: current minus
+    previous, in percentage points — the correct delta for values that are
+    already rates (subtract, don't divide)."""
+    return _with_adjacent_delta(
+        table, suffix="__pp_change", label_suffix="change (pp)",
+        formula="current - previous (percentage points)", compute=lambda prev, curr: curr - prev,
+    )
 
 
 def _year(period: str) -> int:
@@ -375,16 +262,10 @@ def _year(period: str) -> int:
 def with_cagr(
     table: ComparisonTable, *, start_period: str | None = None, end_period: str | None = None
 ) -> ComparisonTable:
-    """Add a `{key}__cagr_pct` derived column per base column: compound
-    annual growth rate (%) between the first/last available period (or the
-    given start_period/end_period), recorded at the end period only — CAGR
-    is a single number over a range, not a per-period series.
-
-    Requires periods parseable as a 4-digit year (raises ValueError
-    otherwise) — computing an *annual* rate from sub-annual periods without
-    knowing how many periods make a year would silently produce a wrong
-    number, which this project's validation principle refuses to do.
-    """
+    """Add a `{key}__cagr_pct` column per base column: compound annual
+    growth rate (%) over the range, recorded at the end period only.
+    Raises ValueError for non-annual periods — an annual rate from
+    sub-annual periods would be silently wrong."""
     base_columns = _base_columns(table)
     existing_keys = {c.key for c in table.columns}
     new_values = dict(table.values)
@@ -426,10 +307,8 @@ def with_cagr(
 def with_cumulative_growth(
     table: ComparisonTable, *, start_period: str | None = None, end_period: str | None = None
 ) -> ComparisonTable:
-    """Add a `{key}__cumulative_growth_pct` derived column per base column:
-    total percent change between the first/last available period (or the
-    given start_period/end_period), recorded at the end period only — like
-    with_cagr, a single number over a range, not a per-period series."""
+    """Add a `{key}__cumulative_growth_pct` column per base column: total
+    percent change over the range, recorded at the end period only."""
     base_columns = _base_columns(table)
     existing_keys = {c.key for c in table.columns}
     new_values = dict(table.values)
@@ -467,11 +346,8 @@ def with_cumulative_growth(
 
 
 def with_index(table: ComparisonTable, base_period: str) -> ComparisonTable:
-    """Add a `{key}__index` derived column per base column: value rebased so
-    base_period = 100 (classic index-number rebasing). Raises ValueError if
-    a base column has no value at base_period — rebasing against a missing
-    value would silently produce every other period as None too, which is
-    worse than failing loudly."""
+    """Add a `{key}__index` column per base column, rebased so base_period
+    = 100. Raises ValueError if a base column has no value at base_period."""
     base_columns = _base_columns(table)
     existing_keys = {c.key for c in table.columns}
     new_values = dict(table.values)
@@ -512,10 +388,8 @@ def with_index(table: ComparisonTable, base_period: str) -> ComparisonTable:
 
 
 def with_moving_average(table: ComparisonTable, window: int) -> ComparisonTable:
-    """Add a `{key}__ma{window}` derived column per base column: the mean of
-    the `window` most recent periods with a value (chronological order,
-    gaps allowed between them — matches this project's existing convention
-    of working over "periods with values", e.g. with_growth)."""
+    """Add a `{key}__ma{window}` column per base column: mean of the
+    `window` most recent periods with a value (gaps allowed)."""
     if window < 2:
         raise ValueError(f"window must be at least 2, got {window}")
 
@@ -555,10 +429,8 @@ def with_moving_average(table: ComparisonTable, window: int) -> ComparisonTable:
 def with_difference(
     table: ComparisonTable, key_a: str, key_b: str, *, result_key: str | None = None
 ) -> ComparisonTable:
-    """Add one derived column, `{key_a}__minus_{key_b}` by default: value of
-    key_a minus value of key_b for every period both are present. General
-    difference-between-series operation — works for two countries, two
-    indicators, or a base column and another derived column alike."""
+    """Add one column, `{key_a}__minus_{key_b}` by default: key_a minus
+    key_b for every period both are present."""
     known_keys = {c.key for c in table.columns}
     if key_a not in known_keys:
         raise ValueError(f"Unknown column {key_a!r}")
@@ -596,15 +468,8 @@ def with_difference(
 def with_share_pair(
     table: ComparisonTable, numerator_key: str, denominator_key: str, *, result_key: str | None = None
 ) -> ComparisonTable:
-    """Add one derived column: numerator_key's value as a percentage of
-    denominator_key's value, for every period both are present.
-
-    The precise two-column counterpart to with_share() (which computes a
-    share for every OTHER base column against one shared total) — this is
-    what a structured {"operation": "share", "numerator_concept": ...,
-    "denominator_concept": ...} transformation (core/query_plan.py's
-    TransformationSpec, dispatched from core/ask.py) needs: exactly the two
-    columns the planner named, nothing else in the table touched."""
+    """Add one column: numerator as a percentage of denominator, for every
+    period both are present. Two-column counterpart of with_share()."""
     known_keys = {c.key for c in table.columns}
     if numerator_key not in known_keys:
         raise ValueError(f"Unknown column {numerator_key!r}")
@@ -642,13 +507,8 @@ def with_share_pair(
 def with_per_capita_pair(
     table: ComparisonTable, numerator_key: str, denominator_key: str, *, result_key: str | None = None
 ) -> ComparisonTable:
-    """Add one derived column: numerator_key's value divided by
-    denominator_key's value, for every period both are present.
-
-    The precise two-column counterpart to with_per_capita() (which divides
-    every OTHER base column by one shared population column) — for a
-    structured {"operation": "per_capita", "numerator_concept": ...,
-    "denominator_concept": ...} transformation."""
+    """Add one column: numerator divided by denominator, for every period
+    both are present. Two-column counterpart of with_per_capita()."""
     known_keys = {c.key for c in table.columns}
     if numerator_key not in known_keys:
         raise ValueError(f"Unknown column {numerator_key!r}")
@@ -690,16 +550,10 @@ def with_index_column(
     base_value: float = 100.0,
     result_key: str | None = None,
 ) -> ComparisonTable:
-    """Add one derived column: column_key's value rebased so base_period =
-    base_value (default 100, the classic index-number convention).
-
-    The precise single-column counterpart to with_index() (which rebases
-    EVERY base column in the table to the same base_period) — for a
-    structured {"operation": "index", "input_concept": ...} transformation,
-    which targets exactly the one column the planner named. Rebasing every
-    base column would be wrong whenever the table also holds an unrelated
-    column for a different concept selected by the same question (e.g. a
-    population column fetched for a separate per_capita transformation)."""
+    """Add one column: column_key rebased so base_period = base_value
+    (default 100). Single-column counterpart of with_index() — rebasing
+    every base column would be wrong when the table also holds unrelated
+    concepts."""
     known_keys = {c.key for c in table.columns}
     if column_key not in known_keys:
         raise ValueError(f"Unknown column {column_key!r}")
@@ -775,12 +629,8 @@ def with_share(table: ComparisonTable, total_key: str) -> ComparisonTable:
 
 
 def with_per_capita(table: ComparisonTable, population_key: str) -> ComparisonTable:
-    """Add a `{key}__per_capita` derived column per other base column: that
-    column's value divided by the population column's value. A thin,
-    explicitly-named wrapper — mathematically the same operation as
-    with_ratio(), kept separate because "per capita" is a distinct,
-    frequently-requested concept (section 14) worth its own clear label
-    rather than requiring a caller to know it's "just a ratio"."""
+    """Add a `{key}__per_capita` column per other base column: value
+    divided by the population column's value."""
     base_columns = _base_columns(table)
     if population_key not in {c.key for c in base_columns}:
         raise ValueError(f"Unknown population column {population_key!r}")
@@ -895,9 +745,8 @@ def _aggregate(
 def with_sum(
     table: ComparisonTable, keys: list[str], *, result_key: str = "sum", result_label: str = "Sum"
 ) -> ComparisonTable:
-    """Add one derived column: the sum of the listed columns, only for
-    periods where every listed column has a value (no silent undercount
-    from treating a missing value as zero)."""
+    """Add one column: sum of the listed columns, only for periods where
+    every listed column has a value (no silent undercount)."""
     return _aggregate(
         table, keys, result_key=result_key, result_label=result_label,
         formula="sum(values)", combine=sum,
@@ -911,8 +760,8 @@ def with_average(
     result_key: str = "average",
     result_label: str = "Average",
 ) -> ComparisonTable:
-    """Add one derived column: the unweighted mean of the listed columns,
-    only for periods where every listed column has a value."""
+    """Add one column: unweighted mean of the listed columns, only for
+    periods where every listed column has a value."""
     return _aggregate(
         table, keys, result_key=result_key, result_label=result_label,
         formula="mean(values)", combine=lambda values: sum(values) / len(values),
@@ -926,11 +775,8 @@ def with_weighted_average(
     result_key: str = "weighted_average",
     result_label: str = "Weighted average",
 ) -> ComparisonTable:
-    """Add one derived column: the weighted mean of the given columns using
-    caller-supplied, explicit weights (section 14: "weighted average where
-    weights are explicitly defined" — never inferred). Only computed for
-    periods where every weighted column has a value, for the same
-    no-silent-undercount reason as with_sum()."""
+    """Add one column: weighted mean using caller-supplied explicit weights
+    (never inferred), only for periods where every column has a value."""
     keys = list(weights)
     total_weight = sum(weights.values())
     if total_weight == 0:
@@ -947,11 +793,9 @@ def with_weighted_average(
 
 
 def with_rank(table: ComparisonTable) -> ComparisonTable:
-    """Add a `{key}__rank` derived column per base column: that column's rank
-    among all base columns for each period (1 = highest value). Most
-    meaningful when base columns are commensurable, e.g. the same indicator
-    across countries — ranking unrelated indicators against each other is
-    mechanically well-defined but not necessarily meaningful."""
+    """Add a `{key}__rank` column per base column: rank among all base
+    columns per period (1 = highest). Only meaningful when base columns are
+    commensurable."""
     base_columns = _base_columns(table)
     existing_keys = {c.key for c in table.columns}
     all_base_keys = tuple(c.key for c in base_columns)
@@ -977,11 +821,7 @@ def with_rank(table: ComparisonTable) -> ComparisonTable:
             if table.value_at(period, c.key) is not None
         ]
         scored.sort(key=lambda item: item[1], reverse=True)
-        # Every rank at this period depends on every column that actually
-        # took part in the comparison at this period (i.e. had a value) -
-        # not the full all_base_keys list, which may include columns with
-        # no value at this particular period and so didn't influence the
-        # ordering here.
+        # Each rank depends only on columns that had a value this period.
         participating = tuple((k, period) for k, _v in scored)
         for rank, (key, _value) in enumerate(scored, start=1):
             new_values[(period, f"{key}__rank")] = float(rank)

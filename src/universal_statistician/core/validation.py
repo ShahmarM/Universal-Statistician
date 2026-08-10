@@ -1,28 +1,17 @@
-"""Validation layer (section 16): runs after retrieval/calculation, before
-an answer is built, and produces structured PASS/WARNING/FAIL findings — a
-FAIL means "do not present this as a supported numerical answer," not just
-a log line.
+"""Validation layer: structured PASS/WARNING/FAIL findings after
+retrieval/calculation, before an answer is built. A FAIL means "do not
+present this as a supported numerical answer."
 
-Two entry points, because the two things being checked exist at different
-stages: `validate_series()` runs on one freshly retrieved SeriesResult
-(duplicate periods, NaN values that should be None, empty results — things
-only visible before a table flattens periods into one dict);
-`validate_table()` runs on a ComparisonTable, possibly after compose.py
-transformations (citations, unit/frequency consistency across columns,
-requested-geography/period coverage, and derived-column lineage integrity).
-
-Deliberately conservative about what "consistency" and "gap" checks claim:
-a base column with unknown unit/frequency (SeriesResult.unit is commonly
-None today — see core/models.py's docstring) is never treated as
-"inconsistent" with another unknown one, only flagged when two columns'
-values are *both known* and *differ* — the same "unknown is not a
-contradiction" principle already applied in core/selection.py's geographic
-scoring.
+validate_series() checks a fresh SeriesResult (duplicates, NaN, empty);
+validate_table() checks a ComparisonTable (citations, consistency,
+coverage, derived lineage). Unknown metadata is never treated as a
+contradiction — only two *known*, differing values are flagged.
 """
 
 from __future__ import annotations
 
 import math
+from collections import Counter
 from dataclasses import dataclass
 from enum import Enum
 
@@ -43,9 +32,7 @@ _SEVERITY = {ValidationStatus.PASS: 0, ValidationStatus.WARNING: 1, ValidationSt
 @dataclass(frozen=True)
 class ValidationFinding:
     status: ValidationStatus
-    #: Short, stable name of the check that produced this finding, e.g.
-    #: "citations_exist" — matches section 16's checklist item names where
-    #: there's a direct one, so a caller can filter/group by check.
+    #: Stable check name, e.g. "citations_exist" — callers filter by it.
     check: str
     message: str
 
@@ -65,9 +52,7 @@ class ValidationResult:
 
     @property
     def ok(self) -> bool:
-        """False means FAIL: section 16's "a FAIL should prevent an
-        unsupported numerical answer" — callers building an answer must
-        check this before presenting derived numbers."""
+        """False means FAIL — check before presenting derived numbers."""
         return self.status != ValidationStatus.FAIL
 
     def as_dict(self) -> dict:
@@ -79,16 +64,13 @@ def _is_nan(value: float | None) -> bool:
 
 
 def validate_series(series: SeriesResult) -> ValidationResult:
-    """Checks only visible before observations flatten into a
-    ComparisonTable: duplicate periods (a source returning the same period
-    twice, which a table's period->value dict would silently collapse),
-    NaN values that should have been normalized to None, and an empty
-    result."""
+    """Checks only visible before observations flatten into a table:
+    duplicate periods, NaN values that should be None, empty results."""
     findings: list[ValidationFinding] = []
     label = f"{series.indicator_id}/{series.ref_area}"
 
-    periods = [o.period for o in series.observations]
-    duplicate_periods = sorted({p for p in periods if periods.count(p) > 1})
+    period_counts = Counter(o.period for o in series.observations)
+    duplicate_periods = sorted(p for p, count in period_counts.items() if count > 1)
     if duplicate_periods:
         findings.append(
             ValidationFinding(
@@ -134,8 +116,7 @@ def validate_table(
     derived_columns = [c for c in table.columns if c.derived]
     known_keys = {c.key for c in table.columns}
 
-    # citations exist for every base series (section 16 + this project's
-    # core principle: no number without a source).
+    # Citations exist for every base series: no number without a source.
     for c in base_columns:
         if c.attribution is None:
             findings.append(
@@ -146,8 +127,7 @@ def validate_table(
                 )
             )
 
-    # unit / frequency consistency — only when *both* values are known and differ;
-    # unknown is never treated as a contradiction (see module docstring).
+    # Unit/frequency consistency — only when both values are known and differ.
     known_frequencies = sorted({c.frequency for c in base_columns if c.frequency})
     if len(known_frequencies) > 1:
         findings.append(
@@ -169,11 +149,7 @@ def validate_table(
             )
         )
 
-    # price-basis consistency (Phase F) — same "unknown is never a
-    # contradiction" rule: only flagged when two base columns' price_basis
-    # (nominal/real/index/percent/...) are both known and differ, e.g.
-    # combining a current-price series with a constant-price one without
-    # anyone asking for that conversion.
+    # Price-basis consistency — same "unknown is never a contradiction" rule.
     known_price_bases = sorted(
         {
             c.semantics.price_basis
@@ -191,35 +167,16 @@ def validate_table(
             )
         )
 
-    # requested geographies actually returned
-    #
-    # Matched on `ref_area`, never `key` -- `key` is only the geography
-    # code itself for core/ask.py's legacy compare_across_countries()
-    # tables (compose.py sets key=ref_area=ref_area there, so the two
-    # happen to coincide); agent/tools.py::retrieve_series() instead keys
-    # every column by an opaque result_id ("result_1", ...), with the real
-    # geography recorded in `ref_area`. A `key`-based check silently never
-    # matched anything for that path -- live-observed via the research-mode
-    # agent's own validate() calls flagging a real AZE/GEO/KAZ retrieval as
-    # "missing" even though the data was right there under a different key.
-    #
-    # Both sides are resolved through resolve_geography() before comparing
-    # -- live-observed follow-up bug: the agent's own tool calls (and thus
-    # `requested_geographies`) routinely carry a full country name
-    # ("Georgia") while `ref_area` is always the ISO alpha-3 code ("GEO");
-    # a bare .upper() == .upper() compare never matched those, producing
-    # the same false "missing geography" warning this whole check exists to
-    # avoid, just from the opposite side (spelling, not column key).
+    # Requested geographies actually returned. Matched on ref_area, never
+    # `key` (agent columns are keyed by opaque result_ids), and both sides
+    # resolved through resolve_geography() — requests may carry a country
+    # name ("Georgia") while ref_area is the ISO code ("GEO").
+    resolved_columns = [
+        (c, resolve_geography(c.ref_area).upper()) for c in base_columns if c.ref_area is not None
+    ]
     for geo in requested_geographies:
         resolved_geo = resolve_geography(geo).upper()
-        col = next(
-            (
-                c
-                for c in base_columns
-                if c.ref_area is not None and resolve_geography(c.ref_area).upper() == resolved_geo
-            ),
-            None,
-        )
+        col = next((c for c, resolved in resolved_columns if resolved == resolved_geo), None)
         if col is None:
             findings.append(
                 ValidationFinding(
@@ -256,9 +213,8 @@ def validate_table(
                     )
                 )
 
-    # unexpected gaps — conservative: only for columns whose *every* period
-    # parses as a plain 4-digit year (same guard with_cagr uses), so this
-    # never misfires on monthly/quarterly data it can't reason about safely.
+    # Unexpected gaps — only for columns whose every period is a plain
+    # 4-digit year, so this never misfires on monthly/quarterly data.
     for c in base_columns:
         periods_with_values = sorted(p for p in table.periods() if table.value_at(p, c.key) is not None)
         if len(periods_with_values) < 2:
@@ -276,10 +232,8 @@ def validate_table(
                 )
             )
 
-    # derived-column lineage integrity ("formula correctness" / "derived
-    # values mathematically reproduce from inputs", read structurally: every
-    # derived column must record what it was computed from, and every
-    # referenced input must actually exist in this table).
+    # Derived-column lineage integrity: every derived column must record
+    # its inputs, and every referenced input must exist in this table.
     for c in derived_columns:
         if not c.input_series:
             findings.append(

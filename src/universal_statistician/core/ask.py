@@ -1,17 +1,8 @@
-"""answer_question(): the orchestration pipeline behind /ask (Phase 11,
-api.py) — question -> interpretation -> query plan -> selection ->
-retrieval -> transformations -> validation -> answer -> citations/
-provenance -> table + chart, per section 9's target pipeline.
-
-Every step reuses an already-built, already-tested module: planning/ for
-interpretation, core/query_plan.py for the plan itself, core/selection.py
-for choosing indicators, QueryEngine.get_series for retrieval,
-core/compose.py for transformations, core/validation.py for the PASS/
-WARNING/FAIL gate, core/provenance.py for citations. This module only adds
-the glue: turning a QueryPlan's selected indicators + geographies into a
-ComparisonTable, applying plan.transformations by name, and building the
-answer text/chart from validated structured data — never from an LLM
-rewriting numbers (section 18).
+"""answer_question(): the orchestration pipeline behind /ask — question ->
+interpretation -> plan -> selection -> retrieval -> transformations ->
+validation -> answer/citations/chart. Only glue lives here; every step
+reuses an existing module, and answer text is built from validated
+structured data, never from an LLM rewriting numbers.
 """
 
 from __future__ import annotations
@@ -47,20 +38,10 @@ from universal_statistician.core.validation import ValidationResult, ValidationS
 from universal_statistician.planning.base import LLMPlanner
 from universal_statistician.planning.rule_based_planner import RuleBasedPlanner
 
-#: Structured logging (section 26): question received, plan built,
-#: indicators selected, transformations applied, validation outcome, total
-#: request time — core/engine.py's get_series() separately logs cache
-#: hit/miss and per-provider retrieval time, so this module doesn't
-#: duplicate that, only the steps specific to this pipeline.
 logger = logging.getLogger(__name__)
 
-#: Transformations applicable with no extra parameters beyond what a
-#: QueryPlan already carries (start_period/end_period). Ratio/share/
-#: per_capita/difference/index/sum/average/weighted_average all need a
-#: caller-specified column key or weights that a bare transformation *name*
-#: can't carry — they stay directly callable from compose.py, not dispatched
-#: here, an honestly scoped limit of this first /ask implementation (see
-#: docs/architecture/nl-platform.md).
+#: Transformations applicable with no parameters beyond what a QueryPlan
+#: already carries.
 _SIMPLE_TRANSFORMATIONS = {
     "growth": with_growth,
     "yoy_growth": with_growth,
@@ -84,38 +65,24 @@ def _elapsed_ms(started_at: float) -> float:
     return round((time.monotonic() - started_at) * 1000, 1)
 
 
-#: How many catalog candidates _fetch_table will try, in ranked order, for
-#: one (concept, geography) pair before giving up on it -- bounds the
-#: retry cost (each attempt is a real provider call) while still letting a
-#: transient or source-specific failure (a 404 from one dataflow that
-#: doesn't actually cover the requested area, a network blip) fall through
-#: to the next reasonable candidate instead of failing the whole question
-#: outright. Live-observed root cause this exists for: select_indicators()
-#: keeps only the single top-ranked candidate per concept, discarding the
-#: rest -- when that one candidate's *retrieval* fails (not just its
-#: selection), core/ask.py previously had no way back to try candidate #2,
-#: even though build_query_plan() already found it and it was sitting
-#: right there in plan.candidate_indicators.
+#: How many ranked candidates _fetch_table tries per (concept, geography)
+#: before giving up — each attempt is a real provider call. Exists because
+#: select_indicators() keeps only the top candidate; when that one fails at
+#: *retrieval*, the next ranked candidate is the honest fallback.
 _MAX_FETCH_CANDIDATES_PER_CONCEPT = 3
 
 
-def _ranked_candidates_by_concept(plan: QueryPlan) -> dict[str, list[CandidateIndicator]]:
-    """Every candidate for each concept, in the same order select_indicators()
-    itself would rank them (same score_candidate() call, same tie-break) --
-    not a new ranking, just not discarding everything past rank 0."""
-    by_concept: dict[str, list[CandidateIndicator]] = {}
-    for candidate in plan.candidate_indicators:
-        by_concept.setdefault(candidate.concept, []).append(candidate)
-    return {
-        concept: [
-            c
-            for c, _score, _reasons in sorted(
-                ((c, *score_candidate(c, plan)) for c in candidates),
-                key=lambda t: (-t[1], t[0].source_id, t[0].indicator_id),
-            )
-        ]
-        for concept, candidates in by_concept.items()
-    }
+def _ranked_candidates_for_concept(plan: QueryPlan, concept: str) -> list[CandidateIndicator]:
+    """All of one concept's candidates in select_indicators()'s own ranking
+    order (same score, same tie-break) — just not discarding rank 1+."""
+    candidates = [c for c in plan.candidate_indicators if c.concept == concept]
+    return [
+        c
+        for c, _score, _reasons in sorted(
+            ((c, *score_candidate(c, plan)) for c in candidates),
+            key=lambda t: (-t[1], t[0].source_id, t[0].indicator_id),
+        )
+    ]
 
 
 def _fetch_table(engine: QueryEngine, plan: QueryPlan) -> tuple[ComparisonTable | None, list[str]]:
@@ -132,29 +99,22 @@ def _fetch_table(engine: QueryEngine, plan: QueryPlan) -> tuple[ComparisonTable 
 
     multiple_indicators = len({c.indicator_id for c in plan.selected_indicators}) > 1
     multiple_geographies = len(plan.geographies) > 1
-    ranked_by_concept = _ranked_candidates_by_concept(plan)
 
     columns: list[tuple[ComparisonColumn, SeriesResult]] = []
     for selected in plan.selected_indicators:
-        fallback_chain = ranked_by_concept.get(selected.concept) or [selected]
+        fallback_chain = _ranked_candidates_for_concept(plan, selected.concept) or [selected]
         for ref_area in plan.geographies:
             series = None
             candidate = None
             attempt_errors: list[str] = []
             for candidate in fallback_chain[:_MAX_FETCH_CANDIDATES_PER_CONCEPT]:
                 try:
+                    # ref_area is canonical alpha-3; convert to this source's
+                    # own code format only at the retrieval call. The column
+                    # below keeps the canonical form.
                     series = engine.get_series(
                         candidate.source_id,
                         candidate.indicator_id,
-                        # plan.geographies is already the canonical alpha-3
-                        # form (core/query_plan.py::build_query_plan);
-                        # convert to whatever code this specific source's
-                        # ref_area actually expects (e.g. Eurostat's
-                        # alpha-2) only here, at the retrieval call itself —
-                        # the column below still keys off the canonical
-                        # `ref_area`, not this converted one, so validation/
-                        # chart labels stay consistent regardless of which
-                        # source served a given geography.
                         provider_ref_area(ref_area, source_id=candidate.source_id),
                         start_period=plan.start_period,
                         end_period=plan.end_period,
@@ -186,13 +146,8 @@ def _fetch_table(engine: QueryEngine, plan: QueryPlan) -> tuple[ComparisonTable 
                 key=key,
                 label=label,
                 attribution=series.attribution,
-                # Prefer the provider's own unit/semantics (Phase F: some
-                # dataflows, e.g. Eurostat's CP_MEUR, know it structurally
-                # for every fetch); fall back to the catalog's per-indicator
-                # metadata (candidate.unit/.semantics, from
-                # engine.search_indicator()) when the provider itself
-                # didn't supply one - e.g. World Bank, where unit varies by
-                # indicator and only discovery (Phase 2) captures it.
+                # Provider's own unit/semantics first; catalog metadata as
+                # the fallback for sources that don't supply them inline.
                 unit=series.unit or candidate.unit,
                 frequency=series.frequency,
                 indicator_id=candidate.indicator_id,
@@ -209,26 +164,20 @@ def _fetch_table(engine: QueryEngine, plan: QueryPlan) -> tuple[ComparisonTable 
 def _column_key_for_concept(
     table: ComparisonTable, plan: QueryPlan, concept: str | None, ref_area: str
 ) -> tuple[str | None, str | None]:
-    """Resolve a transformation's natural-language concept reference to the
-    ComparisonTable column holding that concept's values for one geography —
-    never an assumed/guessed key. Returns (column_key, error_message); at
-    most one is not None."""
+    """Resolve a transformation's concept reference to the column holding
+    that concept's values for one geography. Returns (column_key,
+    error_message); at most one is not None."""
     if not concept:
         return None, "transformation is missing a required concept reference"
     candidate = next((c for c in plan.selected_indicators if c.concept == concept), None)
     if candidate is None:
         return None, f"Concept {concept!r} was not resolved to a selected catalog indicator"
-    # _fetch_table() may have retrieved a *fallback* candidate for this
-    # concept instead of `candidate` itself when the top-ranked one failed
-    # to retrieve (see _MAX_FETCH_CANDIDATES_PER_CONCEPT) — match on any
-    # indicator_id that concept's ranked fallback chain could plausibly
-    # have been served by, not only the originally top-ranked one, so a
-    # transformation built on this concept still resolves to the column
-    # that's actually there.
+    # _fetch_table() may have used a ranked fallback candidate, so match any
+    # indicator_id in the concept's fallback chain, not only the top pick.
     possible_indicator_ids = {candidate.indicator_id}
     possible_indicator_ids.update(
         c.indicator_id
-        for c in _ranked_candidates_by_concept(plan).get(concept, [])[:_MAX_FETCH_CANDIDATES_PER_CONCEPT]
+        for c in _ranked_candidates_for_concept(plan, concept)[:_MAX_FETCH_CANDIDATES_PER_CONCEPT]
     )
     column = next(
         (

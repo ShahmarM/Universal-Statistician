@@ -1,38 +1,10 @@
-"""Source/indicator selection: pick one candidate per concept, deterministically
-and explainably (section 12), from the catalog candidates a QueryPlan already
-carries.
+"""Deterministic, explainable Top-1 indicator selection per concept.
 
-Agent-migration note (Phase 3, see docs/architecture/agent-migration-note.md):
-this module's automatic, unreviewable Top-1 pick is now scoped to
-core/ask.py's legacy single-pass path — fast mode, manual/API callers, and
-existing tests that construct a QueryPlan directly. The primary
-natural-language path (agent/loop.py's StatisticalAgent, "research" mode)
-never calls select_indicators() at all: it chooses a series by calling
-agent/tools.py's search_series (ranking is a *hint*, never a verdict),
-inspect_series (to compare candidates' actual metadata), and
-reject_candidate (recording *why* an unsuitable one was ruled out) before
-ever calling retrieve_series — replacing "the ranking function chooses"
-with "the LLM chooses, informed by ranking and real metadata, with its
-reasoning recorded in InvestigationState for audit." This module is not
-rewritten or removed; it remains exactly what fast mode and every existing
-caller of build_query_plan()/select_indicators() needs.
-
-Deliberately pure — no engine/network dependency: by the time a plan reaches
-here (core/query_plan.py's build_query_plan()), every candidate already
-carries the catalog metadata (unit, frequency, geographic_coverage) needed to
-score it. Scoring criteria implemented: name-match quality, geographic
-coverage of the requested areas, and frequency match against a requested
-frequency — the criteria section 12 lists that this project can evaluate from
-catalog metadata alone (freshness/completeness would need retrieved
-observations, not just metadata, and belong with the validation layer,
-Phase 9, not selection).
-
-"Never silently mix incompatible series" (section 12) is enforced by
-construction, not a warning bolted on afterward: selection always picks
-exactly one source per concept (candidates for the same concept never get
-merged), and if the concepts of a multi-concept plan end up resolved to
-different sources, that fact is recorded in `assumptions` rather than left
-implicit.
+Used only by core/ask.py's legacy single-pass path (fast mode) — research
+mode's LLM chooses via search/inspect/reject tools instead. Pure: every
+candidate already carries the catalog metadata needed to score it.
+Selection never merges candidates for one concept; mixed sources across
+concepts are recorded in `assumptions`, never left implicit.
 """
 
 from __future__ import annotations
@@ -42,25 +14,12 @@ from dataclasses import replace
 
 from universal_statistician.core.query_plan import CandidateIndicator, QueryPlan
 
-#: Markers that indicate a candidate measures a different *subject* than
-#: the plain concept requested -- one demographic subgroup, or a per-person
-#: rate -- even when its name otherwise shares every word with the concept.
-#: Live-discovered root cause this exists for: for concept "total
-#: population", "Population, female (% of total population)" contains
-#: every one of the concept's words (so the name-match bonus below fired)
-#: while the actually-correct "Population, total" does not (word order
-#: differs) -- unpenalized, this let a subgroup-share series outrank the
-#: real headcount series as the fallback candidate, producing an answer
-#: like "Azerbaijan's population was 50.98" (the female population
-#: *share*, not a population count) with no indication anything was wrong.
-#: Deliberately narrow: NOT "%"/"percent"/"growth"/"rate"/"share"/"ratio"
-#: -- those are the *natural* unit for many concepts (inflation,
-#: unemployment) without the concept text spelling it out, and penalizing
-#: them flips the correct choice for exactly those cases (see
-#: test_catalog_search_rank_breaks_ties_between_equally_named_candidates).
-#: `qualifiers_in()` below is symmetric: it flags a marker only when the
-#: concept text doesn't already ask for it, so "female population" as the
-#: concept itself is unaffected.
+#: Markers of a different *subject* than the plain concept (a subgroup or
+#: per-person rate) even when the name shares every concept word — e.g.
+#: "Population, female (% of total population)" vs concept "total
+#: population". Deliberately narrow: NOT "%"/"rate"/"growth", which are
+#: the natural unit for concepts like inflation. Symmetric: only flagged
+#: when the concept text doesn't itself ask for the marker.
 _QUALIFIER_MARKERS = ("female", "male", "per capita")
 
 
@@ -69,32 +28,21 @@ def _words(text: str) -> frozenset[str]:
 
 
 def _qualifiers_in(text_lower: str) -> frozenset[str]:
-    # Whole-word/whole-phrase matching, not bare substring -- "male" is a
-    # substring of "female", so a naive `marker in text_lower` check would
-    # (wrongly) claim "male" is mentioned by a name that only says "female".
+    # Whole-word matching — "male" is a substring of "female", so a bare
+    # substring check would misfire.
     words = _words(text_lower)
     return frozenset(m for m in _QUALIFIER_MARKERS if (m in text_lower if " " in m or m == "%" else m in words))
 
 
 def score_candidate(candidate: CandidateIndicator, plan: QueryPlan) -> tuple[float, tuple[str, ...]]:
-    """Deterministic score plus the reasons behind it — the score itself is
-    never shown to a user, the reasons are (see select_indicators())."""
+    """Deterministic score plus the reasons behind it — the reasons are
+    shown to users, the score itself never is."""
     score = 0.0
     reasons: list[str] = []
 
-    # Phase H: a real, live-discovered bug — without this, every candidate
-    # for a concept only differs on catalog *metadata* (name substring,
-    # geographic_coverage, frequency), which routinely ties (e.g. no
-    # candidate has geographic_coverage data at all, or two names both
-    # contain the concept word — one as the actual concept, one as an
-    # unrelated compound modifier like "inflation-adjusted"). A tie then
-    # fell through to an arbitrary (source_id, indicator_id) sort, which
-    # picked US_CENSUS_ACS1's noise entry over WB_WDI's flagship indicator
-    # for a plain "inflation" query purely because "US_CENSUS_ACS1" sorts
-    # before "WB_WDI" alphabetically. Catalog.search() already ranks
-    # candidates well (Phase C's composite scoring); this carries that
-    # ranking through instead of discarding it and re-deriving a weaker
-    # signal from scratch.
+    # Carry the catalog's own search ranking through; without it, metadata
+    # ties fell to an arbitrary alphabetical sort that picked noise entries
+    # over flagship indicators.
     score += max(0, 5 - candidate.search_rank) * 0.3
     reasons.append(f"catalog search rank {candidate.search_rank}")
 

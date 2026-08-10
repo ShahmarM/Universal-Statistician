@@ -42,48 +42,26 @@ class Attribution:
 
 @dataclass(frozen=True)
 class StatisticalSemantics:
-    """Structured statistical semantics for an indicator/series (section:
-    "introduce structured statistical semantics where available... Do NOT
-    try to infer these purely from indicator names when reliable metadata
-    exists").
-
-    Every field is optional and defaults to None ("unknown"), not a guess —
-    populated only where a source's own, structurally-known metadata makes
-    it certain (e.g. Eurostat's NAMA_10_GDP dataflow pins its `unit`
-    dimension to `CP_MEUR`, Eurostat's own documented code for "current
-    prices, million euro" — see providers/registry.py — so price_basis/
-    currency/currency_scale are known facts about that dataflow, not an
-    inference from an indicator's display name). core/validation.py reads
-    this to flag combining series with clearly incompatible semantics (e.g.
-    nominal vs. real) the same "unknown never counts as a contradiction"
-    way it already does for unit/frequency.
+    """Structured statistical semantics for an indicator/series. Every
+    field defaults to None ("unknown"), populated only from a source's own
+    structurally-known metadata — never inferred from a display name.
+    validation.py flags combining series with known-incompatible semantics.
     """
 
-    #: "nominal" (current prices), "real" (constant prices), "index",
-    #: "percent", "percentage_points" — the kind of quantity a value is,
-    #: when a source's metadata pins it unambiguously.
+    #: "nominal", "real", "index", "percent", "percentage_points".
     price_basis: str | None = None
-    #: ISO 4217-style currency code (e.g. "EUR", "USD"), when fixed by the
-    #: source's own unit dimension.
+    #: ISO 4217-style code (e.g. "EUR"), when fixed by the source.
     currency: str | None = None
-    #: e.g. "millions", "thousands", "units" — the scale a currency value is
-    #: expressed in, when fixed by the source.
+    #: e.g. "millions" — the scale a currency value is expressed in.
     currency_scale: str | None = None
-    #: True/False only when a source's metadata states it explicitly; None
-    #: (not False) when unknown — this project never treats "not stated" as
-    #: "definitely not per-capita/not seasonally adjusted".
+    #: True/False only when the source states it; None (not False) when
+    #: unknown.
     per_capita: bool | None = None
     seasonally_adjusted: bool | None = None
-    #: The reference year a "real"/"index" series is expressed relative to
-    #: (e.g. "2015" for World Bank's "GDP (constant 2015 US$)"), when a
-    #: source's own metadata states it explicitly — often literally in the
-    #: indicator's published name/unit, not an inference. None (not a
-    #: guess) when the source doesn't pin one down.
+    #: Reference year of a "real"/"index" series (e.g. "2015").
     base_year: str | None = None
-    #: Free-text methodology note from the source's own documentation
-    #: (e.g. a revision/compilation caveat), when a provider's discovery
-    #: API supplies one verbatim. None — not a fabricated summary — when
-    #: it doesn't; task section 3: "never invent missing metadata."
+    #: Verbatim methodology note from the source; never a fabricated
+    #: summary.
     methodology_notes: str | None = None
 
     def as_dict(self) -> dict:
@@ -114,16 +92,9 @@ class StatisticalSemantics:
 class Observation:
     period: str
     value: float | None
-    #: "actual" / "provisional" / "forecast" / "estimate", when the
-    #: provider's wire protocol exposes an observation-status flag (e.g.
-    #: SDMX's OBS_STATUS attribute). Optional and commonly None today —
-    #: same reasoning as SeriesResult.unit below: none of the providers in
-    #: this project currently extract it, but the field exists so a
-    #: provider that *can* supply it has somewhere to put it, and so
-    #: agent/tools.py::inspect_provenance has a real field to read rather
-    #: than needing another model change later. Never inferred or guessed
-    #: when the provider didn't supply it — stays None, surfaced as
-    #: "unknown", not silently assumed "actual".
+    #: "actual"/"provisional"/"forecast"/"estimate" when the provider's
+    #: protocol exposes it (e.g. SDMX OBS_STATUS); None means unknown,
+    #: never assumed "actual".
     status: str | None = None
 
 
@@ -134,19 +105,11 @@ class SeriesResult:
     frequency: str
     observations: tuple[Observation, ...]
     attribution: Attribution
-    #: Unit of measure (e.g. "current US$", "persons"), when the provider's
-    #: wire protocol actually exposes it. Optional and commonly None today —
-    #: none of the providers in this project currently extract it from their
-    #: source's response (SDMX/PX-Web/Census don't return it inline with
-    #: observation values the way they do frequency); the field exists so a
-    #: provider that *can* supply it has somewhere to put it, and so
-    #: core/validation.py's unit-consistency check has a real field to read
-    #: rather than needing another model change later.
+    #: Unit of measure, when the provider's protocol exposes it (commonly
+    #: None today — most sources don't return it inline).
     unit: str | None = None
-    #: Structured semantics (Phase F) — see StatisticalSemantics. Populated
-    #: from providers/registry.py's SDMXSourceConfig.semantics when a
-    #: dataflow's own fixed key dimensions make it certain (e.g. Eurostat's
-    #: CP_MEUR), None otherwise — never inferred from the indicator's name.
+    #: Populated only when a dataflow's fixed dimensions make it certain;
+    #: never inferred from the indicator's name.
     semantics: "StatisticalSemantics | None" = None
 
     def as_dict(self) -> dict:
@@ -164,11 +127,8 @@ class SeriesResult:
 
     @staticmethod
     def from_dict(payload: dict) -> "SeriesResult":
-        """Inverse of as_dict() — round-trips a result through the cache
-        without losing its type (callers should never see a bare dict).
-        `status` must round-trip too (core/cache.py's TTL cache stores
-        exactly this dict) or a provider-supplied actual/provisional/
-        forecast flag would silently vanish on every cache hit."""
+        """Inverse of as_dict(). `status` must round-trip too, or the TTL
+        cache would silently drop it on every hit."""
         semantics_payload = payload.get("semantics")
         return SeriesResult(
             indicator_id=payload["indicator_id"],
@@ -201,17 +161,8 @@ class DimensionValue:
 
 @dataclass(frozen=True)
 class DimensionSpec:
-    """One dimension of a dataset/series (e.g. "geo", "unit", "na_item"),
-    with the values a source has published for it where known.
-
-    Deliberately separate from `IndicatorMeta.indicator_id`/`ref_area`: those
-    two are the two dimensions every existing Provider already treats as
-    first-class (the {indicator}/{ref_area} placeholders in
-    providers/registry.py). `DimensionSpec` is for the *other* dimensions a
-    multidimensional dataset (Eurostat, IMF, OECD, ...) may pin or expose —
-    e.g. Eurostat's `unit`, `s_adj` — captured for search/filtering/query
-    planning without forcing every provider to model them yet.
-    """
+    """One dataset dimension (e.g. "unit", "s_adj") beyond the first-class
+    indicator/ref_area pair, with its published values where known."""
 
     code: str
     label: str | None = None
@@ -235,19 +186,9 @@ class DimensionSpec:
 
 @dataclass(frozen=True)
 class IndicatorMeta:
-    """A searchable catalog entry.
-
-    Distinguishes what a source actually publishes from what we know about
-    it: `indicator_id`/`source_id` identify the queryable series (the pair
-    every `QueryEngine.get_series()` call needs), `dataset_id` identifies the
-    dataset/dataflow it comes from (may cover many indicators — see
-    providers/registry.py's module docstring on why a registry entry is
-    "source + dataflow", not "source" alone), and everything else is
-    descriptive metadata a source *may* publish, kept optional so a source
-    that can only offer a bare code + label (e.g. a not-yet-fully-discovered
-    provider) still produces a valid, searchable entry — richer sources fill
-    in more without needing a different model.
-    """
+    """A searchable catalog entry. indicator_id/source_id identify the
+    queryable series; dataset_id the dataflow it belongs to; everything
+    else is optional metadata a source may publish."""
 
     indicator_id: str
     name: str
@@ -260,12 +201,10 @@ class IndicatorMeta:
     dimensions: tuple[DimensionSpec, ...] | None = None
     source_organization: str | None = None
     official_url: str | None = None
-    #: ISO date/datetime string for when the *source* last updated this
-    #: indicator's metadata (not when we last ingested it — see
-    #: core/ingestion.py's IngestionReport for our own ingestion timestamps).
+    #: When the *source* last updated this indicator (not our ingestion
+    #: time).
     last_updated: str | None = None
     keywords: tuple[str, ...] | None = None
-    #: Structured semantics (Phase F) — see StatisticalSemantics.
     semantics: "StatisticalSemantics | None" = None
 
     def as_dict(self) -> dict:

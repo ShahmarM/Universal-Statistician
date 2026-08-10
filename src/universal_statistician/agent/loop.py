@@ -1,20 +1,10 @@
-"""StatisticalAgent: the iterative investigation loop (Phase 2).
+"""StatisticalAgent: the iterative investigation loop.
 
-question -> LLM -> tool call -> tool result -> LLM -> another tool call ->
-... -> InvestigationState (the "final structured evidence package" task
-section 1 asks for). Mirrors chat.py's ChatSession loop mechanics (append
-assistant content, run any tool_use blocks, append tool_results, repeat
-until no more tool_use blocks) — same proven pattern, purpose-built here
-for agent/tools.py's trusted tool set instead of the general MCP tools,
-and producing an auditable InvestigationState instead of only a chat
-reply.
-
-The loop's own textual output is never the user-facing answer: the
-investigator's final free-text turn (when it stops calling tools) is kept
-only as a debug-visible summary (`InvestigationState.
-investigator_summary`) — Phase 6's answer writer builds the real answer
-from the validated evidence alone, in a separate call with no tool
-access, so a stray sentence here can never become an unverified claim.
+question -> LLM -> tool calls -> tool results -> ... -> auditable
+InvestigationState. The investigator's own final free text is debug-only
+(investigator_summary); the answer writer builds the real answer from the
+validated evidence in a separate, tool-less call, so a stray sentence here
+can never become an unverified claim.
 """
 
 from __future__ import annotations
@@ -67,9 +57,8 @@ INVESTIGATOR_SYSTEM_PROMPT = (
 
 @dataclass(frozen=True)
 class AgentLimits:
-    """Stopping rules (task section 6) — the loop must not run indefinitely.
-    Defaults are generous enough for a genuinely multi-source investigation
-    (task section 5's IMF-vs-World-Bank example) without being unbounded."""
+    """Stopping rules — generous enough for a multi-source investigation,
+    never unbounded."""
 
     max_tool_calls: int = 25
     max_iterations: int = 15
@@ -79,20 +68,16 @@ class AgentLimits:
 
 
 def _requested_geography_count(tool_input: dict) -> int:
-    """How many actual provider requests a pending retrieve_series call
-    would make -- one per geography, matching agent/tools.py::retrieve_series's
-    own per-geography loop exactly. Malformed input (not a list) counts as 0
-    rather than raising here; retrieve_series itself will report the real
-    error when it actually runs."""
+    """Provider requests a pending retrieve_series call would make — one
+    per geography. Malformed input counts as 0; retrieve_series reports
+    the real error when it runs."""
     geographies = tool_input.get("geographies") if isinstance(tool_input, dict) else None
     return len(geographies) if isinstance(geographies, list) else 0
 
 
 def _summarize_tool_output(result: dict) -> dict:
-    """A small, debug-safe summary of a tool result for
-    InvestigationState.tool_call_history — full payloads already live in
-    the conversation `messages` list (not persisted onto the state), this
-    is only for the observability/debug view (task sections 15, 21)."""
+    """Small, debug-safe summary of a tool result for tool_call_history;
+    full payloads stay in the conversation messages only."""
     summary = dict(result)
     for key in ("candidates", "results"):
         value = summary.get(key)
@@ -125,14 +110,9 @@ class StatisticalAgent:
         state: InvestigationState | None = None,
         instruction: str | None = None,
     ) -> InvestigationState:
-        """Run the investigation loop. Pass `state` (from a prior call) plus
-        `instruction` to continue an existing investigation instead of
-        starting fresh — Phase 7's investigator<->verifier retry loop uses
-        this so a second round can build on already-retrieved/derived
-        results (same InvestigationState, same result_ids) instead of
-        redoing work; `state.iteration_count`/`tool_call_history` keep
-        accumulating, so AgentLimits still bound the *whole* verified
-        investigation, not just one round of it."""
+        """Run the investigation loop. Pass `state` + `instruction` to
+        continue a prior investigation (verifier retries do): counters keep
+        accumulating, so AgentLimits bound the whole investigation."""
         resuming = state is not None
         if state is None:
             state = InvestigationState(question=question, engine=self.engine)
@@ -210,11 +190,8 @@ class StatisticalAgent:
                     state.provider_call_count + _requested_geography_count(block.input)
                     > self.limits.max_provider_calls
                 ):
-                    # Checked prospectively against the *geographies this
-                    # call is about to request*, not against how many times
-                    # retrieve_series has been called -- a single call
-                    # requesting many geographies is many provider requests,
-                    # not one (see InvestigationState.provider_call_count).
+                    # Prospective: one call for many geographies is many
+                    # provider requests, not one.
                     result, duration_ms = (
                         {
                             "error": (

@@ -1,41 +1,17 @@
-"""Separate answer-writing pass + evidence-ID grounding guard (task section 2).
+"""Answer-writing pass + evidence-ID grounding guard.
 
-The investigator (agent/loop.py) never writes the user-facing answer —
-its own final turn is debug-only (InvestigationState.investigator_summary,
-see that module's docstring). This module is where prose actually gets
-written, and it is deliberately constrained more tightly than the
-investigator:
+The writer gets only a JSON evidence package (no tools, no history) and
+must respond via a forced tool call: answer `text` plus one citation per
+number, each naming an exact evidence_id and its believed geography/
+period/value_kind. check_answer_grounding() verifies every citation
+against the real evidence cell — so "Georgia GDP was 72.4" fails if
+72.4's evidence_id belongs to Azerbaijan, which a flat "number exists
+somewhere" check could never catch. write_and_verify_answer() retries a
+bounded number of times, then falls back to a deterministic answer.
 
-- Input is a plain JSON evidence package (InvestigationState.
-  evidence_package()) — no tools, no message history, no ability to ask
-  for more data. The writer cannot retrieve, calculate, or investigate;
-  it can only describe what's already there.
-- Output is a forced tool call (mirroring planning/anthropic_planner.py
-  and agent/verifier.py), never free text: `text` (the answer) plus
-  `citations` — one entry per number `text` states, each naming the exact
-  `evidence_id` (agent/evidence.py) it came from and what the model
-  *believes* that evidence_id's geography/period/value_kind are.
-- `check_answer_grounding()` then verifies every citation against the
-  *actual* evidence_id it names — not "does this number exist somewhere,"
-  but "does this exact cell exist, does its value match what was stated,
-  and do its real geography/period/value_kind match what the citation
-  claims." A claim like "Georgia GDP was 72.4" fails here if 72.4's real
-  evidence_id belongs to Azerbaijan, even though 72.4 genuinely is
-  somewhere in the evidence package — the old flat "collect every number
-  from the table and check membership" guard could never catch that; a
-  per-cell identity a claim must point to, and Python checks, can.
-- `write_and_verify_answer()` retries a bounded number of times on an
-  ungrounded/incompatible citation, then falls back to a supplied
-  deterministic answer instead of ever returning unchecked prose —
-  "do not silently return unsupported prose" (task section 9) is enforced
-  here, not left to the prompt alone.
-
-Honest limitation (see agent/evidence.py's docstring for the full
-statement): this checks a citation's *declared* geography/period/kind
-against the real evidence, which is a strong forcing function but not
-literal NLP over the prose sentence itself — agent/verifier.py's
-independent semantic pass is the second, complementary layer for the
-residual case where the prose disagrees with its own citation.
+Limitation: this checks a citation's *declared* metadata, not the prose
+itself; agent/verifier.py's semantic pass covers prose that disagrees
+with its own citation.
 """
 
 from __future__ import annotations
@@ -92,9 +68,7 @@ ANSWER_WRITER_SYSTEM_PROMPT = (
 
 WRITE_ANSWER_TOOL_NAME = "report_answer"
 
-#: Mirrors agent/evidence.py::VALUE_KINDS — duplicated as a literal tuple
-#: (not imported) only so this schema stays a static constant; the two are
-#: kept in sync by test_agent_answer_writer.py asserting equality.
+#: Mirrors agent/evidence.py::VALUE_KINDS; a test asserts they stay equal.
 _CITATION_VALUE_KINDS = (
     "count", "currency", "index", "level", "percent", "percentage_points", "ratio", "rank", "unknown",
 )
@@ -141,22 +115,11 @@ WRITE_ANSWER_TOOL_SCHEMA = {
     },
 }
 
-#: Matches a numeric token, with proper thousands-grouped commas (groups of
-#: exactly 3 digits) or plain digits, optional decimal part, optional %.
-#: Guarded on both sides against a letter/underscore immediately adjacent
-#: (word-boundary via lookaround, not \b -- \b doesn't fire between "_" and
-#: a digit, since both count as "word" characters) -- live-observed
-#: without this: "Column 'result_1' has gap(s)..." misparsed the "1" in
-#: the identifier "result_1" as if it were a bare statistic "1.0",
-#: producing a false "ungrounded number" flag on text that never actually
-#: claimed a number at all.
-#: The leading digit is also guarded against an immediately-preceding digit,
-#: so a leading "-" is only ever read as a minus sign when nothing but a
-#: non-digit (or nothing) precedes it -- live-observed without this: derived
-#: column labels like "CAGR % (2015-2023)" misparsed the hyphen joining a
-#: year *range* as a negative sign, producing a fabricated "-2023" that
-#: could never match any real evidence value and flagged the whole label as
-#: an ungrounded number.
+#: Numeric token: comma-grouped or plain digits, optional decimal and %.
+#: Lookarounds (not \b, which doesn't fire between "_" and a digit) keep
+#: digits inside identifiers ("result_1") from parsing as numbers, and the
+#: digit guard before "-" keeps a year-range hyphen ("2015-2023") from
+#: parsing as a minus sign.
 _NUMBER_PATTERN = re.compile(
     r"(?<![A-Za-z_\d])-?\d{1,3}(?:,\d{3})+(?:\.\d+)?%?(?![A-Za-z_])"
     r"|(?<![A-Za-z_\d])-?\d+(?:\.\d+)?%?(?![A-Za-z_])"
@@ -245,24 +208,17 @@ class AnswerDraft:
 @runtime_checkable
 class LLMAnswerWriter(Protocol):
     def write(self, *, system: str, evidence: dict) -> AnswerDraft:
-        """Produce a grounded answer from a JSON-serializable evidence
-        package only — no tools, no message history, no ability to ask a
-        follow-up question. Returns `text` plus the `citations` the model
-        declared for every number in it (see check_answer_grounding())."""
+        """Produce a grounded answer from the evidence package alone — no
+        tools, no history — with a citation for every number."""
         ...
 
 
 @dataclass
 class AnthropicAnswerWriter:
-    """LLMAnswerWriter backed by the Claude API via a forced tool call
-    (mirrors planning/anthropic_planner.py and agent/verifier.py) — the
-    model can only respond by filling in WRITE_ANSWER_TOOL_SCHEMA's
-    fields, which is what makes `citations` structured data Python can
-    check rather than something that would have to be parsed back out of
-    free prose. Deliberately no other tools available, unlike
-    AnthropicAgent — this role cannot call anything else, by construction,
-    not just by prompt. `client` is injected, never constructed here, same
-    testability convention as every other LLM role in this package."""
+    """LLMAnswerWriter via a forced tool call: the model can only fill in
+    WRITE_ANSWER_TOOL_SCHEMA, making citations checkable structured data.
+    No other tools are offered — this role can't call anything else by
+    construction. `client` is injected for testability."""
 
     client: Any
     model: str = DEFAULT_MODEL
@@ -332,16 +288,10 @@ def check_citation(citation: Citation, evidence: dict) -> list[str]:
 
 
 def check_answer_grounding(draft: AnswerDraft, evidence: dict) -> dict:
-    """Verify every number `draft.text` states is backed by a citation that
-    is itself fully compatible with the evidence_id it names. Returns
-    {"ok": bool, "ungrounded_numbers": [...], "citation_problems": {evidence_id: [...]}}.
-
-    A number in `text` with no matching valid citation is "ungrounded"
-    (fabricated, or simply never cited). A citation whose evidence_id
-    exists but whose claimed geography/period/value_kind is wrong, or
-    whose stated_value doesn't match the real value, is an "incompatible"
-    citation — that specific citation doesn't count toward grounding any
-    number, even if its evidence_id is real."""
+    """Verify every number in `draft.text` is backed by a fully compatible
+    citation. Returns {"ok", "ungrounded_numbers", "citation_problems"}.
+    An incompatible citation (wrong value/geography/period/kind) grounds
+    nothing, even if its evidence_id is real."""
     citation_problems: dict[str, list[str]] = {}
     valid: list[Citation] = []
     for citation in draft.citations:
@@ -372,10 +322,8 @@ def write_answer(evidence: dict, writer: LLMAnswerWriter) -> AnswerDraft:
 @dataclass(frozen=True)
 class AnswerWriteResult:
     text: str
-    #: False when every LLM attempt produced an ungrounded number or an
-    #: incompatible citation (or the writer call itself failed) and `text`
-    #: is the deterministic fallback instead — task section 9: never
-    #: silently return unsupported prose.
+    #: False when every attempt failed grounding (or the writer raised) and
+    #: `text` is the deterministic fallback.
     llm_written: bool
     ungrounded_numbers: tuple[float, ...] = ()
     citation_problems: dict[str, list[str]] | None = None
@@ -389,11 +337,8 @@ def write_and_verify_answer(
     fallback_text: str,
     max_attempts: int = 2,
 ) -> AnswerWriteResult:
-    """Write the answer, check its grounding, and retry on an ungrounded
-    number or incompatible citation — falling back to `fallback_text` (the
-    deterministic table-derived answer every mode already builds, see
-    agent/modes.py) rather than ever returning prose that failed the
-    check."""
+    """Write, check grounding, retry on failure — never returning prose
+    that failed the check; `fallback_text` is the deterministic answer."""
     last_ungrounded: tuple[float, ...] = ()
     last_problems: dict[str, list[str]] | None = None
     for attempt in range(1, max_attempts + 1):

@@ -1,28 +1,10 @@
-"""InvestigationState: the per-question working memory the agent tool layer
-(agent/tools.py) reads from and writes to.
+"""InvestigationState: per-question working memory for the agent tool layer.
 
-Deliberately scoped to one investigation, not a long-term memory store —
-"the purpose is to prevent repeated searches and to make the investigation
-auditable," not to remember anything across questions. A caller building a
-new StatisticalAgent run constructs a fresh InvestigationState; nothing
-here is persisted between requests.
-
-Two kinds of data live here:
-
-1. **Real evidence** (`table`, `retrieved`, `derived`): a `ComparisonTable`
-   (core/compose.py) that accumulates one column per retrieved series and
-   one column per calculation, keyed by a stable `result_id` the LLM
-   references in later tool calls (never a raw number, never an indicator
-   code it invented — see agent/tools.py's module docstring). This is
-   exactly the structure core/ask.py's legacy path already builds, just
-   grown incrementally instead of all at once from a pre-computed plan.
-2. **Audit trail** (`candidates_considered`, `candidates_rejected`,
-   `tool_call_history`, `assumptions`, `unresolved_ambiguities`,
-   `warnings`, `validation_results`, `provenance_references`,
-   `iteration_count`): never used to compute anything, only to make the
-   investigation inspectable — the `debug=true` /ask response (task
-   section 15) and the observability log (section 21) are both built from
-   this, not from re-deriving it after the fact.
+Scoped to one investigation; nothing persists between requests. Holds real
+evidence (`table`, `retrieved`, `derived` — one column per retrieval or
+calculation, keyed by stable result_ids the LLM must reference) and an
+audit trail (candidates, warnings, tool_call_history, ...) that is only
+ever appended to, never used to compute anything.
 """
 
 from __future__ import annotations
@@ -36,9 +18,8 @@ from universal_statistician.core.models import SeriesResult
 
 
 def catalog_id(source_id: str, indicator_id: str) -> str:
-    """The stable string identity a search/inspect result is referenced by
-    in later tool calls — never guessed or constructed by the LLM itself,
-    always copied verbatim from a prior tool result."""
+    """Stable identity later tool calls reference — copied verbatim from a
+    prior tool result, never constructed by the LLM."""
     return f"{source_id}::{indicator_id}"
 
 
@@ -55,9 +36,7 @@ def parse_catalog_id(value: str) -> tuple[str, str]:
 
 @dataclass(frozen=True)
 class CandidateSummary:
-    """One catalog candidate as surfaced to the LLM — a search/inspect
-    result, never a selection. See agent/tools.py::search_series/
-    inspect_series."""
+    """One catalog candidate as surfaced to the LLM — never a selection."""
 
     catalog_id: str
     source_id: str
@@ -106,10 +85,8 @@ class RejectedCandidate:
 
 @dataclass(frozen=True)
 class RetrievedResult:
-    """One retrieve_series() call's outcome — the ComparisonColumn it added
-    to `InvestigationState.table` plus the raw SeriesResult it came from
-    (kept for compare_series/inspect_provenance, which need the untouched
-    observations, not only the table's flattened period->value cells)."""
+    """One retrieve_series() outcome; keeps the raw SeriesResult for tools
+    that need untouched observations, not just flattened table cells."""
 
     result_id: str
     catalog_id: str
@@ -133,9 +110,8 @@ class ToolCallRecord:
     iteration: int
     tool_name: str
     input: dict
-    #: Structured, not the full tool-result text — kept small and safe to
-    #: serialize into the debug response / observability log (section 21:
-    #: never log full hidden reasoning, only structured decisions).
+    #: Structured summary, not the full tool-result text — small and safe
+    #: to serialize into debug/observability output.
     output_summary: dict
     duration_ms: float
 
@@ -162,34 +138,25 @@ class InvestigationState:
     retrieved: dict[str, RetrievedResult] = field(default_factory=dict)
     derived: dict[str, DerivedResult] = field(default_factory=dict)
 
-    #: Audit trail (see module docstring) — never read by any tool to
-    #: decide behavior, only appended to.
+    #: Audit trail — append-only, never read by tools to decide behavior.
     candidates_considered: list[CandidateSummary] = field(default_factory=list)
     candidates_rejected: list[RejectedCandidate] = field(default_factory=list)
     assumptions: list[str] = field(default_factory=list)
     unresolved_ambiguities: list[str] = field(default_factory=list)
     warnings: list[str] = field(default_factory=list)
     validation_results: list[dict] = field(default_factory=list)
-    #: One entry per investigator<->verifier round (Phase 7), each a
-    #: VerificationReport.as_dict() — debug-only, like tool_call_history:
-    #: the verifier's own past verdicts are not fed back into
-    #: evidence_package(), only used by agent/modes.py's retry loop to
-    #: decide whether to send the investigator back for another round.
+    #: One VerificationReport.as_dict() per verifier round — debug-only;
+    #: read by agent/modes.py's retry loop, never fed back into evidence.
     verification_results: list[dict] = field(default_factory=list)
     provenance_references: list[dict] = field(default_factory=list)
     tool_call_history: list[ToolCallRecord] = field(default_factory=list)
     iteration_count: int = 0
-    #: Actual provider/API requests attempted (agent/tools.py::retrieve_series
-    #: increments this once per geography it tries, success or failure) --
-    #: distinct from tool-call count, since one retrieve_series call can
-    #: request many geographies at once. AgentLimits.max_provider_calls
-    #: bounds *this*, not how many times the retrieve_series tool itself was
-    #: invoked, so a single call requesting 20 countries can't silently
-    #: bypass the budget a limit of e.g. 15 was meant to enforce.
+    #: Actual provider requests (one per geography tried, success or fail)
+    #: — distinct from tool-call count; AgentLimits.max_provider_calls
+    #: bounds this so one call requesting 20 countries can't bypass it.
     provider_call_count: int = 0
-    #: The investigator's own final free-text turn (Phase 2) — debug-visible
-    #: only, never the user-facing answer. See agent/loop.py's module
-    #: docstring for why the answer writer (Phase 6) never uses this.
+    #: Investigator's own final free-text turn — debug-only, never the
+    #: user-facing answer.
     investigator_summary: str = ""
 
     _next_result_id: int = field(default=1, repr=False)
@@ -212,9 +179,8 @@ class InvestigationState:
         )
 
     def merge_derived_table(self, updated_table: ComparisonTable, new_column_key: str) -> None:
-        """Absorb the single new derived column a compose.py with_*()
-        function added to a scratch table built from `self.table`'s
-        existing columns — see agent/tools.py::calculate()."""
+        """Absorb the one new derived column a with_*() call added to a
+        scratch table built from this table's columns."""
         new_column = updated_table.column(new_column_key)
         self.table = ComparisonTable(
             columns=(*self.table.columns, new_column),
@@ -236,17 +202,12 @@ class InvestigationState:
         )
 
     def evidence_index(self) -> dict[str, EvidenceEntry]:
-        """Every populated table cell as a stable evidence_id -> EvidenceEntry
-        map (agent/evidence.py) — the grounding surface agent/answer_writer.py's
-        citation check and agent/verifier.py's semantic check both use.
-        Rebuilt fresh from `table` each call, never cached, so it can never
-        go stale relative to it."""
+        """evidence_id -> EvidenceEntry for every populated cell, rebuilt
+        fresh each call so it can't go stale."""
         return build_evidence_index(self)
 
     def resolve_result_ids(self) -> dict:
-        """Debug/summary view: every result_id this investigation has
-        produced, base and derived alike — task section 15's `debug=true`
-        "selected_series"/"calculations" and section 3's audit fields."""
+        """Debug view of every result_id produced, base and derived."""
         return {
             "retrieved": {rid: r.catalog_id for rid, r in self.retrieved.items()},
             "derived": {
@@ -256,16 +217,9 @@ class InvestigationState:
         }
 
     def evidence_package(self) -> dict:
-        """The "final structured evidence package" the investigation loop
-        produces (task section 1's architecture diagram) — everything
-        downstream (validation, the answer writer, the verifier) may use,
-        and *only* what it may use: the accumulated table, the per-cell
-        evidence index (agent/evidence.py — what a numeric claim must cite
-        to be grounded), resolved provenance, warnings/assumptions, and
-        which candidates were considered/rejected. Never includes
-        tool_call_history's full payloads or the investigator's own free
-        text — see agent/loop.py's module docstring on why
-        `investigator_summary` is debug-only."""
+        """Everything downstream (answer writer, verifier) may use, and only
+        that — excludes tool_call_history payloads and the investigator's
+        free text."""
         return {
             "question": self.question,
             "table": self.table.as_dict(),
