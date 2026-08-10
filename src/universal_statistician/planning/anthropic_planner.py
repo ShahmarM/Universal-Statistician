@@ -18,11 +18,6 @@ MAX_TOKENS = 1024
 
 PLAN_TOOL_NAME = "propose_query_plan"
 
-# section 11 (ambiguity handling) + section 23 (anti-hallucination), turned
-# into an instruction: infer the conventional reading when confident, say so
-# in `assumptions`, and only set needs_clarification when the interpretations
-# would materially change the result — never invent an indicator code, only
-# natural-language concepts for the catalog to resolve.
 SYSTEM_PROMPT = (
     "You interpret natural-language statistical questions into a structured "
     "query plan. You never state a statistic, an indicator code, or a country "

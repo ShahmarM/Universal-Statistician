@@ -37,13 +37,7 @@ _DISCOVERABLE_SDMX_PROVIDERS = {
     "OECD_NAMAIN10": OECDProvider,
 }
 
-#: Structured logging (section 26): catalog searches, cache hit/miss,
-#: provider requests, retrieval time. Deliberately stdlib `logging`, not a
-#: new dependency — a personal/local tool doesn't need a metrics pipeline,
-#: only records worth grepping/forwarding if one is added later. Never logs
-#: secrets: nothing here touches ANTHROPIC_API_KEY or any credential, only
-#: source/indicator/area identifiers and timings, all already public in
-#: this project's own catalog/registry.
+#: Logs only public identifiers and timings, never secrets.
 logger = logging.getLogger(__name__)
 
 
@@ -76,11 +70,7 @@ class QueryEngine:
         return results
 
     def describe_indicator(self, source_id: str, indicator_id: str) -> IndicatorMeta | None:
-        """Direct-by-id catalog lookup (Catalog.get()) — unlike
-        search_indicator(), no ranking/text-matching involved: used by the
-        agent's inspect_series tool (agent/tools.py) to fetch full metadata
-        for one specific catalog_id a caller already has, e.g. from a prior
-        search_series result."""
+        """Direct-by-id catalog lookup — no ranking/text matching."""
         return self._catalog.get(source_id, indicator_id)
 
     def _get_provider(self, source_id: str) -> Provider:
@@ -127,33 +117,21 @@ class QueryEngine:
         return result
 
     def refresh_catalog(self, source_id: str | None = None) -> list[IngestionReport]:
-        """Re-discover and upsert catalog metadata (core/ingestion.py) for one
-        source, or every discoverable source when source_id is omitted.
-
-        Deliberately not called automatically anywhere (not at startup, not
-        from get_series/search_indicator) — ingestion is an explicit,
-        admin-triggered action (see `ustat catalog refresh`), so an ordinary
-        query never pays for a metadata discovery call it didn't ask for.
-        """
+        """Re-discover and upsert catalog metadata for one source, or all.
+        Only ever explicit/admin-triggered — never run automatically, so an
+        ordinary query never pays for discovery."""
         if source_id is not None:
             return [ingest_source(source_id, self._get_provider(source_id), self._catalog)]
         return refresh_all(self._providers, self._catalog)
 
     def catalog_stats(self) -> dict:
-        """Catalog-health snapshot (see Catalog.summary()) — sources/
-        datasets/indicators counts, per-source breakdown, last refresh
-        time — a cheap way to see ingestion's effect without re-running it."""
+        """Catalog-health snapshot (see Catalog.summary())."""
         return self._catalog.summary()
 
 
-#: Where the catalog's SQLite database lives by default (Phase B: "the
-#: catalog must persist between application restarts... do not rely on an
-#: in-memory catalog for the normal deployed application"). Overridable via
-#: USTAT_CATALOG_DB_PATH; the literal value ":memory:" opts back into a
-#: non-persistent catalog — what every offline test in this project uses
-#: (see tests/conftest.py, which sets this env var before cli.py/api.py/
-#: mcp_server.py — each of which builds a default_engine() at import time —
-#: are ever imported, so the test suite never touches a real file here).
+#: Default on-disk catalog path. Overridable via USTAT_CATALOG_DB_PATH;
+#: the literal ":memory:" opts into a non-persistent catalog (what tests
+#: use, set in tests/conftest.py before any interface module is imported).
 DEFAULT_CATALOG_DB_PATH = Path.home() / ".universal_statistician" / "catalog.db"
 
 
@@ -172,38 +150,18 @@ def _open_catalog() -> Catalog:
     connection = sqlite3.connect(path, check_same_thread=False)
     catalog = Catalog(connection)
     if not catalog.stats():
-        # First run against this database file: seed the small set of
-        # indicators already verified end-to-end in get_series() (see
-        # providers/catalog_seed.py), so search/get_series work before
-        # anyone has run `ustat catalog refresh`. Never re-seeds an
-        # already-populated catalog on a later restart — that would
-        # silently overwrite richer, discovered metadata (Phase 2-6) with
-        # the seed's minimal placeholders every time the app starts.
+        # Seed only an empty database — re-seeding would overwrite richer
+        # discovered metadata with the seed's minimal placeholders.
         catalog.add(CATALOG_SEED)
     return catalog
 
 
 def default_engine() -> QueryEngine:
-    """QueryEngine wired up with every registered source (SDMX, PX-Web, and
-    Census alike), and a catalog persisted to disk (see _open_catalog()) so
-    metadata discovered via `ustat catalog refresh` survives restarts.
-
-    Provider construction must stay network-free here: this runs at startup
-    for every interface (MCP, CLI, API), before anyone has asked for
-    anything from a specific source, so a source that's unreachable at that
-    moment must not break every other source's availability. SDMXProvider
-    and PXWebProvider both connect lazily on first use for exactly this
-    reason (see PXWebProvider's docstring for the bug this would otherwise
-    cause). Opening the catalog's own SQLite file is a local disk operation,
-    not a network call, so it stays safe to do unconditionally here.
-    """
+    """QueryEngine wired up with every registered source and a persistent
+    catalog. Provider construction must stay network-free: this runs at
+    startup for every interface, and one unreachable source must not break
+    the rest (providers connect lazily on first use)."""
     providers: dict[str, Provider] = {
-        # Some SDMX sources additionally support catalog discovery (Phases
-        # 2-3) via a dedicated subclass — see WorldBankProvider's and
-        # IMFProvider's docstrings for why each is a subclass rather than a
-        # change to SDMXProvider itself (their discovery mechanisms are
-        # genuinely different from each other, and from sources that don't
-        # have one yet).
         source_id: _DISCOVERABLE_SDMX_PROVIDERS.get(source_id, SDMXProvider)(config)
         for source_id, config in SOURCES.items()
     }

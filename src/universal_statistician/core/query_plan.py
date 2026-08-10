@@ -1,23 +1,8 @@
-"""Structured query plan: the explicit, inspectable object between a
-natural-language question and any retrieval/calculation.
-
-This is the mechanism section 23's anti-hallucination rules are built on:
-an LLM (or any planner) proposes a *QuestionInterpretation* — concepts,
-geographies, periods, requested transformations — but never an indicator
-code. `build_query_plan()` is the one place candidate indicators get filled
-in, and it does so by calling `QueryEngine.search_indicator()` (the same
-deterministic catalog search every interface already uses), never by
-trusting a code the planner suggested. A QueryPlan is data, not behavior —
-inspectable/debuggable before any retrieval happens (the "expose query
-plans in developer/debug mode" requirement), and serializable for the
-future `/ask` endpoint (Phase 11).
-
-Source/indicator *selection* among candidates (Phase 8) and
-validation *results* (Phase 9) are out of scope here — `selected_indicators`
-and `validation_notes` exist on QueryPlan now, empty, because the shape is
-specified by the target /ask response (this project's own task
-description's section 10) and stabilizing it now avoids a breaking change
-to every caller once those phases land, but nothing here computes them yet.
+"""Structured query plan: the inspectable object between a question and
+any retrieval. A planner proposes a QuestionInterpretation (concepts,
+geographies, periods, transformations) but never an indicator code —
+build_query_plan() fills in candidates via the deterministic catalog
+search alone. A QueryPlan is data, not behavior.
 """
 
 from __future__ import annotations
@@ -27,17 +12,9 @@ from dataclasses import dataclass, field, replace
 from universal_statistician.core.geography import resolve_geography
 from universal_statistician.core.models import StatisticalSemantics
 
-#: Words a real LLM planner has been observed writing in start_period/
-#: end_period instead of leaving the field null (Phase G: caught live,
-#: running AnthropicPlanner against real questions like "...to the latest
-#: available year" — the model wrote the literal string "latest" as
-#: end_period rather than omitting it). A period is meant to be an actual
-#: value like "2015" or "2020-Q1"; every downstream consumer (get_series's
-#: start/endPeriod params, compose.py's `end_period or periods[-1]`
-#: "resolve to latest" idiom, validation's period-coverage check) already
-#: treats None correctly as "not specified" — treating these words as None
-#: here, structurally, is more robust than hoping every model always
-#: follows the prompt's instruction to use null.
+#: Words LLM planners have been observed writing instead of a null period
+#: ("latest available year" -> end_period "latest"); normalized to None,
+#: which every downstream consumer already treats as "not specified".
 _NON_PERIOD_WORDS = {"latest", "present", "now", "current", "today", "n/a", "unknown", "none"}
 
 
@@ -51,37 +28,23 @@ def _clean_period(value: str | None) -> str | None:
 
 @dataclass(frozen=True)
 class CandidateIndicator:
-    """One indicator the catalog matched for a requested concept — never
-    proposed by an LLM, always the result of Catalog.search().
-
-    Carries the same optional metadata IndicatorMeta does (unit, frequency,
-    geographic_coverage, semantics) so source/indicator selection
-    (core/selection.py, Phase 8) can score candidates without a second
-    catalog lookup — this is exactly what engine.search_indicator() already
-    returned in build_query_plan() below, just not previously kept.
-    """
+    """One indicator the catalog matched for a requested concept — always
+    the result of Catalog.search(), never proposed by an LLM. Carries
+    IndicatorMeta's optional metadata so selection can score without a
+    second lookup."""
 
     indicator_id: str
     source_id: str
     name: str
-    #: Which requested concept (QueryPlan.concepts) this candidate came from.
+    #: Which requested concept this candidate came from.
     concept: str
     unit: str | None = None
     frequency: str | None = None
     geographic_coverage: tuple[str, ...] | None = None
-    #: Structured semantics (Phase F) — see StatisticalSemantics.
     semantics: StatisticalSemantics | None = None
-    #: 0-based position in engine.search_indicator()'s results for this
-    #: concept (Phase H: a real, live-discovered bug otherwise threw this
-    #: information away). Catalog.search() already ranks the flagship/
-    #: general indicator above narrow sub-breakdowns and cross-source noise
-    #: (Phase C's composite scoring) — score_candidate() re-scores from
-    #: catalog *metadata* alone and has no equivalent signal, so without
-    #: this, a noise candidate that happens to tie on metadata (e.g. a
-    #: substring name match plus no geographic_coverage data to
-    #: differentiate on) could out-rank the true top search result on an
-    #: arbitrary (source_id, indicator_id) tie-break. See
-    #: core/selection.py::score_candidate().
+    #: 0-based position in the catalog search results for this concept —
+    #: carries the catalog's own ranking into score_candidate(), which has
+    #: no equivalent signal of its own.
     search_rank: int = 0
 
     def as_dict(self) -> dict:
@@ -102,38 +65,12 @@ class CandidateIndicator:
 
 @dataclass(frozen=True)
 class TransformationSpec:
-    """One requested statistical operation — WHAT to compute, never a value
-    (section: the planner "must describe WHAT statistical operation is
-    required. It must NOT supply numerical data.").
-
-    `operation` is the only required field. Operations that combine two or
-    more series carry the *natural-language concepts* to look them up by —
-    `numerator_concept`/`denominator_concept` (share, per_capita),
-    `input_concept` (index), `left_concept`/`right_concept` (difference) —
-    exactly like QuestionInterpretation.concepts: never an indicator code,
-    always resolved through the same catalog search build_query_plan()
-    already runs for the top-level concepts (see that function's handling
-    of `referenced_concepts()` below — a transformation concept doesn't
-    need to also be duplicated into the top-level `concepts` list, it gets
-    searched either way).
-
-    `inputs`/`weights` (weighted_average) are the one exception: given this
-    project's table shape (one concept's values across several
-    geographies, or several concepts' values for one geography — see
-    core/compose.py's ComparisonTable), a weighted average combines across
-    *geographies* of a single already-selected concept (e.g. "population-
-    weighted average inflation across DEU/FRA/ITA"), so `inputs` holds
-    geography/area codes, not concepts — those geographies must already be
-    present in `QueryPlan.geographies` for their columns to exist to
-    combine.
-
-    Simple operations that don't reference another series at all (growth,
-    yoy_growth, period_over_period_growth, absolute_change, pp_change,
-    cagr, cumulative_growth, rank) only set `operation`; every other field
-    stays None/empty, and core/ask.py dispatches them exactly as before
-    this phase (a bare compose.py function call, no concept resolution
-    needed since they operate on whatever's already in the table).
-    """
+    """One requested statistical operation — WHAT to compute, never a
+    value. Pair operations carry natural-language *concepts* (resolved via
+    the same catalog search as top-level concepts, never indicator codes).
+    Exception: weighted_average's `inputs` are geography codes (it combines
+    one concept across geographies already present in the plan). Simple
+    operations set only `operation`."""
 
     operation: str
     numerator_concept: str | None = None
@@ -143,19 +80,15 @@ class TransformationSpec:
     base_value: float | None = None
     left_concept: str | None = None
     right_concept: str | None = None
-    #: weighted_average only: geography/area codes to combine (see class
-    #: docstring) — must line up 1:1 with `weights`.
+    #: weighted_average only: geography codes, 1:1 with `weights`.
     inputs: tuple[str, ...] = ()
     weights: tuple[float, ...] = ()
-    #: Optional human-readable name for the derived column/answer this
-    #: transformation produces (e.g. "non-oil share of GDP"); falls back to
-    #: a generated key (see core/ask.py) when not given.
+    #: Optional label for the derived column; a key is generated otherwise.
     output_name: str | None = None
 
     def concepts_referenced(self) -> tuple[str, ...]:
-        """Every natural-language concept this transformation needs
-        resolved through the catalog — never `inputs` (geography codes, not
-        concepts; see class docstring)."""
+        """Concepts needing catalog resolution — never `inputs` (those are
+        geography codes)."""
         return tuple(
             c
             for c in (
@@ -185,9 +118,8 @@ class TransformationSpec:
 
     @staticmethod
     def from_dict(payload: "str | dict") -> "TransformationSpec":
-        # Backward compatibility: a bare operation name (e.g. "growth"),
-        # what every planner produced before structured transformations —
-        # and still the natural way to write a simple, no-concept operation.
+        # A bare operation name is still the natural way to write a simple,
+        # no-concept operation.
         if isinstance(payload, str):
             return TransformationSpec(operation=payload)
         return TransformationSpec(
@@ -218,15 +150,12 @@ class QuestionInterpretation:
     end_period: str | None = None
     frequency: str | None = None
     transformations: tuple[TransformationSpec, ...] = ()
-    #: "cross_country" (one concept, several geographies) or
-    #: "cross_indicator" (several concepts, one geography), or None for a
-    #: single indicator/area question — mirrors core/compose.py's two
-    #: comparison shapes so a later phase can route directly into them.
+    #: "cross_country", "cross_indicator", or None — mirrors compose.py's
+    #: two comparison shapes.
     comparison: str | None = None
     ranking: bool = False
     output_type: str = "table"
-    #: Human-readable explanations of inferred choices (section 11: explain
-    #: assumptions rather than silently picking one interpretation).
+    #: Human-readable explanations of inferred choices.
     assumptions: tuple[str, ...] = ()
     needs_clarification: bool = False
     clarification_question: str | None = None
@@ -270,9 +199,9 @@ class QueryPlan:
     assumptions: tuple[str, ...] = ()
     needs_clarification: bool = False
     clarification_question: str | None = None
-    #: Populated by source/indicator selection (Phase 8) — empty until then.
+    #: Populated by select_indicators().
     selected_indicators: tuple[CandidateIndicator, ...] = ()
-    #: Populated by the validation layer (Phase 9) — empty until then.
+    #: Populated by the validation layer.
     validation_notes: tuple[str, ...] = ()
 
     def as_dict(self) -> dict:
@@ -303,36 +232,13 @@ def build_query_plan(
     *,
     candidates_per_concept: int = 5,
 ) -> QueryPlan:
-    """Resolve an interpretation's concepts into real catalog candidates.
-
-    Also resolves every concept referenced *inside* a transformation
-    (TransformationSpec.concepts_referenced() — e.g. a `share`
-    transformation's numerator_concept/denominator_concept) even if the
-    planner didn't separately list it in `interpretation.concepts` — the
-    planner only has to name a concept once, wherever it naturally belongs,
-    not duplicate it into two places for the catalog to see it. `QueryPlan.
-    concepts` (unlike `interpretation.concepts`) is the union of both, so
-    core/selection.py's select_indicators() — which loops over
-    `plan.concepts` — actually selects an indicator for a
-    transformation-only concept too, not just top-level ones.
-
-    Also resolves every geography to its canonical ISO 3166-1 alpha-3 form
-    (core/geography.py) — a real LLM planner routinely writes a country
-    NAME ("Azerbaijan") rather than the code a provider's ref_area needs
-    (found live running AnthropicPlanner, Phase G), and the system prompt
-    alone can't be trusted to make every model comply. Resolved once, here,
-    so every downstream consumer (selection scoring's geographic_coverage
-    check, column keys, validation, chart labels) sees the same canonical
-    value; the source-specific code format (e.g. Eurostat's alpha-2) is
-    applied only at the retrieval call boundary (core/ask.py::_fetch_table),
-    not baked into the plan itself.
-
-    `engine` is typed loosely (not core.engine.QueryEngine) to avoid a
-    circular import — core/engine.py already imports providers that
-    eventually need catalog/query_plan types; this only calls the one
-    method every QueryEngine has (search_indicator), so a Protocol isn't
-    worth the ceremony here.
-    """
+    """Resolve concepts into real catalog candidates. QueryPlan.concepts
+    is the union of top-level and transformation-referenced concepts, so a
+    concept named only inside a transformation still gets selected.
+    Geographies are canonicalized to alpha-3 once, here — LLM planners
+    routinely write country names; source-specific code formats apply only
+    at the retrieval boundary. `engine` is untyped to avoid a circular
+    import; only search_indicator() is called."""
     all_concepts = list(interpretation.concepts)
     for transformation in interpretation.transformations:
         for concept in transformation.concepts_referenced():
@@ -340,8 +246,7 @@ def build_query_plan(
                 all_concepts.append(concept)
 
     geographies = tuple(resolve_geography(g) for g in interpretation.geographies)
-    # weighted_average's `inputs` are geography codes too (see
-    # TransformationSpec's docstring) - same resolution, same reason.
+    # weighted_average's `inputs` are geography codes — same resolution.
     transformations = tuple(
         replace(t, inputs=tuple(resolve_geography(g) for g in t.inputs)) if t.inputs else t
         for t in interpretation.transformations

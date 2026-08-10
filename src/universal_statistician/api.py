@@ -32,12 +32,8 @@ app = FastAPI(
 
 
 def _cors_kwargs() -> dict:
-    """Phase K: allowed origins configurable via USTAT_CORS_ORIGINS (a
-    comma-separated list, e.g. "https://app.example.com,https://example.com")
-    for a real deployment. Unset keeps this project's original personal/
-    local-tool default: any localhost/127.0.0.1 origin, since the dashboard
-    may be served by Vite's dev server or as static files on whatever local
-    port either picks — never widened to "allow everything" implicitly."""
+    """Origins from USTAT_CORS_ORIGINS (comma-separated); unset allows any
+    localhost/127.0.0.1 origin — never widened to "everything" implicitly."""
     origins = os.environ.get("USTAT_CORS_ORIGINS")
     if origins:
         return {"allow_origins": [o.strip() for o in origins.split(",") if o.strip()]}
@@ -53,14 +49,8 @@ app.add_middleware(
 
 
 class _RateLimiter:
-    """Basic in-process rate limiting (Phase K) — a fixed-window counter per
-    client IP. Deliberately not Redis-backed: this project's stated scope is
-    a personal/local tool run as a single process (see plan.md), and a
-    single dict behind a lock is the whole job for that case. This would
-    need a shared backend to work correctly across multiple worker
-    processes/replicas — documented here, not silently assumed away, so a
-    future multi-process deployment doesn't get a false sense of protection.
-    """
+    """Fixed-window counter per client IP, in-process only — a
+    multi-process deployment would need a shared backend."""
 
     def __init__(self, max_requests: int, window_seconds: float) -> None:
         self._max_requests = max_requests
@@ -81,9 +71,7 @@ class _RateLimiter:
             return count <= self._max_requests
 
 
-#: USTAT_RATE_LIMIT_REQUESTS=0 disables rate limiting entirely (the default
-#: --- a personal/local tool with no untrusted traffic doesn't need it on by
-#: default; a real deployment sets both env vars).
+#: USTAT_RATE_LIMIT_REQUESTS=0 (the default) disables rate limiting.
 _rate_limiter = _RateLimiter(
     max_requests=int(os.environ.get("USTAT_RATE_LIMIT_REQUESTS", "0")),
     window_seconds=float(os.environ.get("USTAT_RATE_LIMIT_WINDOW_SECONDS", "60")),
@@ -102,23 +90,14 @@ _engine: QueryEngine = default_engine()
 
 
 def _call(fn, *args, **kwargs):
-    """Run a tools.py call and translate errors into HTTP responses instead
-    of a raw 500 — same principle as cli.py's _run.
-
-    The broad `except Exception` at the end matters more than it looks: a
-    live browser test against this endpoint (get_series hitting a
-    network-blocked SDMX host) showed that letting an unhandled provider
-    exception escape doesn't just produce a 500 — the browser reports it as
-    a CORS failure instead, because the response never completes normally
-    enough for CORSMiddleware to attach its headers. Catching it here and
-    raising a normal HTTPException fixes both the misleading error and gives
-    the client an actual explanation.
-    """
+    """Translate errors into HTTP responses. The broad `except Exception`
+    is load-bearing: an escaped provider exception aborts the response
+    before CORSMiddleware attaches headers, so the browser misreports it
+    as a CORS failure instead of a 502."""
     try:
         return fn(*args, **kwargs)
     except UnknownSourceError as exc:
-        # UnknownSourceError subclasses KeyError, whose __str__ double-quotes
-        # the message — unwrap args[0] as cli.py's _run() does.
+        # KeyError's __str__ double-quotes the message; unwrap args[0].
         detail = exc.args[0] if exc.args else str(exc)
         raise HTTPException(status_code=404, detail=detail) from exc
     except ValueError as exc:
@@ -131,12 +110,8 @@ def _call(fn, *args, **kwargs):
 
 @app.get("/health")
 def health() -> dict:
-    """Liveness/readiness check (Phase K). Deliberately touches only the
-    local catalog (a SQLite read, see Catalog.summary()) — never an
-    upstream provider API. A deploy/orchestration probe must be able to
-    tell the process is up even when every external statistics API is
-    unreachable; that's the whole point of this project's "startup never
-    requires upstream APIs" rule (see core/engine.py's _open_catalog())."""
+    """Liveness check touching only the local catalog — a probe must work
+    even when every upstream statistics API is unreachable."""
     catalog = _engine.catalog_stats()
     return {"status": "ok", "catalog": catalog}
 
@@ -202,27 +177,14 @@ def compare(body: CompareRequest) -> dict:
 
 class QuestionRequest(BaseModel):
     question: str
-    #: Use Anthropic-backed LLM components (server's ANTHROPIC_API_KEY env
-    #: var) instead of the deterministic defaults — AnthropicPlanner for
-    #: fast mode's interpretation step, and (agent Phase 8) AnthropicAgent/
-    #: AnthropicAnswerWriter/AnthropicVerifier for research mode's
-    #: investigation/answer-writing/verification steps. Never accepts a key
-    #: in the request body — only a boolean opt-in into whatever the server
-    #: process already has configured, the same source `ustat chat`/
-    #: `ustat plan --llm` use.
+    #: Opt into the server's configured Anthropic-backed LLM roles. Never
+    #: accepts a key in the request body — boolean opt-in only.
     use_llm: bool = False
-    #: "auto" (default) | "fast" | "research" — an explicit override always
-    #: wins over auto's question-text heuristic (agent/modes.py::select_mode,
-    #: task section 7). Only meaningful for /ask; /plan always uses the
-    #: legacy fast-mode planner regardless of this field.
+    #: "auto" | "fast" | "research"; explicit override beats auto's
+    #: heuristic. /plan ignores this.
     mode: str = "auto"
-    #: Include the investigation audit trail (tool calls, candidates
-    #: considered/rejected, iteration count, the investigator's own debug
-    #: summary) in the response under "debug". Never includes anything
-    #: resembling hidden chain-of-thought — there is none to expose, since
-    #: the investigator only ever produces tool calls and a short final
-    #: summary, not extended-thinking tokens. Ignored outside research mode
-    #: (nothing to show).
+    #: Include the investigation audit trail under "debug" (research mode
+    #: only). No hidden chain-of-thought exists to expose.
     debug: bool = False
 
 
@@ -242,10 +204,8 @@ def _resolve_planner(use_llm: bool) -> Optional[LLMPlanner]:
 
 
 def _resolve_agent_components(use_llm: bool):
-    """The three agent-mode LLM roles (Phase 8), all sharing one client —
-    same ANTHROPIC_API_KEY gate as _resolve_planner, and the same "None
-    means run without an LLM" contract agent/modes.py already honors by
-    falling back to fast mode with a warning rather than erroring."""
+    """The three agent-mode LLM roles sharing one client; None means "run
+    without an LLM" (modes.py falls back to fast mode with a warning)."""
     if not use_llm:
         return None, None, None
     if not os.environ.get("ANTHROPIC_API_KEY"):
@@ -265,27 +225,18 @@ def _resolve_agent_components(use_llm: bool):
 
 @app.post("/plan")
 def plan(body: QuestionRequest) -> dict:
-    """Structured query plan for a question — interpretation and
-    catalog-resolved candidate/selected indicators only, no retrieval.
-    Debug/inspection endpoint (section 10)."""
+    """Structured query plan only — no retrieval. Debug/inspection
+    endpoint."""
     planner = _resolve_planner(body.use_llm)
     return _call(tools.build_plan, _engine, body.question, planner)
 
 
 @app.post("/ask")
 def ask(body: QuestionRequest) -> dict:
-    """Full pipeline (task section 15): question -> mode selection (auto/
-    fast/research, explicit override honored) -> investigation/plan ->
-    retrieval -> transformations -> validation -> optional LLM verification
-    -> answer + table + chart + citations.
-
-    Fast mode is core/ask.py's original single-pass pipeline, unchanged.
-    Research mode is agent/loop.py's iterative StatisticalAgent (agent
-    Phases 1-7); it requires use_llm=true (an LLM has to drive the
-    investigation) and otherwise falls back to fast mode with a warning
-    rather than erroring, same principle RuleBasedPlanner already applies
-    when no LLM is configured for planning.
-    """
+    """Full pipeline: mode selection -> investigation/plan -> retrieval ->
+    transformations -> validation -> answer + table + chart + citations.
+    Research mode requires use_llm=true; otherwise falls back to fast mode
+    with a warning."""
     from universal_statistician.agent.modes import answer_question_with_mode
 
     planner = _resolve_planner(body.use_llm)

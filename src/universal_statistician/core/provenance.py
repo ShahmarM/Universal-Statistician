@@ -1,40 +1,11 @@
-"""Provenance/citation system (section 17): resolves any cell in a
-ComparisonTable — base or derived, at any depth of computation — into a
-full, traceable chain back to the official observation(s) behind it.
+"""Provenance/citation system: resolves any table cell — base or derived,
+at any depth — into a traceable chain back to official observations.
 
-Two node kinds, matching section 17's two examples exactly:
-
-- `ObservationProvenance` — a directly-retrieved value: provider,
-  organization, dataset, indicator/series id, geography, period, value,
-  unit, official URL, retrieval timestamp. Built straight from a base
-  ComparisonColumn's Attribution plus the requested cell's value.
-- `DerivedProvenance` — a computed value: formula, who calculated it, when,
-  and the provenance of every input that went into it — recursively, so a
-  rank-of-a-ratio or a moving-average-of-a-share resolves all the way down
-  to real observations, not just one level.
-
-Exact by construction (Phase E): `ComparisonTable.cell_dependencies`
-(core/compose.py) records the precise `(input_column_key, input_period)`
-pairs each derived *cell* was computed from, written by the with_*()
-transformation the moment it computes that cell — not inferred here
-afterward from formula text or from `ComparisonColumn.input_series`, which
-only names *columns* (shared across every period of a derived column, too
-coarse on its own: with_growth's period P depends on different specific
-input periods than period Q). This resolver reads `cell_dependencies`
-first and, when present, follows exactly those pairs — including for
-multi-period operations like with_growth (previous+current),
-with_cagr/with_cumulative_growth (start+end), and a moving average (its
-whole window), which used to be this module's stated honesty limit before
-Phase E.
-
-Fallback, kept for robustness rather than because it's expected to trigger
-for anything this codebase's own compose.py produces: a derived
-`ComparisonColumn` that has no entry in `cell_dependencies` (e.g. built by
-some future/external caller directly, bypassing the with_*() functions)
-falls back to the pre-Phase-E behavior — attach provenance for every period
-each input *column* (from `input_series`) actually has a value, with an
-explicit `note` explaining the imprecision, never a specific-looking but
-possibly-wrong single period.
+Exact by construction: cell_dependencies records the precise input cells
+each derived cell was computed from, at compute time. A derived column
+without such an entry (built outside compose.py's with_*() functions)
+falls back to a column-level chain with an explicit imprecision `note` —
+never a specific-looking but possibly-wrong single period.
 """
 
 from __future__ import annotations
@@ -111,12 +82,8 @@ class DerivedProvenance:
 
 Provenance = ObservationProvenance | DerivedProvenance
 
-#: Transformations (see core/compose.py) whose formula genuinely depends on
-#: more than the requested period of each input column — growth/change over
-#: time, and multi-period aggregates. Recognized by column-key suffix,
-#: since ComparisonColumn doesn't (yet) record "this spans periods" as a
-#: structured flag — see this module's docstring for the honest fallback
-#: used for these.
+#: Transformations depending on more than one period per input, recognized
+#: by column-key suffix (no structured flag exists yet).
 _MULTI_PERIOD_SUFFIXES = (
     "__yoy_growth_pct",
     "__period_over_period_growth_pct",
@@ -174,17 +141,13 @@ def resolve_provenance(
 
     exact_dependencies = table.cell_dependencies.get((period, column_key))
     if exact_dependencies is not None:
-        # Phase E: precise (input_column_key, input_period) pairs recorded
-        # by the with_*() transformation that computed this exact cell — no
-        # guessing, no honesty caveat needed, even for multi-period formulas.
         for input_key, input_period in exact_dependencies:
             inputs.append(
                 resolve_provenance(table, input_key, input_period, calculated_at=calculated_at)
             )
     else:
-        # Fallback for a derived column that predates cell_dependencies or
-        # was built outside compose.py's with_*() functions (see module
-        # docstring) — the pre-Phase-E, column-level heuristic.
+        # Column-level fallback for a derived column built outside
+        # compose.py's with_*() functions (see module docstring).
         for input_key in column.input_series or ():
             if not _is_multi_period(column) and table.value_at(period, input_key) is not None:
                 inputs.append(
