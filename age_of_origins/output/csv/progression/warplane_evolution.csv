@@ -1,0 +1,81 @@
+Tier,Stage,Alloy (this step),Blueprints (this step),Alloy (cumulative),Blueprints (cumulative),Unlocks
+Enforcer,0,20,0,20,0,Weapon: Laser Cannon
+Enforcer,1,20,0,40,0,
+Enforcer,2,20,0,60,0,
+Enforcer,3,20,0,80,0,
+Enforcer,4,20,0,100,0,Weapon: Intercept System
+Enforcer,5,20,0,120,0,
+Enforcer,6,20,0,140,0,
+Enforcer,7,20,0,160,0,Weapon: Melee Weakness Recognition
+Enforcer,8,20,0,180,0,
+Enforcer,9,20,0,200,0,
+Explorer,0,50,0,250,0,Weapon: Tactical Missile
+Explorer,1,50,0,300,0,
+Explorer,2,50,0,350,0,
+Explorer,3,50,0,400,0,
+Explorer,4,50,0,450,0,Weapon: Added Firepower
+Explorer,5,50,0,500,0,
+Explorer,6,50,0,550,0,
+Explorer,7,50,0,600,0,Weapon: Long-Range Weakness Recognition
+Explorer,8,50,0,650,0,
+Explorer,9,50,0,700,0,
+Guardian,0,110,0,810,0,Weapon: Mechanical Golem
+Guardian,1,110,0,920,0,
+Guardian,2,110,0,1030,0,
+Guardian,3,110,0,1140,0,
+Guardian,4,110,0,1250,0,Weapon: Added Armor
+Guardian,5,110,0,1360,0,
+Guardian,6,110,0,1470,0,
+Guardian,7,110,0,1580,0,Weapon: Mid-Range Weakness Recognition
+Guardian,8,110,0,1690,0,
+Guardian,9,110,0,1800,0,
+Lacerator,0,220,0,2020,0,Weapon: Fortify Laser Energy
+Lacerator,1,220,0,2240,0,
+Lacerator,2,220,0,2460,0,
+Lacerator,3,220,0,2680,0,
+Lacerator,4,220,0,2900,0,Weapon: Fortify Engine
+Lacerator,5,220,0,3120,0,Part: Wingplane I
+Lacerator,6,220,0,3340,0,
+Lacerator,7,220,0,3560,0,Weapon: Firepower Boost
+Lacerator,8,220,0,3780,0,
+Lacerator,9,220,0,4000,0,
+Trailblazer,0,360,70,4360,70,Weapon: EMP Disruptor Ammo
+Trailblazer,1,360,70,4720,140,
+Trailblazer,2,360,70,5080,210,Part: Machine Head
+Trailblazer,3,360,70,5440,280,
+Trailblazer,4,360,70,5800,350,Weapon: Fortify Disruptor
+Trailblazer,5,360,70,6160,420,
+Trailblazer,6,360,70,6520,490,
+Trailblazer,7,360,70,6880,560,Weapon: Precise Firepower
+Trailblazer,8,360,70,7240,630,Part: Wingplane II
+Trailblazer,9,360,70,7600,700,
+Inquisitor,0,540,160,8140,860,Weapon: Laser Disruptor
+Inquisitor,1,540,160,8680,1020,
+Inquisitor,2,540,160,9220,1180,
+Inquisitor,3,540,160,9760,1340,
+Inquisitor,4,540,160,10300,1500,Weapon: Magnetic Disruptor
+Inquisitor,5,540,160,10840,1660,Part: Body
+Inquisitor,6,540,160,11380,1820,
+Inquisitor,7,540,160,11920,1980,Weapon: Energy Aid
+Inquisitor,8,540,160,12460,2140,
+Inquisitor,9,540,160,13000,2300,
+Epic,0,700,300,13700,2600,Weapon: Ultrapulse Laser
+Epic,1,700,300,14400,2900,
+Epic,2,700,300,15100,3200,
+Epic,3,700,300,15800,3500,
+Epic,4,700,300,16500,3800,Weapon: High-Speed Charge
+Epic,5,700,300,17200,4100,Part: Wing
+Epic,6,700,300,17900,4400,
+Epic,7,700,300,18600,4700,Weapon: Fortify Engine Body
+Epic,8,700,300,19300,5000,
+Epic,9,700,300,20000,5300,
+Immortal,0,820,450,20820,5750,Weapon: Superior Force Field
+Immortal,1,820,450,21640,6200,
+Immortal,2,820,450,22460,6650,
+Immortal,3,820,450,23280,7100,
+Immortal,4,820,450,24100,7550,Weapon: EMP Armor
+Immortal,5,820,450,24920,8000,Part: Machine Gun
+Immortal,6,820,450,25740,8450,
+Immortal,7,820,450,26560,8900,Weapon: Armor Piercing Laser
+Immortal,8,820,450,27380,9350,
+Immortal,9,820,450,28200,9800,

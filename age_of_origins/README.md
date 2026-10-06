@@ -2,35 +2,78 @@
 
 Cost and effect tables for the upgrade systems in *Age of Origins* (Camel Games; *Age of Z Origins* in Japan).
 
-**Main file:** [`output/age_of_origins_upgrades.xlsx`](output/age_of_origins_upgrades.xlsx) has 26 sheets. Every sheet has a filter on its header row. The same tables are in [`output/csv/`](output/csv/), one file per sheet.
+There are two workbooks. Every sheet has a filter on its header row, and the same tables are in [`output/csv/`](output/csv/), one file per sheet.
 
-## What's covered
+- [`output/age_of_origins_officers_titans_warplanes_antiques.xlsx`](output/age_of_origins_officers_titans_warplanes_antiques.xlsx): officers, titans, warplanes and antiques (21 sheets)
+- [`output/age_of_origins_buildings.xlsx`](output/age_of_origins_buildings.xlsx): buildings and merit ranks (5 sheets)
 
-| Area | Sheets | Coverage |
-|---|---|---|
-| Buildings | Buildings, Building totals, Building conflicts | 21 buildings, 695 level rows. Food/Oil/Steel/Minerals/Uranium/Leader Badges/other items, base build time, prerequisites, effect at each level |
-| Officers | Officer skill levels, Officer stars, Officer fortification, Officer breakthrough | Skill XP and books (levels 2–20), star fragments (★1–★6 × 5 grades), fortification XP and effect (1–30), breakthrough fragments |
-| Officer equipment | Officer equipment levels, Officer equipment items, Equipment expertise, Equipment stat curve | Alloy cost curves (levels 1–40), 48 items with effects/power every 5 levels, 18 expertises (levels 1–20, Essence Stone or Core) |
-| Titans | Titan levels, Titan evolution, Titan skills, Titan abilities, Titan ability components | Levels 1–45 XP, 4 evolution tiers, skill fluid/skeleton cost, ability chip/component cost, component alloy cost (1–30) |
-| Warplanes | Warplane levels, Warplane evolution, Warplane parts, Warplane skills, Warplane weapons | XP levels 1–55, 8 evolution tiers (alloy/blueprints), 6 parts × 55 levels of stats, skills × 30 levels (chips/cores), 24 weapons |
-| Antiques | Antique star costs, Antique effects, Antique sets | Fragment cost sequences (max ★15/18/21), 52 antiques' effects by star, 6 set bonuses |
-| Merit | Merit ranks | 9 ranks: Attack %, HP %, fleet size |
-| **Not covered** | Gaps – not covered | See [Gaps](#gaps) |
+## Officers, titans, warplanes, antiques
+
+Every sheet has **one row per upgrade step**. Each row gives the cost of that step, the running total from the start, and the value reached at that level. A `Value basis` column says whether the value is published, derived from a published curve, or interpolated.
+
+| Sheet | Rows | Values | Costs |
+|---|---|---|---|
+| **Totals to max** | 227 | — | Total cost to max for every officer stat, equipment item, expertise, titan skill and component, warplane part, skill and weapon, and antique |
+| **Coverage** | 17 | What's in, and what's still missing, for each area | |
+| Officer roster & equipment | 48 | Each officer's 2 equipment items, their 3 stats and 2 expertises | — |
+| Officer stars | 30 | — (star skill values not published) | Fragments per grade, ★1–★6 |
+| Officer skill levels | 19 | — (skill values per officer not published) | Skill XP and books, levels 2–20 |
+| Officer fortification | 30 | Effect % | XP |
+| Officer breakthrough | 17 | — | Fragments (level 2 missing from source) |
+| Officer equipment (all levels) | 1,780 | All stats at every level 1–40 for 48 items; rank and power at published levels | Alloy per level |
+| Equipment expertise | 360 | — (not published) | Essence Stone / Core, levels 1–20 |
+| Titan levels / evolution | 45 / 40 | Skill and equipment unlock points | XP; Mutant DNA, Energy Jars, Source Stones per stage |
+| Titan skills | 480 | 24 skills × 20 levels | Fluid, skeleton |
+| Titan equipment awakening / components | 156 / 720 | 6 equipment × 26 levels; 24 components × 30 levels | Chips; alloy |
+| Warplane levels / evolution | 55 / 80 | Weapon and part unlock points | XP; alloy and blueprints per stage |
+| Warplane parts | 330 | HP, Attack, Defense, 6 parts × 55 levels | Components (levels 1–30) |
+| Warplane skills | 540 | 18 skills × 30 levels | Chips, cores |
+| Warplane weapons | 520 | Description only (not published per level) | Components per level, 24 weapons |
+| Antiques (all star steps) | 3,880 | Effects and power at ★0, ★3 and ★6 | Fragments for every step (including sub-steps like 3.1, 3.2) to ★15/18/21, 52 antiques |
+| Antique sets | 48 | Set bonus by total stars | — |
+
+**How missing equipment values were filled in.** The source publishes item stats only at levels 1, 5, 10, 15, 20, 25, 30 and 40.
+- **Percentage stats:** at every published point they equal the game's published stat curve exactly, so levels 1–30 come from that curve.
+- **Flat stats** (Misfire/Disruptor Resistance) follow 3 per level, so levels 1–30 use that.
+- **Levels 31–39** have no published values. They are interpolated between 30 and 40 and flagged as such.
+
+**Cross-checks and assumptions:**
+- **Officer skill XP:** matches appmedia.jp on all 19 levels.
+- **Officer stars:** fragments per grade (★1 = 5, ★2 = 4, ★3 = 12, ★4 = 24, ★5 = 48, ★6 = 58) match appmedia's star-up totals (20 / 60 / 120 / 240).
+- **Three warplane weapons** (Superior Force Field, EMP Armor, Armor Piercing Laser) have no level-0 entry in the source, so their first value is taken as level 1. Those rows are flagged.
+- **Evolution steps:** titan and warplane evolution are charged per stage, 10 stages per tier, matching the source's per-tier totals.
+
+**What's still not published anywhere I could reach:**
+- Antique effects above ★6
+- Officer skill and star values per officer
+- Expertise effect values
+- Titan and warplane stat gains per evolution stage
+- Titan base stats per level
+- Per-level warplane weapon effects
+- A few missing cost steps: breakthrough level 2, some weapon levels, and titan awakening levels 27–30
+
+The *Coverage* sheet lists each gap. Screenshots of the in-game detail screens can fill them.
 
 ## Sources
 
 | Source | What it gave | Date |
 |---|---|---|
-| [aoztips.com](https://aoztips.com/calculators/) calculators. The JSON is embedded in the site's JS bundles; several datasets say they come from the game client config (`buff_values.json`, nation 933, app 1.3.844). | Building costs to level 41 including uranium. All officer, equipment, titan, warplane, antique and merit data. | 2026-09 |
-| [appmedia.jp Age of Z wiki](https://appmedia.jp/ageofzorigins/27075133), 30 facility pages | Building costs to level 38, **base build times**, prerequisites, per-level effects. The only source found for Farm, Oil Refinery, Steel Mill, Mineral Mine, Training Grounds, House, Rehab Center and Defense Tower. | 2021-11 to 2022-01 |
+| [aoztips.com](https://aoztips.com/calculators/) calculators. The JSON is embedded in the site's JS bundles; several datasets say they come from the game client config (`buff_values.json`, nation 933, app 1.3.844). | All officer, equipment, titan, warplane, antique and merit data. Building costs to level 41 including uranium. | 2026-09 |
+| [appmedia.jp Age of Z wiki](https://appmedia.jp/ageofzorigins/27075133), 30 facility pages plus officer star and skill pages | Cross-checks for officer stars and skills. Building costs to level 38, **base build times**, prerequisites, per-level effects. The only source found for Farm, Oil Refinery, Steel Mill, Mineral Mine, Training Grounds, House, Rehab Center and Defense Tower. | 2021-11 to 2022-01 |
 
-`sources/` holds the extracted snapshots. `scripts/` holds the extractors (`extract.py`, `literals.mjs`, `appmedia_parse.py`) and `build_tables.py`, which rebuilds everything in `output/`:
+`sources/` holds the extracted snapshots. `scripts/` holds:
+- the extractors: `extract.py`, `literals.mjs` and `appmedia_parse.py`
+- `build_tables.py` and `progression.py`, which rebuild everything in `output/`
 
 ```bash
 python3 age_of_origins/scripts/build_tables.py   # needs openpyxl
 ```
 
-## How the building numbers were reconciled
+## Buildings
+
+`age_of_origins_buildings.xlsx` has 21 buildings and 695 level rows: costs, base build time, prerequisites and effects. It also has building totals, a sheet of source conflicts, merit ranks and a gaps list.
+
+### How the building numbers were reconciled
 
 The two building sources were compared level by level, resource by resource. Each row's `Source` and `Flag` columns say how its numbers were arrived at:
 
@@ -43,22 +86,16 @@ The two building sources were compared level by level, resource by resource. Eac
   - Most other conflicts are one-digit typos or rounding.
 - **`single source`**: either levels 39–41 (aoztips only) or the eight buildings only appmedia covers. These are unconfirmed, and the appmedia-only buildings date from 2021–22.
 
-## Caveats
+### Building caveats
 
 - **Build times** are base times before construction-speed bonuses, from the 2021–22 appmedia data, and only up to level 38. Patches may have changed them.
 - **Uranium** comes from aoztips only. appmedia-only rows show 0 uranium even where the current game may charge some.
-- **Resource buildings, Training Grounds, House and Rehab Center** stop at level 30, and Defense Tower at 10, because that was the maximum in 2021. Higher levels may exist now.
+- **Level caps:** Resource buildings, Training Grounds, House and Rehab Center stop at level 30, and Defense Tower at 10, because those were the 2021 maximums. Higher levels may exist now.
 - **English names:** *Rehab Center* (リハビリ拠点, a wounded-capacity building) is a translation, not a confirmed English name. Higher-tier troop unlocks in the effect column keep their Japanese names.
 - **Core Mining Station** is a single odd row in aoztips (level 30 only) and is flagged unverified.
-- **Equipment item effects** are sampled at levels 1, 5, 10, 15 and so on, as published. Per-level alloy cost is in *Officer equipment levels*.
-- **Officer stars:** fragments per grade (★1 = 5, ★2 = 4, ★3 = 12, ★4 = 24, ★5 = 48, ★6 = 58) are from aoztips and match appmedia's star-up totals.
-- **Officer skill XP** matches across both sources on all 19 levels.
 
-## Gaps
+## Other gaps
 
-These systems have no per-level numbers in any source this environment could reach:
-
-1. **Academy research.** This means every branch: Development, Military, Resource, Defense and the rest. It's the largest gap. aozcodes.com publishes research data but sits behind a Cloudflare bot check that blocks automated access. web.archive.org is also unreachable from here. tofumocha.com/aoo-upgrade returned 503.
-2. **Troop tiers:** training cost, stats and upkeep per unit tier.
+1. **Academy research.** This means every branch. aozcodes.com publishes research data but blocks automated access with a Cloudflare bot check. web.archive.org is also unreachable from here.
+2. **Troop tiers:** training cost, stats and upkeep.
 3. **Biochemical Lab, Elite Equipment Facility, alliance tech, VIP levels, commander skills, battle machines, mega devices.**
-4. **Current build times** and costs above the 2021 caps for resource/support buildings.

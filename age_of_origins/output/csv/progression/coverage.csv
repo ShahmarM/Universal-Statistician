@@ -1,0 +1,18 @@
+Area,Published values & costs included,Missing (not in any reachable source)
+Officer stars,Fragments per grade ★1–★6,What each star adds to the officer's skills
+Officer skills,"XP/books per level 2–20 (cross-checked with appmedia.jp, 19/19 match)",Skill effect values per officer and level
+Officer fortification,XP and effect % for levels 1–30,—
+Officer breakthrough,Fragments for levels 1 and 3–18,Level 2 cost; effect values
+Officer equipment,Alloy cost every level; stats published every 5 levels; levels 1–30 filled from the published stat curve (exact match at every published point),Levels 31–39 are interpolated (only 30 and 40 published); rank/power only at published levels
+Equipment expertise,Essence Stone/Core cost levels 1–20,Expertise effect values
+Titan levels,XP levels 1–45,Titan base stats per level
+Titan evolution,"DNA/Energy Jars/Source Stones per stage, all 4 tiers; skill unlock points",Stat gain per evolution stage
+Titan skills,"Value and fluid/skeleton cost, every level 1–20, all 24 skills",—
+Titan equipment,Awakening skill value + chip cost per level; component value + alloy cost levels 1–30,Awakening levels 27–30
+Warplane levels,XP levels 1–55,Plane stats per level (part stats are covered)
+Warplane evolution,"Alloy/blueprints per stage, 8 tiers; weapon and part unlock points",Stat gain per evolution stage
+Warplane parts,HP/Attack/Defense levels 1–55; components levels 1–30,Component cost above level 30
+Warplane skills,"Value + chips/cores every level 1–30, all 18 skills",—
+Warplane weapons,"Component cost per level, 24 weapons",Per-level effect values (only descriptions published)
+Antiques,Fragment cost every star step for all 52 antiques; effects at ★0/★3/★6,Effects above ★6
+Antique sets,"Set bonuses by total stars, 6 sets",—

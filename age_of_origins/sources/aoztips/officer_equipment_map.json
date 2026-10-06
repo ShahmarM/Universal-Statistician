@@ -1,0 +1,554 @@
+[
+ {
+  "officerId": "director_doc_gray",
+  "items": [
+   {
+    "name": "Elite Pacemaker",
+    "stat1": "Increase Attack against Melee Troops",
+    "stat2": "Increase Attack against LR Troops",
+    "stat3": "Increase Attack against MR Troops",
+    "expertise1": "Wounded Units Bonus Limit",
+    "expertise2Name": "All Troops Disruptor Resistance",
+    "expertise2": "All Troops Disruptor Resistance"
+   },
+   {
+    "name": "Mechanical Tentacle",
+    "stat1": "Reduce Attack of enemy Melee Troops",
+    "stat2": "Reduce Attack of enemy LR Troops",
+    "stat3": "Reduce Attack of enemy MR Troops",
+    "expertise1": "Troops Units Bonus Limit",
+    "expertise2Name": "All Troops Misfire Resistance",
+    "expertise2": "All Troops Misfire Resistance"
+   }
+  ]
+ },
+ {
+  "officerId": "director_i_medici",
+  "items": [
+   {
+    "name": "Gold Flames",
+    "stat1": "Increase Attack against Melee Troops",
+    "stat2": "Increase Attack against LR Troops",
+    "stat3": "Increase Attack against MR Troops",
+    "expertise1": "Wounded Units Bonus Limit",
+    "expertise2Name": "All Troops Misfire Resistance",
+    "expertise2": "All Troops Misfire Resistance"
+   },
+   {
+    "name": "Brilliant Timepiece",
+    "stat1": "Reduce Attack of enemy Melee Troops",
+    "stat2": "Reduce Attack of enemy MR Troops",
+    "stat3": "Reduce Attack of enemy LR Troops",
+    "expertise1": "CN Battle Troops Units Bonus Limit",
+    "expertise2Name": "All Troops Disruptor Resistance",
+    "expertise2": "All Troops Disruptor Resistance"
+   }
+  ]
+ },
+ {
+  "officerId": "director_f_medici",
+  "items": [
+   {
+    "name": "Handgun",
+    "stat1": "Increase Attack against LR Troops",
+    "stat2": "Increase Attack against MR Troops",
+    "stat3": "Increase Attack against Melee Troops",
+    "expertise1": "Wounded Units Bonus Limit",
+    "expertise2Name": "All Troops Disruptor Resistance",
+    "expertise2": "All Troops Disruptor Resistance"
+   },
+   {
+    "name": "Monocular",
+    "stat1": "Reduce Attack of enemy MR Troops",
+    "stat2": "Reduce Attack of enemy LR Troops",
+    "stat3": "Reduce Attack of enemy Melee Troops",
+    "expertise1": "CN Battle Troops Units Bonus Limit",
+    "expertise2Name": "",
+    "expertise2": ""
+   }
+  ]
+ },
+ {
+  "officerId": "strategy_major_morgan",
+  "items": [
+   {
+    "name": "P1911 Patriot",
+    "stat1": "Increase Attack against Melee Troops",
+    "stat2": "Increase Attack against MR Troops",
+    "stat3": "Increase Attack against LR Troops",
+    "expertise1": "Wounded Units Bonus Limit",
+    "expertise2Name": "All Troops Misfire Resistance",
+    "expertise2": "All Troops Misfire Resistance"
+   },
+   {
+    "name": "Commander Cloak",
+    "stat1": "Reduce Attack of enemy Melee Troops",
+    "stat2": "Reduce Attack of enemy MR Troops",
+    "stat3": "Reduce Attack of enemy LR Troops",
+    "expertise1": "Troops Units Bonus Limit",
+    "expertise2Name": "All Troops Disruptor Resistance",
+    "expertise2": "All Troops Disruptor Resistance"
+   }
+  ]
+ },
+ {
+  "officerId": "strategy_saki",
+  "items": [
+   {
+    "name": "Fan",
+    "stat1": "Increase Attack against Melee Troops",
+    "stat2": "Increase Attack against LR Troops",
+    "stat3": "Increase Attack against MR Troops",
+    "expertise1": "Wounded Units Bonus Limit",
+    "expertise2Name": "All Troops Disruptor Resistance",
+    "expertise2": "All Troops Disruptor Resistance"
+   },
+   {
+    "name": "Red Flame Dual Blades",
+    "stat1": "Reduce Attack of enemy Melee Troops",
+    "stat2": "Reduce Attack of enemy LR Troops",
+    "stat3": "Reduce Attack of enemy MR Troops",
+    "expertise1": "CN Battle Troops Units Bonus Limit",
+    "expertise2Name": "All Troops Misfire Resistance",
+    "expertise2": "All Troops Misfire Resistance"
+   }
+  ]
+ },
+ {
+  "officerId": "strategy_bravestar",
+  "items": [
+   {
+    "name": "P92F Sheriff",
+    "stat1": "Increase Attack against Melee Troops",
+    "stat2": "Increase Attack against MR Troops",
+    "stat3": "Increase Attack against LR Troops",
+    "expertise1": "Wounded Units Bonus Limit",
+    "expertise2Name": "",
+    "expertise2": ""
+   },
+   {
+    "name": "Battle Badge",
+    "stat1": "Reduce Attack of enemy Melee Troops",
+    "stat2": "Reduce Attack of enemy LR Troops",
+    "stat3": "Reduce Attack of enemy MR Troops",
+    "expertise1": "Troops Units Bonus Limit",
+    "expertise2Name": "",
+    "expertise2": ""
+   }
+  ]
+ },
+ {
+  "officerId": "strategy_loreline",
+  "items": [
+   {
+    "name": "Double Gun",
+    "stat1": "Increase Attack against Melee Troops",
+    "stat2": "Increase Attack against LR Troops",
+    "stat3": "Increase Attack against MR Troops",
+    "expertise1": "",
+    "expertise2Name": "",
+    "expertise2": ""
+   },
+   {
+    "name": "Shadow Skin",
+    "stat1": "Reduce Attack of enemy Melee Troops",
+    "stat2": "Reduce Attack of enemy MR Troops",
+    "stat3": "Reduce Attack of enemy LR Troops",
+    "expertise1": "",
+    "expertise2Name": "",
+    "expertise2": ""
+   }
+  ]
+ },
+ {
+  "officerId": "machinist_emily",
+  "items": [
+   {
+    "name": "M16 Mecha",
+    "stat1": "Increase Attack against Melee Troops",
+    "stat2": "Increase Attack against LR Troops",
+    "stat3": "Increase Attack against MR Troops",
+    "expertise1": "Increase Defense and HP of all Troops",
+    "expertise2Name": "Impale",
+    "expertise2": "Increase the Attack of all Troops by x% and Increase Damage when attacking units with Shields by x%"
+   },
+   {
+    "name": "Dazzling Jacket",
+    "stat1": "Reduce Attack of enemy MR Troops",
+    "stat2": "Reduce Attack of enemy Melee Troops",
+    "stat3": "Reduce Attack of enemy LR Troops",
+    "expertise1": "Increase Attack of all Troops",
+    "expertise2Name": "Titan Killer",
+    "expertise2": "Increase Damage to Titans"
+   }
+  ]
+ },
+ {
+  "officerId": "machinist_kay",
+  "items": [
+   {
+    "name": "Missile Launcher",
+    "stat1": "Increase Attack against MR Troops",
+    "stat2": "Increase Attack against Melee Troops",
+    "stat3": "Increase Attack against LR Troops",
+    "expertise1": "Increase Defense and HP of all Troops",
+    "expertise2Name": "Melee Killer",
+    "expertise2": "Increase Damage to Melee Troops"
+   },
+   {
+    "name": "Vector Thruster",
+    "stat1": "Reduce Attack of enemy LR Troops",
+    "stat2": "Reduce Attack of enemy Melee Troops",
+    "stat3": "Reduce Attack of enemy MR Troops",
+    "expertise1": "Increase Attack of all Troops",
+    "expertise2Name": "Mid-Range Killer",
+    "expertise2": "Increase Damage to MR Troops"
+   }
+  ]
+ },
+ {
+  "officerId": "machinist_erica",
+  "items": [
+   {
+    "name": "Sound Wave Generator",
+    "stat1": "Increase Attack against LR Troops",
+    "stat2": "Increase Attack against MR Troops",
+    "stat3": "Increase Attack against Melee Troops",
+    "expertise1": "Increase Attack of all Troops",
+    "expertise2Name": "Melee Blessing",
+    "expertise2": "Increase HP of Melee by x% and Melee Troops will share x% Damage of other Troops, Warplanes and Titans"
+   },
+   {
+    "name": "Aurora Arm Guard",
+    "stat1": "Reduce Attack of enemy Melee Troops",
+    "stat2": "Reduce Attack of enemy MR Troops",
+    "stat3": "Reduce Attack of enemy LR Troops",
+    "expertise1": "Increase Defense and HP of all Troops",
+    "expertise2Name": "Protection Force Field",
+    "expertise2": "At the Start of the Battle, Titans and Warplanes get the Protection Force Field, resisting their HP x x% Damage for 10 sec"
+   }
+  ]
+ },
+ {
+  "officerId": "drillmaster_cattie",
+  "items": [
+   {
+    "name": "Carbine",
+    "stat1": "Increase Attack against MR Troops",
+    "stat2": "Increase Attack against LR Troops",
+    "stat3": "Increase Attack against Melee Troops",
+    "expertise1": "Increase Defense and HP of all Troops",
+    "expertise2Name": "Impale",
+    "expertise2": "Increase the Attack of all Troops by x% and Increase Damage when attacking units with Shields by x%"
+   },
+   {
+    "name": "Guard Rabbit",
+    "stat1": "Reduce Attack of enemy LR Troops",
+    "stat2": "Reduce Attack of enemy MR Troops",
+    "stat3": "All Troops Misfire Resistance",
+    "expertise1": "Increase Attack of all Troops",
+    "expertise2Name": "Mid-Range Resistance",
+    "expertise2": "Reduce Damage taken from MR Troops"
+   }
+  ]
+ },
+ {
+  "officerId": "drillmaster_simon",
+  "items": [
+   {
+    "name": "Energy Rifle",
+    "stat1": "Increase Attack against Melee Troops",
+    "stat2": "Increase Attack against MR Troops",
+    "stat3": "Increase Attack against LR Troops",
+    "expertise1": "Increase Attack of all Troops",
+    "expertise2Name": "Melee Killer",
+    "expertise2": "Increase Damage to Melee Troops"
+   },
+   {
+    "name": "Guard Gun",
+    "stat1": "Reduce Attack of enemy MR Troops",
+    "stat2": "Reduce Attack of enemy LR Troops",
+    "stat3": "All Troops Misfire Resistance",
+    "expertise1": "Increase Defense and HP of all Troops",
+    "expertise2Name": "Protection Force Field",
+    "expertise2": "At the Start of the Battle, Titans and Warplanes get the Protection Force Field, resisting their HP x x% Damage for 10 sec"
+   }
+  ]
+ },
+ {
+  "officerId": "drillmaster_maria",
+  "items": [
+   {
+    "name": "Bounty Hunter Rifle",
+    "stat1": "Increase Attack against LR Troops",
+    "stat2": "Increase Attack against MR Troops",
+    "stat3": "Increase Attack against Melee Troops",
+    "expertise1": "Increase Defense and HP of all Troops",
+    "expertise2Name": "Melee Blessing",
+    "expertise2": "Increase HP of Melee by x% and Melee Troops will share x% Damage of other Troops, Warplanes and Titans"
+   },
+   {
+    "name": "Glorious Twin Blades",
+    "stat1": "Reduce Attack of enemy MR Troops",
+    "stat2": "Reduce Attack of enemy LR Troops",
+    "stat3": "All Troops Misfire Resistance",
+    "expertise1": "Increase Attack of all Troops",
+    "expertise2Name": "Titan Killer",
+    "expertise2": "Increase Damage to Titans"
+   }
+  ]
+ },
+ {
+  "officerId": "drillmaster_selina",
+  "items": [
+   {
+    "name": "Mantis Knife",
+    "stat1": "Increase Attack against LR Troops",
+    "stat2": "Increase Attack against Melee Troops",
+    "stat3": "Increase Attack against MR Troops",
+    "expertise1": "Increase Defense and HP of all Troops",
+    "expertise2Name": "Long-Range Killer",
+    "expertise2": "Increase Damage to LR Troops"
+   },
+   {
+    "name": "Shadow Rifle",
+    "stat1": "Reduce Attack of enemy LR Troops",
+    "stat2": "Reduce Attack of enemy MR Troops",
+    "stat3": "All Troops Misfire Resistance",
+    "expertise1": "Increase Attack of all Troops",
+    "expertise2Name": "Titan Resistance",
+    "expertise2": "Reduce Damage taken from Titans"
+   }
+  ]
+ },
+ {
+  "officerId": "drillmaster_freya",
+  "items": [
+   {
+    "name": "Doom Breaking Blade",
+    "stat1": "Increase Attack against MR Troops",
+    "stat2": "Increase Attack against Melee Troops",
+    "stat3": "Increase Attack against LR Troops",
+    "expertise1": "Increase Attack of all Troops",
+    "expertise2Name": "Titan Killer",
+    "expertise2": "Increase Damage to Titans"
+   },
+   {
+    "name": "Small Robot",
+    "stat1": "Reduce Attack of enemy MR Troops",
+    "stat2": "Reduce Attack of enemy LR Troops",
+    "stat3": "All Troops Misfire Resistance",
+    "expertise1": "Increase Defense and HP of all Troops",
+    "expertise2Name": "Long-Range Resistance",
+    "expertise2": "Reduce Damage taken from LR Troops"
+   }
+  ]
+ },
+ {
+  "officerId": "warfare_eric",
+  "items": [
+   {
+    "name": "Modified Guitar",
+    "stat1": "Increase Attack against Melee Troops",
+    "stat2": "Increase Attack against LR Troops",
+    "stat3": "Increase Attack against MR Troops",
+    "expertise1": "Increase Attack of all Troops",
+    "expertise2Name": "Mid-Range Killer",
+    "expertise2": "Increase Damage to MR Troops"
+   },
+   {
+    "name": "EMP Pulse Cannon",
+    "stat1": "Reduce Attack of enemy MR Troops",
+    "stat2": "Reduce Attack of enemy LR Troops",
+    "stat3": "All Troops Misfire Resistance",
+    "expertise1": "Increase Defense and HP of all Troops",
+    "expertise2Name": "Defense Rampart",
+    "expertise2": "In the first 10 sec of a battle the 2 troops with the most units in MR and LR get their Attack x x% shield"
+   }
+  ]
+ },
+ {
+  "officerId": "warfare_tifa",
+  "items": [
+   {
+    "name": "Micro Submachine Gun",
+    "stat1": "LR Attack",
+    "stat2": "Increase HP and Defense of MR Troops",
+    "stat3": "Biochemical Zombies Attack Boost",
+    "expertise1": "Increase Attack of all Troops",
+    "expertise2Name": "Protection Force Field",
+    "expertise2": "At the Start of the Battle, Titans and Warplanes get the Protection Force Field, resisting their HP x x% Damage for 10 sec"
+   },
+   {
+    "name": "Tactical Bag",
+    "stat1": "MR Attack",
+    "stat2": "Increase HP and Defense of Melee Troops",
+    "stat3": "All Troops Disruptor Resistance",
+    "expertise1": "Increase Defense and HP of all Troops",
+    "expertise2Name": "Titan Resistance",
+    "expertise2": "Reduce Damage taken from Titans"
+   }
+  ]
+ },
+ {
+  "officerId": "warfare_panda_jack",
+  "items": [
+   {
+    "name": "Rocket Launcher",
+    "stat1": "MR Attack",
+    "stat2": "Increase HP and Defense of LR Troops",
+    "stat3": "Biochemical Zombies Attack Boost",
+    "expertise1": "Increase Defense and HP of all Troops",
+    "expertise2Name": "Mid-Range Killer",
+    "expertise2": "Increase Damage to MR Troops"
+   },
+   {
+    "name": "Tiger Amulet",
+    "stat1": "LR Attack",
+    "stat2": "Increase HP and Defense of MR Troops",
+    "stat3": "All Troops Disruptor Resistance",
+    "expertise1": "Increase Defense and HP of all Troops",
+    "expertise2Name": "Impale",
+    "expertise2": "Increase the Attack of all Troops by x% and Increase Damage when attacking units with Shields by x%"
+   }
+  ]
+ },
+ {
+  "officerId": "warfare_zeus",
+  "items": [
+   {
+    "name": "Special Ops Submachine Gun",
+    "stat1": "LR Attack",
+    "stat2": "Increase HP and Defense of Melee Troops",
+    "stat3": "Biochemical Zombies Attack Boost",
+    "expertise1": "Increase Defense and HP of all Troops",
+    "expertise2Name": "Long-Range Killer",
+    "expertise2": "Increase Damage to LR Troops"
+   },
+   {
+    "name": "Blade Bracelet",
+    "stat1": "MR Attack",
+    "stat2": "Increase HP and Defense of LR Troops",
+    "stat3": "All Troops Disruptor Resistance",
+    "expertise1": "Increase Attack of all Troops",
+    "expertise2Name": "Protection Force Field",
+    "expertise2": "At the Start of the Battle, Titans and Warplanes get the Protection Force Field, resisting their HP x x% Damage for 10 sec"
+   }
+  ]
+ },
+ {
+  "officerId": "warfare_storm_bow",
+  "items": [
+   {
+    "name": "Tactical Strongbow",
+    "stat1": "LR Attack",
+    "stat2": "Increase HP and Defense of Melee Troops",
+    "stat3": "Biochemical Zombies Attack Boost",
+    "expertise1": "Increase Attack of all Troops",
+    "expertise2Name": "Melee Killer",
+    "expertise2": "Increase Damage to Melee Troops"
+   },
+   {
+    "name": "Combat Armor",
+    "stat1": "MR Attack",
+    "stat2": "Increase HP and Defense of LR Troops",
+    "stat3": "All Troops Disruptor Resistance",
+    "expertise1": "Increase Attack of all Troops",
+    "expertise2Name": "Melee Blessing",
+    "expertise2": "Increase HP of Melee by x% and Melee Troops will share x% Damage of other Troops, Warplanes and Titans"
+   }
+  ]
+ },
+ {
+  "officerId": "warfare_aeon",
+  "items": [
+   {
+    "name": "Laser Katana",
+    "stat1": "MR Attack",
+    "stat2": "Biochemical Zombies Attack Boost",
+    "stat3": "Increase HP and Defense of Melee Troops",
+    "expertise1": "Increase Defense and HP of all Troops",
+    "expertise2Name": "Impale",
+    "expertise2": "Increase the Attack of all Troops by x% and Increase Damage when attacking units with Shields by x%"
+   },
+   {
+    "name": "Ghost Face Ninja",
+    "stat1": "LR Attack",
+    "stat2": "Increase HP and Defense of MR Troops",
+    "stat3": "All Troops Disruptor Resistance",
+    "expertise1": "Increase Attack of all Troops",
+    "expertise2Name": "Mid-Range Resistance",
+    "expertise2": "Reduce Damage taken from MR Troops"
+   }
+  ]
+ },
+ {
+  "officerId": "warfare_alexandria",
+  "items": [
+   {
+    "name": "Sharpshooter Rifle",
+    "stat1": "MR Attack",
+    "stat2": "Biochemical Zombies Attack Boost",
+    "stat3": "Increase HP and Defense of LR Troops",
+    "expertise1": "Increase Attack of all Troops",
+    "expertise2Name": "Defense Rampart",
+    "expertise2": "In the first 10 sec of a battle the 2 troops with the most units in MR and LR get their Attack x x% shield"
+   },
+   {
+    "name": "Mechanical Hold",
+    "stat1": "LR Attack",
+    "stat2": "All Troops Disruptor Resistance",
+    "stat3": "Biochemical Zombies Attack Boost",
+    "expertise1": "Increase Defense and HP of all Troops",
+    "expertise2Name": "Long-Range Resistance",
+    "expertise2": "Reduce Damage taken from LR Troops"
+   }
+  ]
+ },
+ {
+  "officerId": "warfare_kingsley",
+  "items": [
+   {
+    "name": "Light Machine Gun",
+    "stat1": "MR Attack",
+    "stat2": "Biochemical Zombies Attack Boost",
+    "stat3": "Increase HP and Defense of MR Troops",
+    "expertise1": "Increase Attack of all Troops",
+    "expertise2Name": "Mid-Range Killer",
+    "expertise2": "Increase Damage to MR Troops"
+   },
+   {
+    "name": "Thunder Shoulder Armor",
+    "stat1": "MR Attack",
+    "stat2": "Increase HP and Defense of LR Troops",
+    "stat3": "Biochemical Zombies Attack Boost",
+    "expertise1": "Increase Attack of all Troops",
+    "expertise2Name": "Titan Resistance",
+    "expertise2": "Reduce Damage taken from Titans"
+   }
+  ]
+ },
+ {
+  "officerId": "machinist_chloe",
+  "items": [
+   {
+    "name": "\"Bang Bang\" Machine Gun",
+    "stat1": "Attack Against Melee Boost",
+    "stat2": "Attack Against Long-Range Boost",
+    "stat3": "Attack Against Mid-Range Boost",
+    "expertise1": "Advanced Kill",
+    "expertise2Name": "Mid-Range Killer",
+    "expertise2": "Mid-Range Killer"
+   },
+   {
+    "name": "\"Beep Beep\" Headphones",
+    "stat1": "Enemy Melee Attack Reduction",
+    "stat2": "Enemy Mid-Range Attack Reduction",
+    "stat3": "Enemy Long-Range Attack Reduction",
+    "expertise1": "Advanced Endurance",
+    "expertise2Name": "Defensive Rampart",
+    "expertise2": "Defensive Rampart"
+   }
+  ]
+ }
+]

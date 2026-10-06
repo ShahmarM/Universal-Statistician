@@ -1,0 +1,721 @@
+Titan,Equipment,Component,Level,Value,Alloy (this step),Alloy (cumulative)
+Source Spirit,Destructive Lightning,Titan Attack,1,Effect 23000,0,0
+Source Spirit,Destructive Lightning,Titan Attack,2,Effect 46000,15,15
+Source Spirit,Destructive Lightning,Titan Attack,3,Effect 69000,23,38
+Source Spirit,Destructive Lightning,Titan Attack,4,Effect 92000,32,70
+Source Spirit,Destructive Lightning,Titan Attack,5,Effect 115000,41,111
+Source Spirit,Destructive Lightning,Titan Attack,6,Effect 138000,57,168
+Source Spirit,Destructive Lightning,Titan Attack,7,Effect 161000,75,243
+Source Spirit,Destructive Lightning,Titan Attack,8,Effect 184000,89,332
+Source Spirit,Destructive Lightning,Titan Attack,9,Effect 207000,104,436
+Source Spirit,Destructive Lightning,Titan Attack,10,Effect 230000,118,554
+Source Spirit,Destructive Lightning,Titan Attack,11,Effect 253000,135,689
+Source Spirit,Destructive Lightning,Titan Attack,12,Effect 276000,154,843
+Source Spirit,Destructive Lightning,Titan Attack,13,Effect 299000,171,1014
+Source Spirit,Destructive Lightning,Titan Attack,14,Effect 322000,188,1202
+Source Spirit,Destructive Lightning,Titan Attack,15,Effect 345000,203,1405
+Source Spirit,Destructive Lightning,Titan Attack,16,Effect 368000,219,1624
+Source Spirit,Destructive Lightning,Titan Attack,17,Effect 391000,236,1860
+Source Spirit,Destructive Lightning,Titan Attack,18,Effect 414000,255,2115
+Source Spirit,Destructive Lightning,Titan Attack,19,Effect 437000,276,2391
+Source Spirit,Destructive Lightning,Titan Attack,20,Effect 460000,298,2689
+Source Spirit,Destructive Lightning,Titan Attack,21,Effect 483000,322,3011
+Source Spirit,Destructive Lightning,Titan Attack,22,Effect 506000,354,3365
+Source Spirit,Destructive Lightning,Titan Attack,23,Effect 529000,389,3754
+Source Spirit,Destructive Lightning,Titan Attack,24,Effect 552000,428,4182
+Source Spirit,Destructive Lightning,Titan Attack,25,Effect 575000,479,4661
+Source Spirit,Destructive Lightning,Titan Attack,26,Effect 598000,537,5198
+Source Spirit,Destructive Lightning,Titan Attack,27,Effect 621000,601,5799
+Source Spirit,Destructive Lightning,Titan Attack,28,Effect 644000,674,6473
+Source Spirit,Destructive Lightning,Titan Attack,29,Effect 667000,754,7227
+Source Spirit,Destructive Lightning,Titan Attack,30,Effect 690000,845,8072
+Source Spirit,Destructive Lightning,Titan HPs/Defense,1,HPs 420000; Defense 2,0,0
+Source Spirit,Destructive Lightning,Titan HPs/Defense,2,HPs 840000; Defense 3,15,15
+Source Spirit,Destructive Lightning,Titan HPs/Defense,3,HPs 1260000; Defense 5,23,38
+Source Spirit,Destructive Lightning,Titan HPs/Defense,4,HPs 1680000; Defense 6,32,70
+Source Spirit,Destructive Lightning,Titan HPs/Defense,5,HPs 2100000; Defense 8,41,111
+Source Spirit,Destructive Lightning,Titan HPs/Defense,6,HPs 2520000; Defense 9,57,168
+Source Spirit,Destructive Lightning,Titan HPs/Defense,7,HPs 2940000; Defense 11,75,243
+Source Spirit,Destructive Lightning,Titan HPs/Defense,8,HPs 3360000; Defense 12,89,332
+Source Spirit,Destructive Lightning,Titan HPs/Defense,9,HPs 3780000; Defense 14,104,436
+Source Spirit,Destructive Lightning,Titan HPs/Defense,10,HPs 4200000; Defense 15,118,554
+Source Spirit,Destructive Lightning,Titan HPs/Defense,11,HPs 4620000; Defense 17,135,689
+Source Spirit,Destructive Lightning,Titan HPs/Defense,12,HPs 5040000; Defense 18,154,843
+Source Spirit,Destructive Lightning,Titan HPs/Defense,13,HPs 5460000; Defense 20,171,1014
+Source Spirit,Destructive Lightning,Titan HPs/Defense,14,HPs 5880000; Defense 21,188,1202
+Source Spirit,Destructive Lightning,Titan HPs/Defense,15,HPs 6300000; Defense 23,203,1405
+Source Spirit,Destructive Lightning,Titan HPs/Defense,16,HPs 6720000; Defense 24,219,1624
+Source Spirit,Destructive Lightning,Titan HPs/Defense,17,HPs 7140000; Defense 26,236,1860
+Source Spirit,Destructive Lightning,Titan HPs/Defense,18,HPs 7560000; Defense 27,255,2115
+Source Spirit,Destructive Lightning,Titan HPs/Defense,19,HPs 7980000; Defense 29,276,2391
+Source Spirit,Destructive Lightning,Titan HPs/Defense,20,HPs 8400000; Defense 30,298,2689
+Source Spirit,Destructive Lightning,Titan HPs/Defense,21,HPs 8820000; Defense 32,322,3011
+Source Spirit,Destructive Lightning,Titan HPs/Defense,22,HPs 9240000; Defense 33,354,3365
+Source Spirit,Destructive Lightning,Titan HPs/Defense,23,HPs 9660000; Defense 35,389,3754
+Source Spirit,Destructive Lightning,Titan HPs/Defense,24,HPs 10080000; Defense 36,428,4182
+Source Spirit,Destructive Lightning,Titan HPs/Defense,25,HPs 10500000; Defense 38,479,4661
+Source Spirit,Destructive Lightning,Titan HPs/Defense,26,HPs 10920000; Defense 39,537,5198
+Source Spirit,Destructive Lightning,Titan HPs/Defense,27,HPs 11340000; Defense 41,601,5799
+Source Spirit,Destructive Lightning,Titan HPs/Defense,28,HPs 11760000; Defense 42,674,6473
+Source Spirit,Destructive Lightning,Titan HPs/Defense,29,HPs 12180000; Defense 44,754,7227
+Source Spirit,Destructive Lightning,Titan HPs/Defense,30,HPs 12600000; Defense 45,845,8072
+Source Spirit,Destructive Lightning,Attack,1,Effect 0.8,0,0
+Source Spirit,Destructive Lightning,Attack,2,Effect 1.6,15,15
+Source Spirit,Destructive Lightning,Attack,3,Effect 2.4,23,38
+Source Spirit,Destructive Lightning,Attack,4,Effect 3.2,32,70
+Source Spirit,Destructive Lightning,Attack,5,Effect 4,41,111
+Source Spirit,Destructive Lightning,Attack,6,Effect 4.8,57,168
+Source Spirit,Destructive Lightning,Attack,7,Effect 5.6,75,243
+Source Spirit,Destructive Lightning,Attack,8,Effect 6.4,89,332
+Source Spirit,Destructive Lightning,Attack,9,Effect 7.2,104,436
+Source Spirit,Destructive Lightning,Attack,10,Effect 8,118,554
+Source Spirit,Destructive Lightning,Attack,11,Effect 8.8,135,689
+Source Spirit,Destructive Lightning,Attack,12,Effect 9.6,154,843
+Source Spirit,Destructive Lightning,Attack,13,Effect 10.4,171,1014
+Source Spirit,Destructive Lightning,Attack,14,Effect 11.2,188,1202
+Source Spirit,Destructive Lightning,Attack,15,Effect 12,203,1405
+Source Spirit,Destructive Lightning,Attack,16,Effect 12.8,219,1624
+Source Spirit,Destructive Lightning,Attack,17,Effect 13.6,236,1860
+Source Spirit,Destructive Lightning,Attack,18,Effect 14.4,255,2115
+Source Spirit,Destructive Lightning,Attack,19,Effect 15.2,276,2391
+Source Spirit,Destructive Lightning,Attack,20,Effect 16,298,2689
+Source Spirit,Destructive Lightning,Attack,21,Effect 16.8,322,3011
+Source Spirit,Destructive Lightning,Attack,22,Effect 17.6,354,3365
+Source Spirit,Destructive Lightning,Attack,23,Effect 18.4,389,3754
+Source Spirit,Destructive Lightning,Attack,24,Effect 19.2,428,4182
+Source Spirit,Destructive Lightning,Attack,25,Effect 20,479,4661
+Source Spirit,Destructive Lightning,Attack,26,Effect 20.8,537,5198
+Source Spirit,Destructive Lightning,Attack,27,Effect 21.6,601,5799
+Source Spirit,Destructive Lightning,Attack,28,Effect 22.4,674,6473
+Source Spirit,Destructive Lightning,Attack,29,Effect 23.2,754,7227
+Source Spirit,Destructive Lightning,Attack,30,Effect 24,845,8072
+Source Spirit,Destructive Lightning,HPs/Defense,1,Effect 1,0,0
+Source Spirit,Destructive Lightning,HPs/Defense,2,Effect 2,15,15
+Source Spirit,Destructive Lightning,HPs/Defense,3,Effect 3,23,38
+Source Spirit,Destructive Lightning,HPs/Defense,4,Effect 4,32,70
+Source Spirit,Destructive Lightning,HPs/Defense,5,Effect 5,41,111
+Source Spirit,Destructive Lightning,HPs/Defense,6,Effect 6,57,168
+Source Spirit,Destructive Lightning,HPs/Defense,7,Effect 7,75,243
+Source Spirit,Destructive Lightning,HPs/Defense,8,Effect 8,89,332
+Source Spirit,Destructive Lightning,HPs/Defense,9,Effect 9,104,436
+Source Spirit,Destructive Lightning,HPs/Defense,10,Effect 10,118,554
+Source Spirit,Destructive Lightning,HPs/Defense,11,Effect 11,135,689
+Source Spirit,Destructive Lightning,HPs/Defense,12,Effect 12,154,843
+Source Spirit,Destructive Lightning,HPs/Defense,13,Effect 13,171,1014
+Source Spirit,Destructive Lightning,HPs/Defense,14,Effect 14,188,1202
+Source Spirit,Destructive Lightning,HPs/Defense,15,Effect 15,203,1405
+Source Spirit,Destructive Lightning,HPs/Defense,16,Effect 16,219,1624
+Source Spirit,Destructive Lightning,HPs/Defense,17,Effect 17,236,1860
+Source Spirit,Destructive Lightning,HPs/Defense,18,Effect 18,255,2115
+Source Spirit,Destructive Lightning,HPs/Defense,19,Effect 19,276,2391
+Source Spirit,Destructive Lightning,HPs/Defense,20,Effect 20,298,2689
+Source Spirit,Destructive Lightning,HPs/Defense,21,Effect 21,322,3011
+Source Spirit,Destructive Lightning,HPs/Defense,22,Effect 22,354,3365
+Source Spirit,Destructive Lightning,HPs/Defense,23,Effect 23,389,3754
+Source Spirit,Destructive Lightning,HPs/Defense,24,Effect 24,428,4182
+Source Spirit,Destructive Lightning,HPs/Defense,25,Effect 25,479,4661
+Source Spirit,Destructive Lightning,HPs/Defense,26,Effect 26,537,5198
+Source Spirit,Destructive Lightning,HPs/Defense,27,Effect 27,601,5799
+Source Spirit,Destructive Lightning,HPs/Defense,28,Effect 28,674,6473
+Source Spirit,Destructive Lightning,HPs/Defense,29,Effect 29,754,7227
+Source Spirit,Destructive Lightning,HPs/Defense,30,Effect 30,845,8072
+Source Spirit,Thor,Titan Attack,1,Effect 23000,0,0
+Source Spirit,Thor,Titan Attack,2,Effect 46000,23,23
+Source Spirit,Thor,Titan Attack,3,Effect 69000,34,57
+Source Spirit,Thor,Titan Attack,4,Effect 92000,47,104
+Source Spirit,Thor,Titan Attack,5,Effect 115000,61,165
+Source Spirit,Thor,Titan Attack,6,Effect 138000,86,251
+Source Spirit,Thor,Titan Attack,7,Effect 161000,112,363
+Source Spirit,Thor,Titan Attack,8,Effect 184000,134,497
+Source Spirit,Thor,Titan Attack,9,Effect 207000,156,653
+Source Spirit,Thor,Titan Attack,10,Effect 230000,177,830
+Source Spirit,Thor,Titan Attack,11,Effect 253000,202,1032
+Source Spirit,Thor,Titan Attack,12,Effect 276000,231,1263
+Source Spirit,Thor,Titan Attack,13,Effect 299000,256,1519
+Source Spirit,Thor,Titan Attack,14,Effect 322000,282,1801
+Source Spirit,Thor,Titan Attack,15,Effect 345000,304,2105
+Source Spirit,Thor,Titan Attack,16,Effect 368000,322,2427
+Source Spirit,Thor,Titan Attack,17,Effect 391000,342,2769
+Source Spirit,Thor,Titan Attack,18,Effect 414000,362,3131
+Source Spirit,Thor,Titan Attack,19,Effect 437000,384,3515
+Source Spirit,Thor,Titan Attack,20,Effect 460000,407,3922
+Source Spirit,Thor,Titan Attack,21,Effect 483000,431,4353
+Source Spirit,Thor,Titan Attack,22,Effect 506000,457,4810
+Source Spirit,Thor,Titan Attack,23,Effect 529000,485,5295
+Source Spirit,Thor,Titan Attack,24,Effect 552000,514,5809
+Source Spirit,Thor,Titan Attack,25,Effect 575000,544,6353
+Source Spirit,Thor,Titan Attack,26,Effect 598000,599,6952
+Source Spirit,Thor,Titan Attack,27,Effect 621000,659,7611
+Source Spirit,Thor,Titan Attack,28,Effect 644000,725,8336
+Source Spirit,Thor,Titan Attack,29,Effect 667000,797,9133
+Source Spirit,Thor,Titan Attack,30,Effect 690000,877,10010
+Source Spirit,Thor,Titan HPs/Defense,1,HPs 420000; Defense 2,0,0
+Source Spirit,Thor,Titan HPs/Defense,2,HPs 840000; Defense 3,23,23
+Source Spirit,Thor,Titan HPs/Defense,3,HPs 1260000; Defense 5,34,57
+Source Spirit,Thor,Titan HPs/Defense,4,HPs 1680000; Defense 6,47,104
+Source Spirit,Thor,Titan HPs/Defense,5,HPs 2100000; Defense 8,61,165
+Source Spirit,Thor,Titan HPs/Defense,6,HPs 2520000; Defense 9,86,251
+Source Spirit,Thor,Titan HPs/Defense,7,HPs 2940000; Defense 11,112,363
+Source Spirit,Thor,Titan HPs/Defense,8,HPs 3360000; Defense 12,134,497
+Source Spirit,Thor,Titan HPs/Defense,9,HPs 3780000; Defense 14,156,653
+Source Spirit,Thor,Titan HPs/Defense,10,HPs 4200000; Defense 15,177,830
+Source Spirit,Thor,Titan HPs/Defense,11,HPs 4620000; Defense 17,202,1032
+Source Spirit,Thor,Titan HPs/Defense,12,HPs 5040000; Defense 18,231,1263
+Source Spirit,Thor,Titan HPs/Defense,13,HPs 5460000; Defense 20,256,1519
+Source Spirit,Thor,Titan HPs/Defense,14,HPs 5880000; Defense 21,282,1801
+Source Spirit,Thor,Titan HPs/Defense,15,HPs 6300000; Defense 23,304,2105
+Source Spirit,Thor,Titan HPs/Defense,16,HPs 6720000; Defense 24,322,2427
+Source Spirit,Thor,Titan HPs/Defense,17,HPs 7140000; Defense 26,342,2769
+Source Spirit,Thor,Titan HPs/Defense,18,HPs 7560000; Defense 27,362,3131
+Source Spirit,Thor,Titan HPs/Defense,19,HPs 7980000; Defense 29,384,3515
+Source Spirit,Thor,Titan HPs/Defense,20,HPs 8400000; Defense 30,407,3922
+Source Spirit,Thor,Titan HPs/Defense,21,HPs 8820000; Defense 32,431,4353
+Source Spirit,Thor,Titan HPs/Defense,22,HPs 9240000; Defense 33,457,4810
+Source Spirit,Thor,Titan HPs/Defense,23,HPs 9660000; Defense 35,485,5295
+Source Spirit,Thor,Titan HPs/Defense,24,HPs 10080000; Defense 36,514,5809
+Source Spirit,Thor,Titan HPs/Defense,25,HPs 10500000; Defense 38,544,6353
+Source Spirit,Thor,Titan HPs/Defense,26,HPs 10920000; Defense 39,599,6952
+Source Spirit,Thor,Titan HPs/Defense,27,HPs 11340000; Defense 41,659,7611
+Source Spirit,Thor,Titan HPs/Defense,28,HPs 11760000; Defense 42,725,8336
+Source Spirit,Thor,Titan HPs/Defense,29,HPs 12180000; Defense 44,797,9133
+Source Spirit,Thor,Titan HPs/Defense,30,HPs 12600000; Defense 45,877,10010
+Source Spirit,Thor,Enemy MR Attack Debuff,1,Effect 1.8,0,0
+Source Spirit,Thor,Enemy MR Attack Debuff,2,Effect 3.6,23,23
+Source Spirit,Thor,Enemy MR Attack Debuff,3,Effect 5.4,34,57
+Source Spirit,Thor,Enemy MR Attack Debuff,4,Effect 7.2,47,104
+Source Spirit,Thor,Enemy MR Attack Debuff,5,Effect 9,61,165
+Source Spirit,Thor,Enemy MR Attack Debuff,6,Effect 10.8,86,251
+Source Spirit,Thor,Enemy MR Attack Debuff,7,Effect 12.6,112,363
+Source Spirit,Thor,Enemy MR Attack Debuff,8,Effect 14.4,134,497
+Source Spirit,Thor,Enemy MR Attack Debuff,9,Effect 16.2,156,653
+Source Spirit,Thor,Enemy MR Attack Debuff,10,Effect 18,177,830
+Source Spirit,Thor,Enemy MR Attack Debuff,11,Effect 19.8,202,1032
+Source Spirit,Thor,Enemy MR Attack Debuff,12,Effect 21.6,231,1263
+Source Spirit,Thor,Enemy MR Attack Debuff,13,Effect 23.4,256,1519
+Source Spirit,Thor,Enemy MR Attack Debuff,14,Effect 25.2,282,1801
+Source Spirit,Thor,Enemy MR Attack Debuff,15,Effect 27,304,2105
+Source Spirit,Thor,Enemy MR Attack Debuff,16,Effect 28.8,322,2427
+Source Spirit,Thor,Enemy MR Attack Debuff,17,Effect 30.6,342,2769
+Source Spirit,Thor,Enemy MR Attack Debuff,18,Effect 32.4,362,3131
+Source Spirit,Thor,Enemy MR Attack Debuff,19,Effect 34.2,384,3515
+Source Spirit,Thor,Enemy MR Attack Debuff,20,Effect 36,407,3922
+Source Spirit,Thor,Enemy MR Attack Debuff,21,Effect 37.8,431,4353
+Source Spirit,Thor,Enemy MR Attack Debuff,22,Effect 39.6,457,4810
+Source Spirit,Thor,Enemy MR Attack Debuff,23,Effect 41.4,485,5295
+Source Spirit,Thor,Enemy MR Attack Debuff,24,Effect 43.2,514,5809
+Source Spirit,Thor,Enemy MR Attack Debuff,25,Effect 45,544,6353
+Source Spirit,Thor,Enemy MR Attack Debuff,26,Effect 46.8,599,6952
+Source Spirit,Thor,Enemy MR Attack Debuff,27,Effect 48.6,659,7611
+Source Spirit,Thor,Enemy MR Attack Debuff,28,Effect 50.4,725,8336
+Source Spirit,Thor,Enemy MR Attack Debuff,29,Effect 52.2,797,9133
+Source Spirit,Thor,Enemy MR Attack Debuff,30,Effect 54,877,10010
+Source Spirit,Thor,Enemy LR Attack Debuff,1,Effect 1.8,0,0
+Source Spirit,Thor,Enemy LR Attack Debuff,2,Effect 3.6,23,23
+Source Spirit,Thor,Enemy LR Attack Debuff,3,Effect 5.4,34,57
+Source Spirit,Thor,Enemy LR Attack Debuff,4,Effect 7.2,47,104
+Source Spirit,Thor,Enemy LR Attack Debuff,5,Effect 9,61,165
+Source Spirit,Thor,Enemy LR Attack Debuff,6,Effect 10.8,86,251
+Source Spirit,Thor,Enemy LR Attack Debuff,7,Effect 12.6,112,363
+Source Spirit,Thor,Enemy LR Attack Debuff,8,Effect 14.4,134,497
+Source Spirit,Thor,Enemy LR Attack Debuff,9,Effect 16.2,156,653
+Source Spirit,Thor,Enemy LR Attack Debuff,10,Effect 18,177,830
+Source Spirit,Thor,Enemy LR Attack Debuff,11,Effect 19.8,202,1032
+Source Spirit,Thor,Enemy LR Attack Debuff,12,Effect 21.6,231,1263
+Source Spirit,Thor,Enemy LR Attack Debuff,13,Effect 23.4,256,1519
+Source Spirit,Thor,Enemy LR Attack Debuff,14,Effect 25.2,282,1801
+Source Spirit,Thor,Enemy LR Attack Debuff,15,Effect 27,304,2105
+Source Spirit,Thor,Enemy LR Attack Debuff,16,Effect 28.8,322,2427
+Source Spirit,Thor,Enemy LR Attack Debuff,17,Effect 30.6,342,2769
+Source Spirit,Thor,Enemy LR Attack Debuff,18,Effect 32.4,362,3131
+Source Spirit,Thor,Enemy LR Attack Debuff,19,Effect 34.2,384,3515
+Source Spirit,Thor,Enemy LR Attack Debuff,20,Effect 36,407,3922
+Source Spirit,Thor,Enemy LR Attack Debuff,21,Effect 37.8,431,4353
+Source Spirit,Thor,Enemy LR Attack Debuff,22,Effect 39.6,457,4810
+Source Spirit,Thor,Enemy LR Attack Debuff,23,Effect 41.4,485,5295
+Source Spirit,Thor,Enemy LR Attack Debuff,24,Effect 43.2,514,5809
+Source Spirit,Thor,Enemy LR Attack Debuff,25,Effect 45,544,6353
+Source Spirit,Thor,Enemy LR Attack Debuff,26,Effect 46.8,599,6952
+Source Spirit,Thor,Enemy LR Attack Debuff,27,Effect 48.6,659,7611
+Source Spirit,Thor,Enemy LR Attack Debuff,28,Effect 50.4,725,8336
+Source Spirit,Thor,Enemy LR Attack Debuff,29,Effect 52.2,797,9133
+Source Spirit,Thor,Enemy LR Attack Debuff,30,Effect 54,877,10010
+Source Spirit,Weaken Energy,Titan Damage vs MR,1,Effect 0.8,0,0
+Source Spirit,Weaken Energy,Titan Damage vs MR,2,Effect 1.6,30,30
+Source Spirit,Weaken Energy,Titan Damage vs MR,3,Effect 2.4,45,75
+Source Spirit,Weaken Energy,Titan Damage vs MR,4,Effect 3.2,63,138
+Source Spirit,Weaken Energy,Titan Damage vs MR,5,Effect 4,82,220
+Source Spirit,Weaken Energy,Titan Damage vs MR,6,Effect 4.8,115,335
+Source Spirit,Weaken Energy,Titan Damage vs MR,7,Effect 5.6,149,484
+Source Spirit,Weaken Energy,Titan Damage vs MR,8,Effect 6.4,179,663
+Source Spirit,Weaken Energy,Titan Damage vs MR,9,Effect 7.2,207,870
+Source Spirit,Weaken Energy,Titan Damage vs MR,10,Effect 8,237,1107
+Source Spirit,Weaken Energy,Titan Damage vs MR,11,Effect 8.8,270,1377
+Source Spirit,Weaken Energy,Titan Damage vs MR,12,Effect 9.6,307,1684
+Source Spirit,Weaken Energy,Titan Damage vs MR,13,Effect 10.4,341,2025
+Source Spirit,Weaken Energy,Titan Damage vs MR,14,Effect 11.2,375,2400
+Source Spirit,Weaken Energy,Titan Damage vs MR,15,Effect 12,405,2805
+Source Spirit,Weaken Energy,Titan Damage vs MR,16,Effect 12.8,430,3235
+Source Spirit,Weaken Energy,Titan Damage vs MR,17,Effect 13.6,455,3690
+Source Spirit,Weaken Energy,Titan Damage vs MR,18,Effect 14.4,483,4173
+Source Spirit,Weaken Energy,Titan Damage vs MR,19,Effect 15.2,512,4685
+Source Spirit,Weaken Energy,Titan Damage vs MR,20,Effect 16,542,5227
+Source Spirit,Weaken Energy,Titan Damage vs MR,21,Effect 16.8,575,5802
+Source Spirit,Weaken Energy,Titan Damage vs MR,22,Effect 17.6,610,6412
+Source Spirit,Weaken Energy,Titan Damage vs MR,23,Effect 18.4,646,7058
+Source Spirit,Weaken Energy,Titan Damage vs MR,24,Effect 19.2,685,7743
+Source Spirit,Weaken Energy,Titan Damage vs MR,25,Effect 20,726,8469
+Source Spirit,Weaken Energy,Titan Damage vs MR,26,Effect 20.8,799,9268
+Source Spirit,Weaken Energy,Titan Damage vs MR,27,Effect 21.6,878,10146
+Source Spirit,Weaken Energy,Titan Damage vs MR,28,Effect 22.4,966,11112
+Source Spirit,Weaken Energy,Titan Damage vs MR,29,Effect 23.2,1063,12175
+Source Spirit,Weaken Energy,Titan Damage vs MR,30,Effect 24,1169,13344
+Source Spirit,Weaken Energy,Effect Bonus Source Energy Guard,1,Effect 1.3,0,0
+Source Spirit,Weaken Energy,Effect Bonus Source Energy Guard,2,Effect 2.6,30,30
+Source Spirit,Weaken Energy,Effect Bonus Source Energy Guard,3,Effect 3.9,45,75
+Source Spirit,Weaken Energy,Effect Bonus Source Energy Guard,4,Effect 5.2,63,138
+Source Spirit,Weaken Energy,Effect Bonus Source Energy Guard,5,Effect 6.5,82,220
+Source Spirit,Weaken Energy,Effect Bonus Source Energy Guard,6,Effect 7.8,115,335
+Source Spirit,Weaken Energy,Effect Bonus Source Energy Guard,7,Effect 9.1,149,484
+Source Spirit,Weaken Energy,Effect Bonus Source Energy Guard,8,Effect 10.4,179,663
+Source Spirit,Weaken Energy,Effect Bonus Source Energy Guard,9,Effect 11.7,207,870
+Source Spirit,Weaken Energy,Effect Bonus Source Energy Guard,10,Effect 13,237,1107
+Source Spirit,Weaken Energy,Effect Bonus Source Energy Guard,11,Effect 14.3,270,1377
+Source Spirit,Weaken Energy,Effect Bonus Source Energy Guard,12,Effect 15.6,307,1684
+Source Spirit,Weaken Energy,Effect Bonus Source Energy Guard,13,Effect 16.9,341,2025
+Source Spirit,Weaken Energy,Effect Bonus Source Energy Guard,14,Effect 18.2,375,2400
+Source Spirit,Weaken Energy,Effect Bonus Source Energy Guard,15,Effect 19.5,405,2805
+Source Spirit,Weaken Energy,Effect Bonus Source Energy Guard,16,Effect 20.8,430,3235
+Source Spirit,Weaken Energy,Effect Bonus Source Energy Guard,17,Effect 22.1,455,3690
+Source Spirit,Weaken Energy,Effect Bonus Source Energy Guard,18,Effect 23.4,483,4173
+Source Spirit,Weaken Energy,Effect Bonus Source Energy Guard,19,Effect 24.7,512,4685
+Source Spirit,Weaken Energy,Effect Bonus Source Energy Guard,20,Effect 26,542,5227
+Source Spirit,Weaken Energy,Effect Bonus Source Energy Guard,21,Effect 27.3,575,5802
+Source Spirit,Weaken Energy,Effect Bonus Source Energy Guard,22,Effect 28.6,610,6412
+Source Spirit,Weaken Energy,Effect Bonus Source Energy Guard,23,Effect 29.9,646,7058
+Source Spirit,Weaken Energy,Effect Bonus Source Energy Guard,24,Effect 31.2,685,7743
+Source Spirit,Weaken Energy,Effect Bonus Source Energy Guard,25,Effect 32.5,726,8469
+Source Spirit,Weaken Energy,Effect Bonus Source Energy Guard,26,Effect 33.8,799,9268
+Source Spirit,Weaken Energy,Effect Bonus Source Energy Guard,27,Effect 35.1,878,10146
+Source Spirit,Weaken Energy,Effect Bonus Source Energy Guard,28,Effect 36.4,966,11112
+Source Spirit,Weaken Energy,Effect Bonus Source Energy Guard,29,Effect 37.7,1063,12175
+Source Spirit,Weaken Energy,Effect Bonus Source Energy Guard,30,Effect 39,1169,13344
+Source Spirit,Weaken Energy,Damage vs MR,1,Effect 0.5,0,0
+Source Spirit,Weaken Energy,Damage vs MR,2,Effect 1,30,30
+Source Spirit,Weaken Energy,Damage vs MR,3,Effect 1.5,45,75
+Source Spirit,Weaken Energy,Damage vs MR,4,Effect 2,63,138
+Source Spirit,Weaken Energy,Damage vs MR,5,Effect 2.5,82,220
+Source Spirit,Weaken Energy,Damage vs MR,6,Effect 3,115,335
+Source Spirit,Weaken Energy,Damage vs MR,7,Effect 3.5,149,484
+Source Spirit,Weaken Energy,Damage vs MR,8,Effect 4,179,663
+Source Spirit,Weaken Energy,Damage vs MR,9,Effect 4.5,207,870
+Source Spirit,Weaken Energy,Damage vs MR,10,Effect 5,237,1107
+Source Spirit,Weaken Energy,Damage vs MR,11,Effect 5.5,270,1377
+Source Spirit,Weaken Energy,Damage vs MR,12,Effect 6,307,1684
+Source Spirit,Weaken Energy,Damage vs MR,13,Effect 6.5,341,2025
+Source Spirit,Weaken Energy,Damage vs MR,14,Effect 7,375,2400
+Source Spirit,Weaken Energy,Damage vs MR,15,Effect 7.5,405,2805
+Source Spirit,Weaken Energy,Damage vs MR,16,Effect 8,430,3235
+Source Spirit,Weaken Energy,Damage vs MR,17,Effect 8.5,455,3690
+Source Spirit,Weaken Energy,Damage vs MR,18,Effect 9,483,4173
+Source Spirit,Weaken Energy,Damage vs MR,19,Effect 9.5,512,4685
+Source Spirit,Weaken Energy,Damage vs MR,20,Effect 10,542,5227
+Source Spirit,Weaken Energy,Damage vs MR,21,Effect 10.5,575,5802
+Source Spirit,Weaken Energy,Damage vs MR,22,Effect 11,610,6412
+Source Spirit,Weaken Energy,Damage vs MR,23,Effect 11.5,646,7058
+Source Spirit,Weaken Energy,Damage vs MR,24,Effect 12,685,7743
+Source Spirit,Weaken Energy,Damage vs MR,25,Effect 12.5,726,8469
+Source Spirit,Weaken Energy,Damage vs MR,26,Effect 13,799,9268
+Source Spirit,Weaken Energy,Damage vs MR,27,Effect 13.5,878,10146
+Source Spirit,Weaken Energy,Damage vs MR,28,Effect 14,966,11112
+Source Spirit,Weaken Energy,Damage vs MR,29,Effect 14.5,1063,12175
+Source Spirit,Weaken Energy,Damage vs MR,30,Effect 15,1169,13344
+Source Spirit,Weaken Energy,Melee HPs/Defense,1,Effect 1.8,0,0
+Source Spirit,Weaken Energy,Melee HPs/Defense,2,Effect 3.6,30,30
+Source Spirit,Weaken Energy,Melee HPs/Defense,3,Effect 5.4,45,75
+Source Spirit,Weaken Energy,Melee HPs/Defense,4,Effect 7.2,63,138
+Source Spirit,Weaken Energy,Melee HPs/Defense,5,Effect 9,82,220
+Source Spirit,Weaken Energy,Melee HPs/Defense,6,Effect 10.8,115,335
+Source Spirit,Weaken Energy,Melee HPs/Defense,7,Effect 12.6,149,484
+Source Spirit,Weaken Energy,Melee HPs/Defense,8,Effect 14.4,179,663
+Source Spirit,Weaken Energy,Melee HPs/Defense,9,Effect 16.2,207,870
+Source Spirit,Weaken Energy,Melee HPs/Defense,10,Effect 18,237,1107
+Source Spirit,Weaken Energy,Melee HPs/Defense,11,Effect 19.8,270,1377
+Source Spirit,Weaken Energy,Melee HPs/Defense,12,Effect 21.6,307,1684
+Source Spirit,Weaken Energy,Melee HPs/Defense,13,Effect 23.4,341,2025
+Source Spirit,Weaken Energy,Melee HPs/Defense,14,Effect 25.2,375,2400
+Source Spirit,Weaken Energy,Melee HPs/Defense,15,Effect 27,405,2805
+Source Spirit,Weaken Energy,Melee HPs/Defense,16,Effect 28.8,430,3235
+Source Spirit,Weaken Energy,Melee HPs/Defense,17,Effect 30.6,455,3690
+Source Spirit,Weaken Energy,Melee HPs/Defense,18,Effect 32.4,483,4173
+Source Spirit,Weaken Energy,Melee HPs/Defense,19,Effect 34.2,512,4685
+Source Spirit,Weaken Energy,Melee HPs/Defense,20,Effect 36,542,5227
+Source Spirit,Weaken Energy,Melee HPs/Defense,21,Effect 37.8,575,5802
+Source Spirit,Weaken Energy,Melee HPs/Defense,22,Effect 39.6,610,6412
+Source Spirit,Weaken Energy,Melee HPs/Defense,23,Effect 41.4,646,7058
+Source Spirit,Weaken Energy,Melee HPs/Defense,24,Effect 43.2,685,7743
+Source Spirit,Weaken Energy,Melee HPs/Defense,25,Effect 45,726,8469
+Source Spirit,Weaken Energy,Melee HPs/Defense,26,Effect 46.8,799,9268
+Source Spirit,Weaken Energy,Melee HPs/Defense,27,Effect 48.6,878,10146
+Source Spirit,Weaken Energy,Melee HPs/Defense,28,Effect 50.4,966,11112
+Source Spirit,Weaken Energy,Melee HPs/Defense,29,Effect 52.2,1063,12175
+Source Spirit,Weaken Energy,Melee HPs/Defense,30,Effect 54,1169,13344
+Empress,Empress Escort,Titan Attack,1,Effect 23000,0,0
+Empress,Empress Escort,Titan Attack,2,Effect 46000,15,15
+Empress,Empress Escort,Titan Attack,3,Effect 69000,23,38
+Empress,Empress Escort,Titan Attack,4,Effect 92000,32,70
+Empress,Empress Escort,Titan Attack,5,Effect 115000,41,111
+Empress,Empress Escort,Titan Attack,6,Effect 138000,57,168
+Empress,Empress Escort,Titan Attack,7,Effect 161000,75,243
+Empress,Empress Escort,Titan Attack,8,Effect 184000,89,332
+Empress,Empress Escort,Titan Attack,9,Effect 207000,104,436
+Empress,Empress Escort,Titan Attack,10,Effect 230000,118,554
+Empress,Empress Escort,Titan Attack,11,Effect 253000,135,689
+Empress,Empress Escort,Titan Attack,12,Effect 276000,154,843
+Empress,Empress Escort,Titan Attack,13,Effect 299000,171,1014
+Empress,Empress Escort,Titan Attack,14,Effect 322000,188,1202
+Empress,Empress Escort,Titan Attack,15,Effect 345000,203,1405
+Empress,Empress Escort,Titan Attack,16,Effect 368000,219,1624
+Empress,Empress Escort,Titan Attack,17,Effect 391000,236,1860
+Empress,Empress Escort,Titan Attack,18,Effect 414000,255,2115
+Empress,Empress Escort,Titan Attack,19,Effect 437000,276,2391
+Empress,Empress Escort,Titan Attack,20,Effect 460000,298,2689
+Empress,Empress Escort,Titan Attack,21,Effect 483000,322,3011
+Empress,Empress Escort,Titan Attack,22,Effect 506000,354,3365
+Empress,Empress Escort,Titan Attack,23,Effect 529000,389,3754
+Empress,Empress Escort,Titan Attack,24,Effect 552000,428,4182
+Empress,Empress Escort,Titan Attack,25,Effect 575000,479,4661
+Empress,Empress Escort,Titan Attack,26,Effect 598000,537,5198
+Empress,Empress Escort,Titan Attack,27,Effect 621000,601,5799
+Empress,Empress Escort,Titan Attack,28,Effect 644000,674,6473
+Empress,Empress Escort,Titan Attack,29,Effect 667000,754,7227
+Empress,Empress Escort,Titan Attack,30,Effect 690000,845,8072
+Empress,Empress Escort,Titan HPs/Defense,1,HPs 420000; Defense 2,0,0
+Empress,Empress Escort,Titan HPs/Defense,2,HPs 840000; Defense 3,15,15
+Empress,Empress Escort,Titan HPs/Defense,3,HPs 1260000; Defense 5,23,38
+Empress,Empress Escort,Titan HPs/Defense,4,HPs 1680000; Defense 6,32,70
+Empress,Empress Escort,Titan HPs/Defense,5,HPs 2100000; Defense 8,41,111
+Empress,Empress Escort,Titan HPs/Defense,6,HPs 2520000; Defense 9,57,168
+Empress,Empress Escort,Titan HPs/Defense,7,HPs 2940000; Defense 11,75,243
+Empress,Empress Escort,Titan HPs/Defense,8,HPs 3360000; Defense 12,89,332
+Empress,Empress Escort,Titan HPs/Defense,9,HPs 3780000; Defense 14,104,436
+Empress,Empress Escort,Titan HPs/Defense,10,HPs 4200000; Defense 15,118,554
+Empress,Empress Escort,Titan HPs/Defense,11,HPs 4620000; Defense 17,135,689
+Empress,Empress Escort,Titan HPs/Defense,12,HPs 5040000; Defense 18,154,843
+Empress,Empress Escort,Titan HPs/Defense,13,HPs 5460000; Defense 20,171,1014
+Empress,Empress Escort,Titan HPs/Defense,14,HPs 5880000; Defense 21,188,1202
+Empress,Empress Escort,Titan HPs/Defense,15,HPs 6300000; Defense 23,203,1405
+Empress,Empress Escort,Titan HPs/Defense,16,HPs 6720000; Defense 24,219,1624
+Empress,Empress Escort,Titan HPs/Defense,17,HPs 7140000; Defense 26,236,1860
+Empress,Empress Escort,Titan HPs/Defense,18,HPs 7560000; Defense 27,255,2115
+Empress,Empress Escort,Titan HPs/Defense,19,HPs 7980000; Defense 29,276,2391
+Empress,Empress Escort,Titan HPs/Defense,20,HPs 8400000; Defense 30,298,2689
+Empress,Empress Escort,Titan HPs/Defense,21,HPs 8820000; Defense 32,322,3011
+Empress,Empress Escort,Titan HPs/Defense,22,HPs 9240000; Defense 33,354,3365
+Empress,Empress Escort,Titan HPs/Defense,23,HPs 9660000; Defense 35,389,3754
+Empress,Empress Escort,Titan HPs/Defense,24,HPs 10080000; Defense 36,428,4182
+Empress,Empress Escort,Titan HPs/Defense,25,HPs 10500000; Defense 38,479,4661
+Empress,Empress Escort,Titan HPs/Defense,26,HPs 10920000; Defense 39,537,5198
+Empress,Empress Escort,Titan HPs/Defense,27,HPs 11340000; Defense 41,601,5799
+Empress,Empress Escort,Titan HPs/Defense,28,HPs 11760000; Defense 42,674,6473
+Empress,Empress Escort,Titan HPs/Defense,29,HPs 12180000; Defense 44,754,7227
+Empress,Empress Escort,Titan HPs/Defense,30,HPs 12600000; Defense 45,845,8072
+Empress,Empress Escort,Attack,1,Effect 0.8,0,0
+Empress,Empress Escort,Attack,2,Effect 1.6,15,15
+Empress,Empress Escort,Attack,3,Effect 2.4,23,38
+Empress,Empress Escort,Attack,4,Effect 3.2,32,70
+Empress,Empress Escort,Attack,5,Effect 4,41,111
+Empress,Empress Escort,Attack,6,Effect 4.8,57,168
+Empress,Empress Escort,Attack,7,Effect 5.6,75,243
+Empress,Empress Escort,Attack,8,Effect 6.4,89,332
+Empress,Empress Escort,Attack,9,Effect 7.2,104,436
+Empress,Empress Escort,Attack,10,Effect 8,118,554
+Empress,Empress Escort,Attack,11,Effect 8.8,135,689
+Empress,Empress Escort,Attack,12,Effect 9.6,154,843
+Empress,Empress Escort,Attack,13,Effect 10.4,171,1014
+Empress,Empress Escort,Attack,14,Effect 11.2,188,1202
+Empress,Empress Escort,Attack,15,Effect 12,203,1405
+Empress,Empress Escort,Attack,16,Effect 12.8,219,1624
+Empress,Empress Escort,Attack,17,Effect 13.6,236,1860
+Empress,Empress Escort,Attack,18,Effect 14.4,255,2115
+Empress,Empress Escort,Attack,19,Effect 15.2,276,2391
+Empress,Empress Escort,Attack,20,Effect 16,298,2689
+Empress,Empress Escort,Attack,21,Effect 16.8,322,3011
+Empress,Empress Escort,Attack,22,Effect 17.6,354,3365
+Empress,Empress Escort,Attack,23,Effect 18.4,389,3754
+Empress,Empress Escort,Attack,24,Effect 19.2,428,4182
+Empress,Empress Escort,Attack,25,Effect 20,479,4661
+Empress,Empress Escort,Attack,26,Effect 20.8,537,5198
+Empress,Empress Escort,Attack,27,Effect 21.6,601,5799
+Empress,Empress Escort,Attack,28,Effect 22.4,674,6473
+Empress,Empress Escort,Attack,29,Effect 23.2,754,7227
+Empress,Empress Escort,Attack,30,Effect 24,845,8072
+Empress,Empress Escort,HPs/Defense,1,Effect 1,0,0
+Empress,Empress Escort,HPs/Defense,2,Effect 2,15,15
+Empress,Empress Escort,HPs/Defense,3,Effect 3,23,38
+Empress,Empress Escort,HPs/Defense,4,Effect 4,32,70
+Empress,Empress Escort,HPs/Defense,5,Effect 5,41,111
+Empress,Empress Escort,HPs/Defense,6,Effect 6,57,168
+Empress,Empress Escort,HPs/Defense,7,Effect 7,75,243
+Empress,Empress Escort,HPs/Defense,8,Effect 8,89,332
+Empress,Empress Escort,HPs/Defense,9,Effect 9,104,436
+Empress,Empress Escort,HPs/Defense,10,Effect 10,118,554
+Empress,Empress Escort,HPs/Defense,11,Effect 11,135,689
+Empress,Empress Escort,HPs/Defense,12,Effect 12,154,843
+Empress,Empress Escort,HPs/Defense,13,Effect 13,171,1014
+Empress,Empress Escort,HPs/Defense,14,Effect 14,188,1202
+Empress,Empress Escort,HPs/Defense,15,Effect 15,203,1405
+Empress,Empress Escort,HPs/Defense,16,Effect 16,219,1624
+Empress,Empress Escort,HPs/Defense,17,Effect 17,236,1860
+Empress,Empress Escort,HPs/Defense,18,Effect 18,255,2115
+Empress,Empress Escort,HPs/Defense,19,Effect 19,276,2391
+Empress,Empress Escort,HPs/Defense,20,Effect 20,298,2689
+Empress,Empress Escort,HPs/Defense,21,Effect 21,322,3011
+Empress,Empress Escort,HPs/Defense,22,Effect 22,354,3365
+Empress,Empress Escort,HPs/Defense,23,Effect 23,389,3754
+Empress,Empress Escort,HPs/Defense,24,Effect 24,428,4182
+Empress,Empress Escort,HPs/Defense,25,Effect 25,479,4661
+Empress,Empress Escort,HPs/Defense,26,Effect 26,537,5198
+Empress,Empress Escort,HPs/Defense,27,Effect 27,601,5799
+Empress,Empress Escort,HPs/Defense,28,Effect 28,674,6473
+Empress,Empress Escort,HPs/Defense,29,Effect 29,754,7227
+Empress,Empress Escort,HPs/Defense,30,Effect 30,845,8072
+Empress,Steel Barrier,Titan Attack,1,Effect 23000,0,0
+Empress,Steel Barrier,Titan Attack,2,Effect 46000,23,23
+Empress,Steel Barrier,Titan Attack,3,Effect 69000,34,57
+Empress,Steel Barrier,Titan Attack,4,Effect 92000,47,104
+Empress,Steel Barrier,Titan Attack,5,Effect 115000,61,165
+Empress,Steel Barrier,Titan Attack,6,Effect 138000,86,251
+Empress,Steel Barrier,Titan Attack,7,Effect 161000,112,363
+Empress,Steel Barrier,Titan Attack,8,Effect 184000,134,497
+Empress,Steel Barrier,Titan Attack,9,Effect 207000,156,653
+Empress,Steel Barrier,Titan Attack,10,Effect 230000,177,830
+Empress,Steel Barrier,Titan Attack,11,Effect 253000,202,1032
+Empress,Steel Barrier,Titan Attack,12,Effect 276000,231,1263
+Empress,Steel Barrier,Titan Attack,13,Effect 299000,256,1519
+Empress,Steel Barrier,Titan Attack,14,Effect 322000,282,1801
+Empress,Steel Barrier,Titan Attack,15,Effect 345000,304,2105
+Empress,Steel Barrier,Titan Attack,16,Effect 368000,322,2427
+Empress,Steel Barrier,Titan Attack,17,Effect 391000,342,2769
+Empress,Steel Barrier,Titan Attack,18,Effect 414000,362,3131
+Empress,Steel Barrier,Titan Attack,19,Effect 437000,384,3515
+Empress,Steel Barrier,Titan Attack,20,Effect 460000,407,3922
+Empress,Steel Barrier,Titan Attack,21,Effect 483000,431,4353
+Empress,Steel Barrier,Titan Attack,22,Effect 506000,457,4810
+Empress,Steel Barrier,Titan Attack,23,Effect 529000,485,5295
+Empress,Steel Barrier,Titan Attack,24,Effect 552000,514,5809
+Empress,Steel Barrier,Titan Attack,25,Effect 575000,544,6353
+Empress,Steel Barrier,Titan Attack,26,Effect 598000,599,6952
+Empress,Steel Barrier,Titan Attack,27,Effect 621000,659,7611
+Empress,Steel Barrier,Titan Attack,28,Effect 644000,725,8336
+Empress,Steel Barrier,Titan Attack,29,Effect 667000,797,9133
+Empress,Steel Barrier,Titan Attack,30,Effect 690000,877,10010
+Empress,Steel Barrier,Titan HPs/Defense,1,HPs 420000; Defense 2,0,0
+Empress,Steel Barrier,Titan HPs/Defense,2,HPs 840000; Defense 3,23,23
+Empress,Steel Barrier,Titan HPs/Defense,3,HPs 1260000; Defense 5,34,57
+Empress,Steel Barrier,Titan HPs/Defense,4,HPs 1680000; Defense 6,47,104
+Empress,Steel Barrier,Titan HPs/Defense,5,HPs 2100000; Defense 8,61,165
+Empress,Steel Barrier,Titan HPs/Defense,6,HPs 2520000; Defense 9,86,251
+Empress,Steel Barrier,Titan HPs/Defense,7,HPs 2940000; Defense 11,112,363
+Empress,Steel Barrier,Titan HPs/Defense,8,HPs 3360000; Defense 12,134,497
+Empress,Steel Barrier,Titan HPs/Defense,9,HPs 3780000; Defense 14,156,653
+Empress,Steel Barrier,Titan HPs/Defense,10,HPs 4200000; Defense 15,177,830
+Empress,Steel Barrier,Titan HPs/Defense,11,HPs 4620000; Defense 17,202,1032
+Empress,Steel Barrier,Titan HPs/Defense,12,HPs 5040000; Defense 18,231,1263
+Empress,Steel Barrier,Titan HPs/Defense,13,HPs 5460000; Defense 20,256,1519
+Empress,Steel Barrier,Titan HPs/Defense,14,HPs 5880000; Defense 21,282,1801
+Empress,Steel Barrier,Titan HPs/Defense,15,HPs 6300000; Defense 23,304,2105
+Empress,Steel Barrier,Titan HPs/Defense,16,HPs 6720000; Defense 24,322,2427
+Empress,Steel Barrier,Titan HPs/Defense,17,HPs 7140000; Defense 26,342,2769
+Empress,Steel Barrier,Titan HPs/Defense,18,HPs 7560000; Defense 27,362,3131
+Empress,Steel Barrier,Titan HPs/Defense,19,HPs 7980000; Defense 29,384,3515
+Empress,Steel Barrier,Titan HPs/Defense,20,HPs 8400000; Defense 30,407,3922
+Empress,Steel Barrier,Titan HPs/Defense,21,HPs 8820000; Defense 32,431,4353
+Empress,Steel Barrier,Titan HPs/Defense,22,HPs 9240000; Defense 33,457,4810
+Empress,Steel Barrier,Titan HPs/Defense,23,HPs 9660000; Defense 35,485,5295
+Empress,Steel Barrier,Titan HPs/Defense,24,HPs 10080000; Defense 36,514,5809
+Empress,Steel Barrier,Titan HPs/Defense,25,HPs 10500000; Defense 38,544,6353
+Empress,Steel Barrier,Titan HPs/Defense,26,HPs 10920000; Defense 39,599,6952
+Empress,Steel Barrier,Titan HPs/Defense,27,HPs 11340000; Defense 41,659,7611
+Empress,Steel Barrier,Titan HPs/Defense,28,HPs 11760000; Defense 42,725,8336
+Empress,Steel Barrier,Titan HPs/Defense,29,HPs 12180000; Defense 44,797,9133
+Empress,Steel Barrier,Titan HPs/Defense,30,HPs 12600000; Defense 45,877,10010
+Empress,Steel Barrier,Attack vs MR,1,Effect 1.8,0,0
+Empress,Steel Barrier,Attack vs MR,2,Effect 3.6,23,23
+Empress,Steel Barrier,Attack vs MR,3,Effect 5.4,34,57
+Empress,Steel Barrier,Attack vs MR,4,Effect 7.2,47,104
+Empress,Steel Barrier,Attack vs MR,5,Effect 9,61,165
+Empress,Steel Barrier,Attack vs MR,6,Effect 10.8,86,251
+Empress,Steel Barrier,Attack vs MR,7,Effect 12.6,112,363
+Empress,Steel Barrier,Attack vs MR,8,Effect 14.4,134,497
+Empress,Steel Barrier,Attack vs MR,9,Effect 16.2,156,653
+Empress,Steel Barrier,Attack vs MR,10,Effect 18,177,830
+Empress,Steel Barrier,Attack vs MR,11,Effect 19.8,202,1032
+Empress,Steel Barrier,Attack vs MR,12,Effect 21.6,231,1263
+Empress,Steel Barrier,Attack vs MR,13,Effect 23.4,256,1519
+Empress,Steel Barrier,Attack vs MR,14,Effect 25.2,282,1801
+Empress,Steel Barrier,Attack vs MR,15,Effect 27,304,2105
+Empress,Steel Barrier,Attack vs MR,16,Effect 28.8,322,2427
+Empress,Steel Barrier,Attack vs MR,17,Effect 30.6,342,2769
+Empress,Steel Barrier,Attack vs MR,18,Effect 32.4,362,3131
+Empress,Steel Barrier,Attack vs MR,19,Effect 34.2,384,3515
+Empress,Steel Barrier,Attack vs MR,20,Effect 36,407,3922
+Empress,Steel Barrier,Attack vs MR,21,Effect 37.8,431,4353
+Empress,Steel Barrier,Attack vs MR,22,Effect 39.6,457,4810
+Empress,Steel Barrier,Attack vs MR,23,Effect 41.4,485,5295
+Empress,Steel Barrier,Attack vs MR,24,Effect 43.2,514,5809
+Empress,Steel Barrier,Attack vs MR,25,Effect 45,544,6353
+Empress,Steel Barrier,Attack vs MR,26,Effect 46.8,599,6952
+Empress,Steel Barrier,Attack vs MR,27,Effect 48.6,659,7611
+Empress,Steel Barrier,Attack vs MR,28,Effect 50.4,725,8336
+Empress,Steel Barrier,Attack vs MR,29,Effect 52.2,797,9133
+Empress,Steel Barrier,Attack vs MR,30,Effect 54,877,10010
+Empress,Steel Barrier,Attack vs LR,1,Effect 1.8,0,0
+Empress,Steel Barrier,Attack vs LR,2,Effect 3.6,23,23
+Empress,Steel Barrier,Attack vs LR,3,Effect 5.4,34,57
+Empress,Steel Barrier,Attack vs LR,4,Effect 7.2,47,104
+Empress,Steel Barrier,Attack vs LR,5,Effect 9,61,165
+Empress,Steel Barrier,Attack vs LR,6,Effect 10.8,86,251
+Empress,Steel Barrier,Attack vs LR,7,Effect 12.6,112,363
+Empress,Steel Barrier,Attack vs LR,8,Effect 14.4,134,497
+Empress,Steel Barrier,Attack vs LR,9,Effect 16.2,156,653
+Empress,Steel Barrier,Attack vs LR,10,Effect 18,177,830
+Empress,Steel Barrier,Attack vs LR,11,Effect 19.8,202,1032
+Empress,Steel Barrier,Attack vs LR,12,Effect 21.6,231,1263
+Empress,Steel Barrier,Attack vs LR,13,Effect 23.4,256,1519
+Empress,Steel Barrier,Attack vs LR,14,Effect 25.2,282,1801
+Empress,Steel Barrier,Attack vs LR,15,Effect 27,304,2105
+Empress,Steel Barrier,Attack vs LR,16,Effect 28.8,322,2427
+Empress,Steel Barrier,Attack vs LR,17,Effect 30.6,342,2769
+Empress,Steel Barrier,Attack vs LR,18,Effect 32.4,362,3131
+Empress,Steel Barrier,Attack vs LR,19,Effect 34.2,384,3515
+Empress,Steel Barrier,Attack vs LR,20,Effect 36,407,3922
+Empress,Steel Barrier,Attack vs LR,21,Effect 37.8,431,4353
+Empress,Steel Barrier,Attack vs LR,22,Effect 39.6,457,4810
+Empress,Steel Barrier,Attack vs LR,23,Effect 41.4,485,5295
+Empress,Steel Barrier,Attack vs LR,24,Effect 43.2,514,5809
+Empress,Steel Barrier,Attack vs LR,25,Effect 45,544,6353
+Empress,Steel Barrier,Attack vs LR,26,Effect 46.8,599,6952
+Empress,Steel Barrier,Attack vs LR,27,Effect 48.6,659,7611
+Empress,Steel Barrier,Attack vs LR,28,Effect 50.4,725,8336
+Empress,Steel Barrier,Attack vs LR,29,Effect 52.2,797,9133
+Empress,Steel Barrier,Attack vs LR,30,Effect 54,877,10010
+Empress,Toxic Tail,Titan Damage vs LR,1,Effect 0.8,0,0
+Empress,Toxic Tail,Titan Damage vs LR,2,Effect 1.6,30,30
+Empress,Toxic Tail,Titan Damage vs LR,3,Effect 2.4,45,75
+Empress,Toxic Tail,Titan Damage vs LR,4,Effect 3.2,63,138
+Empress,Toxic Tail,Titan Damage vs LR,5,Effect 4,82,220
+Empress,Toxic Tail,Titan Damage vs LR,6,Effect 4.8,115,335
+Empress,Toxic Tail,Titan Damage vs LR,7,Effect 5.6,149,484
+Empress,Toxic Tail,Titan Damage vs LR,8,Effect 6.4,179,663
+Empress,Toxic Tail,Titan Damage vs LR,9,Effect 7.2,207,870
+Empress,Toxic Tail,Titan Damage vs LR,10,Effect 8,237,1107
+Empress,Toxic Tail,Titan Damage vs LR,11,Effect 8.8,270,1377
+Empress,Toxic Tail,Titan Damage vs LR,12,Effect 9.6,307,1684
+Empress,Toxic Tail,Titan Damage vs LR,13,Effect 10.4,341,2025
+Empress,Toxic Tail,Titan Damage vs LR,14,Effect 11.2,375,2400
+Empress,Toxic Tail,Titan Damage vs LR,15,Effect 12,405,2805
+Empress,Toxic Tail,Titan Damage vs LR,16,Effect 12.8,430,3235
+Empress,Toxic Tail,Titan Damage vs LR,17,Effect 13.6,455,3690
+Empress,Toxic Tail,Titan Damage vs LR,18,Effect 14.4,483,4173
+Empress,Toxic Tail,Titan Damage vs LR,19,Effect 15.2,512,4685
+Empress,Toxic Tail,Titan Damage vs LR,20,Effect 16,542,5227
+Empress,Toxic Tail,Titan Damage vs LR,21,Effect 16.8,575,5802
+Empress,Toxic Tail,Titan Damage vs LR,22,Effect 17.6,610,6412
+Empress,Toxic Tail,Titan Damage vs LR,23,Effect 18.4,646,7058
+Empress,Toxic Tail,Titan Damage vs LR,24,Effect 19.2,685,7743
+Empress,Toxic Tail,Titan Damage vs LR,25,Effect 20,726,8469
+Empress,Toxic Tail,Titan Damage vs LR,26,Effect 20.8,799,9268
+Empress,Toxic Tail,Titan Damage vs LR,27,Effect 21.6,878,10146
+Empress,Toxic Tail,Titan Damage vs LR,28,Effect 22.4,966,11112
+Empress,Toxic Tail,Titan Damage vs LR,29,Effect 23.2,1063,12175
+Empress,Toxic Tail,Titan Damage vs LR,30,Effect 24,1169,13344
+Empress,Toxic Tail,Damage Bonus Bloodfeast,1,Effect 1.3,0,0
+Empress,Toxic Tail,Damage Bonus Bloodfeast,2,Effect 2.6,30,30
+Empress,Toxic Tail,Damage Bonus Bloodfeast,3,Effect 3.9,45,75
+Empress,Toxic Tail,Damage Bonus Bloodfeast,4,Effect 5.2,63,138
+Empress,Toxic Tail,Damage Bonus Bloodfeast,5,Effect 6.5,82,220
+Empress,Toxic Tail,Damage Bonus Bloodfeast,6,Effect 7.8,115,335
+Empress,Toxic Tail,Damage Bonus Bloodfeast,7,Effect 9.1,149,484
+Empress,Toxic Tail,Damage Bonus Bloodfeast,8,Effect 10.4,179,663
+Empress,Toxic Tail,Damage Bonus Bloodfeast,9,Effect 11.7,207,870
+Empress,Toxic Tail,Damage Bonus Bloodfeast,10,Effect 13,237,1107
+Empress,Toxic Tail,Damage Bonus Bloodfeast,11,Effect 14.3,270,1377
+Empress,Toxic Tail,Damage Bonus Bloodfeast,12,Effect 15.6,307,1684
+Empress,Toxic Tail,Damage Bonus Bloodfeast,13,Effect 16.9,341,2025
+Empress,Toxic Tail,Damage Bonus Bloodfeast,14,Effect 18.2,375,2400
+Empress,Toxic Tail,Damage Bonus Bloodfeast,15,Effect 19.5,405,2805
+Empress,Toxic Tail,Damage Bonus Bloodfeast,16,Effect 20.8,430,3235
+Empress,Toxic Tail,Damage Bonus Bloodfeast,17,Effect 22.1,455,3690
+Empress,Toxic Tail,Damage Bonus Bloodfeast,18,Effect 23.4,483,4173
+Empress,Toxic Tail,Damage Bonus Bloodfeast,19,Effect 24.7,512,4685
+Empress,Toxic Tail,Damage Bonus Bloodfeast,20,Effect 26,542,5227
+Empress,Toxic Tail,Damage Bonus Bloodfeast,21,Effect 27.3,575,5802
+Empress,Toxic Tail,Damage Bonus Bloodfeast,22,Effect 28.6,610,6412
+Empress,Toxic Tail,Damage Bonus Bloodfeast,23,Effect 29.9,646,7058
+Empress,Toxic Tail,Damage Bonus Bloodfeast,24,Effect 31.2,685,7743
+Empress,Toxic Tail,Damage Bonus Bloodfeast,25,Effect 32.5,726,8469
+Empress,Toxic Tail,Damage Bonus Bloodfeast,26,Effect 33.8,799,9268
+Empress,Toxic Tail,Damage Bonus Bloodfeast,27,Effect 35.1,878,10146
+Empress,Toxic Tail,Damage Bonus Bloodfeast,28,Effect 36.4,966,11112
+Empress,Toxic Tail,Damage Bonus Bloodfeast,29,Effect 37.7,1063,12175
+Empress,Toxic Tail,Damage Bonus Bloodfeast,30,Effect 39,1169,13344
+Empress,Toxic Tail,Zombie Army Limit,1,Effect 200,0,0
+Empress,Toxic Tail,Zombie Army Limit,2,Effect 400,30,30
+Empress,Toxic Tail,Zombie Army Limit,3,Effect 600,45,75
+Empress,Toxic Tail,Zombie Army Limit,4,Effect 800,63,138
+Empress,Toxic Tail,Zombie Army Limit,5,Effect 1000,82,220
+Empress,Toxic Tail,Zombie Army Limit,6,Effect 1200,115,335
+Empress,Toxic Tail,Zombie Army Limit,7,Effect 1400,149,484
+Empress,Toxic Tail,Zombie Army Limit,8,Effect 1600,179,663
+Empress,Toxic Tail,Zombie Army Limit,9,Effect 1800,207,870
+Empress,Toxic Tail,Zombie Army Limit,10,Effect 2000,237,1107
+Empress,Toxic Tail,Zombie Army Limit,11,Effect 2200,270,1377
+Empress,Toxic Tail,Zombie Army Limit,12,Effect 2400,307,1684
+Empress,Toxic Tail,Zombie Army Limit,13,Effect 2600,341,2025
+Empress,Toxic Tail,Zombie Army Limit,14,Effect 2800,375,2400
+Empress,Toxic Tail,Zombie Army Limit,15,Effect 3000,405,2805
+Empress,Toxic Tail,Zombie Army Limit,16,Effect 3200,430,3235
+Empress,Toxic Tail,Zombie Army Limit,17,Effect 3400,455,3690
+Empress,Toxic Tail,Zombie Army Limit,18,Effect 3600,483,4173
+Empress,Toxic Tail,Zombie Army Limit,19,Effect 3800,512,4685
+Empress,Toxic Tail,Zombie Army Limit,20,Effect 4000,542,5227
+Empress,Toxic Tail,Zombie Army Limit,21,Effect 4200,575,5802
+Empress,Toxic Tail,Zombie Army Limit,22,Effect 4400,610,6412
+Empress,Toxic Tail,Zombie Army Limit,23,Effect 4600,646,7058
+Empress,Toxic Tail,Zombie Army Limit,24,Effect 4800,685,7743
+Empress,Toxic Tail,Zombie Army Limit,25,Effect 5000,726,8469
+Empress,Toxic Tail,Zombie Army Limit,26,Effect 5200,799,9268
+Empress,Toxic Tail,Zombie Army Limit,27,Effect 5400,878,10146
+Empress,Toxic Tail,Zombie Army Limit,28,Effect 5600,966,11112
+Empress,Toxic Tail,Zombie Army Limit,29,Effect 5800,1063,12175
+Empress,Toxic Tail,Zombie Army Limit,30,Effect 6000,1169,13344
+Empress,Toxic Tail,Attack vs Melee,1,Effect 1.8,0,0
+Empress,Toxic Tail,Attack vs Melee,2,Effect 3.6,30,30
+Empress,Toxic Tail,Attack vs Melee,3,Effect 5.4,45,75
+Empress,Toxic Tail,Attack vs Melee,4,Effect 7.2,63,138
+Empress,Toxic Tail,Attack vs Melee,5,Effect 9,82,220
+Empress,Toxic Tail,Attack vs Melee,6,Effect 10.8,115,335
+Empress,Toxic Tail,Attack vs Melee,7,Effect 12.6,149,484
+Empress,Toxic Tail,Attack vs Melee,8,Effect 14.4,179,663
+Empress,Toxic Tail,Attack vs Melee,9,Effect 16.2,207,870
+Empress,Toxic Tail,Attack vs Melee,10,Effect 18,237,1107
+Empress,Toxic Tail,Attack vs Melee,11,Effect 19.8,270,1377
+Empress,Toxic Tail,Attack vs Melee,12,Effect 21.6,307,1684
+Empress,Toxic Tail,Attack vs Melee,13,Effect 23.4,341,2025
+Empress,Toxic Tail,Attack vs Melee,14,Effect 25.2,375,2400
+Empress,Toxic Tail,Attack vs Melee,15,Effect 27,405,2805
+Empress,Toxic Tail,Attack vs Melee,16,Effect 28.8,430,3235
+Empress,Toxic Tail,Attack vs Melee,17,Effect 30.6,455,3690
+Empress,Toxic Tail,Attack vs Melee,18,Effect 32.4,483,4173
+Empress,Toxic Tail,Attack vs Melee,19,Effect 34.2,512,4685
+Empress,Toxic Tail,Attack vs Melee,20,Effect 36,542,5227
+Empress,Toxic Tail,Attack vs Melee,21,Effect 37.8,575,5802
+Empress,Toxic Tail,Attack vs Melee,22,Effect 39.6,610,6412
+Empress,Toxic Tail,Attack vs Melee,23,Effect 41.4,646,7058
+Empress,Toxic Tail,Attack vs Melee,24,Effect 43.2,685,7743
+Empress,Toxic Tail,Attack vs Melee,25,Effect 45,726,8469
+Empress,Toxic Tail,Attack vs Melee,26,Effect 46.8,799,9268
+Empress,Toxic Tail,Attack vs Melee,27,Effect 48.6,878,10146
+Empress,Toxic Tail,Attack vs Melee,28,Effect 50.4,966,11112
+Empress,Toxic Tail,Attack vs Melee,29,Effect 52.2,1063,12175
+Empress,Toxic Tail,Attack vs Melee,30,Effect 54,1169,13344

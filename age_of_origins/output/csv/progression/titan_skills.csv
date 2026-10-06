@@ -1,0 +1,481 @@
+Titan,Skill,Unlocks at,Level,Value,Fluid (this step),Fluid (cumulative),Skeleton (this step),Skeleton (cumulative)
+Source Spirit,Source Energy Strike,Green stage 0,1,Effect 100,0,0,0,0
+Source Spirit,Source Energy Strike,Green stage 0,2,Effect 102,9,9,0,0
+Source Spirit,Source Energy Strike,Green stage 0,3,Effect 104,14,23,0,0
+Source Spirit,Source Energy Strike,Green stage 0,4,Effect 106,18,41,0,0
+Source Spirit,Source Energy Strike,Green stage 0,5,Effect 108,27,68,0,0
+Source Spirit,Source Energy Strike,Green stage 0,6,Effect 110,36,104,0,0
+Source Spirit,Source Energy Strike,Green stage 0,7,Effect 112,45,149,0,0
+Source Spirit,Source Energy Strike,Green stage 0,8,Effect 114,54,203,0,0
+Source Spirit,Source Energy Strike,Green stage 0,9,Effect 116,63,266,0,0
+Source Spirit,Source Energy Strike,Green stage 0,10,Effect 118,72,338,0,0
+Source Spirit,Source Energy Strike,Green stage 0,11,Effect 120,86,424,0,0
+Source Spirit,Source Energy Strike,Green stage 0,12,Effect 122,99,523,0,0
+Source Spirit,Source Energy Strike,Green stage 0,13,Effect 124,113,636,0,0
+Source Spirit,Source Energy Strike,Green stage 0,14,Effect 126,126,762,0,0
+Source Spirit,Source Energy Strike,Green stage 0,15,Effect 128,140,902,0,0
+Source Spirit,Source Energy Strike,Green stage 0,16,Effect 130,176,1078,0,0
+Source Spirit,Source Energy Strike,Green stage 0,17,Effect 132,210,1288,0,0
+Source Spirit,Source Energy Strike,Green stage 0,18,Effect 134,252,1540,0,0
+Source Spirit,Source Energy Strike,Green stage 0,19,Effect 136,378,1918,0,0
+Source Spirit,Source Energy Strike,Green stage 0,20,Effect 138,453,2371,0,0
+Source Spirit,Rampart Halo,Green stage 3,1,Effect 1,0,0,0,0
+Source Spirit,Rampart Halo,Green stage 3,2,Effect 2,5,5,0,0
+Source Spirit,Rampart Halo,Green stage 3,3,Effect 3,8,13,0,0
+Source Spirit,Rampart Halo,Green stage 3,4,Effect 4,10,23,0,0
+Source Spirit,Rampart Halo,Green stage 3,5,Effect 5,15,38,0,0
+Source Spirit,Rampart Halo,Green stage 3,6,Effect 6,20,58,0,0
+Source Spirit,Rampart Halo,Green stage 3,7,Effect 7,25,83,0,0
+Source Spirit,Rampart Halo,Green stage 3,8,Effect 8,30,113,0,0
+Source Spirit,Rampart Halo,Green stage 3,9,Effect 9,35,148,0,0
+Source Spirit,Rampart Halo,Green stage 3,10,Effect 10,40,188,0,0
+Source Spirit,Rampart Halo,Green stage 3,11,Effect 11,48,236,0,0
+Source Spirit,Rampart Halo,Green stage 3,12,Effect 12,55,291,0,0
+Source Spirit,Rampart Halo,Green stage 3,13,Effect 13,63,354,0,0
+Source Spirit,Rampart Halo,Green stage 3,14,Effect 14,70,424,0,0
+Source Spirit,Rampart Halo,Green stage 3,15,Effect 15,78,502,0,0
+Source Spirit,Rampart Halo,Green stage 3,16,Effect 16,98,600,0,0
+Source Spirit,Rampart Halo,Green stage 3,17,Effect 17,117,717,0,0
+Source Spirit,Rampart Halo,Green stage 3,18,Effect 18,140,857,0,0
+Source Spirit,Rampart Halo,Green stage 3,19,Effect 19,210,1067,0,0
+Source Spirit,Rampart Halo,Green stage 3,20,Effect 20,252,1319,0,0
+Source Spirit,Diseased Walker,Green stage 7,1,Effect 0.8,0,0,0,0
+Source Spirit,Diseased Walker,Green stage 7,2,Effect 1.6,5,5,0,0
+Source Spirit,Diseased Walker,Green stage 7,3,Effect 2.5,8,13,0,0
+Source Spirit,Diseased Walker,Green stage 7,4,Effect 3.4,10,23,0,0
+Source Spirit,Diseased Walker,Green stage 7,5,Effect 4.2,15,38,0,0
+Source Spirit,Diseased Walker,Green stage 7,6,Effect 5.1,20,58,0,0
+Source Spirit,Diseased Walker,Green stage 7,7,Effect 6,25,83,0,0
+Source Spirit,Diseased Walker,Green stage 7,8,Effect 6.9,30,113,0,0
+Source Spirit,Diseased Walker,Green stage 7,9,Effect 7.7,35,148,0,0
+Source Spirit,Diseased Walker,Green stage 7,10,Effect 8.6,40,188,0,0
+Source Spirit,Diseased Walker,Green stage 7,11,Effect 9.5,48,236,0,0
+Source Spirit,Diseased Walker,Green stage 7,12,Effect 10.3,55,291,0,0
+Source Spirit,Diseased Walker,Green stage 7,13,Effect 11.2,63,354,0,0
+Source Spirit,Diseased Walker,Green stage 7,14,Effect 12.1,70,424,0,0
+Source Spirit,Diseased Walker,Green stage 7,15,Effect 13,78,502,0,0
+Source Spirit,Diseased Walker,Green stage 7,16,Effect 13.9,98,600,0,0
+Source Spirit,Diseased Walker,Green stage 7,17,Effect 14.8,117,717,0,0
+Source Spirit,Diseased Walker,Green stage 7,18,Effect 15.7,140,857,0,0
+Source Spirit,Diseased Walker,Green stage 7,19,Effect 16.6,210,1067,0,0
+Source Spirit,Diseased Walker,Green stage 7,20,Effect 17.5,252,1319,0,0
+Source Spirit,Destroy Ray,Blue stage 0,1,Effect 70.4,0,0,0,0
+Source Spirit,Destroy Ray,Blue stage 0,2,Effect 80.4,14,14,0,0
+Source Spirit,Destroy Ray,Blue stage 0,3,Effect 90.5,21,35,0,0
+Source Spirit,Destroy Ray,Blue stage 0,4,Effect 100.5,27,62,0,0
+Source Spirit,Destroy Ray,Blue stage 0,5,Effect 110.6,41,103,0,0
+Source Spirit,Destroy Ray,Blue stage 0,6,Effect 120.6,54,157,0,0
+Source Spirit,Destroy Ray,Blue stage 0,7,Effect 130.7,68,225,0,0
+Source Spirit,Destroy Ray,Blue stage 0,8,Effect 140.8,81,306,0,0
+Source Spirit,Destroy Ray,Blue stage 0,9,Effect 150.8,95,401,0,0
+Source Spirit,Destroy Ray,Blue stage 0,10,Effect 160.9,108,509,0,0
+Source Spirit,Destroy Ray,Blue stage 0,11,Effect 170.9,129,638,0,0
+Source Spirit,Destroy Ray,Blue stage 0,12,Effect 181,149,787,0,0
+Source Spirit,Destroy Ray,Blue stage 0,13,Effect 191,170,957,0,0
+Source Spirit,Destroy Ray,Blue stage 0,14,Effect 201.1,189,1146,0,0
+Source Spirit,Destroy Ray,Blue stage 0,15,Effect 211.2,210,1356,0,0
+Source Spirit,Destroy Ray,Blue stage 0,16,Effect 221.3,263,1619,0,0
+Source Spirit,Destroy Ray,Blue stage 0,17,Effect 231.4,315,1934,0,0
+Source Spirit,Destroy Ray,Blue stage 0,18,Effect 241.5,378,2312,0,0
+Source Spirit,Destroy Ray,Blue stage 0,19,Effect 251.6,566,2878,0,0
+Source Spirit,Destroy Ray,Blue stage 0,20,Effect 261.7,678,3556,0,0
+Source Spirit,Fire Path,Blue stage 3,1,Effect 11.6,0,0,0,0
+Source Spirit,Fire Path,Blue stage 3,2,Effect 13.2,8,8,0,0
+Source Spirit,Fire Path,Blue stage 3,3,Effect 14.9,12,20,0,0
+Source Spirit,Fire Path,Blue stage 3,4,Effect 16.5,15,35,0,0
+Source Spirit,Fire Path,Blue stage 3,5,Effect 18.2,23,58,0,0
+Source Spirit,Fire Path,Blue stage 3,6,Effect 19.8,30,88,0,0
+Source Spirit,Fire Path,Blue stage 3,7,Effect 21.5,38,126,0,0
+Source Spirit,Fire Path,Blue stage 3,8,Effect 23.2,45,171,0,0
+Source Spirit,Fire Path,Blue stage 3,9,Effect 24.8,53,224,0,0
+Source Spirit,Fire Path,Blue stage 3,10,Effect 26.5,60,284,0,0
+Source Spirit,Fire Path,Blue stage 3,11,Effect 28.1,72,356,0,0
+Source Spirit,Fire Path,Blue stage 3,12,Effect 29.8,83,439,0,0
+Source Spirit,Fire Path,Blue stage 3,13,Effect 31.4,95,534,0,0
+Source Spirit,Fire Path,Blue stage 3,14,Effect 33.1,105,639,0,0
+Source Spirit,Fire Path,Blue stage 3,15,Effect 34.8,117,756,0,0
+Source Spirit,Fire Path,Blue stage 3,16,Effect 36.5,147,903,0,0
+Source Spirit,Fire Path,Blue stage 3,17,Effect 38.2,175,1078,0,0
+Source Spirit,Fire Path,Blue stage 3,18,Effect 39.9,210,1288,0,0
+Source Spirit,Fire Path,Blue stage 3,19,Effect 41.6,315,1603,0,0
+Source Spirit,Fire Path,Blue stage 3,20,Effect 43.3,377,1980,0,0
+Source Spirit,Superior Core,Blue stage 7,1,Effect 66870,0,0,0,0
+Source Spirit,Superior Core,Blue stage 7,2,Effect 133740,8,8,0,0
+Source Spirit,Superior Core,Blue stage 7,3,Effect 200610,12,20,0,0
+Source Spirit,Superior Core,Blue stage 7,4,Effect 267481,15,35,0,0
+Source Spirit,Superior Core,Blue stage 7,5,Effect 334351,23,58,0,0
+Source Spirit,Superior Core,Blue stage 7,6,Effect 401222,30,88,0,0
+Source Spirit,Superior Core,Blue stage 7,7,Effect 468092,38,126,0,0
+Source Spirit,Superior Core,Blue stage 7,8,Effect 534963,45,171,0,0
+Source Spirit,Superior Core,Blue stage 7,9,Effect 601833,53,224,0,0
+Source Spirit,Superior Core,Blue stage 7,10,Effect 668703,60,284,0,0
+Source Spirit,Superior Core,Blue stage 7,11,Effect 735574,72,356,0,0
+Source Spirit,Superior Core,Blue stage 7,12,Effect 802444,83,439,0,0
+Source Spirit,Superior Core,Blue stage 7,13,Effect 869315,95,534,0,0
+Source Spirit,Superior Core,Blue stage 7,14,Effect 936185,105,639,0,0
+Source Spirit,Superior Core,Blue stage 7,15,Effect 1003056,117,756,0,0
+Source Spirit,Superior Core,Blue stage 7,16,Effect 1069927,147,903,0,0
+Source Spirit,Superior Core,Blue stage 7,17,Effect 1136798,175,1078,0,0
+Source Spirit,Superior Core,Blue stage 7,18,Effect 1203699,210,1288,0,0
+Source Spirit,Superior Core,Blue stage 7,19,Effect 1270540,315,1603,0,0
+Source Spirit,Superior Core,Blue stage 7,20,Effect 1337411,377,1980,0,0
+Source Spirit,Source Energy Guard,Purple stage 0,1,Effect 13.3,0,0,0,0
+Source Spirit,Source Energy Guard,Purple stage 0,2,Effect 15.2,20,20,7,7
+Source Spirit,Source Energy Guard,Purple stage 0,3,Effect 17.1,30,50,11,18
+Source Spirit,Source Energy Guard,Purple stage 0,4,Effect 19,39,89,14,32
+Source Spirit,Source Energy Guard,Purple stage 0,5,Effect 20.9,59,148,21,53
+Source Spirit,Source Energy Guard,Purple stage 0,6,Effect 22.8,78,226,28,81
+Source Spirit,Source Energy Guard,Purple stage 0,7,Effect 24.7,98,324,35,116
+Source Spirit,Source Energy Guard,Purple stage 0,8,Effect 26.6,117,441,42,158
+Source Spirit,Source Energy Guard,Purple stage 0,9,Effect 28.5,137,578,49,207
+Source Spirit,Source Energy Guard,Purple stage 0,10,Effect 30.4,156,734,56,263
+Source Spirit,Source Energy Guard,Purple stage 0,11,Effect 32.3,186,920,67,330
+Source Spirit,Source Energy Guard,Purple stage 0,12,Effect 34.2,215,1135,77,407
+Source Spirit,Source Energy Guard,Purple stage 0,13,Effect 36.1,245,1380,88,495
+Source Spirit,Source Energy Guard,Purple stage 0,14,Effect 38,273,1653,98,593
+Source Spirit,Source Energy Guard,Purple stage 0,15,Effect 40,303,1956,109,702
+Source Spirit,Source Energy Guard,Purple stage 0,16,Effect 42,378,2334,136,838
+Source Spirit,Source Energy Guard,Purple stage 0,17,Effect 44,455,2789,163,1001
+Source Spirit,Source Energy Guard,Purple stage 0,18,Effect 46,545,3334,196,1197
+Source Spirit,Source Energy Guard,Purple stage 0,19,Effect 48,818,4152,293,1490
+Source Spirit,Source Energy Guard,Purple stage 0,20,Effect 50,980,5132,352,1842
+Source Spirit,Rock Steady,Purple stage 3,1,HPs 1065516; Defense 3,0,0,0,0
+Source Spirit,Rock Steady,Purple stage 3,2,HPs 2131032; Defense 6,12,12,4,4
+Source Spirit,Rock Steady,Purple stage 3,3,HPs 3196548; Defense 10,17,29,6,10
+Source Spirit,Rock Steady,Purple stage 3,4,HPs 4262064; Defense 13,22,51,7,17
+Source Spirit,Rock Steady,Purple stage 3,5,HPs 5327580; Defense 17,34,85,11,28
+Source Spirit,Rock Steady,Purple stage 3,6,HPs 6393096; Defense 20,44,129,14,42
+Source Spirit,Rock Steady,Purple stage 3,7,HPs 7458612; Defense 24,56,185,18,60
+Source Spirit,Rock Steady,Purple stage 3,8,HPs 8524129; Defense 27,66,251,21,81
+Source Spirit,Rock Steady,Purple stage 3,9,HPs 9589645; Defense 31,78,329,25,106
+Source Spirit,Rock Steady,Purple stage 3,10,HPs 10655161; Defense 34,88,417,28,134
+Source Spirit,Rock Steady,Purple stage 3,11,HPs 11720677; Defense 38,105,522,34,168
+Source Spirit,Rock Steady,Purple stage 3,12,HPs 12786193; Defense 41,122,644,39,207
+Source Spirit,Rock Steady,Purple stage 3,13,HPs 13851709; Defense 45,139,783,44,251
+Source Spirit,Rock Steady,Purple stage 3,14,HPs 14917225; Defense 48,154,937,49,300
+Source Spirit,Rock Steady,Purple stage 3,15,HPs 15982742; Defense 52,171,1108,55,355
+Source Spirit,Rock Steady,Purple stage 3,16,HPs 17048259; Defense 56,214,1322,68,423
+Source Spirit,Rock Steady,Purple stage 3,17,HPs 18113776; Defense 60,257,1579,82,505
+Source Spirit,Rock Steady,Purple stage 3,18,HPs 19179293; Defense 64,308,1887,98,603
+Source Spirit,Rock Steady,Purple stage 3,19,HPs 20244810; Defense 68,462,2349,147,750
+Source Spirit,Rock Steady,Purple stage 3,20,HPs 21310327; Defense 72,553,2902,176,926
+Source Spirit,Protector,Purple stage 7,1,Effect 1.9,0,0,0,0
+Source Spirit,Protector,Purple stage 7,2,Effect 3.8,12,12,4,4
+Source Spirit,Protector,Purple stage 7,3,Effect 5.7,17,29,6,10
+Source Spirit,Protector,Purple stage 7,4,Effect 7.6,22,51,7,17
+Source Spirit,Protector,Purple stage 7,5,Effect 9.5,34,85,11,28
+Source Spirit,Protector,Purple stage 7,6,Effect 11.5,44,129,14,42
+Source Spirit,Protector,Purple stage 7,7,Effect 13.4,56,185,18,60
+Source Spirit,Protector,Purple stage 7,8,Effect 15.3,66,251,21,81
+Source Spirit,Protector,Purple stage 7,9,Effect 17.2,78,329,25,106
+Source Spirit,Protector,Purple stage 7,10,Effect 19.1,88,417,28,134
+Source Spirit,Protector,Purple stage 7,11,Effect 21.1,105,522,34,168
+Source Spirit,Protector,Purple stage 7,12,Effect 23,122,644,39,207
+Source Spirit,Protector,Purple stage 7,13,Effect 24.9,139,783,44,251
+Source Spirit,Protector,Purple stage 7,14,Effect 26.8,154,937,49,300
+Source Spirit,Protector,Purple stage 7,15,Effect 28.8,171,1108,55,355
+Source Spirit,Protector,Purple stage 7,16,Effect 30.8,214,1322,68,423
+Source Spirit,Protector,Purple stage 7,17,Effect 32.8,257,1579,82,505
+Source Spirit,Protector,Purple stage 7,18,Effect 34.8,308,1887,98,603
+Source Spirit,Protector,Purple stage 7,19,Effect 36.8,462,2349,147,750
+Source Spirit,Protector,Purple stage 7,20,Effect 38.8,553,2902,176,926
+Source Spirit,Energy Overload,Orange stage 0,1,Effect 3.3,0,0,0,0
+Source Spirit,Energy Overload,Orange stage 0,2,Effect 3.7,26,26,11,11
+Source Spirit,Energy Overload,Orange stage 0,3,Effect 4.2,40,66,17,28
+Source Spirit,Energy Overload,Orange stage 0,4,Effect 4.7,52,118,22,50
+Source Spirit,Energy Overload,Orange stage 0,5,Effect 5.2,78,196,33,83
+Source Spirit,Energy Overload,Orange stage 0,6,Effect 5.6,104,300,44,127
+Source Spirit,Energy Overload,Orange stage 0,7,Effect 6.1,130,430,55,182
+Source Spirit,Energy Overload,Orange stage 0,8,Effect 6.6,156,586,66,248
+Source Spirit,Energy Overload,Orange stage 0,9,Effect 7.1,182,768,77,325
+Source Spirit,Energy Overload,Orange stage 0,10,Effect 7.6,208,976,88,413
+Source Spirit,Energy Overload,Orange stage 0,11,Effect 8,248,1224,105,518
+Source Spirit,Energy Overload,Orange stage 0,12,Effect 8.5,286,1510,121,639
+Source Spirit,Energy Overload,Orange stage 0,13,Effect 9,326,1836,138,777
+Source Spirit,Energy Overload,Orange stage 0,14,Effect 9.5,364,2200,154,931
+Source Spirit,Energy Overload,Orange stage 0,15,Effect 10,404,2604,171,1102
+Source Spirit,Energy Overload,Orange stage 0,16,Effect 10.5,505,3109,214,1316
+Source Spirit,Energy Overload,Orange stage 0,17,Effect 11,606,3715,256,1572
+Source Spirit,Energy Overload,Orange stage 0,18,Effect 11.5,727,4442,307,1879
+Source Spirit,Energy Overload,Orange stage 0,19,Effect 12,1089,5531,461,2340
+Source Spirit,Energy Overload,Orange stage 0,20,Effect 12.5,1306,6837,553,2893
+Source Spirit,Steel Defense Line,Orange stage 3,1,Effect 4.2,0,0,0,0
+Source Spirit,Steel Defense Line,Orange stage 3,2,Effect 8.4,15,15,5,5
+Source Spirit,Steel Defense Line,Orange stage 3,3,Effect 12.6,23,38,8,13
+Source Spirit,Steel Defense Line,Orange stage 3,4,Effect 16.8,30,68,10,23
+Source Spirit,Steel Defense Line,Orange stage 3,5,Effect 21,45,113,15,38
+Source Spirit,Steel Defense Line,Orange stage 3,6,Effect 25.2,60,173,20,58
+Source Spirit,Steel Defense Line,Orange stage 3,7,Effect 29.4,75,248,25,83
+Source Spirit,Steel Defense Line,Orange stage 3,8,Effect 33.6,90,338,30,113
+Source Spirit,Steel Defense Line,Orange stage 3,9,Effect 37.8,105,443,35,148
+Source Spirit,Steel Defense Line,Orange stage 3,10,Effect 42,120,563,40,188
+Source Spirit,Steel Defense Line,Orange stage 3,11,Effect 46.2,143,706,48,236
+Source Spirit,Steel Defense Line,Orange stage 3,12,Effect 50.4,165,871,55,291
+Source Spirit,Steel Defense Line,Orange stage 3,13,Effect 54.6,188,1059,63,354
+Source Spirit,Steel Defense Line,Orange stage 3,14,Effect 58.8,210,1269,70,424
+Source Spirit,Steel Defense Line,Orange stage 3,15,Effect 63.1,233,1502,78,502
+Source Spirit,Steel Defense Line,Orange stage 3,16,Effect 67.4,292,1794,97,599
+Source Spirit,Steel Defense Line,Orange stage 3,17,Effect 71.7,350,2144,117,716
+Source Spirit,Steel Defense Line,Orange stage 3,18,Effect 76,420,2564,140,856
+Source Spirit,Steel Defense Line,Orange stage 3,19,Effect 80.3,629,3193,210,1066
+Source Spirit,Steel Defense Line,Orange stage 3,20,Effect 84.6,754,3947,252,1318
+Source Spirit,Deadly Halo,Orange stage 7,1,Effect 2.6,0,0,0,0
+Source Spirit,Deadly Halo,Orange stage 7,2,Effect 5.2,15,15,5,5
+Source Spirit,Deadly Halo,Orange stage 7,3,Effect 7.9,23,38,8,13
+Source Spirit,Deadly Halo,Orange stage 7,4,Effect 10.6,30,68,10,23
+Source Spirit,Deadly Halo,Orange stage 7,5,Effect 13.2,45,113,15,38
+Source Spirit,Deadly Halo,Orange stage 7,6,Effect 15.9,60,173,20,58
+Source Spirit,Deadly Halo,Orange stage 7,7,Effect 18.6,75,248,25,83
+Source Spirit,Deadly Halo,Orange stage 7,8,Effect 21.3,90,338,30,113
+Source Spirit,Deadly Halo,Orange stage 7,9,Effect 23.9,105,443,35,148
+Source Spirit,Deadly Halo,Orange stage 7,10,Effect 26.6,120,563,40,188
+Source Spirit,Deadly Halo,Orange stage 7,11,Effect 29.3,143,706,48,236
+Source Spirit,Deadly Halo,Orange stage 7,12,Effect 31.9,165,871,55,291
+Source Spirit,Deadly Halo,Orange stage 7,13,Effect 34.6,188,1059,63,354
+Source Spirit,Deadly Halo,Orange stage 7,14,Effect 37.3,210,1269,70,424
+Source Spirit,Deadly Halo,Orange stage 7,15,Effect 40,233,1502,78,502
+Source Spirit,Deadly Halo,Orange stage 7,16,Effect 42.7,292,1794,97,599
+Source Spirit,Deadly Halo,Orange stage 7,17,Effect 45.4,350,2144,117,716
+Source Spirit,Deadly Halo,Orange stage 7,18,Effect 48.1,420,2564,140,856
+Source Spirit,Deadly Halo,Orange stage 7,19,Effect 50.8,629,3193,210,1066
+Source Spirit,Deadly Halo,Orange stage 7,20,Effect 53.3,754,3947,252,1318
+Empress,Bone Spurs,Green stage 0,1,Effect 100,0,0,0,0
+Empress,Bone Spurs,Green stage 0,2,Effect 102,9,9,0,0
+Empress,Bone Spurs,Green stage 0,3,Effect 104,14,23,0,0
+Empress,Bone Spurs,Green stage 0,4,Effect 106,18,41,0,0
+Empress,Bone Spurs,Green stage 0,5,Effect 108,27,68,0,0
+Empress,Bone Spurs,Green stage 0,6,Effect 110,36,104,0,0
+Empress,Bone Spurs,Green stage 0,7,Effect 112,45,149,0,0
+Empress,Bone Spurs,Green stage 0,8,Effect 114,54,203,0,0
+Empress,Bone Spurs,Green stage 0,9,Effect 116,63,266,0,0
+Empress,Bone Spurs,Green stage 0,10,Effect 118,72,338,0,0
+Empress,Bone Spurs,Green stage 0,11,Effect 120,86,424,0,0
+Empress,Bone Spurs,Green stage 0,12,Effect 122,99,523,0,0
+Empress,Bone Spurs,Green stage 0,13,Effect 124,113,636,0,0
+Empress,Bone Spurs,Green stage 0,14,Effect 126,126,762,0,0
+Empress,Bone Spurs,Green stage 0,15,Effect 128,140,902,0,0
+Empress,Bone Spurs,Green stage 0,16,Effect 130,176,1078,0,0
+Empress,Bone Spurs,Green stage 0,17,Effect 132,210,1288,0,0
+Empress,Bone Spurs,Green stage 0,18,Effect 134,252,1540,0,0
+Empress,Bone Spurs,Green stage 0,19,Effect 136,378,1918,0,0
+Empress,Bone Spurs,Green stage 0,20,Effect 138,453,2371,0,0
+Empress,Zombie Queen Halo,Green stage 3,1,Effect 1.7,0,0,0,0
+Empress,Zombie Queen Halo,Green stage 3,2,Effect 3.4,5,5,0,0
+Empress,Zombie Queen Halo,Green stage 3,3,Effect 5.1,8,13,0,0
+Empress,Zombie Queen Halo,Green stage 3,4,Effect 6.8,10,23,0,0
+Empress,Zombie Queen Halo,Green stage 3,5,Effect 8.5,15,38,0,0
+Empress,Zombie Queen Halo,Green stage 3,6,Effect 10.2,20,58,0,0
+Empress,Zombie Queen Halo,Green stage 3,7,Effect 11.9,25,83,0,0
+Empress,Zombie Queen Halo,Green stage 3,8,Effect 13.7,30,113,0,0
+Empress,Zombie Queen Halo,Green stage 3,9,Effect 15.4,35,148,0,0
+Empress,Zombie Queen Halo,Green stage 3,10,Effect 17.1,40,188,0,0
+Empress,Zombie Queen Halo,Green stage 3,11,Effect 18.8,48,236,0,0
+Empress,Zombie Queen Halo,Green stage 3,12,Effect 20.5,55,291,0,0
+Empress,Zombie Queen Halo,Green stage 3,13,Effect 22.2,63,354,0,0
+Empress,Zombie Queen Halo,Green stage 3,14,Effect 23.9,70,424,0,0
+Empress,Zombie Queen Halo,Green stage 3,15,Effect 25.7,78,502,0,0
+Empress,Zombie Queen Halo,Green stage 3,16,Effect 27.5,98,600,0,0
+Empress,Zombie Queen Halo,Green stage 3,17,Effect 29.3,117,717,0,0
+Empress,Zombie Queen Halo,Green stage 3,18,Effect 31.1,140,857,0,0
+Empress,Zombie Queen Halo,Green stage 3,19,Effect 32.9,210,1067,0,0
+Empress,Zombie Queen Halo,Green stage 3,20,Effect 34.7,252,1319,0,0
+Empress,Godsend,Green stage 7,1,Effect 1,0,0,0,0
+Empress,Godsend,Green stage 7,2,Effect 2,5,5,0,0
+Empress,Godsend,Green stage 7,3,Effect 3.1,8,13,0,0
+Empress,Godsend,Green stage 7,4,Effect 4.2,10,23,0,0
+Empress,Godsend,Green stage 7,5,Effect 5.3,15,38,0,0
+Empress,Godsend,Green stage 7,6,Effect 6.4,20,58,0,0
+Empress,Godsend,Green stage 7,7,Effect 7.5,25,83,0,0
+Empress,Godsend,Green stage 7,8,Effect 8.6,30,113,0,0
+Empress,Godsend,Green stage 7,9,Effect 9.7,35,148,0,0
+Empress,Godsend,Green stage 7,10,Effect 10.8,40,188,0,0
+Empress,Godsend,Green stage 7,11,Effect 11.9,48,236,0,0
+Empress,Godsend,Green stage 7,12,Effect 13,55,291,0,0
+Empress,Godsend,Green stage 7,13,Effect 14.1,63,354,0,0
+Empress,Godsend,Green stage 7,14,Effect 15.2,70,424,0,0
+Empress,Godsend,Green stage 7,15,Effect 16.3,78,502,0,0
+Empress,Godsend,Green stage 7,16,Effect 17.4,98,600,0,0
+Empress,Godsend,Green stage 7,17,Effect 18.5,117,717,0,0
+Empress,Godsend,Green stage 7,18,Effect 19.6,140,857,0,0
+Empress,Godsend,Green stage 7,19,Effect 20.7,210,1067,0,0
+Empress,Godsend,Green stage 7,20,Effect 21.8,252,1319,0,0
+Empress,Queen's Inspiration,Blue stage 0,1,Total Attack 11.1; Zombie Attack 5.5,0,0,0,0
+Empress,Queen's Inspiration,Blue stage 0,2,Total Attack 12.6; Zombie Attack 6.3,14,14,0,0
+Empress,Queen's Inspiration,Blue stage 0,3,Total Attack 14.2; Zombie Attack 7.1,21,35,0,0
+Empress,Queen's Inspiration,Blue stage 0,4,Total Attack 15.8; Zombie Attack 7.9,27,62,0,0
+Empress,Queen's Inspiration,Blue stage 0,5,Total Attack 17.4; Zombie Attack 8.7,41,103,0,0
+Empress,Queen's Inspiration,Blue stage 0,6,Total Attack 19; Zombie Attack 9.5,54,157,0,0
+Empress,Queen's Inspiration,Blue stage 0,7,Total Attack 20.6; Zombie Attack 10.3,68,225,0,0
+Empress,Queen's Inspiration,Blue stage 0,8,Total Attack 22.2; Zombie Attack 11.1,81,306,0,0
+Empress,Queen's Inspiration,Blue stage 0,9,Total Attack 23.7; Zombie Attack 11.8,95,401,0,0
+Empress,Queen's Inspiration,Blue stage 0,10,Total Attack 25.3; Zombie Attack 12.6,108,509,0,0
+Empress,Queen's Inspiration,Blue stage 0,11,Total Attack 26.9; Zombie Attack 13.4,129,638,0,0
+Empress,Queen's Inspiration,Blue stage 0,12,Total Attack 28.5; Zombie Attack 14.2,149,787,0,0
+Empress,Queen's Inspiration,Blue stage 0,13,Total Attack 30.1; Zombie Attack 15,170,957,0,0
+Empress,Queen's Inspiration,Blue stage 0,14,Total Attack 31.7; Zombie Attack 15.8,189,1146,0,0
+Empress,Queen's Inspiration,Blue stage 0,15,Total Attack 33.3; Zombie Attack 16.6,210,1356,0,0
+Empress,Queen's Inspiration,Blue stage 0,16,Total Attack 34.9; Zombie Attack 17.4,263,1619,0,0
+Empress,Queen's Inspiration,Blue stage 0,17,Total Attack 36.5; Zombie Attack 18.2,315,1934,0,0
+Empress,Queen's Inspiration,Blue stage 0,18,Total Attack 38.1; Zombie Attack 19,378,2312,0,0
+Empress,Queen's Inspiration,Blue stage 0,19,Total Attack 39.7; Zombie Attack 19.8,566,2878,0,0
+Empress,Queen's Inspiration,Blue stage 0,20,Total Attack 41.3; Zombie Attack 20.6,678,3556,0,0
+Empress,Potent Inspiration,Blue stage 3,1,Effect 5.5,0,0,0,0
+Empress,Potent Inspiration,Blue stage 3,2,Effect 6.3,8,8,0,0
+Empress,Potent Inspiration,Blue stage 3,3,Effect 7.1,12,20,0,0
+Empress,Potent Inspiration,Blue stage 3,4,Effect 7.9,15,35,0,0
+Empress,Potent Inspiration,Blue stage 3,5,Effect 8.7,23,58,0,0
+Empress,Potent Inspiration,Blue stage 3,6,Effect 9.5,30,88,0,0
+Empress,Potent Inspiration,Blue stage 3,7,Effect 10.3,38,126,0,0
+Empress,Potent Inspiration,Blue stage 3,8,Effect 11.1,45,171,0,0
+Empress,Potent Inspiration,Blue stage 3,9,Effect 11.8,53,224,0,0
+Empress,Potent Inspiration,Blue stage 3,10,Effect 12.6,60,284,0,0
+Empress,Potent Inspiration,Blue stage 3,11,Effect 13.4,72,356,0,0
+Empress,Potent Inspiration,Blue stage 3,12,Effect 14.2,83,439,0,0
+Empress,Potent Inspiration,Blue stage 3,13,Effect 15,95,534,0,0
+Empress,Potent Inspiration,Blue stage 3,14,Effect 15.8,105,639,0,0
+Empress,Potent Inspiration,Blue stage 3,15,Effect 16.6,117,756,0,0
+Empress,Potent Inspiration,Blue stage 3,16,Effect 17.4,147,903,0,0
+Empress,Potent Inspiration,Blue stage 3,17,Effect 18.2,175,1078,0,0
+Empress,Potent Inspiration,Blue stage 3,18,Effect 19,210,1288,0,0
+Empress,Potent Inspiration,Blue stage 3,19,Effect 19.8,315,1603,0,0
+Empress,Potent Inspiration,Blue stage 3,20,Effect 20.6,377,1980,0,0
+Empress,Infinite Scales,Blue stage 7,1,HPs 871785; Defense 2,0,0,0,0
+Empress,Infinite Scales,Blue stage 7,2,HPs 1743571; Defense 4,8,8,0,0
+Empress,Infinite Scales,Blue stage 7,3,HPs 2615357; Defense 7,12,20,0,0
+Empress,Infinite Scales,Blue stage 7,4,HPs 3487143; Defense 10,15,35,0,0
+Empress,Infinite Scales,Blue stage 7,5,HPs 4358929; Defense 13,23,58,0,0
+Empress,Infinite Scales,Blue stage 7,6,HPs 5230715; Defense 16,30,88,0,0
+Empress,Infinite Scales,Blue stage 7,7,HPs 6102501; Defense 19,38,126,0,0
+Empress,Infinite Scales,Blue stage 7,8,HPs 6974287; Defense 22,45,171,0,0
+Empress,Infinite Scales,Blue stage 7,9,HPs 7846073; Defense 25,53,224,0,0
+Empress,Infinite Scales,Blue stage 7,10,HPs 8717859; Defense 28,60,284,0,0
+Empress,Infinite Scales,Blue stage 7,11,HPs 9589645; Defense 31,72,356,0,0
+Empress,Infinite Scales,Blue stage 7,12,HPs 10461431; Defense 34,83,439,0,0
+Empress,Infinite Scales,Blue stage 7,13,HPs 11333217; Defense 37,95,534,0,0
+Empress,Infinite Scales,Blue stage 7,14,HPs 12205003; Defense 40,105,639,0,0
+Empress,Infinite Scales,Blue stage 7,15,HPs 13076789; Defense 43,117,756,0,0
+Empress,Infinite Scales,Blue stage 7,16,HPs 13948575; Defense 46,147,903,0,0
+Empress,Infinite Scales,Blue stage 7,17,HPs 14820361; Defense 49,175,1078,0,0
+Empress,Infinite Scales,Blue stage 7,18,HPs 15692147; Defense 52,210,1288,0,0
+Empress,Infinite Scales,Blue stage 7,19,HPs 16563933; Defense 55,315,1603,0,0
+Empress,Infinite Scales,Blue stage 7,20,HPs 17435719; Defense 58,377,1980,0,0
+Empress,Bloodfeast,Purple stage 0,1,Effect 44.8,0,0,0,0
+Empress,Bloodfeast,Purple stage 0,2,Effect 51.2,20,20,7,7
+Empress,Bloodfeast,Purple stage 0,3,Effect 57.6,30,50,11,18
+Empress,Bloodfeast,Purple stage 0,4,Effect 64,39,89,14,32
+Empress,Bloodfeast,Purple stage 0,5,Effect 70.4,59,148,21,53
+Empress,Bloodfeast,Purple stage 0,6,Effect 76.8,78,226,28,81
+Empress,Bloodfeast,Purple stage 0,7,Effect 83.2,98,324,35,116
+Empress,Bloodfeast,Purple stage 0,8,Effect 89.6,117,441,42,158
+Empress,Bloodfeast,Purple stage 0,9,Effect 96,137,578,49,207
+Empress,Bloodfeast,Purple stage 0,10,Effect 102.4,156,734,56,263
+Empress,Bloodfeast,Purple stage 0,11,Effect 108.8,186,920,67,330
+Empress,Bloodfeast,Purple stage 0,12,Effect 115.2,215,1135,77,407
+Empress,Bloodfeast,Purple stage 0,13,Effect 121.6,245,1380,88,495
+Empress,Bloodfeast,Purple stage 0,14,Effect 128,273,1653,98,593
+Empress,Bloodfeast,Purple stage 0,15,Effect 134.4,303,1956,109,702
+Empress,Bloodfeast,Purple stage 0,16,Effect 140.8,378,2334,136,838
+Empress,Bloodfeast,Purple stage 0,17,Effect 147.2,455,2789,163,1001
+Empress,Bloodfeast,Purple stage 0,18,Effect 153.6,545,3334,196,1197
+Empress,Bloodfeast,Purple stage 0,19,Effect 160,818,4152,293,1490
+Empress,Bloodfeast,Purple stage 0,20,Effect 166.4,980,5132,352,1842
+Empress,Queen Majesty,Purple stage 3,1,Effect 1,0,0,0,0
+Empress,Queen Majesty,Purple stage 3,2,Effect 2,12,12,4,4
+Empress,Queen Majesty,Purple stage 3,3,Effect 3,17,29,6,10
+Empress,Queen Majesty,Purple stage 3,4,Effect 4,22,51,7,17
+Empress,Queen Majesty,Purple stage 3,5,Effect 5,34,85,11,28
+Empress,Queen Majesty,Purple stage 3,6,Effect 6,44,129,14,42
+Empress,Queen Majesty,Purple stage 3,7,Effect 7,56,185,18,60
+Empress,Queen Majesty,Purple stage 3,8,Effect 8,66,251,21,81
+Empress,Queen Majesty,Purple stage 3,9,Effect 9,78,329,25,106
+Empress,Queen Majesty,Purple stage 3,10,Effect 10,88,417,28,134
+Empress,Queen Majesty,Purple stage 3,11,Effect 11,105,522,34,168
+Empress,Queen Majesty,Purple stage 3,12,Effect 12,122,644,39,207
+Empress,Queen Majesty,Purple stage 3,13,Effect 13,139,783,44,251
+Empress,Queen Majesty,Purple stage 3,14,Effect 14,154,937,49,300
+Empress,Queen Majesty,Purple stage 3,15,Effect 15,171,1108,55,355
+Empress,Queen Majesty,Purple stage 3,16,Effect 16,214,1322,68,423
+Empress,Queen Majesty,Purple stage 3,17,Effect 17,257,1579,82,505
+Empress,Queen Majesty,Purple stage 3,18,Effect 18,308,1887,98,603
+Empress,Queen Majesty,Purple stage 3,19,Effect 19,462,2349,147,750
+Empress,Queen Majesty,Purple stage 3,20,Effect 20,553,2902,176,926
+Empress,Blood Activation,Purple stage 7,1,Effect 40.2,0,0,0,0
+Empress,Blood Activation,Purple stage 7,2,Effect 46,12,12,4,4
+Empress,Blood Activation,Purple stage 7,3,Effect 51.8,17,29,6,10
+Empress,Blood Activation,Purple stage 7,4,Effect 57.6,22,51,7,17
+Empress,Blood Activation,Purple stage 7,5,Effect 63.2,34,85,11,28
+Empress,Blood Activation,Purple stage 7,6,Effect 69,44,129,14,42
+Empress,Blood Activation,Purple stage 7,7,Effect 74.8,56,185,18,60
+Empress,Blood Activation,Purple stage 7,8,Effect 80.6,66,251,21,81
+Empress,Blood Activation,Purple stage 7,9,Effect 86.4,78,329,25,106
+Empress,Blood Activation,Purple stage 7,10,Effect 92,88,417,28,134
+Empress,Blood Activation,Purple stage 7,11,Effect 97.8,105,522,34,168
+Empress,Blood Activation,Purple stage 7,12,Effect 103.6,122,644,39,207
+Empress,Blood Activation,Purple stage 7,13,Effect 109.4,139,783,44,251
+Empress,Blood Activation,Purple stage 7,14,Effect 115.2,154,937,49,300
+Empress,Blood Activation,Purple stage 7,15,Effect 120.8,171,1108,55,355
+Empress,Blood Activation,Purple stage 7,16,Effect 126.4,214,1322,68,423
+Empress,Blood Activation,Purple stage 7,17,Effect 132,257,1579,82,505
+Empress,Blood Activation,Purple stage 7,18,Effect 137.6,308,1887,98,603
+Empress,Blood Activation,Purple stage 7,19,Effect 143.2,462,2349,147,750
+Empress,Blood Activation,Purple stage 7,20,Effect 148.8,553,2902,176,926
+Empress,Symbiotic Tail,Orange stage 0,1,Effect 12.7,0,0,0,0
+Empress,Symbiotic Tail,Orange stage 0,2,Effect 14.5,26,26,11,11
+Empress,Symbiotic Tail,Orange stage 0,3,Effect 16.3,40,66,17,28
+Empress,Symbiotic Tail,Orange stage 0,4,Effect 18.1,52,118,22,50
+Empress,Symbiotic Tail,Orange stage 0,5,Effect 20,78,196,33,83
+Empress,Symbiotic Tail,Orange stage 0,6,Effect 21.8,104,300,44,127
+Empress,Symbiotic Tail,Orange stage 0,7,Effect 23.6,130,430,55,182
+Empress,Symbiotic Tail,Orange stage 0,8,Effect 25.5,156,586,66,248
+Empress,Symbiotic Tail,Orange stage 0,9,Effect 27.3,182,768,77,325
+Empress,Symbiotic Tail,Orange stage 0,10,Effect 29.1,208,976,88,413
+Empress,Symbiotic Tail,Orange stage 0,11,Effect 30.9,248,1224,105,518
+Empress,Symbiotic Tail,Orange stage 0,12,Effect 32.8,286,1510,121,639
+Empress,Symbiotic Tail,Orange stage 0,13,Effect 34.6,326,1836,138,777
+Empress,Symbiotic Tail,Orange stage 0,14,Effect 36.4,364,2200,154,931
+Empress,Symbiotic Tail,Orange stage 0,15,Effect 38.3,404,2604,171,1102
+Empress,Symbiotic Tail,Orange stage 0,16,Effect 40.2,505,3109,214,1316
+Empress,Symbiotic Tail,Orange stage 0,17,Effect 42.1,606,3715,256,1572
+Empress,Symbiotic Tail,Orange stage 0,18,Effect 44,727,4442,307,1879
+Empress,Symbiotic Tail,Orange stage 0,19,Effect 45.9,1089,5531,461,2340
+Empress,Symbiotic Tail,Orange stage 0,20,Effect 47.8,1306,6837,553,2893
+Empress,Invincible,Orange stage 3,1,Effect 2.3,0,0,0,0
+Empress,Invincible,Orange stage 3,2,Effect 4.6,15,15,5,5
+Empress,Invincible,Orange stage 3,3,Effect 6.9,23,38,8,13
+Empress,Invincible,Orange stage 3,4,Effect 9.3,30,68,10,23
+Empress,Invincible,Orange stage 3,5,Effect 11.6,45,113,15,38
+Empress,Invincible,Orange stage 3,6,Effect 13.9,60,173,20,58
+Empress,Invincible,Orange stage 3,7,Effect 16.3,75,248,25,83
+Empress,Invincible,Orange stage 3,8,Effect 18.6,90,338,30,113
+Empress,Invincible,Orange stage 3,9,Effect 20.9,105,443,35,148
+Empress,Invincible,Orange stage 3,10,Effect 23.3,120,563,40,188
+Empress,Invincible,Orange stage 3,11,Effect 25.6,143,706,48,236
+Empress,Invincible,Orange stage 3,12,Effect 27.9,165,871,55,291
+Empress,Invincible,Orange stage 3,13,Effect 30.3,188,1059,63,354
+Empress,Invincible,Orange stage 3,14,Effect 32.6,210,1269,70,424
+Empress,Invincible,Orange stage 3,15,Effect 35,233,1502,78,502
+Empress,Invincible,Orange stage 3,16,Effect 37.4,292,1794,97,599
+Empress,Invincible,Orange stage 3,17,Effect 39.8,350,2144,117,716
+Empress,Invincible,Orange stage 3,18,Effect 42.2,420,2564,140,856
+Empress,Invincible,Orange stage 3,19,Effect 44.6,629,3193,210,1066
+Empress,Invincible,Orange stage 3,20,Effect 47,754,3947,252,1318
+Empress,Devout Halo,Orange stage 7,1,Effect 2.5,0,0,0,0
+Empress,Devout Halo,Orange stage 7,2,Effect 5,15,15,5,5
+Empress,Devout Halo,Orange stage 7,3,Effect 7.5,23,38,8,13
+Empress,Devout Halo,Orange stage 7,4,Effect 10,30,68,10,23
+Empress,Devout Halo,Orange stage 7,5,Effect 12.5,45,113,15,38
+Empress,Devout Halo,Orange stage 7,6,Effect 15,60,173,20,58
+Empress,Devout Halo,Orange stage 7,7,Effect 17.5,75,248,25,83
+Empress,Devout Halo,Orange stage 7,8,Effect 20,90,338,30,113
+Empress,Devout Halo,Orange stage 7,9,Effect 22.5,105,443,35,148
+Empress,Devout Halo,Orange stage 7,10,Effect 25,120,563,40,188
+Empress,Devout Halo,Orange stage 7,11,Effect 27.5,143,706,48,236
+Empress,Devout Halo,Orange stage 7,12,Effect 30,165,871,55,291
+Empress,Devout Halo,Orange stage 7,13,Effect 32.5,188,1059,63,354
+Empress,Devout Halo,Orange stage 7,14,Effect 35,210,1269,70,424
+Empress,Devout Halo,Orange stage 7,15,Effect 37.6,233,1502,78,502
+Empress,Devout Halo,Orange stage 7,16,Effect 40.2,292,1794,97,599
+Empress,Devout Halo,Orange stage 7,17,Effect 42.8,350,2144,117,716
+Empress,Devout Halo,Orange stage 7,18,Effect 45.4,420,2564,140,856
+Empress,Devout Halo,Orange stage 7,19,Effect 48,629,3193,210,1066
+Empress,Devout Halo,Orange stage 7,20,Effect 50.6,754,3947,252,1318

@@ -1,0 +1,541 @@
+Part,Part unlocks at,Skill,Skill unlocks at part level,Stat,Level,Value,Max,Chips (this step),Chips (cumulative),Cores (this step),Cores (cumulative)
+Wingplane I,Lacerator Tier 5,Stable Energizer,10,All Troops HP and Defense,1,2.20%,66%,0,0,0,0
+Wingplane I,Lacerator Tier 5,Stable Energizer,10,All Troops HP and Defense,2,4.40%,66%,4,4,0,0
+Wingplane I,Lacerator Tier 5,Stable Energizer,10,All Troops HP and Defense,3,6.60%,66%,8,12,0,0
+Wingplane I,Lacerator Tier 5,Stable Energizer,10,All Troops HP and Defense,4,8.80%,66%,11,23,0,0
+Wingplane I,Lacerator Tier 5,Stable Energizer,10,All Troops HP and Defense,5,11.00%,66%,14,37,0,0
+Wingplane I,Lacerator Tier 5,Stable Energizer,10,All Troops HP and Defense,6,13.20%,66%,17,54,1,1
+Wingplane I,Lacerator Tier 5,Stable Energizer,10,All Troops HP and Defense,7,15.40%,66%,20,74,2,3
+Wingplane I,Lacerator Tier 5,Stable Energizer,10,All Troops HP and Defense,8,17.60%,66%,23,97,2,5
+Wingplane I,Lacerator Tier 5,Stable Energizer,10,All Troops HP and Defense,9,19.80%,66%,26,123,3,8
+Wingplane I,Lacerator Tier 5,Stable Energizer,10,All Troops HP and Defense,10,22.00%,66%,29,152,3,11
+Wingplane I,Lacerator Tier 5,Stable Energizer,10,All Troops HP and Defense,11,24.20%,66%,35,187,4,15
+Wingplane I,Lacerator Tier 5,Stable Energizer,10,All Troops HP and Defense,12,26.40%,66%,41,228,4,19
+Wingplane I,Lacerator Tier 5,Stable Energizer,10,All Troops HP and Defense,13,28.60%,66%,47,275,5,24
+Wingplane I,Lacerator Tier 5,Stable Energizer,10,All Troops HP and Defense,14,30.80%,66%,53,328,5,29
+Wingplane I,Lacerator Tier 5,Stable Energizer,10,All Troops HP and Defense,15,33.00%,66%,59,387,6,35
+Wingplane I,Lacerator Tier 5,Stable Energizer,10,All Troops HP and Defense,16,35.20%,66%,73,460,8,43
+Wingplane I,Lacerator Tier 5,Stable Energizer,10,All Troops HP and Defense,17,37.40%,66%,87,547,10,53
+Wingplane I,Lacerator Tier 5,Stable Energizer,10,All Troops HP and Defense,18,39.60%,66%,101,648,12,65
+Wingplane I,Lacerator Tier 5,Stable Energizer,10,All Troops HP and Defense,19,41.80%,66%,115,763,14,79
+Wingplane I,Lacerator Tier 5,Stable Energizer,10,All Troops HP and Defense,20,44.00%,66%,129,892,16,95
+Wingplane I,Lacerator Tier 5,Stable Energizer,10,All Troops HP and Defense,21,46.20%,66%,135,1027,18,113
+Wingplane I,Lacerator Tier 5,Stable Energizer,10,All Troops HP and Defense,22,48.40%,66%,141,1168,20,133
+Wingplane I,Lacerator Tier 5,Stable Energizer,10,All Troops HP and Defense,23,50.60%,66%,147,1315,22,155
+Wingplane I,Lacerator Tier 5,Stable Energizer,10,All Troops HP and Defense,24,52.80%,66%,153,1468,24,179
+Wingplane I,Lacerator Tier 5,Stable Energizer,10,All Troops HP and Defense,25,55.00%,66%,164,1632,26,205
+Wingplane I,Lacerator Tier 5,Stable Energizer,10,All Troops HP and Defense,26,57.20%,66%,175,1807,28,233
+Wingplane I,Lacerator Tier 5,Stable Energizer,10,All Troops HP and Defense,27,59.40%,66%,191,1998,30,263
+Wingplane I,Lacerator Tier 5,Stable Energizer,10,All Troops HP and Defense,28,61.60%,66%,207,2205,32,295
+Wingplane I,Lacerator Tier 5,Stable Energizer,10,All Troops HP and Defense,29,63.80%,66%,223,2428,34,329
+Wingplane I,Lacerator Tier 5,Stable Energizer,10,All Troops HP and Defense,30,66.00%,66%,239,2667,36,365
+Wingplane I,Lacerator Tier 5,Kinetic Machine Gun,15,Wingplane I DMG,1,24.20%,88%,0,0,0,0
+Wingplane I,Lacerator Tier 5,Kinetic Machine Gun,15,Wingplane I DMG,2,26.40%,88%,8,8,0,0
+Wingplane I,Lacerator Tier 5,Kinetic Machine Gun,15,Wingplane I DMG,3,28.60%,88%,16,24,0,0
+Wingplane I,Lacerator Tier 5,Kinetic Machine Gun,15,Wingplane I DMG,4,30.80%,88%,22,46,0,0
+Wingplane I,Lacerator Tier 5,Kinetic Machine Gun,15,Wingplane I DMG,5,33.00%,88%,28,74,0,0
+Wingplane I,Lacerator Tier 5,Kinetic Machine Gun,15,Wingplane I DMG,6,35.20%,88%,34,108,2,2
+Wingplane I,Lacerator Tier 5,Kinetic Machine Gun,15,Wingplane I DMG,7,37.40%,88%,40,148,4,6
+Wingplane I,Lacerator Tier 5,Kinetic Machine Gun,15,Wingplane I DMG,8,39.60%,88%,46,194,4,10
+Wingplane I,Lacerator Tier 5,Kinetic Machine Gun,15,Wingplane I DMG,9,41.80%,88%,52,246,6,16
+Wingplane I,Lacerator Tier 5,Kinetic Machine Gun,15,Wingplane I DMG,10,44.00%,88%,58,304,6,22
+Wingplane I,Lacerator Tier 5,Kinetic Machine Gun,15,Wingplane I DMG,11,46.20%,88%,70,374,8,30
+Wingplane I,Lacerator Tier 5,Kinetic Machine Gun,15,Wingplane I DMG,12,48.40%,88%,82,456,8,38
+Wingplane I,Lacerator Tier 5,Kinetic Machine Gun,15,Wingplane I DMG,13,50.60%,88%,94,550,10,48
+Wingplane I,Lacerator Tier 5,Kinetic Machine Gun,15,Wingplane I DMG,14,52.80%,88%,106,656,10,58
+Wingplane I,Lacerator Tier 5,Kinetic Machine Gun,15,Wingplane I DMG,15,55.00%,88%,118,774,12,70
+Wingplane I,Lacerator Tier 5,Kinetic Machine Gun,15,Wingplane I DMG,16,57.20%,88%,146,920,16,86
+Wingplane I,Lacerator Tier 5,Kinetic Machine Gun,15,Wingplane I DMG,17,59.40%,88%,174,1094,20,106
+Wingplane I,Lacerator Tier 5,Kinetic Machine Gun,15,Wingplane I DMG,18,61.60%,88%,202,1296,24,130
+Wingplane I,Lacerator Tier 5,Kinetic Machine Gun,15,Wingplane I DMG,19,63.80%,88%,230,1526,28,158
+Wingplane I,Lacerator Tier 5,Kinetic Machine Gun,15,Wingplane I DMG,20,66.00%,88%,258,1784,32,190
+Wingplane I,Lacerator Tier 5,Kinetic Machine Gun,15,Wingplane I DMG,21,68.20%,88%,270,2054,36,226
+Wingplane I,Lacerator Tier 5,Kinetic Machine Gun,15,Wingplane I DMG,22,70.40%,88%,282,2336,40,266
+Wingplane I,Lacerator Tier 5,Kinetic Machine Gun,15,Wingplane I DMG,23,72.60%,88%,294,2630,44,310
+Wingplane I,Lacerator Tier 5,Kinetic Machine Gun,15,Wingplane I DMG,24,74.80%,88%,306,2936,48,358
+Wingplane I,Lacerator Tier 5,Kinetic Machine Gun,15,Wingplane I DMG,25,77.00%,88%,328,3264,52,410
+Wingplane I,Lacerator Tier 5,Kinetic Machine Gun,15,Wingplane I DMG,26,79.20%,88%,350,3614,56,466
+Wingplane I,Lacerator Tier 5,Kinetic Machine Gun,15,Wingplane I DMG,27,81.40%,88%,382,3996,60,526
+Wingplane I,Lacerator Tier 5,Kinetic Machine Gun,15,Wingplane I DMG,28,83.60%,88%,414,4410,64,590
+Wingplane I,Lacerator Tier 5,Kinetic Machine Gun,15,Wingplane I DMG,29,85.80%,88%,446,4856,68,658
+Wingplane I,Lacerator Tier 5,Kinetic Machine Gun,15,Wingplane I DMG,30,88.00%,88%,478,5334,72,730
+Wingplane I,Lacerator Tier 5,Storm Energizer,20,All Troops Attack,1,2.20%,66%,0,0,0,0
+Wingplane I,Lacerator Tier 5,Storm Energizer,20,All Troops Attack,2,4.40%,66%,4,4,0,0
+Wingplane I,Lacerator Tier 5,Storm Energizer,20,All Troops Attack,3,6.60%,66%,8,12,0,0
+Wingplane I,Lacerator Tier 5,Storm Energizer,20,All Troops Attack,4,8.80%,66%,11,23,0,0
+Wingplane I,Lacerator Tier 5,Storm Energizer,20,All Troops Attack,5,11.00%,66%,14,37,0,0
+Wingplane I,Lacerator Tier 5,Storm Energizer,20,All Troops Attack,6,13.20%,66%,17,54,1,1
+Wingplane I,Lacerator Tier 5,Storm Energizer,20,All Troops Attack,7,15.40%,66%,20,74,2,3
+Wingplane I,Lacerator Tier 5,Storm Energizer,20,All Troops Attack,8,17.60%,66%,23,97,2,5
+Wingplane I,Lacerator Tier 5,Storm Energizer,20,All Troops Attack,9,19.80%,66%,26,123,3,8
+Wingplane I,Lacerator Tier 5,Storm Energizer,20,All Troops Attack,10,22.00%,66%,29,152,3,11
+Wingplane I,Lacerator Tier 5,Storm Energizer,20,All Troops Attack,11,24.20%,66%,35,187,4,15
+Wingplane I,Lacerator Tier 5,Storm Energizer,20,All Troops Attack,12,26.40%,66%,41,228,4,19
+Wingplane I,Lacerator Tier 5,Storm Energizer,20,All Troops Attack,13,28.60%,66%,47,275,5,24
+Wingplane I,Lacerator Tier 5,Storm Energizer,20,All Troops Attack,14,30.80%,66%,53,328,5,29
+Wingplane I,Lacerator Tier 5,Storm Energizer,20,All Troops Attack,15,33.00%,66%,59,387,6,35
+Wingplane I,Lacerator Tier 5,Storm Energizer,20,All Troops Attack,16,35.20%,66%,73,460,8,43
+Wingplane I,Lacerator Tier 5,Storm Energizer,20,All Troops Attack,17,37.40%,66%,87,547,10,53
+Wingplane I,Lacerator Tier 5,Storm Energizer,20,All Troops Attack,18,39.60%,66%,101,648,12,65
+Wingplane I,Lacerator Tier 5,Storm Energizer,20,All Troops Attack,19,41.80%,66%,115,763,14,79
+Wingplane I,Lacerator Tier 5,Storm Energizer,20,All Troops Attack,20,44.00%,66%,129,892,16,95
+Wingplane I,Lacerator Tier 5,Storm Energizer,20,All Troops Attack,21,46.20%,66%,135,1027,18,113
+Wingplane I,Lacerator Tier 5,Storm Energizer,20,All Troops Attack,22,48.40%,66%,141,1168,20,133
+Wingplane I,Lacerator Tier 5,Storm Energizer,20,All Troops Attack,23,50.60%,66%,147,1315,22,155
+Wingplane I,Lacerator Tier 5,Storm Energizer,20,All Troops Attack,24,52.80%,66%,153,1468,24,179
+Wingplane I,Lacerator Tier 5,Storm Energizer,20,All Troops Attack,25,55.00%,66%,164,1632,26,205
+Wingplane I,Lacerator Tier 5,Storm Energizer,20,All Troops Attack,26,57.20%,66%,175,1807,28,233
+Wingplane I,Lacerator Tier 5,Storm Energizer,20,All Troops Attack,27,59.40%,66%,191,1998,30,263
+Wingplane I,Lacerator Tier 5,Storm Energizer,20,All Troops Attack,28,61.60%,66%,207,2205,32,295
+Wingplane I,Lacerator Tier 5,Storm Energizer,20,All Troops Attack,29,63.80%,66%,223,2428,34,329
+Wingplane I,Lacerator Tier 5,Storm Energizer,20,All Troops Attack,30,66.00%,66%,239,2667,36,365
+Machine Head,Trailblazer Tier 2,Armor Piercing Laser II,10,Increase DMG to Melee,1,1.80%,25%,0,0,0,0
+Machine Head,Trailblazer Tier 2,Armor Piercing Laser II,10,Increase DMG to Melee,2,2.60%,25%,5,5,0,0
+Machine Head,Trailblazer Tier 2,Armor Piercing Laser II,10,Increase DMG to Melee,3,3.40%,25%,10,15,0,0
+Machine Head,Trailblazer Tier 2,Armor Piercing Laser II,10,Increase DMG to Melee,4,4.20%,25%,13,28,0,0
+Machine Head,Trailblazer Tier 2,Armor Piercing Laser II,10,Increase DMG to Melee,5,5.00%,25%,17,45,0,0
+Machine Head,Trailblazer Tier 2,Armor Piercing Laser II,10,Increase DMG to Melee,6,5.80%,25%,20,65,1,1
+Machine Head,Trailblazer Tier 2,Armor Piercing Laser II,10,Increase DMG to Melee,7,6.60%,25%,24,89,2,3
+Machine Head,Trailblazer Tier 2,Armor Piercing Laser II,10,Increase DMG to Melee,8,7.40%,25%,28,117,2,5
+Machine Head,Trailblazer Tier 2,Armor Piercing Laser II,10,Increase DMG to Melee,9,8.20%,25%,31,148,4,9
+Machine Head,Trailblazer Tier 2,Armor Piercing Laser II,10,Increase DMG to Melee,10,9.00%,25%,35,183,4,13
+Machine Head,Trailblazer Tier 2,Armor Piercing Laser II,10,Increase DMG to Melee,11,9.80%,25%,42,225,5,18
+Machine Head,Trailblazer Tier 2,Armor Piercing Laser II,10,Increase DMG to Melee,12,10.60%,25%,49,274,5,23
+Machine Head,Trailblazer Tier 2,Armor Piercing Laser II,10,Increase DMG to Melee,13,11.40%,25%,56,330,6,29
+Machine Head,Trailblazer Tier 2,Armor Piercing Laser II,10,Increase DMG to Melee,14,12.20%,25%,64,394,6,35
+Machine Head,Trailblazer Tier 2,Armor Piercing Laser II,10,Increase DMG to Melee,15,13.00%,25%,71,465,7,42
+Machine Head,Trailblazer Tier 2,Armor Piercing Laser II,10,Increase DMG to Melee,16,13.80%,25%,88,553,10,52
+Machine Head,Trailblazer Tier 2,Armor Piercing Laser II,10,Increase DMG to Melee,17,14.60%,25%,104,657,12,64
+Machine Head,Trailblazer Tier 2,Armor Piercing Laser II,10,Increase DMG to Melee,18,15.40%,25%,121,778,14,78
+Machine Head,Trailblazer Tier 2,Armor Piercing Laser II,10,Increase DMG to Melee,19,16.20%,25%,138,916,17,95
+Machine Head,Trailblazer Tier 2,Armor Piercing Laser II,10,Increase DMG to Melee,20,17.00%,25%,155,1071,19,114
+Machine Head,Trailblazer Tier 2,Armor Piercing Laser II,10,Increase DMG to Melee,21,17.80%,25%,162,1233,22,136
+Machine Head,Trailblazer Tier 2,Armor Piercing Laser II,10,Increase DMG to Melee,22,18.60%,25%,169,1402,24,160
+Machine Head,Trailblazer Tier 2,Armor Piercing Laser II,10,Increase DMG to Melee,23,19.40%,25%,176,1578,26,186
+Machine Head,Trailblazer Tier 2,Armor Piercing Laser II,10,Increase DMG to Melee,24,20.20%,25%,184,1762,29,215
+Machine Head,Trailblazer Tier 2,Armor Piercing Laser II,10,Increase DMG to Melee,25,21.00%,25%,197,1959,31,246
+Machine Head,Trailblazer Tier 2,Armor Piercing Laser II,10,Increase DMG to Melee,26,21.80%,25%,210,2169,34,280
+Machine Head,Trailblazer Tier 2,Armor Piercing Laser II,10,Increase DMG to Melee,27,22.60%,25%,229,2398,36,316
+Machine Head,Trailblazer Tier 2,Armor Piercing Laser II,10,Increase DMG to Melee,28,23.40%,25%,248,2646,38,354
+Machine Head,Trailblazer Tier 2,Armor Piercing Laser II,10,Increase DMG to Melee,29,24.20%,25%,268,2914,41,395
+Machine Head,Trailblazer Tier 2,Armor Piercing Laser II,10,Increase DMG to Melee,30,25.00%,25%,287,3201,43,438
+Machine Head,Trailblazer Tier 2,Mechanical Golem Fortification,15,Golems,1,4040,"40,000 Golems",0,0,0,0
+Machine Head,Trailblazer Tier 2,Mechanical Golem Fortification,15,Golems,2,5280,"40,000 Golems",10,10,0,0
+Machine Head,Trailblazer Tier 2,Mechanical Golem Fortification,15,Golems,3,6520,"40,000 Golems",20,30,0,0
+Machine Head,Trailblazer Tier 2,Mechanical Golem Fortification,15,Golems,4,7760,"40,000 Golems",26,56,0,0
+Machine Head,Trailblazer Tier 2,Mechanical Golem Fortification,15,Golems,5,9000,"40,000 Golems",34,90,0,0
+Machine Head,Trailblazer Tier 2,Mechanical Golem Fortification,15,Golems,6,10240,"40,000 Golems",40,130,2,2
+Machine Head,Trailblazer Tier 2,Mechanical Golem Fortification,15,Golems,7,11480,"40,000 Golems",48,178,4,6
+Machine Head,Trailblazer Tier 2,Mechanical Golem Fortification,15,Golems,8,12720,"40,000 Golems",56,234,4,10
+Machine Head,Trailblazer Tier 2,Mechanical Golem Fortification,15,Golems,9,13960,"40,000 Golems",62,296,8,18
+Machine Head,Trailblazer Tier 2,Mechanical Golem Fortification,15,Golems,10,15200,"40,000 Golems",70,366,8,26
+Machine Head,Trailblazer Tier 2,Mechanical Golem Fortification,15,Golems,11,16440,"40,000 Golems",84,450,10,36
+Machine Head,Trailblazer Tier 2,Mechanical Golem Fortification,15,Golems,12,17680,"40,000 Golems",98,548,10,46
+Machine Head,Trailblazer Tier 2,Mechanical Golem Fortification,15,Golems,13,18920,"40,000 Golems",112,660,12,58
+Machine Head,Trailblazer Tier 2,Mechanical Golem Fortification,15,Golems,14,20160,"40,000 Golems",128,788,12,70
+Machine Head,Trailblazer Tier 2,Mechanical Golem Fortification,15,Golems,15,21400,"40,000 Golems",142,930,14,84
+Machine Head,Trailblazer Tier 2,Mechanical Golem Fortification,15,Golems,16,22640,"40,000 Golems",176,1106,20,104
+Machine Head,Trailblazer Tier 2,Mechanical Golem Fortification,15,Golems,17,23880,"40,000 Golems",208,1314,24,128
+Machine Head,Trailblazer Tier 2,Mechanical Golem Fortification,15,Golems,18,25120,"40,000 Golems",242,1556,28,156
+Machine Head,Trailblazer Tier 2,Mechanical Golem Fortification,15,Golems,19,26360,"40,000 Golems",276,1832,34,190
+Machine Head,Trailblazer Tier 2,Mechanical Golem Fortification,15,Golems,20,27600,"40,000 Golems",310,2142,38,228
+Machine Head,Trailblazer Tier 2,Mechanical Golem Fortification,15,Golems,21,28840,"40,000 Golems",324,2466,44,272
+Machine Head,Trailblazer Tier 2,Mechanical Golem Fortification,15,Golems,22,30080,"40,000 Golems",338,2804,48,320
+Machine Head,Trailblazer Tier 2,Mechanical Golem Fortification,15,Golems,23,31320,"40,000 Golems",352,3156,52,372
+Machine Head,Trailblazer Tier 2,Mechanical Golem Fortification,15,Golems,24,32560,"40,000 Golems",368,3524,58,430
+Machine Head,Trailblazer Tier 2,Mechanical Golem Fortification,15,Golems,25,33800,"40,000 Golems",394,3918,62,492
+Machine Head,Trailblazer Tier 2,Mechanical Golem Fortification,15,Golems,26,35040,"40,000 Golems",420,4338,68,560
+Machine Head,Trailblazer Tier 2,Mechanical Golem Fortification,15,Golems,27,36280,"40,000 Golems",458,4796,72,632
+Machine Head,Trailblazer Tier 2,Mechanical Golem Fortification,15,Golems,28,37520,"40,000 Golems",496,5292,76,708
+Machine Head,Trailblazer Tier 2,Mechanical Golem Fortification,15,Golems,29,38760,"40,000 Golems",536,5828,82,790
+Machine Head,Trailblazer Tier 2,Mechanical Golem Fortification,15,Golems,30,40000,"40,000 Golems",574,6402,86,876
+Machine Head,Trailblazer Tier 2,Melee Energizer,20,Melee Attack/HP/Defense,1,2.20%,63.8%,0,0,0,0
+Machine Head,Trailblazer Tier 2,Melee Energizer,20,Melee Attack/HP/Defense,2,4.40%,63.8%,5,5,0,0
+Machine Head,Trailblazer Tier 2,Melee Energizer,20,Melee Attack/HP/Defense,3,6.60%,63.8%,10,15,0,0
+Machine Head,Trailblazer Tier 2,Melee Energizer,20,Melee Attack/HP/Defense,4,8.80%,63.8%,13,28,0,0
+Machine Head,Trailblazer Tier 2,Melee Energizer,20,Melee Attack/HP/Defense,5,11.00%,63.8%,17,45,0,0
+Machine Head,Trailblazer Tier 2,Melee Energizer,20,Melee Attack/HP/Defense,6,13.20%,63.8%,20,65,1,1
+Machine Head,Trailblazer Tier 2,Melee Energizer,20,Melee Attack/HP/Defense,7,15.40%,63.8%,24,89,2,3
+Machine Head,Trailblazer Tier 2,Melee Energizer,20,Melee Attack/HP/Defense,8,17.60%,63.8%,28,117,2,5
+Machine Head,Trailblazer Tier 2,Melee Energizer,20,Melee Attack/HP/Defense,9,19.80%,63.8%,31,148,4,9
+Machine Head,Trailblazer Tier 2,Melee Energizer,20,Melee Attack/HP/Defense,10,22.00%,63.8%,35,183,4,13
+Machine Head,Trailblazer Tier 2,Melee Energizer,20,Melee Attack/HP/Defense,11,24.20%,63.8%,42,225,5,18
+Machine Head,Trailblazer Tier 2,Melee Energizer,20,Melee Attack/HP/Defense,12,26.40%,63.8%,49,274,5,23
+Machine Head,Trailblazer Tier 2,Melee Energizer,20,Melee Attack/HP/Defense,13,28.60%,63.8%,56,330,6,29
+Machine Head,Trailblazer Tier 2,Melee Energizer,20,Melee Attack/HP/Defense,14,30.80%,63.8%,64,394,6,35
+Machine Head,Trailblazer Tier 2,Melee Energizer,20,Melee Attack/HP/Defense,15,30.80%,63.8%,71,465,7,42
+Machine Head,Trailblazer Tier 2,Melee Energizer,20,Melee Attack/HP/Defense,16,33.00%,63.8%,88,553,10,52
+Machine Head,Trailblazer Tier 2,Melee Energizer,20,Melee Attack/HP/Defense,17,35.20%,63.8%,104,657,12,64
+Machine Head,Trailblazer Tier 2,Melee Energizer,20,Melee Attack/HP/Defense,18,37.40%,63.8%,121,778,14,78
+Machine Head,Trailblazer Tier 2,Melee Energizer,20,Melee Attack/HP/Defense,19,39.60%,63.8%,138,916,17,95
+Machine Head,Trailblazer Tier 2,Melee Energizer,20,Melee Attack/HP/Defense,20,41.80%,63.8%,155,1071,19,114
+Machine Head,Trailblazer Tier 2,Melee Energizer,20,Melee Attack/HP/Defense,21,44.00%,63.8%,162,1233,22,136
+Machine Head,Trailblazer Tier 2,Melee Energizer,20,Melee Attack/HP/Defense,22,46.20%,63.8%,169,1402,24,160
+Machine Head,Trailblazer Tier 2,Melee Energizer,20,Melee Attack/HP/Defense,23,48.40%,63.8%,176,1578,26,186
+Machine Head,Trailblazer Tier 2,Melee Energizer,20,Melee Attack/HP/Defense,24,50.60%,63.8%,184,1762,29,215
+Machine Head,Trailblazer Tier 2,Melee Energizer,20,Melee Attack/HP/Defense,25,52.80%,63.8%,197,1959,31,246
+Machine Head,Trailblazer Tier 2,Melee Energizer,20,Melee Attack/HP/Defense,26,55.00%,63.8%,210,2169,34,280
+Machine Head,Trailblazer Tier 2,Melee Energizer,20,Melee Attack/HP/Defense,27,57.20%,63.8%,229,2398,36,316
+Machine Head,Trailblazer Tier 2,Melee Energizer,20,Melee Attack/HP/Defense,28,59.40%,63.8%,248,2646,38,354
+Machine Head,Trailblazer Tier 2,Melee Energizer,20,Melee Attack/HP/Defense,29,61.60%,63.8%,268,2914,41,395
+Machine Head,Trailblazer Tier 2,Melee Energizer,20,Melee Attack/HP/Defense,30,63.80%,63.8%,287,3201,43,438
+Wingplane II,Trailblazer Tier 8,Mid-Range Strategic Strike,10,Increase DMG to MR,1,1.80%,25%,0,0,0,0
+Wingplane II,Trailblazer Tier 8,Mid-Range Strategic Strike,10,Increase DMG to MR,2,2.60%,25%,6,6,0,0
+Wingplane II,Trailblazer Tier 8,Mid-Range Strategic Strike,10,Increase DMG to MR,3,3.40%,25%,11,17,0,0
+Wingplane II,Trailblazer Tier 8,Mid-Range Strategic Strike,10,Increase DMG to MR,4,4.20%,25%,15,32,0,0
+Wingplane II,Trailblazer Tier 8,Mid-Range Strategic Strike,10,Increase DMG to MR,5,5.00%,25%,20,52,0,0
+Wingplane II,Trailblazer Tier 8,Mid-Range Strategic Strike,10,Increase DMG to MR,6,5.80%,25%,24,76,1,1
+Wingplane II,Trailblazer Tier 8,Mid-Range Strategic Strike,10,Increase DMG to MR,7,6.60%,25%,28,104,3,4
+Wingplane II,Trailblazer Tier 8,Mid-Range Strategic Strike,10,Increase DMG to MR,8,7.40%,25%,32,136,3,7
+Wingplane II,Trailblazer Tier 8,Mid-Range Strategic Strike,10,Increase DMG to MR,9,8.20%,25%,36,172,4,11
+Wingplane II,Trailblazer Tier 8,Mid-Range Strategic Strike,10,Increase DMG to MR,10,9.00%,25%,41,213,4,15
+Wingplane II,Trailblazer Tier 8,Mid-Range Strategic Strike,10,Increase DMG to MR,11,9.80%,25%,49,262,6,21
+Wingplane II,Trailblazer Tier 8,Mid-Range Strategic Strike,10,Increase DMG to MR,12,10.60%,25%,57,319,6,27
+Wingplane II,Trailblazer Tier 8,Mid-Range Strategic Strike,10,Increase DMG to MR,13,11.40%,25%,66,385,7,34
+Wingplane II,Trailblazer Tier 8,Mid-Range Strategic Strike,10,Increase DMG to MR,14,12.20%,25%,74,459,7,41
+Wingplane II,Trailblazer Tier 8,Mid-Range Strategic Strike,10,Increase DMG to MR,15,13.00%,25%,83,542,8,49
+Wingplane II,Trailblazer Tier 8,Mid-Range Strategic Strike,10,Increase DMG to MR,16,13.80%,25%,102,644,11,60
+Wingplane II,Trailblazer Tier 8,Mid-Range Strategic Strike,10,Increase DMG to MR,17,14.60%,25%,122,766,14,74
+Wingplane II,Trailblazer Tier 8,Mid-Range Strategic Strike,10,Increase DMG to MR,18,15.40%,25%,141,907,17,91
+Wingplane II,Trailblazer Tier 8,Mid-Range Strategic Strike,10,Increase DMG to MR,19,16.20%,25%,161,1068,20,111
+Wingplane II,Trailblazer Tier 8,Mid-Range Strategic Strike,10,Increase DMG to MR,20,17.00%,25%,181,1249,22,133
+Wingplane II,Trailblazer Tier 8,Mid-Range Strategic Strike,10,Increase DMG to MR,21,17.80%,25%,189,1438,25,158
+Wingplane II,Trailblazer Tier 8,Mid-Range Strategic Strike,10,Increase DMG to MR,22,18.60%,25%,197,1635,28,186
+Wingplane II,Trailblazer Tier 8,Mid-Range Strategic Strike,10,Increase DMG to MR,23,19.40%,25%,206,1841,31,217
+Wingplane II,Trailblazer Tier 8,Mid-Range Strategic Strike,10,Increase DMG to MR,24,20.20%,25%,214,2055,34,251
+Wingplane II,Trailblazer Tier 8,Mid-Range Strategic Strike,10,Increase DMG to MR,25,21.00%,25%,230,2285,36,287
+Wingplane II,Trailblazer Tier 8,Mid-Range Strategic Strike,10,Increase DMG to MR,26,21.80%,25%,245,2530,39,326
+Wingplane II,Trailblazer Tier 8,Mid-Range Strategic Strike,10,Increase DMG to MR,27,22.60%,25%,267,2797,42,368
+Wingplane II,Trailblazer Tier 8,Mid-Range Strategic Strike,10,Increase DMG to MR,28,23.40%,25%,290,3087,45,413
+Wingplane II,Trailblazer Tier 8,Mid-Range Strategic Strike,10,Increase DMG to MR,29,24.20%,25%,312,3399,48,461
+Wingplane II,Trailblazer Tier 8,Mid-Range Strategic Strike,10,Increase DMG to MR,30,25.00%,25%,335,3734,50,511
+Wingplane II,Trailblazer Tier 8,Thermal Energy Machine Gun,15,Wingplane II DMG,1,66.00%,240%,0,0,0,0
+Wingplane II,Trailblazer Tier 8,Thermal Energy Machine Gun,15,Wingplane II DMG,2,72.00%,240%,12,12,0,0
+Wingplane II,Trailblazer Tier 8,Thermal Energy Machine Gun,15,Wingplane II DMG,3,78.00%,240%,22,34,0,0
+Wingplane II,Trailblazer Tier 8,Thermal Energy Machine Gun,15,Wingplane II DMG,4,84.00%,240%,30,64,0,0
+Wingplane II,Trailblazer Tier 8,Thermal Energy Machine Gun,15,Wingplane II DMG,5,90.00%,240%,40,104,0,0
+Wingplane II,Trailblazer Tier 8,Thermal Energy Machine Gun,15,Wingplane II DMG,6,96.00%,240%,48,152,2,2
+Wingplane II,Trailblazer Tier 8,Thermal Energy Machine Gun,15,Wingplane II DMG,7,102.00%,240%,56,208,6,8
+Wingplane II,Trailblazer Tier 8,Thermal Energy Machine Gun,15,Wingplane II DMG,8,108.00%,240%,64,272,6,14
+Wingplane II,Trailblazer Tier 8,Thermal Energy Machine Gun,15,Wingplane II DMG,9,114.00%,240%,72,344,8,22
+Wingplane II,Trailblazer Tier 8,Thermal Energy Machine Gun,15,Wingplane II DMG,10,120.00%,240%,82,426,8,30
+Wingplane II,Trailblazer Tier 8,Thermal Energy Machine Gun,15,Wingplane II DMG,11,126.00%,240%,98,524,12,42
+Wingplane II,Trailblazer Tier 8,Thermal Energy Machine Gun,15,Wingplane II DMG,12,132.00%,240%,114,638,12,54
+Wingplane II,Trailblazer Tier 8,Thermal Energy Machine Gun,15,Wingplane II DMG,13,138.00%,240%,132,770,14,68
+Wingplane II,Trailblazer Tier 8,Thermal Energy Machine Gun,15,Wingplane II DMG,14,144.00%,240%,148,918,14,82
+Wingplane II,Trailblazer Tier 8,Thermal Energy Machine Gun,15,Wingplane II DMG,15,150.00%,240%,166,1084,16,98
+Wingplane II,Trailblazer Tier 8,Thermal Energy Machine Gun,15,Wingplane II DMG,16,156.00%,240%,204,1288,22,120
+Wingplane II,Trailblazer Tier 8,Thermal Energy Machine Gun,15,Wingplane II DMG,17,162.00%,240%,244,1532,28,148
+Wingplane II,Trailblazer Tier 8,Thermal Energy Machine Gun,15,Wingplane II DMG,18,168.00%,240%,282,1814,34,182
+Wingplane II,Trailblazer Tier 8,Thermal Energy Machine Gun,15,Wingplane II DMG,19,174.00%,240%,322,2136,40,222
+Wingplane II,Trailblazer Tier 8,Thermal Energy Machine Gun,15,Wingplane II DMG,20,180.00%,240%,362,2498,44,266
+Wingplane II,Trailblazer Tier 8,Thermal Energy Machine Gun,15,Wingplane II DMG,21,186.00%,240%,378,2876,50,316
+Wingplane II,Trailblazer Tier 8,Thermal Energy Machine Gun,15,Wingplane II DMG,22,192.00%,240%,394,3270,56,372
+Wingplane II,Trailblazer Tier 8,Thermal Energy Machine Gun,15,Wingplane II DMG,23,198.00%,240%,412,3682,62,434
+Wingplane II,Trailblazer Tier 8,Thermal Energy Machine Gun,15,Wingplane II DMG,24,204.00%,240%,428,4110,68,502
+Wingplane II,Trailblazer Tier 8,Thermal Energy Machine Gun,15,Wingplane II DMG,25,210.00%,240%,460,4570,72,574
+Wingplane II,Trailblazer Tier 8,Thermal Energy Machine Gun,15,Wingplane II DMG,26,216.00%,240%,490,5060,78,652
+Wingplane II,Trailblazer Tier 8,Thermal Energy Machine Gun,15,Wingplane II DMG,27,222.00%,240%,534,5594,84,736
+Wingplane II,Trailblazer Tier 8,Thermal Energy Machine Gun,15,Wingplane II DMG,28,228.00%,240%,580,6174,90,826
+Wingplane II,Trailblazer Tier 8,Thermal Energy Machine Gun,15,Wingplane II DMG,29,234.00%,240%,624,6798,96,922
+Wingplane II,Trailblazer Tier 8,Thermal Energy Machine Gun,15,Wingplane II DMG,30,240.00%,240%,670,7468,100,1022
+Wingplane II,Trailblazer Tier 8,Titan Resistance,20,Reduce DMG taken from Titans,1,1.50%,16%,0,0,0,0
+Wingplane II,Trailblazer Tier 8,Titan Resistance,20,Reduce DMG taken from Titans,2,2.00%,16%,6,6,0,0
+Wingplane II,Trailblazer Tier 8,Titan Resistance,20,Reduce DMG taken from Titans,3,2.50%,16%,11,17,0,0
+Wingplane II,Trailblazer Tier 8,Titan Resistance,20,Reduce DMG taken from Titans,4,3.00%,16%,15,32,0,0
+Wingplane II,Trailblazer Tier 8,Titan Resistance,20,Reduce DMG taken from Titans,5,3.50%,16%,20,52,0,0
+Wingplane II,Trailblazer Tier 8,Titan Resistance,20,Reduce DMG taken from Titans,6,4.00%,16%,24,76,1,1
+Wingplane II,Trailblazer Tier 8,Titan Resistance,20,Reduce DMG taken from Titans,7,4.50%,16%,28,104,3,4
+Wingplane II,Trailblazer Tier 8,Titan Resistance,20,Reduce DMG taken from Titans,8,5.00%,16%,32,136,3,7
+Wingplane II,Trailblazer Tier 8,Titan Resistance,20,Reduce DMG taken from Titans,9,5.50%,16%,36,172,4,11
+Wingplane II,Trailblazer Tier 8,Titan Resistance,20,Reduce DMG taken from Titans,10,6.00%,16%,41,213,4,15
+Wingplane II,Trailblazer Tier 8,Titan Resistance,20,Reduce DMG taken from Titans,11,6.50%,16%,49,262,6,21
+Wingplane II,Trailblazer Tier 8,Titan Resistance,20,Reduce DMG taken from Titans,12,7.00%,16%,57,319,6,27
+Wingplane II,Trailblazer Tier 8,Titan Resistance,20,Reduce DMG taken from Titans,13,7.50%,16%,66,385,7,34
+Wingplane II,Trailblazer Tier 8,Titan Resistance,20,Reduce DMG taken from Titans,14,8.00%,16%,74,459,7,41
+Wingplane II,Trailblazer Tier 8,Titan Resistance,20,Reduce DMG taken from Titans,15,8.50%,16%,83,542,8,49
+Wingplane II,Trailblazer Tier 8,Titan Resistance,20,Reduce DMG taken from Titans,16,9.00%,16%,102,644,11,60
+Wingplane II,Trailblazer Tier 8,Titan Resistance,20,Reduce DMG taken from Titans,17,9.50%,16%,122,766,14,74
+Wingplane II,Trailblazer Tier 8,Titan Resistance,20,Reduce DMG taken from Titans,18,10.00%,16%,141,907,17,91
+Wingplane II,Trailblazer Tier 8,Titan Resistance,20,Reduce DMG taken from Titans,19,10.50%,16%,161,1068,20,111
+Wingplane II,Trailblazer Tier 8,Titan Resistance,20,Reduce DMG taken from Titans,20,11.00%,16%,181,1249,22,133
+Wingplane II,Trailblazer Tier 8,Titan Resistance,20,Reduce DMG taken from Titans,21,11.50%,16%,189,1438,25,158
+Wingplane II,Trailblazer Tier 8,Titan Resistance,20,Reduce DMG taken from Titans,22,12.00%,16%,197,1635,28,186
+Wingplane II,Trailblazer Tier 8,Titan Resistance,20,Reduce DMG taken from Titans,23,12.50%,16%,206,1841,31,217
+Wingplane II,Trailblazer Tier 8,Titan Resistance,20,Reduce DMG taken from Titans,24,13.00%,16%,214,2055,34,251
+Wingplane II,Trailblazer Tier 8,Titan Resistance,20,Reduce DMG taken from Titans,25,13.50%,16%,230,2285,36,287
+Wingplane II,Trailblazer Tier 8,Titan Resistance,20,Reduce DMG taken from Titans,26,14.00%,16%,245,2530,39,326
+Wingplane II,Trailblazer Tier 8,Titan Resistance,20,Reduce DMG taken from Titans,27,14.50%,16%,267,2797,42,368
+Wingplane II,Trailblazer Tier 8,Titan Resistance,20,Reduce DMG taken from Titans,28,15.00%,16%,290,3087,45,413
+Wingplane II,Trailblazer Tier 8,Titan Resistance,20,Reduce DMG taken from Titans,29,15.50%,16%,312,3399,48,461
+Wingplane II,Trailblazer Tier 8,Titan Resistance,20,Reduce DMG taken from Titans,30,16.00%,16%,335,3734,50,511
+Body,Inquisitor Tier 5,Storm Energizer II,10,All Troops Attack,1,2.20%,66%,0,0,0,0
+Body,Inquisitor Tier 5,Storm Energizer II,10,All Troops Attack,2,4.40%,66%,6,6,0,0
+Body,Inquisitor Tier 5,Storm Energizer II,10,All Troops Attack,3,6.60%,66%,13,19,0,0
+Body,Inquisitor Tier 5,Storm Energizer II,10,All Troops Attack,4,8.80%,66%,18,37,0,0
+Body,Inquisitor Tier 5,Storm Energizer II,10,All Troops Attack,5,11.00%,66%,22,59,0,0
+Body,Inquisitor Tier 5,Storm Energizer II,10,All Troops Attack,6,13.20%,66%,27,86,2,2
+Body,Inquisitor Tier 5,Storm Energizer II,10,All Troops Attack,7,15.40%,66%,32,118,3,5
+Body,Inquisitor Tier 5,Storm Energizer II,10,All Troops Attack,8,17.60%,66%,37,155,3,8
+Body,Inquisitor Tier 5,Storm Energizer II,10,All Troops Attack,9,19.80%,66%,42,197,5,13
+Body,Inquisitor Tier 5,Storm Energizer II,10,All Troops Attack,10,22.00%,66%,46,243,5,18
+Body,Inquisitor Tier 5,Storm Energizer II,10,All Troops Attack,11,24.20%,66%,56,299,6,24
+Body,Inquisitor Tier 5,Storm Energizer II,10,All Troops Attack,12,26.40%,66%,66,365,6,30
+Body,Inquisitor Tier 5,Storm Energizer II,10,All Troops Attack,13,28.60%,66%,75,440,8,38
+Body,Inquisitor Tier 5,Storm Energizer II,10,All Troops Attack,14,30.80%,66%,85,525,8,46
+Body,Inquisitor Tier 5,Storm Energizer II,10,All Troops Attack,15,33.00%,66%,94,619,10,56
+Body,Inquisitor Tier 5,Storm Energizer II,10,All Troops Attack,16,35.20%,66%,117,736,13,69
+Body,Inquisitor Tier 5,Storm Energizer II,10,All Troops Attack,17,37.40%,66%,139,875,16,85
+Body,Inquisitor Tier 5,Storm Energizer II,10,All Troops Attack,18,39.60%,66%,162,1037,19,104
+Body,Inquisitor Tier 5,Storm Energizer II,10,All Troops Attack,19,41.80%,66%,184,1221,22,126
+Body,Inquisitor Tier 5,Storm Energizer II,10,All Troops Attack,20,44.00%,66%,206,1427,26,152
+Body,Inquisitor Tier 5,Storm Energizer II,10,All Troops Attack,21,46.20%,66%,216,1643,29,181
+Body,Inquisitor Tier 5,Storm Energizer II,10,All Troops Attack,22,48.40%,66%,226,1869,32,213
+Body,Inquisitor Tier 5,Storm Energizer II,10,All Troops Attack,23,50.60%,66%,235,2104,35,248
+Body,Inquisitor Tier 5,Storm Energizer II,10,All Troops Attack,24,52.80%,66%,245,2349,38,286
+Body,Inquisitor Tier 5,Storm Energizer II,10,All Troops Attack,25,55.00%,66%,262,2611,42,328
+Body,Inquisitor Tier 5,Storm Energizer II,10,All Troops Attack,26,57.20%,66%,280,2891,45,373
+Body,Inquisitor Tier 5,Storm Energizer II,10,All Troops Attack,27,59.40%,66%,306,3197,48,421
+Body,Inquisitor Tier 5,Storm Energizer II,10,All Troops Attack,28,61.60%,66%,331,3528,51,472
+Body,Inquisitor Tier 5,Storm Energizer II,10,All Troops Attack,29,63.80%,66%,357,3885,54,526
+Body,Inquisitor Tier 5,Storm Energizer II,10,All Troops Attack,30,66.00%,66%,382,4267,58,584
+Body,Inquisitor Tier 5,Storm Bomb,15,Storm Bomb DMG,1,154%,560%,0,0,0,0
+Body,Inquisitor Tier 5,Storm Bomb,15,Storm Bomb DMG,2,168%,560%,12,12,0,0
+Body,Inquisitor Tier 5,Storm Bomb,15,Storm Bomb DMG,3,182%,560%,26,38,0,0
+Body,Inquisitor Tier 5,Storm Bomb,15,Storm Bomb DMG,4,196%,560%,36,74,0,0
+Body,Inquisitor Tier 5,Storm Bomb,15,Storm Bomb DMG,5,210%,560%,44,118,0,0
+Body,Inquisitor Tier 5,Storm Bomb,15,Storm Bomb DMG,6,224%,560%,54,172,4,4
+Body,Inquisitor Tier 5,Storm Bomb,15,Storm Bomb DMG,7,238%,560%,64,236,6,10
+Body,Inquisitor Tier 5,Storm Bomb,15,Storm Bomb DMG,8,252%,560%,74,310,6,16
+Body,Inquisitor Tier 5,Storm Bomb,15,Storm Bomb DMG,9,266%,560%,84,394,10,26
+Body,Inquisitor Tier 5,Storm Bomb,15,Storm Bomb DMG,10,280%,560%,92,486,10,36
+Body,Inquisitor Tier 5,Storm Bomb,15,Storm Bomb DMG,11,294%,560%,112,598,12,48
+Body,Inquisitor Tier 5,Storm Bomb,15,Storm Bomb DMG,12,308%,560%,132,730,12,60
+Body,Inquisitor Tier 5,Storm Bomb,15,Storm Bomb DMG,13,322%,560%,150,880,16,76
+Body,Inquisitor Tier 5,Storm Bomb,15,Storm Bomb DMG,14,336%,560%,170,1050,16,92
+Body,Inquisitor Tier 5,Storm Bomb,15,Storm Bomb DMG,15,350%,560%,188,1238,20,112
+Body,Inquisitor Tier 5,Storm Bomb,15,Storm Bomb DMG,16,364%,560%,234,1472,26,138
+Body,Inquisitor Tier 5,Storm Bomb,15,Storm Bomb DMG,17,378%,560%,278,1750,32,170
+Body,Inquisitor Tier 5,Storm Bomb,15,Storm Bomb DMG,18,392%,560%,324,2074,38,208
+Body,Inquisitor Tier 5,Storm Bomb,15,Storm Bomb DMG,19,406%,560%,368,2442,44,252
+Body,Inquisitor Tier 5,Storm Bomb,15,Storm Bomb DMG,20,420%,560%,412,2854,52,304
+Body,Inquisitor Tier 5,Storm Bomb,15,Storm Bomb DMG,21,434%,560%,432,3286,58,362
+Body,Inquisitor Tier 5,Storm Bomb,15,Storm Bomb DMG,22,448%,560%,452,3738,64,426
+Body,Inquisitor Tier 5,Storm Bomb,15,Storm Bomb DMG,23,462%,560%,470,4208,70,496
+Body,Inquisitor Tier 5,Storm Bomb,15,Storm Bomb DMG,24,476%,560%,490,4698,76,572
+Body,Inquisitor Tier 5,Storm Bomb,15,Storm Bomb DMG,25,490%,560%,524,5222,84,656
+Body,Inquisitor Tier 5,Storm Bomb,15,Storm Bomb DMG,26,504%,560%,560,5782,90,746
+Body,Inquisitor Tier 5,Storm Bomb,15,Storm Bomb DMG,27,518%,560%,612,6394,96,842
+Body,Inquisitor Tier 5,Storm Bomb,15,Storm Bomb DMG,28,532%,560%,662,7056,102,944
+Body,Inquisitor Tier 5,Storm Bomb,15,Storm Bomb DMG,29,546%,560%,714,7770,108,1052
+Body,Inquisitor Tier 5,Storm Bomb,15,Storm Bomb DMG,30,560%,560%,764,8534,116,1168
+Body,Inquisitor Tier 5,Long-Range Strategic Strike,20,Increase DMG to LR,1,1.80%,25%,0,0,0,0
+Body,Inquisitor Tier 5,Long-Range Strategic Strike,20,Increase DMG to LR,2,2.60%,25%,6,6,0,0
+Body,Inquisitor Tier 5,Long-Range Strategic Strike,20,Increase DMG to LR,3,3.40%,25%,13,19,0,0
+Body,Inquisitor Tier 5,Long-Range Strategic Strike,20,Increase DMG to LR,4,4.20%,25%,18,37,0,0
+Body,Inquisitor Tier 5,Long-Range Strategic Strike,20,Increase DMG to LR,5,5.00%,25%,22,59,0,0
+Body,Inquisitor Tier 5,Long-Range Strategic Strike,20,Increase DMG to LR,6,5.80%,25%,27,86,2,2
+Body,Inquisitor Tier 5,Long-Range Strategic Strike,20,Increase DMG to LR,7,6.60%,25%,32,118,3,5
+Body,Inquisitor Tier 5,Long-Range Strategic Strike,20,Increase DMG to LR,8,7.40%,25%,37,155,3,8
+Body,Inquisitor Tier 5,Long-Range Strategic Strike,20,Increase DMG to LR,9,8.20%,25%,42,197,5,13
+Body,Inquisitor Tier 5,Long-Range Strategic Strike,20,Increase DMG to LR,10,9.00%,25%,46,243,5,18
+Body,Inquisitor Tier 5,Long-Range Strategic Strike,20,Increase DMG to LR,11,9.80%,25%,56,299,6,24
+Body,Inquisitor Tier 5,Long-Range Strategic Strike,20,Increase DMG to LR,12,10.60%,25%,66,365,6,30
+Body,Inquisitor Tier 5,Long-Range Strategic Strike,20,Increase DMG to LR,13,11.40%,25%,75,440,8,38
+Body,Inquisitor Tier 5,Long-Range Strategic Strike,20,Increase DMG to LR,14,12.20%,25%,85,525,8,46
+Body,Inquisitor Tier 5,Long-Range Strategic Strike,20,Increase DMG to LR,15,13.00%,25%,94,619,10,56
+Body,Inquisitor Tier 5,Long-Range Strategic Strike,20,Increase DMG to LR,16,13.80%,25%,117,736,13,69
+Body,Inquisitor Tier 5,Long-Range Strategic Strike,20,Increase DMG to LR,17,14.60%,25%,139,875,16,85
+Body,Inquisitor Tier 5,Long-Range Strategic Strike,20,Increase DMG to LR,18,15.40%,25%,162,1037,19,104
+Body,Inquisitor Tier 5,Long-Range Strategic Strike,20,Increase DMG to LR,19,16.20%,25%,184,1221,22,126
+Body,Inquisitor Tier 5,Long-Range Strategic Strike,20,Increase DMG to LR,20,17.00%,25%,206,1427,26,152
+Body,Inquisitor Tier 5,Long-Range Strategic Strike,20,Increase DMG to LR,21,17.80%,25%,216,1643,29,181
+Body,Inquisitor Tier 5,Long-Range Strategic Strike,20,Increase DMG to LR,22,18.60%,25%,226,1869,32,213
+Body,Inquisitor Tier 5,Long-Range Strategic Strike,20,Increase DMG to LR,23,19.40%,25%,235,2104,35,248
+Body,Inquisitor Tier 5,Long-Range Strategic Strike,20,Increase DMG to LR,24,20.20%,25%,245,2349,38,286
+Body,Inquisitor Tier 5,Long-Range Strategic Strike,20,Increase DMG to LR,25,21.00%,25%,262,2611,42,328
+Body,Inquisitor Tier 5,Long-Range Strategic Strike,20,Increase DMG to LR,26,21.80%,25%,280,2891,45,373
+Body,Inquisitor Tier 5,Long-Range Strategic Strike,20,Increase DMG to LR,27,22.60%,25%,306,3197,48,421
+Body,Inquisitor Tier 5,Long-Range Strategic Strike,20,Increase DMG to LR,28,23.40%,25%,331,3528,51,472
+Body,Inquisitor Tier 5,Long-Range Strategic Strike,20,Increase DMG to LR,29,24.20%,25%,357,3885,54,526
+Body,Inquisitor Tier 5,Long-Range Strategic Strike,20,Increase DMG to LR,30,25.00%,25%,382,4267,58,584
+Wing,Epic Tier 5,Misfire Resistance,10,Misfire Resistance,1,6,180,0,0,0,0
+Wing,Epic Tier 5,Misfire Resistance,10,Misfire Resistance,2,12,180,7,7,0,0
+Wing,Epic Tier 5,Misfire Resistance,10,Misfire Resistance,3,18,180,14,21,0,0
+Wing,Epic Tier 5,Misfire Resistance,10,Misfire Resistance,4,24,180,20,41,0,0
+Wing,Epic Tier 5,Misfire Resistance,10,Misfire Resistance,5,30,180,25,66,0,0
+Wing,Epic Tier 5,Misfire Resistance,10,Misfire Resistance,6,36,180,31,97,2,2
+Wing,Epic Tier 5,Misfire Resistance,10,Misfire Resistance,7,42,180,36,133,4,6
+Wing,Epic Tier 5,Misfire Resistance,10,Misfire Resistance,8,48,180,41,174,4,10
+Wing,Epic Tier 5,Misfire Resistance,10,Misfire Resistance,9,54,180,47,221,5,15
+Wing,Epic Tier 5,Misfire Resistance,10,Misfire Resistance,10,60,180,52,273,5,20
+Wing,Epic Tier 5,Misfire Resistance,10,Misfire Resistance,11,66,180,63,336,7,27
+Wing,Epic Tier 5,Misfire Resistance,10,Misfire Resistance,12,72,180,74,410,7,34
+Wing,Epic Tier 5,Misfire Resistance,10,Misfire Resistance,13,78,180,85,495,9,43
+Wing,Epic Tier 5,Misfire Resistance,10,Misfire Resistance,14,84,180,95,590,9,52
+Wing,Epic Tier 5,Misfire Resistance,10,Misfire Resistance,15,90,180,106,696,11,63
+Wing,Epic Tier 5,Misfire Resistance,10,Misfire Resistance,16,96,180,131,827,14,77
+Wing,Epic Tier 5,Misfire Resistance,10,Misfire Resistance,17,102,180,157,984,18,95
+Wing,Epic Tier 5,Misfire Resistance,10,Misfire Resistance,18,108,180,182,1166,22,117
+Wing,Epic Tier 5,Misfire Resistance,10,Misfire Resistance,19,114,180,207,1373,25,142
+Wing,Epic Tier 5,Misfire Resistance,10,Misfire Resistance,20,120,180,232,1605,29,171
+Wing,Epic Tier 5,Misfire Resistance,10,Misfire Resistance,21,126,180,243,1848,32,203
+Wing,Epic Tier 5,Misfire Resistance,10,Misfire Resistance,22,132,180,254,2102,36,239
+Wing,Epic Tier 5,Misfire Resistance,10,Misfire Resistance,23,138,180,265,2367,40,279
+Wing,Epic Tier 5,Misfire Resistance,10,Misfire Resistance,24,144,180,275,2642,43,322
+Wing,Epic Tier 5,Misfire Resistance,10,Misfire Resistance,25,150,180,295,2937,47,369
+Wing,Epic Tier 5,Misfire Resistance,10,Misfire Resistance,26,156,180,315,3252,50,419
+Wing,Epic Tier 5,Misfire Resistance,10,Misfire Resistance,27,162,180,344,3596,54,473
+Wing,Epic Tier 5,Misfire Resistance,10,Misfire Resistance,28,168,180,373,3969,58,531
+Wing,Epic Tier 5,Misfire Resistance,10,Misfire Resistance,29,174,180,401,4370,61,592
+Wing,Epic Tier 5,Misfire Resistance,10,Misfire Resistance,30,180,180,430,4800,65,657
+Wing,Epic Tier 5,Storm Disruptor,15,Diruptor through Storm Bomb,1,6%,35%,0,0,0,0
+Wing,Epic Tier 5,Storm Disruptor,15,Diruptor through Storm Bomb,2,7.00%,35%,14,14,0,0
+Wing,Epic Tier 5,Storm Disruptor,15,Diruptor through Storm Bomb,3,8.00%,35%,28,42,0,0
+Wing,Epic Tier 5,Storm Disruptor,15,Diruptor through Storm Bomb,4,9.00%,35%,40,82,0,0
+Wing,Epic Tier 5,Storm Disruptor,15,Diruptor through Storm Bomb,5,10.00%,35%,50,132,0,0
+Wing,Epic Tier 5,Storm Disruptor,15,Diruptor through Storm Bomb,6,11.00%,35%,62,194,4,4
+Wing,Epic Tier 5,Storm Disruptor,15,Diruptor through Storm Bomb,7,12.00%,35%,72,266,8,12
+Wing,Epic Tier 5,Storm Disruptor,15,Diruptor through Storm Bomb,8,13.00%,35%,82,348,8,20
+Wing,Epic Tier 5,Storm Disruptor,15,Diruptor through Storm Bomb,9,14.00%,35%,94,442,10,30
+Wing,Epic Tier 5,Storm Disruptor,15,Diruptor through Storm Bomb,10,15.00%,35%,104,546,10,40
+Wing,Epic Tier 5,Storm Disruptor,15,Diruptor through Storm Bomb,11,16.00%,35%,126,672,14,54
+Wing,Epic Tier 5,Storm Disruptor,15,Diruptor through Storm Bomb,12,17.00%,35%,148,820,14,68
+Wing,Epic Tier 5,Storm Disruptor,15,Diruptor through Storm Bomb,13,18.00%,35%,170,990,18,86
+Wing,Epic Tier 5,Storm Disruptor,15,Diruptor through Storm Bomb,14,19.00%,35%,190,1180,18,104
+Wing,Epic Tier 5,Storm Disruptor,15,Diruptor through Storm Bomb,15,20.00%,35%,212,1392,22,126
+Wing,Epic Tier 5,Storm Disruptor,15,Diruptor through Storm Bomb,16,21.00%,35%,262,1654,28,154
+Wing,Epic Tier 5,Storm Disruptor,15,Diruptor through Storm Bomb,17,22.00%,35%,314,1968,36,190
+Wing,Epic Tier 5,Storm Disruptor,15,Diruptor through Storm Bomb,18,23.00%,35%,364,2332,44,234
+Wing,Epic Tier 5,Storm Disruptor,15,Diruptor through Storm Bomb,19,24.00%,35%,414,2746,50,284
+Wing,Epic Tier 5,Storm Disruptor,15,Diruptor through Storm Bomb,20,25.00%,35%,464,3210,58,342
+Wing,Epic Tier 5,Storm Disruptor,15,Diruptor through Storm Bomb,21,26.00%,35%,486,3696,64,406
+Wing,Epic Tier 5,Storm Disruptor,15,Diruptor through Storm Bomb,22,27.00%,35%,508,4204,72,478
+Wing,Epic Tier 5,Storm Disruptor,15,Diruptor through Storm Bomb,23,28.00%,35%,530,4734,80,558
+Wing,Epic Tier 5,Storm Disruptor,15,Diruptor through Storm Bomb,24,29.00%,35%,550,5284,86,644
+Wing,Epic Tier 5,Storm Disruptor,15,Diruptor through Storm Bomb,25,30.00%,35%,590,5874,94,738
+Wing,Epic Tier 5,Storm Disruptor,15,Diruptor through Storm Bomb,26,31.00%,35%,630,6504,100,838
+Wing,Epic Tier 5,Storm Disruptor,15,Diruptor through Storm Bomb,27,32.00%,35%,688,7192,108,946
+Wing,Epic Tier 5,Storm Disruptor,15,Diruptor through Storm Bomb,28,33.00%,35%,746,7938,116,1062
+Wing,Epic Tier 5,Storm Disruptor,15,Diruptor through Storm Bomb,29,34.00%,35%,802,8740,122,1184
+Wing,Epic Tier 5,Storm Disruptor,15,Diruptor through Storm Bomb,30,35.00%,35%,860,9600,130,1314
+Wing,Epic Tier 5,Warplane Resistance,20,Reduce DMG taken from Warplanes,1,1.80%,25%,0,0,0,0
+Wing,Epic Tier 5,Warplane Resistance,20,Reduce DMG taken from Warplanes,2,2.60%,25%,7,7,0,0
+Wing,Epic Tier 5,Warplane Resistance,20,Reduce DMG taken from Warplanes,3,3.40%,25%,14,21,0,0
+Wing,Epic Tier 5,Warplane Resistance,20,Reduce DMG taken from Warplanes,4,4.20%,25%,20,41,0,0
+Wing,Epic Tier 5,Warplane Resistance,20,Reduce DMG taken from Warplanes,5,5.00%,25%,25,66,0,0
+Wing,Epic Tier 5,Warplane Resistance,20,Reduce DMG taken from Warplanes,6,5.80%,25%,31,97,2,2
+Wing,Epic Tier 5,Warplane Resistance,20,Reduce DMG taken from Warplanes,7,6.60%,25%,36,133,4,6
+Wing,Epic Tier 5,Warplane Resistance,20,Reduce DMG taken from Warplanes,8,7.40%,25%,41,174,4,10
+Wing,Epic Tier 5,Warplane Resistance,20,Reduce DMG taken from Warplanes,9,8.20%,25%,47,221,5,15
+Wing,Epic Tier 5,Warplane Resistance,20,Reduce DMG taken from Warplanes,10,9.00%,25%,52,273,5,20
+Wing,Epic Tier 5,Warplane Resistance,20,Reduce DMG taken from Warplanes,11,9.80%,25%,63,336,7,27
+Wing,Epic Tier 5,Warplane Resistance,20,Reduce DMG taken from Warplanes,12,10.60%,25%,74,410,7,34
+Wing,Epic Tier 5,Warplane Resistance,20,Reduce DMG taken from Warplanes,13,11.40%,25%,85,495,9,43
+Wing,Epic Tier 5,Warplane Resistance,20,Reduce DMG taken from Warplanes,14,12.20%,25%,95,590,9,52
+Wing,Epic Tier 5,Warplane Resistance,20,Reduce DMG taken from Warplanes,15,13.00%,25%,106,696,11,63
+Wing,Epic Tier 5,Warplane Resistance,20,Reduce DMG taken from Warplanes,16,13.80%,25%,131,827,14,77
+Wing,Epic Tier 5,Warplane Resistance,20,Reduce DMG taken from Warplanes,17,14.60%,25%,157,984,18,95
+Wing,Epic Tier 5,Warplane Resistance,20,Reduce DMG taken from Warplanes,18,15.40%,25%,182,1166,22,117
+Wing,Epic Tier 5,Warplane Resistance,20,Reduce DMG taken from Warplanes,19,16.20%,25%,207,1373,25,142
+Wing,Epic Tier 5,Warplane Resistance,20,Reduce DMG taken from Warplanes,20,17.00%,25%,232,1605,29,171
+Wing,Epic Tier 5,Warplane Resistance,20,Reduce DMG taken from Warplanes,21,17.80%,25%,243,1848,32,203
+Wing,Epic Tier 5,Warplane Resistance,20,Reduce DMG taken from Warplanes,22,18.60%,25%,254,2102,36,239
+Wing,Epic Tier 5,Warplane Resistance,20,Reduce DMG taken from Warplanes,23,19.40%,25%,265,2367,40,279
+Wing,Epic Tier 5,Warplane Resistance,20,Reduce DMG taken from Warplanes,24,20.20%,25%,275,2642,43,322
+Wing,Epic Tier 5,Warplane Resistance,20,Reduce DMG taken from Warplanes,25,21.00%,25%,295,2937,47,369
+Wing,Epic Tier 5,Warplane Resistance,20,Reduce DMG taken from Warplanes,26,21.80%,25%,315,3252,50,419
+Wing,Epic Tier 5,Warplane Resistance,20,Reduce DMG taken from Warplanes,27,22.60%,25%,344,3596,54,473
+Wing,Epic Tier 5,Warplane Resistance,20,Reduce DMG taken from Warplanes,28,23.40%,25%,373,3969,58,531
+Wing,Epic Tier 5,Warplane Resistance,20,Reduce DMG taken from Warplanes,29,24.20%,25%,401,4370,61,592
+Wing,Epic Tier 5,Warplane Resistance,20,Reduce DMG taken from Warplanes,30,25.00%,25%,430,4800,65,657
+Machine Gun,Immortal Tier 5,Disruptor Resistance,10,Disruptor Resistance,1,6,180,0,0,0,0
+Machine Gun,Immortal Tier 5,Disruptor Resistance,10,Disruptor Resistance,2,12,180,8,8,0,0
+Machine Gun,Immortal Tier 5,Disruptor Resistance,10,Disruptor Resistance,3,18,180,16,24,0,0
+Machine Gun,Immortal Tier 5,Disruptor Resistance,10,Disruptor Resistance,4,24,180,22,46,0,0
+Machine Gun,Immortal Tier 5,Disruptor Resistance,10,Disruptor Resistance,5,30,180,28,74,0,0
+Machine Gun,Immortal Tier 5,Disruptor Resistance,10,Disruptor Resistance,6,36,180,34,108,2,2
+Machine Gun,Immortal Tier 5,Disruptor Resistance,10,Disruptor Resistance,7,42,180,40,148,4,6
+Machine Gun,Immortal Tier 5,Disruptor Resistance,10,Disruptor Resistance,8,48,180,46,194,4,10
+Machine Gun,Immortal Tier 5,Disruptor Resistance,10,Disruptor Resistance,9,54,180,52,246,6,16
+Machine Gun,Immortal Tier 5,Disruptor Resistance,10,Disruptor Resistance,10,60,180,58,304,6,22
+Machine Gun,Immortal Tier 5,Disruptor Resistance,10,Disruptor Resistance,11,66,180,70,374,8,30
+Machine Gun,Immortal Tier 5,Disruptor Resistance,10,Disruptor Resistance,12,72,180,82,456,8,38
+Machine Gun,Immortal Tier 5,Disruptor Resistance,10,Disruptor Resistance,13,78,180,94,550,10,48
+Machine Gun,Immortal Tier 5,Disruptor Resistance,10,Disruptor Resistance,14,84,180,106,656,10,58
+Machine Gun,Immortal Tier 5,Disruptor Resistance,10,Disruptor Resistance,15,90,180,118,774,12,70
+Machine Gun,Immortal Tier 5,Disruptor Resistance,10,Disruptor Resistance,16,96,180,146,920,16,86
+Machine Gun,Immortal Tier 5,Disruptor Resistance,10,Disruptor Resistance,17,102,180,174,1094,20,106
+Machine Gun,Immortal Tier 5,Disruptor Resistance,10,Disruptor Resistance,18,108,180,202,1296,24,130
+Machine Gun,Immortal Tier 5,Disruptor Resistance,10,Disruptor Resistance,19,114,180,230,1526,28,158
+Machine Gun,Immortal Tier 5,Disruptor Resistance,10,Disruptor Resistance,20,120,180,258,1784,32,190
+Machine Gun,Immortal Tier 5,Disruptor Resistance,10,Disruptor Resistance,21,126,180,270,2054,36,226
+Machine Gun,Immortal Tier 5,Disruptor Resistance,10,Disruptor Resistance,22,132,180,282,2336,40,266
+Machine Gun,Immortal Tier 5,Disruptor Resistance,10,Disruptor Resistance,23,138,180,294,2630,44,310
+Machine Gun,Immortal Tier 5,Disruptor Resistance,10,Disruptor Resistance,24,144,180,306,2936,48,358
+Machine Gun,Immortal Tier 5,Disruptor Resistance,10,Disruptor Resistance,25,150,180,328,3264,52,410
+Machine Gun,Immortal Tier 5,Disruptor Resistance,10,Disruptor Resistance,26,156,180,350,3614,56,466
+Machine Gun,Immortal Tier 5,Disruptor Resistance,10,Disruptor Resistance,27,162,180,382,3996,60,526
+Machine Gun,Immortal Tier 5,Disruptor Resistance,10,Disruptor Resistance,28,168,180,414,4410,64,590
+Machine Gun,Immortal Tier 5,Disruptor Resistance,10,Disruptor Resistance,29,174,180,446,4856,68,658
+Machine Gun,Immortal Tier 5,Disruptor Resistance,10,Disruptor Resistance,30,180,180,478,5334,72,730
+Machine Gun,Immortal Tier 5,Restructuring Ray,15,Revive Titans with HP,1,2%,60%,0,0,0,0
+Machine Gun,Immortal Tier 5,Restructuring Ray,15,Revive Titans with HP,2,4.00%,60%,16,16,0,0
+Machine Gun,Immortal Tier 5,Restructuring Ray,15,Revive Titans with HP,3,6.00%,60%,32,48,0,0
+Machine Gun,Immortal Tier 5,Restructuring Ray,15,Revive Titans with HP,4,8.00%,60%,44,92,0,0
+Machine Gun,Immortal Tier 5,Restructuring Ray,15,Revive Titans with HP,5,10.00%,60%,56,148,0,0
+Machine Gun,Immortal Tier 5,Restructuring Ray,15,Revive Titans with HP,6,12.00%,60%,68,216,4,4
+Machine Gun,Immortal Tier 5,Restructuring Ray,15,Revive Titans with HP,7,14.00%,60%,80,296,8,12
+Machine Gun,Immortal Tier 5,Restructuring Ray,15,Revive Titans with HP,8,16.00%,60%,92,388,8,20
+Machine Gun,Immortal Tier 5,Restructuring Ray,15,Revive Titans with HP,9,18.00%,60%,104,492,12,32
+Machine Gun,Immortal Tier 5,Restructuring Ray,15,Revive Titans with HP,10,20.00%,60%,116,608,12,44
+Machine Gun,Immortal Tier 5,Restructuring Ray,15,Revive Titans with HP,11,22.00%,60%,140,748,16,60
+Machine Gun,Immortal Tier 5,Restructuring Ray,15,Revive Titans with HP,12,24.00%,60%,164,912,16,76
+Machine Gun,Immortal Tier 5,Restructuring Ray,15,Revive Titans with HP,13,26.00%,60%,188,1100,20,96
+Machine Gun,Immortal Tier 5,Restructuring Ray,15,Revive Titans with HP,14,28.00%,60%,212,1312,20,116
+Machine Gun,Immortal Tier 5,Restructuring Ray,15,Revive Titans with HP,15,30.00%,60%,236,1548,24,140
+Machine Gun,Immortal Tier 5,Restructuring Ray,15,Revive Titans with HP,16,32.00%,60%,292,1840,32,172
+Machine Gun,Immortal Tier 5,Restructuring Ray,15,Revive Titans with HP,17,34.00%,60%,348,2188,40,212
+Machine Gun,Immortal Tier 5,Restructuring Ray,15,Revive Titans with HP,18,36.00%,60%,404,2592,48,260
+Machine Gun,Immortal Tier 5,Restructuring Ray,15,Revive Titans with HP,19,38.00%,60%,460,3052,56,316
+Machine Gun,Immortal Tier 5,Restructuring Ray,15,Revive Titans with HP,20,40.00%,60%,516,3568,64,380
+Machine Gun,Immortal Tier 5,Restructuring Ray,15,Revive Titans with HP,21,42.00%,60%,540,4108,72,452
+Machine Gun,Immortal Tier 5,Restructuring Ray,15,Revive Titans with HP,22,44.00%,60%,564,4672,80,532
+Machine Gun,Immortal Tier 5,Restructuring Ray,15,Revive Titans with HP,23,46.00%,60%,588,5260,88,620
+Machine Gun,Immortal Tier 5,Restructuring Ray,15,Revive Titans with HP,24,48.00%,60%,612,5872,96,716
+Machine Gun,Immortal Tier 5,Restructuring Ray,15,Revive Titans with HP,25,50.00%,60%,656,6528,104,820
+Machine Gun,Immortal Tier 5,Restructuring Ray,15,Revive Titans with HP,26,52.00%,60%,700,7228,112,932
+Machine Gun,Immortal Tier 5,Restructuring Ray,15,Revive Titans with HP,27,54.00%,60%,764,7992,120,1052
+Machine Gun,Immortal Tier 5,Restructuring Ray,15,Revive Titans with HP,28,56.00%,60%,828,8820,128,1180
+Machine Gun,Immortal Tier 5,Restructuring Ray,15,Revive Titans with HP,29,58.00%,60%,892,9712,136,1316
+Machine Gun,Immortal Tier 5,Restructuring Ray,15,Revive Titans with HP,30,60.00%,60%,956,10668,144,1460
+Machine Gun,Immortal Tier 5,Melee Damage Reduction,20,Reduce DMG taken by your Melee,1,1.80%,25%,0,0,0,0
+Machine Gun,Immortal Tier 5,Melee Damage Reduction,20,Reduce DMG taken by your Melee,2,2.60%,25%,8,8,0,0
+Machine Gun,Immortal Tier 5,Melee Damage Reduction,20,Reduce DMG taken by your Melee,3,3.40%,25%,16,24,0,0
+Machine Gun,Immortal Tier 5,Melee Damage Reduction,20,Reduce DMG taken by your Melee,4,4.20%,25%,22,46,0,0
+Machine Gun,Immortal Tier 5,Melee Damage Reduction,20,Reduce DMG taken by your Melee,5,5.00%,25%,28,74,0,0
+Machine Gun,Immortal Tier 5,Melee Damage Reduction,20,Reduce DMG taken by your Melee,6,5.80%,25%,34,108,2,2
+Machine Gun,Immortal Tier 5,Melee Damage Reduction,20,Reduce DMG taken by your Melee,7,6.60%,25%,40,148,4,6
+Machine Gun,Immortal Tier 5,Melee Damage Reduction,20,Reduce DMG taken by your Melee,8,7.40%,25%,46,194,4,10
+Machine Gun,Immortal Tier 5,Melee Damage Reduction,20,Reduce DMG taken by your Melee,9,8.20%,25%,52,246,6,16
+Machine Gun,Immortal Tier 5,Melee Damage Reduction,20,Reduce DMG taken by your Melee,10,9.00%,25%,58,304,6,22
+Machine Gun,Immortal Tier 5,Melee Damage Reduction,20,Reduce DMG taken by your Melee,11,9.80%,25%,70,374,8,30
+Machine Gun,Immortal Tier 5,Melee Damage Reduction,20,Reduce DMG taken by your Melee,12,10.60%,25%,82,456,8,38
+Machine Gun,Immortal Tier 5,Melee Damage Reduction,20,Reduce DMG taken by your Melee,13,11.40%,25%,94,550,10,48
+Machine Gun,Immortal Tier 5,Melee Damage Reduction,20,Reduce DMG taken by your Melee,14,12.20%,25%,106,656,10,58
+Machine Gun,Immortal Tier 5,Melee Damage Reduction,20,Reduce DMG taken by your Melee,15,13.00%,25%,118,774,12,70
+Machine Gun,Immortal Tier 5,Melee Damage Reduction,20,Reduce DMG taken by your Melee,16,13.80%,25%,146,920,16,86
+Machine Gun,Immortal Tier 5,Melee Damage Reduction,20,Reduce DMG taken by your Melee,17,14.60%,25%,174,1094,20,106
+Machine Gun,Immortal Tier 5,Melee Damage Reduction,20,Reduce DMG taken by your Melee,18,15.40%,25%,202,1296,24,130
+Machine Gun,Immortal Tier 5,Melee Damage Reduction,20,Reduce DMG taken by your Melee,19,16.20%,25%,230,1526,28,158
+Machine Gun,Immortal Tier 5,Melee Damage Reduction,20,Reduce DMG taken by your Melee,20,17.00%,25%,258,1784,32,190
+Machine Gun,Immortal Tier 5,Melee Damage Reduction,20,Reduce DMG taken by your Melee,21,17.80%,25%,270,2054,36,226
+Machine Gun,Immortal Tier 5,Melee Damage Reduction,20,Reduce DMG taken by your Melee,22,18.60%,25%,282,2336,40,266
+Machine Gun,Immortal Tier 5,Melee Damage Reduction,20,Reduce DMG taken by your Melee,23,19.40%,25%,294,2630,44,310
+Machine Gun,Immortal Tier 5,Melee Damage Reduction,20,Reduce DMG taken by your Melee,24,20.20%,25%,306,2936,48,358
+Machine Gun,Immortal Tier 5,Melee Damage Reduction,20,Reduce DMG taken by your Melee,25,21.00%,25%,328,3264,52,410
+Machine Gun,Immortal Tier 5,Melee Damage Reduction,20,Reduce DMG taken by your Melee,26,21.80%,25%,350,3614,56,466
+Machine Gun,Immortal Tier 5,Melee Damage Reduction,20,Reduce DMG taken by your Melee,27,22.60%,25%,382,3996,60,526
+Machine Gun,Immortal Tier 5,Melee Damage Reduction,20,Reduce DMG taken by your Melee,28,23.40%,25%,414,4410,64,590
+Machine Gun,Immortal Tier 5,Melee Damage Reduction,20,Reduce DMG taken by your Melee,29,24.20%,25%,446,4856,68,658
+Machine Gun,Immortal Tier 5,Melee Damage Reduction,20,Reduce DMG taken by your Melee,30,25.00%,25%,478,5334,72,730

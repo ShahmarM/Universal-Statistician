@@ -1,0 +1,524 @@
+Weapon,Unlocks at evolution,Level,Components (this step),Components (cumulative),Effect (description),Community priority,Value basis
+Laser Cannon,Enforcer Tier 0,1,6,6,Normal Attack: Shoots 1 laster every second,low,cost published; per-level effect values not published
+Laser Cannon,Enforcer Tier 0,2,7,13,Normal Attack: Shoots 1 laster every second,low,cost published; per-level effect values not published
+Laser Cannon,Enforcer Tier 0,3,9,22,Normal Attack: Shoots 1 laster every second,low,cost published; per-level effect values not published
+Laser Cannon,Enforcer Tier 0,4,10,32,Normal Attack: Shoots 1 laster every second,low,cost published; per-level effect values not published
+Laser Cannon,Enforcer Tier 0,5,12,44,Normal Attack: Shoots 1 laster every second,low,cost published; per-level effect values not published
+Laser Cannon,Enforcer Tier 0,6,15,59,Normal Attack: Shoots 1 laster every second,low,cost published; per-level effect values not published
+Laser Cannon,Enforcer Tier 0,7,18,77,Normal Attack: Shoots 1 laster every second,low,cost published; per-level effect values not published
+Laser Cannon,Enforcer Tier 0,8,20,97,Normal Attack: Shoots 1 laster every second,low,cost published; per-level effect values not published
+Laser Cannon,Enforcer Tier 0,9,21,118,Normal Attack: Shoots 1 laster every second,low,cost published; per-level effect values not published
+Laser Cannon,Enforcer Tier 0,10,24,142,Normal Attack: Shoots 1 laster every second,low,cost published; per-level effect values not published
+Laser Cannon,Enforcer Tier 0,11,30,172,Normal Attack: Shoots 1 laster every second,low,cost published; per-level effect values not published
+Laser Cannon,Enforcer Tier 0,12,33,205,Normal Attack: Shoots 1 laster every second,low,cost published; per-level effect values not published
+Intercept System,Enforcer Tier 4,1,3,3,Reduces Damage from Titans,mid,cost published; per-level effect values not published
+Intercept System,Enforcer Tier 4,2,4,7,Reduces Damage from Titans,mid,cost published; per-level effect values not published
+Intercept System,Enforcer Tier 4,3,4,11,Reduces Damage from Titans,mid,cost published; per-level effect values not published
+Intercept System,Enforcer Tier 4,4,5,16,Reduces Damage from Titans,mid,cost published; per-level effect values not published
+Intercept System,Enforcer Tier 4,5,6,22,Reduces Damage from Titans,mid,cost published; per-level effect values not published
+Intercept System,Enforcer Tier 4,6,7,29,Reduces Damage from Titans,mid,cost published; per-level effect values not published
+Intercept System,Enforcer Tier 4,7,8,37,Reduces Damage from Titans,mid,cost published; per-level effect values not published
+Intercept System,Enforcer Tier 4,8,10,47,Reduces Damage from Titans,mid,cost published; per-level effect values not published
+Intercept System,Enforcer Tier 4,9,11,58,Reduces Damage from Titans,mid,cost published; per-level effect values not published
+Intercept System,Enforcer Tier 4,10,13,71,Reduces Damage from Titans,mid,cost published; per-level effect values not published
+Intercept System,Enforcer Tier 4,11,14,85,Reduces Damage from Titans,mid,cost published; per-level effect values not published
+Intercept System,Enforcer Tier 4,12,16,101,Reduces Damage from Titans,mid,cost published; per-level effect values not published
+Intercept System,Enforcer Tier 4,13,18,119,Reduces Damage from Titans,mid,cost published; per-level effect values not published
+Intercept System,Enforcer Tier 4,14,20,139,Reduces Damage from Titans,mid,cost published; per-level effect values not published
+Intercept System,Enforcer Tier 4,15,22,161,Reduces Damage from Titans,mid,cost published; per-level effect values not published
+Intercept System,Enforcer Tier 4,16,23,184,Reduces Damage from Titans,mid,cost published; per-level effect values not published
+Intercept System,Enforcer Tier 4,17,25,209,Reduces Damage from Titans,mid,cost published; per-level effect values not published
+Intercept System,Enforcer Tier 4,18,27,236,Reduces Damage from Titans,mid,cost published; per-level effect values not published
+Intercept System,Enforcer Tier 4,19,29,265,Reduces Damage from Titans,mid,cost published; per-level effect values not published
+Intercept System,Enforcer Tier 4,20,30,295,Reduces Damage from Titans,mid,cost published; per-level effect values not published
+Intercept System,Enforcer Tier 4,21,31,326,Reduces Damage from Titans,mid,cost published; per-level effect values not published
+Intercept System,Enforcer Tier 4,22,32,358,Reduces Damage from Titans,mid,cost published; per-level effect values not published
+Intercept System,Enforcer Tier 4,23,34,392,Reduces Damage from Titans,mid,cost published; per-level effect values not published
+Intercept System,Enforcer Tier 4,24,35,427,Reduces Damage from Titans,mid,cost published; per-level effect values not published
+Melee Weakness Recognition,Enforcer Tier 7,1,3,3,Increases attack to Melee Troops,low,cost published; per-level effect values not published
+Melee Weakness Recognition,Enforcer Tier 7,2,4,7,Increases attack to Melee Troops,low,cost published; per-level effect values not published
+Melee Weakness Recognition,Enforcer Tier 7,3,4,11,Increases attack to Melee Troops,low,cost published; per-level effect values not published
+Melee Weakness Recognition,Enforcer Tier 7,4,5,16,Increases attack to Melee Troops,low,cost published; per-level effect values not published
+Melee Weakness Recognition,Enforcer Tier 7,5,6,22,Increases attack to Melee Troops,low,cost published; per-level effect values not published
+Melee Weakness Recognition,Enforcer Tier 7,6,7,29,Increases attack to Melee Troops,low,cost published; per-level effect values not published
+Melee Weakness Recognition,Enforcer Tier 7,7,8,37,Increases attack to Melee Troops,low,cost published; per-level effect values not published
+Melee Weakness Recognition,Enforcer Tier 7,8,10,47,Increases attack to Melee Troops,low,cost published; per-level effect values not published
+Melee Weakness Recognition,Enforcer Tier 7,9,11,58,Increases attack to Melee Troops,low,cost published; per-level effect values not published
+Melee Weakness Recognition,Enforcer Tier 7,10,13,71,Increases attack to Melee Troops,low,cost published; per-level effect values not published
+Melee Weakness Recognition,Enforcer Tier 7,11,14,85,Increases attack to Melee Troops,low,cost published; per-level effect values not published
+Melee Weakness Recognition,Enforcer Tier 7,12,16,101,Increases attack to Melee Troops,low,cost published; per-level effect values not published
+Melee Weakness Recognition,Enforcer Tier 7,13,18,119,Increases attack to Melee Troops,low,cost published; per-level effect values not published
+Melee Weakness Recognition,Enforcer Tier 7,14,20,139,Increases attack to Melee Troops,low,cost published; per-level effect values not published
+Melee Weakness Recognition,Enforcer Tier 7,15,22,161,Increases attack to Melee Troops,low,cost published; per-level effect values not published
+Melee Weakness Recognition,Enforcer Tier 7,16,23,184,Increases attack to Melee Troops,low,cost published; per-level effect values not published
+Melee Weakness Recognition,Enforcer Tier 7,17,25,209,Increases attack to Melee Troops,low,cost published; per-level effect values not published
+Melee Weakness Recognition,Enforcer Tier 7,18,27,236,Increases attack to Melee Troops,low,cost published; per-level effect values not published
+Melee Weakness Recognition,Enforcer Tier 7,19,29,265,Increases attack to Melee Troops,low,cost published; per-level effect values not published
+Melee Weakness Recognition,Enforcer Tier 7,20,30,295,Increases attack to Melee Troops,low,cost published; per-level effect values not published
+Melee Weakness Recognition,Enforcer Tier 7,21,31,326,Increases attack to Melee Troops,low,cost published; per-level effect values not published
+Melee Weakness Recognition,Enforcer Tier 7,22,32,358,Increases attack to Melee Troops,low,cost published; per-level effect values not published
+Melee Weakness Recognition,Enforcer Tier 7,23,34,392,Increases attack to Melee Troops,low,cost published; per-level effect values not published
+Melee Weakness Recognition,Enforcer Tier 7,24,35,427,Increases attack to Melee Troops,low,cost published; per-level effect values not published
+Tactical Missile,Explorer Tier 0,1,7,7,Warplane has 30% chance of 2 additional missiles,low,cost published; per-level effect values not published
+Tactical Missile,Explorer Tier 0,2,8,15,Warplane has 30% chance of 2 additional missiles,low,cost published; per-level effect values not published
+Tactical Missile,Explorer Tier 0,3,11,26,Warplane has 30% chance of 2 additional missiles,low,cost published; per-level effect values not published
+Tactical Missile,Explorer Tier 0,4,12,38,Warplane has 30% chance of 2 additional missiles,low,cost published; per-level effect values not published
+Tactical Missile,Explorer Tier 0,5,14,52,Warplane has 30% chance of 2 additional missiles,low,cost published; per-level effect values not published
+Tactical Missile,Explorer Tier 0,6,18,70,Warplane has 30% chance of 2 additional missiles,low,cost published; per-level effect values not published
+Tactical Missile,Explorer Tier 0,7,20,90,Warplane has 30% chance of 2 additional missiles,low,cost published; per-level effect values not published
+Tactical Missile,Explorer Tier 0,8,24,114,Warplane has 30% chance of 2 additional missiles,low,cost published; per-level effect values not published
+Tactical Missile,Explorer Tier 0,9,26,140,Warplane has 30% chance of 2 additional missiles,low,cost published; per-level effect values not published
+Tactical Missile,Explorer Tier 0,10,31,171,Warplane has 30% chance of 2 additional missiles,low,cost published; per-level effect values not published
+Tactical Missile,Explorer Tier 0,11,36,207,Warplane has 30% chance of 2 additional missiles,low,cost published; per-level effect values not published
+Tactical Missile,Explorer Tier 0,12,41,248,Warplane has 30% chance of 2 additional missiles,low,cost published; per-level effect values not published
+Added Firepower,Explorer Tier 4,1,4,4,Additionally increases Attack of every troop,low,cost published; per-level effect values not published
+Added Firepower,Explorer Tier 4,2,5,9,Additionally increases Attack of every troop,low,cost published; per-level effect values not published
+Added Firepower,Explorer Tier 4,3,5,14,Additionally increases Attack of every troop,low,cost published; per-level effect values not published
+Added Firepower,Explorer Tier 4,4,6,20,Additionally increases Attack of every troop,low,cost published; per-level effect values not published
+Added Firepower,Explorer Tier 4,5,8,28,Additionally increases Attack of every troop,low,cost published; per-level effect values not published
+Added Firepower,Explorer Tier 4,6,9,37,Additionally increases Attack of every troop,low,cost published; per-level effect values not published
+Added Firepower,Explorer Tier 4,7,11,48,Additionally increases Attack of every troop,low,cost published; per-level effect values not published
+Added Firepower,Explorer Tier 4,8,12,60,Additionally increases Attack of every troop,low,cost published; per-level effect values not published
+Added Firepower,Explorer Tier 4,9,14,74,Additionally increases Attack of every troop,low,cost published; per-level effect values not published
+Added Firepower,Explorer Tier 4,10,16,90,Additionally increases Attack of every troop,low,cost published; per-level effect values not published
+Added Firepower,Explorer Tier 4,11,18,108,Additionally increases Attack of every troop,low,cost published; per-level effect values not published
+Added Firepower,Explorer Tier 4,12,20,128,Additionally increases Attack of every troop,low,cost published; per-level effect values not published
+Added Firepower,Explorer Tier 4,13,23,151,Additionally increases Attack of every troop,low,cost published; per-level effect values not published
+Added Firepower,Explorer Tier 4,14,25,176,Additionally increases Attack of every troop,low,cost published; per-level effect values not published
+Added Firepower,Explorer Tier 4,15,27,203,Additionally increases Attack of every troop,low,cost published; per-level effect values not published
+Added Firepower,Explorer Tier 4,16,29,232,Additionally increases Attack of every troop,low,cost published; per-level effect values not published
+Added Firepower,Explorer Tier 4,17,32,264,Additionally increases Attack of every troop,low,cost published; per-level effect values not published
+Added Firepower,Explorer Tier 4,18,34,298,Additionally increases Attack of every troop,low,cost published; per-level effect values not published
+Added Firepower,Explorer Tier 4,19,36,334,Additionally increases Attack of every troop,low,cost published; per-level effect values not published
+Added Firepower,Explorer Tier 4,20,38,372,Additionally increases Attack of every troop,low,cost published; per-level effect values not published
+Added Firepower,Explorer Tier 4,21,39,411,Additionally increases Attack of every troop,low,cost published; per-level effect values not published
+Added Firepower,Explorer Tier 4,22,41,452,Additionally increases Attack of every troop,low,cost published; per-level effect values not published
+Added Firepower,Explorer Tier 4,23,42,494,Additionally increases Attack of every troop,low,cost published; per-level effect values not published
+Added Firepower,Explorer Tier 4,24,44,538,Additionally increases Attack of every troop,low,cost published; per-level effect values not published
+Long-Range Weakness Recognition,Explorer Tier 7,1,4,4,Increases attack to Long Range Troops,low,cost published; per-level effect values not published
+Long-Range Weakness Recognition,Explorer Tier 7,2,5,9,Increases attack to Long Range Troops,low,cost published; per-level effect values not published
+Long-Range Weakness Recognition,Explorer Tier 7,3,5,14,Increases attack to Long Range Troops,low,cost published; per-level effect values not published
+Long-Range Weakness Recognition,Explorer Tier 7,4,6,20,Increases attack to Long Range Troops,low,cost published; per-level effect values not published
+Long-Range Weakness Recognition,Explorer Tier 7,5,8,28,Increases attack to Long Range Troops,low,cost published; per-level effect values not published
+Long-Range Weakness Recognition,Explorer Tier 7,6,9,37,Increases attack to Long Range Troops,low,cost published; per-level effect values not published
+Long-Range Weakness Recognition,Explorer Tier 7,7,11,48,Increases attack to Long Range Troops,low,cost published; per-level effect values not published
+Long-Range Weakness Recognition,Explorer Tier 7,8,12,60,Increases attack to Long Range Troops,low,cost published; per-level effect values not published
+Long-Range Weakness Recognition,Explorer Tier 7,9,14,74,Increases attack to Long Range Troops,low,cost published; per-level effect values not published
+Long-Range Weakness Recognition,Explorer Tier 7,10,16,90,Increases attack to Long Range Troops,low,cost published; per-level effect values not published
+Long-Range Weakness Recognition,Explorer Tier 7,11,18,108,Increases attack to Long Range Troops,low,cost published; per-level effect values not published
+Long-Range Weakness Recognition,Explorer Tier 7,12,20,128,Increases attack to Long Range Troops,low,cost published; per-level effect values not published
+Long-Range Weakness Recognition,Explorer Tier 7,13,23,151,Increases attack to Long Range Troops,low,cost published; per-level effect values not published
+Long-Range Weakness Recognition,Explorer Tier 7,14,25,176,Increases attack to Long Range Troops,low,cost published; per-level effect values not published
+Long-Range Weakness Recognition,Explorer Tier 7,15,27,203,Increases attack to Long Range Troops,low,cost published; per-level effect values not published
+Long-Range Weakness Recognition,Explorer Tier 7,16,29,232,Increases attack to Long Range Troops,low,cost published; per-level effect values not published
+Long-Range Weakness Recognition,Explorer Tier 7,17,32,264,Increases attack to Long Range Troops,low,cost published; per-level effect values not published
+Long-Range Weakness Recognition,Explorer Tier 7,18,34,298,Increases attack to Long Range Troops,low,cost published; per-level effect values not published
+Long-Range Weakness Recognition,Explorer Tier 7,19,36,334,Increases attack to Long Range Troops,low,cost published; per-level effect values not published
+Long-Range Weakness Recognition,Explorer Tier 7,20,38,372,Increases attack to Long Range Troops,low,cost published; per-level effect values not published
+Long-Range Weakness Recognition,Explorer Tier 7,21,39,411,Increases attack to Long Range Troops,low,cost published; per-level effect values not published
+Long-Range Weakness Recognition,Explorer Tier 7,22,41,452,Increases attack to Long Range Troops,low,cost published; per-level effect values not published
+Long-Range Weakness Recognition,Explorer Tier 7,23,42,494,Increases attack to Long Range Troops,low,cost published; per-level effect values not published
+Long-Range Weakness Recognition,Explorer Tier 7,24,44,538,Increases attack to Long Range Troops,low,cost published; per-level effect values not published
+Mechanical Golem,Guardian Tier 0,1,8,8,Golems,high,cost published; per-level effect values not published
+Mechanical Golem,Guardian Tier 0,2,12,20,Golems,high,cost published; per-level effect values not published
+Mechanical Golem,Guardian Tier 0,3,13,33,Golems,high,cost published; per-level effect values not published
+Mechanical Golem,Guardian Tier 0,4,15,48,Golems,high,cost published; per-level effect values not published
+Mechanical Golem,Guardian Tier 0,5,18,66,Golems,high,cost published; per-level effect values not published
+Mechanical Golem,Guardian Tier 0,6,21,87,Golems,high,cost published; per-level effect values not published
+Mechanical Golem,Guardian Tier 0,7,24,111,Golems,high,cost published; per-level effect values not published
+Mechanical Golem,Guardian Tier 0,8,30,141,Golems,high,cost published; per-level effect values not published
+Mechanical Golem,Guardian Tier 0,9,33,174,Golems,high,cost published; per-level effect values not published
+Mechanical Golem,Guardian Tier 0,10,38,212,Golems,high,cost published; per-level effect values not published
+Mechanical Golem,Guardian Tier 0,11,42,254,Golems,high,cost published; per-level effect values not published
+Mechanical Golem,Guardian Tier 0,12,49,303,Golems,high,cost published; per-level effect values not published
+Mechanical Golem,Guardian Tier 0,13,54,357,Golems,high,cost published; per-level effect values not published
+Mechanical Golem,Guardian Tier 0,14,59,416,Golems,high,cost published; per-level effect values not published
+Mechanical Golem,Guardian Tier 0,15,66,482,Golems,high,cost published; per-level effect values not published
+Mechanical Golem,Guardian Tier 0,16,70,552,Golems,high,cost published; per-level effect values not published
+Mechanical Golem,Guardian Tier 0,17,75,627,Golems,high,cost published; per-level effect values not published
+Mechanical Golem,Guardian Tier 0,18,80,707,Golems,high,cost published; per-level effect values not published
+Mechanical Golem,Guardian Tier 0,19,87,794,Golems,high,cost published; per-level effect values not published
+Mechanical Golem,Guardian Tier 0,20,90,884,Golems,high,cost published; per-level effect values not published
+Added Armor,Guardian Tier 4,1,5,5,Additionally increases HP of every Troop,low,cost published; per-level effect values not published
+Added Armor,Guardian Tier 4,2,5,10,Additionally increases HP of every Troop,low,cost published; per-level effect values not published
+Added Armor,Guardian Tier 4,3,6,16,Additionally increases HP of every Troop,low,cost published; per-level effect values not published
+Added Armor,Guardian Tier 4,4,7,23,Additionally increases HP of every Troop,low,cost published; per-level effect values not published
+Added Armor,Guardian Tier 4,5,9,32,Additionally increases HP of every Troop,low,cost published; per-level effect values not published
+Added Armor,Guardian Tier 4,6,11,43,Additionally increases HP of every Troop,low,cost published; per-level effect values not published
+Added Armor,Guardian Tier 4,7,13,56,Additionally increases HP of every Troop,low,cost published; per-level effect values not published
+Added Armor,Guardian Tier 4,8,14,70,Additionally increases HP of every Troop,low,cost published; per-level effect values not published
+Added Armor,Guardian Tier 4,9,16,86,Additionally increases HP of every Troop,low,cost published; per-level effect values not published
+Added Armor,Guardian Tier 4,10,19,105,Additionally increases HP of every Troop,low,cost published; per-level effect values not published
+Added Armor,Guardian Tier 4,11,22,127,Additionally increases HP of every Troop,low,cost published; per-level effect values not published
+Added Armor,Guardian Tier 4,12,24,151,Additionally increases HP of every Troop,low,cost published; per-level effect values not published
+Added Armor,Guardian Tier 4,13,27,178,Additionally increases HP of every Troop,low,cost published; per-level effect values not published
+Added Armor,Guardian Tier 4,14,30,208,Additionally increases HP of every Troop,low,cost published; per-level effect values not published
+Added Armor,Guardian Tier 4,15,32,240,Additionally increases HP of every Troop,low,cost published; per-level effect values not published
+Added Armor,Guardian Tier 4,16,35,275,Additionally increases HP of every Troop,low,cost published; per-level effect values not published
+Added Armor,Guardian Tier 4,17,38,313,Additionally increases HP of every Troop,low,cost published; per-level effect values not published
+Added Armor,Guardian Tier 4,18,41,354,Additionally increases HP of every Troop,low,cost published; per-level effect values not published
+Added Armor,Guardian Tier 4,19,43,397,Additionally increases HP of every Troop,low,cost published; per-level effect values not published
+Added Armor,Guardian Tier 4,20,45,442,Additionally increases HP of every Troop,low,cost published; per-level effect values not published
+Added Armor,Guardian Tier 4,21,47,489,Additionally increases HP of every Troop,low,cost published; per-level effect values not published
+Added Armor,Guardian Tier 4,22,49,538,Additionally increases HP of every Troop,low,cost published; per-level effect values not published
+Added Armor,Guardian Tier 4,23,50,588,Additionally increases HP of every Troop,low,cost published; per-level effect values not published
+Added Armor,Guardian Tier 4,24,52,640,Additionally increases HP of every Troop,low,cost published; per-level effect values not published
+Mid-Range Weakness Recognition,Guardian Tier 7,1,5,5,Increases Attack to Mid Range Troops,mid,cost published; per-level effect values not published
+Mid-Range Weakness Recognition,Guardian Tier 7,2,5,10,Increases Attack to Mid Range Troops,mid,cost published; per-level effect values not published
+Mid-Range Weakness Recognition,Guardian Tier 7,3,6,16,Increases Attack to Mid Range Troops,mid,cost published; per-level effect values not published
+Mid-Range Weakness Recognition,Guardian Tier 7,4,7,23,Increases Attack to Mid Range Troops,mid,cost published; per-level effect values not published
+Mid-Range Weakness Recognition,Guardian Tier 7,5,9,32,Increases Attack to Mid Range Troops,mid,cost published; per-level effect values not published
+Mid-Range Weakness Recognition,Guardian Tier 7,6,11,43,Increases Attack to Mid Range Troops,mid,cost published; per-level effect values not published
+Mid-Range Weakness Recognition,Guardian Tier 7,7,13,56,Increases Attack to Mid Range Troops,mid,cost published; per-level effect values not published
+Mid-Range Weakness Recognition,Guardian Tier 7,8,14,70,Increases Attack to Mid Range Troops,mid,cost published; per-level effect values not published
+Mid-Range Weakness Recognition,Guardian Tier 7,9,16,86,Increases Attack to Mid Range Troops,mid,cost published; per-level effect values not published
+Mid-Range Weakness Recognition,Guardian Tier 7,10,19,105,Increases Attack to Mid Range Troops,mid,cost published; per-level effect values not published
+Mid-Range Weakness Recognition,Guardian Tier 7,11,22,127,Increases Attack to Mid Range Troops,mid,cost published; per-level effect values not published
+Mid-Range Weakness Recognition,Guardian Tier 7,12,24,151,Increases Attack to Mid Range Troops,mid,cost published; per-level effect values not published
+Mid-Range Weakness Recognition,Guardian Tier 7,13,27,178,Increases Attack to Mid Range Troops,mid,cost published; per-level effect values not published
+Mid-Range Weakness Recognition,Guardian Tier 7,14,30,208,Increases Attack to Mid Range Troops,mid,cost published; per-level effect values not published
+Mid-Range Weakness Recognition,Guardian Tier 7,15,32,240,Increases Attack to Mid Range Troops,mid,cost published; per-level effect values not published
+Mid-Range Weakness Recognition,Guardian Tier 7,16,35,275,Increases Attack to Mid Range Troops,mid,cost published; per-level effect values not published
+Mid-Range Weakness Recognition,Guardian Tier 7,17,38,313,Increases Attack to Mid Range Troops,mid,cost published; per-level effect values not published
+Mid-Range Weakness Recognition,Guardian Tier 7,18,41,354,Increases Attack to Mid Range Troops,mid,cost published; per-level effect values not published
+Mid-Range Weakness Recognition,Guardian Tier 7,19,43,397,Increases Attack to Mid Range Troops,mid,cost published; per-level effect values not published
+Mid-Range Weakness Recognition,Guardian Tier 7,20,45,442,Increases Attack to Mid Range Troops,mid,cost published; per-level effect values not published
+Mid-Range Weakness Recognition,Guardian Tier 7,21,47,489,Increases Attack to Mid Range Troops,mid,cost published; per-level effect values not published
+Mid-Range Weakness Recognition,Guardian Tier 7,22,49,538,Increases Attack to Mid Range Troops,mid,cost published; per-level effect values not published
+Mid-Range Weakness Recognition,Guardian Tier 7,23,50,588,Increases Attack to Mid Range Troops,mid,cost published; per-level effect values not published
+Mid-Range Weakness Recognition,Guardian Tier 7,24,52,640,Increases Attack to Mid Range Troops,mid,cost published; per-level effect values not published
+Fortify Laser Energy,Lacerator Tier 0,1,10,10,% increase in 1.5x Critical Strike Damage,mid,cost published; per-level effect values not published
+Fortify Laser Energy,Lacerator Tier 0,2,12,22,% increase in 1.5x Critical Strike Damage,mid,cost published; per-level effect values not published
+Fortify Laser Energy,Lacerator Tier 0,3,15,37,% increase in 1.5x Critical Strike Damage,mid,cost published; per-level effect values not published
+Fortify Laser Energy,Lacerator Tier 0,4,17,54,% increase in 1.5x Critical Strike Damage,mid,cost published; per-level effect values not published
+Fortify Laser Energy,Lacerator Tier 0,5,22,76,% increase in 1.5x Critical Strike Damage,mid,cost published; per-level effect values not published
+Fortify Laser Energy,Lacerator Tier 0,6,27,103,% increase in 1.5x Critical Strike Damage,mid,cost published; per-level effect values not published
+Fortify Laser Energy,Lacerator Tier 0,7,32,135,% increase in 1.5x Critical Strike Damage,mid,cost published; per-level effect values not published
+Fortify Engine,Lacerator Tier 4,1,6,6,Increase warplane attack,low,cost published; per-level effect values not published
+Fortify Engine,Lacerator Tier 4,2,7,13,Increase warplane attack,low,cost published; per-level effect values not published
+Fortify Engine,Lacerator Tier 4,3,8,21,Increase warplane attack,low,cost published; per-level effect values not published
+Fortify Engine,Lacerator Tier 4,4,9,30,Increase warplane attack,low,cost published; per-level effect values not published
+Fortify Engine,Lacerator Tier 4,5,11,41,Increase warplane attack,low,cost published; per-level effect values not published
+Fortify Engine,Lacerator Tier 4,6,13,54,Increase warplane attack,low,cost published; per-level effect values not published
+Fortify Engine,Lacerator Tier 4,7,15,69,Increase warplane attack,low,cost published; per-level effect values not published
+Fortify Engine,Lacerator Tier 4,8,18,87,Increase warplane attack,low,cost published; per-level effect values not published
+Fortify Engine,Lacerator Tier 4,9,20,107,Increase warplane attack,low,cost published; per-level effect values not published
+Fortify Engine,Lacerator Tier 4,10,23,130,Increase warplane attack,low,cost published; per-level effect values not published
+Fortify Engine,Lacerator Tier 4,11,26,156,Increase warplane attack,low,cost published; per-level effect values not published
+Fortify Engine,Lacerator Tier 4,12,30,186,Increase warplane attack,low,cost published; per-level effect values not published
+Fortify Engine,Lacerator Tier 4,13,33,219,Increase warplane attack,low,cost published; per-level effect values not published
+Fortify Engine,Lacerator Tier 4,14,36,255,Increase warplane attack,low,cost published; per-level effect values not published
+Fortify Engine,Lacerator Tier 4,15,40,295,Increase warplane attack,low,cost published; per-level effect values not published
+Fortify Engine,Lacerator Tier 4,16,43,338,Increase warplane attack,low,cost published; per-level effect values not published
+Fortify Engine,Lacerator Tier 4,17,46,384,Increase warplane attack,low,cost published; per-level effect values not published
+Fortify Engine,Lacerator Tier 4,18,50,434,Increase warplane attack,low,cost published; per-level effect values not published
+Fortify Engine,Lacerator Tier 4,19,53,487,Increase warplane attack,low,cost published; per-level effect values not published
+Fortify Engine,Lacerator Tier 4,20,55,542,Increase warplane attack,low,cost published; per-level effect values not published
+Fortify Engine,Lacerator Tier 4,21,57,599,Increase warplane attack,low,cost published; per-level effect values not published
+Fortify Engine,Lacerator Tier 4,22,59,658,Increase warplane attack,low,cost published; per-level effect values not published
+Fortify Engine,Lacerator Tier 4,23,62,720,Increase warplane attack,low,cost published; per-level effect values not published
+Fortify Engine,Lacerator Tier 4,24,64,784,Increase warplane attack,low,cost published; per-level effect values not published
+Fortify Engine,Lacerator Tier 4,25,66,850,Increase warplane attack,low,cost published; per-level effect values not published
+Fortify Engine,Lacerator Tier 4,26,70,920,Increase warplane attack,low,cost published; per-level effect values not published
+Firepower Boost,Lacerator Tier 7,1,6,6,Attack Increase All Troops %,high,cost published; per-level effect values not published
+Firepower Boost,Lacerator Tier 7,2,7,13,Attack Increase All Troops %,high,cost published; per-level effect values not published
+Firepower Boost,Lacerator Tier 7,3,8,21,Attack Increase All Troops %,high,cost published; per-level effect values not published
+Firepower Boost,Lacerator Tier 7,4,9,30,Attack Increase All Troops %,high,cost published; per-level effect values not published
+Firepower Boost,Lacerator Tier 7,5,11,41,Attack Increase All Troops %,high,cost published; per-level effect values not published
+Firepower Boost,Lacerator Tier 7,6,13,54,Attack Increase All Troops %,high,cost published; per-level effect values not published
+Firepower Boost,Lacerator Tier 7,7,15,69,Attack Increase All Troops %,high,cost published; per-level effect values not published
+Firepower Boost,Lacerator Tier 7,8,18,87,Attack Increase All Troops %,high,cost published; per-level effect values not published
+Firepower Boost,Lacerator Tier 7,9,20,107,Attack Increase All Troops %,high,cost published; per-level effect values not published
+Firepower Boost,Lacerator Tier 7,10,23,130,Attack Increase All Troops %,high,cost published; per-level effect values not published
+Firepower Boost,Lacerator Tier 7,11,26,156,Attack Increase All Troops %,high,cost published; per-level effect values not published
+Firepower Boost,Lacerator Tier 7,12,30,186,Attack Increase All Troops %,high,cost published; per-level effect values not published
+Firepower Boost,Lacerator Tier 7,13,33,219,Attack Increase All Troops %,high,cost published; per-level effect values not published
+Firepower Boost,Lacerator Tier 7,14,36,255,Attack Increase All Troops %,high,cost published; per-level effect values not published
+Firepower Boost,Lacerator Tier 7,15,40,295,Attack Increase All Troops %,high,cost published; per-level effect values not published
+Firepower Boost,Lacerator Tier 7,16,43,338,Attack Increase All Troops %,high,cost published; per-level effect values not published
+Firepower Boost,Lacerator Tier 7,17,46,384,Attack Increase All Troops %,high,cost published; per-level effect values not published
+Firepower Boost,Lacerator Tier 7,18,50,434,Attack Increase All Troops %,high,cost published; per-level effect values not published
+Firepower Boost,Lacerator Tier 7,19,53,487,Attack Increase All Troops %,high,cost published; per-level effect values not published
+Firepower Boost,Lacerator Tier 7,20,55,542,Attack Increase All Troops %,high,cost published; per-level effect values not published
+Firepower Boost,Lacerator Tier 7,21,57,599,Attack Increase All Troops %,high,cost published; per-level effect values not published
+Firepower Boost,Lacerator Tier 7,22,59,658,Attack Increase All Troops %,high,cost published; per-level effect values not published
+Firepower Boost,Lacerator Tier 7,23,62,720,Attack Increase All Troops %,high,cost published; per-level effect values not published
+Firepower Boost,Lacerator Tier 7,24,64,784,Attack Increase All Troops %,high,cost published; per-level effect values not published
+Firepower Boost,Lacerator Tier 7,25,66,850,Attack Increase All Troops %,high,cost published; per-level effect values not published
+Firepower Boost,Lacerator Tier 7,26,70,920,Attack Increase All Troops %,high,cost published; per-level effect values not published
+EMP Disruptor Ammo,Trailblazer Tier 0,1,18,18,"Launches 1 time every 10 seconds, shooting 3 emp. Every emp deals damage and has % chance of trapping target in disruptor status",low,cost published; per-level effect values not published
+EMP Disruptor Ammo,Trailblazer Tier 0,2,24,42,"Launches 1 time every 10 seconds, shooting 3 emp. Every emp deals damage and has % chance of trapping target in disruptor status",low,cost published; per-level effect values not published
+EMP Disruptor Ammo,Trailblazer Tier 0,3,30,72,"Launches 1 time every 10 seconds, shooting 3 emp. Every emp deals damage and has % chance of trapping target in disruptor status",low,cost published; per-level effect values not published
+EMP Disruptor Ammo,Trailblazer Tier 0,4,33,105,"Launches 1 time every 10 seconds, shooting 3 emp. Every emp deals damage and has % chance of trapping target in disruptor status",low,cost published; per-level effect values not published
+EMP Disruptor Ammo,Trailblazer Tier 0,5,39,144,"Launches 1 time every 10 seconds, shooting 3 emp. Every emp deals damage and has % chance of trapping target in disruptor status",low,cost published; per-level effect values not published
+EMP Disruptor Ammo,Trailblazer Tier 0,6,42,186,"Launches 1 time every 10 seconds, shooting 3 emp. Every emp deals damage and has % chance of trapping target in disruptor status",low,cost published; per-level effect values not published
+EMP Disruptor Ammo,Trailblazer Tier 0,7,48,234,"Launches 1 time every 10 seconds, shooting 3 emp. Every emp deals damage and has % chance of trapping target in disruptor status",low,cost published; per-level effect values not published
+EMP Disruptor Ammo,Trailblazer Tier 0,8,54,288,"Launches 1 time every 10 seconds, shooting 3 emp. Every emp deals damage and has % chance of trapping target in disruptor status",low,cost published; per-level effect values not published
+EMP Disruptor Ammo,Trailblazer Tier 0,9,57,345,"Launches 1 time every 10 seconds, shooting 3 emp. Every emp deals damage and has % chance of trapping target in disruptor status",low,cost published; per-level effect values not published
+EMP Disruptor Ammo,Trailblazer Tier 0,10,63,408,"Launches 1 time every 10 seconds, shooting 3 emp. Every emp deals damage and has % chance of trapping target in disruptor status",low,cost published; per-level effect values not published
+EMP Disruptor Ammo,Trailblazer Tier 0,11,66,474,"Launches 1 time every 10 seconds, shooting 3 emp. Every emp deals damage and has % chance of trapping target in disruptor status",low,cost published; per-level effect values not published
+EMP Disruptor Ammo,Trailblazer Tier 0,12,72,546,"Launches 1 time every 10 seconds, shooting 3 emp. Every emp deals damage and has % chance of trapping target in disruptor status",low,cost published; per-level effect values not published
+EMP Disruptor Ammo,Trailblazer Tier 0,13,78,624,"Launches 1 time every 10 seconds, shooting 3 emp. Every emp deals damage and has % chance of trapping target in disruptor status",low,cost published; per-level effect values not published
+Fortify Disruptor,Trailblazer Tier 4,1,10,10,Increases chance of EMP disruptor,low,cost published; per-level effect values not published
+Fortify Disruptor,Trailblazer Tier 4,2,12,22,Increases chance of EMP disruptor,low,cost published; per-level effect values not published
+Fortify Disruptor,Trailblazer Tier 4,3,14,36,Increases chance of EMP disruptor,low,cost published; per-level effect values not published
+Fortify Disruptor,Trailblazer Tier 4,4,17,53,Increases chance of EMP disruptor,low,cost published; per-level effect values not published
+Fortify Disruptor,Trailblazer Tier 4,5,19,72,Increases chance of EMP disruptor,low,cost published; per-level effect values not published
+Fortify Disruptor,Trailblazer Tier 4,6,22,94,Increases chance of EMP disruptor,low,cost published; per-level effect values not published
+Fortify Disruptor,Trailblazer Tier 4,7,24,118,Increases chance of EMP disruptor,low,cost published; per-level effect values not published
+Fortify Disruptor,Trailblazer Tier 4,8,26,144,Increases chance of EMP disruptor,low,cost published; per-level effect values not published
+Fortify Disruptor,Trailblazer Tier 4,9,29,173,Increases chance of EMP disruptor,low,cost published; per-level effect values not published
+Fortify Disruptor,Trailblazer Tier 4,10,31,204,Increases chance of EMP disruptor,low,cost published; per-level effect values not published
+Fortify Disruptor,Trailblazer Tier 4,11,34,238,Increases chance of EMP disruptor,low,cost published; per-level effect values not published
+Fortify Disruptor,Trailblazer Tier 4,12,36,274,Increases chance of EMP disruptor,low,cost published; per-level effect values not published
+Fortify Disruptor,Trailblazer Tier 4,13,38,312,Increases chance of EMP disruptor,low,cost published; per-level effect values not published
+Fortify Disruptor,Trailblazer Tier 4,14,41,353,Increases chance of EMP disruptor,low,cost published; per-level effect values not published
+Fortify Disruptor,Trailblazer Tier 4,15,43,396,Increases chance of EMP disruptor,low,cost published; per-level effect values not published
+Fortify Disruptor,Trailblazer Tier 4,16,46,442,Increases chance of EMP disruptor,low,cost published; per-level effect values not published
+Fortify Disruptor,Trailblazer Tier 4,17,48,490,Increases chance of EMP disruptor,low,cost published; per-level effect values not published
+Fortify Disruptor,Trailblazer Tier 4,18,50,540,Increases chance of EMP disruptor,low,cost published; per-level effect values not published
+Fortify Disruptor,Trailblazer Tier 4,19,53,593,Increases chance of EMP disruptor,low,cost published; per-level effect values not published
+Fortify Disruptor,Trailblazer Tier 4,20,55,648,Increases chance of EMP disruptor,low,cost published; per-level effect values not published
+Fortify Disruptor,Trailblazer Tier 4,21,58,706,Increases chance of EMP disruptor,low,cost published; per-level effect values not published
+Fortify Disruptor,Trailblazer Tier 4,22,60,766,Increases chance of EMP disruptor,low,cost published; per-level effect values not published
+Fortify Disruptor,Trailblazer Tier 4,23,62,828,Increases chance of EMP disruptor,low,cost published; per-level effect values not published
+Fortify Disruptor,Trailblazer Tier 4,24,65,893,Increases chance of EMP disruptor,low,cost published; per-level effect values not published
+Fortify Disruptor,Trailblazer Tier 4,25,67,960,Increases chance of EMP disruptor,low,cost published; per-level effect values not published
+Precise Firepower,Trailblazer Tier 7,1,10,10,Increase damage to Titans,high,cost published; per-level effect values not published
+Precise Firepower,Trailblazer Tier 7,2,12,22,Increase damage to Titans,high,cost published; per-level effect values not published
+Precise Firepower,Trailblazer Tier 7,3,14,36,Increase damage to Titans,high,cost published; per-level effect values not published
+Precise Firepower,Trailblazer Tier 7,4,17,53,Increase damage to Titans,high,cost published; per-level effect values not published
+Precise Firepower,Trailblazer Tier 7,5,19,72,Increase damage to Titans,high,cost published; per-level effect values not published
+Precise Firepower,Trailblazer Tier 7,6,22,94,Increase damage to Titans,high,cost published; per-level effect values not published
+Precise Firepower,Trailblazer Tier 7,7,24,118,Increase damage to Titans,high,cost published; per-level effect values not published
+Precise Firepower,Trailblazer Tier 7,8,26,144,Increase damage to Titans,high,cost published; per-level effect values not published
+Precise Firepower,Trailblazer Tier 7,9,29,173,Increase damage to Titans,high,cost published; per-level effect values not published
+Precise Firepower,Trailblazer Tier 7,10,31,204,Increase damage to Titans,high,cost published; per-level effect values not published
+Precise Firepower,Trailblazer Tier 7,11,34,238,Increase damage to Titans,high,cost published; per-level effect values not published
+Precise Firepower,Trailblazer Tier 7,12,36,274,Increase damage to Titans,high,cost published; per-level effect values not published
+Precise Firepower,Trailblazer Tier 7,13,38,312,Increase damage to Titans,high,cost published; per-level effect values not published
+Precise Firepower,Trailblazer Tier 7,14,41,353,Increase damage to Titans,high,cost published; per-level effect values not published
+Precise Firepower,Trailblazer Tier 7,15,43,396,Increase damage to Titans,high,cost published; per-level effect values not published
+Precise Firepower,Trailblazer Tier 7,16,46,442,Increase damage to Titans,high,cost published; per-level effect values not published
+Precise Firepower,Trailblazer Tier 7,17,48,490,Increase damage to Titans,high,cost published; per-level effect values not published
+Precise Firepower,Trailblazer Tier 7,18,50,540,Increase damage to Titans,high,cost published; per-level effect values not published
+Precise Firepower,Trailblazer Tier 7,19,53,593,Increase damage to Titans,high,cost published; per-level effect values not published
+Precise Firepower,Trailblazer Tier 7,20,55,648,Increase damage to Titans,high,cost published; per-level effect values not published
+Precise Firepower,Trailblazer Tier 7,21,58,706,Increase damage to Titans,high,cost published; per-level effect values not published
+Precise Firepower,Trailblazer Tier 7,22,60,766,Increase damage to Titans,high,cost published; per-level effect values not published
+Precise Firepower,Trailblazer Tier 7,23,62,828,Increase damage to Titans,high,cost published; per-level effect values not published
+Precise Firepower,Trailblazer Tier 7,24,65,893,Increase damage to Titans,high,cost published; per-level effect values not published
+Precise Firepower,Trailblazer Tier 7,25,67,960,Increase damage to Titans,high,cost published; per-level effect values not published
+Laser Disruptor,Inquisitor Tier 0,1,22,22,Increase % chance of Disruptor after laser cannon or ultra pulse laser,high,cost published; per-level effect values not published
+Laser Disruptor,Inquisitor Tier 0,2,26,48,Increase % chance of Disruptor after laser cannon or ultra pulse laser,high,cost published; per-level effect values not published
+Laser Disruptor,Inquisitor Tier 0,3,30,78,Increase % chance of Disruptor after laser cannon or ultra pulse laser,high,cost published; per-level effect values not published
+Laser Disruptor,Inquisitor Tier 0,4,37,115,Increase % chance of Disruptor after laser cannon or ultra pulse laser,high,cost published; per-level effect values not published
+Laser Disruptor,Inquisitor Tier 0,5,41,156,Increase % chance of Disruptor after laser cannon or ultra pulse laser,high,cost published; per-level effect values not published
+Laser Disruptor,Inquisitor Tier 0,6,48,204,Increase % chance of Disruptor after laser cannon or ultra pulse laser,high,cost published; per-level effect values not published
+Laser Disruptor,Inquisitor Tier 0,7,52,256,Increase % chance of Disruptor after laser cannon or ultra pulse laser,high,cost published; per-level effect values not published
+Laser Disruptor,Inquisitor Tier 0,8,56,312,Increase % chance of Disruptor after laser cannon or ultra pulse laser,high,cost published; per-level effect values not published
+Laser Disruptor,Inquisitor Tier 0,9,63,375,Increase % chance of Disruptor after laser cannon or ultra pulse laser,high,cost published; per-level effect values not published
+Laser Disruptor,Inquisitor Tier 0,10,67,442,Increase % chance of Disruptor after laser cannon or ultra pulse laser,high,cost published; per-level effect values not published
+Laser Disruptor,Inquisitor Tier 0,11,74,516,Increase % chance of Disruptor after laser cannon or ultra pulse laser,high,cost published; per-level effect values not published
+Laser Disruptor,Inquisitor Tier 0,12,78,594,Increase % chance of Disruptor after laser cannon or ultra pulse laser,high,cost published; per-level effect values not published
+Laser Disruptor,Inquisitor Tier 0,13,82,676,Increase % chance of Disruptor after laser cannon or ultra pulse laser,high,cost published; per-level effect values not published
+Laser Disruptor,Inquisitor Tier 0,14,89,765,Increase % chance of Disruptor after laser cannon or ultra pulse laser,high,cost published; per-level effect values not published
+Laser Disruptor,Inquisitor Tier 0,15,93,858,Increase % chance of Disruptor after laser cannon or ultra pulse laser,high,cost published; per-level effect values not published
+Laser Disruptor,Inquisitor Tier 0,16,100,958,Increase % chance of Disruptor after laser cannon or ultra pulse laser,high,cost published; per-level effect values not published
+Laser Disruptor,Inquisitor Tier 0,17,104,1062,Increase % chance of Disruptor after laser cannon or ultra pulse laser,high,cost published; per-level effect values not published
+Laser Disruptor,Inquisitor Tier 0,18,108,1170,Increase % chance of Disruptor after laser cannon or ultra pulse laser,high,cost published; per-level effect values not published
+Laser Disruptor,Inquisitor Tier 0,19,115,1285,Increase % chance of Disruptor after laser cannon or ultra pulse laser,high,cost published; per-level effect values not published
+Laser Disruptor,Inquisitor Tier 0,20,119,1404,Increase % chance of Disruptor after laser cannon or ultra pulse laser,high,cost published; per-level effect values not published
+Laser Disruptor,Inquisitor Tier 0,21,126,1530,Increase % chance of Disruptor after laser cannon or ultra pulse laser,high,cost published; per-level effect values not published
+Laser Disruptor,Inquisitor Tier 0,22,130,1660,Increase % chance of Disruptor after laser cannon or ultra pulse laser,high,cost published; per-level effect values not published
+Laser Disruptor,Inquisitor Tier 0,23,134,1794,Increase % chance of Disruptor after laser cannon or ultra pulse laser,high,cost published; per-level effect values not published
+Laser Disruptor,Inquisitor Tier 0,24,141,1935,Increase % chance of Disruptor after laser cannon or ultra pulse laser,high,cost published; per-level effect values not published
+Magnetic Disruptor,Inquisitor Tier 4,1,10,10,Reduces Damage dealt by enemy targets ,high,cost published; per-level effect values not published
+Magnetic Disruptor,Inquisitor Tier 4,2,13,23,Reduces Damage dealt by enemy targets ,high,cost published; per-level effect values not published
+Magnetic Disruptor,Inquisitor Tier 4,3,16,39,Reduces Damage dealt by enemy targets ,high,cost published; per-level effect values not published
+Magnetic Disruptor,Inquisitor Tier 4,4,18,57,Reduces Damage dealt by enemy targets ,high,cost published; per-level effect values not published
+Magnetic Disruptor,Inquisitor Tier 4,5,21,78,Reduces Damage dealt by enemy targets ,high,cost published; per-level effect values not published
+Magnetic Disruptor,Inquisitor Tier 4,6,23,101,Reduces Damage dealt by enemy targets ,high,cost published; per-level effect values not published
+Magnetic Disruptor,Inquisitor Tier 4,7,26,127,Reduces Damage dealt by enemy targets ,high,cost published; per-level effect values not published
+Magnetic Disruptor,Inquisitor Tier 4,8,29,156,Reduces Damage dealt by enemy targets ,high,cost published; per-level effect values not published
+Magnetic Disruptor,Inquisitor Tier 4,9,31,187,Reduces Damage dealt by enemy targets ,high,cost published; per-level effect values not published
+Magnetic Disruptor,Inquisitor Tier 4,10,34,221,Reduces Damage dealt by enemy targets ,high,cost published; per-level effect values not published
+Magnetic Disruptor,Inquisitor Tier 4,11,36,257,Reduces Damage dealt by enemy targets ,high,cost published; per-level effect values not published
+Magnetic Disruptor,Inquisitor Tier 4,12,39,296,Reduces Damage dealt by enemy targets ,high,cost published; per-level effect values not published
+Magnetic Disruptor,Inquisitor Tier 4,13,42,338,Reduces Damage dealt by enemy targets ,high,cost published; per-level effect values not published
+Magnetic Disruptor,Inquisitor Tier 4,14,44,382,Reduces Damage dealt by enemy targets ,high,cost published; per-level effect values not published
+Magnetic Disruptor,Inquisitor Tier 4,15,47,429,Reduces Damage dealt by enemy targets ,high,cost published; per-level effect values not published
+Magnetic Disruptor,Inquisitor Tier 4,16,49,478,Reduces Damage dealt by enemy targets ,high,cost published; per-level effect values not published
+Magnetic Disruptor,Inquisitor Tier 4,17,52,530,Reduces Damage dealt by enemy targets ,high,cost published; per-level effect values not published
+Magnetic Disruptor,Inquisitor Tier 4,18,55,585,Reduces Damage dealt by enemy targets ,high,cost published; per-level effect values not published
+Magnetic Disruptor,Inquisitor Tier 4,19,57,642,Reduces Damage dealt by enemy targets ,high,cost published; per-level effect values not published
+Magnetic Disruptor,Inquisitor Tier 4,20,,,Reduces Damage dealt by enemy targets ,high,cost of this step not published
+Magnetic Disruptor,Inquisitor Tier 4,21,,,Reduces Damage dealt by enemy targets ,high,cost of this step not published
+Magnetic Disruptor,Inquisitor Tier 4,22,,,Reduces Damage dealt by enemy targets ,high,cost of this step not published
+Magnetic Disruptor,Inquisitor Tier 4,23,68,,Reduces Damage dealt by enemy targets ,high,cost published; per-level effect values not published
+Magnetic Disruptor,Inquisitor Tier 4,24,70,,Reduces Damage dealt by enemy targets ,high,cost published; per-level effect values not published
+Magnetic Disruptor,Inquisitor Tier 4,25,73,,Reduces Damage dealt by enemy targets ,high,cost published; per-level effect values not published
+Energy Aid,Inquisitor Tier 7,1,10,10,Increases HP and Defense of all Troops,mid,cost published; per-level effect values not published
+Energy Aid,Inquisitor Tier 7,2,13,23,Increases HP and Defense of all Troops,mid,cost published; per-level effect values not published
+Energy Aid,Inquisitor Tier 7,3,16,39,Increases HP and Defense of all Troops,mid,cost published; per-level effect values not published
+Energy Aid,Inquisitor Tier 7,4,18,57,Increases HP and Defense of all Troops,mid,cost published; per-level effect values not published
+Energy Aid,Inquisitor Tier 7,5,21,78,Increases HP and Defense of all Troops,mid,cost published; per-level effect values not published
+Energy Aid,Inquisitor Tier 7,6,23,101,Increases HP and Defense of all Troops,mid,cost published; per-level effect values not published
+Energy Aid,Inquisitor Tier 7,7,26,127,Increases HP and Defense of all Troops,mid,cost published; per-level effect values not published
+Energy Aid,Inquisitor Tier 7,8,29,156,Increases HP and Defense of all Troops,mid,cost published; per-level effect values not published
+Energy Aid,Inquisitor Tier 7,9,31,187,Increases HP and Defense of all Troops,mid,cost published; per-level effect values not published
+Energy Aid,Inquisitor Tier 7,10,34,221,Increases HP and Defense of all Troops,mid,cost published; per-level effect values not published
+Energy Aid,Inquisitor Tier 7,11,36,257,Increases HP and Defense of all Troops,mid,cost published; per-level effect values not published
+Energy Aid,Inquisitor Tier 7,12,39,296,Increases HP and Defense of all Troops,mid,cost published; per-level effect values not published
+Energy Aid,Inquisitor Tier 7,13,42,338,Increases HP and Defense of all Troops,mid,cost published; per-level effect values not published
+Energy Aid,Inquisitor Tier 7,14,44,382,Increases HP and Defense of all Troops,mid,cost published; per-level effect values not published
+Energy Aid,Inquisitor Tier 7,15,47,429,Increases HP and Defense of all Troops,mid,cost published; per-level effect values not published
+Energy Aid,Inquisitor Tier 7,16,49,478,Increases HP and Defense of all Troops,mid,cost published; per-level effect values not published
+Energy Aid,Inquisitor Tier 7,17,52,530,Increases HP and Defense of all Troops,mid,cost published; per-level effect values not published
+Energy Aid,Inquisitor Tier 7,18,55,585,Increases HP and Defense of all Troops,mid,cost published; per-level effect values not published
+Energy Aid,Inquisitor Tier 7,19,57,642,Increases HP and Defense of all Troops,mid,cost published; per-level effect values not published
+Energy Aid,Inquisitor Tier 7,20,,,Increases HP and Defense of all Troops,mid,cost of this step not published
+Energy Aid,Inquisitor Tier 7,21,,,Increases HP and Defense of all Troops,mid,cost of this step not published
+Energy Aid,Inquisitor Tier 7,22,,,Increases HP and Defense of all Troops,mid,cost of this step not published
+Energy Aid,Inquisitor Tier 7,23,68,,Increases HP and Defense of all Troops,mid,cost published; per-level effect values not published
+Energy Aid,Inquisitor Tier 7,24,70,,Increases HP and Defense of all Troops,mid,cost published; per-level effect values not published
+Energy Aid,Inquisitor Tier 7,25,73,,Increases HP and Defense of all Troops,mid,cost published; per-level effect values not published
+Ultrapulse Laser,Epic Tier 0,1,,,"Launches 1 time every 10 seconds, locking on the enemy troops with most units, launching 3 lasers within 2 seconds",low,cost of this step not published
+Ultrapulse Laser,Epic Tier 0,2,,,"Launches 1 time every 10 seconds, locking on the enemy troops with most units, launching 3 lasers within 2 seconds",low,cost of this step not published
+Ultrapulse Laser,Epic Tier 0,3,,,"Launches 1 time every 10 seconds, locking on the enemy troops with most units, launching 3 lasers within 2 seconds",low,cost of this step not published
+Ultrapulse Laser,Epic Tier 0,4,,,"Launches 1 time every 10 seconds, locking on the enemy troops with most units, launching 3 lasers within 2 seconds",low,cost of this step not published
+Ultrapulse Laser,Epic Tier 0,5,,,"Launches 1 time every 10 seconds, locking on the enemy troops with most units, launching 3 lasers within 2 seconds",low,cost of this step not published
+Ultrapulse Laser,Epic Tier 0,6,,,"Launches 1 time every 10 seconds, locking on the enemy troops with most units, launching 3 lasers within 2 seconds",low,cost of this step not published
+Ultrapulse Laser,Epic Tier 0,7,62,,"Launches 1 time every 10 seconds, locking on the enemy troops with most units, launching 3 lasers within 2 seconds",low,cost published; per-level effect values not published
+Ultrapulse Laser,Epic Tier 0,8,68,,"Launches 1 time every 10 seconds, locking on the enemy troops with most units, launching 3 lasers within 2 seconds",low,cost published; per-level effect values not published
+Ultrapulse Laser,Epic Tier 0,9,75,,"Launches 1 time every 10 seconds, locking on the enemy troops with most units, launching 3 lasers within 2 seconds",low,cost published; per-level effect values not published
+Ultrapulse Laser,Epic Tier 0,10,81,,"Launches 1 time every 10 seconds, locking on the enemy troops with most units, launching 3 lasers within 2 seconds",low,cost published; per-level effect values not published
+Ultrapulse Laser,Epic Tier 0,11,88,,"Launches 1 time every 10 seconds, locking on the enemy troops with most units, launching 3 lasers within 2 seconds",low,cost published; per-level effect values not published
+Ultrapulse Laser,Epic Tier 0,12,92,,"Launches 1 time every 10 seconds, locking on the enemy troops with most units, launching 3 lasers within 2 seconds",low,cost published; per-level effect values not published
+Ultrapulse Laser,Epic Tier 0,13,,,"Launches 1 time every 10 seconds, locking on the enemy troops with most units, launching 3 lasers within 2 seconds",low,cost of this step not published
+Ultrapulse Laser,Epic Tier 0,14,,,"Launches 1 time every 10 seconds, locking on the enemy troops with most units, launching 3 lasers within 2 seconds",low,cost of this step not published
+Ultrapulse Laser,Epic Tier 0,15,111,,"Launches 1 time every 10 seconds, locking on the enemy troops with most units, launching 3 lasers within 2 seconds",low,cost published; per-level effect values not published
+Ultrapulse Laser,Epic Tier 0,16,,,"Launches 1 time every 10 seconds, locking on the enemy troops with most units, launching 3 lasers within 2 seconds",low,cost of this step not published
+Ultrapulse Laser,Epic Tier 0,17,,,"Launches 1 time every 10 seconds, locking on the enemy troops with most units, launching 3 lasers within 2 seconds",low,cost of this step not published
+Ultrapulse Laser,Epic Tier 0,18,130,,"Launches 1 time every 10 seconds, locking on the enemy troops with most units, launching 3 lasers within 2 seconds",low,cost published; per-level effect values not published
+High-Speed Charge,Epic Tier 4,1,,,Have % chance of making ultra pulse laser launch faster,high,cost of this step not published
+High-Speed Charge,Epic Tier 4,2,,,Have % chance of making ultra pulse laser launch faster,high,cost of this step not published
+High-Speed Charge,Epic Tier 4,3,,,Have % chance of making ultra pulse laser launch faster,high,cost of this step not published
+High-Speed Charge,Epic Tier 4,4,,,Have % chance of making ultra pulse laser launch faster,high,cost of this step not published
+High-Speed Charge,Epic Tier 4,5,,,Have % chance of making ultra pulse laser launch faster,high,cost of this step not published
+High-Speed Charge,Epic Tier 4,6,,,Have % chance of making ultra pulse laser launch faster,high,cost of this step not published
+High-Speed Charge,Epic Tier 4,7,,,Have % chance of making ultra pulse laser launch faster,high,cost of this step not published
+High-Speed Charge,Epic Tier 4,8,,,Have % chance of making ultra pulse laser launch faster,high,cost of this step not published
+High-Speed Charge,Epic Tier 4,9,40,,Have % chance of making ultra pulse laser launch faster,high,cost published; per-level effect values not published
+High-Speed Charge,Epic Tier 4,10,44,,Have % chance of making ultra pulse laser launch faster,high,cost published; per-level effect values not published
+High-Speed Charge,Epic Tier 4,11,,,Have % chance of making ultra pulse laser launch faster,high,cost of this step not published
+High-Speed Charge,Epic Tier 4,12,,,Have % chance of making ultra pulse laser launch faster,high,cost of this step not published
+High-Speed Charge,Epic Tier 4,13,,,Have % chance of making ultra pulse laser launch faster,high,cost of this step not published
+High-Speed Charge,Epic Tier 4,14,,,Have % chance of making ultra pulse laser launch faster,high,cost of this step not published
+High-Speed Charge,Epic Tier 4,15,65,,Have % chance of making ultra pulse laser launch faster,high,cost published; per-level effect values not published
+High-Speed Charge,Epic Tier 4,16,,,Have % chance of making ultra pulse laser launch faster,high,cost of this step not published
+High-Speed Charge,Epic Tier 4,17,,,Have % chance of making ultra pulse laser launch faster,high,cost of this step not published
+High-Speed Charge,Epic Tier 4,18,,,Have % chance of making ultra pulse laser launch faster,high,cost of this step not published
+High-Speed Charge,Epic Tier 4,19,,,Have % chance of making ultra pulse laser launch faster,high,cost of this step not published
+High-Speed Charge,Epic Tier 4,20,,,Have % chance of making ultra pulse laser launch faster,high,cost of this step not published
+High-Speed Charge,Epic Tier 4,21,82,,Have % chance of making ultra pulse laser launch faster,high,cost published; per-level effect values not published
+Fortify Engine Body,Epic Tier 7,1,,,Increase warplane HP,mid,cost of this step not published
+Fortify Engine Body,Epic Tier 7,2,,,Increase warplane HP,mid,cost of this step not published
+Fortify Engine Body,Epic Tier 7,3,,,Increase warplane HP,mid,cost of this step not published
+Fortify Engine Body,Epic Tier 7,4,,,Increase warplane HP,mid,cost of this step not published
+Fortify Engine Body,Epic Tier 7,5,,,Increase warplane HP,mid,cost of this step not published
+Fortify Engine Body,Epic Tier 7,6,,,Increase warplane HP,mid,cost of this step not published
+Fortify Engine Body,Epic Tier 7,7,,,Increase warplane HP,mid,cost of this step not published
+Fortify Engine Body,Epic Tier 7,8,,,Increase warplane HP,mid,cost of this step not published
+Fortify Engine Body,Epic Tier 7,9,40,,Increase warplane HP,mid,cost published; per-level effect values not published
+Fortify Engine Body,Epic Tier 7,10,44,,Increase warplane HP,mid,cost published; per-level effect values not published
+Fortify Engine Body,Epic Tier 7,11,,,Increase warplane HP,mid,cost of this step not published
+Fortify Engine Body,Epic Tier 7,12,,,Increase warplane HP,mid,cost of this step not published
+Fortify Engine Body,Epic Tier 7,13,,,Increase warplane HP,mid,cost of this step not published
+Fortify Engine Body,Epic Tier 7,14,,,Increase warplane HP,mid,cost of this step not published
+Fortify Engine Body,Epic Tier 7,15,65,,Increase warplane HP,mid,cost published; per-level effect values not published
+Fortify Engine Body,Epic Tier 7,16,,,Increase warplane HP,mid,cost of this step not published
+Fortify Engine Body,Epic Tier 7,17,,,Increase warplane HP,mid,cost of this step not published
+Fortify Engine Body,Epic Tier 7,18,,,Increase warplane HP,mid,cost of this step not published
+Fortify Engine Body,Epic Tier 7,19,,,Increase warplane HP,mid,cost of this step not published
+Fortify Engine Body,Epic Tier 7,20,,,Increase warplane HP,mid,cost of this step not published
+Fortify Engine Body,Epic Tier 7,21,82,,Increase warplane HP,mid,cost published; per-level effect values not published
+Superior Force Field,Immortal Tier 0,1,26,26,Increase damage dealt by warplane,low,"cost published; per-level effect values not published; source list has no level-0 entry, first value assumed to be level 1"
+Superior Force Field,Immortal Tier 0,2,34,60,Increase damage dealt by warplane,low,"cost published; per-level effect values not published; source list has no level-0 entry, first value assumed to be level 1"
+Superior Force Field,Immortal Tier 0,3,42,102,Increase damage dealt by warplane,low,"cost published; per-level effect values not published; source list has no level-0 entry, first value assumed to be level 1"
+Superior Force Field,Immortal Tier 0,4,47,149,Increase damage dealt by warplane,low,"cost published; per-level effect values not published; source list has no level-0 entry, first value assumed to be level 1"
+Superior Force Field,Immortal Tier 0,5,55,204,Increase damage dealt by warplane,low,"cost published; per-level effect values not published; source list has no level-0 entry, first value assumed to be level 1"
+Superior Force Field,Immortal Tier 0,6,60,264,Increase damage dealt by warplane,low,"cost published; per-level effect values not published; source list has no level-0 entry, first value assumed to be level 1"
+Superior Force Field,Immortal Tier 0,7,68,332,Increase damage dealt by warplane,low,"cost published; per-level effect values not published; source list has no level-0 entry, first value assumed to be level 1"
+Superior Force Field,Immortal Tier 0,8,76,408,Increase damage dealt by warplane,low,"cost published; per-level effect values not published; source list has no level-0 entry, first value assumed to be level 1"
+Superior Force Field,Immortal Tier 0,9,81,489,Increase damage dealt by warplane,low,"cost published; per-level effect values not published; source list has no level-0 entry, first value assumed to be level 1"
+Superior Force Field,Immortal Tier 0,10,89,578,Increase damage dealt by warplane,low,"cost published; per-level effect values not published; source list has no level-0 entry, first value assumed to be level 1"
+Superior Force Field,Immortal Tier 0,11,,,Increase damage dealt by warplane,low,"cost of this step not published; source list has no level-0 entry, first value assumed to be level 1"
+Superior Force Field,Immortal Tier 0,12,,,Increase damage dealt by warplane,low,"cost of this step not published; source list has no level-0 entry, first value assumed to be level 1"
+Superior Force Field,Immortal Tier 0,13,,,Increase damage dealt by warplane,low,"cost of this step not published; source list has no level-0 entry, first value assumed to be level 1"
+Superior Force Field,Immortal Tier 0,14,,,Increase damage dealt by warplane,low,"cost of this step not published; source list has no level-0 entry, first value assumed to be level 1"
+Superior Force Field,Immortal Tier 0,15,,,Increase damage dealt by warplane,low,"cost of this step not published; source list has no level-0 entry, first value assumed to be level 1"
+Superior Force Field,Immortal Tier 0,16,,,Increase damage dealt by warplane,low,"cost of this step not published; source list has no level-0 entry, first value assumed to be level 1"
+Superior Force Field,Immortal Tier 0,17,,,Increase damage dealt by warplane,low,"cost of this step not published; source list has no level-0 entry, first value assumed to be level 1"
+Superior Force Field,Immortal Tier 0,18,,,Increase damage dealt by warplane,low,"cost of this step not published; source list has no level-0 entry, first value assumed to be level 1"
+Superior Force Field,Immortal Tier 0,19,,,Increase damage dealt by warplane,low,"cost of this step not published; source list has no level-0 entry, first value assumed to be level 1"
+Superior Force Field,Immortal Tier 0,20,,,Increase damage dealt by warplane,low,"cost of this step not published; source list has no level-0 entry, first value assumed to be level 1"
+Superior Force Field,Immortal Tier 0,21,162,,Increase damage dealt by warplane,low,"cost published; per-level effect values not published; source list has no level-0 entry, first value assumed to be level 1"
+EMP Armor,Immortal Tier 4,1,14,14,"Increases attack, hp, and defense of melee troops",mid,"cost published; per-level effect values not published; source list has no level-0 entry, first value assumed to be level 1"
+EMP Armor,Immortal Tier 4,2,17,31,"Increases attack, hp, and defense of melee troops",mid,"cost published; per-level effect values not published; source list has no level-0 entry, first value assumed to be level 1"
+EMP Armor,Immortal Tier 4,3,20,51,"Increases attack, hp, and defense of melee troops",mid,"cost published; per-level effect values not published; source list has no level-0 entry, first value assumed to be level 1"
+EMP Armor,Immortal Tier 4,4,24,75,"Increases attack, hp, and defense of melee troops",mid,"cost published; per-level effect values not published; source list has no level-0 entry, first value assumed to be level 1"
+EMP Armor,Immortal Tier 4,5,27,102,"Increases attack, hp, and defense of melee troops",mid,"cost published; per-level effect values not published; source list has no level-0 entry, first value assumed to be level 1"
+EMP Armor,Immortal Tier 4,6,31,133,"Increases attack, hp, and defense of melee troops",mid,"cost published; per-level effect values not published; source list has no level-0 entry, first value assumed to be level 1"
+EMP Armor,Immortal Tier 4,7,34,167,"Increases attack, hp, and defense of melee troops",mid,"cost published; per-level effect values not published; source list has no level-0 entry, first value assumed to be level 1"
+EMP Armor,Immortal Tier 4,8,37,204,"Increases attack, hp, and defense of melee troops",mid,"cost published; per-level effect values not published; source list has no level-0 entry, first value assumed to be level 1"
+EMP Armor,Immortal Tier 4,9,41,245,"Increases attack, hp, and defense of melee troops",mid,"cost published; per-level effect values not published; source list has no level-0 entry, first value assumed to be level 1"
+EMP Armor,Immortal Tier 4,10,44,289,"Increases attack, hp, and defense of melee troops",mid,"cost published; per-level effect values not published; source list has no level-0 entry, first value assumed to be level 1"
+EMP Armor,Immortal Tier 4,11,48,337,"Increases attack, hp, and defense of melee troops",mid,"cost published; per-level effect values not published; source list has no level-0 entry, first value assumed to be level 1"
+EMP Armor,Immortal Tier 4,12,51,388,"Increases attack, hp, and defense of melee troops",mid,"cost published; per-level effect values not published; source list has no level-0 entry, first value assumed to be level 1"
+EMP Armor,Immortal Tier 4,13,54,442,"Increases attack, hp, and defense of melee troops",mid,"cost published; per-level effect values not published; source list has no level-0 entry, first value assumed to be level 1"
+EMP Armor,Immortal Tier 4,14,58,500,"Increases attack, hp, and defense of melee troops",mid,"cost published; per-level effect values not published; source list has no level-0 entry, first value assumed to be level 1"
+EMP Armor,Immortal Tier 4,15,61,561,"Increases attack, hp, and defense of melee troops",mid,"cost published; per-level effect values not published; source list has no level-0 entry, first value assumed to be level 1"
+EMP Armor,Immortal Tier 4,16,65,626,"Increases attack, hp, and defense of melee troops",mid,"cost published; per-level effect values not published; source list has no level-0 entry, first value assumed to be level 1"
+EMP Armor,Immortal Tier 4,17,68,694,"Increases attack, hp, and defense of melee troops",mid,"cost published; per-level effect values not published; source list has no level-0 entry, first value assumed to be level 1"
+EMP Armor,Immortal Tier 4,18,71,765,"Increases attack, hp, and defense of melee troops",mid,"cost published; per-level effect values not published; source list has no level-0 entry, first value assumed to be level 1"
+EMP Armor,Immortal Tier 4,19,75,840,"Increases attack, hp, and defense of melee troops",mid,"cost published; per-level effect values not published; source list has no level-0 entry, first value assumed to be level 1"
+EMP Armor,Immortal Tier 4,20,78,918,"Increases attack, hp, and defense of melee troops",mid,"cost published; per-level effect values not published; source list has no level-0 entry, first value assumed to be level 1"
+EMP Armor,Immortal Tier 4,21,82,1000,"Increases attack, hp, and defense of melee troops",mid,"cost published; per-level effect values not published; source list has no level-0 entry, first value assumed to be level 1"
+EMP Armor,Immortal Tier 4,22,,,"Increases attack, hp, and defense of melee troops",mid,"cost of this step not published; source list has no level-0 entry, first value assumed to be level 1"
+EMP Armor,Immortal Tier 4,23,88,,"Increases attack, hp, and defense of melee troops",mid,"cost published; per-level effect values not published; source list has no level-0 entry, first value assumed to be level 1"
+EMP Armor,Immortal Tier 4,24,92,,"Increases attack, hp, and defense of melee troops",mid,"cost published; per-level effect values not published; source list has no level-0 entry, first value assumed to be level 1"
+EMP Armor,Immortal Tier 4,25,95,,"Increases attack, hp, and defense of melee troops",mid,"cost published; per-level effect values not published; source list has no level-0 entry, first value assumed to be level 1"
+EMP Armor,Immortal Tier 4,26,99,,"Increases attack, hp, and defense of melee troops",mid,"cost published; per-level effect values not published; source list has no level-0 entry, first value assumed to be level 1"
+EMP Armor,Immortal Tier 4,27,102,,"Increases attack, hp, and defense of melee troops",mid,"cost published; per-level effect values not published; source list has no level-0 entry, first value assumed to be level 1"
+EMP Armor,Immortal Tier 4,28,105,,"Increases attack, hp, and defense of melee troops",mid,"cost published; per-level effect values not published; source list has no level-0 entry, first value assumed to be level 1"
+EMP Armor,Immortal Tier 4,29,109,,"Increases attack, hp, and defense of melee troops",mid,"cost published; per-level effect values not published; source list has no level-0 entry, first value assumed to be level 1"
+Armor Piercing Laser,Immortal Tier 7,1,14,14,Increases damage to melee troops,high,"cost published; per-level effect values not published; source list has no level-0 entry, first value assumed to be level 1"
+Armor Piercing Laser,Immortal Tier 7,2,17,31,Increases damage to melee troops,high,"cost published; per-level effect values not published; source list has no level-0 entry, first value assumed to be level 1"
+Armor Piercing Laser,Immortal Tier 7,3,20,51,Increases damage to melee troops,high,"cost published; per-level effect values not published; source list has no level-0 entry, first value assumed to be level 1"
+Armor Piercing Laser,Immortal Tier 7,4,24,75,Increases damage to melee troops,high,"cost published; per-level effect values not published; source list has no level-0 entry, first value assumed to be level 1"
+Armor Piercing Laser,Immortal Tier 7,5,27,102,Increases damage to melee troops,high,"cost published; per-level effect values not published; source list has no level-0 entry, first value assumed to be level 1"
+Armor Piercing Laser,Immortal Tier 7,6,31,133,Increases damage to melee troops,high,"cost published; per-level effect values not published; source list has no level-0 entry, first value assumed to be level 1"
+Armor Piercing Laser,Immortal Tier 7,7,34,167,Increases damage to melee troops,high,"cost published; per-level effect values not published; source list has no level-0 entry, first value assumed to be level 1"
+Armor Piercing Laser,Immortal Tier 7,8,37,204,Increases damage to melee troops,high,"cost published; per-level effect values not published; source list has no level-0 entry, first value assumed to be level 1"
+Armor Piercing Laser,Immortal Tier 7,9,41,245,Increases damage to melee troops,high,"cost published; per-level effect values not published; source list has no level-0 entry, first value assumed to be level 1"
+Armor Piercing Laser,Immortal Tier 7,10,44,289,Increases damage to melee troops,high,"cost published; per-level effect values not published; source list has no level-0 entry, first value assumed to be level 1"
+Armor Piercing Laser,Immortal Tier 7,11,48,337,Increases damage to melee troops,high,"cost published; per-level effect values not published; source list has no level-0 entry, first value assumed to be level 1"
+Armor Piercing Laser,Immortal Tier 7,12,51,388,Increases damage to melee troops,high,"cost published; per-level effect values not published; source list has no level-0 entry, first value assumed to be level 1"
+Armor Piercing Laser,Immortal Tier 7,13,54,442,Increases damage to melee troops,high,"cost published; per-level effect values not published; source list has no level-0 entry, first value assumed to be level 1"
+Armor Piercing Laser,Immortal Tier 7,14,58,500,Increases damage to melee troops,high,"cost published; per-level effect values not published; source list has no level-0 entry, first value assumed to be level 1"
+Armor Piercing Laser,Immortal Tier 7,15,61,561,Increases damage to melee troops,high,"cost published; per-level effect values not published; source list has no level-0 entry, first value assumed to be level 1"
+Armor Piercing Laser,Immortal Tier 7,16,65,626,Increases damage to melee troops,high,"cost published; per-level effect values not published; source list has no level-0 entry, first value assumed to be level 1"
+Armor Piercing Laser,Immortal Tier 7,17,68,694,Increases damage to melee troops,high,"cost published; per-level effect values not published; source list has no level-0 entry, first value assumed to be level 1"
+Armor Piercing Laser,Immortal Tier 7,18,71,765,Increases damage to melee troops,high,"cost published; per-level effect values not published; source list has no level-0 entry, first value assumed to be level 1"
+Armor Piercing Laser,Immortal Tier 7,19,75,840,Increases damage to melee troops,high,"cost published; per-level effect values not published; source list has no level-0 entry, first value assumed to be level 1"
+Armor Piercing Laser,Immortal Tier 7,20,78,918,Increases damage to melee troops,high,"cost published; per-level effect values not published; source list has no level-0 entry, first value assumed to be level 1"
+Armor Piercing Laser,Immortal Tier 7,21,82,1000,Increases damage to melee troops,high,"cost published; per-level effect values not published; source list has no level-0 entry, first value assumed to be level 1"
+Armor Piercing Laser,Immortal Tier 7,22,,,Increases damage to melee troops,high,"cost of this step not published; source list has no level-0 entry, first value assumed to be level 1"
+Armor Piercing Laser,Immortal Tier 7,23,88,,Increases damage to melee troops,high,"cost published; per-level effect values not published; source list has no level-0 entry, first value assumed to be level 1"
+Armor Piercing Laser,Immortal Tier 7,24,92,,Increases damage to melee troops,high,"cost published; per-level effect values not published; source list has no level-0 entry, first value assumed to be level 1"
+Armor Piercing Laser,Immortal Tier 7,25,95,,Increases damage to melee troops,high,"cost published; per-level effect values not published; source list has no level-0 entry, first value assumed to be level 1"
+Armor Piercing Laser,Immortal Tier 7,26,99,,Increases damage to melee troops,high,"cost published; per-level effect values not published; source list has no level-0 entry, first value assumed to be level 1"
+Armor Piercing Laser,Immortal Tier 7,27,102,,Increases damage to melee troops,high,"cost published; per-level effect values not published; source list has no level-0 entry, first value assumed to be level 1"
+Armor Piercing Laser,Immortal Tier 7,28,105,,Increases damage to melee troops,high,"cost published; per-level effect values not published; source list has no level-0 entry, first value assumed to be level 1"
+Armor Piercing Laser,Immortal Tier 7,29,109,,Increases damage to melee troops,high,"cost published; per-level effect values not published; source list has no level-0 entry, first value assumed to be level 1"

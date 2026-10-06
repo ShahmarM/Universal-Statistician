@@ -1,0 +1,361 @@
+Expertise,Resource,Level (to),Cost (this step),Cost (cumulative),Value basis
+Advanced Endurance,Essence Stone,1,10,10,cost published; effect values not published
+Advanced Endurance,Essence Stone,2,6,16,cost published; effect values not published
+Advanced Endurance,Essence Stone,3,10,26,cost published; effect values not published
+Advanced Endurance,Essence Stone,4,16,42,cost published; effect values not published
+Advanced Endurance,Essence Stone,5,24,66,cost published; effect values not published
+Advanced Endurance,Essence Stone,6,34,100,cost published; effect values not published
+Advanced Endurance,Essence Stone,7,46,146,cost published; effect values not published
+Advanced Endurance,Essence Stone,8,58,204,cost published; effect values not published
+Advanced Endurance,Essence Stone,9,70,274,cost published; effect values not published
+Advanced Endurance,Essence Stone,10,80,354,cost published; effect values not published
+Advanced Endurance,Essence Stone,11,90,444,cost published; effect values not published
+Advanced Endurance,Essence Stone,12,100,544,cost published; effect values not published
+Advanced Endurance,Essence Stone,13,110,654,cost published; effect values not published
+Advanced Endurance,Essence Stone,14,120,774,cost published; effect values not published
+Advanced Endurance,Essence Stone,15,130,904,cost published; effect values not published
+Advanced Endurance,Essence Stone,16,140,1044,cost published; effect values not published
+Advanced Endurance,Essence Stone,17,150,1194,cost published; effect values not published
+Advanced Endurance,Essence Stone,18,160,1354,cost published; effect values not published
+Advanced Endurance,Essence Stone,19,170,1524,cost published; effect values not published
+Advanced Endurance,Essence Stone,20,180,1704,cost published; effect values not published
+Advanced Kill,Essence Stone,1,10,10,cost published; effect values not published
+Advanced Kill,Essence Stone,2,6,16,cost published; effect values not published
+Advanced Kill,Essence Stone,3,10,26,cost published; effect values not published
+Advanced Kill,Essence Stone,4,16,42,cost published; effect values not published
+Advanced Kill,Essence Stone,5,24,66,cost published; effect values not published
+Advanced Kill,Essence Stone,6,34,100,cost published; effect values not published
+Advanced Kill,Essence Stone,7,46,146,cost published; effect values not published
+Advanced Kill,Essence Stone,8,58,204,cost published; effect values not published
+Advanced Kill,Essence Stone,9,70,274,cost published; effect values not published
+Advanced Kill,Essence Stone,10,80,354,cost published; effect values not published
+Advanced Kill,Essence Stone,11,90,444,cost published; effect values not published
+Advanced Kill,Essence Stone,12,100,544,cost published; effect values not published
+Advanced Kill,Essence Stone,13,110,654,cost published; effect values not published
+Advanced Kill,Essence Stone,14,120,774,cost published; effect values not published
+Advanced Kill,Essence Stone,15,130,904,cost published; effect values not published
+Advanced Kill,Essence Stone,16,140,1044,cost published; effect values not published
+Advanced Kill,Essence Stone,17,150,1194,cost published; effect values not published
+Advanced Kill,Essence Stone,18,160,1354,cost published; effect values not published
+Advanced Kill,Essence Stone,19,170,1524,cost published; effect values not published
+Advanced Kill,Essence Stone,20,180,1704,cost published; effect values not published
+Anti-Disruptor Mastery,Essence Core,1,6,6,cost published; effect values not published
+Anti-Disruptor Mastery,Essence Core,2,4,10,cost published; effect values not published
+Anti-Disruptor Mastery,Essence Core,3,6,16,cost published; effect values not published
+Anti-Disruptor Mastery,Essence Core,4,9,25,cost published; effect values not published
+Anti-Disruptor Mastery,Essence Core,5,13,38,cost published; effect values not published
+Anti-Disruptor Mastery,Essence Core,6,18,56,cost published; effect values not published
+Anti-Disruptor Mastery,Essence Core,7,24,80,cost published; effect values not published
+Anti-Disruptor Mastery,Essence Core,8,32,112,cost published; effect values not published
+Anti-Disruptor Mastery,Essence Core,9,40,152,cost published; effect values not published
+Anti-Disruptor Mastery,Essence Core,10,46,198,cost published; effect values not published
+Anti-Disruptor Mastery,Essence Core,11,52,250,cost published; effect values not published
+Anti-Disruptor Mastery,Essence Core,12,58,308,cost published; effect values not published
+Anti-Disruptor Mastery,Essence Core,13,64,372,cost published; effect values not published
+Anti-Disruptor Mastery,Essence Core,14,70,442,cost published; effect values not published
+Anti-Disruptor Mastery,Essence Core,15,76,518,cost published; effect values not published
+Anti-Disruptor Mastery,Essence Core,16,82,600,cost published; effect values not published
+Anti-Disruptor Mastery,Essence Core,17,88,688,cost published; effect values not published
+Anti-Disruptor Mastery,Essence Core,18,94,782,cost published; effect values not published
+Anti-Disruptor Mastery,Essence Core,19,100,882,cost published; effect values not published
+Anti-Disruptor Mastery,Essence Core,20,106,988,cost published; effect values not published
+Anti-Misfire Mastery,Essence Core,1,6,6,cost published; effect values not published
+Anti-Misfire Mastery,Essence Core,2,4,10,cost published; effect values not published
+Anti-Misfire Mastery,Essence Core,3,6,16,cost published; effect values not published
+Anti-Misfire Mastery,Essence Core,4,9,25,cost published; effect values not published
+Anti-Misfire Mastery,Essence Core,5,13,38,cost published; effect values not published
+Anti-Misfire Mastery,Essence Core,6,18,56,cost published; effect values not published
+Anti-Misfire Mastery,Essence Core,7,24,80,cost published; effect values not published
+Anti-Misfire Mastery,Essence Core,8,32,112,cost published; effect values not published
+Anti-Misfire Mastery,Essence Core,9,40,152,cost published; effect values not published
+Anti-Misfire Mastery,Essence Core,10,46,198,cost published; effect values not published
+Anti-Misfire Mastery,Essence Core,11,52,250,cost published; effect values not published
+Anti-Misfire Mastery,Essence Core,12,58,308,cost published; effect values not published
+Anti-Misfire Mastery,Essence Core,13,64,372,cost published; effect values not published
+Anti-Misfire Mastery,Essence Core,14,70,442,cost published; effect values not published
+Anti-Misfire Mastery,Essence Core,15,76,518,cost published; effect values not published
+Anti-Misfire Mastery,Essence Core,16,82,600,cost published; effect values not published
+Anti-Misfire Mastery,Essence Core,17,88,688,cost published; effect values not published
+Anti-Misfire Mastery,Essence Core,18,94,782,cost published; effect values not published
+Anti-Misfire Mastery,Essence Core,19,100,882,cost published; effect values not published
+Anti-Misfire Mastery,Essence Core,20,106,988,cost published; effect values not published
+Commander Expert,Essence Stone,1,10,10,cost published; effect values not published
+Commander Expert,Essence Stone,2,6,16,cost published; effect values not published
+Commander Expert,Essence Stone,3,10,26,cost published; effect values not published
+Commander Expert,Essence Stone,4,16,42,cost published; effect values not published
+Commander Expert,Essence Stone,5,24,66,cost published; effect values not published
+Commander Expert,Essence Stone,6,34,100,cost published; effect values not published
+Commander Expert,Essence Stone,7,46,146,cost published; effect values not published
+Commander Expert,Essence Stone,8,58,204,cost published; effect values not published
+Commander Expert,Essence Stone,9,70,274,cost published; effect values not published
+Commander Expert,Essence Stone,10,80,354,cost published; effect values not published
+Commander Expert,Essence Stone,11,90,444,cost published; effect values not published
+Commander Expert,Essence Stone,12,100,544,cost published; effect values not published
+Commander Expert,Essence Stone,13,110,654,cost published; effect values not published
+Commander Expert,Essence Stone,14,120,774,cost published; effect values not published
+Commander Expert,Essence Stone,15,130,904,cost published; effect values not published
+Commander Expert,Essence Stone,16,140,1044,cost published; effect values not published
+Commander Expert,Essence Stone,17,150,1194,cost published; effect values not published
+Commander Expert,Essence Stone,18,160,1354,cost published; effect values not published
+Commander Expert,Essence Stone,19,170,1524,cost published; effect values not published
+Commander Expert,Essence Stone,20,180,1704,cost published; effect values not published
+Cross-Nation Commander Expert,Essence Stone,1,10,10,cost published; effect values not published
+Cross-Nation Commander Expert,Essence Stone,2,6,16,cost published; effect values not published
+Cross-Nation Commander Expert,Essence Stone,3,10,26,cost published; effect values not published
+Cross-Nation Commander Expert,Essence Stone,4,16,42,cost published; effect values not published
+Cross-Nation Commander Expert,Essence Stone,5,24,66,cost published; effect values not published
+Cross-Nation Commander Expert,Essence Stone,6,34,100,cost published; effect values not published
+Cross-Nation Commander Expert,Essence Stone,7,46,146,cost published; effect values not published
+Cross-Nation Commander Expert,Essence Stone,8,58,204,cost published; effect values not published
+Cross-Nation Commander Expert,Essence Stone,9,70,274,cost published; effect values not published
+Cross-Nation Commander Expert,Essence Stone,10,80,354,cost published; effect values not published
+Cross-Nation Commander Expert,Essence Stone,11,90,444,cost published; effect values not published
+Cross-Nation Commander Expert,Essence Stone,12,100,544,cost published; effect values not published
+Cross-Nation Commander Expert,Essence Stone,13,110,654,cost published; effect values not published
+Cross-Nation Commander Expert,Essence Stone,14,120,774,cost published; effect values not published
+Cross-Nation Commander Expert,Essence Stone,15,130,904,cost published; effect values not published
+Cross-Nation Commander Expert,Essence Stone,16,140,1044,cost published; effect values not published
+Cross-Nation Commander Expert,Essence Stone,17,150,1194,cost published; effect values not published
+Cross-Nation Commander Expert,Essence Stone,18,160,1354,cost published; effect values not published
+Cross-Nation Commander Expert,Essence Stone,19,170,1524,cost published; effect values not published
+Cross-Nation Commander Expert,Essence Stone,20,180,1704,cost published; effect values not published
+Defensive Rampart,Essence Core,1,6,6,cost published; effect values not published
+Defensive Rampart,Essence Core,2,4,10,cost published; effect values not published
+Defensive Rampart,Essence Core,3,6,16,cost published; effect values not published
+Defensive Rampart,Essence Core,4,9,25,cost published; effect values not published
+Defensive Rampart,Essence Core,5,13,38,cost published; effect values not published
+Defensive Rampart,Essence Core,6,18,56,cost published; effect values not published
+Defensive Rampart,Essence Core,7,24,80,cost published; effect values not published
+Defensive Rampart,Essence Core,8,32,112,cost published; effect values not published
+Defensive Rampart,Essence Core,9,40,152,cost published; effect values not published
+Defensive Rampart,Essence Core,10,46,198,cost published; effect values not published
+Defensive Rampart,Essence Core,11,52,250,cost published; effect values not published
+Defensive Rampart,Essence Core,12,58,308,cost published; effect values not published
+Defensive Rampart,Essence Core,13,64,372,cost published; effect values not published
+Defensive Rampart,Essence Core,14,70,442,cost published; effect values not published
+Defensive Rampart,Essence Core,15,76,518,cost published; effect values not published
+Defensive Rampart,Essence Core,16,82,600,cost published; effect values not published
+Defensive Rampart,Essence Core,17,88,688,cost published; effect values not published
+Defensive Rampart,Essence Core,18,94,782,cost published; effect values not published
+Defensive Rampart,Essence Core,19,100,882,cost published; effect values not published
+Defensive Rampart,Essence Core,20,106,988,cost published; effect values not published
+Impale,Essence Core,1,6,6,cost published; effect values not published
+Impale,Essence Core,2,4,10,cost published; effect values not published
+Impale,Essence Core,3,6,16,cost published; effect values not published
+Impale,Essence Core,4,9,25,cost published; effect values not published
+Impale,Essence Core,5,13,38,cost published; effect values not published
+Impale,Essence Core,6,18,56,cost published; effect values not published
+Impale,Essence Core,7,24,80,cost published; effect values not published
+Impale,Essence Core,8,32,112,cost published; effect values not published
+Impale,Essence Core,9,40,152,cost published; effect values not published
+Impale,Essence Core,10,46,198,cost published; effect values not published
+Impale,Essence Core,11,52,250,cost published; effect values not published
+Impale,Essence Core,12,58,308,cost published; effect values not published
+Impale,Essence Core,13,64,372,cost published; effect values not published
+Impale,Essence Core,14,70,442,cost published; effect values not published
+Impale,Essence Core,15,76,518,cost published; effect values not published
+Impale,Essence Core,16,82,600,cost published; effect values not published
+Impale,Essence Core,17,88,688,cost published; effect values not published
+Impale,Essence Core,18,94,782,cost published; effect values not published
+Impale,Essence Core,19,100,882,cost published; effect values not published
+Impale,Essence Core,20,106,988,cost published; effect values not published
+Long-Range Killer,Essence Core,1,6,6,cost published; effect values not published
+Long-Range Killer,Essence Core,2,4,10,cost published; effect values not published
+Long-Range Killer,Essence Core,3,6,16,cost published; effect values not published
+Long-Range Killer,Essence Core,4,9,25,cost published; effect values not published
+Long-Range Killer,Essence Core,5,13,38,cost published; effect values not published
+Long-Range Killer,Essence Core,6,18,56,cost published; effect values not published
+Long-Range Killer,Essence Core,7,24,80,cost published; effect values not published
+Long-Range Killer,Essence Core,8,32,112,cost published; effect values not published
+Long-Range Killer,Essence Core,9,40,152,cost published; effect values not published
+Long-Range Killer,Essence Core,10,46,198,cost published; effect values not published
+Long-Range Killer,Essence Core,11,52,250,cost published; effect values not published
+Long-Range Killer,Essence Core,12,58,308,cost published; effect values not published
+Long-Range Killer,Essence Core,13,64,372,cost published; effect values not published
+Long-Range Killer,Essence Core,14,70,442,cost published; effect values not published
+Long-Range Killer,Essence Core,15,76,518,cost published; effect values not published
+Long-Range Killer,Essence Core,16,82,600,cost published; effect values not published
+Long-Range Killer,Essence Core,17,88,688,cost published; effect values not published
+Long-Range Killer,Essence Core,18,94,782,cost published; effect values not published
+Long-Range Killer,Essence Core,19,100,882,cost published; effect values not published
+Long-Range Killer,Essence Core,20,106,988,cost published; effect values not published
+Long-Range Resistance,Essence Core,1,6,6,cost published; effect values not published
+Long-Range Resistance,Essence Core,2,4,10,cost published; effect values not published
+Long-Range Resistance,Essence Core,3,6,16,cost published; effect values not published
+Long-Range Resistance,Essence Core,4,9,25,cost published; effect values not published
+Long-Range Resistance,Essence Core,5,13,38,cost published; effect values not published
+Long-Range Resistance,Essence Core,6,18,56,cost published; effect values not published
+Long-Range Resistance,Essence Core,7,24,80,cost published; effect values not published
+Long-Range Resistance,Essence Core,8,32,112,cost published; effect values not published
+Long-Range Resistance,Essence Core,9,40,152,cost published; effect values not published
+Long-Range Resistance,Essence Core,10,46,198,cost published; effect values not published
+Long-Range Resistance,Essence Core,11,52,250,cost published; effect values not published
+Long-Range Resistance,Essence Core,12,58,308,cost published; effect values not published
+Long-Range Resistance,Essence Core,13,64,372,cost published; effect values not published
+Long-Range Resistance,Essence Core,14,70,442,cost published; effect values not published
+Long-Range Resistance,Essence Core,15,76,518,cost published; effect values not published
+Long-Range Resistance,Essence Core,16,82,600,cost published; effect values not published
+Long-Range Resistance,Essence Core,17,88,688,cost published; effect values not published
+Long-Range Resistance,Essence Core,18,94,782,cost published; effect values not published
+Long-Range Resistance,Essence Core,19,100,882,cost published; effect values not published
+Long-Range Resistance,Essence Core,20,106,988,cost published; effect values not published
+Medic Expert,Essence Stone,1,10,10,cost published; effect values not published
+Medic Expert,Essence Stone,2,6,16,cost published; effect values not published
+Medic Expert,Essence Stone,3,10,26,cost published; effect values not published
+Medic Expert,Essence Stone,4,16,42,cost published; effect values not published
+Medic Expert,Essence Stone,5,24,66,cost published; effect values not published
+Medic Expert,Essence Stone,6,34,100,cost published; effect values not published
+Medic Expert,Essence Stone,7,46,146,cost published; effect values not published
+Medic Expert,Essence Stone,8,58,204,cost published; effect values not published
+Medic Expert,Essence Stone,9,70,274,cost published; effect values not published
+Medic Expert,Essence Stone,10,80,354,cost published; effect values not published
+Medic Expert,Essence Stone,11,90,444,cost published; effect values not published
+Medic Expert,Essence Stone,12,100,544,cost published; effect values not published
+Medic Expert,Essence Stone,13,110,654,cost published; effect values not published
+Medic Expert,Essence Stone,14,120,774,cost published; effect values not published
+Medic Expert,Essence Stone,15,130,904,cost published; effect values not published
+Medic Expert,Essence Stone,16,140,1044,cost published; effect values not published
+Medic Expert,Essence Stone,17,150,1194,cost published; effect values not published
+Medic Expert,Essence Stone,18,160,1354,cost published; effect values not published
+Medic Expert,Essence Stone,19,170,1524,cost published; effect values not published
+Medic Expert,Essence Stone,20,180,1704,cost published; effect values not published
+Melee Blessing,Essence Core,1,6,6,cost published; effect values not published
+Melee Blessing,Essence Core,2,4,10,cost published; effect values not published
+Melee Blessing,Essence Core,3,6,16,cost published; effect values not published
+Melee Blessing,Essence Core,4,9,25,cost published; effect values not published
+Melee Blessing,Essence Core,5,13,38,cost published; effect values not published
+Melee Blessing,Essence Core,6,18,56,cost published; effect values not published
+Melee Blessing,Essence Core,7,24,80,cost published; effect values not published
+Melee Blessing,Essence Core,8,32,112,cost published; effect values not published
+Melee Blessing,Essence Core,9,40,152,cost published; effect values not published
+Melee Blessing,Essence Core,10,46,198,cost published; effect values not published
+Melee Blessing,Essence Core,11,52,250,cost published; effect values not published
+Melee Blessing,Essence Core,12,58,308,cost published; effect values not published
+Melee Blessing,Essence Core,13,64,372,cost published; effect values not published
+Melee Blessing,Essence Core,14,70,442,cost published; effect values not published
+Melee Blessing,Essence Core,15,76,518,cost published; effect values not published
+Melee Blessing,Essence Core,16,82,600,cost published; effect values not published
+Melee Blessing,Essence Core,17,88,688,cost published; effect values not published
+Melee Blessing,Essence Core,18,94,782,cost published; effect values not published
+Melee Blessing,Essence Core,19,100,882,cost published; effect values not published
+Melee Blessing,Essence Core,20,106,988,cost published; effect values not published
+Melee Killer,Essence Core,1,6,6,cost published; effect values not published
+Melee Killer,Essence Core,2,4,10,cost published; effect values not published
+Melee Killer,Essence Core,3,6,16,cost published; effect values not published
+Melee Killer,Essence Core,4,9,25,cost published; effect values not published
+Melee Killer,Essence Core,5,13,38,cost published; effect values not published
+Melee Killer,Essence Core,6,18,56,cost published; effect values not published
+Melee Killer,Essence Core,7,24,80,cost published; effect values not published
+Melee Killer,Essence Core,8,32,112,cost published; effect values not published
+Melee Killer,Essence Core,9,40,152,cost published; effect values not published
+Melee Killer,Essence Core,10,46,198,cost published; effect values not published
+Melee Killer,Essence Core,11,52,250,cost published; effect values not published
+Melee Killer,Essence Core,12,58,308,cost published; effect values not published
+Melee Killer,Essence Core,13,64,372,cost published; effect values not published
+Melee Killer,Essence Core,14,70,442,cost published; effect values not published
+Melee Killer,Essence Core,15,76,518,cost published; effect values not published
+Melee Killer,Essence Core,16,82,600,cost published; effect values not published
+Melee Killer,Essence Core,17,88,688,cost published; effect values not published
+Melee Killer,Essence Core,18,94,782,cost published; effect values not published
+Melee Killer,Essence Core,19,100,882,cost published; effect values not published
+Melee Killer,Essence Core,20,106,988,cost published; effect values not published
+Mid-Range Killer,Essence Core,1,6,6,cost published; effect values not published
+Mid-Range Killer,Essence Core,2,4,10,cost published; effect values not published
+Mid-Range Killer,Essence Core,3,6,16,cost published; effect values not published
+Mid-Range Killer,Essence Core,4,9,25,cost published; effect values not published
+Mid-Range Killer,Essence Core,5,13,38,cost published; effect values not published
+Mid-Range Killer,Essence Core,6,18,56,cost published; effect values not published
+Mid-Range Killer,Essence Core,7,24,80,cost published; effect values not published
+Mid-Range Killer,Essence Core,8,32,112,cost published; effect values not published
+Mid-Range Killer,Essence Core,9,40,152,cost published; effect values not published
+Mid-Range Killer,Essence Core,10,46,198,cost published; effect values not published
+Mid-Range Killer,Essence Core,11,52,250,cost published; effect values not published
+Mid-Range Killer,Essence Core,12,58,308,cost published; effect values not published
+Mid-Range Killer,Essence Core,13,64,372,cost published; effect values not published
+Mid-Range Killer,Essence Core,14,70,442,cost published; effect values not published
+Mid-Range Killer,Essence Core,15,76,518,cost published; effect values not published
+Mid-Range Killer,Essence Core,16,82,600,cost published; effect values not published
+Mid-Range Killer,Essence Core,17,88,688,cost published; effect values not published
+Mid-Range Killer,Essence Core,18,94,782,cost published; effect values not published
+Mid-Range Killer,Essence Core,19,100,882,cost published; effect values not published
+Mid-Range Killer,Essence Core,20,106,988,cost published; effect values not published
+Mid-Range Resistance,Essence Core,1,6,6,cost published; effect values not published
+Mid-Range Resistance,Essence Core,2,4,10,cost published; effect values not published
+Mid-Range Resistance,Essence Core,3,6,16,cost published; effect values not published
+Mid-Range Resistance,Essence Core,4,9,25,cost published; effect values not published
+Mid-Range Resistance,Essence Core,5,13,38,cost published; effect values not published
+Mid-Range Resistance,Essence Core,6,18,56,cost published; effect values not published
+Mid-Range Resistance,Essence Core,7,24,80,cost published; effect values not published
+Mid-Range Resistance,Essence Core,8,32,112,cost published; effect values not published
+Mid-Range Resistance,Essence Core,9,40,152,cost published; effect values not published
+Mid-Range Resistance,Essence Core,10,46,198,cost published; effect values not published
+Mid-Range Resistance,Essence Core,11,52,250,cost published; effect values not published
+Mid-Range Resistance,Essence Core,12,58,308,cost published; effect values not published
+Mid-Range Resistance,Essence Core,13,64,372,cost published; effect values not published
+Mid-Range Resistance,Essence Core,14,70,442,cost published; effect values not published
+Mid-Range Resistance,Essence Core,15,76,518,cost published; effect values not published
+Mid-Range Resistance,Essence Core,16,82,600,cost published; effect values not published
+Mid-Range Resistance,Essence Core,17,88,688,cost published; effect values not published
+Mid-Range Resistance,Essence Core,18,94,782,cost published; effect values not published
+Mid-Range Resistance,Essence Core,19,100,882,cost published; effect values not published
+Mid-Range Resistance,Essence Core,20,106,988,cost published; effect values not published
+Protection Force Field,Essence Core,1,6,6,cost published; effect values not published
+Protection Force Field,Essence Core,2,4,10,cost published; effect values not published
+Protection Force Field,Essence Core,3,6,16,cost published; effect values not published
+Protection Force Field,Essence Core,4,9,25,cost published; effect values not published
+Protection Force Field,Essence Core,5,13,38,cost published; effect values not published
+Protection Force Field,Essence Core,6,18,56,cost published; effect values not published
+Protection Force Field,Essence Core,7,24,80,cost published; effect values not published
+Protection Force Field,Essence Core,8,32,112,cost published; effect values not published
+Protection Force Field,Essence Core,9,40,152,cost published; effect values not published
+Protection Force Field,Essence Core,10,46,198,cost published; effect values not published
+Protection Force Field,Essence Core,11,52,250,cost published; effect values not published
+Protection Force Field,Essence Core,12,58,308,cost published; effect values not published
+Protection Force Field,Essence Core,13,64,372,cost published; effect values not published
+Protection Force Field,Essence Core,14,70,442,cost published; effect values not published
+Protection Force Field,Essence Core,15,76,518,cost published; effect values not published
+Protection Force Field,Essence Core,16,82,600,cost published; effect values not published
+Protection Force Field,Essence Core,17,88,688,cost published; effect values not published
+Protection Force Field,Essence Core,18,94,782,cost published; effect values not published
+Protection Force Field,Essence Core,19,100,882,cost published; effect values not published
+Protection Force Field,Essence Core,20,106,988,cost published; effect values not published
+Titan Killer,Essence Core,1,6,6,cost published; effect values not published
+Titan Killer,Essence Core,2,4,10,cost published; effect values not published
+Titan Killer,Essence Core,3,6,16,cost published; effect values not published
+Titan Killer,Essence Core,4,9,25,cost published; effect values not published
+Titan Killer,Essence Core,5,13,38,cost published; effect values not published
+Titan Killer,Essence Core,6,18,56,cost published; effect values not published
+Titan Killer,Essence Core,7,24,80,cost published; effect values not published
+Titan Killer,Essence Core,8,32,112,cost published; effect values not published
+Titan Killer,Essence Core,9,40,152,cost published; effect values not published
+Titan Killer,Essence Core,10,46,198,cost published; effect values not published
+Titan Killer,Essence Core,11,52,250,cost published; effect values not published
+Titan Killer,Essence Core,12,58,308,cost published; effect values not published
+Titan Killer,Essence Core,13,64,372,cost published; effect values not published
+Titan Killer,Essence Core,14,70,442,cost published; effect values not published
+Titan Killer,Essence Core,15,76,518,cost published; effect values not published
+Titan Killer,Essence Core,16,82,600,cost published; effect values not published
+Titan Killer,Essence Core,17,88,688,cost published; effect values not published
+Titan Killer,Essence Core,18,94,782,cost published; effect values not published
+Titan Killer,Essence Core,19,100,882,cost published; effect values not published
+Titan Killer,Essence Core,20,106,988,cost published; effect values not published
+Titan Resistance,Essence Core,1,6,6,cost published; effect values not published
+Titan Resistance,Essence Core,2,4,10,cost published; effect values not published
+Titan Resistance,Essence Core,3,6,16,cost published; effect values not published
+Titan Resistance,Essence Core,4,9,25,cost published; effect values not published
+Titan Resistance,Essence Core,5,13,38,cost published; effect values not published
+Titan Resistance,Essence Core,6,18,56,cost published; effect values not published
+Titan Resistance,Essence Core,7,24,80,cost published; effect values not published
+Titan Resistance,Essence Core,8,32,112,cost published; effect values not published
+Titan Resistance,Essence Core,9,40,152,cost published; effect values not published
+Titan Resistance,Essence Core,10,46,198,cost published; effect values not published
+Titan Resistance,Essence Core,11,52,250,cost published; effect values not published
+Titan Resistance,Essence Core,12,58,308,cost published; effect values not published
+Titan Resistance,Essence Core,13,64,372,cost published; effect values not published
+Titan Resistance,Essence Core,14,70,442,cost published; effect values not published
+Titan Resistance,Essence Core,15,76,518,cost published; effect values not published
+Titan Resistance,Essence Core,16,82,600,cost published; effect values not published
+Titan Resistance,Essence Core,17,88,688,cost published; effect values not published
+Titan Resistance,Essence Core,18,94,782,cost published; effect values not published
+Titan Resistance,Essence Core,19,100,882,cost published; effect values not published
+Titan Resistance,Essence Core,20,106,988,cost published; effect values not published

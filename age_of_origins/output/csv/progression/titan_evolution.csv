@@ -1,0 +1,41 @@
+Tier,Stage,Mutant DNA (this step),Stored Energy Jars (this step),Mutagen Source Stones (this step),Mutant DNA (cumulative),Stored Energy Jars (cumulative),Mutagen Source Stones (cumulative),Unlocks
+Green,0,10,50,0,10,50,0,Source Spirit: Source Energy Strike; Empress: Bone Spurs
+Green,1,10,50,0,20,100,0,
+Green,2,10,50,0,30,150,0,
+Green,3,10,50,0,40,200,0,Source Spirit: Rampart Halo; Empress: Zombie Queen Halo
+Green,4,10,50,0,50,250,0,
+Green,5,10,50,0,60,300,0,Source Spirit: Destructive Lightning; Empress: Empress Escort
+Green,6,10,50,0,70,350,0,
+Green,7,10,50,0,80,400,0,Source Spirit: Diseased Walker; Empress: Godsend
+Green,8,10,50,0,90,450,0,
+Green,9,10,50,0,100,500,0,
+Blue,0,30,200,0,130,700,0,Source Spirit: Destroy Ray; Empress: Queen's Inspiration
+Blue,1,30,200,0,160,900,0,
+Blue,2,30,200,0,190,1100,0,
+Blue,3,30,200,0,220,1300,0,Source Spirit: Fire Path; Empress: Potent Inspiration
+Blue,4,30,200,0,250,1500,0,
+Blue,5,30,200,0,280,1700,0,Source Spirit: Thor; Empress: Steel Barrier
+Blue,6,30,200,0,310,1900,0,
+Blue,7,30,200,0,340,2100,0,Source Spirit: Superior Core; Empress: Infinite Scales
+Blue,8,30,200,0,370,2300,0,
+Blue,9,30,200,0,400,2500,0,
+Purple,0,55,270,120,455,2770,120,Source Spirit: Source Energy Guard; Empress: Bloodfeast
+Purple,1,55,270,120,510,3040,240,
+Purple,2,55,270,120,565,3310,360,
+Purple,3,55,270,120,620,3580,480,Source Spirit: Rock Steady; Empress: Queen Majesty
+Purple,4,55,270,120,675,3850,600,
+Purple,5,55,270,120,730,4120,720,Source Spirit: Weaken Energy; Empress: Toxic Tail
+Purple,6,55,270,120,785,4390,840,
+Purple,7,55,270,120,840,4660,960,Source Spirit: Protector; Empress: Blood Activation
+Purple,8,55,270,120,895,4930,1080,
+Purple,9,55,270,120,950,5200,1200,
+Orange,0,105,480,280,1055,5680,1480,Source Spirit: Energy Overload; Empress: Symbiotic Tail
+Orange,1,105,480,280,1160,6160,1760,
+Orange,2,105,480,280,1265,6640,2040,
+Orange,3,105,480,280,1370,7120,2320,Source Spirit: Steel Defense Line; Empress: Invincible
+Orange,4,105,480,280,1475,7600,2600,
+Orange,5,105,480,280,1580,8080,2880,
+Orange,6,105,480,280,1685,8560,3160,
+Orange,7,105,480,280,1790,9040,3440,Source Spirit: Deadly Halo; Empress: Devout Halo
+Orange,8,105,480,280,1895,9520,3720,
+Orange,9,105,480,280,2000,10000,4000,

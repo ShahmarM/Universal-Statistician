@@ -15,6 +15,7 @@ import re
 from collections import defaultdict
 from pathlib import Path
 
+import progression
 from openpyxl import Workbook
 from openpyxl.styles import Alignment, Font, PatternFill
 from openpyxl.utils import get_column_letter
@@ -270,164 +271,9 @@ def building_totals(rows):
     return list(out.values())
 
 
-def officer_tables():
-    skills = [{"Skill level (to)": r["level"], "Skill XP needed": r["cost"], "Skill books": r["books"],
-               "Cumulative books": r["cumulativeBooks"], "Books refunded on forget": r["forgetCost"],
-               "Books lost on forget": r["booksLost"], "Loss %": r["percentLoss"]}
-              for r in load("aoztips/officer_skill_levels.json")]
-    st = load("aoztips/officer_stars.json")
-    stars, total = [], 0
-    for star in range(1, 7):
-        per = st["fragments_per_grade"][str(star)]
-        for g in range(1, st["grades_per_star"] + 1):
-            total += per
-            stars.append({"Star": star, "Grade": f"{g}/5", "Fragments for this grade": per, "Cumulative fragments": total})
-    bt = load("aoztips/officer_breakthrough.json")
-    fort = [{"Fortification level": r["level"], "XP needed": r["xp_needed"], "Effect %": r["effect"],
-             "Multiplier": r["multiplier"] or ""} for r in bt["fortification_levels"]]
-    brk = [{"Breakthrough level": r["level"], "Fragments": r["fragments"]} for r in bt["breakthrough_levels"]]
-    merit = [{"Merit rank": r["rank"], "Attack %": r["attack"], "HP %": r["hp"], "Fleet (units)": r["fleet"]}
-             for r in load("aoztips/merit_ranks.json")]
-    return skills, stars, fort, brk, merit
-
-
-def equipment_tables():
-    curves = load("aoztips/equipment_cost_curves.json")
-    eq = curves["equipment"]
-    level_rows = []
-    for cname, c in eq["curves"].items():
-        cum = 0
-        for i, cost in enumerate(c["costPerLevel"], 1):
-            cum += cost
-            level_rows.append({"Cost curve": cname, "Level (to)": i, "Alloy": cost, "Cumulative alloy": cum})
-    curve_of = eq["byItem"]
-    item_rows = []
-    for it in load("aoztips/equipment_items.json")["items"]:
-        for lv in it["levels"]:
-            item_rows.append({
-                "Item": it["name"], "Max level": it["maxLevel"], "Cost curve": curve_of.get(it["name"], ""),
-                "Level": lv["level"], "Rank": lv["rank"], "Power": lv["power"],
-                "Effects (total at level)": "; ".join(
-                    f'{e["effect"]} {e["value"]}{"%" if e["unit"] == "percent" else ""}' for e in lv["effects"]),
-                "Cost at this level": ", ".join(f'{c["item"]} x{c["count"]}' for c in lv["cost"]),
-                "Expertise unlocked": ", ".join(lv["expertiseUnlocks"]),
-            })
-    ex = curves["expertise"]
-    exp_rows = []
-    for name, info in sorted(ex["byExpertise"].items()):
-        cum = 0
-        for i, cost in enumerate(ex["curves"][info["curve"]]["costPerLevel"], 1):
-            cum += cost
-            exp_rows.append({"Expertise": name, "Resource": info["resource"], "Level (to)": i,
-                             "Cost": cost, "Cumulative": cum})
-    summ = load("aoztips/equipment_summary_curves.json")
-    stat_rows = [{"Level": i, "Main stat %": summ["statPctPerLevel"][i],
-                  "Expertise 1 %": summ["expertise1PctPerLevel"][i] if i < len(summ["expertise1PctPerLevel"]) else ""}
-                 for i in range(1, len(summ["statPctPerLevel"]))]
-    return level_rows, item_rows, exp_rows, stat_rows
-
-
-def titan_tables():
-    lv = load("aoztips/titan_levels_evolution.json")
-    levels = [{"Titan level": r["level"], "XP": r["xp"], "Cumulative XP": r["cumulativeXp"]} for r in lv["levels"]]
-    evo = [{"Tier": t["tier"], "Stages": lv["evolutionStagesPerTier"],
-            "Mutant DNA / stage": t["mutantDnaPerStage"], "Stored Energy Jars / stage": t["storedEnergyJarsPerStage"],
-            "Mutagen Source Stones / stage": t["mutageSourceStonesPerStage"],
-            "Mutant DNA / tier": t["mutantDnaPerTier"], "Stored Energy Jars / tier": t["storedEnergyJarsPerTier"],
-            "Mutagen Source Stones / tier": t["mutageSourceStonesPerTier"]} for t in lv["evolutionTiers"]]
-    skills = []
-    for titan, lst in load("aoztips/titan_skills.json").items():
-        for s in lst:
-            for i in range(len(s["fluidPerLevel"])):
-                skills.append({"Titan": titan, "Skill": s["name"], "Level": i + 1,
-                               "Stats": "; ".join(f'{st["stat"]} {st["valuesPerLevel"][i]}' for st in s["stats"]),
-                               "Fluid": s["fluidPerLevel"][i], "Skeleton": s["skeletonPerLevel"][i],
-                               "Unlocks at": f'{s["unlocksAt"]["tier"]} stage {s["unlocksAt"]["stage"]}'})
-    abilities, comps = [], []
-    for titan, lst in load("aoztips/titan_components.json").items():
-        for s in lst:
-            for i, chips in enumerate(s["chipsPerLevel"]):
-                if chips is None:
-                    continue
-                abilities.append({"Titan": titan, "Ability": s["name"], "Level": i + 1,
-                                  "Stats": "; ".join(f'{st["stat"]} {st["valuesPerLevel"][i]}' for st in s["mainStats"]),
-                                  "Components needed": s["componentsPerLevel"][i], "Chips": chips,
-                                  "Unlocks at": f'{s["unlocksAt"]["tier"]} stage {s["unlocksAt"]["stage"]}'})
-            for c in s["components"]:
-                for i, alloy in enumerate(c["alloyPerLevel"]):
-                    comps.append({"Titan": titan, "Ability": s["name"], "Component": c["name"], "Level": i + 1,
-                                  "Stats": "; ".join(f'{st["stat"]} {st["valuesPerLevel"][i]}' for st in c["stats"]),
-                                  "Alloy": alloy})
-    return levels, evo, skills, abilities, comps
-
-
-def warplane_tables():
-    xp = [{"Warplane level": r["level"], "XP": r["xp"], "Cumulative XP": r["cumXp"]}
-          for r in load("aoztips/warplane_xp_levels.json")["levels"]]
-    evo = []
-    for t in load("aoztips/warplane_evolution.json")["tiers"]:
-        evo.append({"Tier": t["name"], "Stages": t["stages"], "Alloy / stage": t["alloyPerStage"],
-                    "Blueprints / stage": t["blueprintPerStage"],
-                    "Alloy / tier": t["stages"] * t["alloyPerStage"], "Blueprints / tier": t["stages"] * t["blueprintPerStage"]})
-    names = {p["id"]: p["name"] for p in load("aoztips/warplane_levels.json")}
-    parts = []
-    for p in load("aoztips/warplane_levels.json"):
-        comp = load("aoztips/warplane_part_components.json").get(p["name"], [])
-        for r in p["levels"]:
-            if r["level"] == 0:
-                continue
-            parts.append({"Part": p["name"], "Level": r["level"], "HP": r["hp"], "Attack": r["attack"],
-                          "Defense": r["defense"],
-                          "Components to reach level": comp[r["level"]] if r["level"] < len(comp) else ""})
-    unlock = {(s["name"]): (p["evolution_needed"], s["unlocksAt"], s["maxBoost"])
-              for p in load("aoztips/warplane_skill_summary.json") for s in p["skills"]}
-    skills = []
-    for p in load("aoztips/warplane_skills.json"):
-        for s in p["skills"]:
-            ev, at, mx = unlock.get(s["name"], ("", "", ""))
-            for i, v in enumerate(s["statValues"]):
-                if i == 0:
-                    continue
-                skills.append({"Part": names.get(p["id"], p["id"]), "Skill": s["name"], "Stat": s["stat"], "Level": i,
-                               "Value": v, "Chips": s["chipsPerLevel"][i], "Cores": s["coresPerLevel"][i],
-                               "Part evolution needed": ev, "Unlocks at part level": at, "Max boost": mx})
-    weapons = []
-    for w in load("aoztips/warplane_weapons.json"):
-        for i, c in enumerate(w["components"]):
-            if i == 0:
-                continue
-            weapons.append({"Weapon": w["name"], "Level": i, "Components": c, "Buff": w["buff"],
-                            "Evolution needed": w["evolution_needed"], "Community priority": w["priority"]})
-    return xp, evo, parts, skills, weapons
-
-
-def antique_tables():
-    seq = load("aoztips/antique_star_costs.json")
-    meta = {a["id"]: a for a in load("aoztips/antiques_list.json")}
-    costs = []
-    for sid, s in seq["sequences"].items():
-        cum = 0
-        for r in s["levels"]:
-            cum += r["fragments"]
-            costs.append({"Sequence": sid, "Max star": s["maxStar"], "Star step": r["level"],
-                          "Fragments": r["fragments"], "Cumulative fragments": cum})
-    effects = []
-    for a in load("aoztips/antique_effects.json")["antiques"]:
-        m = meta.get(a["id"], {})
-        for s in a["stars"]:
-            effects.append({"Antique": a["name"], "Rarity": m.get("type", ""), "Set": m.get("set") or "",
-                            "Max star": a["maxStar"], "Cost sequence": seq["byAntique"].get(a["id"], ""),
-                            "Star": s["star"], "Power": s["power"],
-                            "Effects (cumulative)": "; ".join(
-                                f'{e["effect"]} {e["value"]}{"%" if e["unit"] == "percent" else ""}' for e in s["effects"])})
-    sets = []
-    for s in load("aoztips/antique_set_effects.json")["sets"]:
-        for lv in s["levels"]:
-            sets.append({"Set": s["name"], "Members": ", ".join(s["members"]), "Total stars across set": lv["starTotal"],
-                         "Set effects": "; ".join(
-                             f'{e["effect"] or "(unnamed)"} {e["value"]}{"%" if e["unit"] == "percent" else ""}'
-                             for e in lv["effects"])})
-    return costs, effects, sets
+def merit_ranks():
+    return [{"Merit rank": r["rank"], "Attack %": r["attack"], "HP %": r["hp"], "Fleet (units)": r["fleet"]}
+            for r in load("aoztips/merit_ranks.json")]
 
 
 GAPS = [
@@ -443,9 +289,9 @@ GAPS = [
 ]
 
 
-def write(sheets):
+def write(sheets, filename, csv_dir):
     OUT.mkdir(exist_ok=True)
-    (OUT / "csv").mkdir(exist_ok=True)
+    (OUT / csv_dir).mkdir(parents=True, exist_ok=True)
     wb = Workbook()
     wb.remove(wb.active)
     head = Font(bold=True, color="FFFFFF")
@@ -454,7 +300,7 @@ def write(sheets):
         if not rows:
             continue
         cols = list(rows[0].keys())
-        with open(OUT / "csv" / f"{re.sub(r'[^a-z0-9]+', '_', title.lower()).strip('_')}.csv", "w", newline="", encoding="utf-8") as fh:
+        with open(OUT / csv_dir / f"{re.sub(r'[^a-z0-9]+', '_', title.lower()).strip('_')}.csv", "w", newline="", encoding="utf-8") as fh:
             w = csv.DictWriter(fh, fieldnames=cols)
             w.writeheader()
             w.writerows(rows)
@@ -473,32 +319,25 @@ def write(sheets):
                     cell.number_format = "#,##0"
         ws.freeze_panes = "A2"
         ws.auto_filter.ref = ws.dimensions
-    wb.save(OUT / "age_of_origins_upgrades.xlsx")
+    wb.save(OUT / filename)
 
 
 def main():
     b_rows, conflicts = build_buildings()
     conf_rows = [{"Building": c[0], "Level": c[1], "Resource": c[2], "aoztips value": c[3], "appmedia value": c[4],
                   "Value kept": c[5], "Kept from": c[6]} for c in conflicts]
-    skills, stars, fort, brk, merit = officer_tables()
-    eq_levels, eq_items, eq_exp, eq_stats = equipment_tables()
-    t_lv, t_evo, t_sk, t_ab, t_comp = titan_tables()
-    w_xp, w_evo, w_parts, w_sk, w_wp = warplane_tables()
-    a_cost, a_eff, a_sets = antique_tables()
     gaps = [{"Upgrade system": g, "Status / reason": r} for g, r in GAPS]
-    sheets = [
-        ("Buildings", b_rows), ("Building totals", building_totals(b_rows)), ("Building conflicts", conf_rows),
-        ("Officer skill levels", skills), ("Officer stars", stars), ("Officer fortification", fort),
-        ("Officer breakthrough", brk), ("Officer equipment levels", eq_levels), ("Officer equipment items", eq_items),
-        ("Equipment expertise", eq_exp), ("Equipment stat curve", eq_stats), ("Titan levels", t_lv),
-        ("Titan evolution", t_evo), ("Titan skills", t_sk), ("Titan abilities", t_ab), ("Titan ability components", t_comp),
-        ("Warplane levels", w_xp), ("Warplane evolution", w_evo), ("Warplane parts", w_parts),
-        ("Warplane skills", w_sk), ("Warplane weapons", w_wp), ("Antique star costs", a_cost),
-        ("Antique effects", a_eff), ("Antique sets", a_sets), ("Merit ranks", merit), ("Gaps - not covered", gaps),
+    books = [
+        ("age_of_origins_buildings.xlsx", "csv/buildings", [
+            ("Buildings", b_rows), ("Building totals", building_totals(b_rows)), ("Building conflicts", conf_rows),
+            ("Merit ranks", merit_ranks()), ("Gaps - not covered", gaps)]),
+        ("age_of_origins_officers_titans_warplanes_antiques.xlsx", "csv/progression", progression.build()),
     ]
-    write(sheets)
-    for t, r in sheets:
-        print(f"{t:30} {len(r):6} rows")
+    for filename, csv_dir, sheets in books:
+        write(sheets, filename, csv_dir)
+        print(filename)
+        for t, r in sheets:
+            print(f"  {t:32} {len(r):6} rows")
 
 
 if __name__ == "__main__":
