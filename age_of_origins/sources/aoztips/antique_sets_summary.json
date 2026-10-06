@@ -1,0 +1,68 @@
+[
+ {
+  "name": "Biochemical Charge",
+  "members": [
+   "Heavy Sword",
+   "Gold: Biochemical Troop",
+   "Scarab Amulet",
+   "Warning Bell"
+  ],
+  "bonus": "Comprehensively increases the Biochemical Troops Attack/HP/Defense by 4%. The effect increases by 20% Cross-Nation.",
+  "activatesAt": 4
+ },
+ {
+  "name": "Giant Weapons",
+  "members": [
+   "Empress Exoskeleton",
+   "Titan Energy Cannon",
+   "Warp Drive",
+   "Magnetic Pulse Core"
+  ],
+  "bonus": "Get the Giant Weapons special effect. In the first 20 seconds of a battle, increase the Attack of Source Spirit, Empress and Warplane by 2%.",
+  "activatesAt": 4
+ },
+ {
+  "name": "Strong Will",
+  "members": [
+   "Gold: Sniper",
+   "Gold: Infantry",
+   "Gold: Rocket",
+   "Gold: Gunner"
+  ],
+  "bonus": "Reduces the Damage taken by your Melee Troops by 0.8% and reduces the Attack of the enemy LR/MR Troops by 2.6%.",
+  "activatesAt": 4
+ },
+ {
+  "name": "Rocket Turret",
+  "members": [
+   "Gold: Shredder",
+   "Gold: Tank",
+   "Gold: Cannon",
+   "Gold: Raider"
+  ],
+  "bonus": "Summon the Rocket Turret in battles with Commanders. The turret launches attacks at the enemy Troop with the largest number every 2 seconds. Damage is equal to the number of your surviving Troops x3.",
+  "activatesAt": 4
+ },
+ {
+  "name": "Nano Swarm",
+  "members": [
+   "Gold: Shielder",
+   "Gold: Armored Soldier",
+   "Gold: EMP Cannon",
+   "Gold: Storm Trooper"
+  ],
+  "bonus": "Nano Swarm increases all your Troops HP/Defense by 1.5%. In battles with Commanders, randomly deals Damage equal to the number of surviving Troops x3 to 3 enemy Troops every 10 sec. Prioritises units with shields and increases the Damage dealt to shielded units by 20%.",
+  "activatesAt": 4
+ },
+ {
+  "name": "Brilliant Things",
+  "members": [
+   "Basalt Tablet",
+   "Ocean Teardrop",
+   "Hope Emblem",
+   "Diamond Phone"
+  ],
+  "bonus": "Increase all of your Troops Attack/HP/Defense by 1.2%.",
+  "activatesAt": 4
+ }
+]

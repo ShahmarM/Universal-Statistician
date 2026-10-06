@@ -1,0 +1,270 @@
+{
+ "levels": [
+  {
+   "level": 1,
+   "xp": 0,
+   "cumulativeXp": 0
+  },
+  {
+   "level": 2,
+   "xp": 500,
+   "cumulativeXp": 500
+  },
+  {
+   "level": 3,
+   "xp": 1200,
+   "cumulativeXp": 1700
+  },
+  {
+   "level": 4,
+   "xp": 2200,
+   "cumulativeXp": 3900
+  },
+  {
+   "level": 5,
+   "xp": 3700,
+   "cumulativeXp": 7600
+  },
+  {
+   "level": 6,
+   "xp": 5800,
+   "cumulativeXp": 13400
+  },
+  {
+   "level": 7,
+   "xp": 8700,
+   "cumulativeXp": 22100
+  },
+  {
+   "level": 8,
+   "xp": 12600,
+   "cumulativeXp": 34700
+  },
+  {
+   "level": 9,
+   "xp": 17800,
+   "cumulativeXp": 52500
+  },
+  {
+   "level": 10,
+   "xp": 24400,
+   "cumulativeXp": 76900
+  },
+  {
+   "level": 11,
+   "xp": 33000,
+   "cumulativeXp": 109900
+  },
+  {
+   "level": 12,
+   "xp": 43800,
+   "cumulativeXp": 153700
+  },
+  {
+   "level": 13,
+   "xp": 57400,
+   "cumulativeXp": 211100
+  },
+  {
+   "level": 14,
+   "xp": 74300,
+   "cumulativeXp": 285400
+  },
+  {
+   "level": 15,
+   "xp": 95100,
+   "cumulativeXp": 380500
+  },
+  {
+   "level": 16,
+   "xp": 115900,
+   "cumulativeXp": 496400
+  },
+  {
+   "level": 17,
+   "xp": 139700,
+   "cumulativeXp": 636100
+  },
+  {
+   "level": 18,
+   "xp": 166800,
+   "cumulativeXp": 802900
+  },
+  {
+   "level": 19,
+   "xp": 197300,
+   "cumulativeXp": 1000200
+  },
+  {
+   "level": 20,
+   "xp": 231400,
+   "cumulativeXp": 1231600
+  },
+  {
+   "level": 21,
+   "xp": 269100,
+   "cumulativeXp": 1500700
+  },
+  {
+   "level": 22,
+   "xp": 310400,
+   "cumulativeXp": 1811100
+  },
+  {
+   "level": 23,
+   "xp": 355000,
+   "cumulativeXp": 2166100
+  },
+  {
+   "level": 24,
+   "xp": 402900,
+   "cumulativeXp": 2569000
+  },
+  {
+   "level": 25,
+   "xp": 453300,
+   "cumulativeXp": 3022300
+  },
+  {
+   "level": 26,
+   "xp": 523800,
+   "cumulativeXp": 3546100
+  },
+  {
+   "level": 27,
+   "xp": 602100,
+   "cumulativeXp": 4148200
+  },
+  {
+   "level": 28,
+   "xp": 688800,
+   "cumulativeXp": 4837000
+  },
+  {
+   "level": 29,
+   "xp": 784200,
+   "cumulativeXp": 5621200
+  },
+  {
+   "level": 30,
+   "xp": 888500,
+   "cumulativeXp": 6509700
+  },
+  {
+   "level": 31,
+   "xp": 1002100,
+   "cumulativeXp": 7511800
+  },
+  {
+   "level": 32,
+   "xp": 1124900,
+   "cumulativeXp": 8636700
+  },
+  {
+   "level": 33,
+   "xp": 1256800,
+   "cumulativeXp": 9893500
+  },
+  {
+   "level": 34,
+   "xp": 1397600,
+   "cumulativeXp": 11291100
+  },
+  {
+   "level": 35,
+   "xp": 1546800,
+   "cumulativeXp": 12837900
+  },
+  {
+   "level": 36,
+   "xp": 1703500,
+   "cumulativeXp": 14541400
+  },
+  {
+   "level": 37,
+   "xp": 1866500,
+   "cumulativeXp": 16407900
+  },
+  {
+   "level": 38,
+   "xp": 2034400,
+   "cumulativeXp": 18442300
+  },
+  {
+   "level": 39,
+   "xp": 2205000,
+   "cumulativeXp": 20647300
+  },
+  {
+   "level": 40,
+   "xp": 2375800,
+   "cumulativeXp": 23023100
+  },
+  {
+   "level": 41,
+   "xp": 2755900,
+   "cumulativeXp": 25779000
+  },
+  {
+   "level": 42,
+   "xp": 3114200,
+   "cumulativeXp": 28893200
+  },
+  {
+   "level": 43,
+   "xp": 3425600,
+   "cumulativeXp": 32318800
+  },
+  {
+   "level": 44,
+   "xp": 3665400,
+   "cumulativeXp": 35984200
+  },
+  {
+   "level": 45,
+   "xp": 3812000,
+   "cumulativeXp": 39796200
+  }
+ ],
+ "evolutionTiers": [
+  {
+   "tier": "Green",
+   "mutantDnaPerStage": 10,
+   "storedEnergyJarsPerStage": 50,
+   "mutageSourceStonesPerStage": 0,
+   "mutantDnaPerTier": 100,
+   "storedEnergyJarsPerTier": 500,
+   "mutageSourceStonesPerTier": 0
+  },
+  {
+   "tier": "Blue",
+   "mutantDnaPerStage": 30,
+   "storedEnergyJarsPerStage": 200,
+   "mutageSourceStonesPerStage": 0,
+   "mutantDnaPerTier": 300,
+   "storedEnergyJarsPerTier": 2000,
+   "mutageSourceStonesPerTier": 0
+  },
+  {
+   "tier": "Purple",
+   "mutantDnaPerStage": 55,
+   "storedEnergyJarsPerStage": 270,
+   "mutageSourceStonesPerStage": 120,
+   "mutantDnaPerTier": 550,
+   "storedEnergyJarsPerTier": 2700,
+   "mutageSourceStonesPerTier": 1200
+  },
+  {
+   "tier": "Orange",
+   "mutantDnaPerStage": 105,
+   "storedEnergyJarsPerStage": 480,
+   "mutageSourceStonesPerStage": 280,
+   "mutantDnaPerTier": 1050,
+   "storedEnergyJarsPerTier": 4800,
+   "mutageSourceStonesPerTier": 2800
+  }
+ ],
+ "evolutionStagesPerTier": 10,
+ "maxLevel": 45,
+ "minLevel": 1
+}

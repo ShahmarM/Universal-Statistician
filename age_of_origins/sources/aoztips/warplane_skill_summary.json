@@ -1,0 +1,152 @@
+[
+ {
+  "id": "wingplane_i",
+  "name": "Wingplane I",
+  "evolution_needed": "Lacerator Tier 5",
+  "skills": [
+   {
+    "name": "Stable Energizer",
+    "stat": "All Troops HP and Defense",
+    "unlocksAt": 10,
+    "maxBoost": "66%"
+   },
+   {
+    "name": "Kinetic Machine Gun",
+    "stat": "Wingplane I DMG",
+    "unlocksAt": 15,
+    "maxBoost": "88%"
+   },
+   {
+    "name": "Storm Energizer",
+    "stat": "All Troops Attack",
+    "unlocksAt": 20,
+    "maxBoost": "66%"
+   }
+  ]
+ },
+ {
+  "id": "machine_head",
+  "name": "Machine Head",
+  "evolution_needed": "Trailblazer Tier 2",
+  "skills": [
+   {
+    "name": "Armor Piercing Laser II",
+    "stat": "Increase DMG to Melee",
+    "unlocksAt": 10,
+    "maxBoost": "25%"
+   },
+   {
+    "name": "Mechanical Golem Fortification",
+    "stat": "Golems +4040, 35% chance reflect 4% DMG",
+    "unlocksAt": 15,
+    "maxBoost": "40,000 Golems"
+   },
+   {
+    "name": "Melee Energizer",
+    "stat": "Melee Attack/HP/Defense",
+    "unlocksAt": 20,
+    "maxBoost": "63.8%"
+   }
+  ]
+ },
+ {
+  "id": "wingplane_ii",
+  "name": "Wingplane II",
+  "evolution_needed": "Trailblazer Tier 8",
+  "skills": [
+   {
+    "name": "Mid-Range Strategic Strike",
+    "stat": "Increase DMG to Mid-Range",
+    "unlocksAt": 10,
+    "maxBoost": "25%"
+   },
+   {
+    "name": "Thermal Energy Machine Gun",
+    "stat": "Wingplane II DMG",
+    "unlocksAt": 15,
+    "maxBoost": "240%"
+   },
+   {
+    "name": "Titan Resistance",
+    "stat": "Reduce DMG taken from Titans",
+    "unlocksAt": 20,
+    "maxBoost": "16%"
+   }
+  ]
+ },
+ {
+  "id": "body",
+  "name": "Body",
+  "evolution_needed": "Inquisitor Tier 5",
+  "skills": [
+   {
+    "name": "Storm Energizer II",
+    "stat": "All Troops Attack",
+    "unlocksAt": 10,
+    "maxBoost": "66%"
+   },
+   {
+    "name": "Storm Bomb",
+    "stat": "Storm Bomb DMG",
+    "unlocksAt": 15,
+    "maxBoost": "560%"
+   },
+   {
+    "name": "Long-Range Strategic Strike",
+    "stat": "Increase DMG to Long-Range",
+    "unlocksAt": 20,
+    "maxBoost": "25%"
+   }
+  ]
+ },
+ {
+  "id": "wing",
+  "name": "Wing",
+  "evolution_needed": "Epic Tier 5",
+  "skills": [
+   {
+    "name": "Misfire Resistance",
+    "stat": "Misfire Resistance",
+    "unlocksAt": 10,
+    "maxBoost": "180"
+   },
+   {
+    "name": "Storm Disruptor",
+    "stat": "Disruptor through Storm Bomb",
+    "unlocksAt": 15,
+    "maxBoost": "35%"
+   },
+   {
+    "name": "Warplane Resistance",
+    "stat": "Reduce DMG taken from Warplanes",
+    "unlocksAt": 20,
+    "maxBoost": "25%"
+   }
+  ]
+ },
+ {
+  "id": "machine_gun",
+  "name": "Machine Gun",
+  "evolution_needed": "Immortal Tier 5",
+  "skills": [
+   {
+    "name": "Disruptor Resistance",
+    "stat": "Disruptor Resistance",
+    "unlocksAt": 10,
+    "maxBoost": "180"
+   },
+   {
+    "name": "Restructuring Ray",
+    "stat": "Revive Titans with HP",
+    "unlocksAt": 15,
+    "maxBoost": "60%"
+   },
+   {
+    "name": "Melee Damage Reduction",
+    "stat": "Reduce DMG taken by your Melee",
+    "unlocksAt": 20,
+    "maxBoost": "25%"
+   }
+  ]
+ }
+]

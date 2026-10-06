@@ -1,0 +1,52 @@
+{
+ "tiers": [
+  {
+   "name": "Enforcer",
+   "stages": 10,
+   "alloyPerStage": 20,
+   "blueprintPerStage": 0
+  },
+  {
+   "name": "Explorer",
+   "stages": 10,
+   "alloyPerStage": 50,
+   "blueprintPerStage": 0
+  },
+  {
+   "name": "Guardian",
+   "stages": 10,
+   "alloyPerStage": 110,
+   "blueprintPerStage": 0
+  },
+  {
+   "name": "Lacerator",
+   "stages": 10,
+   "alloyPerStage": 220,
+   "blueprintPerStage": 0
+  },
+  {
+   "name": "Trailblazer",
+   "stages": 10,
+   "alloyPerStage": 360,
+   "blueprintPerStage": 70
+  },
+  {
+   "name": "Inquisitor",
+   "stages": 10,
+   "alloyPerStage": 540,
+   "blueprintPerStage": 160
+  },
+  {
+   "name": "Epic",
+   "stages": 10,
+   "alloyPerStage": 700,
+   "blueprintPerStage": 300
+  },
+  {
+   "name": "Immortal",
+   "stages": 10,
+   "alloyPerStage": 820,
+   "blueprintPerStage": 450
+  }
+ ]
+}

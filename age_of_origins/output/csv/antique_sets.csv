@@ -1,0 +1,49 @@
+Set,Members,Total stars across set,Set effects
+Biochemical Charge,"Gold: Biochemical Troop, Heavy Sword, Scarab Amulet, Warning Bell",4,Biochemical Zombies Attack Boost 4%; Biochemical Zombies HP Boost 4%; Biochemical Zombies Defense Boost 4%; Cross-Nation Battle Biochemical Zombies Attack 0.8%; Cross-Nation Battle Biochemical Zombies Defense 0.8%; Cross-Nation Battle Biochemical Zombies HP 0.8%
+Biochemical Charge,"Gold: Biochemical Troop, Heavy Sword, Scarab Amulet, Warning Bell",6,Biochemical Zombies Attack Boost 8%; Biochemical Zombies HP Boost 8%; Biochemical Zombies Defense Boost 8%; Cross-Nation Battle Biochemical Zombies Attack 1.6%; Cross-Nation Battle Biochemical Zombies Defense 1.6%; Cross-Nation Battle Biochemical Zombies HP 1.6%
+Biochemical Charge,"Gold: Biochemical Troop, Heavy Sword, Scarab Amulet, Warning Bell",8,Biochemical Zombies Attack Boost 12%; Biochemical Zombies HP Boost 12%; Biochemical Zombies Defense Boost 12%; Cross-Nation Battle Biochemical Zombies Attack 2.4%; Cross-Nation Battle Biochemical Zombies Defense 2.4%; Cross-Nation Battle Biochemical Zombies HP 2.4%
+Biochemical Charge,"Gold: Biochemical Troop, Heavy Sword, Scarab Amulet, Warning Bell",10,Biochemical Zombies Attack Boost 16%; Biochemical Zombies HP Boost 16%; Biochemical Zombies Defense Boost 16%; Cross-Nation Battle Biochemical Zombies Attack 3.2%; Cross-Nation Battle Biochemical Zombies Defense 3.2%; Cross-Nation Battle Biochemical Zombies HP 3.2%
+Biochemical Charge,"Gold: Biochemical Troop, Heavy Sword, Scarab Amulet, Warning Bell",12,Biochemical Zombies Attack Boost 20%; Biochemical Zombies HP Boost 20%; Biochemical Zombies Defense Boost 20%; Cross-Nation Battle Biochemical Zombies Attack 4%; Cross-Nation Battle Biochemical Zombies Defense 4%; Cross-Nation Battle Biochemical Zombies HP 4%
+Biochemical Charge,"Gold: Biochemical Troop, Heavy Sword, Scarab Amulet, Warning Bell",13,Biochemical Zombies Attack Boost 24%; Biochemical Zombies HP Boost 24%; Biochemical Zombies Defense Boost 24%; Cross-Nation Battle Biochemical Zombies Attack 4.8%; Cross-Nation Battle Biochemical Zombies Defense 4.8%; Cross-Nation Battle Biochemical Zombies HP 4.8%
+Biochemical Charge,"Gold: Biochemical Troop, Heavy Sword, Scarab Amulet, Warning Bell",14,Biochemical Zombies Attack Boost 28%; Biochemical Zombies HP Boost 28%; Biochemical Zombies Defense Boost 28%; Cross-Nation Battle Biochemical Zombies Attack 5.6%; Cross-Nation Battle Biochemical Zombies Defense 5.6%; Cross-Nation Battle Biochemical Zombies HP 5.6%
+Biochemical Charge,"Gold: Biochemical Troop, Heavy Sword, Scarab Amulet, Warning Bell",15,Biochemical Zombies Attack Boost 32%; Biochemical Zombies HP Boost 32%; Biochemical Zombies Defense Boost 32%; Cross-Nation Battle Biochemical Zombies Attack 6.4%; Cross-Nation Battle Biochemical Zombies Defense 6.4%; Cross-Nation Battle Biochemical Zombies HP 6.4%
+Giant Weapons,"Titan Energy Cannon, Empress Exoskeleton, Warp Drive, Magnetic Pulse Core",4,(unnamed) 2%
+Giant Weapons,"Titan Energy Cannon, Empress Exoskeleton, Warp Drive, Magnetic Pulse Core",6,(unnamed) 4%
+Giant Weapons,"Titan Energy Cannon, Empress Exoskeleton, Warp Drive, Magnetic Pulse Core",8,(unnamed) 6%
+Giant Weapons,"Titan Energy Cannon, Empress Exoskeleton, Warp Drive, Magnetic Pulse Core",10,(unnamed) 8%
+Giant Weapons,"Titan Energy Cannon, Empress Exoskeleton, Warp Drive, Magnetic Pulse Core",12,(unnamed) 10%
+Giant Weapons,"Titan Energy Cannon, Empress Exoskeleton, Warp Drive, Magnetic Pulse Core",13,(unnamed) 12%
+Giant Weapons,"Titan Energy Cannon, Empress Exoskeleton, Warp Drive, Magnetic Pulse Core",14,(unnamed) 14%
+Giant Weapons,"Titan Energy Cannon, Empress Exoskeleton, Warp Drive, Magnetic Pulse Core",15,(unnamed) 16%
+Strong Will,"Gold: Infantry, Gold: Rocket, Gold: Sniper, Gold: Gunner",4,"Melee Troops Damage Taken Reduction from Melee, Mid-Range, and Long-Range Troops 0.8%; Enemy Mid-Range Attack Reduction 2.6%; Enemy Long-Range Attack Reduction 2.6%"
+Strong Will,"Gold: Infantry, Gold: Rocket, Gold: Sniper, Gold: Gunner",6,"Melee Troops Damage Taken Reduction from Melee, Mid-Range, and Long-Range Troops 1.6%; Enemy Mid-Range Attack Reduction 5.2%; Enemy Long-Range Attack Reduction 5.2%"
+Strong Will,"Gold: Infantry, Gold: Rocket, Gold: Sniper, Gold: Gunner",8,"Melee Troops Damage Taken Reduction from Melee, Mid-Range, and Long-Range Troops 2.4%; Enemy Mid-Range Attack Reduction 7.8%; Enemy Long-Range Attack Reduction 7.8%"
+Strong Will,"Gold: Infantry, Gold: Rocket, Gold: Sniper, Gold: Gunner",10,"Melee Troops Damage Taken Reduction from Melee, Mid-Range, and Long-Range Troops 3.2%; Enemy Mid-Range Attack Reduction 10.4%; Enemy Long-Range Attack Reduction 10.4%"
+Strong Will,"Gold: Infantry, Gold: Rocket, Gold: Sniper, Gold: Gunner",12,"Melee Troops Damage Taken Reduction from Melee, Mid-Range, and Long-Range Troops 4%; Enemy Mid-Range Attack Reduction 13%; Enemy Long-Range Attack Reduction 13%"
+Strong Will,"Gold: Infantry, Gold: Rocket, Gold: Sniper, Gold: Gunner",13,"Melee Troops Damage Taken Reduction from Melee, Mid-Range, and Long-Range Troops 4.8%; Enemy Mid-Range Attack Reduction 15.6%; Enemy Long-Range Attack Reduction 15.6%"
+Strong Will,"Gold: Infantry, Gold: Rocket, Gold: Sniper, Gold: Gunner",14,"Melee Troops Damage Taken Reduction from Melee, Mid-Range, and Long-Range Troops 5.6%; Enemy Mid-Range Attack Reduction 18.2%; Enemy Long-Range Attack Reduction 18.2%"
+Strong Will,"Gold: Infantry, Gold: Rocket, Gold: Sniper, Gold: Gunner",15,"Melee Troops Damage Taken Reduction from Melee, Mid-Range, and Long-Range Troops 6.4%; Enemy Mid-Range Attack Reduction 20.8%; Enemy Long-Range Attack Reduction 20.8%"
+Rocket Turret,"Gold: Tank, Gold: Shredder, Gold: Cannon, Gold: Raider",4,Rocket Turret 3
+Rocket Turret,"Gold: Tank, Gold: Shredder, Gold: Cannon, Gold: Raider",6,Rocket Turret 6
+Rocket Turret,"Gold: Tank, Gold: Shredder, Gold: Cannon, Gold: Raider",8,Rocket Turret 9
+Rocket Turret,"Gold: Tank, Gold: Shredder, Gold: Cannon, Gold: Raider",10,Rocket Turret 12
+Rocket Turret,"Gold: Tank, Gold: Shredder, Gold: Cannon, Gold: Raider",12,Rocket Turret 15
+Rocket Turret,"Gold: Tank, Gold: Shredder, Gold: Cannon, Gold: Raider",13,Rocket Turret 18
+Rocket Turret,"Gold: Tank, Gold: Shredder, Gold: Cannon, Gold: Raider",14,Rocket Turret 21
+Rocket Turret,"Gold: Tank, Gold: Shredder, Gold: Cannon, Gold: Raider",15,Rocket Turret 24
+Nano Swarm,"Gold: Armored Soldier, Gold: EMP Cannon, Gold: Storm Trooper, Gold: Shielder",4,Nano Swarm 3; HP Boost 1.5%; Defense Boost 1.5%
+Nano Swarm,"Gold: Armored Soldier, Gold: EMP Cannon, Gold: Storm Trooper, Gold: Shielder",6,Nano Swarm 6; HP Boost 3%; Defense Boost 3%
+Nano Swarm,"Gold: Armored Soldier, Gold: EMP Cannon, Gold: Storm Trooper, Gold: Shielder",8,Nano Swarm 9; HP Boost 4.5%; Defense Boost 4.5%
+Nano Swarm,"Gold: Armored Soldier, Gold: EMP Cannon, Gold: Storm Trooper, Gold: Shielder",10,Nano Swarm 12; HP Boost 6%; Defense Boost 6%
+Nano Swarm,"Gold: Armored Soldier, Gold: EMP Cannon, Gold: Storm Trooper, Gold: Shielder",12,Nano Swarm 15; HP Boost 7.5%; Defense Boost 7.5%
+Nano Swarm,"Gold: Armored Soldier, Gold: EMP Cannon, Gold: Storm Trooper, Gold: Shielder",13,Nano Swarm 18; HP Boost 9%; Defense Boost 9%
+Nano Swarm,"Gold: Armored Soldier, Gold: EMP Cannon, Gold: Storm Trooper, Gold: Shielder",14,Nano Swarm 21; HP Boost 10.5%; Defense Boost 10.5%
+Nano Swarm,"Gold: Armored Soldier, Gold: EMP Cannon, Gold: Storm Trooper, Gold: Shielder",15,Nano Swarm 24; HP Boost 12%; Defense Boost 12%
+Brilliant Things,"Ocean Teardrop, Hope Emblem, Basalt Tablet, Diamond Phone",4,Attack Boost 1.2%; HP Boost 1.2%; Defense Boost 1.2%
+Brilliant Things,"Ocean Teardrop, Hope Emblem, Basalt Tablet, Diamond Phone",6,Attack Boost 2.4%; HP Boost 2.4%; Defense Boost 2.4%
+Brilliant Things,"Ocean Teardrop, Hope Emblem, Basalt Tablet, Diamond Phone",8,Attack Boost 3.6%; HP Boost 3.6%; Defense Boost 3.6%
+Brilliant Things,"Ocean Teardrop, Hope Emblem, Basalt Tablet, Diamond Phone",10,Attack Boost 4.8%; HP Boost 4.8%; Defense Boost 4.8%
+Brilliant Things,"Ocean Teardrop, Hope Emblem, Basalt Tablet, Diamond Phone",12,Attack Boost 6%; HP Boost 6%; Defense Boost 6%
+Brilliant Things,"Ocean Teardrop, Hope Emblem, Basalt Tablet, Diamond Phone",13,Attack Boost 7.2%; HP Boost 7.2%; Defense Boost 7.2%
+Brilliant Things,"Ocean Teardrop, Hope Emblem, Basalt Tablet, Diamond Phone",14,Attack Boost 8.4%; HP Boost 8.4%; Defense Boost 8.4%
+Brilliant Things,"Ocean Teardrop, Hope Emblem, Basalt Tablet, Diamond Phone",15,Attack Boost 9.6%; HP Boost 9.6%; Defense Boost 9.6%

@@ -1,0 +1,39 @@
+Building,Level,Resource,aoztips value,appmedia value,Value kept,Kept from
+Camp,27,minerals,1134460,1136460,1136460,appmedia
+Camp,30,food,20806877,20806910,20806910,appmedia
+Camp,30,oil,12484121,12484140,12484140,appmedia
+Camp,30,steel,4660734,4660740,4660740,appmedia
+Camp,30,minerals,2663271,2663280,2663280,appmedia
+City Wall,38,steel,49506720,49586720,49586720,appmedia
+Embassy,36,oil,30862470,55325220,30862470,aoztips
+Embassy,36,steel,6172420,11065000,6172420,aoztips
+Embassy,36,minerals,4114930,7376660,4114930,aoztips
+Embassy,37,oil,33577420,60771160,33577420,aoztips
+Embassy,37,steel,6715400,12154180,6715400,aoztips
+Embassy,37,minerals,4476910,8102780,4476910,aoztips
+Embassy,38,oil,36291010,66214820,36291010,aoztips
+Embassy,38,steel,7258110,13242900,7258110,aoztips
+Embassy,38,minerals,4838710,8828590,4838710,aoztips
+Factory,27,minerals,1134460,1136460,1136460,appmedia
+Factory,30,food,20806877,20806910,20806910,appmedia
+Factory,30,oil,12484121,12484140,12484140,appmedia
+Factory,30,steel,4660734,4660740,4660740,appmedia
+Factory,30,minerals,2663271,2663280,2663280,appmedia
+Garage,25,steel,4638290,927650,927650,appmedia
+Garage,25,minerals,927650,397560,397560,appmedia
+Hospital,27,minerals,735370,787900,787900,appmedia
+Hospital,36,steel,11758100,11838100,11838100,appmedia
+Main Hall,6,food,38070,42750,42750,appmedia
+Main Hall,6,oil,38070,42750,42750,appmedia
+Main Hall,31,steel,28273520,38273410,38273410,appmedia
+Recon Center,14,food,223620,233620,223620,aoztips
+Recon Center,14,oil,223620,233620,223620,aoztips
+Recon Center,20,food,766434,766430,766430,appmedia
+Recon Center,20,oil,766434,766430,766430,appmedia
+Recon Center,22,steel,208870,206870,206870,appmedia
+Recon Center,28,food,3667850,3677850,3677850,appmedia
+Recon Center,28,oil,3667850,3677850,3677850,appmedia
+Workshop,21,steel,754950,654950,754950,aoztips
+Workshop,21,minerals,0,254700,254700,appmedia
+Workshop,25,oil,5508080,5508070,5508070,appmedia
+Workshop,25,minerals,907200,907210,907210,appmedia

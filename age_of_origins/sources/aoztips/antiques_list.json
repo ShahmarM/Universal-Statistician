@@ -1,0 +1,431 @@
+[
+ {
+  "id": "bone_axe",
+  "name": "Bone Axe",
+  "type": "Legendary",
+  "locked": true,
+  "set": null,
+  "image": "/images/antiques/bone-axe.png"
+ },
+ {
+  "id": "scarlet_mantis_knife",
+  "name": "Scarlet Mantis Knife",
+  "type": "Legendary",
+  "locked": true,
+  "set": null,
+  "image": "/images/antiques/scarlet-mantis-knife.png"
+ },
+ {
+  "id": "imperial_seal",
+  "name": "Imperial Seal",
+  "type": "Epic",
+  "locked": true,
+  "set": null,
+  "image": "/images/antiques/imperial-seal.png"
+ },
+ {
+  "id": "mystery_grail",
+  "name": "Mystery Grail",
+  "type": "Epic",
+  "locked": true,
+  "set": null,
+  "image": "/images/antiques/mystery-grail.png"
+ },
+ {
+  "id": "venus_statue",
+  "name": "Venus Statue",
+  "type": "Epic",
+  "locked": false,
+  "set": null,
+  "image": "/images/antiques/venus-statue.png"
+ },
+ {
+  "id": "warning_bell",
+  "name": "Warning Bell",
+  "type": "Epic",
+  "locked": true,
+  "set": "Biochemical Charge",
+  "image": "/images/antiques/warning-bell.png"
+ },
+ {
+  "id": "bronze_vase",
+  "name": "Bronze Vase",
+  "type": "Epic",
+  "locked": false,
+  "set": null,
+  "image": "/images/antiques/bronze-vase.png"
+ },
+ {
+  "id": "crown",
+  "name": "Crown",
+  "type": "Epic",
+  "locked": true,
+  "set": null,
+  "image": "/images/antiques/crown.png"
+ },
+ {
+  "id": "basalt_tablet",
+  "name": "Basalt Tablet",
+  "type": "Epic",
+  "locked": true,
+  "set": "Brilliant Things",
+  "image": "/images/antiques/basalt-tablet.png"
+ },
+ {
+  "id": "ocean_teardrop",
+  "name": "Ocean Teardrop",
+  "type": "Epic",
+  "locked": true,
+  "set": "Brilliant Things",
+  "image": "/images/antiques/ocean-teardrop.png"
+ },
+ {
+  "id": "hope_emblem",
+  "name": "Hope Emblem",
+  "type": "Epic",
+  "locked": true,
+  "set": "Brilliant Things",
+  "image": "/images/antiques/hope-emblem.png"
+ },
+ {
+  "id": "diamond_phone",
+  "name": "Diamond Phone",
+  "type": "Rare",
+  "locked": true,
+  "set": "Brilliant Things",
+  "image": "/images/antiques/diamond-phone.png"
+ },
+ {
+  "id": "brass_compass",
+  "name": "Brass Compass",
+  "type": "Rare",
+  "locked": true,
+  "set": "",
+  "image": "/images/antiques/brass-compass.png"
+ },
+ {
+  "id": "data_hard_drive",
+  "name": "Data Hard Drive",
+  "type": "Rare",
+  "locked": true,
+  "set": "",
+  "image": "/images/antiques/data-hard-drive.png"
+ },
+ {
+  "id": "ark_map",
+  "name": "Ark Map",
+  "type": "Rare",
+  "locked": true,
+  "set": "",
+  "image": "/images/antiques/ark-map.png"
+ },
+ {
+  "id": "olympic_laurel",
+  "name": "Olympic Laurel",
+  "type": "Rare",
+  "locked": true,
+  "set": "",
+  "image": "/images/antiques/oly.png"
+ },
+ {
+  "id": "fine_porcelain",
+  "name": "Fine Porcelain",
+  "type": "Rare",
+  "locked": true,
+  "set": "",
+  "image": "/images/antiques/fine-porcelain.png"
+ },
+ {
+  "id": "black_gold_memebers_card",
+  "name": "Black Gold Member's Card",
+  "type": "Rare",
+  "locked": true,
+  "set": "",
+  "image": "/images/antiques/black-gold-members-card.png"
+ },
+ {
+  "id": "toxic_bone_spur",
+  "name": "Toxic Bone Spur",
+  "type": "Rare",
+  "locked": true,
+  "set": "",
+  "image": "/images/antiques/toxic-bone-spur.png"
+ },
+ {
+  "id": "treasured_violin",
+  "name": "Treasured Violin",
+  "type": "Rare",
+  "locked": true,
+  "set": "",
+  "image": "/images/antiques/treasured-violin.png"
+ },
+ {
+  "id": "golden_rabbit_doll",
+  "name": "Golden Rabbit Doll",
+  "type": "Rare",
+  "locked": true,
+  "set": "",
+  "image": "/images/antiques/golden-rabbit-doll.png"
+ },
+ {
+  "id": "autographed_football",
+  "name": "Autographed Football",
+  "type": "Rare",
+  "locked": true,
+  "set": "",
+  "image": "/images/antiques/autographed-football.png"
+ },
+ {
+  "id": "crystal_skull",
+  "name": "Crystal Skull",
+  "type": "Rare",
+  "locked": true,
+  "set": "",
+  "image": "/images/antiques/crystal-skull.png"
+ },
+ {
+  "id": "totem_wood_sculpture",
+  "name": "Totem Wood Sculpture",
+  "type": "Rare",
+  "locked": true,
+  "set": "",
+  "image": "/images/antiques/totem-wood-sculpture.png"
+ },
+ {
+  "id": "hound_statue",
+  "name": "Hound Statue",
+  "type": "Rare",
+  "locked": true,
+  "set": "",
+  "image": "/images/antiques/hound-statue.png"
+ },
+ {
+  "id": "red_coral",
+  "name": "Red Coral",
+  "type": "Rare",
+  "locked": true,
+  "set": "",
+  "image": "/images/antiques/red-coral.png"
+ },
+ {
+  "id": "viking_helmet",
+  "name": "Viking Helmet",
+  "type": "Rare",
+  "locked": true,
+  "set": "",
+  "image": "/images/antiques/viking-helmet.png"
+ },
+ {
+  "id": "gem_egg",
+  "name": "Gem Egg",
+  "type": "Epic",
+  "locked": true,
+  "set": "",
+  "image": "/images/antiques/gem-egg.png"
+ },
+ {
+  "id": "gold_mask",
+  "name": "Gold Mask",
+  "type": "Epic",
+  "locked": true,
+  "set": "",
+  "image": "/images/antiques/gold-mask.png"
+ },
+ {
+  "id": "goddess_torch",
+  "name": "Goddess Torch",
+  "type": "Epic",
+  "locked": true,
+  "set": "",
+  "image": "/images/antiques/goddess-torch.png"
+ },
+ {
+  "id": "heavy_sword",
+  "name": "Heavy Sword",
+  "type": "Legendary",
+  "locked": true,
+  "set": "Biochemical Charge",
+  "image": "/images/antiques/heavy-sword.png"
+ },
+ {
+  "id": "zombie_heart",
+  "name": "Zombie Heart",
+  "type": "Epic",
+  "locked": true,
+  "set": "",
+  "image": "/images/antiques/zombie-heart.png"
+ },
+ {
+  "id": "gold_biochemical_troop",
+  "name": "Gold: Biochemical Troop",
+  "type": "Legendary",
+  "locked": true,
+  "set": "Biochemical Charge",
+  "image": "/images/antiques/biochemical-troop.png",
+  "fragmentType": "biochemical troop"
+ },
+ {
+  "id": "scarab_amulet",
+  "name": "Scarab Amulet",
+  "type": "Epic",
+  "locked": false,
+  "set": "Biochemical Charge",
+  "image": "/images/antiques/scarab-amulet.png"
+ },
+ {
+  "id": "empress_exoskeleton",
+  "name": "Empress Exoskeleton",
+  "type": "Legendary",
+  "locked": false,
+  "set": "Giant Weapons",
+  "image": "/images/antiques/empress-exoskeleton.png"
+ },
+ {
+  "id": "gold_candleholder",
+  "name": "Gold Candleholder",
+  "type": "Epic",
+  "locked": true,
+  "set": "",
+  "image": "/images/antiques/gold-candleholder.png"
+ },
+ {
+  "id": "titan_energy_cannon",
+  "name": "Titan Energy Cannon",
+  "type": "Legendary",
+  "locked": false,
+  "set": "Giant Weapons",
+  "image": "/images/antiques/titan-energy-cannon.png"
+ },
+ {
+  "id": "warp_drive",
+  "name": "Warp Drive",
+  "type": "Legendary",
+  "locked": false,
+  "set": "Giant Weapons",
+  "image": "/images/antiques/warp-drive.png"
+ },
+ {
+  "id": "magnetic_pulse_core",
+  "name": "Magnetic Pulse Core",
+  "type": "Legendary",
+  "locked": true,
+  "set": "Giant Weapons",
+  "image": "/images/antiques/magnetic-pulse-core.png"
+ },
+ {
+  "id": "gold_sniper",
+  "name": "Gold: Sniper",
+  "type": "Legendary",
+  "locked": false,
+  "set": "Strong Will",
+  "image": "/images/antiques/sniper.png",
+  "fragmentType": "sniper"
+ },
+ {
+  "id": "gold_infantry",
+  "name": "Gold: Infantry",
+  "type": "Legendary",
+  "locked": true,
+  "set": "Strong Will",
+  "image": "/images/antiques/infantry.png",
+  "fragmentType": "infantry"
+ },
+ {
+  "id": "gold_rocket",
+  "name": "Gold: Rocket",
+  "type": "Legendary",
+  "locked": false,
+  "set": "Strong Will",
+  "image": "/images/antiques/rocket.png",
+  "fragmentType": "rocket"
+ },
+ {
+  "id": "gold_gunner",
+  "name": "Gold: Gunner",
+  "type": "Legendary",
+  "locked": true,
+  "set": "Strong Will",
+  "image": "/images/antiques/gunner.png",
+  "fragmentType": "gunner"
+ },
+ {
+  "id": "gold_shredder",
+  "name": "Gold: Shredder",
+  "type": "Legendary",
+  "locked": true,
+  "set": "Rocket Turret",
+  "image": "/images/antiques/shredder.png",
+  "fragmentType": "shredder"
+ },
+ {
+  "id": "gold_tank",
+  "name": "Gold: Tank",
+  "type": "Legendary",
+  "locked": true,
+  "set": "Rocket Turret",
+  "image": "/images/antiques/tank.png",
+  "fragmentType": "tank"
+ },
+ {
+  "id": "gold_cannon",
+  "name": "Gold: Cannon",
+  "type": "Legendary",
+  "locked": false,
+  "set": "Rocket Turret",
+  "image": "/images/antiques/cannon.png",
+  "fragmentType": "cannon"
+ },
+ {
+  "id": "gold_raider",
+  "name": "Gold: Raider",
+  "type": "Legendary",
+  "locked": true,
+  "set": "Rocket Turret",
+  "image": "/images/antiques/raider.png",
+  "fragmentType": "raider"
+ },
+ {
+  "id": "gold_shielder",
+  "name": "Gold: Shielder",
+  "type": "Legendary",
+  "locked": true,
+  "set": "Nano Swarm",
+  "image": "/images/antiques/shielder.png",
+  "fragmentType": "shielder"
+ },
+ {
+  "id": "dinosaur_egg_fossil",
+  "name": "Dinosaur Egg Fossil",
+  "type": "Epic",
+  "locked": true,
+  "set": "",
+  "image": "/images/antiques/dinosaur-egg-fossil.png"
+ },
+ {
+  "id": "gold_armored_soldier",
+  "name": "Gold: Armored Soldier",
+  "type": "Legendary",
+  "locked": true,
+  "set": "Nano Swarm",
+  "image": "/images/antiques/armored-soldier.png",
+  "fragmentType": "armored soldier"
+ },
+ {
+  "id": "gold_emp_cannon",
+  "name": "Gold: EMP Cannon",
+  "type": "Legendary",
+  "locked": true,
+  "set": "Nano Swarm",
+  "image": "/images/antiques/emp-cannon.png",
+  "fragmentType": "emp cannon"
+ },
+ {
+  "id": "gold_storm_trooper",
+  "name": "Gold: Storm Trooper",
+  "type": "Legendary",
+  "locked": true,
+  "set": "Nano Swarm",
+  "image": "/images/antiques/storm-trooper.png",
+  "fragmentType": "storm trooper"
+ }
+]

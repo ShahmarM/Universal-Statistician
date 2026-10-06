@@ -1,0 +1,7 @@
+Upgrade system,Status / reason
+"Academy research (all branches: Development, Military, Resource, Defense, etc.)",No accessible public source publishes per-level research costs/values. aozcodes.com has research pages but is behind a Cloudflare bot check this environment cannot pass.
+"Troop tiers (training cost, stats, upkeep per T1-T12 unit)",Not found in an accessible structured source.
+"Resource buildings (Farm, Oil Refinery, Steel Mill, Mineral Mine), Training Grounds, House, Rehab Center, Defense Tower",Only the 2021-22 appmedia.jp snapshot (max level 30 / 10). Levels added since then are missing; costs may have been rebalanced.
+Base build times,"From appmedia.jp (2021-22), and only up to level 38. Times are before construction-speed buffs. aoztips publishes no times."
+Uranium costs,"Only from aoztips; appmedia predates uranium. Levels 31+ in appmedia-only rows show 0 uranium, which may be wrong."
+"Biochemical Lab, Elite Equipment Facility, Alliance tech, VIP, Commander skills, Battle machines, Mega devices",No per-level numeric source found.

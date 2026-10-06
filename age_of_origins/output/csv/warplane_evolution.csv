@@ -1,0 +1,9 @@
+Tier,Stages,Alloy / stage,Blueprints / stage,Alloy / tier,Blueprints / tier
+Enforcer,10,20,0,200,0
+Explorer,10,50,0,500,0
+Guardian,10,110,0,1100,0
+Lacerator,10,220,0,2200,0
+Trailblazer,10,360,70,3600,700
+Inquisitor,10,540,160,5400,1600
+Epic,10,700,300,7000,3000
+Immortal,10,820,450,8200,4500

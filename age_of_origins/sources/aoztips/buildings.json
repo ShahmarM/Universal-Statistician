@@ -1,0 +1,8598 @@
+[
+ {
+  "level": 1,
+  "name": "Factory",
+  "resources": {
+   "food": 0,
+   "oil": 0,
+   "steel": 0,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "Main Hall 1"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 1,
+  "name": "Embassy",
+  "resources": {
+   "food": 0,
+   "oil": 0,
+   "steel": 0,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": null,
+   "building2": null
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 1,
+  "name": "Dispatch Center",
+  "resources": {
+   "food": 0,
+   "oil": 0,
+   "steel": 0,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "Main Hall 6"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 1,
+  "name": "Depot",
+  "resources": {
+   "food": 0,
+   "oil": 0,
+   "steel": 0,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "Main Hall 1"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 1,
+  "name": "City Wall",
+  "resources": {
+   "food": 0,
+   "oil": 0,
+   "steel": 0,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "Main Hall 1"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 1,
+  "name": "Camp",
+  "resources": {
+   "food": 0,
+   "oil": 0,
+   "steel": 0,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "Main Hall 1"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 1,
+  "name": "Academy",
+  "resources": {
+   "food": 0,
+   "oil": 0,
+   "steel": 0,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": null,
+   "building2": null
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 1,
+  "name": "Main Hall",
+  "resources": {
+   "food": 3670,
+   "oil": 3670,
+   "steel": 0,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": null,
+   "building2": null
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 1,
+  "name": "Recon",
+  "resources": {
+   "food": 0,
+   "oil": 0,
+   "steel": 0,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": null,
+   "building2": null
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 1,
+  "name": "Hospital",
+  "resources": {
+   "food": 0,
+   "oil": 0,
+   "steel": 0,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": null,
+   "building2": null
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 2,
+  "name": "Garage",
+  "resources": {
+   "food": 0,
+   "oil": 0,
+   "steel": 0,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": null,
+   "building2": null
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 2,
+  "name": "Factory",
+  "resources": {
+   "food": 670,
+   "oil": 450,
+   "steel": 0,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "Main Hall 2"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 2,
+  "name": "Embassy",
+  "resources": {
+   "food": 0,
+   "oil": 390,
+   "steel": 0,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "Main Hall 4"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 2,
+  "name": "Dispatch Center",
+  "resources": {
+   "food": 0,
+   "oil": 140,
+   "steel": 0,
+   "minerals": 0,
+   "leader_badges": 8,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "Main Hall 6"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 2,
+  "name": "Depot",
+  "resources": {
+   "food": 180,
+   "oil": 180,
+   "steel": 0,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "Main Hall 2"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 2,
+  "name": "City Wall",
+  "resources": {
+   "food": 0,
+   "oil": 2360,
+   "steel": 0,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "Main Hall 2"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 2,
+  "name": "Camp",
+  "resources": {
+   "food": 670,
+   "oil": 450,
+   "steel": 0,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "Main Hall 2"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 2,
+  "name": "Academy",
+  "resources": {
+   "food": 0,
+   "oil": 650,
+   "steel": 0,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "Main Hall 4"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 2,
+  "name": "Main Hall",
+  "resources": {
+   "food": 5850,
+   "oil": 5850,
+   "steel": 0,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": null,
+   "building2": null
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 2,
+  "name": "Recon",
+  "resources": {
+   "food": 210,
+   "oil": 210,
+   "steel": 0,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": null,
+   "building2": null
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 2,
+  "name": "Hospital",
+  "resources": {
+   "food": 460,
+   "oil": 310,
+   "steel": 0,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": null,
+   "building2": null
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 3,
+  "name": "Garage",
+  "resources": {
+   "food": 0,
+   "oil": 690,
+   "steel": 0,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": null,
+   "building2": null
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 3,
+  "name": "Factory",
+  "resources": {
+   "food": 980,
+   "oil": 650,
+   "steel": 0,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "Main Hall 3"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 3,
+  "name": "Embassy",
+  "resources": {
+   "food": 0,
+   "oil": 560,
+   "steel": 0,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "Main Hall 4"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 3,
+  "name": "Dispatch Center",
+  "resources": {
+   "food": 0,
+   "oil": 210,
+   "steel": 0,
+   "minerals": 0,
+   "leader_badges": 17,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "Main Hall 6"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 3,
+  "name": "Depot",
+  "resources": {
+   "food": 260,
+   "oil": 260,
+   "steel": 0,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "Main Hall 3"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 3,
+  "name": "City Wall",
+  "resources": {
+   "food": 0,
+   "oil": 3620,
+   "steel": 0,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "Main Hall 3"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 3,
+  "name": "Camp",
+  "resources": {
+   "food": 980,
+   "oil": 650,
+   "steel": 0,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "Main Hall 3"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 3,
+  "name": "Academy",
+  "resources": {
+   "food": 0,
+   "oil": 1050,
+   "steel": 0,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "Main Hall 4"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 3,
+  "name": "Main Hall",
+  "resources": {
+   "food": 8620,
+   "oil": 8620,
+   "steel": 0,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "City Wall"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 3,
+  "name": "Recon",
+  "resources": {
+   "food": 300,
+   "oil": 300,
+   "steel": 0,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": null,
+   "building2": null
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 3,
+  "name": "Hospital",
+  "resources": {
+   "food": 670,
+   "oil": 450,
+   "steel": 0,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": null,
+   "building2": null
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 4,
+  "name": "Garage",
+  "resources": {
+   "food": 0,
+   "oil": 1000,
+   "steel": 0,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": null,
+   "building2": null
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 4,
+  "name": "Factory",
+  "resources": {
+   "food": 1660,
+   "oil": 1100,
+   "steel": 0,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "Main Hall 4"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 4,
+  "name": "Embassy",
+  "resources": {
+   "food": 0,
+   "oil": 960,
+   "steel": 0,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "Main Hall 4"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 4,
+  "name": "Dispatch Center",
+  "resources": {
+   "food": 0,
+   "oil": 360,
+   "steel": 0,
+   "minerals": 0,
+   "leader_badges": 29,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "Main Hall 6"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 4,
+  "name": "Depot",
+  "resources": {
+   "food": 450,
+   "oil": 450,
+   "steel": 0,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "Main Hall 4"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 4,
+  "name": "City Wall",
+  "resources": {
+   "food": 0,
+   "oil": 6120,
+   "steel": 0,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "Main Hall 4"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 4,
+  "name": "Camp",
+  "resources": {
+   "food": 1660,
+   "oil": 1100,
+   "steel": 0,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "Main Hall 4"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 4,
+  "name": "Academy",
+  "resources": {
+   "food": 0,
+   "oil": 1650,
+   "steel": 0,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "Main Hall 4"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 4,
+  "name": "Main Hall",
+  "resources": {
+   "food": 14400,
+   "oil": 14400,
+   "steel": 0,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "City Wall"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 4,
+  "name": "Recon",
+  "resources": {
+   "food": 510,
+   "oil": 510,
+   "steel": 0,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": null,
+   "building2": null
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 4,
+  "name": "Hospital",
+  "resources": {
+   "food": 1150,
+   "oil": 760,
+   "steel": 0,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": null,
+   "building2": null
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 5,
+  "name": "Garage",
+  "resources": {
+   "food": 0,
+   "oil": 1700,
+   "steel": 0,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": null,
+   "building2": null
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 5,
+  "name": "Factory",
+  "resources": {
+   "food": 2720,
+   "oil": 1810,
+   "steel": 0,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "Main Hall 5"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 5,
+  "name": "Embassy",
+  "resources": {
+   "food": 0,
+   "oil": 1570,
+   "steel": 0,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "Main Hall 5"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 5,
+  "name": "Dispatch Center",
+  "resources": {
+   "food": 0,
+   "oil": 590,
+   "steel": 0,
+   "minerals": 0,
+   "leader_badges": 44,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "Main Hall 6"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 5,
+  "name": "Depot",
+  "resources": {
+   "food": 740,
+   "oil": 740,
+   "steel": 0,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "Main Hall 5"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 5,
+  "name": "City Wall",
+  "resources": {
+   "food": 0,
+   "oil": 10010,
+   "steel": 0,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "Main Hall 5"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 5,
+  "name": "Camp",
+  "resources": {
+   "food": 2720,
+   "oil": 1810,
+   "steel": 0,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "Main Hall 5"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 5,
+  "name": "Academy",
+  "resources": {
+   "food": 0,
+   "oil": 2600,
+   "steel": 0,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "Main Hall 5"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 5,
+  "name": "Main Hall",
+  "resources": {
+   "food": 22950,
+   "oil": 22950,
+   "steel": 0,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "City Wall"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 5,
+  "name": "Recon",
+  "resources": {
+   "food": 840,
+   "oil": 840,
+   "steel": 0,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": null,
+   "building2": null
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 5,
+  "name": "Hospital",
+  "resources": {
+   "food": 1890,
+   "oil": 1260,
+   "steel": 0,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": null,
+   "building2": null
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 6,
+  "name": "Garage",
+  "resources": {
+   "food": 0,
+   "oil": 2790,
+   "steel": 0,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": null,
+   "building2": null
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 6,
+  "name": "Factory",
+  "resources": {
+   "food": 5300,
+   "oil": 3530,
+   "steel": 0,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "Main Hall 6"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 6,
+  "name": "Embassy",
+  "resources": {
+   "food": 0,
+   "oil": 3060,
+   "steel": 0,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "Main Hall 6"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 6,
+  "name": "Dispatch Center",
+  "resources": {
+   "food": 0,
+   "oil": 1150,
+   "steel": 0,
+   "minerals": 0,
+   "leader_badges": 63,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "Main Hall 6"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 6,
+  "name": "Depot",
+  "resources": {
+   "food": 1440,
+   "oil": 1440,
+   "steel": 0,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "Main Hall 6"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 6,
+  "name": "City Wall",
+  "resources": {
+   "food": 0,
+   "oil": 19460,
+   "steel": 0,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "Main Hall 6"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 6,
+  "name": "Camp",
+  "resources": {
+   "food": 5300,
+   "oil": 3530,
+   "steel": 0,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "Main Hall 6"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 6,
+  "name": "Academy",
+  "resources": {
+   "food": 0,
+   "oil": 4800,
+   "steel": 0,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "Main Hall 6"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 6,
+  "name": "Main Hall",
+  "resources": {
+   "food": 38070,
+   "oil": 38070,
+   "steel": 0,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "Garage"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 6,
+  "name": "Recon",
+  "resources": {
+   "food": 1650,
+   "oil": 1650,
+   "steel": 0,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": null,
+   "building2": null
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 6,
+  "name": "Hospital",
+  "resources": {
+   "food": 3670,
+   "oil": 2450,
+   "steel": 0,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": null,
+   "building2": null
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 7,
+  "name": "Garage",
+  "resources": {
+   "food": 0,
+   "oil": 5420,
+   "steel": 0,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": null,
+   "building2": null
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 7,
+  "name": "Factory",
+  "resources": {
+   "food": 10530,
+   "oil": 7020,
+   "steel": 0,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "Main Hall 7"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 7,
+  "name": "Embassy",
+  "resources": {
+   "food": 0,
+   "oil": 6070,
+   "steel": 0,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "Main Hall 7"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 7,
+  "name": "Dispatch Center",
+  "resources": {
+   "food": 0,
+   "oil": 2280,
+   "steel": 0,
+   "minerals": 0,
+   "leader_badges": 86,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "Main Hall 7"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 7,
+  "name": "Depot",
+  "resources": {
+   "food": 2870,
+   "oil": 2870,
+   "steel": 0,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "Main Hall 7"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 7,
+  "name": "City Wall",
+  "resources": {
+   "food": 0,
+   "oil": 38650,
+   "steel": 0,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "Main Hall 7"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 7,
+  "name": "Camp",
+  "resources": {
+   "food": 10530,
+   "oil": 7020,
+   "steel": 0,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "Main Hall 7"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 7,
+  "name": "Academy",
+  "resources": {
+   "food": 0,
+   "oil": 9850,
+   "steel": 0,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "Main Hall 7"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 7,
+  "name": "Main Hall",
+  "resources": {
+   "food": 86250,
+   "oil": 86250,
+   "steel": 0,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "City Wall",
+   "building2": "Camp"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 7,
+  "name": "Recon",
+  "resources": {
+   "food": 3270,
+   "oil": 3270,
+   "steel": 0,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": null,
+   "building2": null
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 7,
+  "name": "Hospital",
+  "resources": {
+   "food": 7300,
+   "oil": 4860,
+   "steel": 0,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": null,
+   "building2": null
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 8,
+  "name": "Garage",
+  "resources": {
+   "food": 0,
+   "oil": 10770,
+   "steel": 0,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": null,
+   "building2": null
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 8,
+  "name": "Factory",
+  "resources": {
+   "food": 17960,
+   "oil": 11970,
+   "steel": 0,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "Main Hall 8"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 8,
+  "name": "Embassy",
+  "resources": {
+   "food": 0,
+   "oil": 10360,
+   "steel": 0,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "Main Hall 8"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 8,
+  "name": "Dispatch Center",
+  "resources": {
+   "food": 0,
+   "oil": 3890,
+   "steel": 0,
+   "minerals": 0,
+   "leader_badges": 113,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "Main Hall 8"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 8,
+  "name": "Depot",
+  "resources": {
+   "food": 4890,
+   "oil": 4890,
+   "steel": 0,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "Main Hall 8"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 8,
+  "name": "City Wall",
+  "resources": {
+   "food": 0,
+   "oil": 69770,
+   "steel": 0,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "Main Hall 8"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 8,
+  "name": "Camp",
+  "resources": {
+   "food": 17960,
+   "oil": 11970,
+   "steel": 0,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "Main Hall 8"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 8,
+  "name": "Academy",
+  "resources": {
+   "food": 0,
+   "oil": 16400,
+   "steel": 0,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "Main Hall 8"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 8,
+  "name": "Main Hall",
+  "resources": {
+   "food": 141000,
+   "oil": 141000,
+   "steel": 0,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "City Wall",
+   "building2": "Depot"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 8,
+  "name": "Recon",
+  "resources": {
+   "food": 5580,
+   "oil": 5580,
+   "steel": 0,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": null,
+   "building2": null
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 8,
+  "name": "Hospital",
+  "resources": {
+   "food": 12450,
+   "oil": 8300,
+   "steel": 0,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": null,
+   "building2": null
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 9,
+  "name": "Garage",
+  "resources": {
+   "food": 0,
+   "oil": 18360,
+   "steel": 0,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": null,
+   "building2": null
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 9,
+  "name": "Factory",
+  "resources": {
+   "food": 27130,
+   "oil": 18080,
+   "steel": 0,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "Main Hall 9"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 9,
+  "name": "Embassy",
+  "resources": {
+   "food": 0,
+   "oil": 15650,
+   "steel": 0,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "Main Hall 9"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 9,
+  "name": "Dispatch Center",
+  "resources": {
+   "food": 0,
+   "oil": 5880,
+   "steel": 0,
+   "minerals": 0,
+   "leader_badges": 145,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "Main Hall 9"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 9,
+  "name": "Depot",
+  "resources": {
+   "food": 7400,
+   "oil": 7400,
+   "steel": 0,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "Main Hall 9"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 9,
+  "name": "City Wall",
+  "resources": {
+   "food": 0,
+   "oil": 117100,
+   "steel": 0,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "Main Hall 9"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 9,
+  "name": "Camp",
+  "resources": {
+   "food": 27130,
+   "oil": 18080,
+   "steel": 0,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "Main Hall 9"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 9,
+  "name": "Academy",
+  "resources": {
+   "food": 0,
+   "oil": 22600,
+   "steel": 0,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "Main Hall 9"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 9,
+  "name": "Main Hall",
+  "resources": {
+   "food": 214500,
+   "oil": 214500,
+   "steel": 0,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "City Wall"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 9,
+  "name": "Recon",
+  "resources": {
+   "food": 8440,
+   "oil": 8440,
+   "steel": 0,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": null,
+   "building2": null
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 9,
+  "name": "Hospital",
+  "resources": {
+   "food": 18810,
+   "oil": 12540,
+   "steel": 0,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": null,
+   "building2": null
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 10,
+  "name": "Garage",
+  "resources": {
+   "food": 0,
+   "oil": 27740,
+   "steel": 0,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": null,
+   "building2": null
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 10,
+  "name": "Factory",
+  "resources": {
+   "food": 43800,
+   "oil": 29200,
+   "steel": 0,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "Main Hall 10"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 10,
+  "name": "Embassy",
+  "resources": {
+   "food": 0,
+   "oil": 25280,
+   "steel": 0,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "Main Hall 10"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 10,
+  "name": "Dispatch Center",
+  "resources": {
+   "food": 0,
+   "oil": 9500,
+   "steel": 0,
+   "minerals": 0,
+   "leader_badges": 182,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "Main Hall 10"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 10,
+  "name": "Depot",
+  "resources": {
+   "food": 11940,
+   "oil": 11940,
+   "steel": 0,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "Main Hall 10"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 10,
+  "name": "City Wall",
+  "resources": {
+   "food": 0,
+   "oil": 189070,
+   "steel": 0,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "Main Hall 10"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 10,
+  "name": "Camp",
+  "resources": {
+   "food": 43800,
+   "oil": 29200,
+   "steel": 0,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "Main Hall 10"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 10,
+  "name": "Academy",
+  "resources": {
+   "food": 0,
+   "oil": 42000,
+   "steel": 0,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "Main Hall 10"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 10,
+  "name": "Main Hall",
+  "resources": {
+   "food": 330000,
+   "oil": 330000,
+   "steel": 0,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "City Wall"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 10,
+  "name": "Recon",
+  "resources": {
+   "food": 13630,
+   "oil": 13630,
+   "steel": 0,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": null,
+   "building2": null
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 10,
+  "name": "Hospital",
+  "resources": {
+   "food": 30370,
+   "oil": 20240,
+   "steel": 0,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": null,
+   "building2": null
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 11,
+  "name": "Garage",
+  "resources": {
+   "food": 0,
+   "oil": 44790,
+   "steel": 0,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": null,
+   "building2": null
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 11,
+  "name": "Factory",
+  "resources": {
+   "food": 88220,
+   "oil": 58810,
+   "steel": 0,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "Main Hall 11"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 11,
+  "name": "Embassy",
+  "resources": {
+   "food": 0,
+   "oil": 50910,
+   "steel": 0,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "Main Hall 11"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 11,
+  "name": "Dispatch Center",
+  "resources": {
+   "food": 0,
+   "oil": 19140,
+   "steel": 0,
+   "minerals": 0,
+   "leader_badges": 224,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "Main Hall 11"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 11,
+  "name": "Depot",
+  "resources": {
+   "food": 24060,
+   "oil": 24060,
+   "steel": 0,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "Main Hall 11"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 11,
+  "name": "City Wall",
+  "resources": {
+   "food": 0,
+   "oil": 380760,
+   "steel": 0,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "Main Hall 11"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 11,
+  "name": "Camp",
+  "resources": {
+   "food": 88220,
+   "oil": 58810,
+   "steel": 0,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "Main Hall 11"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 11,
+  "name": "Academy",
+  "resources": {
+   "food": 0,
+   "oil": 80000,
+   "steel": 0,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "Main Hall 11"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 11,
+  "name": "Main Hall",
+  "resources": {
+   "food": 378780,
+   "oil": 378780,
+   "steel": 0,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "City Wall",
+   "building2": "Garage"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 11,
+  "name": "Recon",
+  "resources": {
+   "food": 27450,
+   "oil": 27450,
+   "steel": 0,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": null,
+   "building2": null
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 11,
+  "name": "Hospital",
+  "resources": {
+   "food": 61160,
+   "oil": 40770,
+   "steel": 0,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": null,
+   "building2": null
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 12,
+  "name": "Garage",
+  "resources": {
+   "food": 0,
+   "oil": 90210,
+   "steel": 0,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": null,
+   "building2": null
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 12,
+  "name": "Factory",
+  "resources": {
+   "food": 181830,
+   "oil": 121220,
+   "steel": 0,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "Main Hall 12"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 12,
+  "name": "Embassy",
+  "resources": {
+   "food": 0,
+   "oil": 104920,
+   "steel": 0,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "Main Hall 12"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 12,
+  "name": "Dispatch Center",
+  "resources": {
+   "food": 0,
+   "oil": 39460,
+   "steel": 0,
+   "minerals": 0,
+   "leader_badges": 272,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "Main Hall 12"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 12,
+  "name": "Depot",
+  "resources": {
+   "food": 49590,
+   "oil": 49590,
+   "steel": 0,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "Main Hall 12"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 12,
+  "name": "City Wall",
+  "resources": {
+   "food": 0,
+   "oil": 684750,
+   "steel": 0,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "Main Hall 12"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 12,
+  "name": "Camp",
+  "resources": {
+   "food": 181830,
+   "oil": 121220,
+   "steel": 0,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "Main Hall 12"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 12,
+  "name": "Academy",
+  "resources": {
+   "food": 0,
+   "oil": 160000,
+   "steel": 0,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "Main Hall 12"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 12,
+  "name": "Main Hall",
+  "resources": {
+   "food": 757570,
+   "oil": 757570,
+   "steel": 0,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "City Wall",
+   "building2": "Hospital"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 12,
+  "name": "Recon",
+  "resources": {
+   "food": 56580,
+   "oil": 56580,
+   "steel": 0,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": null,
+   "building2": null
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 12,
+  "name": "Hospital",
+  "resources": {
+   "food": 126060,
+   "oil": 84040,
+   "steel": 0,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": null,
+   "building2": null
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 13,
+  "name": "Garage",
+  "resources": {
+   "food": 0,
+   "oil": 185930,
+   "steel": 0,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": null,
+   "building2": null
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 13,
+  "name": "Factory",
+  "resources": {
+   "food": 257800,
+   "oil": 171860,
+   "steel": 0,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "Main Hall 13"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 13,
+  "name": "Embassy",
+  "resources": {
+   "food": 0,
+   "oil": 212520,
+   "steel": 0,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "Main Hall 13"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 13,
+  "name": "Dispatch Center",
+  "resources": {
+   "food": 0,
+   "oil": 0,
+   "steel": 0,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "Main Hall 13"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 13,
+  "name": "Depot",
+  "resources": {
+   "food": 100440,
+   "oil": 100440,
+   "steel": 0,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "Main Hall 13"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 13,
+  "name": "City Wall",
+  "resources": {
+   "food": 0,
+   "oil": 1112620,
+   "steel": 0,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "Main Hall 13"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 13,
+  "name": "Camp",
+  "resources": {
+   "food": 257800,
+   "oil": 171860,
+   "steel": 0,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "Main Hall 13"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 13,
+  "name": "Academy",
+  "resources": {
+   "food": 0,
+   "oil": 323000,
+   "steel": 0,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "Main Hall 13"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 13,
+  "name": "Main Hall",
+  "resources": {
+   "food": 1060590,
+   "oil": 1060590,
+   "steel": 0,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "City Wall",
+   "building2": "Recon Center"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 13,
+  "name": "Recon",
+  "resources": {
+   "food": 114600,
+   "oil": 114600,
+   "steel": 0,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": null,
+   "building2": null
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 13,
+  "name": "Hospital",
+  "resources": {
+   "food": 255330,
+   "oil": 170220,
+   "steel": 0,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": null,
+   "building2": null
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 13,
+  "name": "Garage",
+  "resources": {
+   "food": 0,
+   "oil": 376600,
+   "steel": 0,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": null,
+   "building2": null
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 14,
+  "name": "Workshop",
+  "resources": {
+   "food": 0,
+   "oil": 0,
+   "steel": 0,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": null,
+   "building2": null
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 14,
+  "name": "Factory",
+  "resources": {
+   "food": 525530,
+   "oil": 350350,
+   "steel": 0,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "Main Hall 14"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 14,
+  "name": "Embassy",
+  "resources": {
+   "food": 0,
+   "oil": 433230,
+   "steel": 0,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "Main Hall 14"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 14,
+  "name": "Dispatch Center",
+  "resources": {
+   "food": 0,
+   "oil": 162950,
+   "steel": 0,
+   "minerals": 0,
+   "leader_badges": 386,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "Main Hall 14"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 14,
+  "name": "Depot",
+  "resources": {
+   "food": 204760,
+   "oil": 204760,
+   "steel": 0,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "Main Hall 14"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 14,
+  "name": "City Wall",
+  "resources": {
+   "food": 0,
+   "oil": 2268060,
+   "steel": 0,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "Main Hall 14"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 14,
+  "name": "Camp",
+  "resources": {
+   "food": 525530,
+   "oil": 350350,
+   "steel": 0,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "Main Hall 14"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 14,
+  "name": "Academy",
+  "resources": {
+   "food": 0,
+   "oil": 656000,
+   "steel": 0,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "Main Hall 14"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 14,
+  "name": "Main Hall",
+  "resources": {
+   "food": 2121200,
+   "oil": 2121200,
+   "steel": 0,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "City Wall",
+   "building2": "Embassy"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 14,
+  "name": "Recon",
+  "resources": {
+   "food": 223620,
+   "oil": 223620,
+   "steel": 0,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": null,
+   "building2": null
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 14,
+  "name": "Hospital",
+  "resources": {
+   "food": 520500,
+   "oil": 347000,
+   "steel": 0,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": null,
+   "building2": null
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 14,
+  "name": "Garage",
+  "resources": {
+   "food": 0,
+   "oil": 767700,
+   "steel": 0,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": null,
+   "building2": null
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 15,
+  "name": "Workshop",
+  "resources": {
+   "food": 788310,
+   "oil": 525540,
+   "steel": 0,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": null,
+   "building2": null
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 15,
+  "name": "Factory",
+  "resources": {
+   "food": 945940,
+   "oil": 630632,
+   "steel": 0,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "Main Hall 15"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 15,
+  "name": "Embassy",
+  "resources": {
+   "food": 0,
+   "oil": 682320,
+   "steel": 0,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "Main Hall 15"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 15,
+  "name": "Dispatch Center",
+  "resources": {
+   "food": 0,
+   "oil": 256640,
+   "steel": 0,
+   "minerals": 0,
+   "leader_badges": 452,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "Main Hall 15"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 15,
+  "name": "Depot",
+  "resources": {
+   "food": 322490,
+   "oil": 322490,
+   "steel": 0,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "Main Hall 15"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 15,
+  "name": "City Wall",
+  "resources": {
+   "food": 0,
+   "oil": 4082420,
+   "steel": 0,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "Main Hall 15"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 15,
+  "name": "Camp",
+  "resources": {
+   "food": 945940,
+   "oil": 630632,
+   "steel": 0,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "Main Hall 15"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 15,
+  "name": "Academy",
+  "resources": {
+   "food": 0,
+   "oil": 1058400,
+   "steel": 0,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "Main Hall 15"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 15,
+  "name": "Main Hall",
+  "resources": {
+   "food": 4545440,
+   "oil": 4545440,
+   "steel": 0,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "City Wall",
+   "building2": "Garage"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 15,
+  "name": "Recon",
+  "resources": {
+   "food": 367940,
+   "oil": 367940,
+   "steel": 0,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": null,
+   "building2": null
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 15,
+  "name": "Hospital",
+  "resources": {
+   "food": 819780,
+   "oil": 546520,
+   "steel": 0,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": null,
+   "building2": null
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 15,
+  "name": "Garage",
+  "resources": {
+   "food": 0,
+   "oil": 1209090,
+   "steel": 0,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": null,
+   "building2": null
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 16,
+  "name": "Workshop",
+  "resources": {
+   "food": 1418920,
+   "oil": 945950,
+   "steel": 0,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": null,
+   "building2": null
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 16,
+  "name": "Factory",
+  "resources": {
+   "food": 1152850,
+   "oil": 806990,
+   "steel": 69170,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "Main Hall 16"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 16,
+  "name": "Embassy",
+  "resources": {
+   "food": 0,
+   "oil": 709600,
+   "steel": 35480,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "Main Hall 16"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 16,
+  "name": "Dispatch Center",
+  "resources": {
+   "food": 0,
+   "oil": 266910,
+   "steel": 13340,
+   "minerals": 0,
+   "leader_badges": 524,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "Main Hall 16"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 16,
+  "name": "Depot",
+  "resources": {
+   "food": 335390,
+   "oil": 335390,
+   "steel": 33530,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "Main Hall 16"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 16,
+  "name": "City Wall",
+  "resources": {
+   "food": 0,
+   "oil": 4776410,
+   "steel": 238820,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "Main Hall 16"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 16,
+  "name": "Camp",
+  "resources": {
+   "food": 1152850,
+   "oil": 806990,
+   "steel": 69170,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "Main Hall 16"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 16,
+  "name": "Academy",
+  "resources": {
+   "food": 0,
+   "oil": 1100800,
+   "steel": 55040,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "Main Hall 16"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 16,
+  "name": "Main Hall",
+  "resources": {
+   "food": 5181790,
+   "oil": 5181790,
+   "steel": 518180,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "City Wall"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 16,
+  "name": "Recon",
+  "resources": {
+   "food": 382660,
+   "oil": 382660,
+   "steel": 38260,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": null,
+   "building2": null
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 16,
+  "name": "Hospital",
+  "resources": {
+   "food": 852570,
+   "oil": 568380,
+   "steel": 71040,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": null,
+   "building2": null
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 16,
+  "name": "Garage",
+  "resources": {
+   "food": 0,
+   "oil": 1257450,
+   "steel": 62870,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": null,
+   "building2": null
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 17,
+  "name": "Workshop",
+  "resources": {
+   "food": 1729300,
+   "oil": 1210510,
+   "steel": 103750,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": null,
+   "building2": null
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 17,
+  "name": "Factory",
+  "resources": {
+   "food": 1498750,
+   "oil": 999160,
+   "steel": 166520,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "Main Hall 17"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 17,
+  "name": "Embassy",
+  "resources": {
+   "food": 0,
+   "oil": 807180,
+   "steel": 69180,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "Main Hall 17"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 17,
+  "name": "Dispatch Center",
+  "resources": {
+   "food": 0,
+   "oil": 303610,
+   "steel": 26020,
+   "minerals": 0,
+   "leader_badges": 603,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "Main Hall 17"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 17,
+  "name": "Depot",
+  "resources": {
+   "food": 381500,
+   "oil": 381500,
+   "steel": 65400,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "Main Hall 17"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 17,
+  "name": "City Wall",
+  "resources": {
+   "food": 0,
+   "oil": 6036880,
+   "steel": 517440,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "Main Hall 17"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 17,
+  "name": "Camp",
+  "resources": {
+   "food": 1498750,
+   "oil": 999160,
+   "steel": 166520,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "Main Hall 17"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 17,
+  "name": "Academy",
+  "resources": {
+   "food": 0,
+   "oil": 1252090,
+   "steel": 107320,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "Main Hall 17"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 17,
+  "name": "Main Hall",
+  "resources": {
+   "food": 6628770,
+   "oil": 6628770,
+   "steel": 1136360,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "City Wall",
+   "building2": "Hospital"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 17,
+  "name": "Recon",
+  "resources": {
+   "food": 435270,
+   "oil": 435270,
+   "steel": 74610,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": null,
+   "building2": null
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 17,
+  "name": "Hospital",
+  "resources": {
+   "food": 1039070,
+   "oil": 692710,
+   "steel": 115450,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": null,
+   "building2": null
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 17,
+  "name": "Garage",
+  "resources": {
+   "food": 0,
+   "oil": 1430350,
+   "steel": 122600,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": null,
+   "building2": null
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 18,
+  "name": "Workshop",
+  "resources": {
+   "food": 2248120,
+   "oil": 1498750,
+   "steel": 249790,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": null,
+   "building2": null
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 18,
+  "name": "Factory",
+  "resources": {
+   "food": 1818520,
+   "oil": 1212350,
+   "steel": 259780,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "Main Hall 18"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 18,
+  "name": "Embassy",
+  "resources": {
+   "food": 0,
+   "oil": 899450,
+   "steel": 119920,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "Main Hall 18"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 18,
+  "name": "Dispatch Center",
+  "resources": {
+   "food": 0,
+   "oil": 338310,
+   "steel": 45100,
+   "minerals": 0,
+   "leader_badges": 689,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "Main Hall 18"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 18,
+  "name": "Depot",
+  "resources": {
+   "food": 495970,
+   "oil": 495970,
+   "steel": 85020,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "Main Hall 18"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 18,
+  "name": "City Wall",
+  "resources": {
+   "food": 0,
+   "oil": 6726970,
+   "steel": 896920,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "Main Hall 18"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 18,
+  "name": "Camp",
+  "resources": {
+   "food": 1818520,
+   "oil": 1212350,
+   "steel": 259780,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "Main Hall 18"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 18,
+  "name": "Academy",
+  "resources": {
+   "food": 0,
+   "oil": 1395240,
+   "steel": 186030,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "Main Hall 18"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 18,
+  "name": "Main Hall",
+  "resources": {
+   "food": 8749980,
+   "oil": 8749980,
+   "steel": 1499990,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "City Wall"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 18,
+  "name": "Recon",
+  "resources": {
+   "food": 565870,
+   "oil": 565870,
+   "steel": 97000,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": null,
+   "building2": null
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 18,
+  "name": "Hospital",
+  "resources": {
+   "food": 1260770,
+   "oil": 840510,
+   "steel": 180110,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": null,
+   "building2": null
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 18,
+  "name": "Garage",
+  "resources": {
+   "food": 0,
+   "oil": 1593870,
+   "steel": 212510,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": null,
+   "building2": null
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 19,
+  "name": "Workshop",
+  "resources": {
+   "food": 2727790,
+   "oil": 1818520,
+   "steel": 389680,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": null,
+   "building2": null
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 19,
+  "name": "Factory",
+  "resources": {
+   "food": 2138960,
+   "oil": 1336850,
+   "steel": 374310,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "Main Hall 19"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 19,
+  "name": "Embassy",
+  "resources": {
+   "food": 0,
+   "oil": 925700,
+   "steel": 185140,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "Main Hall 19"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 19,
+  "name": "Dispatch Center",
+  "resources": {
+   "food": 0,
+   "oil": 348190,
+   "steel": 69630,
+   "minerals": 0,
+   "leader_badges": 782,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "Main Hall 19"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 19,
+  "name": "Depot",
+  "resources": {
+   "food": 577530,
+   "oil": 577530,
+   "steel": 119000,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "Main Hall 19"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 19,
+  "name": "City Wall",
+  "resources": {
+   "food": 0,
+   "oil": 6923270,
+   "steel": 1384650,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "Main Hall 19"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 19,
+  "name": "Camp",
+  "resources": {
+   "food": 2138960,
+   "oil": 1336850,
+   "steel": 374310,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "Main Hall 19"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 19,
+  "name": "Academy",
+  "resources": {
+   "food": 0,
+   "oil": 1511500,
+   "steel": 302300,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "Main Hall 19"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 19,
+  "name": "Main Hall",
+  "resources": {
+   "food": 10749980,
+   "oil": 10749980,
+   "steel": 2215140,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "City Wall",
+   "building2": "Depot"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 19,
+  "name": "Recon",
+  "resources": {
+   "food": 658930,
+   "oil": 658930,
+   "steel": 135770,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": null,
+   "building2": null
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 19,
+  "name": "Hospital",
+  "resources": {
+   "food": 1482920,
+   "oil": 926830,
+   "steel": 259510,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": null,
+   "building2": null
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 19,
+  "name": "Garage",
+  "resources": {
+   "food": 0,
+   "oil": 1640380,
+   "steel": 328070,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": null,
+   "building2": null
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 20,
+  "name": "Workshop",
+  "resources": {
+   "food": 3208450,
+   "oil": 2005280,
+   "steel": 561470,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": null,
+   "building2": null
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 20,
+  "name": "Factory",
+  "resources": {
+   "food": 2487940,
+   "oil": 1554960,
+   "steel": 435390,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "Main Hall 20"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 20,
+  "name": "Embassy",
+  "resources": {
+   "food": 0,
+   "oil": 1076730,
+   "steel": 215340,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "Main Hall 20"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 20,
+  "name": "Dispatch Center",
+  "resources": {
+   "food": 0,
+   "oil": 405000,
+   "steel": 81000,
+   "minerals": 0,
+   "leader_badges": 882,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "Main Hall 20"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 20,
+  "name": "Depot",
+  "resources": {
+   "food": 671750,
+   "oil": 671750,
+   "steel": 138420,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "Main Hall 20"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 20,
+  "name": "City Wall",
+  "resources": {
+   "food": 0,
+   "oil": 8052810,
+   "steel": 1610560,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "Main Hall 20"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 20,
+  "name": "Camp",
+  "resources": {
+   "food": 2487940,
+   "oil": 1554960,
+   "steel": 435390,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "Main Hall 20"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 20,
+  "name": "Academy",
+  "resources": {
+   "food": 0,
+   "oil": 1768500,
+   "steel": 353700,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "Main Hall 20"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 20,
+  "name": "Main Hall",
+  "resources": {
+   "food": 12499980,
+   "oil": 12499980,
+   "steel": 2575750,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "City Wall"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 20,
+  "name": "Recon",
+  "resources": {
+   "food": 766434,
+   "oil": 766434,
+   "steel": 157930,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": null,
+   "building2": null
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 20,
+  "name": "Hospital",
+  "resources": {
+   "food": 1724860,
+   "oil": 1078040,
+   "steel": 301850,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": null,
+   "building2": null
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 20,
+  "name": "Garage",
+  "resources": {
+   "food": 0,
+   "oil": 1908010,
+   "steel": 381600,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": null,
+   "building2": null
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 21,
+  "name": "Workshop",
+  "resources": {
+   "food": 3731910,
+   "oil": 2332440,
+   "steel": 653080,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": null,
+   "building2": null
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 21,
+  "name": "Factory",
+  "resources": {
+   "food": 2587480,
+   "oil": 1617170,
+   "steel": 436630,
+   "minerals": 169800,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "Main Hall 21"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 21,
+  "name": "Embassy",
+  "resources": {
+   "food": 0,
+   "oil": 1119800,
+   "steel": 223960,
+   "minerals": 55990,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "Main Hall 21"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 21,
+  "name": "Dispatch Center",
+  "resources": {
+   "food": 0,
+   "oil": 421200,
+   "steel": 84240,
+   "minerals": 21060,
+   "leader_badges": 989,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "Main Hall 21"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 21,
+  "name": "Depot",
+  "resources": {
+   "food": 688040,
+   "oil": 688040,
+   "steel": 142900,
+   "minerals": 55570,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "Main Hall 21"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 21,
+  "name": "City Wall",
+  "resources": {
+   "food": 0,
+   "oil": 8374990,
+   "steel": 1674990,
+   "minerals": 418740,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "Main Hall 21"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 21,
+  "name": "Camp",
+  "resources": {
+   "food": 2587480,
+   "oil": 1617170,
+   "steel": 436630,
+   "minerals": 169800,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "Main Hall 21"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 21,
+  "name": "Academy",
+  "resources": {
+   "food": 0,
+   "oil": 1839240,
+   "steel": 367840,
+   "minerals": 91960,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "Main Hall 21"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 21,
+  "name": "Main Hall",
+  "resources": {
+   "food": 12606040,
+   "oil": 12606040,
+   "steel": 2618170,
+   "minerals": 1018180,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "City Wall"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 21,
+  "name": "Recon",
+  "resources": {
+   "food": 785020,
+   "oil": 785020,
+   "steel": 163040,
+   "minerals": 63400,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": null,
+   "building2": null
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 21,
+  "name": "Hospital",
+  "resources": {
+   "food": 1793870,
+   "oil": 1121170,
+   "steel": 302710,
+   "minerals": 117720,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": null,
+   "building2": null
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 21,
+  "name": "Garage",
+  "resources": {
+   "food": 0,
+   "oil": 1984340,
+   "steel": 396860,
+   "minerals": 99210,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": null,
+   "building2": null
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 22,
+  "name": "Workshop",
+  "resources": {
+   "food": 3881220,
+   "oil": 2425760,
+   "steel": 754950,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": null,
+   "building2": null
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 22,
+  "name": "Factory",
+  "resources": {
+   "food": 2869050,
+   "oil": 1879720,
+   "steel": 554020,
+   "minerals": 237430,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "Main Hall 22"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 22,
+  "name": "Embassy",
+  "resources": {
+   "food": 0,
+   "oil": 1198850,
+   "steel": 239770,
+   "minerals": 102750,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "Main Hall 22"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 22,
+  "name": "Dispatch Center",
+  "resources": {
+   "food": 0,
+   "oil": 450930,
+   "steel": 90180,
+   "minerals": 38650,
+   "leader_badges": 1104,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "Main Hall 22"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 22,
+  "name": "Depot",
+  "resources": {
+   "food": 777080,
+   "oil": 777080,
+   "steel": 181320,
+   "minerals": 77700,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "Main Hall 22"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 22,
+  "name": "City Wall",
+  "resources": {
+   "food": 0,
+   "oil": 8966140,
+   "steel": 1793220,
+   "minerals": 768520,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "Main Hall 22"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 22,
+  "name": "Camp",
+  "resources": {
+   "food": 2869050,
+   "oil": 1879720,
+   "steel": 554020,
+   "minerals": 237430,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "Main Hall 22"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 22,
+  "name": "Academy",
+  "resources": {
+   "food": 0,
+   "oil": 2092160,
+   "steel": 418430,
+   "minerals": 179320,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "Main Hall 22"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 22,
+  "name": "Main Hall",
+  "resources": {
+   "food": 14545430,
+   "oil": 14545430,
+   "steel": 3393930,
+   "minerals": 1454540,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "City Wall"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 22,
+  "name": "Recon",
+  "resources": {
+   "food": 886610,
+   "oil": 886610,
+   "steel": 208870,
+   "minerals": 88660,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": null,
+   "building2": null
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 22,
+  "name": "Hospital",
+  "resources": {
+   "food": 1989080,
+   "oil": 1303190,
+   "steel": 384100,
+   "minerals": 164610,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": null,
+   "building2": null
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 22,
+  "name": "Garage",
+  "resources": {
+   "food": 0,
+   "oil": 2124410,
+   "steel": 424880,
+   "minerals": 182090,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": null,
+   "building2": null
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 23,
+  "name": "Workshop",
+  "resources": {
+   "food": 4303580,
+   "oil": 2819580,
+   "steel": 831030,
+   "minerals": 356150,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": null,
+   "building2": null
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 23,
+  "name": "Factory",
+  "resources": {
+   "food": 3443680,
+   "oil": 2213790,
+   "steel": 688730,
+   "minerals": 319770,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "Main Hall 23"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 23,
+  "name": "Embassy",
+  "resources": {
+   "food": 0,
+   "oil": 1490350,
+   "steel": 298070,
+   "minerals": 127740,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "Main Hall 23"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 23,
+  "name": "Dispatch Center",
+  "resources": {
+   "food": 0,
+   "oil": 0,
+   "steel": 0,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "Main Hall 23"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 23,
+  "name": "Depot",
+  "resources": {
+   "food": 0,
+   "oil": 0,
+   "steel": 0,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "Main Hall 23"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 23,
+  "name": "City Wall",
+  "resources": {
+   "food": 0,
+   "oil": 11146280,
+   "steel": 2229250,
+   "minerals": 955390,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "Main Hall 23"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 23,
+  "name": "Camp",
+  "resources": {
+   "food": 3443680,
+   "oil": 2213790,
+   "steel": 688730,
+   "minerals": 319770,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "Main Hall 23"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 23,
+  "name": "Academy",
+  "resources": {
+   "food": 0,
+   "oil": 2774200,
+   "steel": 554840,
+   "minerals": 237780,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "Main Hall 23"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 23,
+  "name": "Main Hall",
+  "resources": {
+   "food": 18469660,
+   "oil": 18469660,
+   "steel": 4496960,
+   "minerals": 2087870,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "City Wall",
+   "building2": "Factory"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 23,
+  "name": "Recon",
+  "resources": {
+   "food": 1056260,
+   "oil": 1056260,
+   "steel": 257170,
+   "minerals": 119400,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": null,
+   "building2": null
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 23,
+  "name": "Hospital",
+  "resources": {
+   "food": 2387470,
+   "oil": 1534800,
+   "steel": 477490,
+   "minerals": 221690,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": null,
+   "building2": null
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 23,
+  "name": "Garage",
+  "resources": {
+   "food": 0,
+   "oil": 2640960,
+   "steel": 528190,
+   "minerals": 226360,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": null,
+   "building2": null
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 24,
+  "name": "Workshop",
+  "resources": {
+   "food": 5165520,
+   "oil": 3320690,
+   "steel": 1033100,
+   "minerals": 479650,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": null,
+   "building2": null
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 24,
+  "name": "Factory",
+  "resources": {
+   "food": 4401570,
+   "oil": 2771360,
+   "steel": 912910,
+   "minerals": 456450,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "Main Hall 24"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 24,
+  "name": "Embassy",
+  "resources": {
+   "food": 0,
+   "oil": 1975460,
+   "steel": 395090,
+   "minerals": 169320,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "Main Hall 24"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 24,
+  "name": "Dispatch Center",
+  "resources": {
+   "food": 0,
+   "oil": 0,
+   "steel": 0,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "Main Hall 24"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 24,
+  "name": "Depot",
+  "resources": {
+   "food": 0,
+   "oil": 0,
+   "steel": 0,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "Main Hall 24"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 24,
+  "name": "City Wall",
+  "resources": {
+   "food": 0,
+   "oil": 14774380,
+   "steel": 2954870,
+   "minerals": 1266370,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "Main Hall 24"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 24,
+  "name": "Camp",
+  "resources": {
+   "food": 4401570,
+   "oil": 2771360,
+   "steel": 912910,
+   "minerals": 456450,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "Main Hall 24"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 24,
+  "name": "Academy",
+  "resources": {
+   "food": 0,
+   "oil": 0,
+   "steel": 0,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "Main Hall 24"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 24,
+  "name": "Main Hall",
+  "resources": {
+   "food": 23333290,
+   "oil": 23333290,
+   "steel": 5939380,
+   "minerals": 2969690,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "City Wall",
+   "building2": "Embassy"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 24,
+  "name": "Recon",
+  "resources": {
+   "food": 0,
+   "oil": 0,
+   "steel": 0,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": null,
+   "building2": null
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 24,
+  "name": "Hospital",
+  "resources": {
+   "food": 0,
+   "oil": 0,
+   "steel": 0,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": null,
+   "building2": null
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 24,
+  "name": "Garage",
+  "resources": {
+   "food": 0,
+   "oil": 0,
+   "steel": 0,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": null,
+   "building2": null
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 25,
+  "name": "Workshop",
+  "resources": {
+   "food": 6602360,
+   "oil": 4157040,
+   "steel": 1369370,
+   "minerals": 684680,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": null,
+   "building2": null
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 25,
+  "name": "Factory",
+  "resources": {
+   "food": 5832080,
+   "oil": 3672050,
+   "steel": 1209610,
+   "minerals": 604800,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "Main Hall 25"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 25,
+  "name": "Embassy",
+  "resources": {
+   "food": 0,
+   "oil": 2617480,
+   "steel": 523490,
+   "minerals": 224350,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "Main Hall 25"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 25,
+  "name": "Dispatch Center",
+  "resources": {
+   "food": 0,
+   "oil": 0,
+   "steel": 0,
+   "minerals": 0,
+   "leader_badges": 1497,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "Main Hall 25"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 25,
+  "name": "Depot",
+  "resources": {
+   "food": 1555250,
+   "oil": 1555250,
+   "steel": 395880,
+   "minerals": 197940,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "Main Hall 25"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 25,
+  "name": "City Wall",
+  "resources": {
+   "food": 0,
+   "oil": 19576030,
+   "steel": 3915200,
+   "minerals": 1677940,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "Main Hall 25"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 25,
+  "name": "Camp",
+  "resources": {
+   "food": 5832080,
+   "oil": 3672050,
+   "steel": 1209610,
+   "minerals": 604800,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "Main Hall 25"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 25,
+  "name": "Academy",
+  "resources": {
+   "food": 0,
+   "oil": 0,
+   "steel": 0,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "Main Hall 25"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 25,
+  "name": "Main Hall",
+  "resources": {
+   "food": 30999950,
+   "oil": 30999950,
+   "steel": 7890890,
+   "minerals": 3945440,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "City Wall",
+   "building2": "Depot"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 25,
+  "name": "Recon",
+  "resources": {
+   "food": 0,
+   "oil": 0,
+   "steel": 0,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": null,
+   "building2": null
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 25,
+  "name": "Hospital",
+  "resources": {
+   "food": 4043330,
+   "oil": 2545800,
+   "steel": 838610,
+   "minerals": 419300,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": null,
+   "building2": null
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 25,
+  "name": "Garage",
+  "resources": {
+   "food": 0,
+   "oil": 4638290,
+   "steel": 4638290,
+   "minerals": 927650,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": null,
+   "building2": null
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 26,
+  "name": "Workshop",
+  "resources": {
+   "food": 8748120,
+   "oil": 5508080,
+   "steel": 1814420,
+   "minerals": 907200,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": null,
+   "building2": null
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 26,
+  "name": "Factory",
+  "resources": {
+   "food": 7438620,
+   "oil": 4577610,
+   "steel": 1602160,
+   "minerals": 858300,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "Main Hall 26"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 26,
+  "name": "Embassy",
+  "resources": {
+   "food": 0,
+   "oil": 2971650,
+   "steel": 594330,
+   "minerals": 396220,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "Main Hall 26"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 26,
+  "name": "Dispatch Center",
+  "resources": {
+   "food": 0,
+   "oil": 1117750,
+   "steel": 223550,
+   "minerals": 149030,
+   "leader_badges": 1645,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "Main Hall 26"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 26,
+  "name": "Depot",
+  "resources": {
+   "food": 0,
+   "oil": 0,
+   "steel": 0,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "Main Hall 26"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 26,
+  "name": "City Wall",
+  "resources": {
+   "food": 0,
+   "oil": 22224780,
+   "steel": 4444950,
+   "minerals": 2963300,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "Main Hall 26"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 26,
+  "name": "Camp",
+  "resources": {
+   "food": 7438620,
+   "oil": 4577610,
+   "steel": 1602160,
+   "minerals": 858300,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "Main Hall 26"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 26,
+  "name": "Academy",
+  "resources": {
+   "food": 0,
+   "oil": 5531490,
+   "steel": 1106290,
+   "minerals": 737530,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "Main Hall 26"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 26,
+  "name": "Main Hall",
+  "resources": {
+   "food": 39136300,
+   "oil": 39136300,
+   "steel": 10436340,
+   "minerals": 5590900,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "City Wall",
+   "building2": "Recon Center"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 26,
+  "name": "Recon",
+  "resources": {
+   "food": 2243470,
+   "oil": 2243470,
+   "steel": 598250,
+   "minerals": 320490,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": null,
+   "building2": null
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 26,
+  "name": "Hospital",
+  "resources": {
+   "food": 5157130,
+   "oil": 3173620,
+   "steel": 1110760,
+   "minerals": 595050,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": null,
+   "building2": null
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 26,
+  "name": "Garage",
+  "resources": {
+   "food": 0,
+   "oil": 0,
+   "steel": 0,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": null,
+   "building2": null
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 27,
+  "name": "Workshop",
+  "resources": {
+   "food": 11157930,
+   "oil": 6866420,
+   "steel": 2403240,
+   "minerals": 1287450,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": null,
+   "building2": null
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 27,
+  "name": "Factory",
+  "resources": {
+   "food": 9849370,
+   "oil": 6061150,
+   "steel": 2121400,
+   "minerals": 1134460,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "Main Hall 27"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 27,
+  "name": "Embassy",
+  "resources": {
+   "food": 0,
+   "oil": 3934710,
+   "steel": 786940,
+   "minerals": 524620,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "Main Hall 27"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 27,
+  "name": "Dispatch Center",
+  "resources": {
+   "food": 0,
+   "oil": 1479990,
+   "steel": 295990,
+   "minerals": 197330,
+   "leader_badges": 1802,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "Main Hall 27"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 27,
+  "name": "Depot",
+  "resources": {
+   "food": 2479610,
+   "oil": 2479610,
+   "steel": 694290,
+   "minerals": 396730,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "Main Hall 27"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 27,
+  "name": "City Wall",
+  "resources": {
+   "food": 0,
+   "oil": 29427510,
+   "steel": 5885500,
+   "minerals": 3923660,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "Main Hall 27"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 27,
+  "name": "Camp",
+  "resources": {
+   "food": 9849370,
+   "oil": 6061150,
+   "steel": 2121400,
+   "minerals": 1134460,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "Main Hall 27"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 27,
+  "name": "Academy",
+  "resources": {
+   "food": 0,
+   "oil": 7324290,
+   "steel": 1464850,
+   "minerals": 976570,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "Main Hall 27"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 27,
+  "name": "Main Hall",
+  "resources": {
+   "food": 49393860,
+   "oil": 49393860,
+   "steel": 13830280,
+   "minerals": 7903010,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "City Wall",
+   "building2": "Hospital"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 27,
+  "name": "Recon",
+  "resources": {
+   "food": 2829090,
+   "oil": 2829090,
+   "steel": 792140,
+   "minerals": 452650,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": null,
+   "building2": null
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 27,
+  "name": "Hospital",
+  "resources": {
+   "food": 6828490,
+   "oil": 4202140,
+   "steel": 1470750,
+   "minerals": 735370,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": null,
+   "building2": null
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 27,
+  "name": "Garage",
+  "resources": {
+   "food": 0,
+   "oil": 6972470,
+   "steel": 1394490,
+   "minerals": 929660,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": null,
+   "building2": null
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 28,
+  "name": "Workshop",
+  "resources": {
+   "food": 14774060,
+   "oil": 9091730,
+   "steel": 3182100,
+   "minerals": 1704700,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": null,
+   "building2": null
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 28,
+  "name": "Factory",
+  "resources": {
+   "food": 12311810,
+   "oil": 7387080,
+   "steel": 2757840,
+   "minerals": 1575910,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "Main Hall 28"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 28,
+  "name": "Embassy",
+  "resources": {
+   "food": 0,
+   "oil": 5115170,
+   "steel": 1023030,
+   "minerals": 682020,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "Main Hall 28"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 28,
+  "name": "Dispatch Center",
+  "resources": {
+   "food": 0,
+   "oil": 1924010,
+   "steel": 384800,
+   "minerals": 256530,
+   "leader_badges": 1968,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "Main Hall 28"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 28,
+  "name": "Depot",
+  "resources": {
+   "food": 3223510,
+   "oil": 3223510,
+   "steel": 902580,
+   "minerals": 515760,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "Main Hall 28"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 28,
+  "name": "City Wall",
+  "resources": {
+   "food": 0,
+   "oil": 38256060,
+   "steel": 7651210,
+   "minerals": 5100800,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "Main Hall 28"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 28,
+  "name": "Camp",
+  "resources": {
+   "food": 12311810,
+   "oil": 7387080,
+   "steel": 2757840,
+   "minerals": 1575910,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "Main Hall 28"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 28,
+  "name": "Academy",
+  "resources": {
+   "food": 0,
+   "oil": 9521550,
+   "steel": 1904310,
+   "minerals": 1269540,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "Main Hall 28"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 28,
+  "name": "Main Hall",
+  "resources": {
+   "food": 64242320,
+   "oil": 64242320,
+   "steel": 17987850,
+   "minerals": 10278770,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "City Wall"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 28,
+  "name": "Recon",
+  "resources": {
+   "food": 3667850,
+   "oil": 3667850,
+   "steel": 1029790,
+   "minerals": 588450,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": null,
+   "building2": null
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 28,
+  "name": "Hospital",
+  "resources": {
+   "food": 8535680,
+   "oil": 5121400,
+   "steel": 1911990,
+   "minerals": 1092560,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": null,
+   "building2": null
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 28,
+  "name": "Garage",
+  "resources": {
+   "food": 0,
+   "oil": 9064280,
+   "steel": 1812850,
+   "minerals": 1208570,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": null,
+   "building2": null
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 29,
+  "name": "Workshop",
+  "resources": {
+   "food": 18467720,
+   "oil": 11080630,
+   "steel": 4136760,
+   "minerals": 2363860,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": null,
+   "building2": null
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 29,
+  "name": "Factory",
+  "resources": {
+   "food": 16005290,
+   "oil": 9603170,
+   "steel": 3585180,
+   "minerals": 2048670,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "Main Hall 29"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 29,
+  "name": "Embassy",
+  "resources": {
+   "food": 0,
+   "oil": 6649700,
+   "steel": 1329940,
+   "minerals": 886620,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "Main Hall 29"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 29,
+  "name": "Dispatch Center",
+  "resources": {
+   "food": 0,
+   "oil": 2501200,
+   "steel": 500240,
+   "minerals": 333490,
+   "leader_badges": 2143,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "Main Hall 29"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 29,
+  "name": "Depot",
+  "resources": {
+   "food": 0,
+   "oil": 0,
+   "steel": 0,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "Main Hall 29"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 29,
+  "name": "City Wall",
+  "resources": {
+   "food": 0,
+   "oil": 49732680,
+   "steel": 9946530,
+   "minerals": 6631020,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "Main Hall 29"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 29,
+  "name": "Camp",
+  "resources": {
+   "food": 16005290,
+   "oil": 9603170,
+   "steel": 3585180,
+   "minerals": 2048670,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "Main Hall 29"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 29,
+  "name": "Academy",
+  "resources": {
+   "food": 0,
+   "oil": 12377880,
+   "steel": 2475570,
+   "minerals": 1650380,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "Main Hall 29"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 29,
+  "name": "Main Hall",
+  "resources": {
+   "food": 83484720,
+   "oil": 83484720,
+   "steel": 23375720,
+   "minerals": 13357550,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "City Wall",
+   "building2": "Garage"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 29,
+  "name": "Recon",
+  "resources": {
+   "food": 4781180,
+   "oil": 4781180,
+   "steel": 1338730,
+   "minerals": 764980,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": null,
+   "building2": null
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 29,
+  "name": "Hospital",
+  "resources": {
+   "food": 11096340,
+   "oil": 6657800,
+   "steel": 2485580,
+   "minerals": 1420330,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": null,
+   "building2": null
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 29,
+  "name": "Garage",
+  "resources": {
+   "food": 0,
+   "oil": 11783520,
+   "steel": 2356700,
+   "minerals": 1571130,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": null,
+   "building2": null
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 30,
+  "name": "Workshop",
+  "resources": {
+   "food": 24007940,
+   "oil": 14404760,
+   "steel": 5377770,
+   "minerals": 3073010,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": null,
+   "building2": null
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 30,
+  "name": "Factory",
+  "resources": {
+   "food": 20806877,
+   "oil": 12484121,
+   "steel": 4660734,
+   "minerals": 2663271,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "Main Hall 30"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 30,
+  "name": "Embassy",
+  "resources": {
+   "food": 0,
+   "oil": 8644620,
+   "steel": 1728920,
+   "minerals": 1152610,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "Main Hall 30"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 30,
+  "name": "Dispatch Center",
+  "resources": {
+   "food": 0,
+   "oil": 0,
+   "steel": 0,
+   "minerals": 0,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "Main Hall 30"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 30,
+  "name": "Depot",
+  "resources": {
+   "food": 5447730,
+   "oil": 5447730,
+   "steel": 1525360,
+   "minerals": 871630,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "Main Hall 30"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 30,
+  "name": "City Wall",
+  "resources": {
+   "food": 0,
+   "oil": 64652570,
+   "steel": 12930510,
+   "minerals": 8620340,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "Main Hall 30"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 30,
+  "name": "Camp",
+  "resources": {
+   "food": 20806877,
+   "oil": 12484121,
+   "steel": 4660734,
+   "minerals": 2663271,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "Main Hall 30"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 30,
+  "name": "Academy",
+  "resources": {
+   "food": 0,
+   "oil": 16091190,
+   "steel": 3218230,
+   "minerals": 2145490,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "Main Hall 30"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 30,
+  "name": "Core Mining Station",
+  "resources": {
+   "food": 106622422,
+   "oil": 106622422,
+   "steel": 21324484,
+   "minerals": 9021897,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": null,
+   "building2": null
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 30,
+  "name": "Main Hall",
+  "resources": {
+   "food": 108484680,
+   "oil": 108484680,
+   "steel": 30375710,
+   "minerals": 17357550,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "City Wall",
+   "building2": "Workshop"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 30,
+  "name": "Recon",
+  "resources": {
+   "food": 6215550,
+   "oil": 6215550,
+   "steel": 1740350,
+   "minerals": 994480,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": null,
+   "building2": null
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 30,
+  "name": "Hospital",
+  "resources": {
+   "food": 14425260,
+   "oil": 8655150,
+   "steel": 3231250,
+   "minerals": 1846430,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": null,
+   "building2": null
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 30,
+  "name": "Garage",
+  "resources": {
+   "food": 0,
+   "oil": 15318600,
+   "steel": 3063720,
+   "minerals": 2042480,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": null,
+   "building2": null
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 31,
+  "name": "Workshop",
+  "resources": {
+   "food": 31210370,
+   "oil": 18726220,
+   "steel": 6991120,
+   "minerals": 3994920,
+   "leader_badges": 0,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": null,
+   "building2": null
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 31,
+  "name": "Main Hall",
+  "resources": {
+   "food": 136690750,
+   "oil": 136690750,
+   "steel": 28273520,
+   "minerals": 21870520,
+   "leader_badges": 0,
+   "uranium": 49270
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "City Wall",
+   "building2": "Recon Center"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 31,
+  "name": "City Wall",
+  "resources": {
+   "food": 0,
+   "oil": 84048280,
+   "steel": 16809650,
+   "minerals": 11206430,
+   "leader_badges": 0,
+   "uranium": 19480
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": null,
+   "building2": null
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 31,
+  "name": "Garage",
+  "resources": {
+   "food": 0,
+   "oil": 19914230,
+   "steel": 3982840,
+   "minerals": 2655230,
+   "leader_badges": 0,
+   "uranium": 18980
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": null,
+   "building2": null
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 31,
+  "name": "Recon Center",
+  "resources": {
+   "food": 7591610,
+   "oil": 7591610,
+   "steel": 2125640,
+   "minerals": 1214640,
+   "leader_badges": 0,
+   "uranium": 12980
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": null,
+   "building2": null
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 31,
+  "name": "Depot",
+  "resources": {
+   "food": 7436130,
+   "oil": 7436130,
+   "steel": 2082110,
+   "minerals": 1189770,
+   "leader_badges": 0,
+   "uranium": 7440
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": null,
+   "building2": null
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 31,
+  "name": "Embassy",
+  "resources": {
+   "food": 0,
+   "oil": 11238000,
+   "steel": 2247590,
+   "minerals": 1498390,
+   "leader_badges": 0,
+   "uranium": 7440
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": null,
+   "building2": null
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 31,
+  "name": "Dispatch Center",
+  "resources": {
+   "food": 0,
+   "oil": 4227140,
+   "steel": 845420,
+   "minerals": 563610,
+   "leader_badges": 2631,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": null,
+   "building2": null
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 31,
+  "name": "Hospital",
+  "resources": {
+   "food": 18161330,
+   "oil": 10896790,
+   "steel": 4068120,
+   "minerals": 2324640,
+   "leader_badges": 0,
+   "uranium": 12420
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": null,
+   "building2": null
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 31,
+  "name": "Camp",
+  "resources": {
+   "food": 27049030,
+   "oil": 16229410,
+   "steel": 6058970,
+   "minerals": 3462270,
+   "leader_badges": 0,
+   "uranium": 12980
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": null,
+   "building2": null
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 31,
+  "name": "Factory",
+  "resources": {
+   "food": 27049030,
+   "oil": 16229410,
+   "steel": 6058970,
+   "minerals": 3462270,
+   "leader_badges": 0,
+   "uranium": 12980
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": null,
+   "building2": null
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 32,
+  "name": "Workshop",
+  "resources": {
+   "food": 40573540,
+   "oil": 24344110,
+   "steel": 9088450,
+   "minerals": 5193400,
+   "leader_badges": 0,
+   "uranium": 15570
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": null,
+   "building2": null
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 32,
+  "name": "Main Hall",
+  "resources": {
+   "food": 169496550,
+   "oil": 169496550,
+   "steel": 47459030,
+   "minerals": 27119440,
+   "leader_badges": 0,
+   "uranium": 81350
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "City Wall",
+   "building2": "Garage"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 32,
+  "name": "City Wall",
+  "resources": {
+   "food": 0,
+   "oil": 107581740,
+   "steel": 21516340,
+   "minerals": 14344220,
+   "leader_badges": 0,
+   "uranium": 32160
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": null,
+   "building2": null
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 32,
+  "name": "Garage",
+  "resources": {
+   "food": 0,
+   "oil": 25490100,
+   "steel": 5098010,
+   "minerals": 3398670,
+   "leader_badges": 0,
+   "uranium": 31350
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": null,
+   "building2": null
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 32,
+  "name": "Recon Center",
+  "resources": {
+   "food": 9091780,
+   "oil": 9091780,
+   "steel": 2545680,
+   "minerals": 1454660,
+   "leader_badges": 0,
+   "uranium": 21430
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": null,
+   "building2": null
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 32,
+  "name": "Depot",
+  "resources": {
+   "food": 9971450,
+   "oil": 9971450,
+   "steel": 2791990,
+   "minerals": 1595410,
+   "leader_badges": 0,
+   "uranium": 12300
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": null,
+   "building2": null
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 32,
+  "name": "Embassy",
+  "resources": {
+   "food": 0,
+   "oil": 14384540,
+   "steel": 2876890,
+   "minerals": 1917920,
+   "leader_badges": 0,
+   "uranium": 12300
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": null,
+   "building2": null
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 32,
+  "name": "Dispatch Center",
+  "resources": {
+   "food": 0,
+   "oil": 5410820,
+   "steel": 1082150,
+   "minerals": 721430,
+   "leader_badges": 3095,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": null,
+   "building2": null
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 32,
+  "name": "Hospital",
+  "resources": {
+   "food": 24003550,
+   "oil": 14402120,
+   "steel": 5376770,
+   "minerals": 3072440,
+   "leader_badges": 0,
+   "uranium": 20510
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": null,
+   "building2": null
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 32,
+  "name": "Camp",
+  "resources": {
+   "food": 34622730,
+   "oil": 20773620,
+   "steel": 7755470,
+   "minerals": 4431700,
+   "leader_badges": 0,
+   "uranium": 21430
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": null,
+   "building2": null
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 32,
+  "name": "Factory",
+  "resources": {
+   "food": 34622730,
+   "oil": 20773620,
+   "steel": 7755470,
+   "minerals": 4431700,
+   "leader_badges": 0,
+   "uranium": 21430
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": null,
+   "building2": null
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 33,
+  "name": "Workshop",
+  "resources": {
+   "food": 51934090,
+   "oil": 31160430,
+   "steel": 11633200,
+   "minerals": 6647550,
+   "leader_badges": 0,
+   "uranium": 25710
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": null,
+   "building2": null
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 33,
+  "name": "Main Hall",
+  "resources": {
+   "food": 206785700,
+   "oil": 206785700,
+   "steel": 57899990,
+   "minerals": 33085700,
+   "leader_badges": 0,
+   "uranium": 141480
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "City Wall",
+   "building2": "Depot"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 33,
+  "name": "City Wall",
+  "resources": {
+   "food": 0,
+   "oil": 135552920,
+   "steel": 27110570,
+   "minerals": 18073700,
+   "leader_badges": 0,
+   "uranium": 55930
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": null,
+   "building2": null
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 33,
+  "name": "Garage",
+  "resources": {
+   "food": 0,
+   "oil": 32117590,
+   "steel": 6423500,
+   "minerals": 4282330,
+   "leader_badges": 0,
+   "uranium": 54520
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": null,
+   "building2": null
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 33,
+  "name": "Recon Center",
+  "resources": {
+   "food": 10667620,
+   "oil": 10667620,
+   "steel": 2986910,
+   "minerals": 1706790,
+   "leader_badges": 0,
+   "uranium": 37270
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": null,
+   "building2": null
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 33,
+  "name": "Depot",
+  "resources": {
+   "food": 13135200,
+   "oil": 13135200,
+   "steel": 3677830,
+   "minerals": 2101600,
+   "leader_badges": 0,
+   "uranium": 21390
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": null,
+   "building2": null
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 33,
+  "name": "Embassy",
+  "resources": {
+   "food": 0,
+   "oil": 18124440,
+   "steel": 3624860,
+   "minerals": 2416560,
+   "leader_badges": 0,
+   "uranium": 21390
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": null,
+   "building2": null
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 33,
+  "name": "Dispatch Center",
+  "resources": {
+   "food": 0,
+   "oil": 6817700,
+   "steel": 1363520,
+   "minerals": 909010,
+   "leader_badges": 3659,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": null,
+   "building2": null
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 33,
+  "name": "Hospital",
+  "resources": {
+   "food": 30244430,
+   "oil": 18146640,
+   "steel": 6774720,
+   "minerals": 3871260,
+   "leader_badges": 0,
+   "uranium": 35660
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": null,
+   "building2": null
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 33,
+  "name": "Camp",
+  "resources": {
+   "food": 43624620,
+   "oil": 26174750,
+   "steel": 9771880,
+   "minerals": 5583940,
+   "leader_badges": 0,
+   "uranium": 42360
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": null,
+   "building2": null
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 33,
+  "name": "Factory",
+  "resources": {
+   "food": 43624620,
+   "oil": 26174750,
+   "steel": 9771880,
+   "minerals": 5583940,
+   "leader_badges": 0,
+   "uranium": 37270
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": null,
+   "building2": null
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 34,
+  "name": "Workshop",
+  "resources": {
+   "food": 65436930,
+   "oil": 39262120,
+   "steel": 14657820,
+   "minerals": 8375910,
+   "leader_badges": 0,
+   "uranium": 44720
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": null,
+   "building2": null
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 34,
+  "name": "Main Hall",
+  "resources": {
+   "food": 248142840,
+   "oil": 248142840,
+   "steel": 69479980,
+   "minerals": 39702840,
+   "leader_badges": 0,
+   "uranium": 214240
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "City Wall",
+   "building2": "Embassy"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 34,
+  "name": "City Wall",
+  "resources": {
+   "food": 0,
+   "oil": 168085750,
+   "steel": 33617130,
+   "minerals": 22411400,
+   "leader_badges": 0,
+   "uranium": 84690
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": null,
+   "building2": null
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 34,
+  "name": "Garage",
+  "resources": {
+   "food": 0,
+   "oil": 39825910,
+   "steel": 7965160,
+   "minerals": 5310100,
+   "leader_badges": 0,
+   "uranium": 82560
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": null,
+   "building2": null
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 34,
+  "name": "Recon Center",
+  "resources": {
+   "food": 12250700,
+   "oil": 12250700,
+   "steel": 3430170,
+   "minerals": 1960070,
+   "leader_badges": 0,
+   "uranium": 56440
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": null,
+   "building2": null
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 34,
+  "name": "Depot",
+  "resources": {
+   "food": 16995840,
+   "oil": 16995840,
+   "steel": 4758800,
+   "minerals": 2719290,
+   "leader_badges": 0,
+   "uranium": 32400
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": null,
+   "building2": null
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 34,
+  "name": "Embassy",
+  "resources": {
+   "food": 0,
+   "oil": 22474360,
+   "steel": 4494830,
+   "minerals": 2996540,
+   "leader_badges": 0,
+   "uranium": 32400
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": null,
+   "building2": null
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 34,
+  "name": "Dispatch Center",
+  "resources": {
+   "food": 0,
+   "oil": 8453990,
+   "steel": 1690770,
+   "minerals": 1127170,
+   "leader_badges": 4463,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": null,
+   "building2": null
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 34,
+  "name": "Hospital",
+  "resources": {
+   "food": 37503100,
+   "oil": 22501830,
+   "steel": 8400650,
+   "minerals": 4800360,
+   "leader_badges": 0,
+   "uranium": 54000
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": null,
+   "building2": null
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 34,
+  "name": "Camp",
+  "resources": {
+   "food": 54094460,
+   "oil": 32456650,
+   "steel": 12117110,
+   "minerals": 6924070,
+   "leader_badges": 0,
+   "uranium": 59310
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": null,
+   "building2": null
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 34,
+  "name": "Factory",
+  "resources": {
+   "food": 54094460,
+   "oil": 32456650,
+   "steel": 12117110,
+   "minerals": 6924070,
+   "leader_badges": 0,
+   "uranium": 63550
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": null,
+   "building2": null
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 35,
+  "name": "Workshop",
+  "resources": {
+   "food": 81141690,
+   "oil": 48684970,
+   "steel": 18175660,
+   "minerals": 10386100,
+   "leader_badges": 0,
+   "uranium": 67720
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": null,
+   "building2": null
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 35,
+  "name": "Main Hall",
+  "resources": {
+   "food": 292808470,
+   "oil": 292808470,
+   "steel": 81986350,
+   "minerals": 46849330,
+   "leader_badges": 0,
+   "uranium": 317840
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "City Wall",
+   "building2": "Hospital"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 35,
+  "name": "City Wall",
+  "resources": {
+   "food": 0,
+   "oil": 208426430,
+   "steel": 41685260,
+   "minerals": 27790150,
+   "leader_badges": 0,
+   "uranium": 125640
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": null,
+   "building2": null
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 35,
+  "name": "Garage",
+  "resources": {
+   "food": 0,
+   "oil": 49384210,
+   "steel": 9876810,
+   "minerals": 6584530,
+   "leader_badges": 0,
+   "uranium": 122460
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": null,
+   "building2": null
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 35,
+  "name": "Recon Center",
+  "resources": {
+   "food": 13979190,
+   "oil": 13979190,
+   "steel": 3914140,
+   "minerals": 2236620,
+   "leader_badges": 0,
+   "uranium": 83720
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": null,
+   "building2": null
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 35,
+  "name": "Depot",
+  "resources": {
+   "food": 21952950,
+   "oil": 21952950,
+   "steel": 6146780,
+   "minerals": 3512410,
+   "leader_badges": 0,
+   "uranium": 48050
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": null,
+   "building2": null
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 35,
+  "name": "Embassy",
+  "resources": {
+   "food": 0,
+   "oil": 27868250,
+   "steel": 5573590,
+   "minerals": 3715710,
+   "leader_badges": 0,
+   "uranium": 48050
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": null,
+   "building2": null
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 35,
+  "name": "Dispatch Center",
+  "resources": {
+   "food": 0,
+   "oil": 10483040,
+   "steel": 2096570,
+   "minerals": 1397700,
+   "leader_badges": 5347,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": null,
+   "building2": null
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 35,
+  "name": "Hospital",
+  "resources": {
+   "food": 46503930,
+   "oil": 27902320,
+   "steel": 10416820,
+   "minerals": 5952450,
+   "leader_badges": 0,
+   "uranium": 80100
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": null,
+   "building2": null
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 35,
+  "name": "Camp",
+  "resources": {
+   "food": 67077080,
+   "oil": 40246210,
+   "steel": 15025200,
+   "minerals": 8585840,
+   "leader_badges": 0,
+   "uranium": 75760
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": null,
+   "building2": null
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 35,
+  "name": "Factory",
+  "resources": {
+   "food": 67077080,
+   "oil": 40246210,
+   "steel": 15025200,
+   "minerals": 8585840,
+   "leader_badges": 0,
+   "uranium": 76610
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": null,
+   "building2": null
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 36,
+  "name": "Workshop",
+  "resources": {
+   "food": 100615620,
+   "oil": 60369310,
+   "steel": 22537800,
+   "minerals": 12878760,
+   "leader_badges": 0,
+   "uranium": 98220
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": null,
+   "building2": null
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 36,
+  "name": "Main Hall",
+  "resources": {
+   "food": 314374510,
+   "oil": 314374510,
+   "steel": 88024840,
+   "minerals": 50299890,
+   "leader_badges": 0,
+   "uranium": 350780
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "City Wall",
+   "building2": "Garage"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 36,
+  "name": "City Wall",
+  "resources": {
+   "food": 0,
+   "oil": 222703590,
+   "steel": 44540690,
+   "minerals": 29693760,
+   "leader_badges": 0,
+   "uranium": 149660
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": null,
+   "building2": null
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 36,
+  "name": "Garage",
+  "resources": {
+   "food": 0,
+   "oil": 55325220,
+   "steel": 11065000,
+   "minerals": 7376660,
+   "leader_badges": 0,
+   "uranium": 154260
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": null,
+   "building2": null
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 36,
+  "name": "Depot",
+  "resources": {
+   "food": 24403340,
+   "oil": 24403340,
+   "steel": 6832880,
+   "minerals": 3904460,
+   "leader_badges": 0,
+   "uranium": 57190
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": null,
+   "building2": null
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 36,
+  "name": "Embassy",
+  "resources": {
+   "food": 0,
+   "oil": 30862470,
+   "steel": 6172420,
+   "minerals": 4114930,
+   "leader_badges": 0,
+   "uranium": 57190
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": null,
+   "building2": null
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 36,
+  "name": "Dispatch Center",
+  "resources": {
+   "food": 0,
+   "oil": 13747980,
+   "steel": 2749540,
+   "minerals": 1833010,
+   "leader_badges": 6203,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": null,
+   "building2": null
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 36,
+  "name": "Hospital",
+  "resources": {
+   "food": 52849000,
+   "oil": 31709350,
+   "steel": 11758100,
+   "minerals": 6764610,
+   "leader_badges": 0,
+   "uranium": 98280
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": null,
+   "building2": null
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 36,
+  "name": "Camp",
+  "resources": {
+   "food": 73425960,
+   "oil": 44055530,
+   "steel": 16447340,
+   "minerals": 9398490,
+   "leader_badges": 0,
+   "uranium": 99670
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": null,
+   "building2": null
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 36,
+  "name": "Factory",
+  "resources": {
+   "food": 73425960,
+   "oil": 44055530,
+   "steel": 16447340,
+   "minerals": 9398490,
+   "leader_badges": 0,
+   "uranium": 99670
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": null,
+   "building2": null
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 37,
+  "name": "Workshop",
+  "resources": {
+   "food": 110138940,
+   "oil": 66083290,
+   "steel": 24671010,
+   "minerals": 14097730,
+   "leader_badges": 0,
+   "uranium": 119600
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": null,
+   "building2": null
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 37,
+  "name": "Main Hall",
+  "resources": {
+   "food": 333648650,
+   "oil": 333648650,
+   "steel": 93421590,
+   "minerals": 53383750,
+   "leader_badges": 0,
+   "uranium": 377680
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "City Wall",
+   "building2": "Depot"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 37,
+  "name": "City Wall",
+  "resources": {
+   "food": 0,
+   "oil": 235176280,
+   "steel": 47035220,
+   "minerals": 31356780,
+   "leader_badges": 0,
+   "uranium": 173190
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": null,
+   "building2": null
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 37,
+  "name": "Garage",
+  "resources": {
+   "food": 0,
+   "oil": 60771160,
+   "steel": 12154180,
+   "minerals": 8102780,
+   "leader_badges": 0,
+   "uranium": 185540
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": null,
+   "building2": null
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 37,
+  "name": "Depot",
+  "resources": {
+   "food": 26633590,
+   "oil": 26633590,
+   "steel": 7457340,
+   "minerals": 4261290,
+   "leader_badges": 0,
+   "uranium": 65910
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": null,
+   "building2": null
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 37,
+  "name": "Embassy",
+  "resources": {
+   "food": 0,
+   "oil": 33577420,
+   "steel": 6715400,
+   "minerals": 4476910,
+   "leader_badges": 0,
+   "uranium": 65910
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": null,
+   "building2": null
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 37,
+  "name": "Dispatch Center",
+  "resources": {
+   "food": 0,
+   "oil": 17078120,
+   "steel": 3415550,
+   "minerals": 2277010,
+   "leader_badges": 7071,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": null,
+   "building2": null
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 37,
+  "name": "Hospital",
+  "resources": {
+   "food": 58853580,
+   "oil": 35312090,
+   "steel": 13183110,
+   "minerals": 7533180,
+   "leader_badges": 0,
+   "uranium": 116310
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": null,
+   "building2": null
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 37,
+  "name": "Camp",
+  "resources": {
+   "food": 79228520,
+   "oil": 47537060,
+   "steel": 17747100,
+   "minerals": 10141210,
+   "leader_badges": 0,
+   "uranium": 118050
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": null,
+   "building2": null
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 37,
+  "name": "Factory",
+  "resources": {
+   "food": 79228520,
+   "oil": 47537060,
+   "steel": 17747100,
+   "minerals": 10141210,
+   "leader_badges": 0,
+   "uranium": 118050
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": null,
+   "building2": null
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 38,
+  "name": "Workshop",
+  "resources": {
+   "food": 118842780,
+   "oil": 71305590,
+   "steel": 26620650,
+   "minerals": 15211810,
+   "leader_badges": 0,
+   "uranium": 141660
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": null,
+   "building2": null
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 38,
+  "name": "Main Hall",
+  "resources": {
+   "food": 353579490,
+   "oil": 353579490,
+   "steel": 99002220,
+   "minerals": 56572680,
+   "leader_badges": 0,
+   "uranium": 401260
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "City Wall",
+   "building2": "Embassy"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 38,
+  "name": "City Wall",
+  "resources": {
+   "food": 0,
+   "oil": 247933830,
+   "steel": 49506720,
+   "minerals": 33057780,
+   "leader_badges": 0,
+   "uranium": 199420
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": null,
+   "building2": null
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 38,
+  "name": "Garage",
+  "resources": {
+   "food": 0,
+   "oil": 66214820,
+   "steel": 13242900,
+   "minerals": 8828590,
+   "leader_badges": 0,
+   "uranium": 224590
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": null,
+   "building2": null
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 38,
+  "name": "Depot",
+  "resources": {
+   "food": 28862940,
+   "oil": 28862940,
+   "steel": 8081550,
+   "minerals": 4617980,
+   "leader_badges": 0,
+   "uranium": 75800
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": null,
+   "building2": null
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 38,
+  "name": "Embassy",
+  "resources": {
+   "food": 0,
+   "oil": 36291010,
+   "steel": 7258110,
+   "minerals": 4838710,
+   "leader_badges": 0,
+   "uranium": 75800
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": null,
+   "building2": null
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 38,
+  "name": "Dispatch Center",
+  "resources": {
+   "food": 0,
+   "oil": 20474940,
+   "steel": 4094890,
+   "minerals": 2729900,
+   "leader_badges": 7920,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": null,
+   "building2": null
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 38,
+  "name": "Hospital",
+  "resources": {
+   "food": 64984710,
+   "oil": 38990760,
+   "steel": 14556470,
+   "minerals": 8317950,
+   "leader_badges": 0,
+   "uranium": 137690
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": null,
+   "building2": null
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 38,
+  "name": "Camp",
+  "resources": {
+   "food": 85157890,
+   "oil": 51094670,
+   "steel": 19075270,
+   "minerals": 10900160,
+   "leader_badges": 0,
+   "uranium": 139750
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": null,
+   "building2": null
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 38,
+  "name": "Factory",
+  "resources": {
+   "food": 85157890,
+   "oil": 51094670,
+   "steel": 19075270,
+   "minerals": 10900160,
+   "leader_badges": 0,
+   "uranium": 139750
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": null,
+   "building2": null
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 39,
+  "name": "Workshop",
+  "resources": {
+   "food": 127736830,
+   "oil": 76642000,
+   "steel": 28612900,
+   "minerals": 16350240,
+   "leader_badges": 0,
+   "uranium": 176500
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": null,
+   "building2": null
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 39,
+  "name": "Main Hall",
+  "resources": {
+   "food": 353614840,
+   "oil": 353614840,
+   "steel": 99012120,
+   "minerals": 56578330,
+   "leader_badges": 0,
+   "uranium": 438980
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "City Wall",
+   "building2": "Hospital"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 39,
+  "name": "City Wall",
+  "resources": {
+   "food": 0,
+   "oil": 247958620,
+   "steel": 49591670,
+   "minerals": 33061080,
+   "leader_badges": 0,
+   "uranium": 219360
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": null,
+   "building2": null
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 39,
+  "name": "Garage",
+  "resources": {
+   "food": 0,
+   "oil": 66221440,
+   "steel": 13694220,
+   "minerals": 8829470,
+   "leader_badges": 0,
+   "uranium": 256460
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": null,
+   "building2": null
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 39,
+  "name": "Depot",
+  "resources": {
+   "food": 28865820,
+   "oil": 28865820,
+   "steel": 8082350,
+   "minerals": 4618440,
+   "leader_badges": 0,
+   "uranium": 83400
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": null,
+   "building2": null
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 39,
+  "name": "Embassy",
+  "resources": {
+   "food": 0,
+   "oil": 36294630,
+   "steel": 7258830,
+   "minerals": 4839190,
+   "leader_badges": 0,
+   "uranium": 83400
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": null,
+   "building2": null
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 39,
+  "name": "Dispatch Center",
+  "resources": {
+   "food": 0,
+   "oil": 23262800,
+   "steel": 4772440,
+   "minerals": 3234930,
+   "leader_badges": 8791,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": null,
+   "building2": null
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 39,
+  "name": "Hospital",
+  "resources": {
+   "food": 64991200,
+   "oil": 38994650,
+   "steel": 14485920,
+   "minerals": 8318780,
+   "leader_badges": 0,
+   "uranium": 151460
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": null,
+   "building2": null
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 39,
+  "name": "Camp",
+  "resources": {
+   "food": 85166400,
+   "oil": 51099770,
+   "steel": 19005170,
+   "minerals": 10901250,
+   "leader_badges": 0,
+   "uranium": 153730
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": null,
+   "building2": null
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 39,
+  "name": "Factory",
+  "resources": {
+   "food": 85166400,
+   "oil": 51099770,
+   "steel": 19005170,
+   "minerals": 10901250,
+   "leader_badges": 0,
+   "uranium": 153730
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": null,
+   "building2": null
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 40,
+  "name": "Workshop",
+  "resources": {
+   "food": 127749600,
+   "oil": 76649655,
+   "steel": 28543755,
+   "minerals": 16351875,
+   "leader_badges": 0,
+   "uranium": 184470
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": null,
+   "building2": null
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 40,
+  "name": "Main Hall",
+  "resources": {
+   "food": 352350200,
+   "oil": 352350200,
+   "steel": 98942020,
+   "minerals": 56583980,
+   "leader_badges": 0,
+   "uranium": 483830
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "City Wall",
+   "building2": "Garage"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 40,
+  "name": "City Wall",
+  "resources": {
+   "food": 0,
+   "oil": 247983410,
+   "steel": 49596620,
+   "minerals": 33064380,
+   "leader_badges": 0,
+   "uranium": 241290
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": null,
+   "building2": null
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 40,
+  "name": "Garage",
+  "resources": {
+   "food": 0,
+   "oil": 66228060,
+   "steel": 13245540,
+   "minerals": 8830350,
+   "leader_badges": 0,
+   "uranium": 291100
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": null,
+   "building2": null
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 40,
+  "name": "Depot",
+  "resources": {
+   "food": 28868700,
+   "oil": 28868700,
+   "steel": 8163150,
+   "minerals": 4618900,
+   "leader_badges": 0,
+   "uranium": 91750
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": null,
+   "building2": null
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 40,
+  "name": "Embassy",
+  "resources": {
+   "food": 0,
+   "oil": 36298250,
+   "steel": 7339550,
+   "minerals": 4849670,
+   "leader_badges": 0,
+   "uranium": 91750
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": null,
+   "building2": null
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 40,
+  "name": "Dispatch Center",
+  "resources": {
+   "food": 0,
+   "oil": 27387470,
+   "steel": 5677350,
+   "minerals": 3784860,
+   "leader_badges": 9670,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": null,
+   "building2": null
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 40,
+  "name": "Hospital",
+  "resources": {
+   "food": 64997690,
+   "oil": 38998540,
+   "steel": 14559370,
+   "minerals": 8319610,
+   "leader_badges": 0,
+   "uranium": 166610
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": null,
+   "building2": null
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 40,
+  "name": "Camp",
+  "resources": {
+   "food": 85174910,
+   "oil": 51104870,
+   "steel": 19079070,
+   "minerals": 10902340,
+   "leader_badges": 0,
+   "uranium": 169110
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": null,
+   "building2": null
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 40,
+  "name": "Factory",
+  "resources": {
+   "food": 85174910,
+   "oil": 51104870,
+   "steel": 19079070,
+   "minerals": 10902340,
+   "leader_badges": 0,
+   "uranium": 169110
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": null,
+   "building2": null
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 41,
+  "name": "Workshop",
+  "resources": {
+   "food": 127762365,
+   "oil": 76657305,
+   "steel": 28618605,
+   "minerals": 16353510,
+   "leader_badges": 0,
+   "uranium": 202930
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": null,
+   "building2": null
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 41,
+  "name": "Main Hall",
+  "resources": {
+   "food": 353685560,
+   "oil": 353685560,
+   "steel": 99031920,
+   "minerals": 56589630,
+   "leader_badges": 0,
+   "uranium": 529660
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": "City Wall",
+   "building2": "Embassy"
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 41,
+  "name": "City Wall",
+  "resources": {
+   "food": 0,
+   "oil": 248008200,
+   "steel": 49601570,
+   "minerals": 33067680,
+   "leader_badges": 0,
+   "uranium": 265430
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": null,
+   "building2": null
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 41,
+  "name": "Garage",
+  "resources": {
+   "food": 0,
+   "oil": 66234680,
+   "steel": 13246860,
+   "minerals": 8831230,
+   "leader_badges": 0,
+   "uranium": 326280
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": null,
+   "building2": null
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 41,
+  "name": "Depot",
+  "resources": {
+   "food": 28871580,
+   "oil": 28871580,
+   "steel": 8083950,
+   "minerals": 4619360,
+   "leader_badges": 0,
+   "uranium": 100960
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": null,
+   "building2": null
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 41,
+  "name": "Embassy",
+  "resources": {
+   "food": 0,
+   "oil": 36301870,
+   "steel": 7260279,
+   "minerals": 4840150,
+   "leader_badges": 0,
+   "uranium": 100960
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": null,
+   "building2": null
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 41,
+  "name": "Dispatch Center",
+  "resources": {
+   "food": 0,
+   "oil": 31929460,
+   "steel": 6505720,
+   "minerals": 4390430,
+   "leader_badges": 10630,
+   "uranium": 0
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": null,
+   "building2": null
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 41,
+  "name": "Hospital",
+  "resources": {
+   "food": 65004180,
+   "oil": 39002430,
+   "steel": 14560820,
+   "minerals": 8320440,
+   "leader_badges": 0,
+   "uranium": 183280
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": null,
+   "building2": null
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 41,
+  "name": "Camp",
+  "resources": {
+   "food": 85183420,
+   "oil": 51109980,
+   "steel": 19080970,
+   "minerals": 10903430,
+   "leader_badges": 0,
+   "uranium": 186050
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": null,
+   "building2": null
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 41,
+  "name": "Factory",
+  "resources": {
+   "food": 85183420,
+   "oil": 51109980,
+   "steel": 19080970,
+   "minerals": 10903430,
+   "leader_badges": 0,
+   "uranium": 186050
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": null,
+   "building2": null
+  },
+  "constructionTime": null,
+  "notes": null
+ },
+ {
+  "level": 41,
+  "name": "Workshop",
+  "resources": {
+   "food": 127775130,
+   "oil": 76664970,
+   "steel": 28621455,
+   "minerals": 16355145,
+   "leader_badges": 0,
+   "uranium": 223260
+  },
+  "uranium_cumulative": 0,
+  "requirements": {
+   "building1": null,
+   "building2": null
+  },
+  "constructionTime": null,
+  "notes": null
+ }
+]

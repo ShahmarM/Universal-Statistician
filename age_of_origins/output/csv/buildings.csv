@@ -1,0 +1,696 @@
+Building,JP name,Level,Food,Oil,Steel,Minerals,Uranium,Leader Badges,Other items,Base build time,Build time (hours),Prerequisites,Effect at this level,Source,Flag
+Academy,テクノロジーセンター,1,0,0,0,0,0,0,,00:00:00,0.0,Main Hall 3,,aoztips+appmedia,verified: 2 sources agree
+Academy,テクノロジーセンター,2,0,650,0,0,0,0,,00:00:00,0.0,Main Hall 3,,aoztips+appmedia,verified: 2 sources agree
+Academy,テクノロジーセンター,3,0,1050,0,0,0,0,,00:00:00,0.0,Main Hall 3,,aoztips+appmedia,verified: 2 sources agree
+Academy,テクノロジーセンター,4,0,1650,0,0,0,0,,00:00:00,0.0,Main Hall 4,,aoztips+appmedia,verified: 2 sources agree
+Academy,テクノロジーセンター,5,0,2600,0,0,0,0,,00:08:00,0.13,Main Hall 5,,aoztips+appmedia,verified: 2 sources agree
+Academy,テクノロジーセンター,6,0,4800,0,0,0,0,,00:48:00,0.8,Main Hall 6,,aoztips+appmedia,verified: 2 sources agree
+Academy,テクノロジーセンター,7,0,9850,0,0,0,0,,01:36:00,1.6,Main Hall 7,,aoztips+appmedia,verified: 2 sources agree
+Academy,テクノロジーセンター,8,0,16400,0,0,0,0,,02:24:00,2.4,Main Hall 8,,aoztips+appmedia,verified: 2 sources agree
+Academy,テクノロジーセンター,9,0,22600,0,0,0,0,,04:00:00,4.0,Main Hall 9,,aoztips+appmedia,verified: 2 sources agree
+Academy,テクノロジーセンター,10,0,42000,0,0,0,0,,05:19:10,5.32,Main Hall 10,,aoztips+appmedia,verified: 2 sources agree
+Academy,テクノロジーセンター,11,0,80000,0,0,0,0,,07:36:00,7.6,Main Hall 11,,aoztips+appmedia,verified: 2 sources agree
+Academy,テクノロジーセンター,12,0,160000,0,0,0,0,,09:52:50,9.88,Main Hall 12,,aoztips+appmedia,verified: 2 sources agree
+Academy,テクノロジーセンター,13,0,323000,0,0,0,0,,13:40:50,13.68,Main Hall 13,,aoztips+appmedia,verified: 2 sources agree
+Academy,テクノロジーセンター,14,0,656000,0,0,0,0,,19:00:00,19.0,Main Hall 14,,aoztips+appmedia,verified: 2 sources agree
+Academy,テクノロジーセンター,15,0,1058400,0,0,0,0,,1d 00:03:50,24.06,Main Hall 15,,aoztips+appmedia,verified: 2 sources agree
+Academy,テクノロジーセンター,16,0,1100800,55040,0,0,0,,1d 04:42:10,28.7,Main Hall 16,,aoztips+appmedia,verified: 2 sources agree
+Academy,テクノロジーセンター,17,0,1252090,107320,0,0,0,,1d 11:16:50,35.28,Main Hall 17,,aoztips+appmedia,verified: 2 sources agree
+Academy,テクノロジーセンター,18,0,1395240,186030,0,0,0,,1d 17:32:10,41.54,Main Hall 18,,aoztips+appmedia,verified: 2 sources agree
+Academy,テクノロジーセンター,19,0,1511500,302300,0,0,0,,1d 23:28:20,47.47,Main Hall 19,,aoztips+appmedia,verified: 2 sources agree
+Academy,テクノロジーセンター,20,0,1768500,353700,0,0,0,,2d 05:05:20,53.09,Main Hall 20,,aoztips+appmedia,verified: 2 sources agree
+Academy,テクノロジーセンター,21,0,1839240,367840,91960,0,0,,2d 12:21:10,60.35,Main Hall 21,,aoztips+appmedia,verified: 2 sources agree
+Academy,テクノロジーセンター,22,0,2092160,418430,179320,0,0,,2d 19:12:00,67.2,Main Hall 22,,aoztips+appmedia,verified: 2 sources agree
+Academy,テクノロジーセンター,23,0,2774200,554840,237780,0,0,,3d 02:34:30,74.58,Main Hall 23,,aoztips+appmedia,verified: 2 sources agree
+Academy,テクノロジーセンター,24,0,3677310,735460,315190,0,0,,3d 09:44:40,81.74,Main Hall 24,,appmedia,single source (appmedia 2021-22); aoztips row blank
+Academy,テクノロジーセンター,25,0,4872420,974480,417630,0,0,,3d 16:42:10,88.7,Main Hall 25,,appmedia,single source (appmedia 2021-22); aoztips row blank
+Academy,テクノロジーセンター,26,0,5531490,1106290,737530,0,0,,3d 23:27:20,95.46,Main Hall 26,,aoztips+appmedia,verified: 2 sources agree
+Academy,テクノロジーセンター,27,0,7324290,1464850,976570,0,0,,4d 06:00:00,102.0,Main Hall 27,,aoztips+appmedia,verified: 2 sources agree
+Academy,テクノロジーセンター,28,0,9521550,1904310,1269540,0,0,,4d 13:48:00,109.8,Main Hall 28,,aoztips+appmedia,verified: 2 sources agree
+Academy,テクノロジーセンター,29,0,12377880,2475570,1650380,0,0,,4d 21:36:00,117.6,Main Hall 29,,aoztips+appmedia,verified: 2 sources agree
+Academy,テクノロジーセンター,30,0,16091190,3218230,2145490,0,0,,5d 05:24:00,125.4,Main Hall 30,,aoztips+appmedia,verified: 2 sources agree
+Camp,兵舎,1,0,0,0,0,0,0,,00:00:00,0.0,Main Hall 1,Unlocks Basic unit (初級勇士); Unlocks Basic unit (初級機関銃兵),aoztips+appmedia,verified: 2 sources agree
+Camp,兵舎,2,670,450,0,0,0,0,,00:00:00,0.0,Main Hall 2,,aoztips+appmedia,verified: 2 sources agree
+Camp,兵舎,3,980,650,0,0,0,0,,00:00:00,0.0,Main Hall 3,,aoztips+appmedia,verified: 2 sources agree
+Camp,兵舎,4,1660,1100,0,0,0,0,,00:00:00,0.0,Main Hall 4,Unlocks Basic unit (初級ロケット砲兵); Unlocks Basic unit (初級スナイパー),aoztips+appmedia,verified: 2 sources agree
+Camp,兵舎,5,2720,1810,0,0,0,0,,00:28:50,0.48,Main Hall 5,,aoztips+appmedia,verified: 2 sources agree
+Camp,兵舎,6,5300,3530,0,0,0,0,,00:57:40,0.96,Main Hall 6,,aoztips+appmedia,verified: 2 sources agree
+Camp,兵舎,7,10530,7020,0,0,0,0,,01:55:20,1.92,Main Hall 7,Unlocks Elite unit (精鋭勇士); Unlocks Elite unit (精鋭機関銃兵),aoztips+appmedia,verified: 2 sources agree
+Camp,兵舎,8,17960,11970,0,0,0,0,,02:52:50,2.88,Main Hall 8,,aoztips+appmedia,verified: 2 sources agree
+Camp,兵舎,9,27130,18080,0,0,0,0,,04:48:00,4.8,Main Hall 9,,aoztips+appmedia,verified: 2 sources agree
+Camp,兵舎,10,43800,29200,0,0,0,0,,06:43:20,6.72,Main Hall 10,Unlocks Elite unit (精鋭ロケット砲兵); Unlocks Elite unit (精鋭スナイパー),aoztips+appmedia,verified: 2 sources agree
+Camp,兵舎,11,88220,58810,0,0,0,0,,09:18:40,9.31,Main Hall 11,,aoztips+appmedia,verified: 2 sources agree
+Camp,兵舎,12,181830,121220,0,0,0,0,,11:58:50,11.98,Main Hall 12,,aoztips+appmedia,verified: 2 sources agree
+Camp,兵舎,13,257800,171860,0,0,0,0,,16:25:00,16.42,Main Hall 13,Unlocks Intermediate unit (中級勇士); Unlocks Intermediate unit (中級機関銃兵),aoztips+appmedia,verified: 2 sources agree
+Camp,兵舎,14,525530,350350,0,0,0,0,,22:48:00,22.8,Main Hall 14,,aoztips+appmedia,verified: 2 sources agree
+Camp,兵舎,15,945940,630632,0,0,0,0,,1d 04:52:40,28.88,Main Hall 15,,aoztips+appmedia,verified: 2 sources agree
+Camp,兵舎,16,1152850,806990,69170,0,0,0,,1d 10:26:50,34.45,Main Hall 16,Unlocks Intermediate unit (中級ロケット砲兵); Unlocks Intermediate unit (中級スナイパー),aoztips+appmedia,verified: 2 sources agree
+Camp,兵舎,17,1498750,999160,166520,0,0,0,,1d 18:20:20,42.34,Main Hall 17,,aoztips+appmedia,verified: 2 sources agree
+Camp,兵舎,18,1818520,1212350,259780,0,0,0,,2d 02:24:40,50.41,Main Hall 18,,aoztips+appmedia,verified: 2 sources agree
+Camp,兵舎,19,2138960,1336850,374310,0,0,0,,2d 10:17:30,58.29,Main Hall 19,Unlocks unit (大盾勇士); Unlocks unit (特殊機関銃兵),aoztips+appmedia,verified: 2 sources agree
+Camp,兵舎,20,2487940,1554960,435390,0,0,0,,2d 17:59:00,65.98,Main Hall 20,,aoztips+appmedia,verified: 2 sources agree
+Camp,兵舎,21,2587480,1617170,436630,169800,0,0,,3d 03:57:30,75.96,Main Hall 21,,aoztips+appmedia,verified: 2 sources agree
+Camp,兵舎,22,2869050,1879720,554020,237430,0,0,,3d 13:40:50,85.68,Main Hall 22,Unlocks unit (ハリケーンロケット砲兵); Unlocks unit (名射撃手),aoztips+appmedia,verified: 2 sources agree
+Camp,兵舎,23,3443680,2213790,688730,319770,0,0,,3d 23:09:20,95.16,Main Hall 23,,aoztips+appmedia,verified: 2 sources agree
+Camp,兵舎,24,4401570,2771360,912910,456450,0,0,,4d 08:22:50,104.38,Main Hall 24,,aoztips+appmedia,verified: 2 sources agree
+Camp,兵舎,25,5832080,3672050,1209610,604800,0,0,,4d 17:21:30,113.36,Main Hall 25,,aoztips+appmedia,verified: 2 sources agree
+Camp,兵舎,26,7438620,4577610,1602160,858300,0,0,,5d 02:05:10,122.09,Main Hall 26,Unlocks unit (盤石勇士); Unlocks unit (マッドガトリング),aoztips+appmedia,verified: 2 sources agree
+Camp,兵舎,27,9849370,6061150,2121400,1136460,0,0,,5d 10:33:40,130.56,Main Hall 27,,aoztips+appmedia,"minerals conflict: aoztips 1,134,460 vs appmedia 1,136,460; kept appmedia"
+Camp,兵舎,28,12311810,7387080,2757840,1575910,0,0,,5d 18:47:20,138.79,Main Hall 28,,aoztips+appmedia,verified: 2 sources agree
+Camp,兵舎,29,16005290,9603170,3585180,2048670,0,0,,6d 02:46:00,146.77,Main Hall 29,,aoztips+appmedia,verified: 2 sources agree
+Camp,兵舎,30,20806910,12484140,4660740,2663280,0,0,,6d 12:30:00,156.5,Main Hall 30,Unlocks unit (火力の王); Unlocks unit (カラフトマムシスナイパー),aoztips+appmedia,"food conflict: aoztips 20,806,877 vs appmedia 20,806,910; kept appmedia | oil conflict: aoztips 12,484,121 vs appmedia 12,484,140; kept appmedia | steel conflict: aoztips 4,660,734 vs appmedia 4,660,740; kept appmedia | minerals conflict: aoztips 2,663,271 vs appmedia 2,663,280; kept appmedia"
+Camp,兵舎,31,27049030,16229410,6058970,3462270,12980,0,,7d 07:16:50,175.28,Main Hall 31,,aoztips+appmedia,verified: 2 sources agree
+Camp,兵舎,32,34622730,20773620,7755470,4431700,21430,0,,8d 04:18:50,196.31,Main Hall 32,,aoztips+appmedia,verified: 2 sources agree
+Camp,兵舎,33,43624620,26174750,9771880,5583940,42360,0,,9d 03:52:20,219.87,Main Hall 33,Unlocks unit (タイタン勇士); Unlocks unit (死神ガトリング),aoztips+appmedia,verified: 2 sources agree
+Camp,兵舎,34,54094460,32456650,12117110,6924070,59310,0,,10d 06:15:20,246.26,Main Hall 34,,aoztips+appmedia,verified: 2 sources agree
+Camp,兵舎,35,67077080,40246210,15025200,8585840,75760,0,,11d 11:48:30,275.81,Main Hall 35,,aoztips+appmedia,verified: 2 sources agree
+Camp,兵舎,36,73425960,44055530,16447340,9398490,99670,0,,12d 18:10:00,306.17,Main Hall 36,Unlocks unit (熱狂ターミネーター),aoztips+appmedia,verified: 2 sources agree
+Camp,兵舎,37,79228520,47537060,17747100,10141210,118050,0,,14d 01:43:00,337.72,Main Hall 37,,aoztips+appmedia,verified: 2 sources agree
+Camp,兵舎,38,85157890,51094670,19075270,10900160,139750,0,,15d 10:52:00,370.87,Main Hall 38,,aoztips+appmedia,verified: 2 sources agree
+Camp,兵舎,39,85166400,51099770,19005170,10901250,153730,0,,,,,,aoztips,single source (aoztips 2026)
+Camp,兵舎,40,85174910,51104870,19079070,10902340,169110,0,,,,,,aoztips,single source (aoztips 2026)
+Camp,兵舎,41,85183420,51109980,19080970,10903430,186050,0,,,,,,aoztips,single source (aoztips 2026)
+City Wall,防御壁,1,0,1570,0,0,0,0,,00:00:00,0.0,Main Hall 1,City defense: 300,appmedia,single source (appmedia 2021-22); aoztips row blank
+City Wall,防御壁,2,0,2360,0,0,0,0,,00:00:00,0.0,Main Hall 2,City defense: 600,aoztips+appmedia,verified: 2 sources agree
+City Wall,防御壁,3,0,3620,0,0,0,0,,00:00:00,0.0,Main Hall 3,City defense: 900,aoztips+appmedia,verified: 2 sources agree
+City Wall,防御壁,4,0,6120,0,0,0,0,,00:00:00,0.0,Main Hall 4,City defense: 1200,aoztips+appmedia,verified: 2 sources agree
+City Wall,防御壁,5,0,10010,0,0,0,0,,00:12:00,0.2,Main Hall 5,City defense: 1500,aoztips+appmedia,verified: 2 sources agree
+City Wall,防御壁,6,0,19460,0,0,0,0,,01:12:00,1.2,Main Hall 6,City defense: 1800,aoztips+appmedia,verified: 2 sources agree
+City Wall,防御壁,7,0,38650,0,0,0,0,,02:24:00,2.4,Main Hall 7,City defense: 2100,aoztips+appmedia,verified: 2 sources agree
+City Wall,防御壁,8,0,69770,0,0,0,0,,03:36:00,3.6,Main Hall 8,City defense: 2400,aoztips+appmedia,verified: 2 sources agree
+City Wall,防御壁,9,0,117100,0,0,0,0,,06:00:00,6.0,Main Hall 9,City defense: 2700,aoztips+appmedia,verified: 2 sources agree
+City Wall,防御壁,10,0,189070,0,0,0,0,,08:24:00,8.4,Main Hall 10,City defense: 3000,aoztips+appmedia,verified: 2 sources agree
+City Wall,防御壁,11,0,380760,0,0,0,0,,11:38:20,11.64,Main Hall 11,City defense: 3300,aoztips+appmedia,verified: 2 sources agree
+City Wall,防御壁,12,0,684750,0,0,0,0,,14:58:30,14.97,Main Hall 12,City defense: 3600,aoztips+appmedia,verified: 2 sources agree
+City Wall,防御壁,13,0,1112620,0,0,0,0,,20:31:10,20.52,Main Hall 13,City defense: 3900,aoztips+appmedia,verified: 2 sources agree
+City Wall,防御壁,14,0,2268060,0,0,0,0,,1d 04:30:00,28.5,Main Hall 14,City defense: 4200,aoztips+appmedia,verified: 2 sources agree
+City Wall,防御壁,15,0,4082420,0,0,0,0,,1d 12:05:50,36.1,Main Hall 15,City defense: 4600,aoztips+appmedia,verified: 2 sources agree
+City Wall,防御壁,16,0,4776410,238820,0,0,0,,1d 19:03:20,43.06,Main Hall 16,City defense: 5000,aoztips+appmedia,verified: 2 sources agree
+City Wall,防御壁,17,0,6036880,517440,0,0,0,,2d 04:55:10,52.92,Main Hall 17,City defense: 5400,aoztips+appmedia,verified: 2 sources agree
+City Wall,防御壁,18,0,6726970,896920,0,0,0,,2d 15:00:40,63.01,Main Hall 18,City defense: 5800,aoztips+appmedia,verified: 2 sources agree
+City Wall,防御壁,19,0,6923270,1384650,0,0,0,,3d 00:51:50,72.86,Main Hall 19,City defense: 6200,aoztips+appmedia,verified: 2 sources agree
+City Wall,防御壁,20,0,8052810,1610560,0,0,0,,3d 10:28:30,82.47,Main Hall 20,City defense: 6600,aoztips+appmedia,verified: 2 sources agree
+City Wall,防御壁,21,0,8374990,1674990,418740,0,0,,3d 22:56:40,94.94,Main Hall 21,City defense: 7000,aoztips+appmedia,verified: 2 sources agree
+City Wall,防御壁,22,0,8966140,1793220,768520,0,0,,4d 11:06:00,107.1,Main Hall 22,City defense: 7400,aoztips+appmedia,verified: 2 sources agree
+City Wall,防御壁,23,0,11146280,2229250,955390,0,0,,4d 22:56:40,118.94,Main Hall 23,City defense: 7800,aoztips+appmedia,verified: 2 sources agree
+City Wall,防御壁,24,0,14774380,2954870,1266370,0,0,,5d 10:28:30,130.47,Main Hall 24,City defense: 8200,aoztips+appmedia,verified: 2 sources agree
+City Wall,防御壁,25,0,19576030,3915200,1677940,0,0,,5d 21:41:50,141.7,Main Hall 25,City defense: 8700,aoztips+appmedia,verified: 2 sources agree
+City Wall,防御壁,26,0,22224780,4444950,2963300,0,0,,6d 08:36:10,152.6,Main Hall 26,City defense: 9200,aoztips+appmedia,verified: 2 sources agree
+City Wall,防御壁,27,0,29427510,5885500,3923660,0,0,,6d 19:12:00,163.2,Main Hall 27,City defense: 9700,aoztips+appmedia,verified: 2 sources agree
+City Wall,防御壁,28,0,38256060,7651210,5100800,0,0,,7d 05:29:00,173.48,Main Hall 28,City defense: 10200,aoztips+appmedia,verified: 2 sources agree
+City Wall,防御壁,29,0,49732680,9946530,6631020,0,0,,7d 15:27:20,183.46,Main Hall 29,City defense: 10700,aoztips+appmedia,verified: 2 sources agree
+City Wall,防御壁,30,0,64652570,12930510,8620340,0,0,,8d 03:37:30,195.62,Main Hall 30,City defense: 11200,aoztips+appmedia,verified: 2 sources agree
+City Wall,防御壁,31,0,84048280,16809650,11206430,19480,0,,9d 03:06:00,219.1,Main Hall 31,City defense: 11700,aoztips+appmedia,verified: 2 sources agree
+City Wall,防御壁,32,0,107581740,21516340,14344220,32160,0,,10d 05:23:30,245.39,Main Hall 32,City defense: 12200,aoztips+appmedia,verified: 2 sources agree
+City Wall,防御壁,33,0,135552920,27110570,18073700,55930,0,,11d 10:50:20,274.84,Main Hall 33,City defense: 12700,aoztips+appmedia,verified: 2 sources agree
+City Wall,防御壁,34,0,168085750,33617130,22411400,84690,0,,12d 19:49:10,307.82,Main Hall 34,City defense: 13200,aoztips+appmedia,verified: 2 sources agree
+City Wall,防御壁,35,0,208426430,41685260,27790150,125640,0,,14d 08:45:20,344.76,Main Hall 35,City defense: 13700,aoztips+appmedia,verified: 2 sources agree
+City Wall,防御壁,36,0,222703590,44540690,29693760,149660,0,,15d 22:42:00,382.7,Main Hall 36,City defense: 14200,aoztips+appmedia,verified: 2 sources agree
+City Wall,防御壁,37,0,235176280,47035220,31356780,173190,0,,17d 14:08:00,422.13,Main Hall 37,City defense: 14700,aoztips+appmedia,verified: 2 sources agree
+City Wall,防御壁,38,0,247933830,49586720,33057780,199420,0,,19d 07:34:00,463.57,Main Hall 38,City defense: 15200,aoztips+appmedia,"steel conflict: aoztips 49,506,720 vs appmedia 49,586,720; kept appmedia"
+City Wall,防御壁,39,0,247958620,49591670,33061080,219360,0,,,,,,aoztips,single source (aoztips 2026)
+City Wall,防御壁,40,0,247983410,49596620,33064380,241290,0,,,,,,aoztips,single source (aoztips 2026)
+City Wall,防御壁,41,0,248008200,49601570,33067680,265430,0,,,,,,aoztips,single source (aoztips 2026)
+Core Mining Station,,30,106622422,106622422,21324484,9021897,0,0,,,,,,aoztips,single source (aoztips 2026) | unverified: single odd row in aoztips
+Defense Tower,防御塔,1,0,128320,0,0,0,0,Turret Parts x2,06:01:00,6.02,City Wall 13,Damage: 15795; Attack range: 1; Attack interval: 24,appmedia,single source (appmedia 2021-22)
+Defense Tower,防御塔,2,0,108430,21685,0,0,0,Turret Parts x4,08:49:10,8.82,City Wall 15,Damage: 35521; Attack range: 1; Attack interval: 24,appmedia,single source (appmedia 2021-22)
+Defense Tower,防御塔,3,0,174095,34815,0,0,0,Turret Parts x8,12:08:40,12.14,City Wall 17,Damage: 64152; Attack range: 1; Attack interval: 24,appmedia,single source (appmedia 2021-22)
+Defense Tower,防御塔,4,0,210600,42120,10530,0,0,Turret Parts x16,15:49:25,15.82,City Wall 19,Damage: 110910; Attack range: 1; Attack interval: 24,appmedia,single source (appmedia 2021-22)
+Defense Tower,防御塔,5,0,280290,56055,24020,0,0,Turret Parts x32,19:49:25,19.82,City Wall 21,Damage: 187480; Attack range: 1; Attack interval: 24,appmedia,single source (appmedia 2021-22)
+Defense Tower,防御塔,6,0,492265,98450,42190,0,0,Turret Parts x64,23:37:00,23.62,City Wall 23,Damage: 305510; Attack range: 1; Attack interval: 24,appmedia,single source (appmedia 2021-22)
+Defense Tower,防御塔,7,0,739995,147995,98665,0,0,Turret Parts x128,1d 03:12:00,27.2,City Wall 25,Damage: 491800; Attack range: 1; Attack interval: 24,appmedia,single source (appmedia 2021-22)
+Defense Tower,防御塔,8,0,962005,192400,128265,0,0,Turret Parts x256,1d 04:54:50,28.91,City Wall 27,Damage: 772280; Attack range: 1; Attack interval: 24,appmedia,single source (appmedia 2021-22)
+Defense Tower,防御塔,9,0,1250600,250120,166745,0,0,Turret Parts x384,1d 06:34:35,30.58,City Wall 29,Damage: 1132700; Attack range: 1; Attack interval: 24,appmedia,single source (appmedia 2021-22)
+Defense Tower,防御塔,10,0,1625785,325155,216770,0,0,Turret Parts x576,1d 08:36:15,32.6,City Wall 30,Damage: 1626760; Attack range: 1; Attack interval: 24,appmedia,single source (appmedia 2021-22)
+Depot,倉庫,1,0,0,0,0,0,0,,00:00:00,0.0,Main Hall 1,Oil protected: 300000; Food protected: 300000; Steel protected: 60000; Minerals protected: 30000,aoztips+appmedia,verified: 2 sources agree
+Depot,倉庫,2,180,180,0,0,0,0,,00:00:00,0.0,Main Hall 2,Oil protected: 310000; Food protected: 310000; Steel protected: 62000; Minerals protected: 31000,aoztips+appmedia,verified: 2 sources agree
+Depot,倉庫,3,260,260,0,0,0,0,,00:00:00,0.0,Main Hall 3,Oil protected: 321000; Food protected: 321000; Steel protected: 64200; Minerals protected: 32100,aoztips+appmedia,verified: 2 sources agree
+Depot,倉庫,4,450,450,0,0,0,0,,00:00:00,0.0,Main Hall 4,Oil protected: 333000; Food protected: 333000; Steel protected: 66600; Minerals protected: 33300,aoztips+appmedia,verified: 2 sources agree
+Depot,倉庫,5,740,740,0,0,0,0,,00:10:00,0.17,Main Hall 5,Oil protected: 346000; Food protected: 346000; Steel protected: 69200; Minerals protected: 34600,aoztips+appmedia,verified: 2 sources agree
+Depot,倉庫,6,1440,1440,0,0,0,0,,00:36:00,0.6,Main Hall 6,Oil protected: 360000; Food protected: 360000; Steel protected: 72000; Minerals protected: 36000,aoztips+appmedia,verified: 2 sources agree
+Depot,倉庫,7,2870,2870,0,0,0,0,,01:12:00,1.2,Main Hall 7,Oil protected: 375000; Food protected: 375000; Steel protected: 75000; Minerals protected: 37500,aoztips+appmedia,verified: 2 sources agree
+Depot,倉庫,8,4890,4890,0,0,0,0,,01:48:00,1.8,Main Hall 8,Oil protected: 391000; Food protected: 391000; Steel protected: 78200; Minerals protected: 39100,aoztips+appmedia,verified: 2 sources agree
+Depot,倉庫,9,7400,7400,0,0,0,0,,03:00:00,3.0,Main Hall 9,Oil protected: 408000; Food protected: 408000; Steel protected: 81600; Minerals protected: 40800,aoztips+appmedia,verified: 2 sources agree
+Depot,倉庫,10,11940,11940,0,0,0,0,,04:12:00,4.2,Main Hall 10,Oil protected: 426000; Food protected: 426000; Steel protected: 85200; Minerals protected: 42600,aoztips+appmedia,verified: 2 sources agree
+Depot,倉庫,11,24060,24060,0,0,0,0,,05:49:10,5.82,Main Hall 11,Oil protected: 445000; Food protected: 445000; Steel protected: 89000; Minerals protected: 44500,aoztips+appmedia,verified: 2 sources agree
+Depot,倉庫,12,49590,49590,0,0,0,0,,07:29:20,7.49,Main Hall 12,Oil protected: 465000; Food protected: 465000; Steel protected: 93000; Minerals protected: 46500,aoztips+appmedia,verified: 2 sources agree
+Depot,倉庫,13,100440,100440,0,0,0,0,,10:15:40,10.26,Main Hall 13,Oil protected: 486000; Food protected: 486000; Steel protected: 97200; Minerals protected: 48600,aoztips+appmedia,verified: 2 sources agree
+Depot,倉庫,14,204760,204760,0,0,0,0,,14:15:00,14.25,Main Hall 14,Oil protected: 508000; Food protected: 508000; Steel protected: 101600; Minerals protected: 50800,aoztips+appmedia,verified: 2 sources agree
+Depot,倉庫,15,322490,322490,0,0,0,0,,18:02:50,18.05,Main Hall 15,Oil protected: 531000; Food protected: 531000; Steel protected: 106200; Minerals protected: 53100,aoztips+appmedia,verified: 2 sources agree
+Depot,倉庫,16,335390,335390,33530,0,0,0,,21:31:40,21.53,Main Hall 16,Oil protected: 555000; Food protected: 555000; Steel protected: 111000; Minerals protected: 55500,aoztips+appmedia,verified: 2 sources agree
+Depot,倉庫,17,381500,381500,65400,0,0,0,,1d 02:27:40,26.46,Main Hall 17,Oil protected: 580000; Food protected: 580000; Steel protected: 116000; Minerals protected: 58000,aoztips+appmedia,verified: 2 sources agree
+Depot,倉庫,18,495970,495970,85020,0,0,0,,1d 07:30:20,31.51,Main Hall 18,Oil protected: 606000; Food protected: 606000; Steel protected: 121200; Minerals protected: 60600,aoztips+appmedia,verified: 2 sources agree
+Depot,倉庫,19,577530,577530,119000,0,0,0,,1d 12:26:00,36.43,Main Hall 19,Oil protected: 633000; Food protected: 633000; Steel protected: 126600; Minerals protected: 63300,aoztips+appmedia,verified: 2 sources agree
+Depot,倉庫,20,671750,671750,138420,0,0,0,,1d 17:14:20,41.24,Main Hall 20,Oil protected: 661000; Food protected: 661000; Steel protected: 132200; Minerals protected: 66100,aoztips+appmedia,verified: 2 sources agree
+Depot,倉庫,21,688040,688040,142900,55570,0,0,,1d 23:28:20,47.47,Main Hall 21,Oil protected: 690000; Food protected: 690000; Steel protected: 138000; Minerals protected: 69000,aoztips+appmedia,verified: 2 sources agree
+Depot,倉庫,22,777080,777080,181320,77700,0,0,,2d 05:33:00,53.55,Main Hall 22,Oil protected: 720000; Food protected: 720000; Steel protected: 144000; Minerals protected: 72000,aoztips+appmedia,verified: 2 sources agree
+Depot,倉庫,23,925780,925780,225400,104650,0,0,,2d 11:28:20,59.47,Main Hall 23,Oil protected: 751000; Food protected: 751000; Steel protected: 150200; Minerals protected: 75100,appmedia,single source (appmedia 2021-22); aoztips row blank
+Depot,倉庫,24,1173770,1173770,298770,149380,0,0,,2d 17:14:20,65.24,Main Hall 24,Oil protected: 783000; Food protected: 783000; Steel protected: 156600; Minerals protected: 78300,appmedia,single source (appmedia 2021-22); aoztips row blank
+Depot,倉庫,25,1555250,1555250,395880,197940,0,0,,2d 22:50:50,70.85,Main Hall 25,Oil protected: 816000; Food protected: 816000; Steel protected: 163200; Minerals protected: 81600,aoztips+appmedia,verified: 2 sources agree
+Depot,倉庫,26,1966330,1966330,524350,280900,0,0,,3d 04:18:10,76.3,Main Hall 26,Oil protected: 850000; Food protected: 850000; Steel protected: 170000; Minerals protected: 85000,appmedia,single source (appmedia 2021-22); aoztips row blank
+Depot,倉庫,27,2479610,2479610,694290,396730,0,0,,3d 09:36:00,81.6,Main Hall 27,Oil protected: 885000; Food protected: 885000; Steel protected: 177000; Minerals protected: 88500,aoztips+appmedia,verified: 2 sources agree
+Depot,倉庫,28,3223510,3223510,902580,515760,0,0,,3d 14:44:30,86.74,Main Hall 28,Oil protected: 921000; Food protected: 921000; Steel protected: 184200; Minerals protected: 92100,aoztips+appmedia,verified: 2 sources agree
+Depot,倉庫,29,4190550,4190550,1173350,670480,0,0,,3d 19:43:40,91.73,Main Hall 29,Oil protected: 958000; Food protected: 958000; Steel protected: 191600; Minerals protected: 95800,appmedia,single source (appmedia 2021-22); aoztips row blank
+Depot,倉庫,30,5447730,5447730,1525360,871630,0,0,,4d 01:48:40,97.81,Main Hall 30,Oil protected: 996000; Food protected: 996000; Steel protected: 199200; Minerals protected: 99600,aoztips+appmedia,verified: 2 sources agree
+Depot,倉庫,31,7436130,7436130,2082110,1189770,7440,0,,4d 13:33:00,109.55,Main Hall 31,Oil protected: 1035000; Food protected: 1035000; Steel protected: 207000; Minerals protected: 103500,aoztips+appmedia,verified: 2 sources agree
+Depot,倉庫,32,9971450,9971450,2791990,1595410,12300,0,,5d 02:41:40,122.69,Main Hall 32,Oil protected: 1075000; Food protected: 1075000; Steel protected: 215000; Minerals protected: 107500,aoztips+appmedia,verified: 2 sources agree
+Depot,倉庫,33,13135200,13135200,3677830,2101600,21390,0,,5d 17:25:10,137.42,Main Hall 33,Oil protected: 1116000; Food protected: 1116000; Steel protected: 223200; Minerals protected: 111600,aoztips+appmedia,verified: 2 sources agree
+Depot,倉庫,34,16995840,16995840,4758800,2719290,32400,0,,6d 09:54:30,153.91,Main Hall 34,Oil protected: 1158000; Food protected: 1158000; Steel protected: 231600; Minerals protected: 115800,aoztips+appmedia,verified: 2 sources agree
+Depot,倉庫,35,21952950,21952950,6146780,3512410,48050,0,,7d 04:22:40,172.38,Main Hall 35,Oil protected: 1201000; Food protected: 1201000; Steel protected: 240200; Minerals protected: 120100,aoztips+appmedia,verified: 2 sources agree
+Depot,倉庫,36,24403340,24403340,6832880,3904460,57190,0,,7d 23:21:00,191.35,Main Hall 36,Oil protected: 1245000; Food protected: 1245000; Steel protected: 249000; Minerals protected: 121860,aoztips+appmedia,verified: 2 sources agree
+Depot,倉庫,37,26633590,26633590,7457340,4261290,65910,0,,8d 19:04:00,211.07,Main Hall 37,Oil protected: 1290000; Food protected: 1290000; Steel protected: 258000; Minerals protected: 123660,aoztips+appmedia,verified: 2 sources agree
+Depot,倉庫,38,28862940,28862940,8081550,4617980,75800,0,,9d 15:47:00,231.78,Main Hall 38,Oil protected: 1335000; Food protected: 1335000; Steel protected: 267000; Minerals protected: 125460,aoztips+appmedia,verified: 2 sources agree
+Depot,倉庫,39,28865820,28865820,8082350,4618440,83400,0,,,,,,aoztips,single source (aoztips 2026)
+Depot,倉庫,40,28868700,28868700,8163150,4618900,91750,0,,,,,,aoztips,single source (aoztips 2026)
+Depot,倉庫,41,28871580,28871580,8083950,4619360,100960,0,,,,,,aoztips,single source (aoztips 2026)
+Dispatch Center,指令センター,1,0,0,0,0,0,0,,00:00:00,0.0,Main Hall 6,Rally capacity (units): 50000,aoztips+appmedia,verified: 2 sources agree
+Dispatch Center,指令センター,2,0,140,0,0,0,8,,00:01:00,0.02,Main Hall 6,Rally capacity (units): 60000,aoztips+appmedia,verified: 2 sources agree
+Dispatch Center,指令センター,3,0,210,0,0,0,17,,00:02:00,0.03,Main Hall 6,Rally capacity (units): 72000,aoztips+appmedia,verified: 2 sources agree
+Dispatch Center,指令センター,4,0,360,0,0,0,29,,00:06:00,0.1,Main Hall 6,Rally capacity (units): 86000,aoztips+appmedia,verified: 2 sources agree
+Dispatch Center,指令センター,5,0,590,0,0,0,44,,00:12:00,0.2,Main Hall 6,Rally capacity (units): 102000,aoztips+appmedia,verified: 2 sources agree
+Dispatch Center,指令センター,6,0,1150,0,0,0,63,,00:24:00,0.4,Main Hall 6,Rally capacity (units): 120000,aoztips+appmedia,verified: 2 sources agree
+Dispatch Center,指令センター,7,0,2280,0,0,0,86,,00:48:00,0.8,Main Hall 7,Rally capacity (units): 140000,aoztips+appmedia,verified: 2 sources agree
+Dispatch Center,指令センター,8,0,3890,0,0,0,113,,01:12:00,1.2,Main Hall 8,Rally capacity (units): 162000,aoztips+appmedia,verified: 2 sources agree
+Dispatch Center,指令センター,9,0,5880,0,0,0,145,,02:00:00,2.0,Main Hall 9,Rally capacity (units): 186000,aoztips+appmedia,verified: 2 sources agree
+Dispatch Center,指令センター,10,0,9500,0,0,0,182,,02:39:40,2.66,Main Hall 10,Rally capacity (units): 212000,aoztips+appmedia,verified: 2 sources agree
+Dispatch Center,指令センター,11,0,19140,0,0,0,224,,03:52:50,3.88,Main Hall 11,Rally capacity (units): 241000,aoztips+appmedia,verified: 2 sources agree
+Dispatch Center,指令センター,12,0,39460,0,0,0,272,,04:59:30,4.99,Main Hall 12,Rally capacity (units): 273000,aoztips+appmedia,verified: 2 sources agree
+Dispatch Center,指令センター,13,0,79930,0,0,0,326,,06:50:20,6.84,Main Hall 13,Rally capacity (units): 308000,appmedia,single source (appmedia 2021-22); aoztips row blank
+Dispatch Center,指令センター,14,0,162950,0,0,0,386,,09:30:00,9.5,Main Hall 14,Rally capacity (units): 346000,aoztips+appmedia,verified: 2 sources agree
+Dispatch Center,指令センター,15,0,256640,0,0,0,452,,12:02:00,12.03,Main Hall 15,Rally capacity (units): 387000,aoztips+appmedia,verified: 2 sources agree
+Dispatch Center,指令センター,16,0,266910,13340,0,0,524,,14:21:10,14.35,Main Hall 16,Rally capacity (units): 431000,aoztips+appmedia,verified: 2 sources agree
+Dispatch Center,指令センター,17,0,303610,26020,0,0,603,,17:38:20,17.64,Main Hall 17,Rally capacity (units): 478000,aoztips+appmedia,verified: 2 sources agree
+Dispatch Center,指令センター,18,0,338310,45100,0,0,689,,21:00:10,21.0,Main Hall 18,Rally capacity (units): 528000,aoztips+appmedia,verified: 2 sources agree
+Dispatch Center,指令センター,19,0,348190,69630,0,0,782,,1d 00:17:20,24.29,Main Hall 19,Rally capacity (units): 581000,aoztips+appmedia,verified: 2 sources agree
+Dispatch Center,指令センター,20,0,405000,81000,0,0,882,,1d 03:29:30,27.49,Main Hall 20,Rally capacity (units): 637000,aoztips+appmedia,verified: 2 sources agree
+Dispatch Center,指令センター,21,0,421200,84240,21060,0,989,,1d 07:38:50,31.65,Main Hall 21,Rally capacity (units): 697000,aoztips+appmedia,verified: 2 sources agree
+Dispatch Center,指令センター,22,0,450930,90180,38650,0,1104,,1d 11:42:00,35.7,Main Hall 22,Rally capacity (units): 761000,aoztips+appmedia,verified: 2 sources agree
+Dispatch Center,指令センター,23,0,560580,112110,48040,0,1227,,1d 15:38:50,39.65,Main Hall 23,Rally capacity (units): 829000,appmedia,single source (appmedia 2021-22); aoztips row blank
+Dispatch Center,指令センター,24,0,743040,148600,63680,0,1358,,1d 19:29:30,43.49,Main Hall 24,Rally capacity (units): 901000,appmedia,single source (appmedia 2021-22); aoztips row blank
+Dispatch Center,指令センター,25,0,984530,196900,84380,0,1497,,1d 23:14:00,47.23,Main Hall 25,Rally capacity (units): 977000,appmedia,single source (appmedia 2021-22); aoztips row blank
+Dispatch Center,指令センター,26,0,1117750,223550,149030,0,1645,,2d 02:52:00,50.87,Main Hall 26,Rally capacity (units): 1057000,aoztips+appmedia,verified: 2 sources agree
+Dispatch Center,指令センター,27,0,1479990,295990,197330,0,1802,,2d 06:24:00,54.4,Main Hall 27,Rally capacity (units): 1141000,aoztips+appmedia,verified: 2 sources agree
+Dispatch Center,指令センター,28,0,1924010,384800,256530,0,1968,,2d 09:49:40,57.83,Main Hall 28,Rally capacity (units): 1229000,aoztips+appmedia,verified: 2 sources agree
+Dispatch Center,指令センター,29,0,2501200,500240,333490,0,2143,,2d 13:09:10,61.15,Main Hall 29,Rally capacity (units): 1321000,aoztips+appmedia,verified: 2 sources agree
+Dispatch Center,指令センター,30,0,3251570,650310,433540,0,2327,,2d 17:12:30,65.21,Main Hall 30,Rally capacity (units): 1417000,appmedia,single source (appmedia 2021-22); aoztips row blank
+Dispatch Center,指令センター,31,0,4227140,845420,563610,0,2631,,3d 01:02:00,73.03,Main Hall 31,Rally capacity (units): 1517000,aoztips+appmedia,verified: 2 sources agree
+Dispatch Center,指令センター,32,0,5410820,1082150,721430,0,3095,,3d 09:47:50,81.8,Main Hall 32,Rally capacity (units): 1621000,aoztips+appmedia,verified: 2 sources agree
+Dispatch Center,指令センター,33,0,6817700,1363520,909010,0,3659,,3d 19:36:50,91.61,Main Hall 33,Rally capacity (units): 1729000,aoztips+appmedia,verified: 2 sources agree
+Dispatch Center,指令センター,34,0,8453990,1690770,1127170,0,4463,,4d 06:36:20,102.61,Main Hall 34,Rally capacity (units): 1841000,aoztips+appmedia,verified: 2 sources agree
+Dispatch Center,指令センター,35,0,10483040,2096570,1397700,0,5347,,4d 18:55:10,114.92,Main Hall 35,Rally capacity (units): 1957000,aoztips+appmedia,verified: 2 sources agree
+Dispatch Center,指令センター,36,0,13747980,2749540,1833010,0,6203,,5d 07:34:00,127.57,Main Hall 36,Rally capacity (units): 2077000,aoztips+appmedia,verified: 2 sources agree
+Dispatch Center,指令センター,37,0,17078120,3415550,2277010,0,7071,,5d 20:43:00,140.72,Main Hall 37,Rally capacity (units): 2207000,aoztips+appmedia,verified: 2 sources agree
+Dispatch Center,指令センター,38,0,20474940,4094890,2729900,0,7920,,6d 10:31:00,154.52,Main Hall 38,Rally capacity (units): 2347000,aoztips+appmedia,verified: 2 sources agree
+Dispatch Center,指令センター,39,0,23262800,4772440,3234930,0,8791,,,,,,aoztips,single source (aoztips 2026)
+Dispatch Center,指令センター,40,0,27387470,5677350,3784860,0,9670,,,,,,aoztips,single source (aoztips 2026)
+Dispatch Center,指令センター,41,0,31929460,6505720,4390430,0,10630,,,,,,aoztips,single source (aoztips 2026)
+Embassy,外交センター,1,0,0,0,0,0,0,,00:00:00,0.0,Main Hall 4,Max alliance reinforcement (units): 10000; Alliance helps: 5,aoztips+appmedia,verified: 2 sources agree
+Embassy,外交センター,2,0,390,0,0,0,0,,00:00:00,0.0,Main Hall 4,Max alliance reinforcement (units): 15000; Alliance helps: 6,aoztips+appmedia,verified: 2 sources agree
+Embassy,外交センター,3,0,560,0,0,0,0,,00:00:00,0.0,Main Hall 4,Max alliance reinforcement (units): 21000; Alliance helps: 7,aoztips+appmedia,verified: 2 sources agree
+Embassy,外交センター,4,0,960,0,0,0,0,,00:00:00,0.0,Main Hall 4,Max alliance reinforcement (units): 28000; Alliance helps: 8,aoztips+appmedia,verified: 2 sources agree
+Embassy,外交センター,5,0,1570,0,0,0,0,,00:14:24,0.24,Main Hall 5,Max alliance reinforcement (units): 36000; Alliance helps: 9,aoztips+appmedia,verified: 2 sources agree
+Embassy,外交センター,6,0,3060,0,0,0,0,,00:28:48,0.48,Main Hall 6,Max alliance reinforcement (units): 45000; Alliance helps: 10,aoztips+appmedia,verified: 2 sources agree
+Embassy,外交センター,7,0,6070,0,0,0,0,,00:57:36,0.96,Main Hall 7,Max alliance reinforcement (units): 55000; Alliance helps: 11,aoztips+appmedia,verified: 2 sources agree
+Embassy,外交センター,8,0,10360,0,0,0,0,,01:26:24,1.44,Main Hall 8,Max alliance reinforcement (units): 66000; Alliance helps: 12,aoztips+appmedia,verified: 2 sources agree
+Embassy,外交センター,9,0,15650,0,0,0,0,,02:24:00,2.4,Main Hall 9,Max alliance reinforcement (units): 78000; Alliance helps: 13,aoztips+appmedia,verified: 2 sources agree
+Embassy,外交センター,10,0,25280,0,0,0,0,,03:21:36,3.36,Main Hall 10,Max alliance reinforcement (units): 91000; Alliance helps: 14,aoztips+appmedia,verified: 2 sources agree
+Embassy,外交センター,11,0,50910,0,0,0,0,,04:39:20,4.66,Main Hall 11,Max alliance reinforcement (units): 105000; Alliance helps: 15,aoztips+appmedia,verified: 2 sources agree
+Embassy,外交センター,12,0,104920,0,0,0,0,,05:59:30,5.99,Main Hall 12,Max alliance reinforcement (units): 120000; Alliance helps: 16,aoztips+appmedia,verified: 2 sources agree
+Embassy,外交センター,13,0,212520,0,0,0,0,,08:12:30,8.21,Main Hall 13,Max alliance reinforcement (units): 136000; Alliance helps: 17,aoztips+appmedia,verified: 2 sources agree
+Embassy,外交センター,14,0,433230,0,0,0,0,,11:24:00,11.4,Main Hall 14,Max alliance reinforcement (units): 153000; Alliance helps: 18,aoztips+appmedia,verified: 2 sources agree
+Embassy,外交センター,15,0,682320,0,0,0,0,,14:26:20,14.44,Main Hall 15,Max alliance reinforcement (units): 171000; Alliance helps: 19,aoztips+appmedia,verified: 2 sources agree
+Embassy,外交センター,16,0,709600,35480,0,0,0,,17:13:20,17.22,Main Hall 16,Max alliance reinforcement (units): 190000; Alliance helps: 20,aoztips+appmedia,verified: 2 sources agree
+Embassy,外交センター,17,0,807180,69180,0,0,0,,21:10:00,21.17,Main Hall 17,Max alliance reinforcement (units): 210000; Alliance helps: 21,aoztips+appmedia,verified: 2 sources agree
+Embassy,外交センター,18,0,899450,119920,0,0,0,,1d 01:12:20,25.21,Main Hall 18,Max alliance reinforcement (units): 231000; Alliance helps: 22,aoztips+appmedia,verified: 2 sources agree
+Embassy,外交センター,19,0,925700,185140,0,0,0,,1d 05:08:40,29.14,Main Hall 19,Max alliance reinforcement (units): 253000; Alliance helps: 23,aoztips+appmedia,verified: 2 sources agree
+Embassy,外交センター,20,0,1076730,215340,0,0,0,,1d 08:59:30,32.99,Main Hall 20,Max alliance reinforcement (units): 276000; Alliance helps: 24,aoztips+appmedia,verified: 2 sources agree
+Embassy,外交センター,21,0,1119800,223960,55990,0,0,,1d 13:58:40,37.98,Main Hall 21,Max alliance reinforcement (units): 300000; Alliance helps: 25,aoztips+appmedia,verified: 2 sources agree
+Embassy,外交センター,22,0,1198850,239770,102750,0,0,,1d 18:50:20,42.84,Main Hall 22,Max alliance reinforcement (units): 325000; Alliance helps: 26,aoztips+appmedia,verified: 2 sources agree
+Embassy,外交センター,23,0,1490350,298070,127740,0,0,,1d 23:34:40,47.58,Main Hall 23,Max alliance reinforcement (units): 351000; Alliance helps: 27,aoztips+appmedia,verified: 2 sources agree
+Embassy,外交センター,24,0,1975460,395090,169320,0,0,,2d 04:11:30,52.19,Main Hall 24,Max alliance reinforcement (units): 378000; Alliance helps: 28,aoztips+appmedia,verified: 2 sources agree
+Embassy,外交センター,25,0,2617480,523490,224350,0,0,,2d 08:40:40,56.68,Main Hall 25,Max alliance reinforcement (units): 406000; Alliance helps: 29,aoztips+appmedia,verified: 2 sources agree
+Embassy,外交センター,26,0,2971650,594330,396220,0,0,,2d 13:02:30,61.04,Main Hall 26,Max alliance reinforcement (units): 435000; Alliance helps: 30,aoztips+appmedia,verified: 2 sources agree
+Embassy,外交センター,27,0,3934710,786940,524620,0,0,,2d 17:16:50,65.28,Main Hall 27,Max alliance reinforcement (units): 465000; Alliance helps: 31,aoztips+appmedia,verified: 2 sources agree
+Embassy,外交センター,28,0,5115170,1023030,682020,0,0,,2d 21:23:40,69.39,Main Hall 28,Max alliance reinforcement (units): 496000; Alliance helps: 32,aoztips+appmedia,verified: 2 sources agree
+Embassy,外交センター,29,0,6649700,1329940,886620,0,0,,3d 01:23:00,73.38,Main Hall 29,Max alliance reinforcement (units): 528000; Alliance helps: 33,aoztips+appmedia,verified: 2 sources agree
+Embassy,外交センター,30,0,8644620,1728920,1152610,0,0,,3d 06:15:00,78.25,Main Hall 30,Max alliance reinforcement (units): 561000; Alliance helps: 34,aoztips+appmedia,verified: 2 sources agree
+Embassy,外交センター,31,0,11238000,2247590,1498390,7440,0,,3d 15:38:20,87.64,Main Hall 31,Max alliance reinforcement (units): 595000; Alliance helps: 35,aoztips+appmedia,verified: 2 sources agree
+Embassy,外交センター,32,0,14384540,2876890,1917920,12300,0,,4d 02:09:20,98.16,Main Hall 32,Max alliance reinforcement (units): 630000; Alliance helps: 36,aoztips+appmedia,verified: 2 sources agree
+Embassy,外交センター,33,0,18124440,3624860,2416560,21390,0,,4d 13:56:10,109.94,Main Hall 33,Max alliance reinforcement (units): 666000; Alliance helps: 37,aoztips+appmedia,verified: 2 sources agree
+Embassy,外交センター,34,0,22474360,4494830,2996540,32400,0,,5d 03:07:40,123.13,Main Hall 34,Max alliance reinforcement (units): 703000; Alliance helps: 38,aoztips+appmedia,verified: 2 sources agree
+Embassy,外交センター,35,0,27868250,5573590,3715710,48050,0,,5d 17:54:10,137.9,Main Hall 35,Max alliance reinforcement (units): 741000; Alliance helps: 39,aoztips+appmedia,verified: 2 sources agree
+Embassy,外交センター,36,0,30862470,6172420,4114930,57190,0,,6d 09:05:00,153.08,Main Hall 36,Max alliance reinforcement (units): 780000; Alliance helps: 40,aoztips+appmedia,"oil conflict: aoztips 30,862,470 vs appmedia 55,325,220; kept aoztips (appmedia row copies another building) | steel conflict: aoztips 6,172,420 vs appmedia 11,065,000; kept aoztips (appmedia row copies another building) | minerals conflict: aoztips 4,114,930 vs appmedia 7,376,660; kept aoztips (appmedia row copies another building)"
+Embassy,外交センター,37,0,33577420,6715400,4476910,65910,0,,7d 00:51:00,168.85,Main Hall 37,Max alliance reinforcement (units): 820000; Alliance helps: 41,aoztips+appmedia,"oil conflict: aoztips 33,577,420 vs appmedia 60,771,160; kept aoztips (appmedia row copies another building) | steel conflict: aoztips 6,715,400 vs appmedia 12,154,180; kept aoztips (appmedia row copies another building) | minerals conflict: aoztips 4,476,910 vs appmedia 8,102,780; kept aoztips (appmedia row copies another building)"
+Embassy,外交センター,38,0,36291010,7258110,4838710,75800,0,,7d 17:26:00,185.43,Main Hall 38,Max alliance reinforcement (units): 860000; Alliance helps: 42,aoztips+appmedia,"oil conflict: aoztips 36,291,010 vs appmedia 66,214,820; kept aoztips (appmedia row copies another building) | steel conflict: aoztips 7,258,110 vs appmedia 13,242,900; kept aoztips (appmedia row copies another building) | minerals conflict: aoztips 4,838,710 vs appmedia 8,828,590; kept aoztips (appmedia row copies another building)"
+Embassy,外交センター,39,0,36294630,7258830,4839190,83400,0,,,,,,aoztips,single source (aoztips 2026)
+Embassy,外交センター,40,0,36298250,7339550,4849670,91750,0,,,,,,aoztips,single source (aoztips 2026)
+Embassy,外交センター,41,0,36301870,7260279,4840150,100960,0,,,,,,aoztips,single source (aoztips 2026)
+Factory,機械工場,1,0,0,0,0,0,0,,00:00:00,0.0,Main Hall 1,Unlocks Basic unit (初級火炎放射戦車); Unlocks Basic unit (初級迫撃砲),aoztips+appmedia,verified: 2 sources agree
+Factory,機械工場,2,670,450,0,0,0,0,,00:00:00,0.0,Main Hall 2,,aoztips+appmedia,verified: 2 sources agree
+Factory,機械工場,3,980,650,0,0,0,0,,00:00:00,0.0,Main Hall 3,,aoztips+appmedia,verified: 2 sources agree
+Factory,機械工場,4,1660,1100,0,0,0,0,,00:00:00,0.0,Main Hall 4,Unlocks Basic unit (初級決闘者); Unlocks Basic unit (初級バトルバイク),aoztips+appmedia,verified: 2 sources agree
+Factory,機械工場,5,2720,1810,0,0,0,0,,00:28:50,0.48,Main Hall 5,,aoztips+appmedia,verified: 2 sources agree
+Factory,機械工場,6,5300,3530,0,0,0,0,,00:57:40,0.96,Main Hall 6,,aoztips+appmedia,verified: 2 sources agree
+Factory,機械工場,7,10530,7020,0,0,0,0,,01:55:20,1.92,Main Hall 7,Unlocks Elite unit (精鋭火炎放射戦車); Unlocks Elite unit (精鋭迫撃砲),aoztips+appmedia,verified: 2 sources agree
+Factory,機械工場,8,17960,11970,0,0,0,0,,02:52:50,2.88,Main Hall 8,,aoztips+appmedia,verified: 2 sources agree
+Factory,機械工場,9,27130,18080,0,0,0,0,,04:48:00,4.8,Main Hall 9,,aoztips+appmedia,verified: 2 sources agree
+Factory,機械工場,10,43800,29200,0,0,0,0,,06:43:20,6.72,Main Hall 10,Unlocks Elite unit (精鋭決闘者); Unlocks Elite unit (精鋭バトルバイク),aoztips+appmedia,verified: 2 sources agree
+Factory,機械工場,11,88220,58810,0,0,0,0,,09:18:40,9.31,Main Hall 11,,aoztips+appmedia,verified: 2 sources agree
+Factory,機械工場,12,181830,121220,0,0,0,0,,11:58:50,11.98,Main Hall 12,,aoztips+appmedia,verified: 2 sources agree
+Factory,機械工場,13,257800,171860,0,0,0,0,,16:25:00,16.42,Main Hall 13,Unlocks Intermediate unit (中級火炎放射戦車); Unlocks Intermediate unit (中級迫撃砲),aoztips+appmedia,verified: 2 sources agree
+Factory,機械工場,14,525530,350350,0,0,0,0,,22:48:00,22.8,Main Hall 14,,aoztips+appmedia,verified: 2 sources agree
+Factory,機械工場,15,945940,630632,0,0,0,0,,1d 04:52:40,28.88,Main Hall 15,,aoztips+appmedia,verified: 2 sources agree
+Factory,機械工場,16,1152850,806990,69170,0,0,0,,1d 10:26:50,34.45,Main Hall 16,Unlocks Intermediate unit (中級決闘者); Unlocks Intermediate unit (中級バトルバイク),aoztips+appmedia,verified: 2 sources agree
+Factory,機械工場,17,1498750,999160,166520,0,0,0,,1d 18:20:20,42.34,Main Hall 17,,aoztips+appmedia,verified: 2 sources agree
+Factory,機械工場,18,1818520,1212350,259780,0,0,0,,2d 02:24:40,50.41,Main Hall 18,,aoztips+appmedia,verified: 2 sources agree
+Factory,機械工場,19,2138960,1336850,374310,0,0,0,,2d 10:17:30,58.29,Main Hall 19,Unlocks unit (ブレイズ戦車); Unlocks unit (赤矢迫撃砲),aoztips+appmedia,verified: 2 sources agree
+Factory,機械工場,20,2487940,1554960,435390,0,0,0,,2d 17:59:00,65.98,Main Hall 20,,aoztips+appmedia,verified: 2 sources agree
+Factory,機械工場,21,2587480,1617170,436630,169800,0,0,,3d 03:57:30,75.96,Main Hall 21,,aoztips+appmedia,verified: 2 sources agree
+Factory,機械工場,22,2869050,1879720,554020,237430,0,0,,3d 13:40:50,85.68,Main Hall 22,Unlocks unit (ウォーシュレッダー); Unlocks unit (スイフト突撃者),aoztips+appmedia,verified: 2 sources agree
+Factory,機械工場,23,3443680,2213790,688730,319770,0,0,,3d 23:09:20,95.16,Main Hall 23,,aoztips+appmedia,verified: 2 sources agree
+Factory,機械工場,24,4401570,2771360,912910,456450,0,0,,4d 08:22:50,104.38,Main Hall 24,,aoztips+appmedia,verified: 2 sources agree
+Factory,機械工場,25,5832080,3672050,1209610,604800,0,0,,4d 17:21:30,113.36,Main Hall 25,,aoztips+appmedia,verified: 2 sources agree
+Factory,機械工場,26,7438620,4577610,1602160,858300,0,0,,5d 02:05:10,122.09,Main Hall 26,Unlocks unit (死炎戦車); Unlocks unit (劣化ウラン弾迫撃砲),aoztips+appmedia,verified: 2 sources agree
+Factory,機械工場,27,9849370,6061150,2121400,1136460,0,0,,5d 10:33:40,130.56,Main Hall 27,,aoztips+appmedia,"minerals conflict: aoztips 1,134,460 vs appmedia 1,136,460; kept appmedia"
+Factory,機械工場,28,12311810,7387080,2757840,1575910,0,0,,5d 18:47:20,138.79,Main Hall 28,,aoztips+appmedia,verified: 2 sources agree
+Factory,機械工場,29,16005290,9603170,3585180,2048670,0,0,,6d 02:46:00,146.77,Main Hall 29,,aoztips+appmedia,verified: 2 sources agree
+Factory,機械工場,30,20806910,12484140,4660740,2663280,0,0,,6d 12:30:00,156.5,Main Hall 30,Unlocks unit (デスランドキング); Unlocks unit (稲妻突撃者),aoztips+appmedia,"food conflict: aoztips 20,806,877 vs appmedia 20,806,910; kept appmedia | oil conflict: aoztips 12,484,121 vs appmedia 12,484,140; kept appmedia | steel conflict: aoztips 4,660,734 vs appmedia 4,660,740; kept appmedia | minerals conflict: aoztips 2,663,271 vs appmedia 2,663,280; kept appmedia"
+Factory,機械工場,31,27049030,16229410,6058970,3462270,12980,0,,7d 07:16:50,175.28,Main Hall 31,,aoztips+appmedia,verified: 2 sources agree
+Factory,機械工場,32,34622730,20773620,7755470,4431700,21430,0,,8d 04:18:50,196.31,Main Hall 32,,aoztips+appmedia,verified: 2 sources agree
+Factory,機械工場,33,43624620,26174750,9771880,5583940,37270,0,,9d 03:52:20,219.87,Main Hall 33,,aoztips+appmedia,verified: 2 sources agree
+Factory,機械工場,34,54094460,32456650,12117110,6924070,63550,0,,10d 06:15:20,246.26,Main Hall 34,Unlocks unit (地獄灼熱炎); Unlocks unit (末日迫撃砲),aoztips+appmedia,verified: 2 sources agree
+Factory,機械工場,35,67077080,40246210,15025200,8585840,76610,0,,11d 11:48:30,275.81,Main Hall 35,,aoztips+appmedia,verified: 2 sources agree
+Factory,機械工場,36,73425960,44055530,16447340,9398490,99670,0,,12d 18:10:00,306.17,Main Hall 36,,aoztips+appmedia,verified: 2 sources agree
+Factory,機械工場,37,79228520,47537060,17747100,10141210,118050,0,,14d 01:43:00,337.72,Main Hall 37,Unlocks unit (地獄王者); Unlocks unit (悪魔の突撃者),aoztips+appmedia,verified: 2 sources agree
+Factory,機械工場,38,85157890,51094670,19075270,10900160,139750,0,,15d 10:52:00,370.87,Main Hall 38,,aoztips+appmedia,verified: 2 sources agree
+Factory,機械工場,39,85166400,51099770,19005170,10901250,153730,0,,,,,,aoztips,single source (aoztips 2026)
+Factory,機械工場,40,85174910,51104870,19079070,10902340,169110,0,,,,,,aoztips,single source (aoztips 2026)
+Factory,機械工場,41,85183420,51109980,19080970,10903430,186050,0,,,,,,aoztips,single source (aoztips 2026)
+Farm,農場,1,0,270,0,0,0,0,,00:00:00,0.0,Main Hall 1,Production / hour: 400; Storage: 4000,appmedia,single source (appmedia 2021-22)
+Farm,農場,2,0,540,0,0,0,0,,00:00:00,0.0,Main Hall 2,Production / hour: 510; Storage: 5100,appmedia,single source (appmedia 2021-22)
+Farm,農場,3,0,690,0,0,0,0,,00:00:00,0.0,Main Hall 3,Production / hour: 630; Storage: 6300,appmedia,single source (appmedia 2021-22)
+Farm,農場,4,0,970,0,0,0,0,,00:00:00,0.0,Main Hall 4,Production / hour: 760; Storage: 7600,appmedia,single source (appmedia 2021-22)
+Farm,農場,5,0,1450,0,0,0,0,,00:00:00,0.0,Main Hall 5,Production / hour: 900; Storage: 9000,appmedia,single source (appmedia 2021-22)
+Farm,農場,6,0,2240,0,0,0,0,,00:08:00,0.13,Main Hall 6,Production / hour: 1050; Storage: 10500,appmedia,single source (appmedia 2021-22)
+Farm,農場,7,0,4070,0,0,0,0,,00:16:00,0.27,Main Hall 7,Production / hour: 1210; Storage: 12100,appmedia,single source (appmedia 2021-22)
+Farm,農場,8,0,7190,0,0,0,0,,00:24:00,0.4,Main Hall 8,Production / hour: 1380; Storage: 13800,appmedia,single source (appmedia 2021-22)
+Farm,農場,9,0,12490,0,0,0,0,,00:40:00,0.67,Main Hall 9,Production / hour: 1560; Storage: 15600,appmedia,single source (appmedia 2021-22)
+Farm,農場,10,0,24990,0,0,0,0,,00:56:00,0.93,Main Hall 10,Production / hour: 1750; Storage: 17500,appmedia,single source (appmedia 2021-22)
+Farm,農場,11,0,50580,0,0,0,0,,01:19:00,1.32,Main Hall 11,Production / hour: 1950; Storage: 19500,appmedia,single source (appmedia 2021-22)
+Farm,農場,12,0,89160,0,0,0,0,,01:42:00,1.7,Main Hall 12,Production / hour: 2160; Storage: 21600,appmedia,single source (appmedia 2021-22)
+Farm,農場,13,0,132150,0,0,0,0,,02:19:00,2.32,Main Hall 13,Production / hour: 2380; Storage: 23800,appmedia,single source (appmedia 2021-22)
+Farm,農場,14,0,206150,0,0,0,0,,03:12:00,3.2,Main Hall 14,Production / hour: 2610; Storage: 26100,appmedia,single source (appmedia 2021-22)
+Farm,農場,15,0,298400,0,0,0,0,,04:03:00,4.05,Main Hall 15,Production / hour: 2850; Storage: 28500,appmedia,single source (appmedia 2021-22)
+Farm,農場,16,0,424530,0,0,0,0,,04:54:00,4.9,Main Hall 16,Production / hour: 3100; Storage: 31000,appmedia,single source (appmedia 2021-22)
+Farm,農場,17,0,562520,0,0,0,0,,06:04:00,6.07,Main Hall 17,Production / hour: 3360; Storage: 33600,appmedia,single source (appmedia 2021-22)
+Farm,農場,18,0,741010,0,0,0,0,,07:14:00,7.23,Main Hall 18,Production / hour: 3630; Storage: 36300,appmedia,single source (appmedia 2021-22)
+Farm,農場,19,0,922710,0,0,0,0,,08:22:00,8.37,Main Hall 19,Production / hour: 3910; Storage: 39100,appmedia,single source (appmedia 2021-22)
+Farm,農場,20,0,1075670,0,0,0,0,,09:29:00,9.48,Main Hall 20,Production / hour: 4200; Storage: 42000,appmedia,single source (appmedia 2021-22)
+Farm,農場,21,0,1205630,0,0,0,0,,11:02:00,11.03,Main Hall 21,Production / hour: 4500; Storage: 45000,appmedia,single source (appmedia 2021-22)
+Farm,農場,22,0,1349580,0,0,0,0,,12:36:00,12.6,Main Hall 22,Production / hour: 4810; Storage: 48100,appmedia,single source (appmedia 2021-22)
+Farm,農場,23,0,1541530,0,0,0,0,,14:10:00,14.17,Main Hall 23,Production / hour: 5130; Storage: 51300,appmedia,single source (appmedia 2021-22)
+Farm,農場,24,0,1761460,0,0,0,0,,15:43:00,15.72,Main Hall 24,Production / hour: 5460; Storage: 54600,appmedia,single source (appmedia 2021-22)
+Farm,農場,25,0,2010380,0,0,0,0,,17:17:00,17.28,Main Hall 25,Production / hour: 5800; Storage: 58000,appmedia,single source (appmedia 2021-22)
+Farm,農場,26,0,2294300,0,0,0,0,,18:50:00,18.83,Main Hall 26,Production / hour: 6150; Storage: 61500,appmedia,single source (appmedia 2021-22)
+Farm,農場,27,0,2617200,0,0,0,0,,20:24:00,20.4,Main Hall 27,Production / hour: 6510; Storage: 65100,appmedia,single source (appmedia 2021-22)
+Farm,農場,28,0,2932100,0,0,0,0,,21:58:00,21.97,Main Hall 28,Production / hour: 6880; Storage: 68800,appmedia,single source (appmedia 2021-22)
+Farm,農場,29,0,3282990,0,0,0,0,,23:31:00,23.52,Main Hall 29,Production / hour: 7260; Storage: 72600,appmedia,single source (appmedia 2021-22)
+Farm,農場,30,0,3676560,0,0,0,0,,1d 01:05:00,25.08,Main Hall 30,Production / hour: 7650; Storage: 76500,appmedia,single source (appmedia 2021-22)
+Garage,車両工場,1,0,0,0,0,0,0,,00:00:00,0.0,Main Hall 1,Max units per march (fleet size): 2000,appmedia,single source (appmedia 2021-22)
+Garage,車両工場,2,0,690,0,0,0,0,,00:00:00,0.0,Main Hall 2,Max units per march (fleet size): 4100,aoztips+appmedia,aoztips row offset corrected (its level 3 = this level)
+Garage,車両工場,3,0,1000,0,0,0,0,,00:00:00,0.0,Main Hall 3,Max units per march (fleet size): 6300,aoztips+appmedia,aoztips row offset corrected (its level 4 = this level)
+Garage,車両工場,4,0,1700,0,0,0,0,,00:00:00,0.0,Main Hall 4,Max units per march (fleet size): 8600,aoztips+appmedia,aoztips row offset corrected (its level 5 = this level)
+Garage,車両工場,5,0,2790,0,0,0,0,,00:00:00,0.0,Main Hall 5,Max units per march (fleet size): 11000,aoztips+appmedia,aoztips row offset corrected (its level 6 = this level)
+Garage,車両工場,6,0,5420,0,0,0,0,,00:48:00,0.8,Main Hall 6,Max units per march (fleet size): 13500,aoztips+appmedia,aoztips row offset corrected (its level 7 = this level)
+Garage,車両工場,7,0,10770,0,0,0,0,,01:36:00,1.6,Main Hall 7,Max units per march (fleet size): 16100,aoztips+appmedia,aoztips row offset corrected (its level 8 = this level)
+Garage,車両工場,8,0,18360,0,0,0,0,,02:24:00,2.4,Main Hall 8,Max units per march (fleet size): 18800,aoztips+appmedia,aoztips row offset corrected (its level 9 = this level)
+Garage,車両工場,9,0,27740,0,0,0,0,,04:00:00,4.0,Main Hall 9,Max units per march (fleet size): 21600,aoztips+appmedia,aoztips row offset corrected (its level 10 = this level)
+Garage,車両工場,10,0,44790,0,0,0,0,,05:19:10,5.32,Main Hall 10,Max units per march (fleet size): 24600,aoztips+appmedia,aoztips row offset corrected (its level 11 = this level)
+Garage,車両工場,11,0,90210,0,0,0,0,,07:45:40,7.76,Main Hall 11,Max units per march (fleet size): 27800,aoztips+appmedia,aoztips row offset corrected (its level 12 = this level)
+Garage,車両工場,12,0,185930,0,0,0,0,,09:59:00,9.98,Main Hall 12,Max units per march (fleet size): 31200,aoztips+appmedia,aoztips row duplicates level 11; appmedia used
+Garage,車両工場,13,0,376600,0,0,0,0,,13:40:50,13.68,Main Hall 13,Max units per march (fleet size): 34800,aoztips+appmedia,verified: 2 sources agree
+Garage,車両工場,14,0,767700,0,0,0,0,,19:00:00,19.0,Main Hall 14,Max units per march (fleet size): 38600,aoztips+appmedia,verified: 2 sources agree
+Garage,車両工場,15,0,1209090,0,0,0,0,,1d 00:03:50,24.06,Main Hall 15,Max units per march (fleet size): 42600,aoztips+appmedia,verified: 2 sources agree
+Garage,車両工場,16,0,1257450,62870,0,0,0,,1d 04:42:10,28.7,Main Hall 16,Max units per march (fleet size): 46800,aoztips+appmedia,verified: 2 sources agree
+Garage,車両工場,17,0,1430350,122600,0,0,0,,1d 11:16:50,35.28,Main Hall 17,Max units per march (fleet size): 51200,aoztips+appmedia,verified: 2 sources agree
+Garage,車両工場,18,0,1593870,212510,0,0,0,,1d 18:00:30,42.01,Main Hall 18,Max units per march (fleet size): 55800,aoztips+appmedia,verified: 2 sources agree
+Garage,車両工場,19,0,1640380,328070,0,0,0,,2d 00:34:30,48.58,Main Hall 19,Max units per march (fleet size): 60600,aoztips+appmedia,verified: 2 sources agree
+Garage,車両工場,20,0,1908010,381600,0,0,0,,2d 06:59:00,54.98,Main Hall 20,Max units per march (fleet size): 65600,aoztips+appmedia,verified: 2 sources agree
+Garage,車両工場,21,0,1984340,396860,99210,0,0,,2d 15:17:50,63.3,Main Hall 21,Max units per march (fleet size): 70800,aoztips+appmedia,verified: 2 sources agree
+Garage,車両工場,22,0,2124410,424880,182090,0,0,,2d 23:24:00,71.4,Main Hall 22,Max units per march (fleet size): 76200,aoztips+appmedia,verified: 2 sources agree
+Garage,車両工場,23,0,2640960,528190,226360,0,0,,3d 07:17:50,79.3,Main Hall 23,Max units per march (fleet size): 81800,aoztips+appmedia,verified: 2 sources agree
+Garage,車両工場,24,0,3500600,700120,300050,0,0,,3d 14:59:00,86.98,Main Hall 24,Max units per march (fleet size): 87600,appmedia,single source (appmedia 2021-22); aoztips row blank
+Garage,車両工場,25,0,4638290,927650,397560,0,0,,3d 22:27:50,94.46,Main Hall 25,Max units per march (fleet size): 93600,aoztips+appmedia,"steel conflict: aoztips 4,638,290 vs appmedia 927,650; kept appmedia | minerals conflict: aoztips 927,650 vs appmedia 397,560; kept appmedia"
+Garage,車両工場,26,0,5265870,1053170,702110,0,0,,4d 05:44:10,101.74,Main Hall 26,Max units per march (fleet size): 99800,appmedia,single source (appmedia 2021-22); aoztips row blank
+Garage,車両工場,27,0,6972470,1394490,929660,0,0,,4d 12:48:00,108.8,Main Hall 27,Max units per march (fleet size): 106200,aoztips+appmedia,verified: 2 sources agree
+Garage,車両工場,28,0,9064280,1812850,1208570,0,0,,4d 19:39:20,115.66,Main Hall 28,Max units per march (fleet size): 112800,aoztips+appmedia,verified: 2 sources agree
+Garage,車両工場,29,0,11783520,2356700,1571130,0,0,,5d 02:18:10,122.3,Main Hall 29,Max units per march (fleet size): 119600,aoztips+appmedia,verified: 2 sources agree
+Garage,車両工場,30,0,15318600,3063720,2042480,0,0,,5d 10:25:00,130.42,Main Hall 30,Max units per march (fleet size): 126600,aoztips+appmedia,verified: 2 sources agree
+Garage,車両工場,31,0,19914230,3982840,2655230,18980,0,,6d 02:04:00,146.07,Main Hall 31,Max units per march (fleet size): 133800,aoztips+appmedia,verified: 2 sources agree
+Garage,車両工場,32,0,25490100,5098010,3398670,31350,0,,6d 19:35:40,163.59,Main Hall 32,Max units per march (fleet size): 141200,aoztips+appmedia,verified: 2 sources agree
+Garage,車両工場,33,0,32117590,6423500,4282330,54520,0,,7d 15:13:30,183.22,Main Hall 33,Max units per march (fleet size): 148800,aoztips+appmedia,verified: 2 sources agree
+Garage,車両工場,34,0,39825910,7965160,5310100,82560,0,,8d 13:12:40,205.21,Main Hall 34,Max units per march (fleet size): 156600,aoztips+appmedia,verified: 2 sources agree
+Garage,車両工場,35,0,49384210,9876810,6584530,122460,0,,9d 13:50:10,229.84,Main Hall 35,Max units per march (fleet size): 164600,aoztips+appmedia,verified: 2 sources agree
+Garage,車両工場,36,0,55325220,11065000,7376660,154260,0,,11d 11:32:00,275.53,Main Hall 36,Max units per march (fleet size): 170600,aoztips+appmedia,verified: 2 sources agree
+Garage,車両工場,37,0,60771160,12154180,8102780,185540,0,,13d 10:10:00,322.17,Main Hall 37,Max units per march (fleet size): 176600,aoztips+appmedia,verified: 2 sources agree
+Garage,車両工場,38,0,66214820,13242900,8828590,224590,0,,15d 07:57:00,367.95,Main Hall 38,Max units per march (fleet size): 182600,aoztips+appmedia,verified: 2 sources agree
+Garage,車両工場,39,0,66221440,13694220,8829470,256460,0,,,,,,aoztips,single source (aoztips 2026)
+Garage,車両工場,40,0,66228060,13245540,8830350,291100,0,,,,,,aoztips,single source (aoztips 2026)
+Garage,車両工場,41,0,66234680,13246860,8831230,326280,0,,,,,,aoztips,single source (aoztips 2026)
+Hospital,病院,1,0,0,0,0,0,0,,00:00:00,0.0,Main Hall 1,Wounded capacity (units): 1000; Healing speed: 2%,aoztips+appmedia,verified: 2 sources agree
+Hospital,病院,2,460,310,0,0,0,0,,00:00:00,0.0,Farm 2,Wounded capacity (units): 2000; Healing speed: 4%,aoztips+appmedia,verified: 2 sources agree
+Hospital,病院,3,670,450,0,0,0,0,,00:00:00,0.0,Farm 3,Wounded capacity (units): 3000; Healing speed: 6%,aoztips+appmedia,verified: 2 sources agree
+Hospital,病院,4,1150,760,0,0,0,0,,00:00:00,0.0,Farm 4,Wounded capacity (units): 4000; Healing speed: 8%,aoztips+appmedia,verified: 2 sources agree
+Hospital,病院,5,1890,1260,0,0,0,0,,00:10:00,0.17,Farm 5,Wounded capacity (units): 5000; Healing speed: 10%,aoztips+appmedia,verified: 2 sources agree
+Hospital,病院,6,3670,2450,0,0,0,0,,00:36:00,0.6,Farm 6,Wounded capacity (units): 6000; Healing speed: 12%,aoztips+appmedia,verified: 2 sources agree
+Hospital,病院,7,7300,4860,0,0,0,0,,01:12:00,1.2,Farm 7,Wounded capacity (units): 7000; Healing speed: 14%,aoztips+appmedia,verified: 2 sources agree
+Hospital,病院,8,12450,8300,0,0,0,0,,01:48:00,1.8,Farm 8,Wounded capacity (units): 8000; Healing speed: 16%,aoztips+appmedia,verified: 2 sources agree
+Hospital,病院,9,18810,12540,0,0,0,0,,03:00:00,3.0,Farm 9,Wounded capacity (units): 9000; Healing speed: 18%,aoztips+appmedia,verified: 2 sources agree
+Hospital,病院,10,30370,20240,0,0,0,0,,04:12:00,4.2,Farm 10,Wounded capacity (units): 10000; Healing speed: 20%,aoztips+appmedia,verified: 2 sources agree
+Hospital,病院,11,61160,40770,0,0,0,0,,05:49:10,5.82,Farm 11,Wounded capacity (units): 11000; Healing speed: 22%,aoztips+appmedia,verified: 2 sources agree
+Hospital,病院,12,126060,84040,0,0,0,0,,07:29:20,7.49,Farm 12,Wounded capacity (units): 12000; Healing speed: 24%,aoztips+appmedia,verified: 2 sources agree
+Hospital,病院,13,255330,170220,0,0,0,0,,10:15:40,10.26,Farm 13,Wounded capacity (units): 13000; Healing speed: 26%,aoztips+appmedia,verified: 2 sources agree
+Hospital,病院,14,520500,347000,0,0,0,0,,14:15:00,14.25,Farm 14,Wounded capacity (units): 14000; Healing speed: 28%,aoztips+appmedia,verified: 2 sources agree
+Hospital,病院,15,819780,546520,0,0,0,0,,18:02:50,18.05,Farm 15,Wounded capacity (units): 15000; Healing speed: 30%,aoztips+appmedia,verified: 2 sources agree
+Hospital,病院,16,852570,568380,71040,0,0,0,,21:31:40,21.53,Farm 16,Wounded capacity (units): 16000; Healing speed: 32%,aoztips+appmedia,verified: 2 sources agree
+Hospital,病院,17,1039070,692710,115450,0,0,0,,1d 02:27:40,26.46,Farm 17,Wounded capacity (units): 17000; Healing speed: 34%,aoztips+appmedia,verified: 2 sources agree
+Hospital,病院,18,1260770,840510,180110,0,0,0,,1d 07:30:20,31.51,Farm 18,Wounded capacity (units): 18000; Healing speed: 36%,aoztips+appmedia,verified: 2 sources agree
+Hospital,病院,19,1482920,926830,259510,0,0,0,,1d 12:26:00,36.43,Farm 19,Wounded capacity (units): 19000; Healing speed: 38%,aoztips+appmedia,verified: 2 sources agree
+Hospital,病院,20,1724860,1078040,301850,0,0,0,,1d 17:14:20,41.24,Main Hall 20,Wounded capacity (units): 20000; Healing speed: 40%,aoztips+appmedia,verified: 2 sources agree
+Hospital,病院,21,1793870,1121170,302710,117720,0,0,,1d 23:28:20,47.47,Main Hall 21,Wounded capacity (units): 21000; Healing speed: 42%,aoztips+appmedia,verified: 2 sources agree
+Hospital,病院,22,1989080,1303190,384100,164610,0,0,,2d 05:33:00,53.55,Main Hall 22,Wounded capacity (units): 22000; Healing speed: 44%,aoztips+appmedia,verified: 2 sources agree
+Hospital,病院,23,2387470,1534800,477490,221690,0,0,,2d 11:28:20,59.47,Main Hall 23,Wounded capacity (units): 23000; Healing speed: 46%,aoztips+appmedia,verified: 2 sources agree
+Hospital,病院,24,3051570,1921360,632910,316450,0,0,,2d 17:14:20,65.24,Main Hall 24,Wounded capacity (units): 24000; Healing speed: 48%,appmedia,single source (appmedia 2021-22); aoztips row blank
+Hospital,病院,25,4043330,2545800,838610,419300,0,0,,2d 22:50:50,70.85,Main Hall 25,Wounded capacity (units): 25000; Healing speed: 50%,aoztips+appmedia,verified: 2 sources agree
+Hospital,病院,26,5157130,3173620,1110760,595050,0,0,,3d 04:18:10,76.3,Main Hall 26,Wounded capacity (units): 26000; Healing speed: 52%,aoztips+appmedia,verified: 2 sources agree
+Hospital,病院,27,6828490,4202140,1470750,787900,0,0,,3d 09:36:00,81.6,Main Hall 27,Wounded capacity (units): 27000; Healing speed: 54%,aoztips+appmedia,"minerals conflict: aoztips 735,370 vs appmedia 787,900; kept appmedia"
+Hospital,病院,28,8535680,5121400,1911990,1092560,0,0,,3d 14:44:30,86.74,Main Hall 28,Wounded capacity (units): 28000; Healing speed: 56%,aoztips+appmedia,verified: 2 sources agree
+Hospital,病院,29,11096340,6657800,2485580,1420330,0,0,,3d 19:43:40,91.73,Main Hall 29,Wounded capacity (units): 29000; Healing speed: 58%,aoztips+appmedia,verified: 2 sources agree
+Hospital,病院,30,14425260,8655150,3231250,1846430,0,0,,4d 01:48:40,97.81,Main Hall 30,Wounded capacity (units): 30000; Healing speed: 60%,aoztips+appmedia,verified: 2 sources agree
+Hospital,病院,31,18161330,10896790,4068120,2324640,12420,0,,4d 13:33:00,109.55,Main Hall 31,Wounded capacity (units): 31000; Healing speed: 62%,aoztips+appmedia,verified: 2 sources agree
+Hospital,病院,32,24003550,14402120,5376770,3072440,20510,0,,5d 02:41:40,122.69,Main Hall 32,Wounded capacity (units): 32000; Healing speed: 64%,aoztips+appmedia,verified: 2 sources agree
+Hospital,病院,33,30244430,18146640,6774720,3871260,35660,0,,5d 17:25:10,137.42,Main Hall 33,Wounded capacity (units): 33000; Healing speed: 66%,aoztips+appmedia,verified: 2 sources agree
+Hospital,病院,34,37503100,22501830,8400650,4800360,54000,0,,6d 09:54:30,153.91,Main Hall 34,Wounded capacity (units): 34000; Healing speed: 68%,aoztips+appmedia,verified: 2 sources agree
+Hospital,病院,35,46503930,27902320,10416820,5952450,80100,0,,7d 04:22:40,172.38,Main Hall 35,Wounded capacity (units): 35000; Healing speed: 70%,aoztips+appmedia,verified: 2 sources agree
+Hospital,病院,36,52849000,31709350,11838100,6764610,98280,0,,8d 01:20:48,193.35,Main Hall 36,Wounded capacity (units): 36000; Healing speed: 72%,aoztips+appmedia,"steel conflict: aoztips 11,758,100 vs appmedia 11,838,100; kept appmedia"
+Hospital,病院,37,58853580,35312090,13183110,7533180,116310,0,,9d 00:16:17,216.27,Main Hall 37,Wounded capacity (units): 37000; Healing speed: 74%,aoztips+appmedia,verified: 2 sources agree
+Hospital,病院,38,64984710,38990760,14556470,8317950,137690,0,,10d 01:30:04,241.5,Main Hall 38,Wounded capacity (units): 38000; Healing speed: 76%,aoztips+appmedia,verified: 2 sources agree
+Hospital,病院,39,64991200,38994650,14485920,8318780,151460,0,,,,,,aoztips,single source (aoztips 2026)
+Hospital,病院,40,64997690,38998540,14559370,8319610,166610,0,,,,,,aoztips,single source (aoztips 2026)
+Hospital,病院,41,65004180,39002430,14560820,8320440,183280,0,,,,,,aoztips,single source (aoztips 2026)
+House,住居,1,0,0,0,0,0,0,,00:00:00,0.0,Main Hall 1,Max residents: 400,appmedia,single source (appmedia 2021-22)
+House,住居,2,430,430,0,0,0,0,,00:00:00,0.0,Main Hall 2,Max residents: 500,appmedia,single source (appmedia 2021-22)
+House,住居,3,550,550,0,0,0,0,,00:00:00,0.0,Main Hall 3,Max residents: 600,appmedia,single source (appmedia 2021-22)
+House,住居,4,780,780,0,0,0,0,,00:00:00,0.0,Main Hall 4,Max residents: 700,appmedia,single source (appmedia 2021-22)
+House,住居,5,1160,1160,0,0,0,0,,00:06:00,0.1,Main Hall 5,Max residents: 800,appmedia,single source (appmedia 2021-22)
+House,住居,6,1790,1790,0,0,0,0,,00:12:00,0.2,Main Hall 6,Max residents: 900,appmedia,single source (appmedia 2021-22)
+House,住居,7,3240,3240,0,0,0,0,,00:24:00,0.4,Main Hall 7,Max residents: 1000,appmedia,single source (appmedia 2021-22)
+House,住居,8,5730,5730,0,0,0,0,,00:36:00,0.6,Main Hall 8,Max residents: 1100,appmedia,single source (appmedia 2021-22)
+House,住居,9,9950,9950,0,0,0,0,,01:00:00,1.0,Main Hall 9,Max residents: 1200,appmedia,single source (appmedia 2021-22)
+House,住居,10,19910,19910,0,0,0,0,,01:24:00,1.4,Main Hall 10,Max residents: 1300,appmedia,single source (appmedia 2021-22)
+House,住居,11,40300,40300,0,0,0,0,,01:54:00,1.9,Main Hall 11,Max residents: 1500,appmedia,single source (appmedia 2021-22)
+House,住居,12,71040,71040,0,0,0,0,,02:28:10,2.47,Main Hall 12,Max residents: 1700,appmedia,single source (appmedia 2021-22)
+House,住居,13,105290,105290,0,0,0,0,,03:25:10,3.42,Main Hall 13,Max residents: 1900,appmedia,single source (appmedia 2021-22)
+House,住居,14,164240,164240,0,0,0,0,,04:45:00,4.75,Main Hall 14,Max residents: 2100,appmedia,single source (appmedia 2021-22)
+House,住居,15,237750,237750,0,0,0,0,,06:04:50,6.08,Main Hall 15,Max residents: 2300,appmedia,single source (appmedia 2021-22)
+House,住居,16,250290,250290,35170,0,0,0,,07:20:00,7.33,Main Hall 16,Max residents: 2500,appmedia,single source (appmedia 2021-22)
+House,住居,17,313720,313720,53780,0,0,0,,09:06:50,9.11,Main Hall 17,Max residents: 2700,appmedia,single source (appmedia 2021-22)
+House,住居,18,413270,413270,70840,0,0,0,,10:51:20,10.86,Main Hall 18,Max residents: 2900,appmedia,single source (appmedia 2021-22)
+House,住居,19,485200,485200,99980,0,0,0,,12:33:30,12.56,Main Hall 19,Max residents: 3100,appmedia,single source (appmedia 2021-22)
+House,住居,20,565630,565630,116550,0,0,0,,14:13:10,14.22,Main Hall 20,Max residents: 3300,appmedia,single source (appmedia 2021-22)
+House,住居,21,576340,576340,119110,17290,0,0,,16:22:30,16.38,Main Hall 21,Max residents: 3600,appmedia,single source (appmedia 2021-22)
+House,住居,22,580640,580640,120420,38700,0,0,,18:28:50,18.48,Main Hall 22,Max residents: 3900,appmedia,single source (appmedia 2021-22)
+House,住居,23,589530,589530,137550,58950,0,0,,20:32:00,20.53,Main Hall 23,Max residents: 4200,appmedia,single source (appmedia 2021-22)
+House,住居,24,617500,617500,157180,78590,0,0,,22:32:00,22.53,Main Hall 24,Max residents: 4500,appmedia,single source (appmedia 2021-22)
+House,住居,25,704770,704770,179390,89690,0,0,,1d 00:28:50,24.48,Main Hall 25,Max residents: 4800,appmedia,single source (appmedia 2021-22)
+House,住居,26,767740,767740,204730,109670,0,0,,1d 02:22:30,26.38,Main Hall 26,Max residents: 5100,appmedia,single source (appmedia 2021-22)
+House,住居,27,834080,834080,233540,133450,0,0,,1d 04:13:10,28.22,Main Hall 27,Max residents: 5400,appmedia,single source (appmedia 2021-22)
+House,住居,28,934440,934440,261640,149510,0,0,,1d 06:00:40,30.01,Main Hall 28,Max residents: 5700,appmedia,single source (appmedia 2021-22)
+House,住居,29,1046270,1046270,292950,167400,0,0,,1d 07:45:10,31.75,Main Hall 29,Max residents: 6000,appmedia,single source (appmedia 2021-22)
+House,住居,30,1171700,1171700,328070,187470,0,0,,1d 09:26:20,33.44,Main Hall 30,Max residents: 6300,appmedia,single source (appmedia 2021-22)
+Main Hall,メインホール,1,3670,3670,0,0,0,0,,00:00:00,0.0,,Gathering speed: 0%,aoztips+appmedia,verified: 2 sources agree
+Main Hall,メインホール,2,5850,5850,0,0,0,0,,00:00:00,0.0,,Gathering speed: 0%,aoztips+appmedia,verified: 2 sources agree
+Main Hall,メインホール,3,8620,8620,0,0,0,0,,00:02:00,0.03,City Wall 2,Gathering speed: 0%,aoztips+appmedia,verified: 2 sources agree
+Main Hall,メインホール,4,14400,14400,0,0,0,0,,00:05:00,0.08,City Wall 3,Gathering speed: 0%,aoztips+appmedia,verified: 2 sources agree
+Main Hall,メインホール,5,22950,22950,0,0,0,0,,00:10:00,0.17,City Wall 4,Gathering speed: 10%,aoztips+appmedia,verified: 2 sources agree
+Main Hall,メインホール,6,42750,42750,0,0,0,0,,01:34:40,1.58,City Wall 5,Gathering speed: 10%,aoztips+appmedia,"food conflict: aoztips 38,070 vs appmedia 42,750; kept appmedia | oil conflict: aoztips 38,070 vs appmedia 42,750; kept appmedia"
+Main Hall,メインホール,7,86250,86250,0,0,0,0,,04:48:00,4.8,City Wall 6; Camp 6,Gathering speed: 10%,aoztips+appmedia,verified: 2 sources agree
+Main Hall,メインホール,8,141000,141000,0,0,0,0,,07:12:00,7.2,City Wall 7; Depot 7,Gathering speed: 20%,aoztips+appmedia,verified: 2 sources agree
+Main Hall,メインホール,9,214500,214500,0,0,0,0,,12:00:00,12.0,City Wall 8; 兵士訓練所 8,Gathering speed: 20%,aoztips+appmedia,verified: 2 sources agree
+Main Hall,メインホール,10,330000,330000,0,0,0,0,,16:48:00,16.8,City Wall 9; Academy 9,Gathering speed: 20%,aoztips+appmedia,verified: 2 sources agree
+Main Hall,メインホール,11,378780,378780,0,0,0,0,,23:16:50,23.28,City Wall 10; Garage 10,Gathering speed: 30%,aoztips+appmedia,verified: 2 sources agree
+Main Hall,メインホール,12,757570,757570,0,0,0,0,,1d 05:57:10,29.95,City Wall 11; Hospital 11,Gathering speed: 30%,aoztips+appmedia,verified: 2 sources agree
+Main Hall,メインホール,13,1060590,1060590,0,0,0,0,,1d 17:02:20,41.04,City Wall 12; Recon Center 12,Gathering speed: 30%,aoztips+appmedia,verified: 2 sources agree
+Main Hall,メインホール,14,2121200,2121200,0,0,0,0,,2d 09:00:00,57.0,City Wall 13; Embassy 13,Gathering speed: 40%,aoztips+appmedia,verified: 2 sources agree
+Main Hall,メインホール,15,4545440,4545440,0,0,0,0,,3d 00:11:30,72.19,City Wall 14; Garage 14,Gathering speed: 40%,aoztips+appmedia,verified: 2 sources agree
+Main Hall,メインホール,16,5181790,5181790,518180,0,0,0,,3d 14:06:40,86.11,City Wall 15; 鉄鉱場 15,Gathering speed: 40%,aoztips+appmedia,verified: 2 sources agree
+Main Hall,メインホール,17,6628770,6628770,1136360,0,0,0,,4d 09:50:20,105.84,City Wall 16; Hospital 16,Gathering speed: 50%,aoztips+appmedia,verified: 2 sources agree
+Main Hall,メインホール,18,8749980,8749980,1499990,0,0,0,,5d 06:01:30,126.03,City Wall 17; 兵士訓練所 17,Gathering speed: 50%,aoztips+appmedia,verified: 2 sources agree
+Main Hall,メインホール,19,10749980,10749980,2215140,0,0,0,,6d 01:43:40,145.73,City Wall 18; Depot 18,Gathering speed: 50%,aoztips+appmedia,verified: 2 sources agree
+Main Hall,メインホール,20,12499980,12499980,2575750,0,0,0,,6d 20:57:10,164.95,City Wall 19; Academy 19,Gathering speed: 50%,aoztips+appmedia,verified: 2 sources agree
+Main Hall,メインホール,21,12606040,12606040,2618170,1018180,0,0,,7d 21:53:20,189.89,City Wall 20; レアアース矿场 20,Gathering speed: 50%,aoztips+appmedia,verified: 2 sources agree
+Main Hall,メインホール,22,14545430,14545430,3393930,1454540,0,0,,8d 22:12:00,214.2,City Wall 21; 緊急室 21,Gathering speed: 50%,aoztips+appmedia,verified: 2 sources agree
+Main Hall,メインホール,23,18469660,18469660,4496960,2087870,0,0,,9d 21:53:20,237.89,City Wall 22; Factory 22,Gathering speed: 50%,aoztips+appmedia,verified: 2 sources agree
+Main Hall,メインホール,24,23333290,23333290,5939380,2969690,0,0,,10d 20:57:10,260.95,City Wall 23; Embassy 23,Gathering speed: 50%,aoztips+appmedia,verified: 2 sources agree
+Main Hall,メインホール,25,30999950,30999950,7890890,3945440,0,0,,11d 19:23:30,283.39,City Wall 24; Depot 24,Gathering speed: 50%,aoztips+appmedia,verified: 2 sources agree
+Main Hall,メインホール,26,39136300,39136300,10436340,5590900,0,0,,12d 17:12:30,305.21,City Wall 25; Recon Center 25,Gathering speed: 50%,aoztips+appmedia,verified: 2 sources agree
+Main Hall,メインホール,27,49393860,49393860,13830280,7903010,0,0,,13d 14:24:00,326.4,City Wall 26; Hospital 26,Gathering speed: 50%,aoztips+appmedia,verified: 2 sources agree
+Main Hall,メインホール,28,64242320,64242320,17987850,10278770,0,0,,14d 10:58:00,346.97,City Wall 27; Academy 27,Gathering speed: 50%,aoztips+appmedia,verified: 2 sources agree
+Main Hall,メインホール,29,83484720,83484720,23375720,13357550,0,0,,15d 06:54:40,366.91,City Wall 28; Garage 28,Gathering speed: 50%,aoztips+appmedia,verified: 2 sources agree
+Main Hall,メインホール,30,108484680,108484680,30375710,17357550,0,0,,16d 07:14:50,391.25,City Wall 29; テクノロジー工場 29,Gathering speed: 50%,aoztips+appmedia,verified: 2 sources agree
+Main Hall,メインホール,31,136690750,136690750,38273410,21870520,49270,0,,18d 06:11:50,438.2,City Wall 30; Recon Center 30,Gathering speed: 50%,aoztips+appmedia,"steel conflict: aoztips 28,273,520 vs appmedia 38,273,410; kept appmedia"
+Main Hall,メインホール,32,169496550,169496550,47459030,27119440,81350,0,,20d 10:46:50,490.78,City Wall 31; Garage 31,Gathering speed: 50%,aoztips+appmedia,verified: 2 sources agree
+Main Hall,メインホール,33,206785700,206785700,57899990,33085700,141480,0,,22d 21:40:30,549.67,City Wall 32; Depot 32,Gathering speed: 50%,aoztips+appmedia,verified: 2 sources agree
+Main Hall,メインホール,34,248142840,248142840,69479980,39702840,214240,0,,25d 15:38:10,615.64,City Wall 33; Embassy 33,Gathering speed: 50%,aoztips+appmedia,verified: 2 sources agree
+Main Hall,メインホール,35,292808470,292808470,81986350,46849330,317840,0,,28d 17:30:40,689.51,City Wall 34; Hospital 34,Gathering speed: 50%,aoztips+appmedia,verified: 2 sources agree
+Main Hall,メインホール,36,314374510,314374510,88024840,50299890,350780,0,,31d 21:23:10,765.39,City Wall 35; Garage 35,Gathering speed: 50%,aoztips+appmedia,verified: 2 sources agree
+Main Hall,メインホール,37,333648650,333648650,93421590,53383750,377680,0,,35d 04:15:40,844.26,City Wall 36; Depot 36,Gathering speed: 50%,aoztips+appmedia,verified: 2 sources agree
+Main Hall,メインホール,38,353579490,353579490,99002220,56572680,401260,0,,38d 15:08:10,927.14,City Wall 37; Embassy 37,Gathering speed: 50%,aoztips+appmedia,verified: 2 sources agree
+Main Hall,メインホール,39,353614840,353614840,99012120,56578330,438980,0,,,,City Wall; Hospital,,aoztips,single source (aoztips 2026)
+Main Hall,メインホール,40,352350200,352350200,98942020,56583980,483830,0,,,,City Wall; Garage,,aoztips,single source (aoztips 2026)
+Main Hall,メインホール,41,353685560,353685560,99031920,56589630,529660,0,,,,City Wall; Embassy,,aoztips,single source (aoztips 2026)
+Mineral Mine,レアアース鉱山,1,130,130,0,0,0,0,,00:00:00,0.0,Main Hall 20,Production / hour: 40; Storage: 400,appmedia,single source (appmedia 2021-22)
+Mineral Mine,レアアース鉱山,2,270,270,0,0,0,0,,00:00:00,0.0,Main Hall 20,Production / hour: 51; Storage: 510,appmedia,single source (appmedia 2021-22)
+Mineral Mine,レアアース鉱山,3,340,340,0,0,0,0,,00:00:00,0.0,Main Hall 20,Production / hour: 63; Storage: 630,appmedia,single source (appmedia 2021-22)
+Mineral Mine,レアアース鉱山,4,480,480,0,0,0,0,,00:00:00,0.0,Main Hall 20,Production / hour: 76; Storage: 760,appmedia,single source (appmedia 2021-22)
+Mineral Mine,レアアース鉱山,5,720,720,0,0,0,0,,00:00:00,0.0,Main Hall 20,Production / hour: 90; Storage: 900,appmedia,single source (appmedia 2021-22)
+Mineral Mine,レアアース鉱山,6,1120,1120,0,0,0,0,,00:08:00,0.13,Main Hall 20,Production / hour: 105; Storage: 1050,appmedia,single source (appmedia 2021-22)
+Mineral Mine,レアアース鉱山,7,2030,2030,0,0,0,0,,00:16:00,0.27,Main Hall 20,Production / hour: 121; Storage: 1210,appmedia,single source (appmedia 2021-22)
+Mineral Mine,レアアース鉱山,8,3590,3590,0,0,0,0,,00:24:00,0.4,Main Hall 20,Production / hour: 138; Storage: 1380,appmedia,single source (appmedia 2021-22)
+Mineral Mine,レアアース鉱山,9,6240,6240,0,0,0,0,,00:40:00,0.67,Main Hall 20,Production / hour: 156; Storage: 1560,appmedia,single source (appmedia 2021-22)
+Mineral Mine,レアアース鉱山,10,12490,12490,0,0,0,0,,00:56:00,0.93,Main Hall 20,Production / hour: 175; Storage: 1750,appmedia,single source (appmedia 2021-22)
+Mineral Mine,レアアース鉱山,11,25290,25290,0,0,0,0,,01:19:00,1.32,Main Hall 20,Production / hour: 195; Storage: 1950,appmedia,single source (appmedia 2021-22)
+Mineral Mine,レアアース鉱山,12,44580,44580,0,0,0,0,,01:42:00,1.7,Main Hall 20,Production / hour: 216; Storage: 2160,appmedia,single source (appmedia 2021-22)
+Mineral Mine,レアアース鉱山,13,66070,66070,0,0,0,0,,02:19:00,2.32,Main Hall 20,Production / hour: 238; Storage: 2380,appmedia,single source (appmedia 2021-22)
+Mineral Mine,レアアース鉱山,14,103070,103070,0,0,0,0,,03:12:00,3.2,Main Hall 20,Production / hour: 261; Storage: 2610,appmedia,single source (appmedia 2021-22)
+Mineral Mine,レアアース鉱山,15,149200,149200,0,0,0,0,,04:03:00,4.05,Main Hall 20,Production / hour: 285; Storage: 2850,appmedia,single source (appmedia 2021-22)
+Mineral Mine,レアアース鉱山,16,161320,161320,20370,0,0,0,,04:54:00,4.9,Main Hall 20,Production / hour: 310; Storage: 3100,appmedia,single source (appmedia 2021-22)
+Mineral Mine,レアアース鉱山,17,213750,213750,27000,0,0,0,,06:04:00,6.07,Main Hall 20,Production / hour: 336; Storage: 3360,appmedia,single source (appmedia 2021-22)
+Mineral Mine,レアアース鉱山,18,281580,281580,35560,0,0,0,,07:14:00,7.23,Main Hall 20,Production / hour: 363; Storage: 3630,appmedia,single source (appmedia 2021-22)
+Mineral Mine,レアアース鉱山,19,322940,322940,55360,0,0,0,,08:22:00,8.37,Main Hall 20,Production / hour: 391; Storage: 3910,appmedia,single source (appmedia 2021-22)
+Mineral Mine,レアアース鉱山,20,376480,376480,64540,0,0,0,,09:29:00,9.48,Main Hall 20,Production / hour: 420; Storage: 4200,appmedia,single source (appmedia 2021-22)
+Mineral Mine,レアアース鉱山,21,421970,421970,72330,0,0,0,,11:02:00,11.03,Main Hall 21,Production / hour: 450; Storage: 4500,appmedia,single source (appmedia 2021-22)
+Mineral Mine,レアアース鉱山,22,472350,472350,80970,0,0,0,,12:36:00,12.6,Main Hall 22,Production / hour: 481; Storage: 4810,appmedia,single source (appmedia 2021-22)
+Mineral Mine,レアアース鉱山,23,539530,539530,92490,0,0,0,,14:10:00,14.17,Main Hall 23,Production / hour: 513; Storage: 5130,appmedia,single source (appmedia 2021-22)
+Mineral Mine,レアアース鉱山,24,616510,616510,105680,0,0,0,,15:43:00,15.72,Main Hall 24,Production / hour: 546; Storage: 5460,appmedia,single source (appmedia 2021-22)
+Mineral Mine,レアアース鉱山,25,703630,703630,120620,0,0,0,,17:17:00,17.28,Main Hall 25,Production / hour: 580; Storage: 5800,appmedia,single source (appmedia 2021-22)
+Mineral Mine,レアアース鉱山,26,803000,803000,137650,0,0,0,,18:50:00,18.83,Main Hall 26,Production / hour: 615; Storage: 6150,appmedia,single source (appmedia 2021-22)
+Mineral Mine,レアアース鉱山,27,916020,916020,157030,0,0,0,,20:24:00,20.4,Main Hall 27,Production / hour: 651; Storage: 6510,appmedia,single source (appmedia 2021-22)
+Mineral Mine,レアアース鉱山,28,1026230,1026230,175920,0,0,0,,21:58:00,21.97,Main Hall 28,Production / hour: 688; Storage: 6880,appmedia,single source (appmedia 2021-22)
+Mineral Mine,レアアース鉱山,29,1149040,1149040,196970,0,0,0,,23:31:00,23.52,Main Hall 29,Production / hour: 726; Storage: 7260,appmedia,single source (appmedia 2021-22)
+Mineral Mine,レアアース鉱山,30,1286790,1286790,220590,0,0,0,,1d 01:05:00,25.08,Main Hall 30,Production / hour: 765; Storage: 7650,appmedia,single source (appmedia 2021-22)
+Oil Refinery,石油精製工場,1,270,0,0,0,0,0,,00:00:00,0.0,Main Hall 1,Production / hour: 400; Storage: 4000,appmedia,single source (appmedia 2021-22)
+Oil Refinery,石油精製工場,2,540,0,0,0,0,0,,00:00:00,0.0,Main Hall 2,Production / hour: 510; Storage: 5100,appmedia,single source (appmedia 2021-22)
+Oil Refinery,石油精製工場,3,690,0,0,0,0,0,,00:00:00,0.0,Main Hall 3,Production / hour: 630; Storage: 6300,appmedia,single source (appmedia 2021-22)
+Oil Refinery,石油精製工場,4,970,0,0,0,0,0,,00:00:00,0.0,Main Hall 4,Production / hour: 760; Storage: 7600,appmedia,single source (appmedia 2021-22)
+Oil Refinery,石油精製工場,5,1450,0,0,0,0,0,,00:00:00,0.0,Main Hall 5,Production / hour: 900; Storage: 9000,appmedia,single source (appmedia 2021-22)
+Oil Refinery,石油精製工場,6,2240,0,0,0,0,0,,00:08:00,0.13,Main Hall 6,Production / hour: 1050; Storage: 10500,appmedia,single source (appmedia 2021-22)
+Oil Refinery,石油精製工場,7,4070,0,0,0,0,0,,00:16:00,0.27,Main Hall 7,Production / hour: 1210; Storage: 12100,appmedia,single source (appmedia 2021-22)
+Oil Refinery,石油精製工場,8,7190,0,0,0,0,0,,00:24:00,0.4,Main Hall 8,Production / hour: 1380; Storage: 13800,appmedia,single source (appmedia 2021-22)
+Oil Refinery,石油精製工場,9,12490,0,0,0,0,0,,00:40:00,0.67,Main Hall 9,Production / hour: 1560; Storage: 15600,appmedia,single source (appmedia 2021-22)
+Oil Refinery,石油精製工場,10,24990,0,0,0,0,0,,00:56:00,0.93,Main Hall 10,Production / hour: 1750; Storage: 17500,appmedia,single source (appmedia 2021-22)
+Oil Refinery,石油精製工場,11,50580,0,0,0,0,0,,01:19:00,1.32,Main Hall 11,Production / hour: 1950; Storage: 19500,appmedia,single source (appmedia 2021-22)
+Oil Refinery,石油精製工場,12,89160,0,0,0,0,0,,01:42:00,1.7,Main Hall 12,Production / hour: 2160; Storage: 21600,appmedia,single source (appmedia 2021-22)
+Oil Refinery,石油精製工場,13,132150,0,0,0,0,0,,02:19:00,2.32,Main Hall 13,Production / hour: 2380; Storage: 23800,appmedia,single source (appmedia 2021-22)
+Oil Refinery,石油精製工場,14,206150,0,0,0,0,0,,03:12:00,3.2,Main Hall 14,Production / hour: 2610; Storage: 26100,appmedia,single source (appmedia 2021-22)
+Oil Refinery,石油精製工場,15,298400,0,0,0,0,0,,04:03:00,4.05,Main Hall 15,Production / hour: 2850; Storage: 28500,appmedia,single source (appmedia 2021-22)
+Oil Refinery,石油精製工場,16,424530,0,0,0,0,0,,04:54:00,4.9,Main Hall 16,Production / hour: 3100; Storage: 31000,appmedia,single source (appmedia 2021-22)
+Oil Refinery,石油精製工場,17,562520,0,0,0,0,0,,06:04:00,6.07,Main Hall 17,Production / hour: 3360; Storage: 33600,appmedia,single source (appmedia 2021-22)
+Oil Refinery,石油精製工場,18,741010,0,0,0,0,0,,07:14:00,7.23,Main Hall 18,Production / hour: 3630; Storage: 36300,appmedia,single source (appmedia 2021-22)
+Oil Refinery,石油精製工場,19,922710,0,0,0,0,0,,08:22:00,8.37,Main Hall 19,Production / hour: 3910; Storage: 39100,appmedia,single source (appmedia 2021-22)
+Oil Refinery,石油精製工場,20,1075670,0,0,0,0,0,,09:29:00,9.48,Main Hall 20,Production / hour: 4200; Storage: 42000,appmedia,single source (appmedia 2021-22)
+Oil Refinery,石油精製工場,21,1205630,0,0,0,0,0,,11:02:00,11.03,Main Hall 21,Production / hour: 4500; Storage: 45000,appmedia,single source (appmedia 2021-22)
+Oil Refinery,石油精製工場,22,1349580,0,0,0,0,0,,12:36:00,12.6,Main Hall 22,Production / hour: 4810; Storage: 48100,appmedia,single source (appmedia 2021-22)
+Oil Refinery,石油精製工場,23,1541530,0,0,0,0,0,,14:10:00,14.17,Main Hall 23,Production / hour: 5130; Storage: 51300,appmedia,single source (appmedia 2021-22)
+Oil Refinery,石油精製工場,24,1761460,0,0,0,0,0,,15:43:00,15.72,Main Hall 24,Production / hour: 5460; Storage: 54600,appmedia,single source (appmedia 2021-22)
+Oil Refinery,石油精製工場,25,2010380,0,0,0,0,0,,17:17:00,17.28,Main Hall 25,Production / hour: 5800; Storage: 58000,appmedia,single source (appmedia 2021-22)
+Oil Refinery,石油精製工場,26,2294300,0,0,0,0,0,,18:50:00,18.83,Main Hall 26,Production / hour: 6150; Storage: 61500,appmedia,single source (appmedia 2021-22)
+Oil Refinery,石油精製工場,27,2617200,0,0,0,0,0,,20:24:00,20.4,Main Hall 27,Production / hour: 6510; Storage: 65100,appmedia,single source (appmedia 2021-22)
+Oil Refinery,石油精製工場,28,2932100,0,0,0,0,0,,21:58:00,21.97,Main Hall 28,Production / hour: 6880; Storage: 68800,appmedia,single source (appmedia 2021-22)
+Oil Refinery,石油精製工場,29,3282990,0,0,0,0,0,,23:31:00,23.52,Main Hall 29,Production / hour: 7260; Storage: 72600,appmedia,single source (appmedia 2021-22)
+Oil Refinery,石油精製工場,30,3676560,0,0,0,0,0,,1d 01:05:00,25.08,Main Hall 30,Production / hour: 7650; Storage: 76500,appmedia,single source (appmedia 2021-22)
+Recon Center,情報センター,1,0,0,0,0,0,0,,00:00:00,0.0,Oil Refinery 1,Shows the commander name of incoming marches,aoztips+appmedia,verified: 2 sources agree
+Recon Center,情報センター,2,210,210,0,0,0,0,,00:00:00,0.0,Oil Refinery 2,Shows the destination of incoming marches,aoztips+appmedia,verified: 2 sources agree
+Recon Center,情報センター,3,300,300,0,0,0,0,,00:00:00,0.0,Oil Refinery 3,Scout: exact resources and uncollected resources in target city,aoztips+appmedia,verified: 2 sources agree
+Recon Center,情報センター,4,510,510,0,0,0,0,,00:00:00,0.0,Oil Refinery 4,Shows on the world map who owns a march,aoztips+appmedia,verified: 2 sources agree
+Recon Center,情報センター,5,840,840,0,0,0,0,,00:08:00,0.13,Oil Refinery 5,Shows arrival time of incoming marches,aoztips+appmedia,verified: 2 sources agree
+Recon Center,情報センター,6,1650,1650,0,0,0,0,,00:26:00,0.43,Oil Refinery 6,Shows origin coordinates of incoming marches,aoztips+appmedia,verified: 2 sources agree
+Recon Center,情報センター,7,3270,3270,0,0,0,0,,01:12:00,1.2,Oil Refinery 7,Shows approximate unit count of incoming marches,aoztips+appmedia,verified: 2 sources agree
+Recon Center,情報センター,8,5580,5580,0,0,0,0,,01:48:00,1.8,Oil Refinery 8,Scout: approximate garrison unit count,aoztips+appmedia,verified: 2 sources agree
+Recon Center,情報センター,9,8440,8440,0,0,0,0,,03:00:00,3.0,Oil Refinery 9,Shows city level of incoming commander,aoztips+appmedia,verified: 2 sources agree
+Recon Center,情報センター,10,13630,13630,0,0,0,0,,03:59:20,3.99,Oil Refinery 10,Scout: defense tower levels,aoztips+appmedia,verified: 2 sources agree
+Recon Center,情報センター,11,27450,27450,0,0,0,0,,05:49:10,5.82,Oil Refinery 11,Shows troop types and approximate numbers of incoming marches,aoztips+appmedia,verified: 2 sources agree
+Recon Center,情報センター,12,56580,56580,0,0,0,0,,07:29:20,7.49,Oil Refinery 12,Scout: garrison troop types and approximate numbers,aoztips+appmedia,verified: 2 sources agree
+Recon Center,情報センター,13,114600,114600,0,0,0,0,,10:15:40,10.26,Oil Refinery 13,Scout: approximate reinforcement unit count,aoztips+appmedia,verified: 2 sources agree
+Recon Center,情報センター,14,223620,223620,0,0,0,0,,14:15:00,14.25,Oil Refinery 14,Shows all troop types and exact sizes of incoming marches,aoztips+appmedia,"food conflict: aoztips 223,620 vs appmedia 233,620; kept aoztips | oil conflict: aoztips 223,620 vs appmedia 233,620; kept aoztips"
+Recon Center,情報センター,15,367940,367940,0,0,0,0,,18:02:50,18.05,Oil Refinery 15,Scout: reinforcement troop types and city level,aoztips+appmedia,verified: 2 sources agree
+Recon Center,情報センター,16,382660,382660,38260,0,0,0,,21:31:40,21.53,Oil Refinery 16,Scout: city wall max and current durability,aoztips+appmedia,verified: 2 sources agree
+Recon Center,情報センター,17,435270,435270,74610,0,0,0,,1d 02:27:40,26.46,Oil Refinery 17,Scout: reinforcement troop types and approximate size,aoztips+appmedia,verified: 2 sources agree
+Recon Center,情報センター,18,565870,565870,97000,0,0,0,,1d 07:30:20,31.51,Oil Refinery 18,Scout: enemy Titan info,aoztips+appmedia,verified: 2 sources agree
+Recon Center,情報センター,19,658930,658930,135770,0,0,0,,1d 12:26:00,36.43,Oil Refinery 19,Scout: garrison troop types and exact size,aoztips+appmedia,verified: 2 sources agree
+Recon Center,情報センター,20,766430,766430,157930,0,0,0,,1d 17:14:20,41.24,Main Hall 20,Scout march speed +10%,aoztips+appmedia,"food conflict: aoztips 766,434 vs appmedia 766,430; kept appmedia | oil conflict: aoztips 766,434 vs appmedia 766,430; kept appmedia"
+Recon Center,情報センター,21,785020,785020,163040,63400,0,0,,1d 23:28:20,47.47,Main Hall 21,,aoztips+appmedia,verified: 2 sources agree
+Recon Center,情報センター,22,886610,886610,206870,88660,0,0,,2d 05:33:00,53.55,Main Hall 22,Scout: all reinforcement troop types and exact size,aoztips+appmedia,"steel conflict: aoztips 208,870 vs appmedia 206,870; kept appmedia"
+Recon Center,情報センター,23,1056260,1056260,257170,119400,0,0,,2d 11:28:20,59.47,Main Hall 23,,aoztips+appmedia,verified: 2 sources agree
+Recon Center,情報センター,24,1339210,1339210,340880,170440,0,0,,2d 17:14:20,65.24,Main Hall 24,Shows Academy level of incoming commander,appmedia,single source (appmedia 2021-22); aoztips row blank
+Recon Center,情報センター,25,1774450,1774450,451670,225830,0,0,,2d 22:50:50,70.85,Main Hall 25,Scout: target's device (gear) info,appmedia,single source (appmedia 2021-22); aoztips row blank
+Recon Center,情報センター,26,2243470,2243470,598250,320490,0,0,,3d 04:18:10,76.3,Main Hall 26,Scout: target's Academy level,aoztips+appmedia,verified: 2 sources agree
+Recon Center,情報センター,27,2829090,2829090,792140,452650,0,0,,3d 09:36:00,81.6,Main Hall 27,,aoztips+appmedia,verified: 2 sources agree
+Recon Center,情報センター,28,3677850,3677850,1029790,588450,0,0,,3d 14:44:30,86.74,Main Hall 28,Shows commander skills of incoming marches,aoztips+appmedia,"food conflict: aoztips 3,667,850 vs appmedia 3,677,850; kept appmedia | oil conflict: aoztips 3,667,850 vs appmedia 3,677,850; kept appmedia"
+Recon Center,情報センター,29,4781180,4781180,1338730,764980,0,0,,3d 19:43:40,91.73,Main Hall 29,Scout: target's officers,aoztips+appmedia,verified: 2 sources agree
+Recon Center,情報センター,30,6215550,6215550,1740350,994480,0,0,,4d 01:48:40,97.81,Main Hall 30,Scout: target's commander tech,aoztips+appmedia,verified: 2 sources agree
+Recon Center,情報センター,31,7591610,7591610,2125640,1214640,12980,0,,4d 13:33:00,109.55,Main Hall 31,Scout: target's biochemical tech level,aoztips+appmedia,verified: 2 sources agree
+Recon Center,情報センター,32,9091780,9091780,2545680,1454660,21430,0,,5d 02:41:40,122.69,Main Hall 32,Scout speed +15%,aoztips+appmedia,verified: 2 sources agree
+Recon Center,情報センター,33,10667620,10667620,2986910,1706790,37270,0,,5d 17:25:10,137.42,Main Hall 33,Scout: target's officer skills,aoztips+appmedia,verified: 2 sources agree
+Recon Center,情報センター,34,12250700,12250700,3430170,1960070,56440,0,,6d 09:54:30,153.91,Main Hall 34,Scout speed +25%,aoztips+appmedia,verified: 2 sources agree
+Recon Center,情報センター,35,13979190,13979190,3914140,2236620,83720,0,,7d 04:22:40,172.38,Main Hall 35,Scout: target's expansion-gear effects,aoztips+appmedia,verified: 2 sources agree
+Rehab Center,リハビリ拠点,1,300,120,0,0,0,0,,00:00:00,0.0,Main Hall 1,Wounded capacity (units): 500,appmedia,single source (appmedia 2021-22) | English building name not confirmed
+Rehab Center,リハビリ拠点,2,600,250,0,0,0,0,,00:00:00,0.0,Main Hall 2,Wounded capacity (units): 1000,appmedia,single source (appmedia 2021-22) | English building name not confirmed
+Rehab Center,リハビリ拠点,3,770,330,0,0,0,0,,00:00:00,0.0,Main Hall 3,Wounded capacity (units): 1500,appmedia,single source (appmedia 2021-22) | English building name not confirmed
+Rehab Center,リハビリ拠点,4,1090,460,0,0,0,0,,00:00:00,0.0,Main Hall 4,Wounded capacity (units): 2000,appmedia,single source (appmedia 2021-22) | English building name not confirmed
+Rehab Center,リハビリ拠点,5,1620,690,0,0,0,0,,00:06:00,0.1,Main Hall 5,Wounded capacity (units): 2500,appmedia,single source (appmedia 2021-22) | English building name not confirmed
+Rehab Center,リハビリ拠点,6,2500,1070,0,0,0,0,,00:12:00,0.2,Main Hall 6,Wounded capacity (units): 3000,appmedia,single source (appmedia 2021-22) | English building name not confirmed
+Rehab Center,リハビリ拠点,7,4550,1950,0,0,0,0,,00:24:00,0.4,Main Hall 7,Wounded capacity (units): 3500,appmedia,single source (appmedia 2021-22) | English building name not confirmed
+Rehab Center,リハビリ拠点,8,8020,3440,0,0,0,0,,00:36:00,0.6,Main Hall 8,Wounded capacity (units): 4000,appmedia,single source (appmedia 2021-22) | English building name not confirmed
+Rehab Center,リハビリ拠点,9,13930,5970,0,0,0,0,,01:00:00,1.0,Main Hall 9,Wounded capacity (units): 4500,appmedia,single source (appmedia 2021-22) | English building name not confirmed
+Rehab Center,リハビリ拠点,10,27880,11940,0,0,0,0,,01:24:00,1.4,Main Hall 10,Wounded capacity (units): 5000,appmedia,single source (appmedia 2021-22) | English building name not confirmed
+Rehab Center,リハビリ拠点,11,48370,32250,0,0,0,0,,01:54:00,1.9,Main Hall 11,Wounded capacity (units): 5500,appmedia,single source (appmedia 2021-22) | English building name not confirmed
+Rehab Center,リハビリ拠点,12,85270,56850,0,0,0,0,,02:28:10,2.47,Main Hall 12,Wounded capacity (units): 6000,appmedia,single source (appmedia 2021-22) | English building name not confirmed
+Rehab Center,リハビリ拠点,13,126400,84260,0,0,0,0,,03:25:10,3.42,Main Hall 13,Wounded capacity (units): 6500,appmedia,single source (appmedia 2021-22) | English building name not confirmed
+Rehab Center,リハビリ拠点,14,197160,131440,0,0,0,0,,04:45:00,4.75,Main Hall 14,Wounded capacity (units): 7000,appmedia,single source (appmedia 2021-22) | English building name not confirmed
+Rehab Center,リハビリ拠点,15,285400,190270,0,0,0,0,,06:04:50,6.08,Main Hall 15,Wounded capacity (units): 7500,appmedia,single source (appmedia 2021-22) | English building name not confirmed
+Rehab Center,リハビリ拠点,16,372200,304520,0,0,0,0,,07:20:00,7.33,Main Hall 16,Wounded capacity (units): 8000,appmedia,single source (appmedia 2021-22) | English building name not confirmed
+Rehab Center,リハビリ拠点,17,493180,403510,0,0,0,0,,09:06:50,9.11,Main Hall 17,Wounded capacity (units): 8500,appmedia,single source (appmedia 2021-22) | English building name not confirmed
+Rehab Center,リハビリ拠点,18,649670,531540,0,0,0,0,,10:51:20,10.86,Main Hall 18,Wounded capacity (units): 9000,appmedia,single source (appmedia 2021-22) | English building name not confirmed
+Rehab Center,リハビリ拠点,19,808970,661880,0,0,0,0,,12:33:30,12.56,Main Hall 19,Wounded capacity (units): 9500,appmedia,single source (appmedia 2021-22) | English building name not confirmed
+Rehab Center,リハビリ拠点,20,960220,754450,0,0,0,0,,14:13:10,14.22,Main Hall 20,Wounded capacity (units): 10000,appmedia,single source (appmedia 2021-22) | English building name not confirmed
+Rehab Center,リハビリ拠点,21,960920,768730,0,19210,0,0,,16:22:30,16.38,Main Hall 21,Wounded capacity (units): 10500,appmedia,single source (appmedia 2021-22) | English building name not confirmed
+Rehab Center,リハビリ拠点,22,989600,774470,0,38720,0,0,,18:28:50,18.48,Main Hall 22,Wounded capacity (units): 11000,appmedia,single source (appmedia 2021-22) | English building name not confirmed
+Rehab Center,リハビリ拠点,23,1105770,810900,0,54060,0,0,,20:32:00,20.53,Main Hall 23,Wounded capacity (units): 11500,appmedia,single source (appmedia 2021-22) | English building name not confirmed
+Rehab Center,リハビリ拠点,24,1263540,842360,0,70190,0,0,,22:32:00,22.53,Main Hall 24,Wounded capacity (units): 12000,appmedia,single source (appmedia 2021-22) | English building name not confirmed
+Rehab Center,リハビリ拠点,25,1442100,865260,0,89730,0,0,,1d 00:28:50,24.48,Main Hall 25,Wounded capacity (units): 12500,appmedia,single source (appmedia 2021-22) | English building name not confirmed
+Rehab Center,リハビリ拠点,26,1645750,914310,0,109710,0,0,,1d 02:22:30,26.38,Main Hall 26,Wounded capacity (units): 13000,appmedia,single source (appmedia 2021-22) | English building name not confirmed
+Rehab Center,リハビリ拠点,27,1877380,1042990,0,125150,0,0,,1d 04:13:10,28.22,Main Hall 27,Wounded capacity (units): 13500,appmedia,single source (appmedia 2021-22) | English building name not confirmed
+Rehab Center,リハビリ拠点,28,2103270,1168480,0,140210,0,0,,1d 06:00:40,30.01,Main Hall 28,Wounded capacity (units): 14000,appmedia,single source (appmedia 2021-22) | English building name not confirmed
+Rehab Center,リハビリ拠点,29,2354980,1308320,0,156990,0,0,,1d 07:45:10,31.75,Main Hall 29,Wounded capacity (units): 14500,appmedia,single source (appmedia 2021-22) | English building name not confirmed
+Rehab Center,リハビリ拠点,30,2637290,1465160,0,175810,0,0,,1d 10:23:20,34.39,Main Hall 30,Wounded capacity (units): 15000,appmedia,single source (appmedia 2021-22) | English building name not confirmed
+Steel Mill,鉄鉱山,1,130,130,0,0,0,0,,00:00:00,0.0,Main Hall 15,Production / hour: 80; Storage: 800,appmedia,single source (appmedia 2021-22)
+Steel Mill,鉄鉱山,2,270,270,0,0,0,0,,00:00:00,0.0,Main Hall 15,Production / hour: 102; Storage: 1020,appmedia,single source (appmedia 2021-22)
+Steel Mill,鉄鉱山,3,340,340,0,0,0,0,,00:00:00,0.0,Main Hall 15,Production / hour: 126; Storage: 1260,appmedia,single source (appmedia 2021-22)
+Steel Mill,鉄鉱山,4,480,480,0,0,0,0,,00:00:00,0.0,Main Hall 15,Production / hour: 152; Storage: 1520,appmedia,single source (appmedia 2021-22)
+Steel Mill,鉄鉱山,5,720,720,0,0,0,0,,00:00:00,0.0,Main Hall 15,Production / hour: 180; Storage: 1800,appmedia,single source (appmedia 2021-22)
+Steel Mill,鉄鉱山,6,1120,1120,0,0,0,0,,00:08:00,0.13,Main Hall 15,Production / hour: 210; Storage: 2100,appmedia,single source (appmedia 2021-22)
+Steel Mill,鉄鉱山,7,2030,2030,0,0,0,0,,00:16:00,0.27,Main Hall 15,Production / hour: 242; Storage: 2420,appmedia,single source (appmedia 2021-22)
+Steel Mill,鉄鉱山,8,3590,3590,0,0,0,0,,00:24:00,0.4,Main Hall 15,Production / hour: 276; Storage: 2760,appmedia,single source (appmedia 2021-22)
+Steel Mill,鉄鉱山,9,6240,6240,0,0,0,0,,00:40:00,0.67,Main Hall 15,Production / hour: 312; Storage: 3120,appmedia,single source (appmedia 2021-22)
+Steel Mill,鉄鉱山,10,12490,12490,0,0,0,0,,00:56:00,0.93,Main Hall 15,Production / hour: 350; Storage: 3500,appmedia,single source (appmedia 2021-22)
+Steel Mill,鉄鉱山,11,25290,25290,0,0,0,0,,01:19:00,1.32,Main Hall 15,Production / hour: 390; Storage: 3900,appmedia,single source (appmedia 2021-22)
+Steel Mill,鉄鉱山,12,44580,44580,0,0,0,0,,01:42:00,1.7,Main Hall 15,Production / hour: 432; Storage: 4320,appmedia,single source (appmedia 2021-22)
+Steel Mill,鉄鉱山,13,66070,66070,0,0,0,0,,02:19:00,2.32,Main Hall 15,Production / hour: 476; Storage: 4760,appmedia,single source (appmedia 2021-22)
+Steel Mill,鉄鉱山,14,103070,103070,0,0,0,0,,03:12:00,3.2,Main Hall 15,Production / hour: 522; Storage: 5220,appmedia,single source (appmedia 2021-22)
+Steel Mill,鉄鉱山,15,149200,149200,0,0,0,0,,04:03:00,4.05,Main Hall 15,Production / hour: 570; Storage: 5700,appmedia,single source (appmedia 2021-22)
+Steel Mill,鉄鉱山,16,212260,212260,0,0,0,0,,04:54:00,4.9,Main Hall 16,Production / hour: 620; Storage: 6200,appmedia,single source (appmedia 2021-22)
+Steel Mill,鉄鉱山,17,281260,281260,0,0,0,0,,06:04:00,6.07,Main Hall 17,Production / hour: 672; Storage: 6720,appmedia,single source (appmedia 2021-22)
+Steel Mill,鉄鉱山,18,370500,370500,0,0,0,0,,07:14:00,7.23,Main Hall 18,Production / hour: 726; Storage: 7260,appmedia,single source (appmedia 2021-22)
+Steel Mill,鉄鉱山,19,461350,461350,0,0,0,0,,08:22:00,8.37,Main Hall 19,Production / hour: 782; Storage: 7820,appmedia,single source (appmedia 2021-22)
+Steel Mill,鉄鉱山,20,537830,537830,0,0,0,0,,09:29:00,9.48,Main Hall 20,Production / hour: 840; Storage: 8400,appmedia,single source (appmedia 2021-22)
+Steel Mill,鉄鉱山,21,602810,602810,0,0,0,0,,11:02:00,11.03,Main Hall 21,Production / hour: 900; Storage: 9000,appmedia,single source (appmedia 2021-22)
+Steel Mill,鉄鉱山,22,674790,674790,0,0,0,0,,12:36:00,12.6,Main Hall 22,Production / hour: 962; Storage: 9620,appmedia,single source (appmedia 2021-22)
+Steel Mill,鉄鉱山,23,770760,770760,0,0,0,0,,14:10:00,14.17,Main Hall 23,Production / hour: 1026; Storage: 10260,appmedia,single source (appmedia 2021-22)
+Steel Mill,鉄鉱山,24,880730,880730,0,0,0,0,,15:43:00,15.72,Main Hall 24,Production / hour: 1092; Storage: 10920,appmedia,single source (appmedia 2021-22)
+Steel Mill,鉄鉱山,25,1005190,1005190,0,0,0,0,,17:17:00,17.28,Main Hall 25,Production / hour: 1160; Storage: 11600,appmedia,single source (appmedia 2021-22)
+Steel Mill,鉄鉱山,26,1147150,1147150,0,0,0,0,,18:50:00,18.83,Main Hall 26,Production / hour: 1230; Storage: 12300,appmedia,single source (appmedia 2021-22)
+Steel Mill,鉄鉱山,27,1308600,1308600,0,0,0,0,,20:24:00,20.4,Main Hall 27,Production / hour: 1302; Storage: 13020,appmedia,single source (appmedia 2021-22)
+Steel Mill,鉄鉱山,28,1466050,1466050,0,0,0,0,,21:58:00,21.97,Main Hall 28,Production / hour: 1376; Storage: 13760,appmedia,single source (appmedia 2021-22)
+Steel Mill,鉄鉱山,29,1641490,1641490,0,0,0,0,,23:31:00,23.52,Main Hall 29,Production / hour: 1452; Storage: 14520,appmedia,single source (appmedia 2021-22)
+Steel Mill,鉄鉱山,30,1838280,1838280,0,0,0,0,,1d 01:05:00,25.08,Main Hall 30,Production / hour: 1530; Storage: 15300,appmedia,single source (appmedia 2021-22)
+Training Grounds,訓練場,1,120,300,0,0,0,0,,00:00:00,0.0,Main Hall 1,Max units per training batch: 5; Training speed: 5%,appmedia,single source (appmedia 2021-22)
+Training Grounds,訓練場,2,250,600,0,0,0,0,,00:00:00,0.0,Main Hall 2,Max units per training batch: 10; Training speed: 5%,appmedia,single source (appmedia 2021-22)
+Training Grounds,訓練場,3,330,770,0,0,0,0,,00:00:00,0.0,Main Hall 3,Max units per training batch: 15; Training speed: 10%,appmedia,single source (appmedia 2021-22)
+Training Grounds,訓練場,4,460,1090,0,0,0,0,,00:00:00,0.0,Main Hall 4,Max units per training batch: 20; Training speed: 10%,appmedia,single source (appmedia 2021-22)
+Training Grounds,訓練場,5,690,1620,0,0,0,0,,00:06:00,0.1,Main Hall 5,Max units per training batch: 25; Training speed: 15%,appmedia,single source (appmedia 2021-22)
+Training Grounds,訓練場,6,1070,2500,0,0,0,0,,00:12:00,0.2,Main Hall 6,Max units per training batch: 30; Training speed: 15%,appmedia,single source (appmedia 2021-22)
+Training Grounds,訓練場,7,1940,4540,0,0,0,0,,00:24:00,0.4,Main Hall 7,Max units per training batch: 35; Training speed: 20%,appmedia,single source (appmedia 2021-22)
+Training Grounds,訓練場,8,3430,8020,0,0,0,0,,00:36:00,0.6,Main Hall 8,Max units per training batch: 40; Training speed: 20%,appmedia,single source (appmedia 2021-22)
+Training Grounds,訓練場,9,5970,13930,0,0,0,0,,01:00:00,1.0,Main Hall 9,Max units per training batch: 45; Training speed: 25%,appmedia,single source (appmedia 2021-22)
+Training Grounds,訓練場,10,11940,27870,0,0,0,0,,01:24:00,1.4,Main Hall 10,Max units per training batch: 50; Training speed: 25%,appmedia,single source (appmedia 2021-22)
+Training Grounds,訓練場,11,24180,56420,0,0,0,0,,01:54:00,1.9,Main Hall 11,Max units per training batch: 55; Training speed: 30%,appmedia,single source (appmedia 2021-22)
+Training Grounds,訓練場,12,42620,99450,0,0,0,0,,02:28:10,2.47,Main Hall 12,Max units per training batch: 60; Training speed: 30%,appmedia,single source (appmedia 2021-22)
+Training Grounds,訓練場,13,63170,147410,0,0,0,0,,03:25:10,3.42,Main Hall 13,Max units per training batch: 65; Training speed: 35%,appmedia,single source (appmedia 2021-22)
+Training Grounds,訓練場,14,98540,229940,0,0,0,0,,04:45:00,4.75,Main Hall 14,Max units per training batch: 70; Training speed: 35%,appmedia,single source (appmedia 2021-22)
+Training Grounds,訓練場,15,142650,332850,0,0,0,0,,06:04:50,6.08,Main Hall 15,Max units per training batch: 75; Training speed: 40%,appmedia,single source (appmedia 2021-22)
+Training Grounds,訓練場,16,169120,338240,33820,0,0,0,,07:20:00,7.33,Main Hall 16,Max units per training batch: 80; Training speed: 40%,appmedia,single source (appmedia 2021-22)
+Training Grounds,訓練場,17,224090,403360,53780,0,0,0,,09:06:50,9.11,Main Hall 17,Max units per training batch: 85; Training speed: 45%,appmedia,single source (appmedia 2021-22)
+Training Grounds,訓練場,18,295190,531350,70840,0,0,0,,10:51:20,10.86,Main Hall 18,Max units per training batch: 90; Training speed: 45%,appmedia,single source (appmedia 2021-22)
+Training Grounds,訓練場,19,367580,661640,88210,0,0,0,,12:33:30,12.56,Main Hall 19,Max units per training batch: 95; Training speed: 50%,appmedia,single source (appmedia 2021-22)
+Training Grounds,訓練場,20,428510,771320,102840,0,0,0,,14:13:10,14.22,Main Hall 20,Max units per training batch: 100; Training speed: 50%,appmedia,single source (appmedia 2021-22)
+Training Grounds,訓練場,21,480280,864510,115260,0,0,0,,16:22:30,16.38,Main Hall 21,Max units per training batch: 105; Training speed: 55%,appmedia,single source (appmedia 2021-22)
+Training Grounds,訓練場,22,537630,967730,129030,0,0,0,,18:28:50,18.48,Main Hall 22,Max units per training batch: 110; Training speed: 55%,appmedia,single source (appmedia 2021-22)
+Training Grounds,訓練場,23,614090,1105370,147380,0,0,0,,20:32:00,20.53,Main Hall 23,Max units per training batch: 115; Training speed: 60%,appmedia,single source (appmedia 2021-22)
+Training Grounds,訓練場,24,701710,1263070,168410,0,0,0,,22:32:00,22.53,Main Hall 24,Max units per training batch: 120; Training speed: 60%,appmedia,single source (appmedia 2021-22)
+Training Grounds,訓練場,25,800870,1441570,192210,0,0,0,,1d 00:28:50,24.48,Main Hall 25,Max units per training batch: 125; Training speed: 65%,appmedia,single source (appmedia 2021-22)
+Training Grounds,訓練場,26,913970,1645150,219350,0,0,0,,1d 02:22:30,26.38,Main Hall 26,Max units per training batch: 130; Training speed: 65%,appmedia,single source (appmedia 2021-22)
+Training Grounds,訓練場,27,1042610,1876690,250220,0,0,0,,1d 04:13:10,28.22,Main Hall 27,Max units per training batch: 135; Training speed: 70%,appmedia,single source (appmedia 2021-22)
+Training Grounds,訓練場,28,1168050,2102500,280330,0,0,0,,1d 06:00:40,30.01,Main Hall 28,Max units per training batch: 140; Training speed: 70%,appmedia,single source (appmedia 2021-22)
+Training Grounds,訓練場,29,1307840,2354110,313880,0,0,0,,1d 07:45:10,31.75,Main Hall 29,Max units per training batch: 145; Training speed: 75%,appmedia,single source (appmedia 2021-22)
+Training Grounds,訓練場,30,1464620,2636320,351510,0,0,0,,1d 09:26:20,33.44,Main Hall 30,Max units per training batch: 150; Training speed: 75%,appmedia,single source (appmedia 2021-22)
+Workshop,テクノロジー作業場,1,0,0,0,0,0,0,,00:00:00,0.0,,,appmedia,single source (appmedia 2021-22)
+Workshop,テクノロジー作業場,2,0,0,0,0,0,0,,00:00:00,0.0,,,appmedia,single source (appmedia 2021-22)
+Workshop,テクノロジー作業場,3,0,0,0,0,0,0,,00:00:00,0.0,,,appmedia,single source (appmedia 2021-22)
+Workshop,テクノロジー作業場,4,0,0,0,0,0,0,,00:00:00,0.0,,,appmedia,single source (appmedia 2021-22)
+Workshop,テクノロジー作業場,5,0,0,0,0,0,0,,00:00:00,0.0,,,appmedia,single source (appmedia 2021-22)
+Workshop,テクノロジー作業場,6,0,0,0,0,0,0,,00:00:00,0.0,,,appmedia,single source (appmedia 2021-22)
+Workshop,テクノロジー作業場,7,0,0,0,0,0,0,,00:00:00,0.0,,,appmedia,single source (appmedia 2021-22)
+Workshop,テクノロジー作業場,8,0,0,0,0,0,0,,00:00:00,0.0,,,appmedia,single source (appmedia 2021-22)
+Workshop,テクノロジー作業場,9,0,0,0,0,0,0,,00:00:00,0.0,,,appmedia,single source (appmedia 2021-22)
+Workshop,テクノロジー作業場,10,0,0,0,0,0,0,,00:00:00,0.0,,,appmedia,single source (appmedia 2021-22)
+Workshop,テクノロジー作業場,11,0,0,0,0,0,0,,00:00:00,0.0,,,appmedia,single source (appmedia 2021-22)
+Workshop,テクノロジー作業場,12,0,0,0,0,0,0,,00:00:00,0.0,,,appmedia,single source (appmedia 2021-22)
+Workshop,テクノロジー作業場,13,0,0,0,0,0,0,,00:00:00,0.0,Main Hall 13,Unlocks unit (磁爆兵); Unlocks unit (シールドマシン),aoztips+appmedia,aoztips row offset corrected (its level 14 = this level)
+Workshop,テクノロジー作業場,14,788310,525540,0,0,0,0,,1d 03:21:36,27.36,Main Hall 14,,aoztips+appmedia,aoztips row offset corrected (its level 15 = this level)
+Workshop,テクノロジー作業場,15,1418920,945950,0,0,0,0,,1d 10:39:12,34.65,Main Hall 15,,aoztips+appmedia,aoztips row offset corrected (its level 16 = this level)
+Workshop,テクノロジー作業場,16,1729300,1210510,103750,0,0,0,,1d 17:20:12,41.34,Main Hall 16,Unlocks unit (装甲部隊); Unlocks unit (電磁大砲1型),aoztips+appmedia,aoztips row offset corrected (its level 17 = this level)
+Workshop,テクノロジー作業場,17,2248120,1498750,249790,0,0,0,,2d 02:48:24,50.81,Main Hall 17,,aoztips+appmedia,aoztips row offset corrected (its level 18 = this level)
+Workshop,テクノロジー作業場,18,2727790,1818520,389680,0,0,0,,2d 12:29:36,60.49,Main Hall 18,,aoztips+appmedia,aoztips row offset corrected (its level 19 = this level)
+Workshop,テクノロジー作業場,19,3208450,2005280,561470,0,0,0,,2d 21:57:00,69.95,Main Hall 19,Unlocks Elite unit (精鋭磁爆兵); Unlocks unit (高エネルギーシールドマシン),aoztips+appmedia,aoztips row offset corrected (its level 20 = this level)
+Workshop,テクノロジー作業場,20,3731910,2332440,653080,0,0,0,,3d 07:10:48,79.18,Main Hall 20,,aoztips+appmedia,aoztips row offset corrected (its level 21 = this level)
+Workshop,テクノロジー作業場,21,3881220,2425760,754950,254700,0,0,,3d 19:09:00,91.15,Main Hall 21,,aoztips+appmedia,"aoztips row offset corrected (its level 22 = this level) | steel conflict: aoztips 754,950 vs appmedia 654,950; kept aoztips | minerals conflict: aoztips 0 vs appmedia 254,700; kept appmedia"
+Workshop,テクノロジー作業場,22,4303580,2819580,831030,356150,0,0,,4d 06:49:00,102.82,Main Hall 22,Unlocks unit (重装甲兵); Unlocks unit (改良型電磁砲),aoztips+appmedia,aoztips row offset corrected (its level 23 = this level)
+Workshop,テクノロジー作業場,23,5165520,3320690,1033100,479650,0,0,,4d 18:11:12,114.19,Main Hall 23,,aoztips+appmedia,aoztips row offset corrected (its level 24 = this level)
+Workshop,テクノロジー作業場,24,6602360,4157040,1369370,684680,0,0,,5d 05:15:24,125.26,Main Hall 24,,aoztips+appmedia,aoztips row offset corrected (its level 25 = this level)
+Workshop,テクノロジー作業場,25,8748120,5508070,1814420,907210,0,0,,5d 16:01:48,136.03,Main Hall 25,,aoztips+appmedia,"aoztips row offset corrected (its level 26 = this level) | oil conflict: aoztips 5,508,080 vs appmedia 5,508,070; kept appmedia | minerals conflict: aoztips 907,200 vs appmedia 907,210; kept appmedia"
+Workshop,テクノロジー作業場,26,11157930,6866420,2403240,1287450,0,0,,6d 02:30:12,146.5,Main Hall 26,Unlocks unit (ストームウィザード); Unlocks unit (未来守護者),aoztips+appmedia,aoztips row offset corrected (its level 27 = this level)
+Workshop,テクノロジー作業場,27,14774060,9091730,3182100,1704700,0,0,,6d 12:40:24,156.67,Main Hall 27,,aoztips+appmedia,aoztips row offset corrected (its level 28 = this level)
+Workshop,テクノロジー作業場,28,18467720,11080630,4136760,2363860,0,0,,6d 22:32:48,166.55,Main Hall 28,,aoztips+appmedia,aoztips row offset corrected (its level 29 = this level)
+Workshop,テクノロジー作業場,29,24007940,14404760,5377770,3073010,0,0,,7d 08:07:12,176.12,Main Hall 29,,aoztips+appmedia,aoztips row offset corrected (its level 30 = this level)
+Workshop,テクノロジー作業場,30,31210370,18726220,6991120,3994920,0,0,,7d 19:48:00,187.8,Main Hall 30,Unlocks unit (終極装甲兵); Unlocks unit (超電磁砲),aoztips+appmedia,aoztips row offset corrected (its level 31 = this level)
+Workshop,テクノロジー作業場,31,40573540,24344110,9088450,5193400,15570,0,,8d 18:20:12,210.34,Main Hall 31,,aoztips+appmedia,aoztips row offset corrected (its level 32 = this level)
+Workshop,テクノロジー作業場,32,51934090,31160430,11633200,6647550,25710,0,,9d 19:34:36,235.58,Main Hall 32,,aoztips+appmedia,aoztips row offset corrected (its level 33 = this level)
+Workshop,テクノロジー作業場,33,65436930,39262120,14657820,8375910,44720,0,,10d 23:50:48,263.85,Main Hall 33,,aoztips+appmedia,aoztips row offset corrected (its level 34 = this level)
+Workshop,テクノロジー作業場,34,81141690,48684970,18175660,10386100,67720,0,,12d 07:30:24,295.51,Main Hall 34,,aoztips+appmedia,aoztips row offset corrected (its level 35 = this level)
+Workshop,テクノロジー作業場,35,100615620,60369310,22537800,12878760,98220,0,,13d 18:58:12,330.97,Main Hall 35,Unlocks unit (熱雷主宰); Unlocks unit (光守護者),aoztips+appmedia,aoztips row offset corrected (its level 36 = this level)
+Workshop,テクノロジー作業場,36,110138940,66083290,24671010,14097730,119600,0,,15d 07:24:00,367.4,Main Hall 36,,aoztips+appmedia,aoztips row offset corrected (its level 37 = this level)
+Workshop,テクノロジー作業場,37,118842780,71305590,26620650,15211810,141660,0,,16d 21:15:36,405.26,Main Hall 37,,aoztips+appmedia,aoztips row offset corrected (its level 38 = this level)
+Workshop,テクノロジー作業場,38,127736830,76642000,28612900,16350240,176500,0,,18d 13:02:24,445.04,Main Hall 38,Unlocks unit (究極な装甲兵); Unlocks unit (究極電磁大砲),aoztips+appmedia,aoztips row offset corrected (its level 39 = this level)
+Workshop,テクノロジー作業場,39,127749600,76649655,28543755,16351875,184470,0,,,,,,aoztips,single source (aoztips 2026)
+Workshop,テクノロジー作業場,40,127775130,76664970,28621455,16355145,223260,0,,,,,,aoztips,single source (aoztips 2026)

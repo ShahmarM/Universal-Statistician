@@ -1,0 +1,316 @@
+{
+ "_source": "933-stats buff_values.json (e_l_c) + expertise_effects.json (e_m_l_c)",
+ "_note": "Equipment levels cost Officer Equipment Alloy only. Each expertise costs Essence Stone OR Essence Core, never both. Max level is per item: 40 for most, 30 for some.",
+ "equipment": {
+  "curves": {
+   "eq40": {
+    "maxLevel": 40,
+    "costPerLevel": [
+     30,
+     20,
+     25,
+     31,
+     39,
+     49,
+     61,
+     75,
+     90,
+     105,
+     120,
+     135,
+     150,
+     165,
+     180,
+     198,
+     216,
+     234,
+     252,
+     270,
+     290,
+     310,
+     330,
+     350,
+     370,
+     390,
+     410,
+     430,
+     450,
+     470,
+     490,
+     510,
+     530,
+     550,
+     570,
+     590,
+     610,
+     630,
+     650,
+     670
+    ]
+   },
+   "eq30": {
+    "maxLevel": 30,
+    "costPerLevel": [
+     30,
+     20,
+     25,
+     31,
+     39,
+     49,
+     61,
+     75,
+     90,
+     105,
+     120,
+     135,
+     150,
+     165,
+     180,
+     198,
+     216,
+     234,
+     252,
+     270,
+     290,
+     310,
+     330,
+     350,
+     370,
+     390,
+     410,
+     430,
+     450,
+     470
+    ]
+   },
+   "eq40-2": {
+    "maxLevel": 40,
+    "costPerLevel": [
+     30,
+     20,
+     25,
+     31,
+     39,
+     49,
+     61,
+     75,
+     90,
+     105,
+     120,
+     135,
+     150,
+     165,
+     180,
+     198,
+     216,
+     234,
+     252,
+     270,
+     290,
+     310,
+     330,
+     350,
+     370,
+     390,
+     410,
+     430,
+     450,
+     470,
+     470,
+     470,
+     470,
+     470,
+     470,
+     470,
+     470,
+     470,
+     470,
+     470
+    ]
+   }
+  },
+  "resource": "Officer Equipment Alloy",
+  "byItem": {
+   "\"Bang Bang\" Machine Gun": "eq40",
+   "\"Beep Beep\" Headphones": "eq40",
+   "Aurora Arm Guard": "eq40",
+   "Battle Badge": "eq30",
+   "Blade Bracelet": "eq40",
+   "Bounty Hunter Rifle": "eq40",
+   "Brilliant Timepiece": "eq30",
+   "Carbine": "eq40",
+   "Combat Armor": "eq40",
+   "Commander Cloak": "eq30",
+   "Dazzling Jacket": "eq40",
+   "Dome Breaking Blade": "eq40",
+   "Double Gun": "eq30",
+   "EMP Pulse Cannon": "eq40",
+   "Elite Pacemaker": "eq30",
+   "Energy Rifle": "eq40",
+   "Fan": "eq30",
+   "Ghost Face Ninja": "eq40",
+   "Glorious Twin Blades": "eq40",
+   "Gold Flames": "eq30",
+   "Guard Gun": "eq40",
+   "Guard Rabbit": "eq40",
+   "Handgun": "eq30",
+   "Laser Katana": "eq40",
+   "Light Machine Gun": "eq40",
+   "M16 Mecha": "eq40-2",
+   "Mantis Knife": "eq40",
+   "Mechanical Hold": "eq40",
+   "Mechanical Tentacle": "eq30",
+   "Micro Submachine Gun": "eq40",
+   "Missile Launcher": "eq40",
+   "Modified Guitar": "eq40",
+   "Monocular": "eq30",
+   "P1911 Patriot": "eq30",
+   "P92F Sheriff": "eq30",
+   "Red Flame Dual Blades": "eq30",
+   "Rocket Launcher": "eq40",
+   "Shadow Rifle": "eq40",
+   "Shadow Skin": "eq30",
+   "Sharpshooter Rifle": "eq40",
+   "Small Robot": "eq40",
+   "Sound Wave Generator": "eq40",
+   "Special Ops Submachine Gun": "eq40",
+   "Tactical Bag": "eq40",
+   "Tactical Crossbow": "eq40",
+   "Thunder Shoulder Armor": "eq40",
+   "Tiger Amulet": "eq40",
+   "Vector Thruster": "eq40"
+  }
+ },
+ "expertise": {
+  "curves": {
+   "ex20-2": {
+    "maxLevel": 20,
+    "costPerLevel": [
+     10,
+     6,
+     10,
+     16,
+     24,
+     34,
+     46,
+     58,
+     70,
+     80,
+     90,
+     100,
+     110,
+     120,
+     130,
+     140,
+     150,
+     160,
+     170,
+     180
+    ]
+   },
+   "ex20": {
+    "maxLevel": 20,
+    "costPerLevel": [
+     6,
+     4,
+     6,
+     9,
+     13,
+     18,
+     24,
+     32,
+     40,
+     46,
+     52,
+     58,
+     64,
+     70,
+     76,
+     82,
+     88,
+     94,
+     100,
+     106
+    ]
+   }
+  },
+  "byExpertise": {
+   "Advanced Endurance": {
+    "curve": "ex20-2",
+    "resource": "Officer Equipment Essence Stone"
+   },
+   "Advanced Kill": {
+    "curve": "ex20-2",
+    "resource": "Officer Equipment Essence Stone"
+   },
+   "Anti-Disruptor Mastery": {
+    "curve": "ex20",
+    "resource": "Officer Equipment Essence Core"
+   },
+   "Anti-Misfire Mastery": {
+    "curve": "ex20",
+    "resource": "Officer Equipment Essence Core"
+   },
+   "Commander Expert": {
+    "curve": "ex20-2",
+    "resource": "Officer Equipment Essence Stone"
+   },
+   "Cross-Nation Commander Expert": {
+    "curve": "ex20-2",
+    "resource": "Officer Equipment Essence Stone"
+   },
+   "Defensive Rampart": {
+    "curve": "ex20",
+    "resource": "Officer Equipment Essence Core"
+   },
+   "Impale": {
+    "curve": "ex20",
+    "resource": "Officer Equipment Essence Core"
+   },
+   "Long-Range Killer": {
+    "curve": "ex20",
+    "resource": "Officer Equipment Essence Core"
+   },
+   "Long-Range Resistance": {
+    "curve": "ex20",
+    "resource": "Officer Equipment Essence Core"
+   },
+   "Medic Expert": {
+    "curve": "ex20-2",
+    "resource": "Officer Equipment Essence Stone"
+   },
+   "Melee Blessing": {
+    "curve": "ex20",
+    "resource": "Officer Equipment Essence Core"
+   },
+   "Melee Killer": {
+    "curve": "ex20",
+    "resource": "Officer Equipment Essence Core"
+   },
+   "Mid-Range Killer": {
+    "curve": "ex20",
+    "resource": "Officer Equipment Essence Core"
+   },
+   "Mid-Range Resistance": {
+    "curve": "ex20",
+    "resource": "Officer Equipment Essence Core"
+   },
+   "Protection Force Field": {
+    "curve": "ex20",
+    "resource": "Officer Equipment Essence Core"
+   },
+   "Titan Killer": {
+    "curve": "ex20",
+    "resource": "Officer Equipment Essence Core"
+   },
+   "Titan Resistance": {
+    "curve": "ex20",
+    "resource": "Officer Equipment Essence Core"
+   }
+  }
+ },
+ "unlocks": {
+  "expertise1AtEquipmentLevel": 10,
+  "expertise2AtEquipmentLevel": 15
+ }
+}

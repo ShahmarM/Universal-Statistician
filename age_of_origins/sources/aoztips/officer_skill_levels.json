@@ -1,0 +1,173 @@
+[
+ {
+  "level": 2,
+  "cost": 100,
+  "books": 2,
+  "cumulativeBooks": 2,
+  "forgetCost": 1,
+  "booksLost": 1,
+  "percentLoss": 50
+ },
+ {
+  "level": 3,
+  "cost": 200,
+  "books": 4,
+  "cumulativeBooks": 6,
+  "forgetCost": 5,
+  "booksLost": 1,
+  "percentLoss": 16.67
+ },
+ {
+  "level": 4,
+  "cost": 300,
+  "books": 6,
+  "cumulativeBooks": 12,
+  "forgetCost": 11,
+  "booksLost": 1,
+  "percentLoss": 8.33
+ },
+ {
+  "level": 5,
+  "cost": 450,
+  "books": 9,
+  "cumulativeBooks": 21,
+  "forgetCost": 19,
+  "booksLost": 2,
+  "percentLoss": 9.52
+ },
+ {
+  "level": 6,
+  "cost": 600,
+  "books": 12,
+  "cumulativeBooks": 33,
+  "forgetCost": 31,
+  "booksLost": 2,
+  "percentLoss": 6.06
+ },
+ {
+  "level": 7,
+  "cost": 800,
+  "books": 16,
+  "cumulativeBooks": 49,
+  "forgetCost": 46,
+  "booksLost": 3,
+  "percentLoss": 6.12
+ },
+ {
+  "level": 8,
+  "cost": 1000,
+  "books": 20,
+  "cumulativeBooks": 69,
+  "forgetCost": 65,
+  "booksLost": 4,
+  "percentLoss": 5.8
+ },
+ {
+  "level": 9,
+  "cost": 1200,
+  "books": 24,
+  "cumulativeBooks": 93,
+  "forgetCost": 88,
+  "booksLost": 5,
+  "percentLoss": 5.38
+ },
+ {
+  "level": 10,
+  "cost": 1450,
+  "books": 29,
+  "cumulativeBooks": 122,
+  "forgetCost": 115,
+  "booksLost": 7,
+  "percentLoss": 5.74
+ },
+ {
+  "level": 11,
+  "cost": 1700,
+  "books": 34,
+  "cumulativeBooks": 156,
+  "forgetCost": 148,
+  "booksLost": 8,
+  "percentLoss": 5.13
+ },
+ {
+  "level": 12,
+  "cost": 1950,
+  "books": 39,
+  "cumulativeBooks": 195,
+  "forgetCost": 185,
+  "booksLost": 10,
+  "percentLoss": 5.13
+ },
+ {
+  "level": 13,
+  "cost": 2200,
+  "books": 44,
+  "cumulativeBooks": 239,
+  "forgetCost": 227,
+  "booksLost": 12,
+  "percentLoss": 5.02
+ },
+ {
+  "level": 14,
+  "cost": 2600,
+  "books": 52,
+  "cumulativeBooks": 291,
+  "forgetCost": 276,
+  "booksLost": 15,
+  "percentLoss": 5.15
+ },
+ {
+  "level": 15,
+  "cost": 3100,
+  "books": 62,
+  "cumulativeBooks": 353,
+  "forgetCost": 335,
+  "booksLost": 18,
+  "percentLoss": 5.1
+ },
+ {
+  "level": 16,
+  "cost": 3700,
+  "books": 74,
+  "cumulativeBooks": 427,
+  "forgetCost": 405,
+  "booksLost": 22,
+  "percentLoss": 5.15
+ },
+ {
+  "level": 17,
+  "cost": 4400,
+  "books": 88,
+  "cumulativeBooks": 515,
+  "forgetCost": 489,
+  "booksLost": 26,
+  "percentLoss": 5.05
+ },
+ {
+  "level": 18,
+  "cost": 5200,
+  "books": 104,
+  "cumulativeBooks": 619,
+  "forgetCost": 588,
+  "booksLost": 31,
+  "percentLoss": 5.01
+ },
+ {
+  "level": 19,
+  "cost": 6100,
+  "books": 122,
+  "cumulativeBooks": 741,
+  "forgetCost": 703,
+  "booksLost": 38,
+  "percentLoss": 5.13
+ },
+ {
+  "level": 20,
+  "cost": 7100,
+  "books": 142,
+  "cumulativeBooks": 883,
+  "forgetCost": 838,
+  "booksLost": 45,
+  "percentLoss": 5.1
+ }
+]

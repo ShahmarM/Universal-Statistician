@@ -1,0 +1,2054 @@
+[
+ {
+  "id": "wingplane_i",
+  "name": "Wingplane I",
+  "levels": [
+   {
+    "level": 0,
+    "hp": 0,
+    "attack": 0,
+    "defense": 0
+   },
+   {
+    "level": 1,
+    "hp": 50800,
+    "attack": 8020,
+    "defense": 1
+   },
+   {
+    "level": 2,
+    "hp": 51094,
+    "attack": 8067,
+    "defense": 1
+   },
+   {
+    "level": 3,
+    "hp": 51388,
+    "attack": 8113,
+    "defense": 1
+   },
+   {
+    "level": 4,
+    "hp": 51681,
+    "attack": 8159,
+    "defense": 1
+   },
+   {
+    "level": 5,
+    "hp": 51975,
+    "attack": 8206,
+    "defense": 1
+   },
+   {
+    "level": 6,
+    "hp": 52269,
+    "attack": 8252,
+    "defense": 1
+   },
+   {
+    "level": 7,
+    "hp": 52562,
+    "attack": 8299,
+    "defense": 1
+   },
+   {
+    "level": 8,
+    "hp": 52856,
+    "attack": 8345,
+    "defense": 1
+   },
+   {
+    "level": 9,
+    "hp": 53149,
+    "attack": 8391,
+    "defense": 1
+   },
+   {
+    "level": 10,
+    "hp": 53443,
+    "attack": 8438,
+    "defense": 1
+   },
+   {
+    "level": 11,
+    "hp": 53737,
+    "attack": 8484,
+    "defense": 1
+   },
+   {
+    "level": 12,
+    "hp": 54030,
+    "attack": 8530,
+    "defense": 1
+   },
+   {
+    "level": 13,
+    "hp": 54324,
+    "attack": 8577,
+    "defense": 1
+   },
+   {
+    "level": 14,
+    "hp": 54618,
+    "attack": 8623,
+    "defense": 1
+   },
+   {
+    "level": 15,
+    "hp": 54911,
+    "attack": 8669,
+    "defense": 1
+   },
+   {
+    "level": 16,
+    "hp": 55205,
+    "attack": 8716,
+    "defense": 1
+   },
+   {
+    "level": 17,
+    "hp": 55499,
+    "attack": 8762,
+    "defense": 1
+   },
+   {
+    "level": 18,
+    "hp": 55792,
+    "attack": 8808,
+    "defense": 1
+   },
+   {
+    "level": 19,
+    "hp": 56086,
+    "attack": 8855,
+    "defense": 1
+   },
+   {
+    "level": 20,
+    "hp": 56380,
+    "attack": 8901,
+    "defense": 1
+   },
+   {
+    "level": 21,
+    "hp": 56673,
+    "attack": 8948,
+    "defense": 1
+   },
+   {
+    "level": 22,
+    "hp": 56967,
+    "attack": 8994,
+    "defense": 1
+   },
+   {
+    "level": 23,
+    "hp": 57260,
+    "attack": 9040,
+    "defense": 1
+   },
+   {
+    "level": 24,
+    "hp": 57554,
+    "attack": 9087,
+    "defense": 1
+   },
+   {
+    "level": 25,
+    "hp": 57848,
+    "attack": 9133,
+    "defense": 1
+   },
+   {
+    "level": 26,
+    "hp": 58141,
+    "attack": 9179,
+    "defense": 1
+   },
+   {
+    "level": 27,
+    "hp": 58435,
+    "attack": 9226,
+    "defense": 1
+   },
+   {
+    "level": 28,
+    "hp": 58729,
+    "attack": 9272,
+    "defense": 1
+   },
+   {
+    "level": 29,
+    "hp": 59022,
+    "attack": 9318,
+    "defense": 1
+   },
+   {
+    "level": 30,
+    "hp": 59316,
+    "attack": 9365,
+    "defense": 1
+   },
+   {
+    "level": 31,
+    "hp": 59610,
+    "attack": 9411,
+    "defense": 1
+   },
+   {
+    "level": 32,
+    "hp": 59903,
+    "attack": 9457,
+    "defense": 1
+   },
+   {
+    "level": 33,
+    "hp": 60197,
+    "attack": 9504,
+    "defense": 1
+   },
+   {
+    "level": 34,
+    "hp": 60491,
+    "attack": 9550,
+    "defense": 1
+   },
+   {
+    "level": 35,
+    "hp": 60785,
+    "attack": 9596,
+    "defense": 1
+   },
+   {
+    "level": 36,
+    "hp": 61079,
+    "attack": 9642,
+    "defense": 1
+   },
+   {
+    "level": 37,
+    "hp": 61373,
+    "attack": 9688,
+    "defense": 1
+   },
+   {
+    "level": 38,
+    "hp": 61667,
+    "attack": 9734,
+    "defense": 1
+   },
+   {
+    "level": 39,
+    "hp": 61961,
+    "attack": 9780,
+    "defense": 1
+   },
+   {
+    "level": 40,
+    "hp": 62255,
+    "attack": 9826,
+    "defense": 1
+   },
+   {
+    "level": 41,
+    "hp": 62549,
+    "attack": 9872,
+    "defense": 1
+   },
+   {
+    "level": 42,
+    "hp": 62843,
+    "attack": 9918,
+    "defense": 1
+   },
+   {
+    "level": 43,
+    "hp": 63137,
+    "attack": 9964,
+    "defense": 1
+   },
+   {
+    "level": 44,
+    "hp": 63431,
+    "attack": 10010,
+    "defense": 1
+   },
+   {
+    "level": 45,
+    "hp": 63725,
+    "attack": 10056,
+    "defense": 1
+   },
+   {
+    "level": 46,
+    "hp": 64019,
+    "attack": 10102,
+    "defense": 1
+   },
+   {
+    "level": 47,
+    "hp": 64313,
+    "attack": 10148,
+    "defense": 1
+   },
+   {
+    "level": 48,
+    "hp": 64607,
+    "attack": 10194,
+    "defense": 1
+   },
+   {
+    "level": 49,
+    "hp": 64901,
+    "attack": 10240,
+    "defense": 1
+   },
+   {
+    "level": 50,
+    "hp": 65195,
+    "attack": 10286,
+    "defense": 1
+   },
+   {
+    "level": 51,
+    "hp": 65489,
+    "attack": 10332,
+    "defense": 1
+   },
+   {
+    "level": 52,
+    "hp": 65783,
+    "attack": 10378,
+    "defense": 1
+   },
+   {
+    "level": 53,
+    "hp": 66077,
+    "attack": 10424,
+    "defense": 1
+   },
+   {
+    "level": 54,
+    "hp": 66371,
+    "attack": 10470,
+    "defense": 1
+   },
+   {
+    "level": 55,
+    "hp": 66665,
+    "attack": 10516,
+    "defense": 1
+   }
+  ]
+ },
+ {
+  "id": "machine_head",
+  "name": "Machine Head",
+  "levels": [
+   {
+    "level": 0,
+    "hp": 0,
+    "attack": 0,
+    "defense": 0
+   },
+   {
+    "level": 1,
+    "hp": 60960,
+    "attack": 9624,
+    "defense": 1
+   },
+   {
+    "level": 2,
+    "hp": 61313,
+    "attack": 9680,
+    "defense": 1
+   },
+   {
+    "level": 3,
+    "hp": 61665,
+    "attack": 9736,
+    "defense": 1
+   },
+   {
+    "level": 4,
+    "hp": 62017,
+    "attack": 9791,
+    "defense": 1
+   },
+   {
+    "level": 5,
+    "hp": 62370,
+    "attack": 9847,
+    "defense": 1
+   },
+   {
+    "level": 6,
+    "hp": 62722,
+    "attack": 9903,
+    "defense": 1
+   },
+   {
+    "level": 7,
+    "hp": 63075,
+    "attack": 9958,
+    "defense": 1
+   },
+   {
+    "level": 8,
+    "hp": 63427,
+    "attack": 10014,
+    "defense": 1
+   },
+   {
+    "level": 9,
+    "hp": 63779,
+    "attack": 10069,
+    "defense": 1
+   },
+   {
+    "level": 10,
+    "hp": 64132,
+    "attack": 10125,
+    "defense": 1
+   },
+   {
+    "level": 11,
+    "hp": 64484,
+    "attack": 10181,
+    "defense": 1
+   },
+   {
+    "level": 12,
+    "hp": 64836,
+    "attack": 10236,
+    "defense": 1
+   },
+   {
+    "level": 13,
+    "hp": 65189,
+    "attack": 10292,
+    "defense": 1
+   },
+   {
+    "level": 14,
+    "hp": 65541,
+    "attack": 10348,
+    "defense": 1
+   },
+   {
+    "level": 15,
+    "hp": 65893,
+    "attack": 10403,
+    "defense": 1
+   },
+   {
+    "level": 16,
+    "hp": 66246,
+    "attack": 10459,
+    "defense": 1
+   },
+   {
+    "level": 17,
+    "hp": 66598,
+    "attack": 10514,
+    "defense": 1
+   },
+   {
+    "level": 18,
+    "hp": 66951,
+    "attack": 10570,
+    "defense": 1
+   },
+   {
+    "level": 19,
+    "hp": 67303,
+    "attack": 10626,
+    "defense": 1
+   },
+   {
+    "level": 20,
+    "hp": 67655,
+    "attack": 10681,
+    "defense": 1
+   },
+   {
+    "level": 21,
+    "hp": 68008,
+    "attack": 10737,
+    "defense": 1
+   },
+   {
+    "level": 22,
+    "hp": 68360,
+    "attack": 10793,
+    "defense": 1
+   },
+   {
+    "level": 23,
+    "hp": 68712,
+    "attack": 10848,
+    "defense": 1
+   },
+   {
+    "level": 24,
+    "hp": 69065,
+    "attack": 10904,
+    "defense": 1
+   },
+   {
+    "level": 25,
+    "hp": 69417,
+    "attack": 10959,
+    "defense": 1
+   },
+   {
+    "level": 26,
+    "hp": 69770,
+    "attack": 11015,
+    "defense": 1
+   },
+   {
+    "level": 27,
+    "hp": 70122,
+    "attack": 11071,
+    "defense": 1
+   },
+   {
+    "level": 28,
+    "hp": 70474,
+    "attack": 11126,
+    "defense": 1
+   },
+   {
+    "level": 29,
+    "hp": 70827,
+    "attack": 11182,
+    "defense": 1
+   },
+   {
+    "level": 30,
+    "hp": 71179,
+    "attack": 11238,
+    "defense": 1
+   },
+   {
+    "level": 31,
+    "hp": 71531,
+    "attack": 11293,
+    "defense": 1
+   },
+   {
+    "level": 32,
+    "hp": 71884,
+    "attack": 11349,
+    "defense": 1
+   },
+   {
+    "level": 33,
+    "hp": 72237,
+    "attack": 11405,
+    "defense": 1
+   },
+   {
+    "level": 34,
+    "hp": 72589,
+    "attack": 11460,
+    "defense": 1
+   },
+   {
+    "level": 35,
+    "hp": 72941,
+    "attack": 11516,
+    "defense": 1
+   },
+   {
+    "level": 36,
+    "hp": 73293,
+    "attack": 11571,
+    "defense": 1
+   },
+   {
+    "level": 37,
+    "hp": 73646,
+    "attack": 11627,
+    "defense": 1
+   },
+   {
+    "level": 38,
+    "hp": 73998,
+    "attack": 11683,
+    "defense": 1
+   },
+   {
+    "level": 39,
+    "hp": 74350,
+    "attack": 11738,
+    "defense": 1
+   },
+   {
+    "level": 40,
+    "hp": 74703,
+    "attack": 11794,
+    "defense": 1
+   },
+   {
+    "level": 41,
+    "hp": 75055,
+    "attack": 11850,
+    "defense": 1
+   },
+   {
+    "level": 42,
+    "hp": 75408,
+    "attack": 11906,
+    "defense": 1
+   },
+   {
+    "level": 43,
+    "hp": 75761,
+    "attack": 11962,
+    "defense": 1
+   },
+   {
+    "level": 44,
+    "hp": 76114,
+    "attack": 12018,
+    "defense": 1
+   },
+   {
+    "level": 45,
+    "hp": 76467,
+    "attack": 12074,
+    "defense": 1
+   },
+   {
+    "level": 46,
+    "hp": 76820,
+    "attack": 12130,
+    "defense": 1
+   },
+   {
+    "level": 47,
+    "hp": 77173,
+    "attack": 12186,
+    "defense": 1
+   },
+   {
+    "level": 48,
+    "hp": 77526,
+    "attack": 12242,
+    "defense": 1
+   },
+   {
+    "level": 49,
+    "hp": 77879,
+    "attack": 12298,
+    "defense": 1
+   },
+   {
+    "level": 50,
+    "hp": 78232,
+    "attack": 12354,
+    "defense": 1
+   },
+   {
+    "level": 51,
+    "hp": 78585,
+    "attack": 12410,
+    "defense": 1
+   },
+   {
+    "level": 52,
+    "hp": 78938,
+    "attack": 12466,
+    "defense": 1
+   },
+   {
+    "level": 53,
+    "hp": 79291,
+    "attack": 12522,
+    "defense": 1
+   },
+   {
+    "level": 54,
+    "hp": 79644,
+    "attack": 12578,
+    "defense": 1
+   },
+   {
+    "level": 55,
+    "hp": 79997,
+    "attack": 12634,
+    "defense": 1
+   }
+  ]
+ },
+ {
+  "id": "wingplane_ii",
+  "name": "Wingplane II",
+  "levels": [
+   {
+    "level": 0,
+    "hp": 0,
+    "attack": 0,
+    "defense": 0
+   },
+   {
+    "level": 1,
+    "hp": 73152,
+    "attack": 11549,
+    "defense": 1
+   },
+   {
+    "level": 2,
+    "hp": 73575,
+    "attack": 11616,
+    "defense": 1
+   },
+   {
+    "level": 3,
+    "hp": 73998,
+    "attack": 11683,
+    "defense": 1
+   },
+   {
+    "level": 4,
+    "hp": 74421,
+    "attack": 11749,
+    "defense": 1
+   },
+   {
+    "level": 5,
+    "hp": 74844,
+    "attack": 11816,
+    "defense": 1
+   },
+   {
+    "level": 6,
+    "hp": 75267,
+    "attack": 11883,
+    "defense": 1
+   },
+   {
+    "level": 7,
+    "hp": 75689,
+    "attack": 11950,
+    "defense": 1
+   },
+   {
+    "level": 8,
+    "hp": 76112,
+    "attack": 12016,
+    "defense": 1
+   },
+   {
+    "level": 9,
+    "hp": 76535,
+    "attack": 12083,
+    "defense": 1
+   },
+   {
+    "level": 10,
+    "hp": 76958,
+    "attack": 12150,
+    "defense": 1
+   },
+   {
+    "level": 11,
+    "hp": 77381,
+    "attack": 12217,
+    "defense": 1
+   },
+   {
+    "level": 12,
+    "hp": 77804,
+    "attack": 12283,
+    "defense": 1
+   },
+   {
+    "level": 13,
+    "hp": 78226,
+    "attack": 12350,
+    "defense": 1
+   },
+   {
+    "level": 14,
+    "hp": 78649,
+    "attack": 12417,
+    "defense": 1
+   },
+   {
+    "level": 15,
+    "hp": 79072,
+    "attack": 12484,
+    "defense": 1
+   },
+   {
+    "level": 16,
+    "hp": 79495,
+    "attack": 12550,
+    "defense": 1
+   },
+   {
+    "level": 17,
+    "hp": 79918,
+    "attack": 12617,
+    "defense": 1
+   },
+   {
+    "level": 18,
+    "hp": 80341,
+    "attack": 12684,
+    "defense": 1
+   },
+   {
+    "level": 19,
+    "hp": 80763,
+    "attack": 12751,
+    "defense": 1
+   },
+   {
+    "level": 20,
+    "hp": 81186,
+    "attack": 12818,
+    "defense": 1
+   },
+   {
+    "level": 21,
+    "hp": 81609,
+    "attack": 12884,
+    "defense": 1
+   },
+   {
+    "level": 22,
+    "hp": 82032,
+    "attack": 12951,
+    "defense": 1
+   },
+   {
+    "level": 23,
+    "hp": 82455,
+    "attack": 13018,
+    "defense": 1
+   },
+   {
+    "level": 24,
+    "hp": 82878,
+    "attack": 13085,
+    "defense": 1
+   },
+   {
+    "level": 25,
+    "hp": 83301,
+    "attack": 13151,
+    "defense": 1
+   },
+   {
+    "level": 26,
+    "hp": 83723,
+    "attack": 13218,
+    "defense": 1
+   },
+   {
+    "level": 27,
+    "hp": 84146,
+    "attack": 13285,
+    "defense": 1
+   },
+   {
+    "level": 28,
+    "hp": 84569,
+    "attack": 13352,
+    "defense": 1
+   },
+   {
+    "level": 29,
+    "hp": 84992,
+    "attack": 13419,
+    "defense": 1
+   },
+   {
+    "level": 30,
+    "hp": 85415,
+    "attack": 13486,
+    "defense": 1
+   },
+   {
+    "level": 31,
+    "hp": 85838,
+    "attack": 13553,
+    "defense": 1
+   },
+   {
+    "level": 32,
+    "hp": 86261,
+    "attack": 13620,
+    "defense": 1
+   },
+   {
+    "level": 33,
+    "hp": 86684,
+    "attack": 13687,
+    "defense": 1
+   },
+   {
+    "level": 34,
+    "hp": 87107,
+    "attack": 13754,
+    "defense": 1
+   },
+   {
+    "level": 35,
+    "hp": 87530,
+    "attack": 13821,
+    "defense": 1
+   },
+   {
+    "level": 36,
+    "hp": 87953,
+    "attack": 13888,
+    "defense": 1
+   },
+   {
+    "level": 37,
+    "hp": 88376,
+    "attack": 13955,
+    "defense": 1
+   },
+   {
+    "level": 38,
+    "hp": 88799,
+    "attack": 14022,
+    "defense": 1
+   },
+   {
+    "level": 39,
+    "hp": 89222,
+    "attack": 14089,
+    "defense": 1
+   },
+   {
+    "level": 40,
+    "hp": 89645,
+    "attack": 14156,
+    "defense": 1
+   },
+   {
+    "level": 41,
+    "hp": 90068,
+    "attack": 14223,
+    "defense": 1
+   },
+   {
+    "level": 42,
+    "hp": 90491,
+    "attack": 14290,
+    "defense": 1
+   },
+   {
+    "level": 43,
+    "hp": 90914,
+    "attack": 14357,
+    "defense": 1
+   },
+   {
+    "level": 44,
+    "hp": 91337,
+    "attack": 14424,
+    "defense": 1
+   },
+   {
+    "level": 45,
+    "hp": 91760,
+    "attack": 14491,
+    "defense": 1
+   },
+   {
+    "level": 46,
+    "hp": 92183,
+    "attack": 14558,
+    "defense": 1
+   },
+   {
+    "level": 47,
+    "hp": 92606,
+    "attack": 14625,
+    "defense": 1
+   },
+   {
+    "level": 48,
+    "hp": 93029,
+    "attack": 14692,
+    "defense": 1
+   },
+   {
+    "level": 49,
+    "hp": 93452,
+    "attack": 14759,
+    "defense": 1
+   },
+   {
+    "level": 50,
+    "hp": 93875,
+    "attack": 14826,
+    "defense": 1
+   },
+   {
+    "level": 51,
+    "hp": 94298,
+    "attack": 14893,
+    "defense": 1
+   },
+   {
+    "level": 52,
+    "hp": 94721,
+    "attack": 14960,
+    "defense": 1
+   },
+   {
+    "level": 53,
+    "hp": 95144,
+    "attack": 15027,
+    "defense": 1
+   },
+   {
+    "level": 54,
+    "hp": 95567,
+    "attack": 15094,
+    "defense": 1
+   },
+   {
+    "level": 55,
+    "hp": 95990,
+    "attack": 15161,
+    "defense": 1
+   }
+  ]
+ },
+ {
+  "id": "body",
+  "name": "Body",
+  "levels": [
+   {
+    "level": 0,
+    "hp": 0,
+    "attack": 0,
+    "defense": 0
+   },
+   {
+    "level": 1,
+    "hp": 87884,
+    "attack": 13875,
+    "defense": 1
+   },
+   {
+    "level": 2,
+    "hp": 88392,
+    "attack": 13955,
+    "defense": 1
+   },
+   {
+    "level": 3,
+    "hp": 88900,
+    "attack": 14035,
+    "defense": 1
+   },
+   {
+    "level": 4,
+    "hp": 89408,
+    "attack": 14116,
+    "defense": 1
+   },
+   {
+    "level": 5,
+    "hp": 89916,
+    "attack": 14196,
+    "defense": 1
+   },
+   {
+    "level": 6,
+    "hp": 90424,
+    "attack": 14276,
+    "defense": 1
+   },
+   {
+    "level": 7,
+    "hp": 90932,
+    "attack": 14356,
+    "defense": 1
+   },
+   {
+    "level": 8,
+    "hp": 91440,
+    "attack": 14436,
+    "defense": 1
+   },
+   {
+    "level": 9,
+    "hp": 91948,
+    "attack": 14517,
+    "defense": 1
+   },
+   {
+    "level": 10,
+    "hp": 92456,
+    "attack": 14597,
+    "defense": 1
+   },
+   {
+    "level": 11,
+    "hp": 92964,
+    "attack": 14677,
+    "defense": 1
+   },
+   {
+    "level": 12,
+    "hp": 93472,
+    "attack": 14757,
+    "defense": 1
+   },
+   {
+    "level": 13,
+    "hp": 93980,
+    "attack": 14837,
+    "defense": 1
+   },
+   {
+    "level": 14,
+    "hp": 94488,
+    "attack": 14918,
+    "defense": 1
+   },
+   {
+    "level": 15,
+    "hp": 94996,
+    "attack": 14998,
+    "defense": 1
+   },
+   {
+    "level": 16,
+    "hp": 95504,
+    "attack": 15078,
+    "defense": 1
+   },
+   {
+    "level": 17,
+    "hp": 96012,
+    "attack": 15158,
+    "defense": 1
+   },
+   {
+    "level": 18,
+    "hp": 96520,
+    "attack": 15238,
+    "defense": 1
+   },
+   {
+    "level": 19,
+    "hp": 97028,
+    "attack": 15319,
+    "defense": 1
+   },
+   {
+    "level": 20,
+    "hp": 97536,
+    "attack": 15399,
+    "defense": 1
+   },
+   {
+    "level": 21,
+    "hp": 98044,
+    "attack": 15479,
+    "defense": 1
+   },
+   {
+    "level": 22,
+    "hp": 98552,
+    "attack": 15559,
+    "defense": 1
+   },
+   {
+    "level": 23,
+    "hp": 99060,
+    "attack": 15639,
+    "defense": 1
+   },
+   {
+    "level": 24,
+    "hp": 99640,
+    "attack": 15719,
+    "defense": 1
+   },
+   {
+    "level": 25,
+    "hp": 100220,
+    "attack": 15799,
+    "defense": 1
+   },
+   {
+    "level": 26,
+    "hp": 100800,
+    "attack": 15879,
+    "defense": 1
+   },
+   {
+    "level": 27,
+    "hp": 101092,
+    "attack": 15960,
+    "defense": 1
+   },
+   {
+    "level": 28,
+    "hp": 101672,
+    "attack": 16040,
+    "defense": 1
+   },
+   {
+    "level": 29,
+    "hp": 102252,
+    "attack": 16120,
+    "defense": 1
+   },
+   {
+    "level": 30,
+    "hp": 102832,
+    "attack": 16200,
+    "defense": 1
+   },
+   {
+    "level": 31,
+    "hp": 103412,
+    "attack": 16280,
+    "defense": 1
+   },
+   {
+    "level": 32,
+    "hp": 103992,
+    "attack": 16360,
+    "defense": 1
+   },
+   {
+    "level": 33,
+    "hp": 104572,
+    "attack": 16440,
+    "defense": 1
+   },
+   {
+    "level": 34,
+    "hp": 105152,
+    "attack": 16520,
+    "defense": 1
+   },
+   {
+    "level": 35,
+    "hp": 105732,
+    "attack": 16600,
+    "defense": 1
+   },
+   {
+    "level": 36,
+    "hp": 106312,
+    "attack": 16680,
+    "defense": 1
+   },
+   {
+    "level": 37,
+    "hp": 106892,
+    "attack": 16760,
+    "defense": 1
+   },
+   {
+    "level": 38,
+    "hp": 107472,
+    "attack": 16840,
+    "defense": 1
+   },
+   {
+    "level": 39,
+    "hp": 108052,
+    "attack": 16920,
+    "defense": 1
+   },
+   {
+    "level": 40,
+    "hp": 108632,
+    "attack": 17000,
+    "defense": 1
+   },
+   {
+    "level": 41,
+    "hp": 109212,
+    "attack": 17080,
+    "defense": 1
+   },
+   {
+    "level": 42,
+    "hp": 109792,
+    "attack": 17160,
+    "defense": 1
+   },
+   {
+    "level": 43,
+    "hp": 110372,
+    "attack": 17240,
+    "defense": 1
+   },
+   {
+    "level": 44,
+    "hp": 110952,
+    "attack": 17320,
+    "defense": 1
+   },
+   {
+    "level": 45,
+    "hp": 111532,
+    "attack": 17400,
+    "defense": 1
+   },
+   {
+    "level": 46,
+    "hp": 112112,
+    "attack": 17480,
+    "defense": 1
+   },
+   {
+    "level": 47,
+    "hp": 112692,
+    "attack": 17560,
+    "defense": 1
+   },
+   {
+    "level": 48,
+    "hp": 113272,
+    "attack": 17640,
+    "defense": 1
+   },
+   {
+    "level": 49,
+    "hp": 113852,
+    "attack": 17720,
+    "defense": 1
+   },
+   {
+    "level": 50,
+    "hp": 114432,
+    "attack": 17800,
+    "defense": 1
+   },
+   {
+    "level": 51,
+    "hp": 115012,
+    "attack": 17880,
+    "defense": 1
+   },
+   {
+    "level": 52,
+    "hp": 115592,
+    "attack": 17960,
+    "defense": 1
+   },
+   {
+    "level": 53,
+    "hp": 116172,
+    "attack": 18040,
+    "defense": 1
+   },
+   {
+    "level": 54,
+    "hp": 116752,
+    "attack": 18120,
+    "defense": 1
+   },
+   {
+    "level": 55,
+    "hp": 117332,
+    "attack": 18200,
+    "defense": 1
+   }
+  ]
+ },
+ {
+  "id": "wing",
+  "name": "Wing",
+  "levels": [
+   {
+    "level": 0,
+    "hp": 0,
+    "attack": 0,
+    "defense": 0
+   },
+   {
+    "level": 1,
+    "hp": 105664,
+    "attack": 16682,
+    "defense": 1
+   },
+   {
+    "level": 2,
+    "hp": 106275,
+    "attack": 16778,
+    "defense": 1
+   },
+   {
+    "level": 3,
+    "hp": 106886,
+    "attack": 16875,
+    "defense": 1
+   },
+   {
+    "level": 4,
+    "hp": 107497,
+    "attack": 16971,
+    "defense": 1
+   },
+   {
+    "level": 5,
+    "hp": 108107,
+    "attack": 17068,
+    "defense": 1
+   },
+   {
+    "level": 6,
+    "hp": 108718,
+    "attack": 17164,
+    "defense": 1
+   },
+   {
+    "level": 7,
+    "hp": 109329,
+    "attack": 17260,
+    "defense": 1
+   },
+   {
+    "level": 8,
+    "hp": 109940,
+    "attack": 17357,
+    "defense": 1
+   },
+   {
+    "level": 9,
+    "hp": 110550,
+    "attack": 17453,
+    "defense": 1
+   },
+   {
+    "level": 10,
+    "hp": 111161,
+    "attack": 17550,
+    "defense": 1
+   },
+   {
+    "level": 11,
+    "hp": 111772,
+    "attack": 17646,
+    "defense": 1
+   },
+   {
+    "level": 12,
+    "hp": 112383,
+    "attack": 17742,
+    "defense": 1
+   },
+   {
+    "level": 13,
+    "hp": 112993,
+    "attack": 17840,
+    "defense": 1
+   },
+   {
+    "level": 14,
+    "hp": 113604,
+    "attack": 17935,
+    "defense": 1
+   },
+   {
+    "level": 15,
+    "hp": 114215,
+    "attack": 18032,
+    "defense": 1
+   },
+   {
+    "level": 16,
+    "hp": 114826,
+    "attack": 18128,
+    "defense": 1
+   },
+   {
+    "level": 17,
+    "hp": 115437,
+    "attack": 18225,
+    "defense": 1
+   },
+   {
+    "level": 18,
+    "hp": 116047,
+    "attack": 18321,
+    "defense": 1
+   },
+   {
+    "level": 19,
+    "hp": 116658,
+    "attack": 18418,
+    "defense": 1
+   },
+   {
+    "level": 20,
+    "hp": 117269,
+    "attack": 18514,
+    "defense": 1
+   },
+   {
+    "level": 21,
+    "hp": 117880,
+    "attack": 18610,
+    "defense": 1
+   },
+   {
+    "level": 22,
+    "hp": 118490,
+    "attack": 18707,
+    "defense": 1
+   },
+   {
+    "level": 23,
+    "hp": 119101,
+    "attack": 18803,
+    "defense": 1
+   },
+   {
+    "level": 24,
+    "hp": 119712,
+    "attack": 18899,
+    "defense": 1
+   },
+   {
+    "level": 25,
+    "hp": 120323,
+    "attack": 18996,
+    "defense": 1
+   },
+   {
+    "level": 26,
+    "hp": 120934,
+    "attack": 19092,
+    "defense": 1
+   },
+   {
+    "level": 27,
+    "hp": 121545,
+    "attack": 19188,
+    "defense": 1
+   },
+   {
+    "level": 28,
+    "hp": 122156,
+    "attack": 19285,
+    "defense": 1
+   },
+   {
+    "level": 29,
+    "hp": 122767,
+    "attack": 19381,
+    "defense": 1
+   },
+   {
+    "level": 30,
+    "hp": 123378,
+    "attack": 19477,
+    "defense": 1
+   },
+   {
+    "level": 31,
+    "hp": 123989,
+    "attack": 19573,
+    "defense": 1
+   },
+   {
+    "level": 32,
+    "hp": 124600,
+    "attack": 19670,
+    "defense": 1
+   },
+   {
+    "level": 33,
+    "hp": 125211,
+    "attack": 19766,
+    "defense": 1
+   },
+   {
+    "level": 34,
+    "hp": 125822,
+    "attack": 19862,
+    "defense": 1
+   },
+   {
+    "level": 35,
+    "hp": 126433,
+    "attack": 19959,
+    "defense": 1
+   },
+   {
+    "level": 36,
+    "hp": 127044,
+    "attack": 20055,
+    "defense": 1
+   },
+   {
+    "level": 37,
+    "hp": 127655,
+    "attack": 20151,
+    "defense": 1
+   },
+   {
+    "level": 38,
+    "hp": 128266,
+    "attack": 20248,
+    "defense": 1
+   },
+   {
+    "level": 39,
+    "hp": 128877,
+    "attack": 20344,
+    "defense": 1
+   },
+   {
+    "level": 40,
+    "hp": 129488,
+    "attack": 20440,
+    "defense": 1
+   },
+   {
+    "level": 41,
+    "hp": 130099,
+    "attack": 20536,
+    "defense": 1
+   },
+   {
+    "level": 42,
+    "hp": 130710,
+    "attack": 20633,
+    "defense": 1
+   },
+   {
+    "level": 43,
+    "hp": 131321,
+    "attack": 20729,
+    "defense": 1
+   },
+   {
+    "level": 44,
+    "hp": 131932,
+    "attack": 20825,
+    "defense": 1
+   },
+   {
+    "level": 45,
+    "hp": 132543,
+    "attack": 20922,
+    "defense": 1
+   },
+   {
+    "level": 46,
+    "hp": 133154,
+    "attack": 21018,
+    "defense": 1
+   },
+   {
+    "level": 47,
+    "hp": 133765,
+    "attack": 21114,
+    "defense": 1
+   },
+   {
+    "level": 48,
+    "hp": 134376,
+    "attack": 21211,
+    "defense": 1
+   },
+   {
+    "level": 49,
+    "hp": 134987,
+    "attack": 21307,
+    "defense": 1
+   },
+   {
+    "level": 50,
+    "hp": 135598,
+    "attack": 21403,
+    "defense": 1
+   },
+   {
+    "level": 51,
+    "hp": 136209,
+    "attack": 21499,
+    "defense": 1
+   },
+   {
+    "level": 52,
+    "hp": 136820,
+    "attack": 21596,
+    "defense": 1
+   },
+   {
+    "level": 53,
+    "hp": 137431,
+    "attack": 21692,
+    "defense": 1
+   },
+   {
+    "level": 54,
+    "hp": 138042,
+    "attack": 21788,
+    "defense": 1
+   },
+   {
+    "level": 55,
+    "hp": 138653,
+    "attack": 21885,
+    "defense": 1
+   }
+  ]
+ },
+ {
+  "id": "machine_gun",
+  "name": "Machine Gun",
+  "levels": [
+   {
+    "level": 0,
+    "hp": 0,
+    "attack": 0,
+    "defense": 0
+   },
+   {
+    "level": 1,
+    "hp": 129540,
+    "attack": 20451,
+    "defense": 1
+   },
+   {
+    "level": 2,
+    "hp": 130289,
+    "attack": 20569,
+    "defense": 1
+   },
+   {
+    "level": 3,
+    "hp": 131038,
+    "attack": 20688,
+    "defense": 1
+   },
+   {
+    "level": 4,
+    "hp": 131786,
+    "attack": 20806,
+    "defense": 1
+   },
+   {
+    "level": 5,
+    "hp": 132535,
+    "attack": 20924,
+    "defense": 1
+   },
+   {
+    "level": 6,
+    "hp": 133284,
+    "attack": 21042,
+    "defense": 1
+   },
+   {
+    "level": 7,
+    "hp": 134033,
+    "attack": 21161,
+    "defense": 1
+   },
+   {
+    "level": 8,
+    "hp": 134782,
+    "attack": 21279,
+    "defense": 1
+   },
+   {
+    "level": 9,
+    "hp": 135530,
+    "attack": 21397,
+    "defense": 1
+   },
+   {
+    "level": 10,
+    "hp": 136279,
+    "attack": 21515,
+    "defense": 1
+   },
+   {
+    "level": 11,
+    "hp": 137028,
+    "attack": 21633,
+    "defense": 1
+   },
+   {
+    "level": 12,
+    "hp": 137777,
+    "attack": 21752,
+    "defense": 1
+   },
+   {
+    "level": 13,
+    "hp": 138526,
+    "attack": 21870,
+    "defense": 1
+   },
+   {
+    "level": 14,
+    "hp": 139274,
+    "attack": 21988,
+    "defense": 1
+   },
+   {
+    "level": 15,
+    "hp": 140023,
+    "attack": 22106,
+    "defense": 1
+   },
+   {
+    "level": 16,
+    "hp": 140772,
+    "attack": 22224,
+    "defense": 1
+   },
+   {
+    "level": 17,
+    "hp": 141521,
+    "attack": 22343,
+    "defense": 1
+   },
+   {
+    "level": 18,
+    "hp": 142269,
+    "attack": 22461,
+    "defense": 1
+   },
+   {
+    "level": 19,
+    "hp": 143018,
+    "attack": 22579,
+    "defense": 1
+   },
+   {
+    "level": 20,
+    "hp": 143767,
+    "attack": 22697,
+    "defense": 1
+   },
+   {
+    "level": 21,
+    "hp": 144516,
+    "attack": 22815,
+    "defense": 1
+   },
+   {
+    "level": 22,
+    "hp": 145265,
+    "attack": 22934,
+    "defense": 1
+   },
+   {
+    "level": 23,
+    "hp": 146013,
+    "attack": 23052,
+    "defense": 1
+   },
+   {
+    "level": 24,
+    "hp": 146762,
+    "attack": 23170,
+    "defense": 1
+   },
+   {
+    "level": 25,
+    "hp": 147511,
+    "attack": 23288,
+    "defense": 1
+   },
+   {
+    "level": 26,
+    "hp": 148260,
+    "attack": 23407,
+    "defense": 1
+   },
+   {
+    "level": 27,
+    "hp": 149009,
+    "attack": 23525,
+    "defense": 1
+   },
+   {
+    "level": 28,
+    "hp": 149757,
+    "attack": 23643,
+    "defense": 1
+   },
+   {
+    "level": 29,
+    "hp": 150506,
+    "attack": 23761,
+    "defense": 1
+   },
+   {
+    "level": 30,
+    "hp": 151255,
+    "attack": 23879,
+    "defense": 1
+   },
+   {
+    "level": 31,
+    "hp": 152004,
+    "attack": 23998,
+    "defense": 1
+   },
+   {
+    "level": 32,
+    "hp": 152752,
+    "attack": 24116,
+    "defense": 1
+   },
+   {
+    "level": 33,
+    "hp": 153501,
+    "attack": 24234,
+    "defense": 1
+   },
+   {
+    "level": 34,
+    "hp": 154250,
+    "attack": 24352,
+    "defense": 1
+   },
+   {
+    "level": 35,
+    "hp": 154999,
+    "attack": 24470,
+    "defense": 1
+   },
+   {
+    "level": 36,
+    "hp": 155748,
+    "attack": 24588,
+    "defense": 1
+   },
+   {
+    "level": 37,
+    "hp": 156497,
+    "attack": 24706,
+    "defense": 1
+   },
+   {
+    "level": 38,
+    "hp": 157246,
+    "attack": 24824,
+    "defense": 1
+   },
+   {
+    "level": 39,
+    "hp": 157995,
+    "attack": 24942,
+    "defense": 1
+   },
+   {
+    "level": 40,
+    "hp": 158744,
+    "attack": 25060,
+    "defense": 1
+   },
+   {
+    "level": 41,
+    "hp": 159493,
+    "attack": 25178,
+    "defense": 1
+   },
+   {
+    "level": 42,
+    "hp": 160242,
+    "attack": 25296,
+    "defense": 1
+   },
+   {
+    "level": 43,
+    "hp": 160991,
+    "attack": 25414,
+    "defense": 1
+   },
+   {
+    "level": 44,
+    "hp": 161740,
+    "attack": 25532,
+    "defense": 1
+   },
+   {
+    "level": 45,
+    "hp": 162489,
+    "attack": 25650,
+    "defense": 1
+   },
+   {
+    "level": 46,
+    "hp": 163238,
+    "attack": 25768,
+    "defense": 1
+   },
+   {
+    "level": 47,
+    "hp": 163987,
+    "attack": 25886,
+    "defense": 1
+   },
+   {
+    "level": 48,
+    "hp": 164736,
+    "attack": 26004,
+    "defense": 1
+   },
+   {
+    "level": 49,
+    "hp": 165485,
+    "attack": 26122,
+    "defense": 1
+   },
+   {
+    "level": 50,
+    "hp": 166234,
+    "attack": 26240,
+    "defense": 1
+   },
+   {
+    "level": 51,
+    "hp": 166983,
+    "attack": 26358,
+    "defense": 1
+   },
+   {
+    "level": 52,
+    "hp": 167732,
+    "attack": 26476,
+    "defense": 1
+   },
+   {
+    "level": 53,
+    "hp": 168481,
+    "attack": 26594,
+    "defense": 1
+   },
+   {
+    "level": 54,
+    "hp": 169230,
+    "attack": 26712,
+    "defense": 1
+   },
+   {
+    "level": 55,
+    "hp": 169979,
+    "attack": 26830,
+    "defense": 1
+   }
+  ]
+ }
+]

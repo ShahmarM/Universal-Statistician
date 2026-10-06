@@ -1,0 +1,999 @@
+{
+ "_source": "933-stats buff_values.json -> ServerConfig col_suit",
+ "_generated": "AoO client config, nation 933 AVD, 2026-09-09, app 1.3.844",
+ "_note": "Keyed by set name. starTotal is the sum of stars across the set's members. An effect with a null name has no localized string in the client; fall back to the set's prose.",
+ "sets": [
+  {
+   "name": "Biochemical Charge",
+   "suitGid": 101711879,
+   "members": [
+    "Gold: Biochemical Troop",
+    "Heavy Sword",
+    "Scarab Amulet",
+    "Warning Bell"
+   ],
+   "levels": [
+    {
+     "starTotal": 4,
+     "effects": [
+      {
+       "effect": "Biochemical Zombies Attack Boost",
+       "value": 4,
+       "unit": "percent"
+      },
+      {
+       "effect": "Biochemical Zombies HP Boost",
+       "value": 4,
+       "unit": "percent"
+      },
+      {
+       "effect": "Biochemical Zombies Defense Boost",
+       "value": 4,
+       "unit": "percent"
+      },
+      {
+       "effect": "Cross-Nation Battle Biochemical Zombies Attack",
+       "value": 0.8,
+       "unit": "percent"
+      },
+      {
+       "effect": "Cross-Nation Battle Biochemical Zombies Defense",
+       "value": 0.8,
+       "unit": "percent"
+      },
+      {
+       "effect": "Cross-Nation Battle Biochemical Zombies HP",
+       "value": 0.8,
+       "unit": "percent"
+      }
+     ]
+    },
+    {
+     "starTotal": 6,
+     "effects": [
+      {
+       "effect": "Biochemical Zombies Attack Boost",
+       "value": 8,
+       "unit": "percent"
+      },
+      {
+       "effect": "Biochemical Zombies HP Boost",
+       "value": 8,
+       "unit": "percent"
+      },
+      {
+       "effect": "Biochemical Zombies Defense Boost",
+       "value": 8,
+       "unit": "percent"
+      },
+      {
+       "effect": "Cross-Nation Battle Biochemical Zombies Attack",
+       "value": 1.6,
+       "unit": "percent"
+      },
+      {
+       "effect": "Cross-Nation Battle Biochemical Zombies Defense",
+       "value": 1.6,
+       "unit": "percent"
+      },
+      {
+       "effect": "Cross-Nation Battle Biochemical Zombies HP",
+       "value": 1.6,
+       "unit": "percent"
+      }
+     ]
+    },
+    {
+     "starTotal": 8,
+     "effects": [
+      {
+       "effect": "Biochemical Zombies Attack Boost",
+       "value": 12,
+       "unit": "percent"
+      },
+      {
+       "effect": "Biochemical Zombies HP Boost",
+       "value": 12,
+       "unit": "percent"
+      },
+      {
+       "effect": "Biochemical Zombies Defense Boost",
+       "value": 12,
+       "unit": "percent"
+      },
+      {
+       "effect": "Cross-Nation Battle Biochemical Zombies Attack",
+       "value": 2.4,
+       "unit": "percent"
+      },
+      {
+       "effect": "Cross-Nation Battle Biochemical Zombies Defense",
+       "value": 2.4,
+       "unit": "percent"
+      },
+      {
+       "effect": "Cross-Nation Battle Biochemical Zombies HP",
+       "value": 2.4,
+       "unit": "percent"
+      }
+     ]
+    },
+    {
+     "starTotal": 10,
+     "effects": [
+      {
+       "effect": "Biochemical Zombies Attack Boost",
+       "value": 16,
+       "unit": "percent"
+      },
+      {
+       "effect": "Biochemical Zombies HP Boost",
+       "value": 16,
+       "unit": "percent"
+      },
+      {
+       "effect": "Biochemical Zombies Defense Boost",
+       "value": 16,
+       "unit": "percent"
+      },
+      {
+       "effect": "Cross-Nation Battle Biochemical Zombies Attack",
+       "value": 3.2,
+       "unit": "percent"
+      },
+      {
+       "effect": "Cross-Nation Battle Biochemical Zombies Defense",
+       "value": 3.2,
+       "unit": "percent"
+      },
+      {
+       "effect": "Cross-Nation Battle Biochemical Zombies HP",
+       "value": 3.2,
+       "unit": "percent"
+      }
+     ]
+    },
+    {
+     "starTotal": 12,
+     "effects": [
+      {
+       "effect": "Biochemical Zombies Attack Boost",
+       "value": 20,
+       "unit": "percent"
+      },
+      {
+       "effect": "Biochemical Zombies HP Boost",
+       "value": 20,
+       "unit": "percent"
+      },
+      {
+       "effect": "Biochemical Zombies Defense Boost",
+       "value": 20,
+       "unit": "percent"
+      },
+      {
+       "effect": "Cross-Nation Battle Biochemical Zombies Attack",
+       "value": 4,
+       "unit": "percent"
+      },
+      {
+       "effect": "Cross-Nation Battle Biochemical Zombies Defense",
+       "value": 4,
+       "unit": "percent"
+      },
+      {
+       "effect": "Cross-Nation Battle Biochemical Zombies HP",
+       "value": 4,
+       "unit": "percent"
+      }
+     ]
+    },
+    {
+     "starTotal": 13,
+     "effects": [
+      {
+       "effect": "Biochemical Zombies Attack Boost",
+       "value": 24,
+       "unit": "percent"
+      },
+      {
+       "effect": "Biochemical Zombies HP Boost",
+       "value": 24,
+       "unit": "percent"
+      },
+      {
+       "effect": "Biochemical Zombies Defense Boost",
+       "value": 24,
+       "unit": "percent"
+      },
+      {
+       "effect": "Cross-Nation Battle Biochemical Zombies Attack",
+       "value": 4.8,
+       "unit": "percent"
+      },
+      {
+       "effect": "Cross-Nation Battle Biochemical Zombies Defense",
+       "value": 4.8,
+       "unit": "percent"
+      },
+      {
+       "effect": "Cross-Nation Battle Biochemical Zombies HP",
+       "value": 4.8,
+       "unit": "percent"
+      }
+     ]
+    },
+    {
+     "starTotal": 14,
+     "effects": [
+      {
+       "effect": "Biochemical Zombies Attack Boost",
+       "value": 28,
+       "unit": "percent"
+      },
+      {
+       "effect": "Biochemical Zombies HP Boost",
+       "value": 28,
+       "unit": "percent"
+      },
+      {
+       "effect": "Biochemical Zombies Defense Boost",
+       "value": 28,
+       "unit": "percent"
+      },
+      {
+       "effect": "Cross-Nation Battle Biochemical Zombies Attack",
+       "value": 5.6,
+       "unit": "percent"
+      },
+      {
+       "effect": "Cross-Nation Battle Biochemical Zombies Defense",
+       "value": 5.6,
+       "unit": "percent"
+      },
+      {
+       "effect": "Cross-Nation Battle Biochemical Zombies HP",
+       "value": 5.6,
+       "unit": "percent"
+      }
+     ]
+    },
+    {
+     "starTotal": 15,
+     "effects": [
+      {
+       "effect": "Biochemical Zombies Attack Boost",
+       "value": 32,
+       "unit": "percent"
+      },
+      {
+       "effect": "Biochemical Zombies HP Boost",
+       "value": 32,
+       "unit": "percent"
+      },
+      {
+       "effect": "Biochemical Zombies Defense Boost",
+       "value": 32,
+       "unit": "percent"
+      },
+      {
+       "effect": "Cross-Nation Battle Biochemical Zombies Attack",
+       "value": 6.4,
+       "unit": "percent"
+      },
+      {
+       "effect": "Cross-Nation Battle Biochemical Zombies Defense",
+       "value": 6.4,
+       "unit": "percent"
+      },
+      {
+       "effect": "Cross-Nation Battle Biochemical Zombies HP",
+       "value": 6.4,
+       "unit": "percent"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Giant Weapons",
+   "suitGid": 101711878,
+   "members": [
+    "Titan Energy Cannon",
+    "Empress Exoskeleton",
+    "Warp Drive",
+    "Magnetic Pulse Core"
+   ],
+   "levels": [
+    {
+     "starTotal": 4,
+     "effects": [
+      {
+       "effect": null,
+       "value": 2,
+       "unit": "percent"
+      }
+     ]
+    },
+    {
+     "starTotal": 6,
+     "effects": [
+      {
+       "effect": null,
+       "value": 4,
+       "unit": "percent"
+      }
+     ]
+    },
+    {
+     "starTotal": 8,
+     "effects": [
+      {
+       "effect": null,
+       "value": 6,
+       "unit": "percent"
+      }
+     ]
+    },
+    {
+     "starTotal": 10,
+     "effects": [
+      {
+       "effect": null,
+       "value": 8,
+       "unit": "percent"
+      }
+     ]
+    },
+    {
+     "starTotal": 12,
+     "effects": [
+      {
+       "effect": null,
+       "value": 10,
+       "unit": "percent"
+      }
+     ]
+    },
+    {
+     "starTotal": 13,
+     "effects": [
+      {
+       "effect": null,
+       "value": 12,
+       "unit": "percent"
+      }
+     ]
+    },
+    {
+     "starTotal": 14,
+     "effects": [
+      {
+       "effect": null,
+       "value": 14,
+       "unit": "percent"
+      }
+     ]
+    },
+    {
+     "starTotal": 15,
+     "effects": [
+      {
+       "effect": null,
+       "value": 16,
+       "unit": "percent"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Strong Will",
+   "suitGid": 101711875,
+   "members": [
+    "Gold: Infantry",
+    "Gold: Rocket",
+    "Gold: Sniper",
+    "Gold: Gunner"
+   ],
+   "levels": [
+    {
+     "starTotal": 4,
+     "effects": [
+      {
+       "effect": "Melee Troops Damage Taken Reduction from Melee, Mid-Range, and Long-Range Troops",
+       "value": 0.8,
+       "unit": "percent"
+      },
+      {
+       "effect": "Enemy Mid-Range Attack Reduction",
+       "value": 2.6,
+       "unit": "percent"
+      },
+      {
+       "effect": "Enemy Long-Range Attack Reduction",
+       "value": 2.6,
+       "unit": "percent"
+      }
+     ]
+    },
+    {
+     "starTotal": 6,
+     "effects": [
+      {
+       "effect": "Melee Troops Damage Taken Reduction from Melee, Mid-Range, and Long-Range Troops",
+       "value": 1.6,
+       "unit": "percent"
+      },
+      {
+       "effect": "Enemy Mid-Range Attack Reduction",
+       "value": 5.2,
+       "unit": "percent"
+      },
+      {
+       "effect": "Enemy Long-Range Attack Reduction",
+       "value": 5.2,
+       "unit": "percent"
+      }
+     ]
+    },
+    {
+     "starTotal": 8,
+     "effects": [
+      {
+       "effect": "Melee Troops Damage Taken Reduction from Melee, Mid-Range, and Long-Range Troops",
+       "value": 2.4,
+       "unit": "percent"
+      },
+      {
+       "effect": "Enemy Mid-Range Attack Reduction",
+       "value": 7.8,
+       "unit": "percent"
+      },
+      {
+       "effect": "Enemy Long-Range Attack Reduction",
+       "value": 7.8,
+       "unit": "percent"
+      }
+     ]
+    },
+    {
+     "starTotal": 10,
+     "effects": [
+      {
+       "effect": "Melee Troops Damage Taken Reduction from Melee, Mid-Range, and Long-Range Troops",
+       "value": 3.2,
+       "unit": "percent"
+      },
+      {
+       "effect": "Enemy Mid-Range Attack Reduction",
+       "value": 10.4,
+       "unit": "percent"
+      },
+      {
+       "effect": "Enemy Long-Range Attack Reduction",
+       "value": 10.4,
+       "unit": "percent"
+      }
+     ]
+    },
+    {
+     "starTotal": 12,
+     "effects": [
+      {
+       "effect": "Melee Troops Damage Taken Reduction from Melee, Mid-Range, and Long-Range Troops",
+       "value": 4,
+       "unit": "percent"
+      },
+      {
+       "effect": "Enemy Mid-Range Attack Reduction",
+       "value": 13,
+       "unit": "percent"
+      },
+      {
+       "effect": "Enemy Long-Range Attack Reduction",
+       "value": 13,
+       "unit": "percent"
+      }
+     ]
+    },
+    {
+     "starTotal": 13,
+     "effects": [
+      {
+       "effect": "Melee Troops Damage Taken Reduction from Melee, Mid-Range, and Long-Range Troops",
+       "value": 4.8,
+       "unit": "percent"
+      },
+      {
+       "effect": "Enemy Mid-Range Attack Reduction",
+       "value": 15.6,
+       "unit": "percent"
+      },
+      {
+       "effect": "Enemy Long-Range Attack Reduction",
+       "value": 15.6,
+       "unit": "percent"
+      }
+     ]
+    },
+    {
+     "starTotal": 14,
+     "effects": [
+      {
+       "effect": "Melee Troops Damage Taken Reduction from Melee, Mid-Range, and Long-Range Troops",
+       "value": 5.6,
+       "unit": "percent"
+      },
+      {
+       "effect": "Enemy Mid-Range Attack Reduction",
+       "value": 18.2,
+       "unit": "percent"
+      },
+      {
+       "effect": "Enemy Long-Range Attack Reduction",
+       "value": 18.2,
+       "unit": "percent"
+      }
+     ]
+    },
+    {
+     "starTotal": 15,
+     "effects": [
+      {
+       "effect": "Melee Troops Damage Taken Reduction from Melee, Mid-Range, and Long-Range Troops",
+       "value": 6.4,
+       "unit": "percent"
+      },
+      {
+       "effect": "Enemy Mid-Range Attack Reduction",
+       "value": 20.8,
+       "unit": "percent"
+      },
+      {
+       "effect": "Enemy Long-Range Attack Reduction",
+       "value": 20.8,
+       "unit": "percent"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Rocket Turret",
+   "suitGid": 101711876,
+   "members": [
+    "Gold: Tank",
+    "Gold: Shredder",
+    "Gold: Cannon",
+    "Gold: Raider"
+   ],
+   "levels": [
+    {
+     "starTotal": 4,
+     "effects": [
+      {
+       "effect": "Rocket Turret",
+       "value": 3,
+       "unit": "flat"
+      }
+     ]
+    },
+    {
+     "starTotal": 6,
+     "effects": [
+      {
+       "effect": "Rocket Turret",
+       "value": 6,
+       "unit": "flat"
+      }
+     ]
+    },
+    {
+     "starTotal": 8,
+     "effects": [
+      {
+       "effect": "Rocket Turret",
+       "value": 9,
+       "unit": "flat"
+      }
+     ]
+    },
+    {
+     "starTotal": 10,
+     "effects": [
+      {
+       "effect": "Rocket Turret",
+       "value": 12,
+       "unit": "flat"
+      }
+     ]
+    },
+    {
+     "starTotal": 12,
+     "effects": [
+      {
+       "effect": "Rocket Turret",
+       "value": 15,
+       "unit": "flat"
+      }
+     ]
+    },
+    {
+     "starTotal": 13,
+     "effects": [
+      {
+       "effect": "Rocket Turret",
+       "value": 18,
+       "unit": "flat"
+      }
+     ]
+    },
+    {
+     "starTotal": 14,
+     "effects": [
+      {
+       "effect": "Rocket Turret",
+       "value": 21,
+       "unit": "flat"
+      }
+     ]
+    },
+    {
+     "starTotal": 15,
+     "effects": [
+      {
+       "effect": "Rocket Turret",
+       "value": 24,
+       "unit": "flat"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Nano Swarm",
+   "suitGid": 101711877,
+   "members": [
+    "Gold: Armored Soldier",
+    "Gold: EMP Cannon",
+    "Gold: Storm Trooper",
+    "Gold: Shielder"
+   ],
+   "levels": [
+    {
+     "starTotal": 4,
+     "effects": [
+      {
+       "effect": "Nano Swarm",
+       "value": 3,
+       "unit": "flat"
+      },
+      {
+       "effect": "HP Boost",
+       "value": 1.5,
+       "unit": "percent"
+      },
+      {
+       "effect": "Defense Boost",
+       "value": 1.5,
+       "unit": "percent"
+      }
+     ]
+    },
+    {
+     "starTotal": 6,
+     "effects": [
+      {
+       "effect": "Nano Swarm",
+       "value": 6,
+       "unit": "flat"
+      },
+      {
+       "effect": "HP Boost",
+       "value": 3,
+       "unit": "percent"
+      },
+      {
+       "effect": "Defense Boost",
+       "value": 3,
+       "unit": "percent"
+      }
+     ]
+    },
+    {
+     "starTotal": 8,
+     "effects": [
+      {
+       "effect": "Nano Swarm",
+       "value": 9,
+       "unit": "flat"
+      },
+      {
+       "effect": "HP Boost",
+       "value": 4.5,
+       "unit": "percent"
+      },
+      {
+       "effect": "Defense Boost",
+       "value": 4.5,
+       "unit": "percent"
+      }
+     ]
+    },
+    {
+     "starTotal": 10,
+     "effects": [
+      {
+       "effect": "Nano Swarm",
+       "value": 12,
+       "unit": "flat"
+      },
+      {
+       "effect": "HP Boost",
+       "value": 6,
+       "unit": "percent"
+      },
+      {
+       "effect": "Defense Boost",
+       "value": 6,
+       "unit": "percent"
+      }
+     ]
+    },
+    {
+     "starTotal": 12,
+     "effects": [
+      {
+       "effect": "Nano Swarm",
+       "value": 15,
+       "unit": "flat"
+      },
+      {
+       "effect": "HP Boost",
+       "value": 7.5,
+       "unit": "percent"
+      },
+      {
+       "effect": "Defense Boost",
+       "value": 7.5,
+       "unit": "percent"
+      }
+     ]
+    },
+    {
+     "starTotal": 13,
+     "effects": [
+      {
+       "effect": "Nano Swarm",
+       "value": 18,
+       "unit": "flat"
+      },
+      {
+       "effect": "HP Boost",
+       "value": 9,
+       "unit": "percent"
+      },
+      {
+       "effect": "Defense Boost",
+       "value": 9,
+       "unit": "percent"
+      }
+     ]
+    },
+    {
+     "starTotal": 14,
+     "effects": [
+      {
+       "effect": "Nano Swarm",
+       "value": 21,
+       "unit": "flat"
+      },
+      {
+       "effect": "HP Boost",
+       "value": 10.5,
+       "unit": "percent"
+      },
+      {
+       "effect": "Defense Boost",
+       "value": 10.5,
+       "unit": "percent"
+      }
+     ]
+    },
+    {
+     "starTotal": 15,
+     "effects": [
+      {
+       "effect": "Nano Swarm",
+       "value": 24,
+       "unit": "flat"
+      },
+      {
+       "effect": "HP Boost",
+       "value": 12,
+       "unit": "percent"
+      },
+      {
+       "effect": "Defense Boost",
+       "value": 12,
+       "unit": "percent"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Brilliant Things",
+   "suitGid": 101711874,
+   "members": [
+    "Ocean Teardrop",
+    "Hope Emblem",
+    "Basalt Tablet",
+    "Diamond Phone"
+   ],
+   "levels": [
+    {
+     "starTotal": 4,
+     "effects": [
+      {
+       "effect": "Attack Boost",
+       "value": 1.2,
+       "unit": "percent"
+      },
+      {
+       "effect": "HP Boost",
+       "value": 1.2,
+       "unit": "percent"
+      },
+      {
+       "effect": "Defense Boost",
+       "value": 1.2,
+       "unit": "percent"
+      }
+     ]
+    },
+    {
+     "starTotal": 6,
+     "effects": [
+      {
+       "effect": "Attack Boost",
+       "value": 2.4,
+       "unit": "percent"
+      },
+      {
+       "effect": "HP Boost",
+       "value": 2.4,
+       "unit": "percent"
+      },
+      {
+       "effect": "Defense Boost",
+       "value": 2.4,
+       "unit": "percent"
+      }
+     ]
+    },
+    {
+     "starTotal": 8,
+     "effects": [
+      {
+       "effect": "Attack Boost",
+       "value": 3.6,
+       "unit": "percent"
+      },
+      {
+       "effect": "HP Boost",
+       "value": 3.6,
+       "unit": "percent"
+      },
+      {
+       "effect": "Defense Boost",
+       "value": 3.6,
+       "unit": "percent"
+      }
+     ]
+    },
+    {
+     "starTotal": 10,
+     "effects": [
+      {
+       "effect": "Attack Boost",
+       "value": 4.8,
+       "unit": "percent"
+      },
+      {
+       "effect": "HP Boost",
+       "value": 4.8,
+       "unit": "percent"
+      },
+      {
+       "effect": "Defense Boost",
+       "value": 4.8,
+       "unit": "percent"
+      }
+     ]
+    },
+    {
+     "starTotal": 12,
+     "effects": [
+      {
+       "effect": "Attack Boost",
+       "value": 6,
+       "unit": "percent"
+      },
+      {
+       "effect": "HP Boost",
+       "value": 6,
+       "unit": "percent"
+      },
+      {
+       "effect": "Defense Boost",
+       "value": 6,
+       "unit": "percent"
+      }
+     ]
+    },
+    {
+     "starTotal": 13,
+     "effects": [
+      {
+       "effect": "Attack Boost",
+       "value": 7.2,
+       "unit": "percent"
+      },
+      {
+       "effect": "HP Boost",
+       "value": 7.2,
+       "unit": "percent"
+      },
+      {
+       "effect": "Defense Boost",
+       "value": 7.2,
+       "unit": "percent"
+      }
+     ]
+    },
+    {
+     "starTotal": 14,
+     "effects": [
+      {
+       "effect": "Attack Boost",
+       "value": 8.4,
+       "unit": "percent"
+      },
+      {
+       "effect": "HP Boost",
+       "value": 8.4,
+       "unit": "percent"
+      },
+      {
+       "effect": "Defense Boost",
+       "value": 8.4,
+       "unit": "percent"
+      }
+     ]
+    },
+    {
+     "starTotal": 15,
+     "effects": [
+      {
+       "effect": "Attack Boost",
+       "value": 9.6,
+       "unit": "percent"
+      },
+      {
+       "effect": "HP Boost",
+       "value": 9.6,
+       "unit": "percent"
+      },
+      {
+       "effect": "Defense Boost",
+       "value": 9.6,
+       "unit": "percent"
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

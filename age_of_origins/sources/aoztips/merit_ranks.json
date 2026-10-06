@@ -1,0 +1,56 @@
+[
+ {
+  "rank": "Warrant Officer",
+  "attack": 15,
+  "hp": 8,
+  "fleet": 7500
+ },
+ {
+  "rank": "Second Lieutenant",
+  "attack": 18,
+  "hp": 10,
+  "fleet": 10000
+ },
+ {
+  "rank": "First Lieutenant",
+  "attack": 21,
+  "hp": 12,
+  "fleet": 12500
+ },
+ {
+  "rank": "Captain",
+  "attack": 24,
+  "hp": 16,
+  "fleet": 15000
+ },
+ {
+  "rank": "Major",
+  "attack": 27,
+  "hp": 16,
+  "fleet": 17500
+ },
+ {
+  "rank": "Lieutenant Colonel",
+  "attack": 30,
+  "hp": 18,
+  "fleet": 20000
+ },
+ {
+  "rank": "Colonel",
+  "attack": 33,
+  "hp": 20,
+  "fleet": 22500
+ },
+ {
+  "rank": "Brigadier",
+  "attack": 36,
+  "hp": 22,
+  "fleet": 25000
+ },
+ {
+  "rank": "General",
+  "attack": 39,
+  "hp": 24,
+  "fleet": 27500
+ }
+]

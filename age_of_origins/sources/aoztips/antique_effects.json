@@ -1,0 +1,3024 @@
+{
+ "_source": "933-stats buff_values.json -> ServerConfig col_conf",
+ "_generated": "AoO client config, nation 933 AVD, 2026-09-09, app 1.3.844",
+ "_note": "Effects are cumulative at each star, not deltas. Percent values are already scaled; use `unit` to format.",
+ "antiques": [
+  {
+   "id": "bone_axe",
+   "name": "Bone Axe",
+   "gid": 570425379,
+   "maxStar": 15,
+   "stars": [
+    {
+     "star": 0,
+     "power": 893,
+     "effects": [
+      {
+       "effect": "HP Boost",
+       "value": 1.3,
+       "unit": "percent"
+      },
+      {
+       "effect": "Defense Boost",
+       "value": 1.3,
+       "unit": "percent"
+      }
+     ]
+    },
+    {
+     "star": 3,
+     "power": 3572,
+     "effects": [
+      {
+       "effect": "HP Boost",
+       "value": 4.5,
+       "unit": "percent"
+      },
+      {
+       "effect": "Defense Boost",
+       "value": 4.5,
+       "unit": "percent"
+      },
+      {
+       "effect": "Enemy Defense Reduction",
+       "value": 0.7,
+       "unit": "percent"
+      }
+     ]
+    },
+    {
+     "star": 6,
+     "power": 11609,
+     "effects": [
+      {
+       "effect": "HP Boost",
+       "value": 9.7,
+       "unit": "percent"
+      },
+      {
+       "effect": "Defense Boost",
+       "value": 9.7,
+       "unit": "percent"
+      },
+      {
+       "effect": "Enemy Defense Reduction",
+       "value": 6.8,
+       "unit": "percent"
+      },
+      {
+       "effect": "Increases Damage to Mid-Range Troops",
+       "value": 0.2,
+       "unit": "percent"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "scarlet_mantis_knife",
+   "name": "Scarlet Mantis Knife",
+   "gid": 570425380,
+   "maxStar": 15,
+   "stars": [
+    {
+     "star": 0,
+     "power": 893,
+     "effects": [
+      {
+       "effect": "Increases Damage to Melee Troops",
+       "value": 0.9,
+       "unit": "percent"
+      }
+     ]
+    },
+    {
+     "star": 3,
+     "power": 3572,
+     "effects": [
+      {
+       "effect": "Increases Damage to Melee Troops",
+       "value": 3.2,
+       "unit": "percent"
+      },
+      {
+       "effect": "Enemy Attack Reduction",
+       "value": 0.7,
+       "unit": "percent"
+      }
+     ]
+    },
+    {
+     "star": 6,
+     "power": 11609,
+     "effects": [
+      {
+       "effect": "Increases Damage to Melee Troops",
+       "value": 7.5,
+       "unit": "percent"
+      },
+      {
+       "effect": "Enemy Attack Reduction",
+       "value": 6.8,
+       "unit": "percent"
+      },
+      {
+       "effect": "Increases Damage to Long-Range Troops",
+       "value": 0.2,
+       "unit": "percent"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "imperial_seal",
+   "name": "Imperial Seal",
+   "gid": 570425374,
+   "maxStar": 18,
+   "stars": [
+    {
+     "star": 0,
+     "power": 323,
+     "effects": [
+      {
+       "effect": "Warplane Attack",
+       "value": 7200,
+       "unit": "flat"
+      },
+      {
+       "effect": "Warplane HP",
+       "value": 44640,
+       "unit": "flat"
+      }
+     ]
+    },
+    {
+     "star": 3,
+     "power": 1292,
+     "effects": [
+      {
+       "effect": "Warplane Attack",
+       "value": 25200,
+       "unit": "flat"
+      },
+      {
+       "effect": "Warplane HP",
+       "value": 156240,
+       "unit": "flat"
+      },
+      {
+       "effect": "Mid-Range Attack",
+       "value": 0.6,
+       "unit": "percent"
+      }
+     ]
+    },
+    {
+     "star": 6,
+     "power": 4199,
+     "effects": [
+      {
+       "effect": "Warplane Attack",
+       "value": 57600,
+       "unit": "flat"
+      },
+      {
+       "effect": "Warplane HP",
+       "value": 357120,
+       "unit": "flat"
+      },
+      {
+       "effect": "Mid-Range Attack",
+       "value": 6,
+       "unit": "percent"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "mystery_grail",
+   "name": "Mystery Grail",
+   "gid": 570425377,
+   "maxStar": 18,
+   "stars": [
+    {
+     "star": 0,
+     "power": 323,
+     "effects": [
+      {
+       "effect": "Warplane Attack",
+       "value": 7200,
+       "unit": "flat"
+      },
+      {
+       "effect": "Warplane HP",
+       "value": 44640,
+       "unit": "flat"
+      }
+     ]
+    },
+    {
+     "star": 3,
+     "power": 1292,
+     "effects": [
+      {
+       "effect": "Warplane Attack",
+       "value": 25200,
+       "unit": "flat"
+      },
+      {
+       "effect": "Warplane HP",
+       "value": 156240,
+       "unit": "flat"
+      },
+      {
+       "effect": "Long-Range Attack",
+       "value": 0.6,
+       "unit": "percent"
+      }
+     ]
+    },
+    {
+     "star": 6,
+     "power": 4199,
+     "effects": [
+      {
+       "effect": "Warplane Attack",
+       "value": 57600,
+       "unit": "flat"
+      },
+      {
+       "effect": "Warplane HP",
+       "value": 357120,
+       "unit": "flat"
+      },
+      {
+       "effect": "Long-Range Attack",
+       "value": 6,
+       "unit": "percent"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "venus_statue",
+   "name": "Venus Statue",
+   "gid": 570425362,
+   "maxStar": 18,
+   "stars": [
+    {
+     "star": 0,
+     "power": 323,
+     "effects": [
+      {
+       "effect": "Empress Attack Boost",
+       "value": 10000,
+       "unit": "flat"
+      },
+      {
+       "effect": "Empress HP Boost",
+       "value": 140000,
+       "unit": "flat"
+      }
+     ]
+    },
+    {
+     "star": 3,
+     "power": 1292,
+     "effects": [
+      {
+       "effect": "Empress Attack Boost",
+       "value": 35000,
+       "unit": "flat"
+      },
+      {
+       "effect": "Empress HP Boost",
+       "value": 490000,
+       "unit": "flat"
+      },
+      {
+       "effect": "Long-Range Attack",
+       "value": 0.6,
+       "unit": "percent"
+      }
+     ]
+    },
+    {
+     "star": 6,
+     "power": 4199,
+     "effects": [
+      {
+       "effect": "Empress Attack Boost",
+       "value": 80000,
+       "unit": "flat"
+      },
+      {
+       "effect": "Empress HP Boost",
+       "value": 1120000,
+       "unit": "flat"
+      },
+      {
+       "effect": "Long-Range Attack",
+       "value": 6,
+       "unit": "percent"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "warning_bell",
+   "name": "Warning Bell",
+   "gid": 570425376,
+   "maxStar": 18,
+   "stars": [
+    {
+     "star": 0,
+     "power": 323,
+     "effects": [
+      {
+       "effect": "Biochemical Zombies HP Boost",
+       "value": 1.2,
+       "unit": "percent"
+      },
+      {
+       "effect": "Biochemical Zombies Defense Boost",
+       "value": 1.2,
+       "unit": "percent"
+      }
+     ]
+    },
+    {
+     "star": 3,
+     "power": 1292,
+     "effects": [
+      {
+       "effect": "Biochemical Zombies HP Boost",
+       "value": 4.2,
+       "unit": "percent"
+      },
+      {
+       "effect": "Biochemical Zombies Defense Boost",
+       "value": 4.2,
+       "unit": "percent"
+      },
+      {
+       "effect": "Attack Against Biochemical Zombies Boost",
+       "value": 0.6,
+       "unit": "percent"
+      }
+     ]
+    },
+    {
+     "star": 6,
+     "power": 4199,
+     "effects": [
+      {
+       "effect": "Biochemical Zombies HP Boost",
+       "value": 9.6,
+       "unit": "percent"
+      },
+      {
+       "effect": "Biochemical Zombies Defense Boost",
+       "value": 9.6,
+       "unit": "percent"
+      },
+      {
+       "effect": "Attack Against Biochemical Zombies Boost",
+       "value": 6,
+       "unit": "percent"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "bronze_vase",
+   "name": "Bronze Vase",
+   "gid": 570425373,
+   "maxStar": 18,
+   "stars": [
+    {
+     "star": 0,
+     "power": 323,
+     "effects": [
+      {
+       "effect": "Warplane Attack",
+       "value": 7200,
+       "unit": "flat"
+      },
+      {
+       "effect": "Warplane HP",
+       "value": 44640,
+       "unit": "flat"
+      }
+     ]
+    },
+    {
+     "star": 3,
+     "power": 1292,
+     "effects": [
+      {
+       "effect": "Warplane Attack",
+       "value": 25200,
+       "unit": "flat"
+      },
+      {
+       "effect": "Warplane HP",
+       "value": 156240,
+       "unit": "flat"
+      },
+      {
+       "effect": "Enemy Melee Defense Reduction",
+       "value": 0.6,
+       "unit": "percent"
+      }
+     ]
+    },
+    {
+     "star": 6,
+     "power": 4199,
+     "effects": [
+      {
+       "effect": "Warplane Attack",
+       "value": 57600,
+       "unit": "flat"
+      },
+      {
+       "effect": "Warplane HP",
+       "value": 357120,
+       "unit": "flat"
+      },
+      {
+       "effect": "Enemy Melee Defense Reduction",
+       "value": 6,
+       "unit": "percent"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "crown",
+   "name": "Crown",
+   "gid": 570425367,
+   "maxStar": 18,
+   "stars": [
+    {
+     "star": 0,
+     "power": 323,
+     "effects": [
+      {
+       "effect": "HP Boost",
+       "value": 0.5,
+       "unit": "percent"
+      },
+      {
+       "effect": "Defense Boost",
+       "value": 0.5,
+       "unit": "percent"
+      }
+     ]
+    },
+    {
+     "star": 3,
+     "power": 1292,
+     "effects": [
+      {
+       "effect": "HP Boost",
+       "value": 1.8,
+       "unit": "percent"
+      },
+      {
+       "effect": "Defense Boost",
+       "value": 1.8,
+       "unit": "percent"
+      },
+      {
+       "effect": "Attack Against Long-Range Boost",
+       "value": 0.6,
+       "unit": "percent"
+      }
+     ]
+    },
+    {
+     "star": 6,
+     "power": 4199,
+     "effects": [
+      {
+       "effect": "HP Boost",
+       "value": 4.5,
+       "unit": "percent"
+      },
+      {
+       "effect": "Defense Boost",
+       "value": 4.5,
+       "unit": "percent"
+      },
+      {
+       "effect": "Attack Against Long-Range Boost",
+       "value": 6,
+       "unit": "percent"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "basalt_tablet",
+   "name": "Basalt Tablet",
+   "gid": 570425368,
+   "maxStar": 18,
+   "stars": [
+    {
+     "star": 0,
+     "power": 323,
+     "effects": [
+      {
+       "effect": "Attack Boost",
+       "value": 0.5,
+       "unit": "percent"
+      }
+     ]
+    },
+    {
+     "star": 3,
+     "power": 1292,
+     "effects": [
+      {
+       "effect": "Attack Boost",
+       "value": 1.8,
+       "unit": "percent"
+      },
+      {
+       "effect": "Enemy Long-Range Attack Reduction",
+       "value": 0.6,
+       "unit": "percent"
+      }
+     ]
+    },
+    {
+     "star": 6,
+     "power": 4199,
+     "effects": [
+      {
+       "effect": "Attack Boost",
+       "value": 4.5,
+       "unit": "percent"
+      },
+      {
+       "effect": "Enemy Long-Range Attack Reduction",
+       "value": 6,
+       "unit": "percent"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "ocean_teardrop",
+   "name": "Ocean Teardrop",
+   "gid": 570425365,
+   "maxStar": 18,
+   "stars": [
+    {
+     "star": 0,
+     "power": 323,
+     "effects": [
+      {
+       "effect": "HP Boost",
+       "value": 0.5,
+       "unit": "percent"
+      },
+      {
+       "effect": "Defense Boost",
+       "value": 0.5,
+       "unit": "percent"
+      }
+     ]
+    },
+    {
+     "star": 3,
+     "power": 1292,
+     "effects": [
+      {
+       "effect": "HP Boost",
+       "value": 1.8,
+       "unit": "percent"
+      },
+      {
+       "effect": "Defense Boost",
+       "value": 1.8,
+       "unit": "percent"
+      },
+      {
+       "effect": "Attack Against Melee Boost",
+       "value": 0.6,
+       "unit": "percent"
+      }
+     ]
+    },
+    {
+     "star": 6,
+     "power": 4199,
+     "effects": [
+      {
+       "effect": "HP Boost",
+       "value": 4.5,
+       "unit": "percent"
+      },
+      {
+       "effect": "Defense Boost",
+       "value": 4.5,
+       "unit": "percent"
+      },
+      {
+       "effect": "Attack Against Melee Boost",
+       "value": 6,
+       "unit": "percent"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "hope_emblem",
+   "name": "Hope Emblem",
+   "gid": 570425366,
+   "maxStar": 18,
+   "stars": [
+    {
+     "star": 0,
+     "power": 323,
+     "effects": [
+      {
+       "effect": "HP Boost",
+       "value": 0.5,
+       "unit": "percent"
+      },
+      {
+       "effect": "Defense Boost",
+       "value": 0.5,
+       "unit": "percent"
+      }
+     ]
+    },
+    {
+     "star": 3,
+     "power": 1292,
+     "effects": [
+      {
+       "effect": "HP Boost",
+       "value": 1.8,
+       "unit": "percent"
+      },
+      {
+       "effect": "Defense Boost",
+       "value": 1.8,
+       "unit": "percent"
+      },
+      {
+       "effect": "Attack Against Mid-Range Boost",
+       "value": 0.6,
+       "unit": "percent"
+      }
+     ]
+    },
+    {
+     "star": 6,
+     "power": 4199,
+     "effects": [
+      {
+       "effect": "HP Boost",
+       "value": 4.5,
+       "unit": "percent"
+      },
+      {
+       "effect": "Defense Boost",
+       "value": 4.5,
+       "unit": "percent"
+      },
+      {
+       "effect": "Attack Against Mid-Range Boost",
+       "value": 6,
+       "unit": "percent"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "diamond_phone",
+   "name": "Diamond Phone",
+   "gid": 570425346,
+   "maxStar": 21,
+   "stars": [
+    {
+     "star": 0,
+     "power": 156,
+     "effects": [
+      {
+       "effect": "Melee HP",
+       "value": 0.6,
+       "unit": "percent"
+      },
+      {
+       "effect": "Melee Defense",
+       "value": 0.6,
+       "unit": "percent"
+      }
+     ]
+    },
+    {
+     "star": 3,
+     "power": 624,
+     "effects": [
+      {
+       "effect": "Melee HP",
+       "value": 2.4,
+       "unit": "percent"
+      },
+      {
+       "effect": "Melee Defense",
+       "value": 2.4,
+       "unit": "percent"
+      }
+     ]
+    },
+    {
+     "star": 6,
+     "power": 2028,
+     "effects": [
+      {
+       "effect": "Melee HP",
+       "value": 7.8,
+       "unit": "percent"
+      },
+      {
+       "effect": "Melee Defense",
+       "value": 7.8,
+       "unit": "percent"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "brass_compass",
+   "name": "Brass Compass",
+   "gid": 570425352,
+   "maxStar": 21,
+   "stars": [
+    {
+     "star": 0,
+     "power": 156,
+     "effects": [
+      {
+       "effect": "Biochemical Zombies Attack Boost",
+       "value": 0.6,
+       "unit": "percent"
+      }
+     ]
+    },
+    {
+     "star": 3,
+     "power": 624,
+     "effects": [
+      {
+       "effect": "Biochemical Zombies Attack Boost",
+       "value": 2.4,
+       "unit": "percent"
+      }
+     ]
+    },
+    {
+     "star": 6,
+     "power": 2028,
+     "effects": [
+      {
+       "effect": "Biochemical Zombies Attack Boost",
+       "value": 7.8,
+       "unit": "percent"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "data_hard_drive",
+   "name": "Data Hard Drive",
+   "gid": 570425355,
+   "maxStar": 21,
+   "stars": [
+    {
+     "star": 0,
+     "power": 156,
+     "effects": [
+      {
+       "effect": "Biochemical Zombies HP Boost",
+       "value": 0.6,
+       "unit": "percent"
+      },
+      {
+       "effect": "Biochemical Zombies Defense Boost",
+       "value": 0.6,
+       "unit": "percent"
+      }
+     ]
+    },
+    {
+     "star": 3,
+     "power": 624,
+     "effects": [
+      {
+       "effect": "Biochemical Zombies HP Boost",
+       "value": 2.4,
+       "unit": "percent"
+      },
+      {
+       "effect": "Biochemical Zombies Defense Boost",
+       "value": 2.4,
+       "unit": "percent"
+      }
+     ]
+    },
+    {
+     "star": 6,
+     "power": 2028,
+     "effects": [
+      {
+       "effect": "Biochemical Zombies HP Boost",
+       "value": 7.8,
+       "unit": "percent"
+      },
+      {
+       "effect": "Biochemical Zombies Defense Boost",
+       "value": 7.8,
+       "unit": "percent"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "ark_map",
+   "name": "Ark Map",
+   "gid": 570425347,
+   "maxStar": 21,
+   "stars": [
+    {
+     "star": 0,
+     "power": 156,
+     "effects": [
+      {
+       "effect": "Mid-Range HP",
+       "value": 0.6,
+       "unit": "percent"
+      },
+      {
+       "effect": "Mid-Range Defense",
+       "value": 0.6,
+       "unit": "percent"
+      }
+     ]
+    },
+    {
+     "star": 3,
+     "power": 624,
+     "effects": [
+      {
+       "effect": "Mid-Range HP",
+       "value": 2.4,
+       "unit": "percent"
+      },
+      {
+       "effect": "Mid-Range Defense",
+       "value": 2.4,
+       "unit": "percent"
+      }
+     ]
+    },
+    {
+     "star": 6,
+     "power": 2028,
+     "effects": [
+      {
+       "effect": "Mid-Range HP",
+       "value": 7.8,
+       "unit": "percent"
+      },
+      {
+       "effect": "Mid-Range Defense",
+       "value": 7.8,
+       "unit": "percent"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "olympic_laurel",
+   "name": "Olympic Laurel",
+   "gid": 570425357,
+   "maxStar": 21,
+   "stars": [
+    {
+     "star": 0,
+     "power": 156,
+     "effects": [
+      {
+       "effect": "Monster Attack Speed",
+       "value": 0.6,
+       "unit": "percent"
+      }
+     ]
+    },
+    {
+     "star": 3,
+     "power": 624,
+     "effects": [
+      {
+       "effect": "Monster Attack Speed",
+       "value": 2.4,
+       "unit": "percent"
+      }
+     ]
+    },
+    {
+     "star": 6,
+     "power": 2028,
+     "effects": [
+      {
+       "effect": "Monster Attack Speed",
+       "value": 7.8,
+       "unit": "percent"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "fine_porcelain",
+   "name": "Fine Porcelain",
+   "gid": 570425358,
+   "maxStar": 21,
+   "stars": [
+    {
+     "star": 0,
+     "power": 156,
+     "effects": [
+      {
+       "effect": "Food Gather Bonus",
+       "value": 0.6,
+       "unit": "percent"
+      }
+     ]
+    },
+    {
+     "star": 3,
+     "power": 624,
+     "effects": [
+      {
+       "effect": "Food Gather Bonus",
+       "value": 2.4,
+       "unit": "percent"
+      }
+     ]
+    },
+    {
+     "star": 6,
+     "power": 2028,
+     "effects": [
+      {
+       "effect": "Food Gather Bonus",
+       "value": 7.8,
+       "unit": "percent"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "black_gold_memebers_card",
+   "name": "Black Gold Member's Card",
+   "gid": 570425348,
+   "maxStar": 21,
+   "stars": [
+    {
+     "star": 0,
+     "power": 156,
+     "effects": [
+      {
+       "effect": "Long-Range HP",
+       "value": 0.6,
+       "unit": "percent"
+      },
+      {
+       "effect": "Long-Range Defense",
+       "value": 0.6,
+       "unit": "percent"
+      }
+     ]
+    },
+    {
+     "star": 3,
+     "power": 624,
+     "effects": [
+      {
+       "effect": "Long-Range HP",
+       "value": 2.4,
+       "unit": "percent"
+      },
+      {
+       "effect": "Long-Range Defense",
+       "value": 2.4,
+       "unit": "percent"
+      }
+     ]
+    },
+    {
+     "star": 6,
+     "power": 2028,
+     "effects": [
+      {
+       "effect": "Long-Range HP",
+       "value": 7.8,
+       "unit": "percent"
+      },
+      {
+       "effect": "Long-Range Defense",
+       "value": 7.8,
+       "unit": "percent"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "toxic_bone_spur",
+   "name": "Toxic Bone Spur",
+   "gid": 570425349,
+   "maxStar": 21,
+   "stars": [
+    {
+     "star": 0,
+     "power": 156,
+     "effects": [
+      {
+       "effect": "Melee Attack",
+       "value": 0.6,
+       "unit": "percent"
+      }
+     ]
+    },
+    {
+     "star": 3,
+     "power": 624,
+     "effects": [
+      {
+       "effect": "Melee Attack",
+       "value": 2.4,
+       "unit": "percent"
+      }
+     ]
+    },
+    {
+     "star": 6,
+     "power": 2028,
+     "effects": [
+      {
+       "effect": "Melee Attack",
+       "value": 7.8,
+       "unit": "percent"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "treasured_violin",
+   "name": "Treasured Violin",
+   "gid": 570425354,
+   "maxStar": 21,
+   "stars": [
+    {
+     "star": 0,
+     "power": 156,
+     "effects": [
+      {
+       "effect": "Biochemical Zombies Attack Boost",
+       "value": 0.6,
+       "unit": "percent"
+      }
+     ]
+    },
+    {
+     "star": 3,
+     "power": 624,
+     "effects": [
+      {
+       "effect": "Biochemical Zombies Attack Boost",
+       "value": 2.4,
+       "unit": "percent"
+      }
+     ]
+    },
+    {
+     "star": 6,
+     "power": 2028,
+     "effects": [
+      {
+       "effect": "Biochemical Zombies Attack Boost",
+       "value": 7.8,
+       "unit": "percent"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "golden_rabbit_doll",
+   "name": "Golden Rabbit Doll",
+   "gid": 570425356,
+   "maxStar": 21,
+   "stars": [
+    {
+     "star": 0,
+     "power": 156,
+     "effects": [
+      {
+       "effect": "Wounded Units Bonus Limit",
+       "value": 360,
+       "unit": "flat"
+      }
+     ]
+    },
+    {
+     "star": 3,
+     "power": 624,
+     "effects": [
+      {
+       "effect": "Wounded Units Bonus Limit",
+       "value": 1440,
+       "unit": "flat"
+      }
+     ]
+    },
+    {
+     "star": 6,
+     "power": 2028,
+     "effects": [
+      {
+       "effect": "Wounded Units Bonus Limit",
+       "value": 4680,
+       "unit": "flat"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "autographed_football",
+   "name": "Autographed Football",
+   "gid": 570425360,
+   "maxStar": 21,
+   "stars": [
+    {
+     "star": 0,
+     "power": 156,
+     "effects": [
+      {
+       "effect": "Steel Gather Bonus",
+       "value": 0.6,
+       "unit": "percent"
+      }
+     ]
+    },
+    {
+     "star": 3,
+     "power": 624,
+     "effects": [
+      {
+       "effect": "Steel Gather Bonus",
+       "value": 2.4,
+       "unit": "percent"
+      }
+     ]
+    },
+    {
+     "star": 6,
+     "power": 2028,
+     "effects": [
+      {
+       "effect": "Steel Gather Bonus",
+       "value": 7.8,
+       "unit": "percent"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "crystal_skull",
+   "name": "Crystal Skull",
+   "gid": 570425359,
+   "maxStar": 21,
+   "stars": [
+    {
+     "star": 0,
+     "power": 156,
+     "effects": [
+      {
+       "effect": "Oil Gather Bonus",
+       "value": 0.6,
+       "unit": "percent"
+      }
+     ]
+    },
+    {
+     "star": 3,
+     "power": 624,
+     "effects": [
+      {
+       "effect": "Oil Gather Bonus",
+       "value": 2.4,
+       "unit": "percent"
+      }
+     ]
+    },
+    {
+     "star": 6,
+     "power": 2028,
+     "effects": [
+      {
+       "effect": "Oil Gather Bonus",
+       "value": 7.8,
+       "unit": "percent"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "totem_wood_sculpture",
+   "name": "Totem Wood Sculpture",
+   "gid": 570425351,
+   "maxStar": 21,
+   "stars": [
+    {
+     "star": 0,
+     "power": 156,
+     "effects": [
+      {
+       "effect": "Long-Range Attack",
+       "value": 0.6,
+       "unit": "percent"
+      }
+     ]
+    },
+    {
+     "star": 3,
+     "power": 624,
+     "effects": [
+      {
+       "effect": "Long-Range Attack",
+       "value": 2.4,
+       "unit": "percent"
+      }
+     ]
+    },
+    {
+     "star": 6,
+     "power": 2028,
+     "effects": [
+      {
+       "effect": "Long-Range Attack",
+       "value": 7.8,
+       "unit": "percent"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "hound_statue",
+   "name": "Hound Statue",
+   "gid": 570425361,
+   "maxStar": 21,
+   "stars": [
+    {
+     "star": 0,
+     "power": 156,
+     "effects": [
+      {
+       "effect": "Mineral Gather Bonus",
+       "value": 0.6,
+       "unit": "percent"
+      }
+     ]
+    },
+    {
+     "star": 3,
+     "power": 624,
+     "effects": [
+      {
+       "effect": "Mineral Gather Bonus",
+       "value": 2.4,
+       "unit": "percent"
+      }
+     ]
+    },
+    {
+     "star": 6,
+     "power": 2028,
+     "effects": [
+      {
+       "effect": "Mineral Gather Bonus",
+       "value": 7.8,
+       "unit": "percent"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "red_coral",
+   "name": "Red Coral",
+   "gid": 570425350,
+   "maxStar": 21,
+   "stars": [
+    {
+     "star": 0,
+     "power": 156,
+     "effects": [
+      {
+       "effect": "Mid-Range Attack",
+       "value": 0.6,
+       "unit": "percent"
+      }
+     ]
+    },
+    {
+     "star": 3,
+     "power": 624,
+     "effects": [
+      {
+       "effect": "Mid-Range Attack",
+       "value": 2.4,
+       "unit": "percent"
+      }
+     ]
+    },
+    {
+     "star": 6,
+     "power": 2028,
+     "effects": [
+      {
+       "effect": "Mid-Range Attack",
+       "value": 7.8,
+       "unit": "percent"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "viking_helmet",
+   "name": "Viking Helmet",
+   "gid": 570425353,
+   "maxStar": 21,
+   "stars": [
+    {
+     "star": 0,
+     "power": 156,
+     "effects": [
+      {
+       "effect": "Biochemical Zombies Attack Boost",
+       "value": 0.6,
+       "unit": "percent"
+      },
+      {
+       "effect": "Biochemical Zombies Defense Boost",
+       "value": 0.6,
+       "unit": "percent"
+      }
+     ]
+    },
+    {
+     "star": 3,
+     "power": 624,
+     "effects": [
+      {
+       "effect": "Biochemical Zombies Attack Boost",
+       "value": 2.4,
+       "unit": "percent"
+      },
+      {
+       "effect": "Biochemical Zombies Defense Boost",
+       "value": 2.4,
+       "unit": "percent"
+      }
+     ]
+    },
+    {
+     "star": 6,
+     "power": 2028,
+     "effects": [
+      {
+       "effect": "Biochemical Zombies Attack Boost",
+       "value": 7.8,
+       "unit": "percent"
+      },
+      {
+       "effect": "Biochemical Zombies Defense Boost",
+       "value": 7.8,
+       "unit": "percent"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "gem_egg",
+   "name": "Gem Egg",
+   "gid": 570425369,
+   "maxStar": 18,
+   "stars": [
+    {
+     "star": 0,
+     "power": 323,
+     "effects": [
+      {
+       "effect": "Attack Boost",
+       "value": 0.5,
+       "unit": "percent"
+      }
+     ]
+    },
+    {
+     "star": 3,
+     "power": 1292,
+     "effects": [
+      {
+       "effect": "Attack Boost",
+       "value": 1.8,
+       "unit": "percent"
+      },
+      {
+       "effect": "Enemy Mid-Range Attack Reduction",
+       "value": 0.6,
+       "unit": "percent"
+      }
+     ]
+    },
+    {
+     "star": 6,
+     "power": 4199,
+     "effects": [
+      {
+       "effect": "Attack Boost",
+       "value": 4.5,
+       "unit": "percent"
+      },
+      {
+       "effect": "Enemy Mid-Range Attack Reduction",
+       "value": 6,
+       "unit": "percent"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "gold_mask",
+   "name": "Gold Mask",
+   "gid": 570425371,
+   "maxStar": 18,
+   "stars": [
+    {
+     "star": 0,
+     "power": 323,
+     "effects": [
+      {
+       "effect": "Attack Boost",
+       "value": 0.5,
+       "unit": "percent"
+      }
+     ]
+    },
+    {
+     "star": 3,
+     "power": 1292,
+     "effects": [
+      {
+       "effect": "Attack Boost",
+       "value": 1.8,
+       "unit": "percent"
+      },
+      {
+       "effect": "Enemy Melee Attack Reduction",
+       "value": 0.6,
+       "unit": "percent"
+      }
+     ]
+    },
+    {
+     "star": 6,
+     "power": 4199,
+     "effects": [
+      {
+       "effect": "Attack Boost",
+       "value": 4.5,
+       "unit": "percent"
+      },
+      {
+       "effect": "Enemy Melee Attack Reduction",
+       "value": 6,
+       "unit": "percent"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "goddess_torch",
+   "name": "Goddess Torch",
+   "gid": 570425364,
+   "maxStar": 18,
+   "stars": [
+    {
+     "star": 0,
+     "power": 323,
+     "effects": [
+      {
+       "effect": "Empress Attack Boost",
+       "value": 10000,
+       "unit": "flat"
+      },
+      {
+       "effect": "Empress HP Boost",
+       "value": 140000,
+       "unit": "flat"
+      }
+     ]
+    },
+    {
+     "star": 3,
+     "power": 1292,
+     "effects": [
+      {
+       "effect": "Empress Attack Boost",
+       "value": 35000,
+       "unit": "flat"
+      },
+      {
+       "effect": "Empress HP Boost",
+       "value": 490000,
+       "unit": "flat"
+      },
+      {
+       "effect": "Mid-Range Attack",
+       "value": 0.6,
+       "unit": "percent"
+      }
+     ]
+    },
+    {
+     "star": 6,
+     "power": 4199,
+     "effects": [
+      {
+       "effect": "Empress Attack Boost",
+       "value": 80000,
+       "unit": "flat"
+      },
+      {
+       "effect": "Empress HP Boost",
+       "value": 1120000,
+       "unit": "flat"
+      },
+      {
+       "effect": "Mid-Range Attack",
+       "value": 6,
+       "unit": "percent"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "heavy_sword",
+   "name": "Heavy Sword",
+   "gid": 570425378,
+   "maxStar": 15,
+   "stars": [
+    {
+     "star": 0,
+     "power": 893,
+     "effects": [
+      {
+       "effect": "Biochemical Zombies Attack Boost",
+       "value": 3,
+       "unit": "percent"
+      }
+     ]
+    },
+    {
+     "star": 3,
+     "power": 3572,
+     "effects": [
+      {
+       "effect": "Biochemical Zombies Attack Boost",
+       "value": 10.5,
+       "unit": "percent"
+      },
+      {
+       "effect": "Enemy Biochemical Zombie Attack Reduction",
+       "value": 1.5,
+       "unit": "percent"
+      }
+     ]
+    },
+    {
+     "star": 6,
+     "power": 11609,
+     "effects": [
+      {
+       "effect": "Biochemical Zombies Attack Boost",
+       "value": 23.5,
+       "unit": "percent"
+      },
+      {
+       "effect": "Enemy Biochemical Zombie Attack Reduction",
+       "value": 14.5,
+       "unit": "percent"
+      },
+      {
+       "effect": "Biochemical Zombie Army Limit Boost",
+       "value": 120,
+       "unit": "flat"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "zombie_heart",
+   "name": "Zombie Heart",
+   "gid": 570425372,
+   "maxStar": 18,
+   "stars": [
+    {
+     "star": 0,
+     "power": 323,
+     "effects": [
+      {
+       "effect": "Source Spirit Attack Boost",
+       "value": 10000,
+       "unit": "flat"
+      },
+      {
+       "effect": "Source Spirit HP Boost",
+       "value": 140000,
+       "unit": "flat"
+      }
+     ]
+    },
+    {
+     "star": 3,
+     "power": 1292,
+     "effects": [
+      {
+       "effect": "Source Spirit Attack Boost",
+       "value": 35000,
+       "unit": "flat"
+      },
+      {
+       "effect": "Source Spirit HP Boost",
+       "value": 490000,
+       "unit": "flat"
+      },
+      {
+       "effect": "Enemy Melee Defense Reduction",
+       "value": 0.6,
+       "unit": "percent"
+      }
+     ]
+    },
+    {
+     "star": 6,
+     "power": 4199,
+     "effects": [
+      {
+       "effect": "Source Spirit Attack Boost",
+       "value": 80000,
+       "unit": "flat"
+      },
+      {
+       "effect": "Source Spirit HP Boost",
+       "value": 1120000,
+       "unit": "flat"
+      },
+      {
+       "effect": "Enemy Melee Defense Reduction",
+       "value": 6,
+       "unit": "percent"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "gold_biochemical_troop",
+   "name": "Gold: Biochemical Troop",
+   "gid": 570425396,
+   "maxStar": 15,
+   "stars": [
+    {
+     "star": 0,
+     "power": 893,
+     "effects": [
+      {
+       "effect": "Biochemical Zombies HP Boost",
+       "value": 3,
+       "unit": "percent"
+      },
+      {
+       "effect": "Biochemical Zombies Defense Boost",
+       "value": 3,
+       "unit": "percent"
+      }
+     ]
+    },
+    {
+     "star": 3,
+     "power": 3572,
+     "effects": [
+      {
+       "effect": "Biochemical Zombies HP Boost",
+       "value": 10.5,
+       "unit": "percent"
+      },
+      {
+       "effect": "Biochemical Zombies Defense Boost",
+       "value": 10.5,
+       "unit": "percent"
+      },
+      {
+       "effect": "Attack Against Biochemical Zombies Boost",
+       "value": 1.5,
+       "unit": "percent"
+      }
+     ]
+    },
+    {
+     "star": 6,
+     "power": 11609,
+     "effects": [
+      {
+       "effect": "Biochemical Zombies HP Boost",
+       "value": 23.5,
+       "unit": "percent"
+      },
+      {
+       "effect": "Biochemical Zombies Defense Boost",
+       "value": 23.5,
+       "unit": "percent"
+      },
+      {
+       "effect": "Attack Against Biochemical Zombies Boost",
+       "value": 14.5,
+       "unit": "percent"
+      },
+      {
+       "effect": "Biochemical Zombie Army Limit Boost",
+       "value": 120,
+       "unit": "flat"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "scarab_amulet",
+   "name": "Scarab Amulet",
+   "gid": 570425370,
+   "maxStar": 18,
+   "stars": [
+    {
+     "star": 0,
+     "power": 323,
+     "effects": [
+      {
+       "effect": "Biochemical Zombies Attack Boost",
+       "value": 1.2,
+       "unit": "percent"
+      }
+     ]
+    },
+    {
+     "star": 3,
+     "power": 1292,
+     "effects": [
+      {
+       "effect": "Biochemical Zombies Attack Boost",
+       "value": 4.2,
+       "unit": "percent"
+      },
+      {
+       "effect": "Enemy Biochemical Zombie Attack Reduction",
+       "value": 0.6,
+       "unit": "percent"
+      }
+     ]
+    },
+    {
+     "star": 6,
+     "power": 4199,
+     "effects": [
+      {
+       "effect": "Biochemical Zombies Attack Boost",
+       "value": 9.6,
+       "unit": "percent"
+      },
+      {
+       "effect": "Enemy Biochemical Zombie Attack Reduction",
+       "value": 6,
+       "unit": "percent"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "empress_exoskeleton",
+   "name": "Empress Exoskeleton",
+   "gid": 570425382,
+   "maxStar": 15,
+   "stars": [
+    {
+     "star": 0,
+     "power": 893,
+     "effects": [
+      {
+       "effect": "Empress Attack Boost",
+       "value": 25200,
+       "unit": "flat"
+      },
+      {
+       "effect": "Empress HP Boost",
+       "value": 352800,
+       "unit": "flat"
+      }
+     ]
+    },
+    {
+     "star": 3,
+     "power": 3572,
+     "effects": [
+      {
+       "effect": "Empress Attack Boost",
+       "value": 88200,
+       "unit": "flat"
+      },
+      {
+       "effect": "Empress HP Boost",
+       "value": 1234800,
+       "unit": "flat"
+      },
+      {
+       "effect": "Enemy Attack Reduction",
+       "value": 0.7,
+       "unit": "percent"
+      }
+     ]
+    },
+    {
+     "star": 6,
+     "power": 11609,
+     "effects": [
+      {
+       "effect": "Empress Attack Boost",
+       "value": 197400,
+       "unit": "flat"
+      },
+      {
+       "effect": "Empress HP Boost",
+       "value": 2763600,
+       "unit": "flat"
+      },
+      {
+       "effect": "Enemy Attack Reduction",
+       "value": 6.8,
+       "unit": "percent"
+      },
+      {
+       "effect": "Titan Damage Taken Reduction",
+       "value": 0.3,
+       "unit": "percent"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "gold_candleholder",
+   "name": "Gold Candleholder",
+   "gid": 570425375,
+   "maxStar": 18,
+   "stars": [
+    {
+     "star": 0,
+     "power": 323,
+     "effects": [
+      {
+       "effect": "Warplane Attack",
+       "value": 7200,
+       "unit": "flat"
+      },
+      {
+       "effect": "Warplane HP",
+       "value": 44640,
+       "unit": "flat"
+      }
+     ]
+    },
+    {
+     "star": 3,
+     "power": 1292,
+     "effects": [
+      {
+       "effect": "Warplane Attack",
+       "value": 25200,
+       "unit": "flat"
+      },
+      {
+       "effect": "Warplane HP",
+       "value": 156240,
+       "unit": "flat"
+      },
+      {
+       "effect": "Melee HP",
+       "value": 0.6,
+       "unit": "percent"
+      },
+      {
+       "effect": "Melee Defense",
+       "value": 0.6,
+       "unit": "percent"
+      }
+     ]
+    },
+    {
+     "star": 6,
+     "power": 4199,
+     "effects": [
+      {
+       "effect": "Warplane Attack",
+       "value": 57600,
+       "unit": "flat"
+      },
+      {
+       "effect": "Warplane HP",
+       "value": 357120,
+       "unit": "flat"
+      },
+      {
+       "effect": "Melee HP",
+       "value": 6,
+       "unit": "percent"
+      },
+      {
+       "effect": "Melee Defense",
+       "value": 6,
+       "unit": "percent"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "titan_energy_cannon",
+   "name": "Titan Energy Cannon",
+   "gid": 570425381,
+   "maxStar": 15,
+   "stars": [
+    {
+     "star": 0,
+     "power": 893,
+     "effects": [
+      {
+       "effect": "Source Spirit Attack Boost",
+       "value": 25200,
+       "unit": "flat"
+      },
+      {
+       "effect": "Source Spirit HP Boost",
+       "value": 352800,
+       "unit": "flat"
+      }
+     ]
+    },
+    {
+     "star": 3,
+     "power": 3572,
+     "effects": [
+      {
+       "effect": "Source Spirit Attack Boost",
+       "value": 88200,
+       "unit": "flat"
+      },
+      {
+       "effect": "Source Spirit HP Boost",
+       "value": 1234800,
+       "unit": "flat"
+      },
+      {
+       "effect": "Enemy Defense Reduction",
+       "value": 0.7,
+       "unit": "percent"
+      }
+     ]
+    },
+    {
+     "star": 6,
+     "power": 11609,
+     "effects": [
+      {
+       "effect": "Source Spirit Attack Boost",
+       "value": 197400,
+       "unit": "flat"
+      },
+      {
+       "effect": "Source Spirit HP Boost",
+       "value": 2763600,
+       "unit": "flat"
+      },
+      {
+       "effect": "Enemy Defense Reduction",
+       "value": 6.8,
+       "unit": "percent"
+      },
+      {
+       "effect": "Titan Damage Taken Reduction",
+       "value": 0.3,
+       "unit": "percent"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "warp_drive",
+   "name": "Warp Drive",
+   "gid": 570425383,
+   "maxStar": 15,
+   "stars": [
+    {
+     "star": 0,
+     "power": 893,
+     "effects": [
+      {
+       "effect": "Warplane Attack",
+       "value": 18000,
+       "unit": "flat"
+      },
+      {
+       "effect": "Warplane HP",
+       "value": 111600,
+       "unit": "flat"
+      }
+     ]
+    },
+    {
+     "star": 3,
+     "power": 3572,
+     "effects": [
+      {
+       "effect": "Warplane Attack",
+       "value": 63000,
+       "unit": "flat"
+      },
+      {
+       "effect": "Warplane HP",
+       "value": 390600,
+       "unit": "flat"
+      },
+      {
+       "effect": "Enemy Attack Reduction",
+       "value": 0.7,
+       "unit": "percent"
+      }
+     ]
+    },
+    {
+     "star": 6,
+     "power": 11609,
+     "effects": [
+      {
+       "effect": "Warplane Attack",
+       "value": 141000,
+       "unit": "flat"
+      },
+      {
+       "effect": "Warplane HP",
+       "value": 874200,
+       "unit": "flat"
+      },
+      {
+       "effect": "Enemy Attack Reduction",
+       "value": 6.8,
+       "unit": "percent"
+      },
+      {
+       "effect": "Reduces Damage taken from Warplanes",
+       "value": 0.3,
+       "unit": "percent"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "magnetic_pulse_core",
+   "name": "Magnetic Pulse Core",
+   "gid": 570425397,
+   "maxStar": 15,
+   "stars": [
+    {
+     "star": 0,
+     "power": 893,
+     "effects": [
+      {
+       "effect": "Increases Damage to Melee Troops",
+       "value": 0.9,
+       "unit": "percent"
+      }
+     ]
+    },
+    {
+     "star": 3,
+     "power": 3572,
+     "effects": [
+      {
+       "effect": "Increases Damage to Melee Troops",
+       "value": 3.2,
+       "unit": "percent"
+      },
+      {
+       "effect": "Enemy Defense Reduction",
+       "value": 0.7,
+       "unit": "percent"
+      }
+     ]
+    },
+    {
+     "star": 6,
+     "power": 11609,
+     "effects": [
+      {
+       "effect": "Increases Damage to Melee Troops",
+       "value": 7.5,
+       "unit": "percent"
+      },
+      {
+       "effect": "Enemy Defense Reduction",
+       "value": 6.8,
+       "unit": "percent"
+      },
+      {
+       "effect": "Reduces Damage taken from Warplanes",
+       "value": 0.3,
+       "unit": "percent"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "gold_sniper",
+   "name": "Gold: Sniper",
+   "gid": 570425390,
+   "maxStar": 15,
+   "stars": [
+    {
+     "star": 0,
+     "power": 893,
+     "effects": [
+      {
+       "effect": "HP Boost",
+       "value": 1.3,
+       "unit": "percent"
+      },
+      {
+       "effect": "Defense Boost",
+       "value": 1.3,
+       "unit": "percent"
+      }
+     ]
+    },
+    {
+     "star": 3,
+     "power": 3572,
+     "effects": [
+      {
+       "effect": "HP Boost",
+       "value": 4.5,
+       "unit": "percent"
+      },
+      {
+       "effect": "Defense Boost",
+       "value": 4.5,
+       "unit": "percent"
+      },
+      {
+       "effect": "Enemy Melee Attack Reduction",
+       "value": 1.5,
+       "unit": "percent"
+      }
+     ]
+    },
+    {
+     "star": 6,
+     "power": 11609,
+     "effects": [
+      {
+       "effect": "HP Boost",
+       "value": 9.7,
+       "unit": "percent"
+      },
+      {
+       "effect": "Defense Boost",
+       "value": 9.7,
+       "unit": "percent"
+      },
+      {
+       "effect": "Enemy Melee Attack Reduction",
+       "value": 14.5,
+       "unit": "percent"
+      },
+      {
+       "effect": "Increases Damage to Melee Troops",
+       "value": 0.2,
+       "unit": "percent"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "gold_infantry",
+   "name": "Gold: Infantry",
+   "gid": 570425388,
+   "maxStar": 15,
+   "stars": [
+    {
+     "star": 0,
+     "power": 893,
+     "effects": [
+      {
+       "effect": "HP Boost",
+       "value": 1.3,
+       "unit": "percent"
+      },
+      {
+       "effect": "Defense Boost",
+       "value": 1.3,
+       "unit": "percent"
+      }
+     ]
+    },
+    {
+     "star": 3,
+     "power": 3572,
+     "effects": [
+      {
+       "effect": "HP Boost",
+       "value": 4.5,
+       "unit": "percent"
+      },
+      {
+       "effect": "Defense Boost",
+       "value": 4.5,
+       "unit": "percent"
+      },
+      {
+       "effect": "Attack Against Melee Boost",
+       "value": 1.5,
+       "unit": "percent"
+      }
+     ]
+    },
+    {
+     "star": 6,
+     "power": 11609,
+     "effects": [
+      {
+       "effect": "HP Boost",
+       "value": 9.7,
+       "unit": "percent"
+      },
+      {
+       "effect": "Defense Boost",
+       "value": 9.7,
+       "unit": "percent"
+      },
+      {
+       "effect": "Attack Against Melee Boost",
+       "value": 14.5,
+       "unit": "percent"
+      },
+      {
+       "effect": "Increases Damage to Melee Troops",
+       "value": 0.2,
+       "unit": "percent"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "gold_rocket",
+   "name": "Gold: Rocket",
+   "gid": 570425389,
+   "maxStar": 15,
+   "stars": [
+    {
+     "star": 0,
+     "power": 893,
+     "effects": [
+      {
+       "effect": "Attack Boost",
+       "value": 1.3,
+       "unit": "percent"
+      }
+     ]
+    },
+    {
+     "star": 3,
+     "power": 3572,
+     "effects": [
+      {
+       "effect": "Attack Boost",
+       "value": 4.5,
+       "unit": "percent"
+      },
+      {
+       "effect": "Enemy Long-Range Attack Reduction",
+       "value": 1.5,
+       "unit": "percent"
+      }
+     ]
+    },
+    {
+     "star": 6,
+     "power": 11609,
+     "effects": [
+      {
+       "effect": "Attack Boost",
+       "value": 9.7,
+       "unit": "percent"
+      },
+      {
+       "effect": "Enemy Long-Range Attack Reduction",
+       "value": 14.5,
+       "unit": "percent"
+      },
+      {
+       "effect": "Increases Damage to Long-Range Troops",
+       "value": 0.2,
+       "unit": "percent"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "gold_gunner",
+   "name": "Gold: Gunner",
+   "gid": 570425391,
+   "maxStar": 15,
+   "stars": [
+    {
+     "star": 0,
+     "power": 893,
+     "effects": [
+      {
+       "effect": "Attack Boost",
+       "value": 1.3,
+       "unit": "percent"
+      }
+     ]
+    },
+    {
+     "star": 3,
+     "power": 3572,
+     "effects": [
+      {
+       "effect": "Attack Boost",
+       "value": 4.5,
+       "unit": "percent"
+      },
+      {
+       "effect": "Attack Against Mid-Range Boost",
+       "value": 1.5,
+       "unit": "percent"
+      }
+     ]
+    },
+    {
+     "star": 6,
+     "power": 11609,
+     "effects": [
+      {
+       "effect": "Attack Boost",
+       "value": 9.7,
+       "unit": "percent"
+      },
+      {
+       "effect": "Attack Against Mid-Range Boost",
+       "value": 14.5,
+       "unit": "percent"
+      },
+      {
+       "effect": "Reduces Damage taken from Mid-Range Troops",
+       "value": 0.2,
+       "unit": "percent"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "gold_shredder",
+   "name": "Gold: Shredder",
+   "gid": 570425385,
+   "maxStar": 15,
+   "stars": [
+    {
+     "star": 0,
+     "power": 893,
+     "effects": [
+      {
+       "effect": "HP Boost",
+       "value": 1.3,
+       "unit": "percent"
+      },
+      {
+       "effect": "Defense Boost",
+       "value": 1.3,
+       "unit": "percent"
+      }
+     ]
+    },
+    {
+     "star": 3,
+     "power": 3572,
+     "effects": [
+      {
+       "effect": "HP Boost",
+       "value": 4.5,
+       "unit": "percent"
+      },
+      {
+       "effect": "Defense Boost",
+       "value": 4.5,
+       "unit": "percent"
+      },
+      {
+       "effect": "Attack Against Mid-Range Boost",
+       "value": 1.5,
+       "unit": "percent"
+      }
+     ]
+    },
+    {
+     "star": 6,
+     "power": 11609,
+     "effects": [
+      {
+       "effect": "HP Boost",
+       "value": 9.7,
+       "unit": "percent"
+      },
+      {
+       "effect": "Defense Boost",
+       "value": 9.7,
+       "unit": "percent"
+      },
+      {
+       "effect": "Attack Against Mid-Range Boost",
+       "value": 14.5,
+       "unit": "percent"
+      },
+      {
+       "effect": "Reduces Damage taken from Mid-Range Troops",
+       "value": 0.2,
+       "unit": "percent"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "gold_tank",
+   "name": "Gold: Tank",
+   "gid": 570425384,
+   "maxStar": 15,
+   "stars": [
+    {
+     "star": 0,
+     "power": 893,
+     "effects": [
+      {
+       "effect": "Reduces Damage taken from Melee Troops",
+       "value": 0.9,
+       "unit": "percent"
+      }
+     ]
+    },
+    {
+     "star": 3,
+     "power": 3572,
+     "effects": [
+      {
+       "effect": "Reduces Damage taken from Melee Troops",
+       "value": 3.2,
+       "unit": "percent"
+      },
+      {
+       "effect": "Attack Against Melee Boost",
+       "value": 1.5,
+       "unit": "percent"
+      }
+     ]
+    },
+    {
+     "star": 6,
+     "power": 11609,
+     "effects": [
+      {
+       "effect": "Reduces Damage taken from Melee Troops",
+       "value": 7.5,
+       "unit": "percent"
+      },
+      {
+       "effect": "Attack Against Melee Boost",
+       "value": 14.5,
+       "unit": "percent"
+      },
+      {
+       "effect": "All Troops Block",
+       "value": 2,
+       "unit": "flat"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "gold_cannon",
+   "name": "Gold: Cannon",
+   "gid": 570425386,
+   "maxStar": 15,
+   "stars": [
+    {
+     "star": 0,
+     "power": 893,
+     "effects": [
+      {
+       "effect": "Reduces Damage taken from Long-Range Troops",
+       "value": 0.9,
+       "unit": "percent"
+      }
+     ]
+    },
+    {
+     "star": 3,
+     "power": 3572,
+     "effects": [
+      {
+       "effect": "Reduces Damage taken from Long-Range Troops",
+       "value": 3.2,
+       "unit": "percent"
+      },
+      {
+       "effect": "Enemy Mid-Range Attack Reduction",
+       "value": 1.5,
+       "unit": "percent"
+      }
+     ]
+    },
+    {
+     "star": 6,
+     "power": 11609,
+     "effects": [
+      {
+       "effect": "Reduces Damage taken from Long-Range Troops",
+       "value": 7.5,
+       "unit": "percent"
+      },
+      {
+       "effect": "Enemy Mid-Range Attack Reduction",
+       "value": 14.5,
+       "unit": "percent"
+      },
+      {
+       "effect": "Increases Damage to Mid-Range Troops",
+       "value": 0.2,
+       "unit": "percent"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "gold_raider",
+   "name": "Gold: Raider",
+   "gid": 570425387,
+   "maxStar": 15,
+   "stars": [
+    {
+     "star": 0,
+     "power": 893,
+     "effects": [
+      {
+       "effect": "Attack Boost",
+       "value": 1.3,
+       "unit": "percent"
+      }
+     ]
+    },
+    {
+     "star": 3,
+     "power": 3572,
+     "effects": [
+      {
+       "effect": "Attack Boost",
+       "value": 4.5,
+       "unit": "percent"
+      },
+      {
+       "effect": "Enemy Long-Range Attack Reduction",
+       "value": 1.5,
+       "unit": "percent"
+      }
+     ]
+    },
+    {
+     "star": 6,
+     "power": 11609,
+     "effects": [
+      {
+       "effect": "Attack Boost",
+       "value": 9.7,
+       "unit": "percent"
+      },
+      {
+       "effect": "Enemy Long-Range Attack Reduction",
+       "value": 14.5,
+       "unit": "percent"
+      },
+      {
+       "effect": "Increases Damage to Long-Range Troops",
+       "value": 0.2,
+       "unit": "percent"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "gold_shielder",
+   "name": "Gold: Shielder",
+   "gid": 570425395,
+   "maxStar": 15,
+   "stars": [
+    {
+     "star": 0,
+     "power": 893,
+     "effects": [
+      {
+       "effect": "HP Boost",
+       "value": 1.5,
+       "unit": "percent"
+      },
+      {
+       "effect": "Defense Boost",
+       "value": 1.5,
+       "unit": "percent"
+      }
+     ]
+    },
+    {
+     "star": 3,
+     "power": 3572,
+     "effects": [
+      {
+       "effect": "HP Boost",
+       "value": 5.3,
+       "unit": "percent"
+      },
+      {
+       "effect": "Defense Boost",
+       "value": 5.3,
+       "unit": "percent"
+      },
+      {
+       "effect": "Attack Against Long-Range Boost",
+       "value": 1.5,
+       "unit": "percent"
+      }
+     ]
+    },
+    {
+     "star": 6,
+     "power": 11609,
+     "effects": [
+      {
+       "effect": "HP Boost",
+       "value": 12.2,
+       "unit": "percent"
+      },
+      {
+       "effect": "Defense Boost",
+       "value": 12.2,
+       "unit": "percent"
+      },
+      {
+       "effect": "Attack Against Long-Range Boost",
+       "value": 14.5,
+       "unit": "percent"
+      },
+      {
+       "effect": "Reduces Damage taken from Long-Range Troops",
+       "value": 0.2,
+       "unit": "percent"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "dinosaur_egg_fossil",
+   "name": "Dinosaur Egg Fossil",
+   "gid": 570425363,
+   "maxStar": 18,
+   "stars": [
+    {
+     "star": 0,
+     "power": 323,
+     "effects": [
+      {
+       "effect": "Source Spirit Attack Boost",
+       "value": 10000,
+       "unit": "flat"
+      },
+      {
+       "effect": "Source Spirit HP Boost",
+       "value": 140000,
+       "unit": "flat"
+      }
+     ]
+    },
+    {
+     "star": 3,
+     "power": 1292,
+     "effects": [
+      {
+       "effect": "Source Spirit Attack Boost",
+       "value": 35000,
+       "unit": "flat"
+      },
+      {
+       "effect": "Source Spirit HP Boost",
+       "value": 490000,
+       "unit": "flat"
+      },
+      {
+       "effect": "Melee HP",
+       "value": 0.6,
+       "unit": "percent"
+      },
+      {
+       "effect": "Melee Defense",
+       "value": 0.6,
+       "unit": "percent"
+      }
+     ]
+    },
+    {
+     "star": 6,
+     "power": 4199,
+     "effects": [
+      {
+       "effect": "Source Spirit Attack Boost",
+       "value": 80000,
+       "unit": "flat"
+      },
+      {
+       "effect": "Source Spirit HP Boost",
+       "value": 1120000,
+       "unit": "flat"
+      },
+      {
+       "effect": "Melee HP",
+       "value": 6,
+       "unit": "percent"
+      },
+      {
+       "effect": "Melee Defense",
+       "value": 6,
+       "unit": "percent"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "gold_armored_soldier",
+   "name": "Gold: Armored Soldier",
+   "gid": 570425392,
+   "maxStar": 15,
+   "stars": [
+    {
+     "star": 0,
+     "power": 893,
+     "effects": [
+      {
+       "effect": "HP Boost",
+       "value": 1.5,
+       "unit": "percent"
+      },
+      {
+       "effect": "Defense Boost",
+       "value": 1.5,
+       "unit": "percent"
+      }
+     ]
+    },
+    {
+     "star": 3,
+     "power": 3572,
+     "effects": [
+      {
+       "effect": "HP Boost",
+       "value": 5.3,
+       "unit": "percent"
+      },
+      {
+       "effect": "Defense Boost",
+       "value": 5.3,
+       "unit": "percent"
+      },
+      {
+       "effect": "Enemy Melee Attack Reduction",
+       "value": 1.5,
+       "unit": "percent"
+      }
+     ]
+    },
+    {
+     "star": 6,
+     "power": 11609,
+     "effects": [
+      {
+       "effect": "HP Boost",
+       "value": 12.2,
+       "unit": "percent"
+      },
+      {
+       "effect": "Defense Boost",
+       "value": 12.2,
+       "unit": "percent"
+      },
+      {
+       "effect": "Enemy Melee Attack Reduction",
+       "value": 14.5,
+       "unit": "percent"
+      },
+      {
+       "effect": "All Troops Block",
+       "value": 2,
+       "unit": "flat"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "gold_emp_cannon",
+   "name": "Gold: EMP Cannon",
+   "gid": 570425393,
+   "maxStar": 15,
+   "stars": [
+    {
+     "star": 0,
+     "power": 893,
+     "effects": [
+      {
+       "effect": "Attack Boost",
+       "value": 1.5,
+       "unit": "percent"
+      }
+     ]
+    },
+    {
+     "star": 3,
+     "power": 3572,
+     "effects": [
+      {
+       "effect": "Attack Boost",
+       "value": 5.3,
+       "unit": "percent"
+      },
+      {
+       "effect": "Attack Against Long-Range Boost",
+       "value": 1.5,
+       "unit": "percent"
+      }
+     ]
+    },
+    {
+     "star": 6,
+     "power": 11609,
+     "effects": [
+      {
+       "effect": "Attack Boost",
+       "value": 12.2,
+       "unit": "percent"
+      },
+      {
+       "effect": "Attack Against Long-Range Boost",
+       "value": 14.5,
+       "unit": "percent"
+      },
+      {
+       "effect": "Reduces Damage taken from Long-Range Troops",
+       "value": 0.2,
+       "unit": "percent"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "gold_storm_trooper",
+   "name": "Gold: Storm Trooper",
+   "gid": 570425394,
+   "maxStar": 15,
+   "stars": [
+    {
+     "star": 0,
+     "power": 893,
+     "effects": [
+      {
+       "effect": "Reduces Damage taken from Mid-Range Troops",
+       "value": 0.9,
+       "unit": "percent"
+      }
+     ]
+    },
+    {
+     "star": 3,
+     "power": 3572,
+     "effects": [
+      {
+       "effect": "Reduces Damage taken from Mid-Range Troops",
+       "value": 3.2,
+       "unit": "percent"
+      },
+      {
+       "effect": "Enemy Mid-Range Attack Reduction",
+       "value": 1.5,
+       "unit": "percent"
+      }
+     ]
+    },
+    {
+     "star": 6,
+     "power": 11609,
+     "effects": [
+      {
+       "effect": "Reduces Damage taken from Mid-Range Troops",
+       "value": 7.5,
+       "unit": "percent"
+      },
+      {
+       "effect": "Enemy Mid-Range Attack Reduction",
+       "value": 14.5,
+       "unit": "percent"
+      },
+      {
+       "effect": "Increases Damage to Mid-Range Troops",
+       "value": 0.2,
+       "unit": "percent"
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,254 @@
+{
+ "fortification_levels": [
+  {
+   "level": 1,
+   "xp_needed": 0,
+   "effect": 2.1,
+   "multiplier": null
+  },
+  {
+   "level": 2,
+   "xp_needed": 500,
+   "effect": 2.52,
+   "multiplier": null
+  },
+  {
+   "level": 3,
+   "xp_needed": 800,
+   "effect": 2.94,
+   "multiplier": null
+  },
+  {
+   "level": 4,
+   "xp_needed": 1400,
+   "effect": 3.36,
+   "multiplier": null
+  },
+  {
+   "level": 5,
+   "xp_needed": 2300,
+   "effect": 3.78,
+   "multiplier": null
+  },
+  {
+   "level": 6,
+   "xp_needed": 3500,
+   "effect": 4.2,
+   "multiplier": "2x"
+  },
+  {
+   "level": 7,
+   "xp_needed": 5000,
+   "effect": 4.62,
+   "multiplier": null
+  },
+  {
+   "level": 8,
+   "xp_needed": 6800,
+   "effect": 5.04,
+   "multiplier": null
+  },
+  {
+   "level": 9,
+   "xp_needed": 8800,
+   "effect": 5.46,
+   "multiplier": null
+  },
+  {
+   "level": 10,
+   "xp_needed": 11000,
+   "effect": 5.88,
+   "multiplier": null
+  },
+  {
+   "level": 11,
+   "xp_needed": 13400,
+   "effect": 6.3,
+   "multiplier": "3x"
+  },
+  {
+   "level": 12,
+   "xp_needed": 16000,
+   "effect": 6.93,
+   "multiplier": null
+  },
+  {
+   "level": 13,
+   "xp_needed": 18800,
+   "effect": 7.56,
+   "multiplier": null
+  },
+  {
+   "level": 14,
+   "xp_needed": 21800,
+   "effect": 8.19,
+   "multiplier": null
+  },
+  {
+   "level": 15,
+   "xp_needed": 25000,
+   "effect": 8.82,
+   "multiplier": null
+  },
+  {
+   "level": 16,
+   "xp_needed": 28400,
+   "effect": 9.45,
+   "multiplier": null
+  },
+  {
+   "level": 17,
+   "xp_needed": 32000,
+   "effect": 10.08,
+   "multiplier": null
+  },
+  {
+   "level": 18,
+   "xp_needed": 35800,
+   "effect": 10.71,
+   "multiplier": null
+  },
+  {
+   "level": 19,
+   "xp_needed": 39800,
+   "effect": 11.34,
+   "multiplier": null
+  },
+  {
+   "level": 20,
+   "xp_needed": 44000,
+   "effect": 11.97,
+   "multiplier": null
+  },
+  {
+   "level": 21,
+   "xp_needed": 48400,
+   "effect": 12.6,
+   "multiplier": "6x"
+  },
+  {
+   "level": 22,
+   "xp_needed": 53000,
+   "effect": 13.44,
+   "multiplier": null
+  },
+  {
+   "level": 23,
+   "xp_needed": 57800,
+   "effect": 14.28,
+   "multiplier": null
+  },
+  {
+   "level": 24,
+   "xp_needed": 62800,
+   "effect": 15.12,
+   "multiplier": null
+  },
+  {
+   "level": 25,
+   "xp_needed": 68000,
+   "effect": 15.96,
+   "multiplier": null
+  },
+  {
+   "level": 26,
+   "xp_needed": 73400,
+   "effect": 16.8,
+   "multiplier": "8x"
+  },
+  {
+   "level": 27,
+   "xp_needed": 79000,
+   "effect": 17.85,
+   "multiplier": null
+  },
+  {
+   "level": 28,
+   "xp_needed": 84800,
+   "effect": 18.9,
+   "multiplier": null
+  },
+  {
+   "level": 29,
+   "xp_needed": 90800,
+   "effect": 19.95,
+   "multiplier": null
+  },
+  {
+   "level": 30,
+   "xp_needed": 97000,
+   "effect": 21,
+   "multiplier": "10x"
+  }
+ ],
+ "breakthrough_levels": [
+  {
+   "level": 1,
+   "fragments": 50
+  },
+  {
+   "level": 3,
+   "fragments": 22
+  },
+  {
+   "level": 4,
+   "fragments": 24
+  },
+  {
+   "level": 5,
+   "fragments": 26
+  },
+  {
+   "level": 6,
+   "fragments": 28
+  },
+  {
+   "level": 7,
+   "fragments": 30
+  },
+  {
+   "level": 8,
+   "fragments": 33
+  },
+  {
+   "level": 9,
+   "fragments": 36
+  },
+  {
+   "level": 10,
+   "fragments": 39
+  },
+  {
+   "level": 11,
+   "fragments": 42
+  },
+  {
+   "level": 12,
+   "fragments": 46
+  },
+  {
+   "level": 13,
+   "fragments": 50
+  },
+  {
+   "level": 14,
+   "fragments": 54
+  },
+  {
+   "level": 15,
+   "fragments": 58
+  },
+  {
+   "level": 16,
+   "fragments": 66
+  },
+  {
+   "level": 17,
+   "fragments": 76
+  },
+  {
+   "level": 18,
+   "fragments": 88
+  }
+ ]
+}

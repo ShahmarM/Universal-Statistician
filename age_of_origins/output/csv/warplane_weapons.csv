@@ -1,0 +1,521 @@
+Weapon,Level,Components,Buff,Evolution needed,Community priority
+Laser Cannon,1,6,Normal Attack: Shoots 1 laster every second,Enforcer Tier 0,low
+Laser Cannon,2,7,Normal Attack: Shoots 1 laster every second,Enforcer Tier 0,low
+Laser Cannon,3,9,Normal Attack: Shoots 1 laster every second,Enforcer Tier 0,low
+Laser Cannon,4,10,Normal Attack: Shoots 1 laster every second,Enforcer Tier 0,low
+Laser Cannon,5,12,Normal Attack: Shoots 1 laster every second,Enforcer Tier 0,low
+Laser Cannon,6,15,Normal Attack: Shoots 1 laster every second,Enforcer Tier 0,low
+Laser Cannon,7,18,Normal Attack: Shoots 1 laster every second,Enforcer Tier 0,low
+Laser Cannon,8,20,Normal Attack: Shoots 1 laster every second,Enforcer Tier 0,low
+Laser Cannon,9,21,Normal Attack: Shoots 1 laster every second,Enforcer Tier 0,low
+Laser Cannon,10,24,Normal Attack: Shoots 1 laster every second,Enforcer Tier 0,low
+Laser Cannon,11,30,Normal Attack: Shoots 1 laster every second,Enforcer Tier 0,low
+Laser Cannon,12,33,Normal Attack: Shoots 1 laster every second,Enforcer Tier 0,low
+Intercept System,1,3,Reduces Damage from Titans,Enforcer Tier 4,mid
+Intercept System,2,4,Reduces Damage from Titans,Enforcer Tier 4,mid
+Intercept System,3,4,Reduces Damage from Titans,Enforcer Tier 4,mid
+Intercept System,4,5,Reduces Damage from Titans,Enforcer Tier 4,mid
+Intercept System,5,6,Reduces Damage from Titans,Enforcer Tier 4,mid
+Intercept System,6,7,Reduces Damage from Titans,Enforcer Tier 4,mid
+Intercept System,7,8,Reduces Damage from Titans,Enforcer Tier 4,mid
+Intercept System,8,10,Reduces Damage from Titans,Enforcer Tier 4,mid
+Intercept System,9,11,Reduces Damage from Titans,Enforcer Tier 4,mid
+Intercept System,10,13,Reduces Damage from Titans,Enforcer Tier 4,mid
+Intercept System,11,14,Reduces Damage from Titans,Enforcer Tier 4,mid
+Intercept System,12,16,Reduces Damage from Titans,Enforcer Tier 4,mid
+Intercept System,13,18,Reduces Damage from Titans,Enforcer Tier 4,mid
+Intercept System,14,20,Reduces Damage from Titans,Enforcer Tier 4,mid
+Intercept System,15,22,Reduces Damage from Titans,Enforcer Tier 4,mid
+Intercept System,16,23,Reduces Damage from Titans,Enforcer Tier 4,mid
+Intercept System,17,25,Reduces Damage from Titans,Enforcer Tier 4,mid
+Intercept System,18,27,Reduces Damage from Titans,Enforcer Tier 4,mid
+Intercept System,19,29,Reduces Damage from Titans,Enforcer Tier 4,mid
+Intercept System,20,30,Reduces Damage from Titans,Enforcer Tier 4,mid
+Intercept System,21,31,Reduces Damage from Titans,Enforcer Tier 4,mid
+Intercept System,22,32,Reduces Damage from Titans,Enforcer Tier 4,mid
+Intercept System,23,34,Reduces Damage from Titans,Enforcer Tier 4,mid
+Intercept System,24,35,Reduces Damage from Titans,Enforcer Tier 4,mid
+Melee Weakness Recognition,1,3,Increases attack to Melee Troops,Enforcer Tier 7,low
+Melee Weakness Recognition,2,4,Increases attack to Melee Troops,Enforcer Tier 7,low
+Melee Weakness Recognition,3,4,Increases attack to Melee Troops,Enforcer Tier 7,low
+Melee Weakness Recognition,4,5,Increases attack to Melee Troops,Enforcer Tier 7,low
+Melee Weakness Recognition,5,6,Increases attack to Melee Troops,Enforcer Tier 7,low
+Melee Weakness Recognition,6,7,Increases attack to Melee Troops,Enforcer Tier 7,low
+Melee Weakness Recognition,7,8,Increases attack to Melee Troops,Enforcer Tier 7,low
+Melee Weakness Recognition,8,10,Increases attack to Melee Troops,Enforcer Tier 7,low
+Melee Weakness Recognition,9,11,Increases attack to Melee Troops,Enforcer Tier 7,low
+Melee Weakness Recognition,10,13,Increases attack to Melee Troops,Enforcer Tier 7,low
+Melee Weakness Recognition,11,14,Increases attack to Melee Troops,Enforcer Tier 7,low
+Melee Weakness Recognition,12,16,Increases attack to Melee Troops,Enforcer Tier 7,low
+Melee Weakness Recognition,13,18,Increases attack to Melee Troops,Enforcer Tier 7,low
+Melee Weakness Recognition,14,20,Increases attack to Melee Troops,Enforcer Tier 7,low
+Melee Weakness Recognition,15,22,Increases attack to Melee Troops,Enforcer Tier 7,low
+Melee Weakness Recognition,16,23,Increases attack to Melee Troops,Enforcer Tier 7,low
+Melee Weakness Recognition,17,25,Increases attack to Melee Troops,Enforcer Tier 7,low
+Melee Weakness Recognition,18,27,Increases attack to Melee Troops,Enforcer Tier 7,low
+Melee Weakness Recognition,19,29,Increases attack to Melee Troops,Enforcer Tier 7,low
+Melee Weakness Recognition,20,30,Increases attack to Melee Troops,Enforcer Tier 7,low
+Melee Weakness Recognition,21,31,Increases attack to Melee Troops,Enforcer Tier 7,low
+Melee Weakness Recognition,22,32,Increases attack to Melee Troops,Enforcer Tier 7,low
+Melee Weakness Recognition,23,34,Increases attack to Melee Troops,Enforcer Tier 7,low
+Melee Weakness Recognition,24,35,Increases attack to Melee Troops,Enforcer Tier 7,low
+Tactical Missile,1,7,Warplane has 30% chance of 2 additional missiles,Explorer Tier 0,low
+Tactical Missile,2,8,Warplane has 30% chance of 2 additional missiles,Explorer Tier 0,low
+Tactical Missile,3,11,Warplane has 30% chance of 2 additional missiles,Explorer Tier 0,low
+Tactical Missile,4,12,Warplane has 30% chance of 2 additional missiles,Explorer Tier 0,low
+Tactical Missile,5,14,Warplane has 30% chance of 2 additional missiles,Explorer Tier 0,low
+Tactical Missile,6,18,Warplane has 30% chance of 2 additional missiles,Explorer Tier 0,low
+Tactical Missile,7,20,Warplane has 30% chance of 2 additional missiles,Explorer Tier 0,low
+Tactical Missile,8,24,Warplane has 30% chance of 2 additional missiles,Explorer Tier 0,low
+Tactical Missile,9,26,Warplane has 30% chance of 2 additional missiles,Explorer Tier 0,low
+Tactical Missile,10,31,Warplane has 30% chance of 2 additional missiles,Explorer Tier 0,low
+Tactical Missile,11,36,Warplane has 30% chance of 2 additional missiles,Explorer Tier 0,low
+Tactical Missile,12,41,Warplane has 30% chance of 2 additional missiles,Explorer Tier 0,low
+Added Firepower,1,4,Additionally increases Attack of every troop,Explorer Tier 4,low
+Added Firepower,2,5,Additionally increases Attack of every troop,Explorer Tier 4,low
+Added Firepower,3,5,Additionally increases Attack of every troop,Explorer Tier 4,low
+Added Firepower,4,6,Additionally increases Attack of every troop,Explorer Tier 4,low
+Added Firepower,5,8,Additionally increases Attack of every troop,Explorer Tier 4,low
+Added Firepower,6,9,Additionally increases Attack of every troop,Explorer Tier 4,low
+Added Firepower,7,11,Additionally increases Attack of every troop,Explorer Tier 4,low
+Added Firepower,8,12,Additionally increases Attack of every troop,Explorer Tier 4,low
+Added Firepower,9,14,Additionally increases Attack of every troop,Explorer Tier 4,low
+Added Firepower,10,16,Additionally increases Attack of every troop,Explorer Tier 4,low
+Added Firepower,11,18,Additionally increases Attack of every troop,Explorer Tier 4,low
+Added Firepower,12,20,Additionally increases Attack of every troop,Explorer Tier 4,low
+Added Firepower,13,23,Additionally increases Attack of every troop,Explorer Tier 4,low
+Added Firepower,14,25,Additionally increases Attack of every troop,Explorer Tier 4,low
+Added Firepower,15,27,Additionally increases Attack of every troop,Explorer Tier 4,low
+Added Firepower,16,29,Additionally increases Attack of every troop,Explorer Tier 4,low
+Added Firepower,17,32,Additionally increases Attack of every troop,Explorer Tier 4,low
+Added Firepower,18,34,Additionally increases Attack of every troop,Explorer Tier 4,low
+Added Firepower,19,36,Additionally increases Attack of every troop,Explorer Tier 4,low
+Added Firepower,20,38,Additionally increases Attack of every troop,Explorer Tier 4,low
+Added Firepower,21,39,Additionally increases Attack of every troop,Explorer Tier 4,low
+Added Firepower,22,41,Additionally increases Attack of every troop,Explorer Tier 4,low
+Added Firepower,23,42,Additionally increases Attack of every troop,Explorer Tier 4,low
+Added Firepower,24,44,Additionally increases Attack of every troop,Explorer Tier 4,low
+Long-Range Weakness Recognition,1,4,Increases attack to Long Range Troops,Explorer Tier 7,low
+Long-Range Weakness Recognition,2,5,Increases attack to Long Range Troops,Explorer Tier 7,low
+Long-Range Weakness Recognition,3,5,Increases attack to Long Range Troops,Explorer Tier 7,low
+Long-Range Weakness Recognition,4,6,Increases attack to Long Range Troops,Explorer Tier 7,low
+Long-Range Weakness Recognition,5,8,Increases attack to Long Range Troops,Explorer Tier 7,low
+Long-Range Weakness Recognition,6,9,Increases attack to Long Range Troops,Explorer Tier 7,low
+Long-Range Weakness Recognition,7,11,Increases attack to Long Range Troops,Explorer Tier 7,low
+Long-Range Weakness Recognition,8,12,Increases attack to Long Range Troops,Explorer Tier 7,low
+Long-Range Weakness Recognition,9,14,Increases attack to Long Range Troops,Explorer Tier 7,low
+Long-Range Weakness Recognition,10,16,Increases attack to Long Range Troops,Explorer Tier 7,low
+Long-Range Weakness Recognition,11,18,Increases attack to Long Range Troops,Explorer Tier 7,low
+Long-Range Weakness Recognition,12,20,Increases attack to Long Range Troops,Explorer Tier 7,low
+Long-Range Weakness Recognition,13,23,Increases attack to Long Range Troops,Explorer Tier 7,low
+Long-Range Weakness Recognition,14,25,Increases attack to Long Range Troops,Explorer Tier 7,low
+Long-Range Weakness Recognition,15,27,Increases attack to Long Range Troops,Explorer Tier 7,low
+Long-Range Weakness Recognition,16,29,Increases attack to Long Range Troops,Explorer Tier 7,low
+Long-Range Weakness Recognition,17,32,Increases attack to Long Range Troops,Explorer Tier 7,low
+Long-Range Weakness Recognition,18,34,Increases attack to Long Range Troops,Explorer Tier 7,low
+Long-Range Weakness Recognition,19,36,Increases attack to Long Range Troops,Explorer Tier 7,low
+Long-Range Weakness Recognition,20,38,Increases attack to Long Range Troops,Explorer Tier 7,low
+Long-Range Weakness Recognition,21,39,Increases attack to Long Range Troops,Explorer Tier 7,low
+Long-Range Weakness Recognition,22,41,Increases attack to Long Range Troops,Explorer Tier 7,low
+Long-Range Weakness Recognition,23,42,Increases attack to Long Range Troops,Explorer Tier 7,low
+Long-Range Weakness Recognition,24,44,Increases attack to Long Range Troops,Explorer Tier 7,low
+Mechanical Golem,1,8,Golems,Guardian Tier 0,high
+Mechanical Golem,2,12,Golems,Guardian Tier 0,high
+Mechanical Golem,3,13,Golems,Guardian Tier 0,high
+Mechanical Golem,4,15,Golems,Guardian Tier 0,high
+Mechanical Golem,5,18,Golems,Guardian Tier 0,high
+Mechanical Golem,6,21,Golems,Guardian Tier 0,high
+Mechanical Golem,7,24,Golems,Guardian Tier 0,high
+Mechanical Golem,8,30,Golems,Guardian Tier 0,high
+Mechanical Golem,9,33,Golems,Guardian Tier 0,high
+Mechanical Golem,10,38,Golems,Guardian Tier 0,high
+Mechanical Golem,11,42,Golems,Guardian Tier 0,high
+Mechanical Golem,12,49,Golems,Guardian Tier 0,high
+Mechanical Golem,13,54,Golems,Guardian Tier 0,high
+Mechanical Golem,14,59,Golems,Guardian Tier 0,high
+Mechanical Golem,15,66,Golems,Guardian Tier 0,high
+Mechanical Golem,16,70,Golems,Guardian Tier 0,high
+Mechanical Golem,17,75,Golems,Guardian Tier 0,high
+Mechanical Golem,18,80,Golems,Guardian Tier 0,high
+Mechanical Golem,19,87,Golems,Guardian Tier 0,high
+Mechanical Golem,20,90,Golems,Guardian Tier 0,high
+Added Armor,1,5,Additionally increases HP of every Troop,Guardian Tier 4,low
+Added Armor,2,5,Additionally increases HP of every Troop,Guardian Tier 4,low
+Added Armor,3,6,Additionally increases HP of every Troop,Guardian Tier 4,low
+Added Armor,4,7,Additionally increases HP of every Troop,Guardian Tier 4,low
+Added Armor,5,9,Additionally increases HP of every Troop,Guardian Tier 4,low
+Added Armor,6,11,Additionally increases HP of every Troop,Guardian Tier 4,low
+Added Armor,7,13,Additionally increases HP of every Troop,Guardian Tier 4,low
+Added Armor,8,14,Additionally increases HP of every Troop,Guardian Tier 4,low
+Added Armor,9,16,Additionally increases HP of every Troop,Guardian Tier 4,low
+Added Armor,10,19,Additionally increases HP of every Troop,Guardian Tier 4,low
+Added Armor,11,22,Additionally increases HP of every Troop,Guardian Tier 4,low
+Added Armor,12,24,Additionally increases HP of every Troop,Guardian Tier 4,low
+Added Armor,13,27,Additionally increases HP of every Troop,Guardian Tier 4,low
+Added Armor,14,30,Additionally increases HP of every Troop,Guardian Tier 4,low
+Added Armor,15,32,Additionally increases HP of every Troop,Guardian Tier 4,low
+Added Armor,16,35,Additionally increases HP of every Troop,Guardian Tier 4,low
+Added Armor,17,38,Additionally increases HP of every Troop,Guardian Tier 4,low
+Added Armor,18,41,Additionally increases HP of every Troop,Guardian Tier 4,low
+Added Armor,19,43,Additionally increases HP of every Troop,Guardian Tier 4,low
+Added Armor,20,45,Additionally increases HP of every Troop,Guardian Tier 4,low
+Added Armor,21,47,Additionally increases HP of every Troop,Guardian Tier 4,low
+Added Armor,22,49,Additionally increases HP of every Troop,Guardian Tier 4,low
+Added Armor,23,50,Additionally increases HP of every Troop,Guardian Tier 4,low
+Added Armor,24,52,Additionally increases HP of every Troop,Guardian Tier 4,low
+Mid-Range Weakness Recognition,1,5,Increases Attack to Mid Range Troops,Guardian Tier 7,mid
+Mid-Range Weakness Recognition,2,5,Increases Attack to Mid Range Troops,Guardian Tier 7,mid
+Mid-Range Weakness Recognition,3,6,Increases Attack to Mid Range Troops,Guardian Tier 7,mid
+Mid-Range Weakness Recognition,4,7,Increases Attack to Mid Range Troops,Guardian Tier 7,mid
+Mid-Range Weakness Recognition,5,9,Increases Attack to Mid Range Troops,Guardian Tier 7,mid
+Mid-Range Weakness Recognition,6,11,Increases Attack to Mid Range Troops,Guardian Tier 7,mid
+Mid-Range Weakness Recognition,7,13,Increases Attack to Mid Range Troops,Guardian Tier 7,mid
+Mid-Range Weakness Recognition,8,14,Increases Attack to Mid Range Troops,Guardian Tier 7,mid
+Mid-Range Weakness Recognition,9,16,Increases Attack to Mid Range Troops,Guardian Tier 7,mid
+Mid-Range Weakness Recognition,10,19,Increases Attack to Mid Range Troops,Guardian Tier 7,mid
+Mid-Range Weakness Recognition,11,22,Increases Attack to Mid Range Troops,Guardian Tier 7,mid
+Mid-Range Weakness Recognition,12,24,Increases Attack to Mid Range Troops,Guardian Tier 7,mid
+Mid-Range Weakness Recognition,13,27,Increases Attack to Mid Range Troops,Guardian Tier 7,mid
+Mid-Range Weakness Recognition,14,30,Increases Attack to Mid Range Troops,Guardian Tier 7,mid
+Mid-Range Weakness Recognition,15,32,Increases Attack to Mid Range Troops,Guardian Tier 7,mid
+Mid-Range Weakness Recognition,16,35,Increases Attack to Mid Range Troops,Guardian Tier 7,mid
+Mid-Range Weakness Recognition,17,38,Increases Attack to Mid Range Troops,Guardian Tier 7,mid
+Mid-Range Weakness Recognition,18,41,Increases Attack to Mid Range Troops,Guardian Tier 7,mid
+Mid-Range Weakness Recognition,19,43,Increases Attack to Mid Range Troops,Guardian Tier 7,mid
+Mid-Range Weakness Recognition,20,45,Increases Attack to Mid Range Troops,Guardian Tier 7,mid
+Mid-Range Weakness Recognition,21,47,Increases Attack to Mid Range Troops,Guardian Tier 7,mid
+Mid-Range Weakness Recognition,22,49,Increases Attack to Mid Range Troops,Guardian Tier 7,mid
+Mid-Range Weakness Recognition,23,50,Increases Attack to Mid Range Troops,Guardian Tier 7,mid
+Mid-Range Weakness Recognition,24,52,Increases Attack to Mid Range Troops,Guardian Tier 7,mid
+Fortify Laser Energy,1,10,% increase in 1.5x Critical Strike Damage,Lacerator Tier 0,mid
+Fortify Laser Energy,2,12,% increase in 1.5x Critical Strike Damage,Lacerator Tier 0,mid
+Fortify Laser Energy,3,15,% increase in 1.5x Critical Strike Damage,Lacerator Tier 0,mid
+Fortify Laser Energy,4,17,% increase in 1.5x Critical Strike Damage,Lacerator Tier 0,mid
+Fortify Laser Energy,5,22,% increase in 1.5x Critical Strike Damage,Lacerator Tier 0,mid
+Fortify Laser Energy,6,27,% increase in 1.5x Critical Strike Damage,Lacerator Tier 0,mid
+Fortify Laser Energy,7,32,% increase in 1.5x Critical Strike Damage,Lacerator Tier 0,mid
+Fortify Engine,1,6,Increase warplane attack,Lacerator Tier 4,low
+Fortify Engine,2,7,Increase warplane attack,Lacerator Tier 4,low
+Fortify Engine,3,8,Increase warplane attack,Lacerator Tier 4,low
+Fortify Engine,4,9,Increase warplane attack,Lacerator Tier 4,low
+Fortify Engine,5,11,Increase warplane attack,Lacerator Tier 4,low
+Fortify Engine,6,13,Increase warplane attack,Lacerator Tier 4,low
+Fortify Engine,7,15,Increase warplane attack,Lacerator Tier 4,low
+Fortify Engine,8,18,Increase warplane attack,Lacerator Tier 4,low
+Fortify Engine,9,20,Increase warplane attack,Lacerator Tier 4,low
+Fortify Engine,10,23,Increase warplane attack,Lacerator Tier 4,low
+Fortify Engine,11,26,Increase warplane attack,Lacerator Tier 4,low
+Fortify Engine,12,30,Increase warplane attack,Lacerator Tier 4,low
+Fortify Engine,13,33,Increase warplane attack,Lacerator Tier 4,low
+Fortify Engine,14,36,Increase warplane attack,Lacerator Tier 4,low
+Fortify Engine,15,40,Increase warplane attack,Lacerator Tier 4,low
+Fortify Engine,16,43,Increase warplane attack,Lacerator Tier 4,low
+Fortify Engine,17,46,Increase warplane attack,Lacerator Tier 4,low
+Fortify Engine,18,50,Increase warplane attack,Lacerator Tier 4,low
+Fortify Engine,19,53,Increase warplane attack,Lacerator Tier 4,low
+Fortify Engine,20,55,Increase warplane attack,Lacerator Tier 4,low
+Fortify Engine,21,57,Increase warplane attack,Lacerator Tier 4,low
+Fortify Engine,22,59,Increase warplane attack,Lacerator Tier 4,low
+Fortify Engine,23,62,Increase warplane attack,Lacerator Tier 4,low
+Fortify Engine,24,64,Increase warplane attack,Lacerator Tier 4,low
+Fortify Engine,25,66,Increase warplane attack,Lacerator Tier 4,low
+Fortify Engine,26,70,Increase warplane attack,Lacerator Tier 4,low
+Firepower Boost,1,6,Attack Increase All Troops %,Lacerator Tier 7,high
+Firepower Boost,2,7,Attack Increase All Troops %,Lacerator Tier 7,high
+Firepower Boost,3,8,Attack Increase All Troops %,Lacerator Tier 7,high
+Firepower Boost,4,9,Attack Increase All Troops %,Lacerator Tier 7,high
+Firepower Boost,5,11,Attack Increase All Troops %,Lacerator Tier 7,high
+Firepower Boost,6,13,Attack Increase All Troops %,Lacerator Tier 7,high
+Firepower Boost,7,15,Attack Increase All Troops %,Lacerator Tier 7,high
+Firepower Boost,8,18,Attack Increase All Troops %,Lacerator Tier 7,high
+Firepower Boost,9,20,Attack Increase All Troops %,Lacerator Tier 7,high
+Firepower Boost,10,23,Attack Increase All Troops %,Lacerator Tier 7,high
+Firepower Boost,11,26,Attack Increase All Troops %,Lacerator Tier 7,high
+Firepower Boost,12,30,Attack Increase All Troops %,Lacerator Tier 7,high
+Firepower Boost,13,33,Attack Increase All Troops %,Lacerator Tier 7,high
+Firepower Boost,14,36,Attack Increase All Troops %,Lacerator Tier 7,high
+Firepower Boost,15,40,Attack Increase All Troops %,Lacerator Tier 7,high
+Firepower Boost,16,43,Attack Increase All Troops %,Lacerator Tier 7,high
+Firepower Boost,17,46,Attack Increase All Troops %,Lacerator Tier 7,high
+Firepower Boost,18,50,Attack Increase All Troops %,Lacerator Tier 7,high
+Firepower Boost,19,53,Attack Increase All Troops %,Lacerator Tier 7,high
+Firepower Boost,20,55,Attack Increase All Troops %,Lacerator Tier 7,high
+Firepower Boost,21,57,Attack Increase All Troops %,Lacerator Tier 7,high
+Firepower Boost,22,59,Attack Increase All Troops %,Lacerator Tier 7,high
+Firepower Boost,23,62,Attack Increase All Troops %,Lacerator Tier 7,high
+Firepower Boost,24,64,Attack Increase All Troops %,Lacerator Tier 7,high
+Firepower Boost,25,66,Attack Increase All Troops %,Lacerator Tier 7,high
+Firepower Boost,26,70,Attack Increase All Troops %,Lacerator Tier 7,high
+EMP Disruptor Ammo,1,18,"Launches 1 time every 10 seconds, shooting 3 emp. Every emp deals damage and has % chance of trapping target in disruptor status",Trailblazer Tier 0,low
+EMP Disruptor Ammo,2,24,"Launches 1 time every 10 seconds, shooting 3 emp. Every emp deals damage and has % chance of trapping target in disruptor status",Trailblazer Tier 0,low
+EMP Disruptor Ammo,3,30,"Launches 1 time every 10 seconds, shooting 3 emp. Every emp deals damage and has % chance of trapping target in disruptor status",Trailblazer Tier 0,low
+EMP Disruptor Ammo,4,33,"Launches 1 time every 10 seconds, shooting 3 emp. Every emp deals damage and has % chance of trapping target in disruptor status",Trailblazer Tier 0,low
+EMP Disruptor Ammo,5,39,"Launches 1 time every 10 seconds, shooting 3 emp. Every emp deals damage and has % chance of trapping target in disruptor status",Trailblazer Tier 0,low
+EMP Disruptor Ammo,6,42,"Launches 1 time every 10 seconds, shooting 3 emp. Every emp deals damage and has % chance of trapping target in disruptor status",Trailblazer Tier 0,low
+EMP Disruptor Ammo,7,48,"Launches 1 time every 10 seconds, shooting 3 emp. Every emp deals damage and has % chance of trapping target in disruptor status",Trailblazer Tier 0,low
+EMP Disruptor Ammo,8,54,"Launches 1 time every 10 seconds, shooting 3 emp. Every emp deals damage and has % chance of trapping target in disruptor status",Trailblazer Tier 0,low
+EMP Disruptor Ammo,9,57,"Launches 1 time every 10 seconds, shooting 3 emp. Every emp deals damage and has % chance of trapping target in disruptor status",Trailblazer Tier 0,low
+EMP Disruptor Ammo,10,63,"Launches 1 time every 10 seconds, shooting 3 emp. Every emp deals damage and has % chance of trapping target in disruptor status",Trailblazer Tier 0,low
+EMP Disruptor Ammo,11,66,"Launches 1 time every 10 seconds, shooting 3 emp. Every emp deals damage and has % chance of trapping target in disruptor status",Trailblazer Tier 0,low
+EMP Disruptor Ammo,12,72,"Launches 1 time every 10 seconds, shooting 3 emp. Every emp deals damage and has % chance of trapping target in disruptor status",Trailblazer Tier 0,low
+EMP Disruptor Ammo,13,78,"Launches 1 time every 10 seconds, shooting 3 emp. Every emp deals damage and has % chance of trapping target in disruptor status",Trailblazer Tier 0,low
+Fortify Disruptor,1,10,Increases chance of EMP disruptor,Trailblazer Tier 4,low
+Fortify Disruptor,2,12,Increases chance of EMP disruptor,Trailblazer Tier 4,low
+Fortify Disruptor,3,14,Increases chance of EMP disruptor,Trailblazer Tier 4,low
+Fortify Disruptor,4,17,Increases chance of EMP disruptor,Trailblazer Tier 4,low
+Fortify Disruptor,5,19,Increases chance of EMP disruptor,Trailblazer Tier 4,low
+Fortify Disruptor,6,22,Increases chance of EMP disruptor,Trailblazer Tier 4,low
+Fortify Disruptor,7,24,Increases chance of EMP disruptor,Trailblazer Tier 4,low
+Fortify Disruptor,8,26,Increases chance of EMP disruptor,Trailblazer Tier 4,low
+Fortify Disruptor,9,29,Increases chance of EMP disruptor,Trailblazer Tier 4,low
+Fortify Disruptor,10,31,Increases chance of EMP disruptor,Trailblazer Tier 4,low
+Fortify Disruptor,11,34,Increases chance of EMP disruptor,Trailblazer Tier 4,low
+Fortify Disruptor,12,36,Increases chance of EMP disruptor,Trailblazer Tier 4,low
+Fortify Disruptor,13,38,Increases chance of EMP disruptor,Trailblazer Tier 4,low
+Fortify Disruptor,14,41,Increases chance of EMP disruptor,Trailblazer Tier 4,low
+Fortify Disruptor,15,43,Increases chance of EMP disruptor,Trailblazer Tier 4,low
+Fortify Disruptor,16,46,Increases chance of EMP disruptor,Trailblazer Tier 4,low
+Fortify Disruptor,17,48,Increases chance of EMP disruptor,Trailblazer Tier 4,low
+Fortify Disruptor,18,50,Increases chance of EMP disruptor,Trailblazer Tier 4,low
+Fortify Disruptor,19,53,Increases chance of EMP disruptor,Trailblazer Tier 4,low
+Fortify Disruptor,20,55,Increases chance of EMP disruptor,Trailblazer Tier 4,low
+Fortify Disruptor,21,58,Increases chance of EMP disruptor,Trailblazer Tier 4,low
+Fortify Disruptor,22,60,Increases chance of EMP disruptor,Trailblazer Tier 4,low
+Fortify Disruptor,23,62,Increases chance of EMP disruptor,Trailblazer Tier 4,low
+Fortify Disruptor,24,65,Increases chance of EMP disruptor,Trailblazer Tier 4,low
+Fortify Disruptor,25,67,Increases chance of EMP disruptor,Trailblazer Tier 4,low
+Precise Firepower,1,10,Increase damage to Titans,Trailblazer Tier 7,high
+Precise Firepower,2,12,Increase damage to Titans,Trailblazer Tier 7,high
+Precise Firepower,3,14,Increase damage to Titans,Trailblazer Tier 7,high
+Precise Firepower,4,17,Increase damage to Titans,Trailblazer Tier 7,high
+Precise Firepower,5,19,Increase damage to Titans,Trailblazer Tier 7,high
+Precise Firepower,6,22,Increase damage to Titans,Trailblazer Tier 7,high
+Precise Firepower,7,24,Increase damage to Titans,Trailblazer Tier 7,high
+Precise Firepower,8,26,Increase damage to Titans,Trailblazer Tier 7,high
+Precise Firepower,9,29,Increase damage to Titans,Trailblazer Tier 7,high
+Precise Firepower,10,31,Increase damage to Titans,Trailblazer Tier 7,high
+Precise Firepower,11,34,Increase damage to Titans,Trailblazer Tier 7,high
+Precise Firepower,12,36,Increase damage to Titans,Trailblazer Tier 7,high
+Precise Firepower,13,38,Increase damage to Titans,Trailblazer Tier 7,high
+Precise Firepower,14,41,Increase damage to Titans,Trailblazer Tier 7,high
+Precise Firepower,15,43,Increase damage to Titans,Trailblazer Tier 7,high
+Precise Firepower,16,46,Increase damage to Titans,Trailblazer Tier 7,high
+Precise Firepower,17,48,Increase damage to Titans,Trailblazer Tier 7,high
+Precise Firepower,18,50,Increase damage to Titans,Trailblazer Tier 7,high
+Precise Firepower,19,53,Increase damage to Titans,Trailblazer Tier 7,high
+Precise Firepower,20,55,Increase damage to Titans,Trailblazer Tier 7,high
+Precise Firepower,21,58,Increase damage to Titans,Trailblazer Tier 7,high
+Precise Firepower,22,60,Increase damage to Titans,Trailblazer Tier 7,high
+Precise Firepower,23,62,Increase damage to Titans,Trailblazer Tier 7,high
+Precise Firepower,24,65,Increase damage to Titans,Trailblazer Tier 7,high
+Precise Firepower,25,67,Increase damage to Titans,Trailblazer Tier 7,high
+Laser Disruptor,1,22,Increase % chance of Disruptor after laser cannon or ultra pulse laser,Inquisitor Tier 0,high
+Laser Disruptor,2,26,Increase % chance of Disruptor after laser cannon or ultra pulse laser,Inquisitor Tier 0,high
+Laser Disruptor,3,30,Increase % chance of Disruptor after laser cannon or ultra pulse laser,Inquisitor Tier 0,high
+Laser Disruptor,4,37,Increase % chance of Disruptor after laser cannon or ultra pulse laser,Inquisitor Tier 0,high
+Laser Disruptor,5,41,Increase % chance of Disruptor after laser cannon or ultra pulse laser,Inquisitor Tier 0,high
+Laser Disruptor,6,48,Increase % chance of Disruptor after laser cannon or ultra pulse laser,Inquisitor Tier 0,high
+Laser Disruptor,7,52,Increase % chance of Disruptor after laser cannon or ultra pulse laser,Inquisitor Tier 0,high
+Laser Disruptor,8,56,Increase % chance of Disruptor after laser cannon or ultra pulse laser,Inquisitor Tier 0,high
+Laser Disruptor,9,63,Increase % chance of Disruptor after laser cannon or ultra pulse laser,Inquisitor Tier 0,high
+Laser Disruptor,10,67,Increase % chance of Disruptor after laser cannon or ultra pulse laser,Inquisitor Tier 0,high
+Laser Disruptor,11,74,Increase % chance of Disruptor after laser cannon or ultra pulse laser,Inquisitor Tier 0,high
+Laser Disruptor,12,78,Increase % chance of Disruptor after laser cannon or ultra pulse laser,Inquisitor Tier 0,high
+Laser Disruptor,13,82,Increase % chance of Disruptor after laser cannon or ultra pulse laser,Inquisitor Tier 0,high
+Laser Disruptor,14,89,Increase % chance of Disruptor after laser cannon or ultra pulse laser,Inquisitor Tier 0,high
+Laser Disruptor,15,93,Increase % chance of Disruptor after laser cannon or ultra pulse laser,Inquisitor Tier 0,high
+Laser Disruptor,16,100,Increase % chance of Disruptor after laser cannon or ultra pulse laser,Inquisitor Tier 0,high
+Laser Disruptor,17,104,Increase % chance of Disruptor after laser cannon or ultra pulse laser,Inquisitor Tier 0,high
+Laser Disruptor,18,108,Increase % chance of Disruptor after laser cannon or ultra pulse laser,Inquisitor Tier 0,high
+Laser Disruptor,19,115,Increase % chance of Disruptor after laser cannon or ultra pulse laser,Inquisitor Tier 0,high
+Laser Disruptor,20,119,Increase % chance of Disruptor after laser cannon or ultra pulse laser,Inquisitor Tier 0,high
+Laser Disruptor,21,126,Increase % chance of Disruptor after laser cannon or ultra pulse laser,Inquisitor Tier 0,high
+Laser Disruptor,22,130,Increase % chance of Disruptor after laser cannon or ultra pulse laser,Inquisitor Tier 0,high
+Laser Disruptor,23,134,Increase % chance of Disruptor after laser cannon or ultra pulse laser,Inquisitor Tier 0,high
+Laser Disruptor,24,141,Increase % chance of Disruptor after laser cannon or ultra pulse laser,Inquisitor Tier 0,high
+Magnetic Disruptor,1,10,Reduces Damage dealt by enemy targets ,Inquisitor Tier 4,high
+Magnetic Disruptor,2,13,Reduces Damage dealt by enemy targets ,Inquisitor Tier 4,high
+Magnetic Disruptor,3,16,Reduces Damage dealt by enemy targets ,Inquisitor Tier 4,high
+Magnetic Disruptor,4,18,Reduces Damage dealt by enemy targets ,Inquisitor Tier 4,high
+Magnetic Disruptor,5,21,Reduces Damage dealt by enemy targets ,Inquisitor Tier 4,high
+Magnetic Disruptor,6,23,Reduces Damage dealt by enemy targets ,Inquisitor Tier 4,high
+Magnetic Disruptor,7,26,Reduces Damage dealt by enemy targets ,Inquisitor Tier 4,high
+Magnetic Disruptor,8,29,Reduces Damage dealt by enemy targets ,Inquisitor Tier 4,high
+Magnetic Disruptor,9,31,Reduces Damage dealt by enemy targets ,Inquisitor Tier 4,high
+Magnetic Disruptor,10,34,Reduces Damage dealt by enemy targets ,Inquisitor Tier 4,high
+Magnetic Disruptor,11,36,Reduces Damage dealt by enemy targets ,Inquisitor Tier 4,high
+Magnetic Disruptor,12,39,Reduces Damage dealt by enemy targets ,Inquisitor Tier 4,high
+Magnetic Disruptor,13,42,Reduces Damage dealt by enemy targets ,Inquisitor Tier 4,high
+Magnetic Disruptor,14,44,Reduces Damage dealt by enemy targets ,Inquisitor Tier 4,high
+Magnetic Disruptor,15,47,Reduces Damage dealt by enemy targets ,Inquisitor Tier 4,high
+Magnetic Disruptor,16,49,Reduces Damage dealt by enemy targets ,Inquisitor Tier 4,high
+Magnetic Disruptor,17,52,Reduces Damage dealt by enemy targets ,Inquisitor Tier 4,high
+Magnetic Disruptor,18,55,Reduces Damage dealt by enemy targets ,Inquisitor Tier 4,high
+Magnetic Disruptor,19,57,Reduces Damage dealt by enemy targets ,Inquisitor Tier 4,high
+Magnetic Disruptor,20,,Reduces Damage dealt by enemy targets ,Inquisitor Tier 4,high
+Magnetic Disruptor,21,,Reduces Damage dealt by enemy targets ,Inquisitor Tier 4,high
+Magnetic Disruptor,22,,Reduces Damage dealt by enemy targets ,Inquisitor Tier 4,high
+Magnetic Disruptor,23,68,Reduces Damage dealt by enemy targets ,Inquisitor Tier 4,high
+Magnetic Disruptor,24,70,Reduces Damage dealt by enemy targets ,Inquisitor Tier 4,high
+Magnetic Disruptor,25,73,Reduces Damage dealt by enemy targets ,Inquisitor Tier 4,high
+Energy Aid,1,10,Increases HP and Defense of all Troops,Inquisitor Tier 7,mid
+Energy Aid,2,13,Increases HP and Defense of all Troops,Inquisitor Tier 7,mid
+Energy Aid,3,16,Increases HP and Defense of all Troops,Inquisitor Tier 7,mid
+Energy Aid,4,18,Increases HP and Defense of all Troops,Inquisitor Tier 7,mid
+Energy Aid,5,21,Increases HP and Defense of all Troops,Inquisitor Tier 7,mid
+Energy Aid,6,23,Increases HP and Defense of all Troops,Inquisitor Tier 7,mid
+Energy Aid,7,26,Increases HP and Defense of all Troops,Inquisitor Tier 7,mid
+Energy Aid,8,29,Increases HP and Defense of all Troops,Inquisitor Tier 7,mid
+Energy Aid,9,31,Increases HP and Defense of all Troops,Inquisitor Tier 7,mid
+Energy Aid,10,34,Increases HP and Defense of all Troops,Inquisitor Tier 7,mid
+Energy Aid,11,36,Increases HP and Defense of all Troops,Inquisitor Tier 7,mid
+Energy Aid,12,39,Increases HP and Defense of all Troops,Inquisitor Tier 7,mid
+Energy Aid,13,42,Increases HP and Defense of all Troops,Inquisitor Tier 7,mid
+Energy Aid,14,44,Increases HP and Defense of all Troops,Inquisitor Tier 7,mid
+Energy Aid,15,47,Increases HP and Defense of all Troops,Inquisitor Tier 7,mid
+Energy Aid,16,49,Increases HP and Defense of all Troops,Inquisitor Tier 7,mid
+Energy Aid,17,52,Increases HP and Defense of all Troops,Inquisitor Tier 7,mid
+Energy Aid,18,55,Increases HP and Defense of all Troops,Inquisitor Tier 7,mid
+Energy Aid,19,57,Increases HP and Defense of all Troops,Inquisitor Tier 7,mid
+Energy Aid,20,,Increases HP and Defense of all Troops,Inquisitor Tier 7,mid
+Energy Aid,21,,Increases HP and Defense of all Troops,Inquisitor Tier 7,mid
+Energy Aid,22,,Increases HP and Defense of all Troops,Inquisitor Tier 7,mid
+Energy Aid,23,68,Increases HP and Defense of all Troops,Inquisitor Tier 7,mid
+Energy Aid,24,70,Increases HP and Defense of all Troops,Inquisitor Tier 7,mid
+Energy Aid,25,73,Increases HP and Defense of all Troops,Inquisitor Tier 7,mid
+Ultrapulse Laser,1,,"Launches 1 time every 10 seconds, locking on the enemy troops with most units, launching 3 lasers within 2 seconds",Epic Tier 0,low
+Ultrapulse Laser,2,,"Launches 1 time every 10 seconds, locking on the enemy troops with most units, launching 3 lasers within 2 seconds",Epic Tier 0,low
+Ultrapulse Laser,3,,"Launches 1 time every 10 seconds, locking on the enemy troops with most units, launching 3 lasers within 2 seconds",Epic Tier 0,low
+Ultrapulse Laser,4,,"Launches 1 time every 10 seconds, locking on the enemy troops with most units, launching 3 lasers within 2 seconds",Epic Tier 0,low
+Ultrapulse Laser,5,,"Launches 1 time every 10 seconds, locking on the enemy troops with most units, launching 3 lasers within 2 seconds",Epic Tier 0,low
+Ultrapulse Laser,6,,"Launches 1 time every 10 seconds, locking on the enemy troops with most units, launching 3 lasers within 2 seconds",Epic Tier 0,low
+Ultrapulse Laser,7,62,"Launches 1 time every 10 seconds, locking on the enemy troops with most units, launching 3 lasers within 2 seconds",Epic Tier 0,low
+Ultrapulse Laser,8,68,"Launches 1 time every 10 seconds, locking on the enemy troops with most units, launching 3 lasers within 2 seconds",Epic Tier 0,low
+Ultrapulse Laser,9,75,"Launches 1 time every 10 seconds, locking on the enemy troops with most units, launching 3 lasers within 2 seconds",Epic Tier 0,low
+Ultrapulse Laser,10,81,"Launches 1 time every 10 seconds, locking on the enemy troops with most units, launching 3 lasers within 2 seconds",Epic Tier 0,low
+Ultrapulse Laser,11,88,"Launches 1 time every 10 seconds, locking on the enemy troops with most units, launching 3 lasers within 2 seconds",Epic Tier 0,low
+Ultrapulse Laser,12,92,"Launches 1 time every 10 seconds, locking on the enemy troops with most units, launching 3 lasers within 2 seconds",Epic Tier 0,low
+Ultrapulse Laser,13,,"Launches 1 time every 10 seconds, locking on the enemy troops with most units, launching 3 lasers within 2 seconds",Epic Tier 0,low
+Ultrapulse Laser,14,,"Launches 1 time every 10 seconds, locking on the enemy troops with most units, launching 3 lasers within 2 seconds",Epic Tier 0,low
+Ultrapulse Laser,15,111,"Launches 1 time every 10 seconds, locking on the enemy troops with most units, launching 3 lasers within 2 seconds",Epic Tier 0,low
+Ultrapulse Laser,16,,"Launches 1 time every 10 seconds, locking on the enemy troops with most units, launching 3 lasers within 2 seconds",Epic Tier 0,low
+Ultrapulse Laser,17,,"Launches 1 time every 10 seconds, locking on the enemy troops with most units, launching 3 lasers within 2 seconds",Epic Tier 0,low
+Ultrapulse Laser,18,130,"Launches 1 time every 10 seconds, locking on the enemy troops with most units, launching 3 lasers within 2 seconds",Epic Tier 0,low
+High-Speed Charge,1,,Have % chance of making ultra pulse laser launch faster,Epic Tier 4,high
+High-Speed Charge,2,,Have % chance of making ultra pulse laser launch faster,Epic Tier 4,high
+High-Speed Charge,3,,Have % chance of making ultra pulse laser launch faster,Epic Tier 4,high
+High-Speed Charge,4,,Have % chance of making ultra pulse laser launch faster,Epic Tier 4,high
+High-Speed Charge,5,,Have % chance of making ultra pulse laser launch faster,Epic Tier 4,high
+High-Speed Charge,6,,Have % chance of making ultra pulse laser launch faster,Epic Tier 4,high
+High-Speed Charge,7,,Have % chance of making ultra pulse laser launch faster,Epic Tier 4,high
+High-Speed Charge,8,,Have % chance of making ultra pulse laser launch faster,Epic Tier 4,high
+High-Speed Charge,9,40,Have % chance of making ultra pulse laser launch faster,Epic Tier 4,high
+High-Speed Charge,10,44,Have % chance of making ultra pulse laser launch faster,Epic Tier 4,high
+High-Speed Charge,11,,Have % chance of making ultra pulse laser launch faster,Epic Tier 4,high
+High-Speed Charge,12,,Have % chance of making ultra pulse laser launch faster,Epic Tier 4,high
+High-Speed Charge,13,,Have % chance of making ultra pulse laser launch faster,Epic Tier 4,high
+High-Speed Charge,14,,Have % chance of making ultra pulse laser launch faster,Epic Tier 4,high
+High-Speed Charge,15,65,Have % chance of making ultra pulse laser launch faster,Epic Tier 4,high
+High-Speed Charge,16,,Have % chance of making ultra pulse laser launch faster,Epic Tier 4,high
+High-Speed Charge,17,,Have % chance of making ultra pulse laser launch faster,Epic Tier 4,high
+High-Speed Charge,18,,Have % chance of making ultra pulse laser launch faster,Epic Tier 4,high
+High-Speed Charge,19,,Have % chance of making ultra pulse laser launch faster,Epic Tier 4,high
+High-Speed Charge,20,,Have % chance of making ultra pulse laser launch faster,Epic Tier 4,high
+High-Speed Charge,21,82,Have % chance of making ultra pulse laser launch faster,Epic Tier 4,high
+Fortify Engine Body,1,,Increase warplane HP,Epic Tier 7,mid
+Fortify Engine Body,2,,Increase warplane HP,Epic Tier 7,mid
+Fortify Engine Body,3,,Increase warplane HP,Epic Tier 7,mid
+Fortify Engine Body,4,,Increase warplane HP,Epic Tier 7,mid
+Fortify Engine Body,5,,Increase warplane HP,Epic Tier 7,mid
+Fortify Engine Body,6,,Increase warplane HP,Epic Tier 7,mid
+Fortify Engine Body,7,,Increase warplane HP,Epic Tier 7,mid
+Fortify Engine Body,8,,Increase warplane HP,Epic Tier 7,mid
+Fortify Engine Body,9,40,Increase warplane HP,Epic Tier 7,mid
+Fortify Engine Body,10,44,Increase warplane HP,Epic Tier 7,mid
+Fortify Engine Body,11,,Increase warplane HP,Epic Tier 7,mid
+Fortify Engine Body,12,,Increase warplane HP,Epic Tier 7,mid
+Fortify Engine Body,13,,Increase warplane HP,Epic Tier 7,mid
+Fortify Engine Body,14,,Increase warplane HP,Epic Tier 7,mid
+Fortify Engine Body,15,65,Increase warplane HP,Epic Tier 7,mid
+Fortify Engine Body,16,,Increase warplane HP,Epic Tier 7,mid
+Fortify Engine Body,17,,Increase warplane HP,Epic Tier 7,mid
+Fortify Engine Body,18,,Increase warplane HP,Epic Tier 7,mid
+Fortify Engine Body,19,,Increase warplane HP,Epic Tier 7,mid
+Fortify Engine Body,20,,Increase warplane HP,Epic Tier 7,mid
+Fortify Engine Body,21,82,Increase warplane HP,Epic Tier 7,mid
+Superior Force Field,1,34,Increase damage dealt by warplane,Immortal Tier 0,low
+Superior Force Field,2,42,Increase damage dealt by warplane,Immortal Tier 0,low
+Superior Force Field,3,47,Increase damage dealt by warplane,Immortal Tier 0,low
+Superior Force Field,4,55,Increase damage dealt by warplane,Immortal Tier 0,low
+Superior Force Field,5,60,Increase damage dealt by warplane,Immortal Tier 0,low
+Superior Force Field,6,68,Increase damage dealt by warplane,Immortal Tier 0,low
+Superior Force Field,7,76,Increase damage dealt by warplane,Immortal Tier 0,low
+Superior Force Field,8,81,Increase damage dealt by warplane,Immortal Tier 0,low
+Superior Force Field,9,89,Increase damage dealt by warplane,Immortal Tier 0,low
+Superior Force Field,10,,Increase damage dealt by warplane,Immortal Tier 0,low
+Superior Force Field,11,,Increase damage dealt by warplane,Immortal Tier 0,low
+Superior Force Field,12,,Increase damage dealt by warplane,Immortal Tier 0,low
+Superior Force Field,13,,Increase damage dealt by warplane,Immortal Tier 0,low
+Superior Force Field,14,,Increase damage dealt by warplane,Immortal Tier 0,low
+Superior Force Field,15,,Increase damage dealt by warplane,Immortal Tier 0,low
+Superior Force Field,16,,Increase damage dealt by warplane,Immortal Tier 0,low
+Superior Force Field,17,,Increase damage dealt by warplane,Immortal Tier 0,low
+Superior Force Field,18,,Increase damage dealt by warplane,Immortal Tier 0,low
+Superior Force Field,19,,Increase damage dealt by warplane,Immortal Tier 0,low
+Superior Force Field,20,162,Increase damage dealt by warplane,Immortal Tier 0,low
+EMP Armor,1,17,"Increases attack, hp, and defense of melee troops",Immortal Tier 4,mid
+EMP Armor,2,20,"Increases attack, hp, and defense of melee troops",Immortal Tier 4,mid
+EMP Armor,3,24,"Increases attack, hp, and defense of melee troops",Immortal Tier 4,mid
+EMP Armor,4,27,"Increases attack, hp, and defense of melee troops",Immortal Tier 4,mid
+EMP Armor,5,31,"Increases attack, hp, and defense of melee troops",Immortal Tier 4,mid
+EMP Armor,6,34,"Increases attack, hp, and defense of melee troops",Immortal Tier 4,mid
+EMP Armor,7,37,"Increases attack, hp, and defense of melee troops",Immortal Tier 4,mid
+EMP Armor,8,41,"Increases attack, hp, and defense of melee troops",Immortal Tier 4,mid
+EMP Armor,9,44,"Increases attack, hp, and defense of melee troops",Immortal Tier 4,mid
+EMP Armor,10,48,"Increases attack, hp, and defense of melee troops",Immortal Tier 4,mid
+EMP Armor,11,51,"Increases attack, hp, and defense of melee troops",Immortal Tier 4,mid
+EMP Armor,12,54,"Increases attack, hp, and defense of melee troops",Immortal Tier 4,mid
+EMP Armor,13,58,"Increases attack, hp, and defense of melee troops",Immortal Tier 4,mid
+EMP Armor,14,61,"Increases attack, hp, and defense of melee troops",Immortal Tier 4,mid
+EMP Armor,15,65,"Increases attack, hp, and defense of melee troops",Immortal Tier 4,mid
+EMP Armor,16,68,"Increases attack, hp, and defense of melee troops",Immortal Tier 4,mid
+EMP Armor,17,71,"Increases attack, hp, and defense of melee troops",Immortal Tier 4,mid
+EMP Armor,18,75,"Increases attack, hp, and defense of melee troops",Immortal Tier 4,mid
+EMP Armor,19,78,"Increases attack, hp, and defense of melee troops",Immortal Tier 4,mid
+EMP Armor,20,82,"Increases attack, hp, and defense of melee troops",Immortal Tier 4,mid
+EMP Armor,21,,"Increases attack, hp, and defense of melee troops",Immortal Tier 4,mid
+EMP Armor,22,88,"Increases attack, hp, and defense of melee troops",Immortal Tier 4,mid
+EMP Armor,23,92,"Increases attack, hp, and defense of melee troops",Immortal Tier 4,mid
+EMP Armor,24,95,"Increases attack, hp, and defense of melee troops",Immortal Tier 4,mid
+EMP Armor,25,99,"Increases attack, hp, and defense of melee troops",Immortal Tier 4,mid
+EMP Armor,26,102,"Increases attack, hp, and defense of melee troops",Immortal Tier 4,mid
+EMP Armor,27,105,"Increases attack, hp, and defense of melee troops",Immortal Tier 4,mid
+EMP Armor,28,109,"Increases attack, hp, and defense of melee troops",Immortal Tier 4,mid
+Armor Piercing Laser,1,17,Increases damage to melee troops,Immortal Tier 7,high
+Armor Piercing Laser,2,20,Increases damage to melee troops,Immortal Tier 7,high
+Armor Piercing Laser,3,24,Increases damage to melee troops,Immortal Tier 7,high
+Armor Piercing Laser,4,27,Increases damage to melee troops,Immortal Tier 7,high
+Armor Piercing Laser,5,31,Increases damage to melee troops,Immortal Tier 7,high
+Armor Piercing Laser,6,34,Increases damage to melee troops,Immortal Tier 7,high
+Armor Piercing Laser,7,37,Increases damage to melee troops,Immortal Tier 7,high
+Armor Piercing Laser,8,41,Increases damage to melee troops,Immortal Tier 7,high
+Armor Piercing Laser,9,44,Increases damage to melee troops,Immortal Tier 7,high
+Armor Piercing Laser,10,48,Increases damage to melee troops,Immortal Tier 7,high
+Armor Piercing Laser,11,51,Increases damage to melee troops,Immortal Tier 7,high
+Armor Piercing Laser,12,54,Increases damage to melee troops,Immortal Tier 7,high
+Armor Piercing Laser,13,58,Increases damage to melee troops,Immortal Tier 7,high
+Armor Piercing Laser,14,61,Increases damage to melee troops,Immortal Tier 7,high
+Armor Piercing Laser,15,65,Increases damage to melee troops,Immortal Tier 7,high
+Armor Piercing Laser,16,68,Increases damage to melee troops,Immortal Tier 7,high
+Armor Piercing Laser,17,71,Increases damage to melee troops,Immortal Tier 7,high
+Armor Piercing Laser,18,75,Increases damage to melee troops,Immortal Tier 7,high
+Armor Piercing Laser,19,78,Increases damage to melee troops,Immortal Tier 7,high
+Armor Piercing Laser,20,82,Increases damage to melee troops,Immortal Tier 7,high
+Armor Piercing Laser,21,,Increases damage to melee troops,Immortal Tier 7,high
+Armor Piercing Laser,22,88,Increases damage to melee troops,Immortal Tier 7,high
+Armor Piercing Laser,23,92,Increases damage to melee troops,Immortal Tier 7,high
+Armor Piercing Laser,24,95,Increases damage to melee troops,Immortal Tier 7,high
+Armor Piercing Laser,25,99,Increases damage to melee troops,Immortal Tier 7,high
+Armor Piercing Laser,26,102,Increases damage to melee troops,Immortal Tier 7,high
+Armor Piercing Laser,27,105,Increases damage to melee troops,Immortal Tier 7,high
+Armor Piercing Laser,28,109,Increases damage to melee troops,Immortal Tier 7,high

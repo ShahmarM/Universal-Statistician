@@ -1,0 +1,157 @@
+Antique,Rarity,Set,Max star,Cost sequence,Star,Power,Effects (cumulative)
+Bone Axe,Legendary,,15,s15,0,893,HP Boost 1.3%; Defense Boost 1.3%
+Bone Axe,Legendary,,15,s15,3,3572,HP Boost 4.5%; Defense Boost 4.5%; Enemy Defense Reduction 0.7%
+Bone Axe,Legendary,,15,s15,6,11609,HP Boost 9.7%; Defense Boost 9.7%; Enemy Defense Reduction 6.8%; Increases Damage to Mid-Range Troops 0.2%
+Scarlet Mantis Knife,Legendary,,15,s15,0,893,Increases Damage to Melee Troops 0.9%
+Scarlet Mantis Knife,Legendary,,15,s15,3,3572,Increases Damage to Melee Troops 3.2%; Enemy Attack Reduction 0.7%
+Scarlet Mantis Knife,Legendary,,15,s15,6,11609,Increases Damage to Melee Troops 7.5%; Enemy Attack Reduction 6.8%; Increases Damage to Long-Range Troops 0.2%
+Imperial Seal,Epic,,18,s18,0,323,Warplane Attack 7200; Warplane HP 44640
+Imperial Seal,Epic,,18,s18,3,1292,Warplane Attack 25200; Warplane HP 156240; Mid-Range Attack 0.6%
+Imperial Seal,Epic,,18,s18,6,4199,Warplane Attack 57600; Warplane HP 357120; Mid-Range Attack 6%
+Mystery Grail,Epic,,18,s18,0,323,Warplane Attack 7200; Warplane HP 44640
+Mystery Grail,Epic,,18,s18,3,1292,Warplane Attack 25200; Warplane HP 156240; Long-Range Attack 0.6%
+Mystery Grail,Epic,,18,s18,6,4199,Warplane Attack 57600; Warplane HP 357120; Long-Range Attack 6%
+Venus Statue,Epic,,18,s18,0,323,Empress Attack Boost 10000; Empress HP Boost 140000
+Venus Statue,Epic,,18,s18,3,1292,Empress Attack Boost 35000; Empress HP Boost 490000; Long-Range Attack 0.6%
+Venus Statue,Epic,,18,s18,6,4199,Empress Attack Boost 80000; Empress HP Boost 1120000; Long-Range Attack 6%
+Warning Bell,Epic,Biochemical Charge,18,s18,0,323,Biochemical Zombies HP Boost 1.2%; Biochemical Zombies Defense Boost 1.2%
+Warning Bell,Epic,Biochemical Charge,18,s18,3,1292,Biochemical Zombies HP Boost 4.2%; Biochemical Zombies Defense Boost 4.2%; Attack Against Biochemical Zombies Boost 0.6%
+Warning Bell,Epic,Biochemical Charge,18,s18,6,4199,Biochemical Zombies HP Boost 9.6%; Biochemical Zombies Defense Boost 9.6%; Attack Against Biochemical Zombies Boost 6%
+Bronze Vase,Epic,,18,s18,0,323,Warplane Attack 7200; Warplane HP 44640
+Bronze Vase,Epic,,18,s18,3,1292,Warplane Attack 25200; Warplane HP 156240; Enemy Melee Defense Reduction 0.6%
+Bronze Vase,Epic,,18,s18,6,4199,Warplane Attack 57600; Warplane HP 357120; Enemy Melee Defense Reduction 6%
+Crown,Epic,,18,s18,0,323,HP Boost 0.5%; Defense Boost 0.5%
+Crown,Epic,,18,s18,3,1292,HP Boost 1.8%; Defense Boost 1.8%; Attack Against Long-Range Boost 0.6%
+Crown,Epic,,18,s18,6,4199,HP Boost 4.5%; Defense Boost 4.5%; Attack Against Long-Range Boost 6%
+Basalt Tablet,Epic,Brilliant Things,18,s18,0,323,Attack Boost 0.5%
+Basalt Tablet,Epic,Brilliant Things,18,s18,3,1292,Attack Boost 1.8%; Enemy Long-Range Attack Reduction 0.6%
+Basalt Tablet,Epic,Brilliant Things,18,s18,6,4199,Attack Boost 4.5%; Enemy Long-Range Attack Reduction 6%
+Ocean Teardrop,Epic,Brilliant Things,18,s18,0,323,HP Boost 0.5%; Defense Boost 0.5%
+Ocean Teardrop,Epic,Brilliant Things,18,s18,3,1292,HP Boost 1.8%; Defense Boost 1.8%; Attack Against Melee Boost 0.6%
+Ocean Teardrop,Epic,Brilliant Things,18,s18,6,4199,HP Boost 4.5%; Defense Boost 4.5%; Attack Against Melee Boost 6%
+Hope Emblem,Epic,Brilliant Things,18,s18,0,323,HP Boost 0.5%; Defense Boost 0.5%
+Hope Emblem,Epic,Brilliant Things,18,s18,3,1292,HP Boost 1.8%; Defense Boost 1.8%; Attack Against Mid-Range Boost 0.6%
+Hope Emblem,Epic,Brilliant Things,18,s18,6,4199,HP Boost 4.5%; Defense Boost 4.5%; Attack Against Mid-Range Boost 6%
+Diamond Phone,Rare,Brilliant Things,21,s21,0,156,Melee HP 0.6%; Melee Defense 0.6%
+Diamond Phone,Rare,Brilliant Things,21,s21,3,624,Melee HP 2.4%; Melee Defense 2.4%
+Diamond Phone,Rare,Brilliant Things,21,s21,6,2028,Melee HP 7.8%; Melee Defense 7.8%
+Brass Compass,Rare,,21,s21,0,156,Biochemical Zombies Attack Boost 0.6%
+Brass Compass,Rare,,21,s21,3,624,Biochemical Zombies Attack Boost 2.4%
+Brass Compass,Rare,,21,s21,6,2028,Biochemical Zombies Attack Boost 7.8%
+Data Hard Drive,Rare,,21,s21,0,156,Biochemical Zombies HP Boost 0.6%; Biochemical Zombies Defense Boost 0.6%
+Data Hard Drive,Rare,,21,s21,3,624,Biochemical Zombies HP Boost 2.4%; Biochemical Zombies Defense Boost 2.4%
+Data Hard Drive,Rare,,21,s21,6,2028,Biochemical Zombies HP Boost 7.8%; Biochemical Zombies Defense Boost 7.8%
+Ark Map,Rare,,21,s21,0,156,Mid-Range HP 0.6%; Mid-Range Defense 0.6%
+Ark Map,Rare,,21,s21,3,624,Mid-Range HP 2.4%; Mid-Range Defense 2.4%
+Ark Map,Rare,,21,s21,6,2028,Mid-Range HP 7.8%; Mid-Range Defense 7.8%
+Olympic Laurel,Rare,,21,s21,0,156,Monster Attack Speed 0.6%
+Olympic Laurel,Rare,,21,s21,3,624,Monster Attack Speed 2.4%
+Olympic Laurel,Rare,,21,s21,6,2028,Monster Attack Speed 7.8%
+Fine Porcelain,Rare,,21,s21,0,156,Food Gather Bonus 0.6%
+Fine Porcelain,Rare,,21,s21,3,624,Food Gather Bonus 2.4%
+Fine Porcelain,Rare,,21,s21,6,2028,Food Gather Bonus 7.8%
+Black Gold Member's Card,Rare,,21,s21,0,156,Long-Range HP 0.6%; Long-Range Defense 0.6%
+Black Gold Member's Card,Rare,,21,s21,3,624,Long-Range HP 2.4%; Long-Range Defense 2.4%
+Black Gold Member's Card,Rare,,21,s21,6,2028,Long-Range HP 7.8%; Long-Range Defense 7.8%
+Toxic Bone Spur,Rare,,21,s21,0,156,Melee Attack 0.6%
+Toxic Bone Spur,Rare,,21,s21,3,624,Melee Attack 2.4%
+Toxic Bone Spur,Rare,,21,s21,6,2028,Melee Attack 7.8%
+Treasured Violin,Rare,,21,s21,0,156,Biochemical Zombies Attack Boost 0.6%
+Treasured Violin,Rare,,21,s21,3,624,Biochemical Zombies Attack Boost 2.4%
+Treasured Violin,Rare,,21,s21,6,2028,Biochemical Zombies Attack Boost 7.8%
+Golden Rabbit Doll,Rare,,21,s21,0,156,Wounded Units Bonus Limit 360
+Golden Rabbit Doll,Rare,,21,s21,3,624,Wounded Units Bonus Limit 1440
+Golden Rabbit Doll,Rare,,21,s21,6,2028,Wounded Units Bonus Limit 4680
+Autographed Football,Rare,,21,s21,0,156,Steel Gather Bonus 0.6%
+Autographed Football,Rare,,21,s21,3,624,Steel Gather Bonus 2.4%
+Autographed Football,Rare,,21,s21,6,2028,Steel Gather Bonus 7.8%
+Crystal Skull,Rare,,21,s21,0,156,Oil Gather Bonus 0.6%
+Crystal Skull,Rare,,21,s21,3,624,Oil Gather Bonus 2.4%
+Crystal Skull,Rare,,21,s21,6,2028,Oil Gather Bonus 7.8%
+Totem Wood Sculpture,Rare,,21,s21,0,156,Long-Range Attack 0.6%
+Totem Wood Sculpture,Rare,,21,s21,3,624,Long-Range Attack 2.4%
+Totem Wood Sculpture,Rare,,21,s21,6,2028,Long-Range Attack 7.8%
+Hound Statue,Rare,,21,s21,0,156,Mineral Gather Bonus 0.6%
+Hound Statue,Rare,,21,s21,3,624,Mineral Gather Bonus 2.4%
+Hound Statue,Rare,,21,s21,6,2028,Mineral Gather Bonus 7.8%
+Red Coral,Rare,,21,s21,0,156,Mid-Range Attack 0.6%
+Red Coral,Rare,,21,s21,3,624,Mid-Range Attack 2.4%
+Red Coral,Rare,,21,s21,6,2028,Mid-Range Attack 7.8%
+Viking Helmet,Rare,,21,s21,0,156,Biochemical Zombies Attack Boost 0.6%; Biochemical Zombies Defense Boost 0.6%
+Viking Helmet,Rare,,21,s21,3,624,Biochemical Zombies Attack Boost 2.4%; Biochemical Zombies Defense Boost 2.4%
+Viking Helmet,Rare,,21,s21,6,2028,Biochemical Zombies Attack Boost 7.8%; Biochemical Zombies Defense Boost 7.8%
+Gem Egg,Epic,,18,s18,0,323,Attack Boost 0.5%
+Gem Egg,Epic,,18,s18,3,1292,Attack Boost 1.8%; Enemy Mid-Range Attack Reduction 0.6%
+Gem Egg,Epic,,18,s18,6,4199,Attack Boost 4.5%; Enemy Mid-Range Attack Reduction 6%
+Gold Mask,Epic,,18,s18,0,323,Attack Boost 0.5%
+Gold Mask,Epic,,18,s18,3,1292,Attack Boost 1.8%; Enemy Melee Attack Reduction 0.6%
+Gold Mask,Epic,,18,s18,6,4199,Attack Boost 4.5%; Enemy Melee Attack Reduction 6%
+Goddess Torch,Epic,,18,s18,0,323,Empress Attack Boost 10000; Empress HP Boost 140000
+Goddess Torch,Epic,,18,s18,3,1292,Empress Attack Boost 35000; Empress HP Boost 490000; Mid-Range Attack 0.6%
+Goddess Torch,Epic,,18,s18,6,4199,Empress Attack Boost 80000; Empress HP Boost 1120000; Mid-Range Attack 6%
+Heavy Sword,Legendary,Biochemical Charge,15,s15,0,893,Biochemical Zombies Attack Boost 3%
+Heavy Sword,Legendary,Biochemical Charge,15,s15,3,3572,Biochemical Zombies Attack Boost 10.5%; Enemy Biochemical Zombie Attack Reduction 1.5%
+Heavy Sword,Legendary,Biochemical Charge,15,s15,6,11609,Biochemical Zombies Attack Boost 23.5%; Enemy Biochemical Zombie Attack Reduction 14.5%; Biochemical Zombie Army Limit Boost 120
+Zombie Heart,Epic,,18,s18,0,323,Source Spirit Attack Boost 10000; Source Spirit HP Boost 140000
+Zombie Heart,Epic,,18,s18,3,1292,Source Spirit Attack Boost 35000; Source Spirit HP Boost 490000; Enemy Melee Defense Reduction 0.6%
+Zombie Heart,Epic,,18,s18,6,4199,Source Spirit Attack Boost 80000; Source Spirit HP Boost 1120000; Enemy Melee Defense Reduction 6%
+Gold: Biochemical Troop,Legendary,Biochemical Charge,15,s15,0,893,Biochemical Zombies HP Boost 3%; Biochemical Zombies Defense Boost 3%
+Gold: Biochemical Troop,Legendary,Biochemical Charge,15,s15,3,3572,Biochemical Zombies HP Boost 10.5%; Biochemical Zombies Defense Boost 10.5%; Attack Against Biochemical Zombies Boost 1.5%
+Gold: Biochemical Troop,Legendary,Biochemical Charge,15,s15,6,11609,Biochemical Zombies HP Boost 23.5%; Biochemical Zombies Defense Boost 23.5%; Attack Against Biochemical Zombies Boost 14.5%; Biochemical Zombie Army Limit Boost 120
+Scarab Amulet,Epic,Biochemical Charge,18,s18,0,323,Biochemical Zombies Attack Boost 1.2%
+Scarab Amulet,Epic,Biochemical Charge,18,s18,3,1292,Biochemical Zombies Attack Boost 4.2%; Enemy Biochemical Zombie Attack Reduction 0.6%
+Scarab Amulet,Epic,Biochemical Charge,18,s18,6,4199,Biochemical Zombies Attack Boost 9.6%; Enemy Biochemical Zombie Attack Reduction 6%
+Empress Exoskeleton,Legendary,Giant Weapons,15,s15,0,893,Empress Attack Boost 25200; Empress HP Boost 352800
+Empress Exoskeleton,Legendary,Giant Weapons,15,s15,3,3572,Empress Attack Boost 88200; Empress HP Boost 1234800; Enemy Attack Reduction 0.7%
+Empress Exoskeleton,Legendary,Giant Weapons,15,s15,6,11609,Empress Attack Boost 197400; Empress HP Boost 2763600; Enemy Attack Reduction 6.8%; Titan Damage Taken Reduction 0.3%
+Gold Candleholder,Epic,,18,s18,0,323,Warplane Attack 7200; Warplane HP 44640
+Gold Candleholder,Epic,,18,s18,3,1292,Warplane Attack 25200; Warplane HP 156240; Melee HP 0.6%; Melee Defense 0.6%
+Gold Candleholder,Epic,,18,s18,6,4199,Warplane Attack 57600; Warplane HP 357120; Melee HP 6%; Melee Defense 6%
+Titan Energy Cannon,Legendary,Giant Weapons,15,s15,0,893,Source Spirit Attack Boost 25200; Source Spirit HP Boost 352800
+Titan Energy Cannon,Legendary,Giant Weapons,15,s15,3,3572,Source Spirit Attack Boost 88200; Source Spirit HP Boost 1234800; Enemy Defense Reduction 0.7%
+Titan Energy Cannon,Legendary,Giant Weapons,15,s15,6,11609,Source Spirit Attack Boost 197400; Source Spirit HP Boost 2763600; Enemy Defense Reduction 6.8%; Titan Damage Taken Reduction 0.3%
+Warp Drive,Legendary,Giant Weapons,15,s15,0,893,Warplane Attack 18000; Warplane HP 111600
+Warp Drive,Legendary,Giant Weapons,15,s15,3,3572,Warplane Attack 63000; Warplane HP 390600; Enemy Attack Reduction 0.7%
+Warp Drive,Legendary,Giant Weapons,15,s15,6,11609,Warplane Attack 141000; Warplane HP 874200; Enemy Attack Reduction 6.8%; Reduces Damage taken from Warplanes 0.3%
+Magnetic Pulse Core,Legendary,Giant Weapons,15,s15,0,893,Increases Damage to Melee Troops 0.9%
+Magnetic Pulse Core,Legendary,Giant Weapons,15,s15,3,3572,Increases Damage to Melee Troops 3.2%; Enemy Defense Reduction 0.7%
+Magnetic Pulse Core,Legendary,Giant Weapons,15,s15,6,11609,Increases Damage to Melee Troops 7.5%; Enemy Defense Reduction 6.8%; Reduces Damage taken from Warplanes 0.3%
+Gold: Sniper,Legendary,Strong Will,15,s15,0,893,HP Boost 1.3%; Defense Boost 1.3%
+Gold: Sniper,Legendary,Strong Will,15,s15,3,3572,HP Boost 4.5%; Defense Boost 4.5%; Enemy Melee Attack Reduction 1.5%
+Gold: Sniper,Legendary,Strong Will,15,s15,6,11609,HP Boost 9.7%; Defense Boost 9.7%; Enemy Melee Attack Reduction 14.5%; Increases Damage to Melee Troops 0.2%
+Gold: Infantry,Legendary,Strong Will,15,s15,0,893,HP Boost 1.3%; Defense Boost 1.3%
+Gold: Infantry,Legendary,Strong Will,15,s15,3,3572,HP Boost 4.5%; Defense Boost 4.5%; Attack Against Melee Boost 1.5%
+Gold: Infantry,Legendary,Strong Will,15,s15,6,11609,HP Boost 9.7%; Defense Boost 9.7%; Attack Against Melee Boost 14.5%; Increases Damage to Melee Troops 0.2%
+Gold: Rocket,Legendary,Strong Will,15,s15,0,893,Attack Boost 1.3%
+Gold: Rocket,Legendary,Strong Will,15,s15,3,3572,Attack Boost 4.5%; Enemy Long-Range Attack Reduction 1.5%
+Gold: Rocket,Legendary,Strong Will,15,s15,6,11609,Attack Boost 9.7%; Enemy Long-Range Attack Reduction 14.5%; Increases Damage to Long-Range Troops 0.2%
+Gold: Gunner,Legendary,Strong Will,15,s15,0,893,Attack Boost 1.3%
+Gold: Gunner,Legendary,Strong Will,15,s15,3,3572,Attack Boost 4.5%; Attack Against Mid-Range Boost 1.5%
+Gold: Gunner,Legendary,Strong Will,15,s15,6,11609,Attack Boost 9.7%; Attack Against Mid-Range Boost 14.5%; Reduces Damage taken from Mid-Range Troops 0.2%
+Gold: Shredder,Legendary,Rocket Turret,15,s15,0,893,HP Boost 1.3%; Defense Boost 1.3%
+Gold: Shredder,Legendary,Rocket Turret,15,s15,3,3572,HP Boost 4.5%; Defense Boost 4.5%; Attack Against Mid-Range Boost 1.5%
+Gold: Shredder,Legendary,Rocket Turret,15,s15,6,11609,HP Boost 9.7%; Defense Boost 9.7%; Attack Against Mid-Range Boost 14.5%; Reduces Damage taken from Mid-Range Troops 0.2%
+Gold: Tank,Legendary,Rocket Turret,15,s15,0,893,Reduces Damage taken from Melee Troops 0.9%
+Gold: Tank,Legendary,Rocket Turret,15,s15,3,3572,Reduces Damage taken from Melee Troops 3.2%; Attack Against Melee Boost 1.5%
+Gold: Tank,Legendary,Rocket Turret,15,s15,6,11609,Reduces Damage taken from Melee Troops 7.5%; Attack Against Melee Boost 14.5%; All Troops Block 2
+Gold: Cannon,Legendary,Rocket Turret,15,s15,0,893,Reduces Damage taken from Long-Range Troops 0.9%
+Gold: Cannon,Legendary,Rocket Turret,15,s15,3,3572,Reduces Damage taken from Long-Range Troops 3.2%; Enemy Mid-Range Attack Reduction 1.5%
+Gold: Cannon,Legendary,Rocket Turret,15,s15,6,11609,Reduces Damage taken from Long-Range Troops 7.5%; Enemy Mid-Range Attack Reduction 14.5%; Increases Damage to Mid-Range Troops 0.2%
+Gold: Raider,Legendary,Rocket Turret,15,s15,0,893,Attack Boost 1.3%
+Gold: Raider,Legendary,Rocket Turret,15,s15,3,3572,Attack Boost 4.5%; Enemy Long-Range Attack Reduction 1.5%
+Gold: Raider,Legendary,Rocket Turret,15,s15,6,11609,Attack Boost 9.7%; Enemy Long-Range Attack Reduction 14.5%; Increases Damage to Long-Range Troops 0.2%
+Gold: Shielder,Legendary,Nano Swarm,15,s15,0,893,HP Boost 1.5%; Defense Boost 1.5%
+Gold: Shielder,Legendary,Nano Swarm,15,s15,3,3572,HP Boost 5.3%; Defense Boost 5.3%; Attack Against Long-Range Boost 1.5%
+Gold: Shielder,Legendary,Nano Swarm,15,s15,6,11609,HP Boost 12.2%; Defense Boost 12.2%; Attack Against Long-Range Boost 14.5%; Reduces Damage taken from Long-Range Troops 0.2%
+Dinosaur Egg Fossil,Epic,,18,s18,0,323,Source Spirit Attack Boost 10000; Source Spirit HP Boost 140000
+Dinosaur Egg Fossil,Epic,,18,s18,3,1292,Source Spirit Attack Boost 35000; Source Spirit HP Boost 490000; Melee HP 0.6%; Melee Defense 0.6%
+Dinosaur Egg Fossil,Epic,,18,s18,6,4199,Source Spirit Attack Boost 80000; Source Spirit HP Boost 1120000; Melee HP 6%; Melee Defense 6%
+Gold: Armored Soldier,Legendary,Nano Swarm,15,s15,0,893,HP Boost 1.5%; Defense Boost 1.5%
+Gold: Armored Soldier,Legendary,Nano Swarm,15,s15,3,3572,HP Boost 5.3%; Defense Boost 5.3%; Enemy Melee Attack Reduction 1.5%
+Gold: Armored Soldier,Legendary,Nano Swarm,15,s15,6,11609,HP Boost 12.2%; Defense Boost 12.2%; Enemy Melee Attack Reduction 14.5%; All Troops Block 2
+Gold: EMP Cannon,Legendary,Nano Swarm,15,s15,0,893,Attack Boost 1.5%
+Gold: EMP Cannon,Legendary,Nano Swarm,15,s15,3,3572,Attack Boost 5.3%; Attack Against Long-Range Boost 1.5%
+Gold: EMP Cannon,Legendary,Nano Swarm,15,s15,6,11609,Attack Boost 12.2%; Attack Against Long-Range Boost 14.5%; Reduces Damage taken from Long-Range Troops 0.2%
+Gold: Storm Trooper,Legendary,Nano Swarm,15,s15,0,893,Reduces Damage taken from Mid-Range Troops 0.9%
+Gold: Storm Trooper,Legendary,Nano Swarm,15,s15,3,3572,Reduces Damage taken from Mid-Range Troops 3.2%; Enemy Mid-Range Attack Reduction 1.5%
+Gold: Storm Trooper,Legendary,Nano Swarm,15,s15,6,11609,Reduces Damage taken from Mid-Range Troops 7.5%; Enemy Mid-Range Attack Reduction 14.5%; Increases Damage to Mid-Range Troops 0.2%
